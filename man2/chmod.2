@@ -27,7 +27,7 @@
 .\" Modified Sun Jan 12 14:31:17 MET 1997 by Michael Haardt
 .\"   (michael@cantor.informatik.rwth-aachen.de): NFS details
 .\"
-.TH CHMOD 2 "10 December 1997" "Linux 2.0.32" "Linux Programmer's Manual"
+.TH CHMOD 2 1997-12-10 "Linux 2.0.32" "Linux Programmer's Manual"
 .SH NAME
 chmod, fchmod \- change permissions of a file
 .SH SYNOPSIS
@@ -99,8 +99,10 @@ but this will not cause an error to be returned.
 
 Depending on the file system, set user ID and set group ID execution bits
 may be turned off if a file is written.  On some file systems, only the
-super-user can set the sticky bit, which may have a special meaning (e.g.,
-for directories, a file can only be deleted by the owner or the super-user).
+super-user can set the sticky bit, which may have a special meaning.
+For the sticky bit, and for set user ID and set group ID bits on
+directories, see
+.BR stat (2).
 
 On NFS file systems, restricting the permissions will immediately influence
 already open files, because the access control is done on the server, but

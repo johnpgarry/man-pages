@@ -36,35 +36,74 @@
 .\"     @(#)strtod.3	5.3 (Berkeley) 6/29/91
 .\"
 .\" Modified Sun Aug 21 17:16:22 1994 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sat May 04 19:34:31 MET DST 1996 by Michael Haardt (michael@cantor.informatik.rwth-aachen.de)
+.\" Modified Sat May 04 19:34:31 MET DST 1996 by Michael Haardt
+.\"   (michael@cantor.informatik.rwth-aachen.de)
+.\" Added strof, strold, aeb, 2001-06-07
 .\"
-.TH STRTOD 3 "March 4th, 1996" "BSD Manual Page" "Library functions"
+.TH STRTOD 3 2001-06-07 "Linux" "Library functions"
 .SH NAME
-strtod \- convert ASCII string to double
+strtod, strtof, strtold \- convert ASCII string to floating point number
 .SH SYNOPSIS
 .B #include <stdlib.h>
 .sp
 .BI "double strtod(const char *" nptr ", char **" endptr );
+.br
+.BI "float strtof(const char *" nptr ", char **" endptr );
+.br
+.BI "long double strtold(const char *" nptr ", char **" endptr );
 .SH DESCRIPTION
 The
-.B strtod()
-function converts the initial portion of the string pointed to by
+.BR strtod ,
+.BR strtof ,
+and
+.B strtold
+functions convert the initial portion of the string pointed to by
 .I nptr
 to
-.B double
-representation.
+.BR double ,
+.BR float ,
+and
+.B long double 
+representation, respectively.
 
-The expected form of the string is optional leading white space as
-checked by \fIisspace\fP(3), an optional plus (``+'') or minus sign
-(``-'') followed by a sequence of digits optionally containing a
-decimal-point character, optionally followed by an exponent.  An
-exponent consists of an ``E'' or ``e'', followed by an optional plus or
-minus sign, followed by a non-empty sequence of digits.  If the locale
-is not "C" or "POSIX", different formats may be used.
+The expected form of the (initial portion of the) string is
+optional leading white space as recognized by \fIis\%space\fP(3),
+an optional plus (``+'') or minus sign (``-'') and then either
+(i) a decimal number, or (ii) a hexadecimal number,
+or (iii) an infinity, or (iv) a NAN (not-a-number).
+.LP
+A
+.I "decimal number"
+consists of a nonempty sequence of decimal digits
+possibly containing a radix character (decimal point, locale dependent,
+usually ``.''), optionally followed by a decimal exponent.  A
+decimal exponent consists of an ``E'' or ``e'', followed by an
+optional plus or minus sign, followed by a non-empty sequence of
+decimal digits, and indicates multiplication by a power of 10.
+.LP
+A
+.I "hexadecimal number"
+consists of a ``0x'' or ``0X'' followed by a nonempty sequence of
+hexadecimal digits possibly containing a radix character,
+optionally followed by a binary exponent. A binary exponent
+consists of a ``P'' or ``p'', followed by an optional
+plus or minus sign, followed by a non-empty sequence of
+decimal digits, and indicates multiplication by a power of 2.
+At least one of radix character and binary exponent must be present.
+.LP
+An
+.I infinity
+is either ``INF'' or ``INFINITY'', disregarding case.
+.LP
+A
+.I NAN
+is ``NAN'' (disregarding case) optionally followed by `(',
+a sequence of characters, followed by ')'.
+The character string specifies in an implementation-dependent
+way the type of NAN.
+
 .SH "RETURN VALUE"
-The
-.B strtod
-function returns the converted value, if any.
+These functions return the converted value, if any.
 
 If
 .I endptr
@@ -81,6 +120,8 @@ is stored in the location referenced by
 
 If the correct value would cause overflow, plus or minus
 .B HUGE_VAL
+.RB ( HUGE_VALF ,
+.BR HUGE_VALL )
 is returned (according to the sign of the value), and
 .B ERANGE
 is stored in
@@ -95,7 +136,10 @@ is stored in
 .B ERANGE
 Overflow or underflow occurred.
 .SH "CONFORMING TO"
-ANSI C
+ANSI C describes
+.BR strtod ,
+C99
+describes the other two functions.
 .SH "SEE ALSO"
 .BR atof (3),
 .BR atoi (3),

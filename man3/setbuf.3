@@ -41,8 +41,9 @@
 .\" Correction,  Sun, 11 Apr 1999 15:55:18,
 .\"     Martin Vicente <martin@netadmin.dgac.fr>
 .\" Correction,  2000-03-03, Andreas Jaeger <aj@suse.de>
+.\" Added return value for setvbuf, aeb, 
 .\"
-.TH SETBUF 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
+.TH SETBUF 3  2001-06-09 "Linux" "Linux Programmer's Manual"
 .SH NAME
 setbuf, setbuffer, setlinebuf, setvbuf \- stream buffering operations
 .SH SYNOPSIS
@@ -134,6 +135,16 @@ function is exactly equivalent to the call:
 .RS
 setvbuf(stream, (char *)NULL, _IOLBF, 0);
 .RE
+.SH "RETURN VALUE"
+The function
+.B setvbuf
+returns 0 on success.
+It can return any value on failure, but returns nonzero when
+.I mode
+is invalid or the request cannot be honoured. It may set
+.I errno
+on failure.
+The other functions are void.
 .SH "CONFORMING TO"
 The
 .B setbuf
@@ -145,8 +156,8 @@ The
 .B setbuffer
 and
 .B setlinebuf
-functions are not portable to versions of BSD before 4.2BSD, and may not be
-available under Linux.  On 4.2BSD and 4.3BSD systems,
+functions are not portable to versions of BSD before 4.2BSD, and
+are available under Linux since libc 4.5.21.  On 4.2BSD and 4.3BSD systems,
 .B setbuf
 always uses a suboptimal buffer size and should be avoided.
 .P

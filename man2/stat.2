@@ -36,7 +36,7 @@
 .\"          taken from a net post by Albert Cahalan.
 .\" Modified 000107 by aeb: added <sys/types.h> include.
 .\" 
-.TH STAT 2 "May 13, 1998" "Linux" "System calls"
+.TH STAT 2 1998-05-13 "Linux" "System calls"
 .SH NAME
 stat, fstat, lstat \- get file status
 .SH SYNOPSIS
@@ -112,6 +112,9 @@ it contains, without trailing NUL.
 The value
 .I st_blocks
 gives the size of the file in 512-byte blocks.
+(This may be smaller than
+.IR st_size /512
+e.g. when the file has holes.)
 The value
 .IR st_blksize
 gives the "preferred" blocksize for efficient file system I/O.

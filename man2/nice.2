@@ -25,8 +25,9 @@
 .\" Modified by Michael Haardt <michael@moria.de>
 .\" Modified Sat Jul 24 14:51:55 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Mon Nov  4 21:02:11 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2001-06-04 by aeb
 .\"
-.TH NICE 2 "March 28, 1992" "Linux" "Linux Programmer's Manual"
+.TH NICE 2 2001-06-04 "Linux" "Linux Programmer's Manual"
 .SH NAME
 nice \- change process priority
 .SH SYNOPSIS
@@ -37,13 +38,9 @@ nice \- change process priority
 .B nice
 adds 
 .I inc
-to the priority for the calling pid.  Only the superuser may
-specify a negative increment, or priority increase.
-.PP
-Note that internally, a higher number is a higher priority.  Do not
-confuse this with the priority scheme as used by the
-.B  nice
-interface.
+to the nice value for the calling pid.
+(A large nice value means a low priority.)
+Only the super\%user may specify a negative increment, or priority increase.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -51,14 +48,30 @@ is set appropriately.
 .SH ERRORS
 .TP
 .B EPERM
-A non-super user attempts to do a priority increase, a numerical
-decrease, by supplying a negative
+A non-super user attempts to do a priority increase
+by supplying a negative
 .IR inc .
 .SH "CONFORMING TO"
-SVr4, SVID EXT, AT&T, X/OPEN, BSD 4.3.  SVr4 documents an additional
+SVr4, SVID EXT, AT&T, X/OPEN, BSD 4.3. However, the Linux and glibc
+(up to glibc2.2.3) return value is nonstandard, see below.
+SVr4 documents an additional
 EINVAL error code.
+.SH NOTES
+Note that the routine is documented in SUSv2 to return
+the new nice value, while the Linux syscall and (g)libc routines
+return 0 on success. The new nice value can be found using
+.BR getpriority (2).
+Note that an implementation in which
+.B nice
+returns the new nice value can legitimately return \-1.
+To reliably detect an error, set
+.I errno
+to 0 before the call, and check its value when
+.B nice
+returns \-1.
 .SH "SEE ALSO"
 .BR nice (1),
+.BR getpriority (2),
 .BR setpriority (2),
 .BR fork (2),
 .BR renice (8)
