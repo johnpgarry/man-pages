@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "SET" P 2003 POSIX
+.TH "set" P 2003 POSIX
 .\" set 
 .SH NAME
-set \- set or unset options and positional parameters
+set - set or unset options and positional parameters
 .SH SYNOPSIS
 .LP
 \fBset\fP \fB[\fP\fB-abCefmnuvx\fP\fB][\fP\fB-h\fP\fB][\fP\fB-o\fP
@@ -52,7 +52,7 @@ parameters are not necessarily related actions, but they can be combined
 in a single invocation of \fIset\fP.
 .LP
 The \fIset\fP special built-in shall support the Base Definitions
-volume of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines
+volume of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines
 except that options can be specified with
 either a leading hyphen (meaning enable the option) or plus sign (meaning
 disable it) unless otherwise specified.
@@ -60,11 +60,11 @@ disable it) unless otherwise specified.
 Implementations shall support the options in the following list in
 both their hyphen and plus-sign forms. These options can also
 be specified as options to \fIsh\fP.
-.TP 7
+.TP
 \fB-a\fP
 When this option is on, the \fIexport\fP attribute shall be set for
 each variable to which an assignment is performed; see the
-Base Definitions volume of IEEE\ Std\ 1003.1-2001, Section 4.21, Variable
+Base Definitions volume of IEEE\0Std\01003.1-2001, Section 4.21, Variable
 Assignment. If the assignment precedes a utility name in a command,
 the \fIexport\fP attribute shall not persist in the
 current execution environment after the utility completes, with the
@@ -76,7 +76,7 @@ of the \fIgetopts\fP or
 \fIread\fP utilities, the \fIexport\fP attribute shall persist until
 the variable is
 unset.
-.TP 7
+.TP
 \fB-b\fP
 This option shall be supported if the implementation supports the
 User Portability Utilities option. It shall cause the shell
@@ -92,9 +92,8 @@ following message is written to standard error:
 .RE
 .LP
 where the fields shall be as follows:
-.TP 7
+.TP
 <\fIcurrent\fP>
-.RS
 The character \fB'+'\fP identifies the job that would be used as a
 default for the \fIfg\fP or \fIbg\fP utilities; this job can also
 be specified
@@ -107,25 +106,18 @@ jobs, this field is a <space>. At most one job can be identified with
 \fB'-'\fP . If there is any suspended job, then the current job shall
 be a suspended job. If there are at least two suspended
 jobs, then the previous job also shall be a suspended job.
-.RE
-.TP 7
+.TP
 <\fIjob-number\fP>
-.RS
 A number that can be used to identify the process group to the \fIwait\fP,
 \fIfg\fP, \fIbg\fP, and \fIkill\fP utilities. Using these utilities,
 the job can be identified by prefixing the job number
 with \fB'%'\fP .
-.RE
-.TP 7
+.TP
 <\fIstatus\fP>
-.RS
 Unspecified.
-.RE
-.TP 7
+.TP
 <\fIjob-name\fP>
-.RS
 Unspecified.
-.RE
 .sp
 .LP
 When the shell notifies the user a job has been completed, it may
@@ -133,13 +125,13 @@ remove the job's process ID from the list of those known in
 the current shell execution environment; see \fIAsynchronous Lists\fP
 \&. Asynchronous
 notification shall not be enabled by default.
-.TP 7
+.TP
 \fB-C\fP
 (Uppercase C.) Prevent existing files from being overwritten by the
 shell's \fB'>'\fP redirection operator (see \fIRedirecting Output\fP
 ); the \fB">|"\fP redirection operator shall override this
 \fInoclobber\fP option for an individual file.
-.TP 7
+.TP
 \fB-e\fP
 When this option is on, if a simple command fails for any of the reasons
 listed in \fIConsequences of Shell Errors\fP or returns an exit status
@@ -148,15 +140,15 @@ the compound list following a \fBwhile\fP, \fBuntil\fP, or \fBif\fP
 keyword, and is not a part of an AND or OR list, and is not
 a pipeline preceded by the \fB!\fP reserved word, then the shell shall
 immediately exit.
-.TP 7
+.TP
 \fB-f\fP
 The shell shall disable pathname expansion.
-.TP 7
+.TP
 \fB-h\fP
 Locate and remember utilities invoked by functions as those functions
 are defined (the utilities are normally located when the
 function is executed). 
-.TP 7
+.TP
 \fB-m\fP
 This option shall be supported if the implementation supports the
 User Portability Utilities option. All jobs shall be run in
@@ -171,91 +163,68 @@ if it stops for input or output or is stopped by a SIGSTOP
 signal), the shell shall write a similar message immediately prior
 to writing the next prompt. This option is enabled by default
 for interactive shells.
-.TP 7
+.TP
 \fB-n\fP
 The shell shall read commands but does not execute them; this can
 be used to check for shell script syntax errors. An
 interactive shell may ignore this option.
-.TP 7
+.TP
 \fB-o\fP
 Write the current settings of the options to standard output in an
 unspecified format.
-.TP 7
+.TP
 \fB+o\fP
 Write the current option settings to standard output in a format that
 is suitable for reinput to the shell as commands that
 achieve the same options settings.
-.TP 7
-\fB-o\ \fP \fIoption\fP
+.TP
+\fB-o\0\fP \fIoption\fP
 .sp
 This option is supported if the system supports the User Portability
 Utilities option. It shall set various options, many of which
 shall be equivalent to the single option letters. The following values
 of \fIoption\fP shall be supported: 
-.TP 7
+.TP
 \fIallexport\fP
-.RS
 Equivalent to \fB-a\fP.
-.RE
-.TP 7
+.TP
 \fIerrexit\fP
-.RS
 Equivalent to \fB-e\fP.
-.RE
-.TP 7
+.TP
 \fIignoreeof\fP
-.RS
 Prevent an interactive shell from exiting on end-of-file. This setting
 prevents accidental logouts when <control>-D is
 entered. A user shall explicitly \fIexit\fP to leave the interactive
 shell.
-.RE
-.TP 7
+.TP
 \fImonitor\fP
-.RS
 Equivalent to \fB-m\fP. This option is supported if the system supports
 the User Portability Utilities option.
-.RE
-.TP 7
+.TP
 \fInoclobber\fP
-.RS
 Equivalent to \fB-C\fP (uppercase C).
-.RE
-.TP 7
+.TP
 \fInoglob\fP
-.RS
 Equivalent to \fB-f\fP.
-.RE
-.TP 7
+.TP
 \fInoexec\fP
-.RS
 Equivalent to \fB-n\fP.
-.RE
-.TP 7
+.TP
 \fInolog\fP
-.RS
 Prevent the entry of function definitions into the command history;
 see \fICommand History List\fP
 \&.
-.RE
-.TP 7
+.TP
 \fInotify\fP
-.RS
 Equivalent to \fB-b\fP.
-.RE
-.TP 7
+.TP
 \fInounset\fP
-.RS
 Equivalent to \fB-u\fP.
-.RE
-.TP 7
+.TP
 \fIverbose\fP
-.RS
 Equivalent to \fB-v\fP.
-.RE
-.TP 7
+.TP
 \fIvi\fP
-.RS
 Allow shell command line editing using the built-in \fIvi\fP editor.
 Enabling \fIvi\fP mode shall disable any other command line editing
 mode provided as an implementation
@@ -263,22 +232,19 @@ extension.
 .LP
 It need not be possible to set \fIvi\fP mode on for certain block-mode
 terminals.
-.RE
-.TP 7
+.TP
 \fIxtrace\fP
-.RS
 Equivalent to \fB-x\fP.
-.RE
 .sp
-.TP 7
+.TP
 \fB-u\fP
 The shell shall write a message to standard error when it tries to
 expand a variable that is not set and immediately exit. An
 interactive shell shall not exit.
-.TP 7
+.TP
 \fB-v\fP
 The shell shall write its input to standard error as it is read.
-.TP 7
+.TP
 \fB-x\fP
 The shell shall write to standard error a trace for each command after
 it expands the command and before it executes it. It is
@@ -447,7 +413,7 @@ on XSI-conformant systems.
 .LP
 The following \fIset\fP flags were omitted intentionally with the
 following rationale:
-.TP 7
+.TP
 \fB-k\fP
 The \fB-k\fP flag was originally added by the author of the Bourne
 shell to make it easier for users of pre-release versions
@@ -479,7 +445,7 @@ echo\fP \fIname\fP\fB=\fP\fIvalue\fP
 behave differently. The interaction with functions is even more complex.
 What is more, the \fB-k\fP flag is never needed, since
 the command line could have been reordered.
-.TP 7
+.TP
 \fB-t\fP
 The \fB-t\fP flag is hard to specify and almost never used. The only
 known use could be done with here-documents. Moreover,

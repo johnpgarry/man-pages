@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "MORE" P 2003 POSIX
+.TH "more" P 2003 POSIX
 .\" more 
 .SH NAME
-more \- display files on a page-by-page basis
+more - display files on a page-by-page basis
 .SH SYNOPSIS
 .LP
 \fBmore\fP \fB[\fP\fB-ceisu\fP\fB][\fP\fB-n\fP \fInumber\fP\fB][\fP\fB-p\fP
@@ -25,33 +25,40 @@ Implementations that support such terminals shall
 provide an operating mode to \fImore\fP in which all commands can
 be terminated with a <newline> on those terminals. This
 mode:
-.IP " *" 3
-Shall be documented in the system documentation
+.RS
+.in +5
 .LP
-.IP " *" 3
+Shall be documented in the system documentation
+.in -5
+.in +5
+.LP
 Shall, at invocation, inform the user of the terminal deficiency that
 requires the <newline> usage and provide
 instructions on how this warning can be suppressed in future invocations
+.in -5
+.in +5
 .LP
-.IP " *" 3
 Shall not be required for implementations supporting only fully capable
 terminals
+.in -5
+.in +5
 .LP
-.IP " *" 3
 Shall not affect commands already requiring <newline>s
+.in -5
+.in +5
 .LP
-.IP " *" 3
 Shall not affect users on the capable terminals from using \fImore\fP
 as described in this volume of
-IEEE\ Std\ 1003.1-2001
-.LP
+IEEE\0Std\01003.1-2001
+.in -5
+.RE
 .SH OPTIONS
 .LP
 The \fImore\fP utility shall conform to the Base Definitions volume
-of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP 7
+.TP
 \fB-c\fP
 If a screen is to be written that has no lines in common with the
 current screen, or \fImore\fP is writing its first screen,
@@ -60,35 +67,35 @@ line of the screen in turn, from the top of the screen to
 the bottom. In addition, if \fImore\fP is writing its first screen,
 the screen shall be cleared. This option may be silently
 ignored on devices with insufficient terminal capabilities.
-.TP 7
+.TP
 \fB-e\fP
 By default, \fImore\fP shall exit immediately after writing the last
 line of the last file in the argument list. If the
 \fB-e\fP option is specified: 
-.RS
-.IP " 1." 4
+.in +5
+.LP
 If there is only a single file in the argument list and that file
 was completely displayed on a single screen, \fImore\fP shall
 exit immediately after writing the last line of that file.
+.in -5
+.in +5
 .LP
-.IP " 2." 4
 Otherwise, \fImore\fP shall exit only after reaching end-of-file on
 the last file in the argument list twice without an
 intervening operation. See the EXTENDED DESCRIPTION section.
-.LP
-.RE
-.TP 7
+.in -5
+.TP
 \fB-i\fP
 Perform pattern matching in searches without regard to case; see the
-Base Definitions volume of IEEE\ Std\ 1003.1-2001,
+Base Definitions volume of IEEE\0Std\01003.1-2001,
 Section 9.2, Regular Expression General Requirements.
-.TP 7
-\fB-n\ \fP \fInumber\fP
+.TP
+\fB-n\0\fP \fInumber\fP
 Specify the number of lines per screenful. The \fInumber\fP argument
 is a positive decimal integer. The \fB-n\fP option shall
 override any values obtained from any other source.
-.TP 7
-\fB-p\ \fP \fIcommand\fP
+.TP
+\fB-p\0\fP \fIcommand\fP
 Each time a screen from a new file is displayed or redisplayed (including
 as a result of \fImore\fP commands; for example,
 \fB:p\fP), execute the \fImore\fP command(s) in the command arguments
@@ -100,11 +107,11 @@ from the command shall be displayed.) If any of the commands fail
 for any reason, an informational message to this effect shall be written,
 and no further commands specified using the \fB-p\fP
 option shall be executed for this file.
-.TP 7
+.TP
 \fB-s\fP
 Behave as if consecutive empty lines were a single empty line.
-.TP 7
-\fB-t\ \fP \fItagstring\fP
+.TP
+\fB-t\0\fP \fItagstring\fP
 Write the screenful of the file containing the tag named by the \fItagstring\fP
 argument. See the \fIctags\fP utility. The tags feature represented
 by \fB-t\fP \fItagstring\fP and the \fB:t\fP command is
@@ -135,7 +142,7 @@ shall be as specified by \fB-t\fP, and then the \fB-p\fP
 specified by the \fB-t\fP command does not exist (is not
 found), no \fB-p\fP \fImore\fP command shall be executed for this
 file at any time.
-.TP 7
+.TP
 \fB-u\fP
 Treat a <backspace> as a printable control character, displayed as
 an implementation-defined character sequence (see the
@@ -147,7 +154,7 @@ end of a line.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP 7
+.TP
 \fIfile\fP
 A pathname of an input file. If no \fIfile\fP operands are specified,
 the standard input shall be used. If a \fIfile\fP is
@@ -174,61 +181,61 @@ result if standard error cannot be opened for reading.
 .LP
 The following environment variables shall affect the execution of
 \fImore\fP:
-.TP 7
+.TP
 \fICOLUMNS\fP
 Override the system-selected horizontal display line size. See the
-Base Definitions volume of IEEE\ Std\ 1003.1-2001,
+Base Definitions volume of IEEE\0Std\01003.1-2001,
 Chapter 8, Environment Variables for valid values and results when
 it is unset or
 null.
-.TP 7
+.TP
 \fIEDITOR\fP
 Used by the \fBv\fP command to select an editor. See the EXTENDED
 DESCRIPTION section.
-.TP 7
+.TP
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
+IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP 7
+.TP
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP 7
+.TP
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements within regular
 expressions.
-.TP 7
+.TP
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files) and
 the behavior of character classes within regular
 expressions.
-.TP 7
+.TP
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP 7
+.TP
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP 7
+.TP
 \fILINES\fP
 Override the system-selected vertical screen size, used as the number
 of lines in a screenful. See the Base Definitions volume
-of IEEE\ Std\ 1003.1-2001, Chapter 8, Environment Variables for valid
+of IEEE\0Std\01003.1-2001, Chapter 8, Environment Variables for valid
 values and
 results when it is unset or null. The \fB-n\fP option shall take precedence
 over the \fILINES\fP variable for determining the
 number of lines in a screenful.
-.TP 7
+.TP
 \fIMORE\fP
 Determine a string containing options described in the OPTIONS section
 preceded with hyphens and <blank>-separated as on
@@ -245,7 +252,7 @@ those in the \fIMORE\fP variable, as if the command line were:
 The \fIMORE\fP variable shall take precedence over the \fITERM\fP
 and \fILINES\fP variables for determining the number of
 lines in a screenful.
-.TP 7
+.TP
 \fITERM\fP
 Determine the name of the terminal type. If this variable is unset
 or null, an unspecified default terminal type is used.
@@ -303,7 +310,7 @@ has been written.
 The number of columns available per line shall be determined by examining
 values in the environment (see the ENVIRONMENT
 VARIABLES section), with a default value as described in the Base
-Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 8, Environment
+Definitions volume of IEEE\0Std\01003.1-2001, Chapter 8, Environment
 Variables.
 .LP
 Lines that are longer than the display shall be folded; the length
@@ -314,7 +321,9 @@ of single characters that take up multiple display columns.
 When standard output is a terminal and \fB-u\fP is not specified,
 \fImore\fP shall treat <backspace>s and
 <carriage-return>s specially:
-.IP " *" 3
+.RS
+.in +5
+.LP
 A character, followed first by a sequence of \fIn\fP <backspace>s
 (where \fIn\fP is the same as the number of column
 positions that the character occupies), then by \fIn\fP underscore
@@ -324,8 +333,9 @@ written as underlined text, if the terminal type supports that. The
 <backspace>s, then any character with \fIn\fP column positions, shall
 also cause that character to be written as underlined
 text, if the terminal type supports that.
+.in -5
+.in +5
 .LP
-.IP " *" 3
 A sequence of \fIn\fP <backspace>s (where \fIn\fP is the same as the
 number of column positions that the previous
 character occupies) that appears between two identical printable characters
@@ -336,17 +346,20 @@ and the second to be discarded. Immediately subsequent occurrences
 of <backspace>/ character pairs for that same character
 shall also be discarded. (For example, the sequence \fB"a\\ba\\ba\\ba"\fP
 is interpreted as a single emboldened \fB'a'\fP .)
+.in -5
+.in +5
 .LP
-.IP " *" 3
 The \fImore\fP utility shall logically discard all other <backspace>s
 from the line as well as the character which
 precedes them, if any.
+.in -5
+.in +5
 .LP
-.IP " *" 3
 A <carriage-return> at the end of a line shall be ignored, rather
 than being written as a non-printable character, as
 described in the next paragraph.
-.LP
+.in -5
+.RE
 .LP
 It is implementation-defined how other non-printable characters are
 written. Implementations should use the same format that
@@ -401,7 +414,7 @@ called \fIcount\fP in the following descriptions. If not specified
 with the command, \fIcount\fP shall default to 1. In the
 following descriptions, \fIpattern\fP is a basic regular expression,
 as described in the Base Definitions volume of
-IEEE\ Std\ 1003.1-2001, Section 9.3, Basic Regular Expressions. The
+IEEE\0Std\01003.1-2001, Section 9.3, Basic Regular Expressions. The
 term "examine" is historical usage meaning "open the file for viewing'';
 for example, \fImore\fP \fBfoo\fP would be expressed
 as examining file \fBfoo\fP.
@@ -412,12 +425,14 @@ file being examined.
 .LP
 In the following descriptions, the \fIcurrent position\fP refers to
 two things:
-.IP " 1." 4
+.in +5
+.LP
 The position of the current line on the screen
+.in -5
+.in +5
 .LP
-.IP " 2." 4
 The line number (in the file) of the current line on the screen
-.LP
+.in -5
 .LP
 Usually, the line on the screen corresponding to the current position
 is the third line on the screen. If this is not possible
@@ -426,7 +441,7 @@ page of the file, or it is the last page of the file), then the
 current position is either the first or last line on the screen as
 described later.
 .SS Help
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -447,7 +462,7 @@ is one of those specified to continue to the next file,
 \fImore\fP shall return to the file and screen state from which the
 \fBh\fP command was executed.
 .SS Scroll Forward One Screenful
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -464,7 +479,7 @@ Scroll forward \fIcount\fP lines, with a default of one screenful.
 If \fIcount\fP is more than the screen size, only the final
 screenful shall be written.
 .SS Scroll Backward One Screenful
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -481,7 +496,7 @@ Scroll backward \fIcount\fP lines, with a default of one screenful
 (see the \fB-n\fP option). If \fIcount\fP is more than the
 screen size, only the final screenful shall be written.
 .SS Scroll Forward One Line
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -500,7 +515,7 @@ Scroll forward \fIcount\fP lines. The default \fIcount\fP for the
 <newline>, one line. The entire \fIcount\fP lines shall be written,
 even if \fIcount\fP is more than the screen size.
 .SS Scroll Backward One Line
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -516,7 +531,7 @@ Scroll backward \fIcount\fP lines. The entire \fIcount\fP lines shall
 be written, even if \fIcount\fP is more than the screen
 size.
 .SS Scroll Forward One Half Screenful
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -533,7 +548,7 @@ Scroll forward \fIcount\fP lines, with a default of one half of the
 screen size. If \fIcount\fP is specified, it shall become
 the new default for subsequent \fBd\fP, <control>-D, and \fBu\fP commands.
 .SS Skip Forward One Line
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -551,7 +566,7 @@ would cause the current position to be such that less than one screenful
 would be written, the last screenful in the file shall be
 written.
 .SS Scroll Backward One Half Screenful
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -570,7 +585,7 @@ the new default for subsequent \fBd\fP, <control>-D, \fBu\fP, and
 <control>-U commands. The entire \fIcount\fP lines
 shall be written, even if \fIcount\fP is more than the screen size.
 .SS Go to Beginning of File
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -584,7 +599,7 @@ shall be written, even if \fIcount\fP is more than the screen size.
 .LP
 Display the screenful beginning with line \fIcount\fP.
 .SS Go to End-of-File
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -600,7 +615,7 @@ If \fIcount\fP is specified, display the screenful beginning with
 the line \fIcount\fP. Otherwise, display the last screenful
 of the file.
 .SS Refresh the Screen
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -615,7 +630,7 @@ of the file.
 .LP
 Refresh the screen.
 .SS Discard and Refresh
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -631,7 +646,7 @@ Refresh the screen, discarding any buffered input. If the current
 file is non-seekable, buffered input shall not be discarded
 and the \fBR\fP command shall be equivalent to the \fBr\fP command.
 .SS Mark Position
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -647,7 +662,7 @@ Mark the current position with the letter named by \fIletter\fP, where
 lowercase letters of the portable character set. When a new file is
 examined, all marks may be lost.
 .SS Return to Mark
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -662,7 +677,7 @@ Return to the position that was previously marked with the letter
 named by \fIletter\fP, making that line the current
 position.
 .SS Return to Previous Position
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -679,7 +694,7 @@ was executed (where a "large movement" is defined as any
 movement of more than a screenful of lines). If no such movements
 have been made, return to the beginning of the file.
 .SS Search Forward for Pattern
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -701,7 +716,7 @@ those that do not contain the \fIpattern\fP. If no match is found
 for the \fIpattern\fP, a message to that effect shall be
 displayed.
 .SS Search Backward for Pattern
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -723,7 +738,7 @@ matching lines shall be those that do not contain the \fIpattern\fP.
 If no match is found for the \fIpattern\fP, a message to
 that effect shall be displayed.
 .SS Repeat Search
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -740,7 +755,7 @@ Repeat the previous search for \fIcount\fPth line containing the last
 \fIpattern\fP, if the previous search was \fB"/!"\fP or \fB"?!"\fP
 ).
 .SS Repeat Search in Reverse
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -757,7 +772,7 @@ for the \fIcount\fPth line containing the last
 \fIpattern\fP (or not containing the last \fIpattern\fP, if the previous
 search was \fB"/!"\fP or \fB"?!"\fP ).
 .SS Examine New File
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -781,7 +796,7 @@ accessible for any reason (including that it is a non-seekable file),
 an error message to this effect shall be displayed and the
 current file and screen shall not change.
 .SS Examine Next File
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -797,7 +812,7 @@ Examine the next file. If a number \fIcount\fP is specified, the \fIcount\fPth
 next file shall be examined. If \fIfilename\fP
 refers to a non-seekable file, the results are unspecified.
 .SS Examine Previous File
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -813,7 +828,7 @@ Examine the previous file. If a number \fIcount\fP is specified, the
 \fIcount\fPth previous file shall be examined. If
 \fIfilename\fP refers to a non-seekable file, the results are unspecified.
 .SS Go to Tag
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -834,7 +849,7 @@ If the \fIctags\fP
 utility is not supported by the system, the use of \fB:t\fP produces
 undefined results.
 .SS Invoke Editor
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -861,7 +876,7 @@ editors other than \fIvi\fP and \fIex\fP.
 When the editor exits, \fImore\fP shall resume with the same file
 and screen as when the editor was invoked.
 .SS Display Position
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -885,7 +900,7 @@ input, or the file is shorter than a single screen, the line
 number, the byte number, the total bytes, and the percentage need
 not be written.
 .SS Quit
-.TP 7
+.TP
 \fISynopsis\fP:
 .sp
 .RS
@@ -903,10 +918,10 @@ Exit \fImore\fP.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP 7
-\ 0
+.TP
+\00
 Successful completion.
-.TP 7
+.TP
 >0
 An error occurred.
 .sp
@@ -937,18 +952,18 @@ to happen.
 .LP
 The \fB-p\fP allows arbitrary commands to be executed at the start
 of each file. Examples are:
-.TP 7
-\fImore\ \fP \fB-p\ G\ \fP \fIfile1\ file2\fP
+.TP
+\fImore\0\fP \fB-p\0G\0\fP \fIfile1\0file2\fP
 .sp
 Examine each file starting with its last screenful.
-.TP 7
-\fImore\ \fP \fB-p\ \fP 100\ \fIfile1\ file2\fP
+.TP
+\fImore\0\fP \fB-p\0\fP 100\0\fIfile1\0file2\fP
 .sp
 Examine each file starting with line 100 in the current position (usually
 the third line, so line 98 would be the first line
 written).
-.TP 7
-\fImore\ \fP \fB-p\ \fP /100\ \fIfile1\ file2\fP
+.TP
+\fImore\0\fP \fB-p\0\fP /100\0\fIfile1\0file2\fP
 .sp
 Examine each file starting with the first line containing the string
 \fB"100"\fP in the current position
@@ -965,7 +980,7 @@ version in wide use and has become more amenable for \fIvi\fP users.
 Several features
 originally derived from various file editors, found in both \fIless\fP
 and \fIpg\fP, have been added to this volume of
-IEEE\ Std\ 1003.1-2001 as they have proved extremely popular with
+IEEE\0Std\01003.1-2001 as they have proved extremely popular with
 users.
 .LP
 There are inconsistencies between \fImore\fP and \fIvi\fP that result
@@ -989,7 +1004,7 @@ adds a <newline> to each Synopsis line that currently
 has none. So, for example, \fBd\fP <newline> would page one screenful.
 The mode could be triggered by a command line option,
 environment variable, or some other method. The details are not imposed
-by this volume of IEEE\ Std\ 1003.1-2001 because
+by this volume of IEEE\0Std\01003.1-2001 because
 there are so few systems known to support such terminals. Nevertheless,
 it was considered that all systems should be able to
 support \fImore\fP given the exception cited for this small community
@@ -1025,17 +1040,20 @@ allocation constraints.
 .LP
 Historically, non-printable characters were displayed using the ARPA
 standard mappings, which are as follows:
-.IP " 1." 4
-Printable characters are left alone.
+.in +5
 .LP
-.IP " 2." 4
+Printable characters are left alone.
+.in -5
+.in +5
+.LP
 Control characters less than \\177 are represented as followed by
 the character offset from the \fB'@'\fP character in the
 ASCII map; for example, \\007 is represented as \fB'G'\fP .
+.in -5
+.in +5
 .LP
-.IP " 3." 4
 \\177 is represented as followed by \fB'?'\fP .
-.LP
+.in -5
 .LP
 The display of characters having their eighth bit set was less standard.
 Existing implementations use hex (0x00), octal (\\000),
@@ -1047,7 +1065,7 @@ used with the \fB-v\fP option of 4 BSD and 4 BSD-derived versions
 of the \fIcat\fP utility
 since 1980.
 .LP
-No specific display format is required by IEEE\ Std\ 1003.1-2001.
+No specific display format is required by IEEE\0Std\01003.1-2001.
 Implementations are encouraged to conform to historic
 practice in the absence of any strong reason to diverge.
 .SH FUTURE DIRECTIONS

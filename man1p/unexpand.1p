@@ -1,11 +1,12 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "UNEXPAND" P 2003 POSIX
+.TH "unexpand" P 2003 POSIX
 .\" unexpand 
 .SH NAME
-unexpand \- convert spaces to tabs
+unexpand - convert spaces to tabs
 .SH SYNOPSIS
 .LP
-\fBunexpand\fP \fB[\fP \fB-a| -t\fP \fItablist\fP\fB][\fP\fIfile\fP\fB...\fP\fB]\fP\fB\fP
+\fBunexpand\fP \fB[\fP \fB-a| -t\fP \fItablist\fP\fB][\fP\fIfile\fP\fB...\fP\fB]\fP\fB<img
+src="../images/opt-end.gif" alt="[Option End]" border="0">\fP
 .SH DESCRIPTION
 .LP
 The \fIunexpand\fP utility shall copy files or standard input to standard
@@ -21,10 +22,10 @@ than one.
 .SH OPTIONS
 .LP
 The \fIunexpand\fP utility shall conform to the Base Definitions volume
-of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP 7
+.TP
 \fB-a\fP
 In addition to translating <blank>s at the beginning of each line,
 translate all sequences of two or more <blank>s
@@ -32,8 +33,8 @@ immediately preceding a tab stop to the maximum number of <tab>s followed
 by the minimum number of <space>s needed to
 fill the same column positions originally filled by the translated
 <blank>s.
-.TP 7
-\fB-t\ \fP \fItablist\fP
+.TP
+\fB-t\0\fP \fItablist\fP
 Specify the tab stops. The application shall ensure that the \fItablist\fP
 option-argument is a single argument consisting of
 a single positive decimal integer or multiple positive decimal integers,
@@ -48,7 +49,7 @@ in strictly ascending order. This is taken to mean that, from the
 start of a line of output, tabbing to position \fIN\fP shall
 cause the next character output to be in the ( \fIN\fP+1)th column
 position on that line. When the \fB-t\fP option is not
-specified, the default shall be the equivalent of specifying \fB-t\ 8\fP
+specified, the default shall be the equivalent of specifying \fB-t\08\fP
 (except for the interaction with \fB-a\fP, described
 below).
 .LP
@@ -63,7 +64,7 @@ to the processing of leading <blank>s.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP 7
+.TP
 \fIfile\fP
 A pathname of a text file to be used as input.
 .sp
@@ -77,19 +78,19 @@ The input files shall be text files.
 .LP
 The following environment variables shall affect the execution of
 \fIunexpand\fP:
-.TP 7
+.TP
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
+IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP 7
+.TP
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP 7
+.TP
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
@@ -97,12 +98,12 @@ opposed to multi-byte characters in arguments and input files), the
 processing of <tab>s and <space>s, and for the
 determination of the width in column positions each character would
 occupy on an output device.
-.TP 7
+.TP
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP 7
+.TP
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -126,10 +127,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP 7
-\ 0
+.TP
+\00
 Successful completion.
-.TP 7
+.TP
 >0
 An error occurred.
 .sp
@@ -144,7 +145,7 @@ One non-intuitive aspect of \fIunexpand\fP is its restriction to leading
 spaces when neither \fB-a\fP nor \fB-t\fP is
 specified. Users who always want to convert all spaces in a file can
 easily alias \fIunexpand\fP to use the \fB-a\fP or
-\fB-t\ 8\fP option.
+\fB-t\08\fP option.
 .SH EXAMPLES
 .LP
 None.

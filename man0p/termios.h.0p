@@ -2,7 +2,7 @@
 .TH "<termios.h>" P 2003 POSIX
 .\" <termios.h> 
 .SH NAME
-termios.h \- define values for termios
+termios.h - define values for termios
 .SH SYNOPSIS
 .LP
 \fB#include <termios.h>\fP
@@ -14,13 +14,13 @@ the structures and names defined).
 .SS The termios Structure
 .LP
 The following data types shall be defined through \fBtypedef\fP:
-.TP 7
+.TP
 \fBcc_t\fP
 Used for terminal special characters.
-.TP 7
+.TP
 \fBspeed_t\fP
 Used for terminal baud rates.
-.TP 7
+.TP
 \fBtcflag_t\fP
 Used for terminal modes.
 .sp
@@ -49,29 +49,27 @@ cc_t      c_cc[NCCS] \fP Control characters. \fB
 .RE
 .LP
 A definition shall be provided for:
-.TP 7
+.TP
 NCCS
 Size of the array \fIc_cc\fP for control characters.
 .sp
 .LP
 The following subscript names for the array \fIc_cc\fP shall be defined:
 .TS C
-center;c s l.
-\fBSubscript Usage\fP	\ 
-.T&
-l l l.
-\fBCanonical Mode\fP	\fBNon-Canonical Mode\fP	\fBDescription\fP
-VEOF	\ 	EOF character.
-VEOL	\ 	EOL character.
-VERASE	\ 	ERASE character.
-VINTR	VINTR	INTR character.
-VKILL	\ 	KILL character.
-\ 	VMIN	MIN value.
-VQUIT	VQUIT	QUIT character.
-VSTART	VSTART	START character.
-VSTOP	VSTOP	STOP character.
-VSUSP	VSUSP	SUSP character.
-\ 	VTIME	TIME value.
+center;l l l l l l l l l l l.
+<th colspan="2" align="center"> \fBSubscript Usage\fP 	 \0 	
+\fBCanonical Mode\fP 	 \fBNon-Canonical Mode\fP 	 \fBDescription\fP 	
+VEOF 	 \0 	 EOF character. 	
+VEOL 	 \0 	 EOL character. 	
+VERASE 	 \0 	 ERASE character. 	
+VINTR 	 VINTR 	 INTR character. 	
+VKILL 	 \0 	 KILL character. 	
+\0 	 VMIN 	 MIN value. 	
+VQUIT 	 VQUIT 	 QUIT character. 	
+VSTART 	 VSTART 	 START character. 	
+VSTOP 	 VSTOP 	 STOP character. 	
+VSUSP 	 VSUSP 	 SUSP character. 	
+\0 	 VTIME 	 TIME value. 	
 .TE
 .LP
 The subscript values shall be unique, except that the VMIN and VTIME
@@ -82,167 +80,135 @@ The following flags shall be provided.
 .SS Input Modes
 .LP
 The \fIc_iflag\fP field describes the basic terminal input control:
-.TP 7
+.TP
 BRKINT
 Signal interrupt on break.
-.TP 7
+.TP
 ICRNL
 Map CR to NL on input.
-.TP 7
+.TP
 IGNBRK
 Ignore break condition.
-.TP 7
+.TP
 IGNCR
 Ignore CR.
-.TP 7
+.TP
 IGNPAR
 Ignore characters with parity errors.
-.TP 7
+.TP
 INLCR
 Map NL to CR on input.
-.TP 7
+.TP
 INPCK
 Enable input parity check.
-.TP 7
+.TP
 ISTRIP
 Strip character.
-.TP 7
+.TP
 IXANY
 Enable any character to restart output. 
-.TP 7
+.TP
 IXOFF
 Enable start/stop input control.
-.TP 7
+.TP
 IXON
 Enable start/stop output control.
-.TP 7
+.TP
 PARMRK
 Mark parity errors.
 .sp
 .SS Output Modes
 .LP
 The \fIc_oflag\fP field specifies the system treatment of output:
-.TP 7
+.TP
 OPOST
 Post-process output.
-.TP 7
+.TP
 ONLCR
 Map NL to CR-NL on output.
-.TP 7
+.TP
 OCRNL
 Map CR to NL on output.
-.TP 7
+.TP
 ONOCR
 No CR output at column 0.
-.TP 7
+.TP
 ONLRET
 NL performs CR function.
-.TP 7
+.TP
 OFILL
 Use fill characters for delay.
-.TP 7
+.TP
 NLDLY
 Select newline delays: 
-.TP 7
+.TP
 NL0
-.RS
 Newline type 0.
-.RE
-.TP 7
+.TP
 NL1
-.RS
 Newline type 1.
-.RE
 .sp
-.TP 7
+.TP
 CRDLY
 Select carriage-return delays: 
-.TP 7
+.TP
 CR0
-.RS
 Carriage-return delay type 0.
-.RE
-.TP 7
+.TP
 CR1
-.RS
 Carriage-return delay type 1.
-.RE
-.TP 7
+.TP
 CR2
-.RS
 Carriage-return delay type 2.
-.RE
-.TP 7
+.TP
 CR3
-.RS
 Carriage-return delay type 3.
-.RE
 .sp
-.TP 7
+.TP
 TABDLY
 Select horizontal-tab delays: 
-.TP 7
+.TP
 TAB0
-.RS
 Horizontal-tab delay type 0.
-.RE
-.TP 7
+.TP
 TAB1
-.RS
 Horizontal-tab delay type 1.
-.RE
-.TP 7
+.TP
 TAB2
-.RS
 Horizontal-tab delay type 2.
-.RE
-.TP 7
+.TP
 TAB3
-.RS
 Expand tabs to spaces.
-.RE
 .sp
-.TP 7
+.TP
 BSDLY
 Select backspace delays: 
-.TP 7
+.TP
 BS0
-.RS
 Backspace-delay type 0.
-.RE
-.TP 7
+.TP
 BS1
-.RS
 Backspace-delay type 1.
-.RE
 .sp
-.TP 7
+.TP
 VTDLY
 Select vertical-tab delays: 
-.TP 7
+.TP
 VT0
-.RS
 Vertical-tab delay type 0.
-.RE
-.TP 7
+.TP
 VT1
-.RS
 Vertical-tab delay type 1.
-.RE
 .sp
-.TP 7
+.TP
 FFDLY
 Select form-feed delays: 
-.TP 7
+.TP
 FF0
-.RS
 Form-feed delay type 0.
-.RE
-.TP 7
+.TP
 FF1
-.RS
 Form-feed delay type 1. 
-.RE
 .sp
 .sp
 .SS Baud Rate Selection
@@ -251,52 +217,52 @@ The input and output baud rates are stored in the \fBtermios\fP structure.
 These are the valid values for objects of type
 \fBspeed_t\fP. The following values shall be defined, but not all
 baud rates need be supported by the underlying hardware.
-.TP 7
+.TP
 B0
 Hang up
-.TP 7
+.TP
 B50
 50 baud
-.TP 7
+.TP
 B75
 75 baud
-.TP 7
+.TP
 B110
 110 baud
-.TP 7
+.TP
 B134
 134.5 baud
-.TP 7
+.TP
 B150
 150 baud
-.TP 7
+.TP
 B200
 200 baud
-.TP 7
+.TP
 B300
 300 baud
-.TP 7
+.TP
 B600
 600 baud
-.TP 7
+.TP
 B1200
 1200 baud
-.TP 7
+.TP
 B1800
 1800 baud
-.TP 7
+.TP
 B2400
 2400 baud
-.TP 7
+.TP
 B4800
 4800 baud
-.TP 7
+.TP
 B9600
 9600 baud
-.TP 7
+.TP
 B19200
 19200 baud
-.TP 7
+.TP
 B38400
 38400 baud
 .sp
@@ -305,46 +271,38 @@ B38400
 The \fIc_cflag\fP field describes the hardware control of the terminal;
 not all values specified are required to be supported
 by the underlying hardware:
-.TP 7
+.TP
 CSIZE
 Character size: 
-.TP 7
+.TP
 CS5
-.RS
 5 bits
-.RE
-.TP 7
+.TP
 CS6
-.RS
 6 bits
-.RE
-.TP 7
+.TP
 CS7
-.RS
 7 bits
-.RE
-.TP 7
+.TP
 CS8
-.RS
 8 bits
-.RE
 .sp
-.TP 7
+.TP
 CSTOPB
 Send two stop bits, else one.
-.TP 7
+.TP
 CREAD
 Enable receiver.
-.TP 7
+.TP
 PARENB
 Parity enable.
-.TP 7
+.TP
 PARODD
 Odd parity, else even.
-.TP 7
+.TP
 HUPCL
 Hang up on last close.
-.TP 7
+.TP
 CLOCAL
 Ignore modem status lines.
 .sp
@@ -355,31 +313,31 @@ the symbols CS7, CS8, CSTOPB, PARODD, and PARENB.
 .LP
 The \fIc_lflag\fP field of the argument structure is used to control
 various terminal functions:
-.TP 7
+.TP
 ECHO
 Enable echo.
-.TP 7
+.TP
 ECHOE
 Echo erase character as error-correcting backspace.
-.TP 7
+.TP
 ECHOK
 Echo KILL.
-.TP 7
+.TP
 ECHONL
 Echo NL.
-.TP 7
+.TP
 ICANON
 Canonical input (erase and kill processing).
-.TP 7
+.TP
 IEXTEN
 Enable extended input character processing.
-.TP 7
+.TP
 ISIG
 Enable signals.
-.TP 7
+.TP
 NOFLSH
 Disable flush after interrupt or quit.
-.TP 7
+.TP
 TOSTOP
 Send SIGTTOU for background output.
 .sp
@@ -387,13 +345,13 @@ Send SIGTTOU for background output.
 .LP
 The following symbolic constants for use with \fItcsetattr\fP() are
 defined:
-.TP 7
+.TP
 TCSANOW
 Change attributes immediately.
-.TP 7
+.TP
 TCSADRAIN
 Change attributes when output has drained.
-.TP 7
+.TP
 TCSAFLUSH
 Change attributes when output has drained; also flush pending input.
 .sp
@@ -401,29 +359,29 @@ Change attributes when output has drained; also flush pending input.
 .LP
 The following symbolic constants for use with \fItcflush\fP() shall
 be defined:
-.TP 7
+.TP
 TCIFLUSH
 Flush pending input.
-.TP 7
+.TP
 TCIOFLUSH
 Flush both pending input and untransmitted output.
-.TP 7
+.TP
 TCOFLUSH
 Flush untransmitted output.
 .sp
 .LP
 The following symbolic constants for use with \fItcflow\fP() shall
 be defined:
-.TP 7
+.TP
 TCIOFF
 Transmit a STOP character, intended to suspend input data.
-.TP 7
+.TP
 TCION
 Transmit a START character, intended to restart input data.
-.TP 7
+.TP
 TCOOFF
 Suspend output.
-.TP 7
+.TP
 TCOON
 Restart output.
 .sp
@@ -458,13 +416,13 @@ The following names are reserved for XSI-conformant systems to use
 as an extension to the above; therefore strictly conforming
 applications shall not use them:
 .TS C
-center; l l l.
-CBAUD	EXTB	VDSUSP
-DEFECHO	FLUSHO	VLNEXT
-ECHOCTL	LOBLK	VREPRINT
-ECHOKE	PENDIN	VSTATUS
-ECHOPRT	SWTCH	VWERASE
-EXTA	VDISCARD	\ 
+center;l l l l l l l l l l l.
+CBAUD 	 EXTB 	 VDSUSP 	
+DEFECHO 	 FLUSHO 	 VLNEXT 	
+ECHOCTL 	 LOBLK 	 VREPRINT 	
+ECHOKE 	 PENDIN 	 VSTATUS 	
+ECHOPRT 	 SWTCH 	 VWERASE 	
+EXTA 	 VDISCARD 	 \0 	
 .TE
 .SH RATIONALE
 .LP
@@ -474,11 +432,11 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIcfgetispeed\fP(),
+The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIcfgetispeed\fP(),
 \fIcfgetospeed\fP(), \fIcfsetispeed\fP(), \fIcfsetospeed\fP(), \fIconfstr\fP(),
 \fItcdrain\fP(), \fItcflow\fP(), \fItcflush\fP(), \fItcgetattr\fP(),
 \fItcgetsid\fP(), \fItcsendbreak\fP(), \fItcsetattr\fP(), the Shell
-and Utilities volume of IEEE\ Std\ 1003.1-2001, \fIgetconf\fP, \fIGeneral
+and Utilities volume of IEEE\0Std\01003.1-2001, \fIgetconf\fP, \fIGeneral
 Terminal Interface\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

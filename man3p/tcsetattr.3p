@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "TCSETATTR" P 2003 POSIX
+.TH "tcsetattr" P 2003 POSIX
 .\" tcsetattr 
 .SH NAME
-tcsetattr \- set the parameters associated with the terminal
+tcsetattr - set the parameters associated with the terminal
 .SH SYNOPSIS
 .LP
 \fB#include <termios.h>
@@ -10,7 +10,7 @@ tcsetattr \- set the parameters associated with the terminal
 .sp
 int tcsetattr(int\fP \fIfildes\fP\fB, int\fP \fIoptional_actions\fP\fB,
 .br
-\ \ \ \ \ \  const struct termios *\fP\fItermios_p\fP\fB);
+\0\0\0\0\0\0 const struct termios *\fP\fItermios_p\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
@@ -20,20 +20,25 @@ with the terminal referred to by the open file descriptor
 \fIfildes\fP (an open file descriptor associated with a terminal)
 from the \fBtermios\fP structure referenced by \fItermios_p\fP
 as follows:
-.IP " *" 3
-If \fIoptional_actions\fP is TCSANOW, the change shall occur immediately.
+.RS
+.in +5
 .LP
-.IP " *" 3
+If \fIoptional_actions\fP is TCSANOW, the change shall occur immediately.
+.in -5
+.in +5
+.LP
 If \fIoptional_actions\fP is TCSADRAIN, the change shall occur after
 all output written to \fIfildes\fP is transmitted. This
 function should be used when changing parameters that affect output.
+.in -5
+.in +5
 .LP
-.IP " *" 3
 If \fIoptional_actions\fP is TCSAFLUSH, the change shall occur after
 all output written to \fIfildes\fP is transmitted, and
 all input so far received but not read shall be discarded before the
 change is made.
-.LP
+.in -5
+.RE
 .LP
 If the output baud rate stored in the \fBtermios\fP structure pointed
 to by \fItermios_p\fP is the zero baud rate, B0, the
@@ -65,26 +70,30 @@ structure pointed to by \fItermios_p\fP was
 not derived from the result of a call to \fItcgetattr\fP() on \fIfildes\fP;
 an
 application should modify only fields and flags defined by this volume
-of IEEE\ Std\ 1003.1-2001 between the call to \fItcgetattr\fP() and
+of IEEE\0Std\01003.1-2001 between the call to \fItcgetattr\fP() and
 \fItcsetattr\fP(), leaving all other fields and flags
 unmodified.
 .LP
-No actions defined by this volume of IEEE\ Std\ 1003.1-2001, other
+No actions defined by this volume of IEEE\0Std\01003.1-2001, other
 than a call to \fItcsetattr\fP() or a close of the
 last file descriptor in the system associated with this terminal device,
 shall cause any of the terminal attributes defined by this
-volume of IEEE\ Std\ 1003.1-2001 to change.
+volume of IEEE\0Std\01003.1-2001 to change.
 .LP
 If \fItcsetattr\fP() is called from a process which is a member of
 a background process group on a \fIfildes\fP associated
 with its controlling terminal:
-.IP " *" 3
+.RS
+.in +5
+.LP
 If the calling process is blocking or ignoring SIGTTOU signals, the
 operation completes normally and no signal is sent.
+.in -5
+.in +5
 .LP
-.IP " *" 3
 Otherwise, a SIGTTOU signal shall be sent to the process group.
-.LP
+.in -5
+.RE
 .SH RETURN VALUE
 .LP
 Upon successful completion, 0 shall be returned. Otherwise, -1 shall
@@ -92,24 +101,24 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fItcsetattr\fP() function shall fail if:
-.TP 7
+.TP
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor.
-.TP 7
+.TP
 .B EINTR
 A signal interrupted \fItcsetattr\fP().
-.TP 7
+.TP
 .B EINVAL
 The \fIoptional_actions\fP argument is not a supported value, or an
 attempt was made to change an attribute represented in the
 \fBtermios\fP structure to an unsupported value.
-.TP 7
+.TP
 .B ENOTTY
 The file associated with \fIfildes\fP is not a terminal.
 .sp
 .LP
 The \fItcsetattr\fP() function may fail if:
-.TP 7
+.TP
 .B EIO
 The process group of the writing process is orphaned, and the writing
 process is not ignoring or blocking SIGTTOU.
@@ -128,24 +137,28 @@ were actually selected.
 .LP
 The \fItcsetattr\fP() function can be interrupted in the following
 situations:
-.IP " *" 3
-It is interrupted while waiting for output to drain.
+.RS
+.in +5
 .LP
-.IP " *" 3
+It is interrupted while waiting for output to drain.
+.in -5
+.in +5
+.LP
 It is called from a process in a background process group and SIGTTOU
 is caught.
-.LP
+.in -5
+.RE
 .LP
 See also the RATIONALE section in \fItcgetattr\fP() .
 .SH FUTURE DIRECTIONS
 .LP
 Using an input baud rate of 0 to set the input rate equal to the output
 rate may not necessarily be supported in a future
-version of this volume of IEEE\ Std\ 1003.1-2001.
+version of this volume of IEEE\0Std\01003.1-2001.
 .SH SEE ALSO
 .LP
 \fIcfgetispeed\fP() , \fItcgetattr\fP() , the Base Definitions
-volume of IEEE\ Std\ 1003.1-2001, Chapter 11, General Terminal Interface,
+volume of IEEE\0Std\01003.1-2001, Chapter 11, General Terminal Interface,
 \fI<termios.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

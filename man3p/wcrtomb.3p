@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "WCRTOMB" P 2003 POSIX
+.TH "wcrtomb" P 2003 POSIX
 .\" wcrtomb 
 .SH NAME
-wcrtomb \- convert a wide-character code to a character (restartable)
+wcrtomb - convert a wide-character code to a character (restartable)
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -13,6 +13,12 @@ mbstate_t *restrict\fP \fIps\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
+.LP
+The functionality described on this reference page is aligned with
+the ISO\0C standard. Any conflict between the
+requirements described here and the ISO\0C standard is unintentional.
+This volume of IEEE\0Std\01003.1-2001 defers to
+the ISO\0C standard. 
 .LP
 If \fIs\fP is a null pointer, the \fIwcrtomb\fP() function shall be
 equivalent to the call:
@@ -43,7 +49,7 @@ initialized at program start-up to the initial conversion state. Otherwise,
 the \fBmbstate_t\fP object pointed to by \fIps\fP
 shall be used to completely describe the current conversion state
 of the associated character sequence. The implementation shall
-behave as if no function defined in this volume of IEEE\ Std\ 1003.1-2001
+behave as if no function defined in this volume of IEEE\0Std\01003.1-2001
 calls \fIwcrtomb\fP().
 .LP
 If
@@ -64,10 +70,10 @@ conversion state shall be undefined.
 .SH ERRORS
 .LP
 The \fIwcrtomb\fP() function may fail if:
-.TP 7
+.TP
 .B EINVAL
 \fIps\fP points to an object that contains an invalid conversion state.
-.TP 7
+.TP
 .B EILSEQ
 Invalid wide-character code is detected.
 .sp
@@ -87,7 +93,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fImbsinit\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
+\fImbsinit\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
 \fI<wchar.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "SHUTDOWN" P 2003 POSIX
+.TH "shutdown" P 2003 POSIX
 .\" shutdown 
 .SH NAME
-shutdown \- shut down socket send and receive operations
+shutdown - shut down socket send and receive operations
 .SH SYNOPSIS
 .LP
 \fB#include <sys/socket.h>
@@ -18,27 +18,21 @@ connection on the socket associated with the file
 descriptor \fIsocket\fP to be shut down.
 .LP
 The \fIshutdown\fP() function takes the following arguments:
-.TP 7
+.TP
 \fIsocket\fP
 Specifies the file descriptor of the socket.
-.TP 7
+.TP
 \fIhow\fP
 Specifies the type of shutdown. The values are as follows: 
-.TP 7
+.TP
 SHUT_RD
-.RS
 Disables further receive operations.
-.RE
-.TP 7
+.TP
 SHUT_WR
-.RS
 Disables further send operations.
-.RE
-.TP 7
+.TP
 SHUT_RDWR
-.RS
 Disables further send and receive operations.
-.RE
 .sp
 .sp
 .LP
@@ -53,22 +47,22 @@ the error.
 .SH ERRORS
 .LP
 The \fIshutdown\fP() function shall fail if:
-.TP 7
+.TP
 .B EBADF
 The \fIsocket\fP argument is not a valid file descriptor.
-.TP 7
+.TP
 .B EINVAL
 The \fIhow\fP argument is invalid.
-.TP 7
+.TP
 .B ENOTCONN
 The socket is not connected.
-.TP 7
+.TP
 .B ENOTSOCK
 The \fIsocket\fP argument does not refer to a socket.
 .sp
 .LP
 The \fIshutdown\fP() function may fail if:
-.TP 7
+.TP
 .B ENOBUFS
 Insufficient resources were available in the system to perform the
 operation.
@@ -92,7 +86,7 @@ None.
 \fIgetsockopt\fP() , \fIread\fP() , \fIrecv\fP() , \fIrecvfrom\fP()
 , \fIrecvmsg\fP() , \fIselect\fP() , \fIsend\fP() , \fIsendto\fP()
 , \fIsetsockopt\fP() , \fIsocket\fP() , \fIwrite\fP() , the Base Definitions
-volume of IEEE\ Std\ 1003.1-2001, \fI<sys/socket.h>\fP
+volume of IEEE\0Std\01003.1-2001, \fI<sys/socket.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

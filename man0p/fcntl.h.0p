@@ -2,7 +2,7 @@
 .TH "<fcntl.h>" P 2003 POSIX
 .\" <fcntl.h> 
 .SH NAME
-fcntl.h \- file control options
+fcntl.h - file control options
 .SH SYNOPSIS
 .LP
 \fB#include <fcntl.h>\fP
@@ -14,40 +14,40 @@ arguments for use by the functions \fIfcntl\fP() and \fIopen\fP().
 Values for \fIcmd\fP used by \fIfcntl\fP() (the following values are
 unique) are as
 follows:
-.TP 7
+.TP
 F_DUPFD
 Duplicate file descriptor.
-.TP 7
+.TP
 F_GETFD
 Get file descriptor flags.
-.TP 7
+.TP
 F_SETFD
 Set file descriptor flags.
-.TP 7
+.TP
 F_GETFL
 Get file status flags and file access modes.
-.TP 7
+.TP
 F_SETFL
 Set file status flags.
-.TP 7
+.TP
 F_GETLK
 Get record locking information.
-.TP 7
+.TP
 F_SETLK
 Set record locking information.
-.TP 7
+.TP
 F_SETLKW
 Set record locking information; wait if blocked.
-.TP 7
+.TP
 F_GETOWN
 Get process or process group ID to receive SIGURG signals.
-.TP 7
+.TP
 F_SETOWN
 Set process or process group ID to receive SIGURG signals.
 .sp
 .LP
 File descriptor flags used for \fIfcntl\fP() are as follows:
-.TP 7
+.TP
 FD_CLOEXEC
 Close the file descriptor upon execution of an \fIexec\fP family function.
 .sp
@@ -55,13 +55,13 @@ Close the file descriptor upon execution of an \fIexec\fP family function.
 Values for \fIl_type\fP used for record locking with \fIfcntl\fP()
 (the following values
 are unique) are as follows:
-.TP 7
+.TP
 F_RDLCK
 Shared or read lock.
-.TP 7
+.TP
 F_UNLCK
 Unlock.
-.TP 7
+.TP
 F_WRLCK
 Exclusive or write lock.
 .sp
@@ -71,52 +71,52 @@ shall be defined as described in \fI<unistd.h>\fP .
 .LP
 The following values are file creation flags and are used in the \fIoflag\fP
 value to \fIopen\fP(). They shall be bitwise-distinct.
-.TP 7
+.TP
 O_CREAT
 Create file if it does not exist.
-.TP 7
+.TP
 O_EXCL
 Exclusive use flag.
-.TP 7
+.TP
 O_NOCTTY
 Do not assign controlling terminal.
-.TP 7
+.TP
 O_TRUNC
 Truncate flag.
 .sp
 .LP
 File status flags used for \fIopen\fP() and \fIfcntl\fP() are as follows:
-.TP 7
+.TP
 O_APPEND
 Set append mode.
-.TP 7
+.TP
 O_DSYNC
 Write according to synchronized I/O data integrity completion. 
-.TP 7
+.TP
 O_NONBLOCK
 Non-blocking mode.
-.TP 7
+.TP
 O_RSYNC
 Synchronized read I/O operations. 
-.TP 7
+.TP
 O_SYNC
 Write according to synchronized I/O file integrity completion.
 .sp
 .LP
 Mask for use with file access modes is as follows:
-.TP 7
+.TP
 O_ACCMODE
 Mask for file access modes.
 .sp
 .LP
 File access modes used for \fIopen\fP() and \fIfcntl\fP() are as follows:
-.TP 7
+.TP
 O_RDONLY
 Open for reading only.
-.TP 7
+.TP
 O_RDWR
 Open for reading and writing.
-.TP 7
+.TP
 O_WRONLY
 Open for writing only.
 .sp
@@ -125,31 +125,31 @@ The symbolic names for file modes for use as values of \fBmode_t\fP
 shall be defined as described in \fI<sys/stat.h>\fP . 
 .LP
 Values for \fIadvice\fP used by \fIposix_fadvise\fP() are as follows:
-.TP 7
+.TP
 POSIX_FADV_NORMAL
 .sp
 The application has no advice to give on its behavior with respect
 to the specified data. It is the default characteristic if no
 advice is given for an open file.
-.TP 7
+.TP
 POSIX_FADV_SEQUENTIAL
 .sp
 The application expects to access the specified data sequentially
 from lower offsets to higher offsets.
-.TP 7
+.TP
 POSIX_FADV_RANDOM
 .sp
 The application expects to access the specified data in a random order.
-.TP 7
+.TP
 POSIX_FADV_WILLNEED
 .sp
 The application expects to access the specified data in the near future.
-.TP 7
+.TP
 POSIX_FADV_DONTNEED
 .sp
 The application expects that it will not access the specified data
 in the near future.
-.TP 7
+.TP
 POSIX_FADV_NOREUSE
 .sp
 The application expects to access the specified data once and then
@@ -207,7 +207,7 @@ None.
 .SH SEE ALSO
 .LP
 \fI<sys/stat.h>\fP , \fI<sys/types.h>\fP , \fI<unistd.h>\fP , the
-System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIcreat\fP(),
+System Interfaces volume of IEEE\0Std\01003.1-2001, \fIcreat\fP(),
 \fIexec\fP, \fIfcntl\fP(), \fIopen\fP(), \fIposix_fadvise\fP(), \fIposix_fallocate\fP(),
 \fIposix_madvise\fP()
 .SH COPYRIGHT

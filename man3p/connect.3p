@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "CONNECT" P 2003 POSIX
+.TH "connect" P 2003 POSIX
 .\" connect 
 .SH NAME
-connect \- connect a socket
+connect - connect a socket
 .SH SYNOPSIS
 .LP
 \fB#include <sys/socket.h>
@@ -10,22 +10,22 @@ connect \- connect a socket
 .sp
 int connect(int\fP \fIsocket\fP\fB, const struct sockaddr *\fP\fIaddress\fP\fB,
 .br
-\ \ \ \ \ \  socklen_t\fP \fIaddress_len\fP\fB);
+\0\0\0\0\0\0 socklen_t\fP \fIaddress_len\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
 .LP
 The \fIconnect\fP() function shall attempt to make a connection on
 a socket. The function takes the following arguments:
-.TP 7
+.TP
 \fIsocket\fP
 Specifies the file descriptor associated with the socket.
-.TP 7
+.TP
 \fIaddress\fP
 Points to a \fBsockaddr\fP structure containing the peer address.
 The length and format of the address depend on the address
 family of the socket.
-.TP 7
+.TP
 \fIaddress_len\fP
 Specifies the length of the \fBsockaddr\fP structure pointed to by
 the \fIaddress\fP argument.
@@ -79,110 +79,110 @@ the error.
 .SH ERRORS
 .LP
 The \fIconnect\fP() function shall fail if:
-.TP 7
+.TP
 .B EADDRNOTAVAIL
 The specified address is not available from the local machine.
-.TP 7
+.TP
 .B EAFNOSUPPORT
 The specified address is not a valid address for the address family
 of the specified socket.
-.TP 7
+.TP
 .B EALREADY
 A connection request is already in progress for the specified socket.
-.TP 7
+.TP
 .B EBADF
 The \fIsocket\fP argument is not a valid file descriptor.
-.TP 7
+.TP
 .B ECONNREFUSED
 The target address was not listening for connections or refused the
 connection request.
-.TP 7
+.TP
 .B EINPROGRESS
 O_NONBLOCK is set for the file descriptor for the socket and the connection
 cannot be immediately established; the connection
 shall be established asynchronously.
-.TP 7
+.TP
 .B EINTR
 The attempt to establish a connection was interrupted by delivery
 of a signal that was caught; the connection shall be
 established asynchronously.
-.TP 7
+.TP
 .B EISCONN
 The specified socket is connection-mode and is already connected.
-.TP 7
+.TP
 .B ENETUNREACH
 No route to the network is present.
-.TP 7
+.TP
 .B ENOTSOCK
 The \fIsocket\fP argument does not refer to a socket.
-.TP 7
+.TP
 .B EPROTOTYPE
 The specified address has a different type than the socket bound to
 the specified peer address.
-.TP 7
+.TP
 .B ETIMEDOUT
 The attempt to connect timed out before a connection was made.
 .sp
 .LP
 If the address family of the socket is AF_UNIX, then \fIconnect\fP()
 shall fail if:
-.TP 7
+.TP
 .B EIO
 An I/O error occurred while reading from or writing to the file system.
-.TP 7
+.TP
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 pathname in \fIaddress\fP.
-.TP 7
+.TP
 .B ENAMETOOLONG
 A component of a pathname exceeded {NAME_MAX} characters, or an entire
 pathname exceeded {PATH_MAX} characters.
-.TP 7
+.TP
 .B ENOENT
 A component of the pathname does not name an existing file or the
 pathname is an empty string.
-.TP 7
+.TP
 .B ENOTDIR
 A component of the path prefix of the pathname in \fIaddress\fP is
 not a directory.
 .sp
 .LP
 The \fIconnect\fP() function may fail if:
-.TP 7
+.TP
 .B EACCES
 Search permission is denied for a component of the path prefix; or
 write access to the named socket is denied.
-.TP 7
+.TP
 .B EADDRINUSE
 Attempt to establish a connection that uses addresses that are already
 in use.
-.TP 7
+.TP
 .B ECONNRESET
 Remote host reset the connection request.
-.TP 7
+.TP
 .B EHOSTUNREACH
 The destination host cannot be reached (probably because the host
 is down or a remote router cannot reach it).
-.TP 7
+.TP
 .B EINVAL
 The \fIaddress_len\fP argument is not a valid length for the address
 family; or invalid address family in the \fBsockaddr\fP
 structure.
-.TP 7
+.TP
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the pathname in \fIaddress\fP.
-.TP 7
+.TP
 .B ENAMETOOLONG
 Pathname resolution of a symbolic link produced an intermediate result
 whose length exceeds {PATH_MAX}.
-.TP 7
+.TP
 .B ENETDOWN
 The local network interface used to reach the destination is down.
-.TP 7
+.TP
 .B ENOBUFS
 No buffer space is available.
-.TP 7
+.TP
 .B EOPNOTSUPP
 The socket is listening and cannot be connected.
 .sp
@@ -206,7 +206,7 @@ None.
 .LP
 \fIaccept\fP() , \fIbind\fP() , \fIclose\fP() , \fIgetsockname\fP()
 , \fIpoll\fP() , \fIselect\fP() , \fIsend\fP() , \fIshutdown\fP()
-, \fIsocket\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
+, \fIsocket\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
 \fI<sys/socket.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

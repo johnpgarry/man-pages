@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "TTYNAME" P 2003 POSIX
+.TH "ttyname" P 2003 POSIX
 .\" ttyname 
 .SH NAME
-ttyname, ttyname_r \- find the pathname of a terminal
+ttyname, ttyname_r - find the pathname of a terminal
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -47,25 +47,26 @@ error.
 .SH ERRORS
 .LP
 The \fIttyname\fP() function may fail if:
-.TP 7
+.TP
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor.
-.TP 7
+.TP
 .B ENOTTY
 The \fIfildes\fP argument does not refer to a terminal.
 .sp
 .LP
 The \fIttyname_r\fP() function may fail if:
-.TP 7
+.TP
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor. 
-.TP 7
+.TP
 .B ENOTTY
 The \fIfildes\fP argument does not refer to a terminal. 
-.TP 7
+.TP
 .B ERANGE
 The value of \fInamesize\fP is smaller than the length of the string
-to be returned including the terminating null character. 
+to be returned including the terminating null character. <img
+src="../images/opt-end.gif" alt="[Option End]" border="0">
 .sp
 .LP
 \fIThe following sections are informative.\fP
@@ -90,7 +91,7 @@ that may be overwritten by each call.
 None.
 .SH SEE ALSO
 .LP
-The Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
+The Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "GETCONF" P 2003 POSIX
+.TH "getconf" P 2003 POSIX
 .\" getconf 
 .SH NAME
-getconf \- get configuration values
+getconf - get configuration values
 .SH SYNOPSIS
 .LP
 \fBgetconf\fP \fB[\fP \fB-v specification\fP \fB]\fP \fIsystem_var\fP\fB
@@ -24,19 +24,19 @@ operand.
 .LP
 The value of each configuration variable shall be determined as if
 it were obtained by calling the function from which it is
-defined to be available by this volume of IEEE\ Std\ 1003.1-2001 or
+defined to be available by this volume of IEEE\0Std\01003.1-2001 or
 by the System Interfaces volume of
-IEEE\ Std\ 1003.1-2001 (see the OPERANDS section). The value shall
+IEEE\0Std\01003.1-2001 (see the OPERANDS section). The value shall
 reflect conditions in the current operating
 environment.
 .SH OPTIONS
 .LP
 The \fIgetconf\fP utility shall conform to the Base Definitions volume
-of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following option shall be supported:
-.TP 7
-\fB-v\ \fP \fIspecification\fP
+.TP
+\fB-v\0\fP \fIspecification\fP
 .sp
 Indicate a specific specification and version for which configuration
 variables shall be determined. If this option is not
@@ -146,27 +146,28 @@ POSIX_V6_LPBIG_OFFBIG compilation environment specified in \fIc99\fP
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP 7
+.TP
 \fIpath_var\fP
 A name of a configuration variable. All of the variables in the Variable
 column of the table in the DESCRIPTION of the \fIfpathconf\fP() function
 defined in the System Interfaces volume of
-IEEE\ Std\ 1003.1-2001, without the enclosing braces, shall be supported.
+IEEE\0Std\01003.1-2001, without the enclosing braces, shall be supported.
 The implementation may add other local
 variables.
-.TP 7
+.TP
 \fIpathname\fP
 A pathname for which the variable specified by \fIpath_var\fP is to
 be determined.
-.TP 7
+.TP
 \fIsystem_var\fP
 A name of a configuration variable. All of the following variables
 shall be supported: 
 .RS
-.IP " *" 3
+.in +5
+.LP
 The names in the Variable column of the table in the DESCRIPTION of
 the \fIsysconf\fP()
-function in the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
+function in the System Interfaces volume of IEEE\0Std\01003.1-2001,
 except for the entries corresponding to _SC_CLK_TCK,
 _SC_GETGR_R_SIZE_MAX, and _SC_GETPW_R_SIZE_MAX, without the enclosing
 braces.
@@ -191,18 +192,20 @@ POSIX2_VERSION
 .LP
 and shall be equivalent to the same name prefixed with an underscore.
 This requirement may be removed in a future version.
+.in -5
+.in +5
 .LP
-.IP " *" 3
 The names of the symbolic constants used as the \fIname\fP argument
 of the \fIconfstr\fP() function in the System Interfaces volume of
-IEEE\ Std\ 1003.1-2001,
+IEEE\0Std\01003.1-2001,
 without the _CS_ prefix.
+.in -5
+.in +5
 .LP
-.IP " *" 3
 The names of the symbolic constants listed under the headings ``Maximum
 Values'' and ``Minimum Values'' in the description of
 the \fI<limits.h>\fP header in the Base Definitions volume of
-IEEE\ Std\ 1003.1-2001, without the enclosing braces.
+IEEE\0Std\01003.1-2001, without the enclosing braces.
 .LP
 For compatibility with earlier versions, the following variable names
 shall also be supported:
@@ -223,7 +226,7 @@ POSIX2_RE_DUP_MAX
 .LP
 and shall be equivalent to the same name prefixed with an underscore.
 This requirement may be removed in a future version.
-.LP
+.in -5
 .RE
 .LP
 The implementation may add other local values.
@@ -238,29 +241,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIgetconf\fP:
-.TP 7
+.TP
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
+IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP 7
+.TP
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP 7
+.TP
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP 7
+.TP
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP 7
+.TP
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -273,7 +276,7 @@ Default.
 If the specified variable is defined on the system and its value is
 described to be available from the \fIconfstr\fP() function defined
 in the System Interfaces volume of
-IEEE\ Std\ 1003.1-2001, its value shall be written in the following
+IEEE\0Std\01003.1-2001, its value shall be written in the following
 format:
 .sp
 .RS
@@ -320,11 +323,11 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP 7
-\ 0
+.TP
+\00
 The specified variable is valid and information about its current
 state was written successfully.
-.TP 7
+.TP
 >0
 An error occurred.
 .sp
@@ -416,7 +419,7 @@ replacing the standard utilities, shell scripts need a way
 to determine the system-supplied \fIPATH\fP environment variable value
 that contains the correct search path for the standard
 utilities. It was later suggested that access to the other variables
-described in this volume of IEEE\ Std\ 1003.1-2001
+described in this volume of IEEE\0Std\01003.1-2001
 could also be useful to applications.
 .LP
 This functionality of \fIgetconf\fP would not be adequately subsumed
@@ -444,8 +447,8 @@ an exit code of zero when an invoked utility is successful.
 None.
 .SH SEE ALSO
 .LP
-\fIc99\fP , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
-\fI<limits.h>\fP, the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
+\fIc99\fP , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fI<limits.h>\fP, the System Interfaces volume of IEEE\0Std\01003.1-2001,
 \fIconfstr\fP(), \fIpathconf\fP(), \fIsysconf\fP(), \fIsystem\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

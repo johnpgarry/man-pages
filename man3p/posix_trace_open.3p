@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "POSIX_TRACE_CLOSE" P 2003 POSIX
+.TH "posix_trace_close" P 2003 POSIX
 .\" posix_trace_close 
 .SH NAME
-posix_trace_close, posix_trace_open, posix_trace_rewind \- trace log
+posix_trace_close, posix_trace_open, posix_trace_rewind - trace log
 management (\fBTRACING\fP)
 .SH SYNOPSIS
 .LP
@@ -40,9 +40,8 @@ The \fIposix_trace_open\fP() function shall return a trace stream
 identifier in the variable pointed to by the \fItrid\fP
 argument, that may only be used by the following functions:
 .TS C
-center; lw(39) lw(39).
-T{
-.br
+center;l l l l l l l l l l l.
+.sp
 \fIposix_trace_close\fP()
 .br
 \fIposix_trace_eventid_equal\fP()
@@ -53,8 +52,7 @@ T{
 .br
 \fIposix_trace_eventtypelist_rewind\fP()
 .br
-\ 
-T}	T{
+\0 	 
 .br
 \fIposix_trace_get_attr\fP()
 .br
@@ -64,8 +62,7 @@ T}	T{
 .br
 \fIposix_trace_rewind\fP()
 .br
-\ 
-T}
+\0 	
 .TE
 .LP
 In particular, notice that the operations normally used by a trace
@@ -91,11 +88,11 @@ stream identifier value in the object pointed to by
 .SH ERRORS
 .LP
 The \fIposix_trace_open\fP() function shall fail if:
-.TP 7
+.TP
 .B EINTR
 The operation was interrupted by a signal and thus no trace log was
 opened.
-.TP 7
+.TP
 .B EINVAL
 The object pointed to by \fIfile_desc\fP does not correspond to a
 valid trace log.
@@ -103,7 +100,7 @@ valid trace log.
 .LP
 The \fIposix_trace_close\fP() and \fIposix_trace_rewind\fP() functions
 may fail if:
-.TP 7
+.TP
 .B EINVAL
 The object pointed to by \fItrid\fP does not correspond to a valid
 trace log.
@@ -126,7 +123,7 @@ None.
 .LP
 \fIposix_trace_get_attr\fP() , \fIposix_trace_get_filter\fP() , \fIposix_trace_getnext_event\fP()
 , the Base Definitions volume of
-IEEE\ Std\ 1003.1-2001, \fI<trace.h>\fP
+IEEE\0Std\01003.1-2001, \fI<trace.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "KILL" P 2003 POSIX
+.TH "kill" P 2003 POSIX
 .\" kill 
 .SH NAME
-kill \- terminate or signal processes
+kill - terminate or signal processes
 .SH SYNOPSIS
 .LP
 \fBkill -s\fP \fIsignal_name pid\fP \fB...
@@ -28,29 +28,33 @@ specified by each \fIpid\fP operand.
 .LP
 For each \fIpid\fP operand, the \fIkill\fP utility shall perform actions
 equivalent to the \fIkill\fP() function defined in the System Interfaces
-volume of IEEE\ Std\ 1003.1-2001
+volume of IEEE\0Std\01003.1-2001
 called with the following arguments:
-.IP " *" 3
+.RS
+.in +5
+.LP
 The value of the \fIpid\fP operand shall be used as the \fIpid\fP
 argument.
+.in -5
+.in +5
 .LP
-.IP " *" 3
 The \fIsig\fP argument is the value specified by the \fB-s\fP option,
 \fB-\fP \fIsignal_number\fP option, or the \fB-\fP
 \fIsignal_name\fP option, or by SIGTERM, if none of these options
 is specified.
-.LP
+.in -5
+.RE
 .SH OPTIONS
 .LP
 The \fIkill\fP utility shall conform to the Base Definitions volume
-of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
-\ except that
+of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
+\0except that
 in the last two SYNOPSIS forms, the \fB-\fP \fIsignal_number\fP and
 \fB-\fP \fIsignal_name\fP options are usually more than a
 single character. 
 .LP
 The following options shall be supported:
-.TP 7
+.TP
 \fB-l\fP
 (The letter ell.) Write all values of \fIsignal_name\fP supported
 by the implementation, if no operand is given. If an
@@ -62,11 +66,11 @@ to the signal that terminated the process shall be written.
 If an \fIexit_status\fP operand is given and it is the unsigned decimal
 integer value of a signal number, the \fIsignal_name\fP
 (the symbolic constant name without the \fBSIG\fP prefix defined in
-the Base Definitions volume of IEEE\ Std\ 1003.1-2001)
+the Base Definitions volume of IEEE\0Std\01003.1-2001)
 corresponding to that signal shall be written. Otherwise, the results
 are unspecified.
-.TP 7
-\fB-s\ \fP \fIsignal_name\fP
+.TP
+\fB-s\0\fP \fIsignal_name\fP
 .sp
 Specify the signal to send, using one of the symbolic names defined
 in the \fI<signal.h>\fP header. Values of \fIsignal_name\fP shall
@@ -75,11 +79,11 @@ case-independent fashion, without the \fBSIG\fP prefix. In addition,
 the symbolic name 0 shall be recognized, representing the
 signal value zero. The corresponding signal shall be sent instead
 of SIGTERM.
-.TP 7
+.TP
 \fB-\fP\fIsignal_name\fP
 .sp
 Equivalent to \fB-s\fP \fIsignal_name\fP. 
-.TP 7
+.TP
 \fB-\fP\fIsignal_number\fP
 .sp
 Specify a non-negative decimal integer, \fIsignal_number\fP, representing
@@ -93,16 +97,16 @@ listed in the table are undefined.
 .sp
 .sp
 .TS C
-center; l l.
-\fIsignal_number\fP	\fB\fIsig\fP Value\fP
-0	0
-1	SIGHUP
-2	SIGINT
-3	SIGQUIT
-6	SIGABRT
-9	SIGKILL
-14	SIGALRM
-15	SIGTERM
+center;l l l l l l l l.
+\fIsignal_number\fP 	 \fB\fIsig\fP Value\fP 	
+0 	 0 	
+1 	 SIGHUP 	
+2 	 SIGINT 	
+3 	 SIGQUIT 	
+6 	 SIGABRT 	
+9 	 SIGKILL 	
+14 	 SIGALRM 	
+15 	 SIGTERM 	
 .TE
 .LP
 If the first argument is a negative integer, it shall be interpreted
@@ -111,11 +115,11 @@ negative \fIpid\fP operand specifying a process group.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP 7
+.TP
 \fIpid\fP
 One of the following: 
-.RS
-.IP " 1." 4
+.in +5
+.LP
 A decimal integer specifying a process or process group to be signaled.
 The process or processes selected by positive, negative,
 and zero values of the \fIpid\fP operand shall be as described for
@@ -124,20 +128,20 @@ function. If process number 0 is specified, all processes in the current
 process group shall be signaled. For the effects of
 negative \fIpid\fP numbers, see the \fIkill\fP() function defined
 in the System Interfaces
-volume of IEEE\ Std\ 1003.1-2001. If the first \fIpid\fP operand is
+volume of IEEE\0Std\01003.1-2001. If the first \fIpid\fP operand is
 negative, it should be preceded by \fB"--"\fP to
 keep it from being interpreted as an option.
+.in -5
+.in +5
 .LP
-.IP " 2." 4
-A job control job ID (see the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
+A job control job ID (see the Base Definitions volume of IEEE\0Std\01003.1-2001,
 Section 3.203, Job Control Job ID) that identifies a background process
 group to be
 signaled. The job control job ID notation is applicable only for invocations
 of \fIkill\fP in the current shell execution
 environment; see \fIShell Execution Environment\fP .
-.LP
-.RE
-.TP 7
+.in -5
+.TP
 \fIexit_status\fP
 A decimal integer specifying a signal number or the exit status of
 a process terminated by a signal.
@@ -152,29 +156,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIkill\fP:
-.TP 7
+.TP
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
+IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP 7
+.TP
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP 7
+.TP
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP 7
+.TP
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP 7
+.TP
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -226,12 +230,12 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP 7
-\ 0
+.TP
+\00
 At least one matching process was found for each \fIpid\fP operand,
 and the specified signal was successfully processed for at
 least one matching process.
-.TP 7
+.TP
 >0
 An error occurred.
 .sp
@@ -278,8 +282,8 @@ to all processes whose process group ID is 165, assuming the
 sending process has permission to send that signal to the specified
 processes, and that they exist.
 .LP
-The System Interfaces volume of IEEE\ Std\ 1003.1-2001 and this volume
-of IEEE\ Std\ 1003.1-2001 do not require
+The System Interfaces volume of IEEE\0Std\01003.1-2001 and this volume
+of IEEE\0Std\01003.1-2001 do not require
 specific signal numbers for any \fIsignal_names\fP. Even the \fB-\fP
 \fIsignal_number\fP option provides symbolic (although
 numeric) names for signals. If a process is terminated by a signal,
@@ -334,7 +338,7 @@ on systems for which this is appropriate.
 .LP
 An early proposal invented the name SIGNULL as a \fIsignal_name\fP
 for signal 0 (used by the System Interfaces volume of
-IEEE\ Std\ 1003.1-2001 to test for the existence of a process without
+IEEE\0Std\01003.1-2001 to test for the existence of a process without
 sending it a signal). Since the \fIsignal_name\fP 0
 can be used in this case unambiguously, SIGNULL has been removed.
 .LP
@@ -348,7 +352,7 @@ extension, it is no longer required.
 .LP
 To avoid an ambiguity of an initial negative number argument specifying
 either a signal number or a process group,
-IEEE\ Std\ 1003.1-2001 mandates that it is always considered the former
+IEEE\0Std\01003.1-2001 mandates that it is always considered the former
 by implementations that support the XSI option. It
 also requires that conforming applications always use the \fB"--"\fP
 options terminator argument when specifying a process
@@ -379,8 +383,8 @@ None.
 .SH SEE ALSO
 .LP
 \fIShell Command Language\fP , \fIps\fP , \fIwait\fP() , the System
-Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIkill\fP(), the Base
-Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP
+Interfaces volume of IEEE\0Std\01003.1-2001, \fIkill\fP(), the Base
+Definitions volume of IEEE\0Std\01003.1-2001, \fI<signal.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "EXIT" P 2003 POSIX
+.TH "exit" P 2003 POSIX
 .\" exit 
 .SH NAME
-exit \- cause the shell to exit
+exit - cause the shell to exit
 .SH SYNOPSIS
 .LP
 \fBexit\fP \fB[\fP\fIn\fP\fB]\fP
@@ -90,13 +90,13 @@ Exit with a \fIfalse\fP value:
 As explained in other sections, certain exit status values have been
 reserved for special uses and should be used by
 applications only for those purposes:
-.TP 7
-\ 126
+.TP
+\0126
 A file to be executed was found, but it was not an executable utility.
-.TP 7
-\ 127
+.TP
+\0127
 A utility to be executed was not found.
-.TP 7
+.TP
 >128
 A command was interrupted by a signal.
 .sp

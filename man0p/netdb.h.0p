@@ -2,7 +2,7 @@
 .TH "<netdb.h>" P 2003 POSIX
 .\" <netdb.h> 
 .SH NAME
-netdb.h \- definitions for network database operations
+netdb.h - definitions for network database operations
 .SH SYNOPSIS
 .LP
 \fB#include <netdb.h>\fP
@@ -127,29 +127,29 @@ struct addrinfo  *ai_next      \fP Pointer to next in list. \fB
 The \fI<netdb.h>\fP header shall define the following macros that
 evaluate to bitwise-distinct integer constants for use
 in the \fIflags\fP field of the \fBaddrinfo\fP structure:
-.TP 7
+.TP
 AI_PASSIVE
 Socket address is intended for \fIbind\fP().
-.TP 7
+.TP
 AI_CANONNAME
 .sp
 Request for canonical name.
-.TP 7
+.TP
 AI_NUMERICHOST
 .sp
 Return numeric host address as name.
-.TP 7
+.TP
 AI_NUMERICSERV
 .sp
 Inhibit service name resolution.
-.TP 7
+.TP
 AI_V4MAPPED
 If no IPv6 addresses are found, query for IPv4 addresses and return
 them to the caller as IPv4-mapped IPv6 addresses.
-.TP 7
+.TP
 AI_ALL
 Query for both IPv4 and IPv6 addresses.
-.TP 7
+.TP
 AI_ADDRCONFIG
 .sp
 Query for IPv4 addresses only when an IPv4 address is configured;
@@ -160,28 +160,28 @@ configured.
 The \fI<netdb.h>\fP header shall define the following macros that
 evaluate to bitwise-distinct integer constants for use
 in the \fIflags\fP argument to \fIgetnameinfo\fP():
-.TP 7
+.TP
 NI_NOFQDN
 Only the nodename portion of the FQDN is returned for local hosts.
-.TP 7
+.TP
 NI_NUMERICHOST
 .sp
 The numeric form of the node's address is returned instead of its
 name.
-.TP 7
+.TP
 NI_NAMEREQD
 Return an error if the node's name cannot be located in the database.
-.TP 7
+.TP
 NI_NUMERICSERV
 .sp
 The numeric form of the service address is returned instead of its
 name.
-.TP 7
+.TP
 NI_NUMERICSCOPE
 .sp
 For IPv6 addresses, the numeric form of the scope identifier is returned
 instead of its name.
-.TP 7
+.TP
 NI_DGRAM
 Indicates that the service is a datagram service (SOCK_DGRAM).
 .sp
@@ -189,38 +189,38 @@ Indicates that the service is a datagram service (SOCK_DGRAM).
 .LP
 The \fI<netdb.h>\fP header shall define the following macros for use
 as error values for \fIgetaddrinfo\fP() and \fIgetnameinfo\fP():
-.TP 7
+.TP
 EAI_AGAIN
 The name could not be resolved at this time. Future attempts may succeed.
-.TP 7
+.TP
 EAI_BADFLAGS
 The flags had an invalid value.
-.TP 7
+.TP
 EAI_FAIL
 A non-recoverable error occurred.
-.TP 7
+.TP
 EAI_FAMILY
 The address family was not recognized or the address length was invalid
 for the specified family.
-.TP 7
+.TP
 EAI_MEMORY
 There was a memory allocation failure.
-.TP 7
+.TP
 EAI_NONAME
 The name does not resolve for the supplied parameters. 
 .LP
 NI_NAMEREQD is set and the host's name cannot be located, or both
 \fInodename\fP and \fIservname\fP were null.
-.TP 7
+.TP
 EAI_SERVICE
 The service passed was not recognized for the specified socket type.
-.TP 7
+.TP
 EAI_SOCKTYPE
 The intended socket type was not recognized.
-.TP 7
+.TP
 EAI_SYSTEM
 A system error occurred. The error code can be found in \fIerrno\fP.
-.TP 7
+.TP
 EAI_OVERFLOW
 .sp
 An argument buffer overflowed.
@@ -283,7 +283,7 @@ None.
 .SH SEE ALSO
 .LP
 \fI<netinet/in.h>\fP , \fI<inttypes.h>\fP , \fI<sys/socket.h>\fP ,
-the System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIbind\fP(),
+the System Interfaces volume of IEEE\0Std\01003.1-2001, \fIbind\fP(),
 \fIendhostent\fP(), \fIendnetent\fP(), \fIendprotoent\fP(), \fIendservent\fP(),
 \fIgetaddrinfo\fP(), \fIgetnameinfo\fP()
 .SH COPYRIGHT
