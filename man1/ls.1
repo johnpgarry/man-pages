@@ -84,6 +84,23 @@ Precede the output for the file by the file serial number (i-node number).
 Write (in single-column format) the file mode, the number of links
 to the file, the owner name, the group name, the size of the file (in bytes),
 the timestamp, and the filename.
+
+The file types are as follows:
+.B \-
+for an ordinary file,
+.B d
+for a directory,
+.B b
+for a block special device,
+.B c
+for a character special device,
+.B l
+for a symbolic link,
+.B p
+for a fifo,
+.B s
+for a socket.
+
 By default, the timestamp shown is that of the last modification; the
 options \-c and \-u select the other two timestamps.
 For device special files the size field is commonly replaced

@@ -21,14 +21,17 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Rewritten old page, 960210, aeb@cwi.nl
-.TH STRTOK 3  "Februari 10, 1996" "GNU" "Linux Programmer's Manual"
+.\" Updated, added strtok_r. 2000-02-13 Nicolás Lichtmaier <nick@debian.org>
+.TH STRTOK 3  "February 13, 2000" "GNU" "Linux Programmer's Manual"
 .SH NAME
-strtok \- extract token from string
+strtok, strtok_r \- extract tokens from strings
 .SH SYNOPSIS
 .nf
 .B #include <string.h>
 .sp
 .BI "char *strtok(char *" s ", const char *" delim );
+.sp
+.BI "char *strtok_r(char *" s ", const char *" delim ", char **" ptrptr );
 .fi
 .SH DESCRIPTION
 A `token' is a nonempty string of characters not occurring in
@@ -43,18 +46,43 @@ when no more tokens are found.
 .PP
 If a token ends with a delimiter, this delimiting character is
 overwritten with a \e0 and a pointer to the next character is
-saved for the next call to \fBstrtok\fP.
+saved for the next call to \fBstrtok()\fP.
 The delimiter string \fIdelim\fP may be different for each call.
+.PP
+The 
+.B strtok_r()
+function works the same as the
+.B strtok()
+function, but instead of using a static buffer it uses a pointer
+to a user allocated char* pointer. This pointer, the
+.I ptrptr
+parameter, must be the same while parsing the same string.
 .SH "BUGS"
-Never use this function.
+Never use this function. If you do, note that:
+.PP
+.RS
 This function modifies its first argument.
+.PP
 The identity of the delimiting character is lost.
-This function cannot be used on constant strings.
+.PP
+This functions cannot be used on constant strings.
+.PP
+The
+.B strtok ()
+function uses a static buffer while parsing, so it's not thread safe. Use
+.B strtok_r ()
+if this matters to you.
+.RE
 .SH "RETURN VALUE"
 The \fBstrtok()\fP function returns a pointer to the next token, or
 NULL if there are no more tokens.
 .SH "CONFORMING TO"
+.TP
+strtok()
 SVID 3, POSIX, BSD 4.3, ISO 9899
+.TP
+strtok_r()
+POSIX.1c
 .SH "SEE ALSO"
 .BR index "(3), " memchr "(3), " rindex "(3), " strchr (3),
 .BR strpbrk "(3), " strsep "(3), " strspn "(3), " strstr (3)

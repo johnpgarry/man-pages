@@ -130,9 +130,12 @@ belonging to
 .IR fildes ,
 and the error and end-of-file indicators are cleared.
 Modes "w" or "w+" do not cause truncation of the file.
-The file descriptor is not dup'ed.
+The file descriptor is not dup'ed, and will be closed when
+the stream created by
+.B fdopen
+is closed.
 The result of applying
-.I fdopen
+.B fdopen
 to a shared memory object is undefined.
 .PP
 The

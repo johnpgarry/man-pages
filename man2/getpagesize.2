@@ -45,6 +45,13 @@ defined when the library is compiled, this function returns
 (set to 4096 in Linux 0.99.11), or
 .B NBPC
 (not defined in Linux 0.99.11 or DLL 4.4.1 libraries).
+.SH BUGS
+Depending on architecture and library version, this library call
+may do a system call or not. It may return a value different
+from that of the system call. For example, on a sun4 with libc5
+this routine returns EXEC_PAGESIZE, which is 8192, and not
+PAGE_SIZE, which is 4096, or the result of the system call,
+which also is 4096.
 .SH CONFORMING TO
 SVr4, 4.4BSD (this call first appeared in 4.2BSD).
 .SH "SEE ALSO"

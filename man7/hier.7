@@ -22,7 +22,9 @@
 .\" License.
 .\" Modified Sun Jul 25 11:05:58 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sat Feb 10 16:18:03 1996 by Urs Thuermann (urs@isnogud.escape.de)
-.\" Modified Mon Jun 16 20:02:00 1997 by Nicolas Lichtmaier <nick@debian.org>
+.\" Modified Mon Jun 16 20:02:00 1997 by Nicolás Lichtmaier <nick@debian.org>
+.\" Modified Mon Feb  6 16:41:00 1999 by Nicolás Lichtmaier <nick@debian.org>
+.\" Modified Tue Feb  8 16:46:45 2000 by Chris Pepper <pepper@tgg.com>
 .TH HIER 7  "June 16, 1997" "Linux" "Linux Programmer's Manual"
 .SH NAME
 hier \- Description of the file system hierarchy
@@ -33,7 +35,7 @@ A typical Linux system has, among others, the following directories:
 This is the root directory.  This is where the whole tree starts.
 .TP
 .I /bin
-This directory contains executable programs which are are needed in
+This directory contains executable programs which are needed in
 single user mode and to bring the system up or repair it.
 .TP
 .I /boot
@@ -42,7 +44,7 @@ the files which are needed during the boot process.  The map installer
 and configuration files should go to
 .I /sbin
 and
-.I /etc.
+.IR /etc .
 .TP
 .I /dev
 Special or device files, which refer to physical devices.  See
@@ -56,13 +58,13 @@ place to mount a DOS file system.
 Contains configuration files which are local to the machine.  Some
 larger software packages, like X11, can have their own subdirectories
 below
-.I /etc.
+.IR /etc .
 Site-wide configuration files may be placed here or in
-.I /usr/etc.
+.IR /usr/etc .
 Nevertheless, programs should always look for these files in
 .I /etc
 and you may have links for these files to
-.I /usr/etc.
+.IR /usr/etc .
 .TP
 .I /etc/skel
 When a new user account is created, files from this directory are
@@ -88,11 +90,11 @@ This is a mount point for the
 .I proc
 filesystem, which provides information about running processes and
 the kernel.  This pseudo-file system is described in more detail in
-.I proc(5).
+.BR proc (5).
 .TP
 .I /sbin
 Like
-.I /bin,
+.IR /bin ,
 this directory holds commands needed to boot the system, but which are
 usually not executed by normal users.
 .TP
@@ -151,7 +153,7 @@ reference those files using the
 directory.  Links from files in
 .I /etc
 should point to the appropriate files in
-.I /usr/etc.
+.IR /usr/etc .
 .TP
 .I /usr/include
 Include files for the C compiler.
@@ -164,16 +166,25 @@ usually a symbolic link to
 .I /usr/include/asm
 Include files which declare some assembler functions.  This used to be a
 symbolic link to
-.IR /usr/src/linux/include/asm ,
-but this isn't the case in Debian or libc6 based systems.
+.IR /usr/src/linux/include/asm .
 .TP
 .I /usr/include/linux
 This contains information which may change from system release to
 system release and used to be a symbolic link to
 .I /usr/src/linux/include/linux
 to get at operating system specific information.
-Debian systems don't do this and use headers from a known good kernel
-version, provided in the libc*-dev package.
+
+(Note that one should have include files there that work correctly with
+the current libc and in user space. However, Linux kernel source is not
+designed to be used with user programs and does not know anything
+about the libc you are using. It is very likely that things will break
+if you let
+.I /usr/include/asm
+and
+.I /usr/include/linux
+point at a random kernel tree. Debian systems don't do this
+and use headers from a known good kernel
+version, provided in the libc*-dev package.)
 .TP
 .I /usr/include/g++
 Include files to use with the GNU C++ compiler.
@@ -204,13 +215,13 @@ Files for
 Files for timezone information.
 .TP
 .I /usr/local
-This is where programs which are local to the site typically go in.
+This is where programs which are local to the site typically go.
 .TP
 .I /usr/local/bin
 Binaries for programs local to the site go there.
 .TP
 .I /usr/local/doc
-Local documnetation
+Local documentation
 .TP
 .I /usr/local/etc
 Configuration files associated with locally installed programs go there.
@@ -243,19 +254,28 @@ substring.
 .I /usr/sbin
 This directories contains program binaries for system admininstration
 which are not essentail for the boot process, for mounting
-.I /usr,
+.IR /usr ,
 or for system repair.
 .TP
+.I /usr/share
+This directory contains subdirectories with specific application data, that
+can be shared among different architectures of the same OS.
+.TP
 .I /usr/src
-Source files for different parts of the system.
+Source files for different parts of the system, included with some packages
+for reference purposes. Don't work here with your own projects, as files
+below /usr should be read-only except when installing software.
 .TP
 .I /usr/src/linux
-This contains the sources for the kernel of the operating system itself.
+This has always been the traditional place where kernel sources were
+unpacked. This was important on systems that /usr/include/linux was a
+symlink here. You should probably use another directory for building the
+kernel now.
 .TP
 .I /usr/tmp
 An alternative place to store temporary files; This should be a link
 to
-.I /var/tmp.
+.IR /var/tmp .
 This link is present only for compatibility reasons and shouldn't be used.
 .TP
 .I /var
@@ -266,7 +286,7 @@ and log files.
 This directory is superseded by
 .I /var/log
 and should be a symbolic link to
-.I /var/log.
+.IR /var/log .
 .TP
 .I /var/backups
 This directory is used to save backup copies of important system files.
@@ -276,7 +296,7 @@ These directories contain preformatted manual pages according to their
 manpage section.
 .TP
 .I /var/lock
-Lock files are plaed in this directory.  The naming convention for
+Lock files are placed in this directory.  The naming convention for
 device lock files is
 .I LCK..<device>
 where
@@ -295,9 +315,9 @@ This is where
 saves edit sessions so they can be restored later.
 .TP
 .I /var/run
-Run-time varaible files, like files holding process identifiers (PIDs)
+Run-time variable files, like files holding process identifiers (PIDs)
 and logged user information
-.I (utmp).
+.IR (utmp) .
 Files in this directory are usually cleared when the system boots.
 .TP
 .I /var/spool
@@ -315,7 +335,7 @@ Spooled jobs for
 Spooled files for printing.
 .TP
 .I /var/spool/mail
-User's mailboxes.
+Users' mailboxes.
 .TP
 .I /var/spool/smail
 Spooled files for the
@@ -331,7 +351,7 @@ Spooled files for
 .TP
 .I /var/tmp
 Like
-.I /tmp,
+.IR /tmp ,
 this directory holds temporary files stored for an unspecified duration.
 .SH "CONFORMS TO"
 The Linux filesystem standard, Release 1.2

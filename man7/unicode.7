@@ -132,11 +132,9 @@ higher implementation levels are more suitable for special word
 processing formats, but not as a generic system character set. The C
 type
 .B wchar_t
-is on Linux an unsigned 16-bit integer type and its values are
+is on Linux a signed 32-bit integer type and its values are
 interpreted as
-.B UCS
-level 1
-.B BMP
+.B UCS4
 codes.
 
 The locale setting specifies, whether the system character encoding is

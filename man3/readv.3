@@ -64,13 +64,12 @@ as
 .br
 .nf
 .in 10
-struct iovect
-{
+struct iovec {
 .in 14
-void *iovbase;	/* Starting address  */
-size_t iov_len;    /* Number of bytes */
+void *iov_base;   /* Starting address */
+size_t iov_len;   /* Number of bytes */
 .in 10
-} ;
+};
 .fi
 .PP
 Buffers are processed in the order

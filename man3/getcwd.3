@@ -77,7 +77,7 @@ the buffers if they have been obtained this way.
 
 .BR get_current_dir_name ,
 which is only prototyped if
-.B __USE_GNU
+.B _GNU_SOURCE
 is defined, will
 .BR malloc (3)
 an array big enough to hold the current directory name.  If the environment
@@ -87,7 +87,9 @@ is set, and its value is correct, then that value will be returned.
 
 .BR getwd ,
 which is only prototyped if
-.B __USE_BSD
+.B _BSD_SOURCE
+or
+.B _XOPEN_SOURCE_EXTENDED
 is defined, will not
 .BR malloc (3)
 any memory. The

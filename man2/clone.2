@@ -120,7 +120,9 @@ is not set, the child process works on a copy of the file system
 information of the parent at the time of
 .BR __clone .
 Calls to
-.BR chroot (2), chdir (2), umask (2)
+.BR chroot (2),
+.BR chdir (2),
+.BR umask (2)
 performed later by one of the processes does not affect the other.
 
 .TP

@@ -29,6 +29,7 @@
 .\" Modified 10 June 1995 by Andries Brouwer <aeb@cwi.nl>
 .\" Modified 3 May 1996 by Martin Schulze <joey@infodrom.north.de>
 .\" Modified Wed Nov  6 04:05:28 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Sat Jan 29 01:08:23 2000 by aeb
 .\"
 .TH SETUP 2 "3 May 1996" "Linux 1.2.9" "Linux Programmer's Manual"
 .SH NAME
@@ -60,4 +61,9 @@ always returns \-1 for a user process.
 Always, for a user process.
 .SH "CONFORMING TO"
 This function is Linux specific, and should not be used in programs
-intended to be portable.
+intended to be portable, or indeed in any programs at all.
+Since Linux 2.1.121, no such function exists anymore.
+The calling sequence varied: it has had a single parameter
+.I "void * BIOS"
+and at other times a single parameter
+.IR "int magic" .

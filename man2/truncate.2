@@ -52,8 +52,12 @@ or referenced by
 .I fd
 to be truncated to at most
 .I length
-bytes in size.  If the file previously was larger than this size, the extra
-data is lost.  With
+bytes in size.
+If the file previously was larger than this size, the extra data is lost. 
+If the file previously was shorter, it is unspecified whether the file
+is left unchanged or is extended. In the latter case the extended part
+reads as zero bytes.
+With
 .BR ftruncate ,
 the file must be open for writing.
 .SH "RETURN VALUE"

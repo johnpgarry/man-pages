@@ -26,7 +26,7 @@
 .SH NAME
 lp \- line printer devices
 .SH SYNOPSIS
-#include <linux/lp.h>
+.B #include <linux/lp.h>
 .SH CONFIGURATION
 \fBlp\fP[0\(en2] are character devices for the parallel line printers;
 they have major number 6 and minor number 0\(en2.  The minor numbers
@@ -38,7 +38,7 @@ printers.  For usual dot matrix printers polling will usually be
 enough.  The default is polling.
 .SH DESCRIPTION
 The following
-.IR ioctl (2)
+.BR ioctl (2)
 calls are supported:
 .IP "\fBint ioctl(int \fP\fIfd\fP\fB, LPTIME, int \fP\fIarg\fP\fB)\fP"
 Sets the amount of time that the driver sleeps before rechecking the printer
@@ -57,7 +57,7 @@ If \fIarg\fP is 0, the printer driver will retry on errors, otherwise
 it will abort.  The default is 0.
 .IP "\fBint ioctl(int \fP\fIfd\fP\fB, LPABORTOPEN, int \fP\fIarg\fP\fB)\fP"
 If \fIarg\fP is 0,
-.IR open (2)
+.BR open (2)
 will be aborted on error, otherwise error will be ignored.  The default is
 to ignore it.
 .IP "\fBint ioctl(int \fP\fIfd\fP\fB, LPCAREFUL, int \fP\fIarg\fP\fB)\fP"

@@ -34,11 +34,14 @@
 .\" Modified Wed May 13 18:46:44 1998 by Michael Haardt <michael@cantor.informatik.rwth-aachen.de>
 .\" Modified 990706 by aeb; much of the info under `Other Systems' was
 .\"          taken from a net post by Albert Cahalan.
+.\" Modified 000107 by aeb: added <sys/types.h> include.
 .\" 
 .TH STAT 2 "May 13, 1998" "Linux" "System calls"
 .SH NAME
 stat, fstat, lstat \- get file status
 .SH SYNOPSIS
+.B #include <sys/types.h>
+.br
 .B #include <sys/stat.h>
 .br
 .B #include <unistd.h>

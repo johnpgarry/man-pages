@@ -34,7 +34,7 @@ uname \- get name and information about current kernel
 .BI "int uname(struct utsname *" buf );
 .SH DESCRIPTION
 .B uname
-returns system information in
+returns system information in the structure pointed to by
 .IR buf .
 The 
 .I utsname 
@@ -42,6 +42,7 @@ struct is as defined in
 .IR <sys/utsname.h> :
 .br
 .nf
+.in 10
 struct utsname {
 .in 22
 char sysname[SYS_NMLN];
@@ -49,9 +50,13 @@ char nodename[SYS_NMLN];
 char release[SYS_NMLN];
 char version[SYS_NMLN];
 char machine[SYS_NMLN];
-char domainname[SYS_NMLN];
-};
 .in 10
+#ifdef _GNU_SOURCE
+.in 22
+char domainname[SYS_NMLN];
+.in 10
+#endif
+};
 .fi
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
@@ -64,6 +69,10 @@ is set appropriately.
 is not valid.
 .SH "CONFORMING TO"
 SVr4, SVID, POSIX, X/OPEN
+.PP
+The
+.I domainname
+member is a GNU extension.
 .SH "SEE ALSO"
 .BR uname (1),
 .BR getdomainname (2),

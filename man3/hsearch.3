@@ -47,7 +47,8 @@ First the table must be created with the function \fBhcreate()\fP.
 \fBhcreate()\fP may adjust this value upward to improve the
 performance of the resulting hash table.  The GNU implementation of
 \fBhsearch()\fP will also enlarge the table if it gets nearly full.
-\fBmalloc\fP(3) is used to allocate space for the table.
+.BR malloc (3)
+is used to allocate space for the table.
 .PP
 The corresponding function \fBhdestroy()\fP frees the memory occupied by
 the hash table so that a new table can be constructed.
@@ -94,11 +95,11 @@ some of them.
     #include <stdio.h>
     #include <search.h>
     
-    char *data[]={ "alpha", "bravo", "charley", "delta",
-         "echo", "foxtrot", "golf", "hotel", "india", "juliette",
+    char *data[]={ "alpha", "bravo", "charlie", "delta",
+         "echo", "foxtrot", "golf", "hotel", "india", "juliet",
          "kilo", "lima", "mike", "november", "oscar", "papa",
          "quebec", "romeo", "sierra", "tango", "uniform",
-         "victor", "whiskey", "x-ray", "yankee", "zulu" 
+         "victor", "whisky", "x-ray", "yankee", "zulu" 
      };
 
     int main()
@@ -132,5 +133,8 @@ some of them.
 
 .fi
 .SH "SEE ALSO"
-.BR bsearch "(3), " lsearch "(3), " tsearch "(3), " malloc "(3)"
+.BR bsearch (3),
+.BR lsearch (3),
+.BR tsearch (3),
+.BR malloc (3)
 

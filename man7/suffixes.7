@@ -26,7 +26,7 @@
 .\" Modified Tue Oct 22 23:28:12 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Sun Jan 26 21:56:56 1997 by Ralph Schleicher
 .\"    <rs@purple.UL.BaWue.DE>
-.\" Modified Mon Jun 16 20:24:58 1997 by Nicolas Lichtmaier <nick@debian.org>
+.\" Modified Mon Jun 16 20:24:58 1997 by Nicolás Lichtmaier <nick@debian.org>
 .\" Modified Sun Oct 18 22:11:28 1998 by Joseph S. Myers <jsm28@cam.ac.uk>
 .\" Modified Mon Nov 16 17:24:47 1998 by Andries Brouwer <aeb@cwi.nl>
 .TH SUFFIXES 7  "April 4, 1996" "Linux" "Linux Programmer's Manual"
@@ -62,6 +62,8 @@ Suffix	File type
  .[1-9][a-z]	manual page for section plus subsection
  .a	static object code library
  .ad	X application default resource file
+ .adb	Ada body source
+ .ads	Ada spec source
  .afm	PostScript font metrics
  .al	Perl autoload file
  .am	\fBautomake\fP(1) input file
@@ -83,6 +85,7 @@ Suffix	File type
  .bib	TeX bibliographic database, BibTeX input
  .bm	bitmap source
  .bmp	bitmap
+ .bz2	file compressed using \fBbzip2\fP(1)
  .c	C source
  .cat	message catalog files
  .cc	C++ source
@@ -109,6 +112,8 @@ Suffix	File type
  .elc	compiled Emacs-Lisp source
  .eps	encapsulated PostScript
  .f	Fortran source
+ .f77	Fortran 77 source
+ .f90	Fortran 90 source
  .fas	pre-compiled Common-Lisp
  .fi	Fortran include files
  .fig	FIG image file (used by \fBxfig\fR(1))
@@ -135,7 +140,7 @@ Suffix	File type
  .java	a Java source file
  .jpeg	Joint Photographic Experts Group format
  .jpg	poor man's \fI.jpeg\fP
- .kmap  \fBlyx\fP(1) keymap
+ .kmap	\fBlyx\fP(1) keymap
  .l	equivalent to \fI.lex\fP or \fI.lisp\fP
  .lex	\fBlex\fP(1) or \fBflex\fP(1) files
  .lha	lharc archive
@@ -204,6 +209,7 @@ Suffix	File type
  .sym	Modula-2 compiled definition modules
  .tar	archive created by the \fBtar\fP(1) utility
  .tar.Z	tar(1) archive compressed with \fBcompress\fP(1)
+ .tar.bz2	tar(1) archive compressed with \fBbzip2\fP(1)
  .tar.gz	tar(1) archive compressed with \fBgzip\fP(1)
  .taz	tar(1) archive compressed with \fBcompress\fP(1)
  .tex	TeX or LaTeX source
@@ -226,6 +232,8 @@ Suffix	File type
  .wav	wave sound file
  .web	Donald Knuth's WEB
  .xbm	X11 bitmap source
+ .xml	eXtended Markup Language file
+ .xsl	XSL stylesheet
  .xpm	X11 pixmap source
  .xs	Perl xsub file produced by h2xs
  .y	\fByacc\fP(1) or \fBbison\fP(1) (parser generator) files

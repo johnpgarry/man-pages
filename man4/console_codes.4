@@ -52,7 +52,7 @@ See the LINUX CONSOLE CONTROLS section below for discussion.
 .LP
 It is generally not good practice to hard-wire terminal controls into
 programs.  Linux supports a 
-.IR terminfo (5)
+.BR terminfo (5)
 database of terminal capabilities.  
 Rather than emitting console escape sequences by hand, you will almost
 always want to use a terminfo-aware screen library or utility such as
@@ -287,7 +287,7 @@ ESC [ ? 3 h
 DECCOLM (default off = 80 columns): 80/132 col mode switch.  The
 driver sources note that this alone does not suffice; some user-mode
 utility such as
-.IR resizecons (8)
+.BR resizecons (8)
 has to change the hardware registers on the console video card.
 .TP
 ESC [ ? 5 h
@@ -408,7 +408,7 @@ left corner is (1,1).
 Many different terminal types are described, like the Linux console,
 as being `VT100-compatible'.  Here we discuss differences vbetween the
 Linux console an the two most important others, the DEC VT102 and
-.IR xterm (1).
+.BR xterm (1).
 
 .SS Control-character handling
 The vt102 also recognized the following control characters:

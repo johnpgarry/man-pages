@@ -107,7 +107,13 @@ SIGUNUSED	\-,31,\-	A	Unused signal (will be SIGSYS)
 (Here \- denotes that a signal is absent; there where three values
 are given, the first one is usually valid for alpha and sparc,
 the middle one for i386 and ppc and sh, the last one for mips.
-Signal 29 is SIGINFO / SIGPWR on an alpha but SIGLOST on a sparc.)
+Signal 29 is
+.B SIGINFO
+/
+.B SIGPWR
+on an alpha but
+.B SIGLOST
+on a sparc.)
 .PP
 The letters in the "Action" column have the following meanings:
 .IP A
@@ -125,10 +131,14 @@ Signal cannot be ignored.
 .SH "CONFORMING TO"
 POSIX.1
 .SH BUGS
-SIGIO and SIGLOST have the same value.
+.B SIGIO
+and
+.B SIGLOST
+have the same value.
 The latter is commented out in the kernel source, but
 the build process of some software still thinks that
-signal 29 is SIGLOST.
+signal 29 is
+.BR SIGLOST .
 .SH "SEE ALSO"
 .BR kill (1),
 .BR kill (2),

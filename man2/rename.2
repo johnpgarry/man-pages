@@ -39,7 +39,7 @@ rename \- change the name or location of a file
 renames a file, moving it between directories if required.
 
 Any other hard links to the file (as created using
-.BR link )
+.BR link (2))
 are unaffected.
 
 If
@@ -183,7 +183,7 @@ failed the file was not renamed.  If the server does the rename operation
 and then crashes, the retransmitted RPC which will be processed when the
 server is up again causes a failure.  The application is expected to
 deal with this.  See
-.IR link (2)
+.BR link (2)
 for a similar problem.
 .SH "SEE ALSO"
 .BR link (2),

@@ -32,16 +32,21 @@ is a text file which contains the full pathnames of valid login shells.
 This file is consulted by
 .BR chsh (1)
 and available to be queried by other programs.
+.PP
+Be aware that there are programs which consult this file to
+find out if a user is a normal user. E.g.: ftp daemons traditionally
+disallow access to users with shells not included in this file.
 .SH EXAMPLES
 .B /etc/shells
 may contain the following paths:
 .sp
 .RS
-.B /bin/sh
+.I /bin/sh
 .br
-.B /bin/csh
+.I /bin/csh
 .RE
 .SH FILES
 .I /etc/shells
 .SH "SEE ALSO"
-.BR chsh (1)
+.BR chsh (1),
+.BR getusershell (3)

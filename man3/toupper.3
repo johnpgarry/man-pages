@@ -21,6 +21,7 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\" Modified Sat Jul 24 17:45:39 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 2000-02-13 by Nicolás Lichtmaier <nick@debian.org>
 .TH TOUPPER 3  "April 4, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 toupper, tolower \- convert letter to upper or lower case
@@ -42,12 +43,17 @@ to upper case, if possible.
 converts the letter
 .I c
 to lower case, if possible.
+.PP
+If
+.I c
+is not an unsigned char value, or EOF, the behaviour of these functions
+is undefined.
 .SH "RETURN VALUE"
 The value returned is that of the converted letter, or
 .I c
 if the conversion was not possible.
 .SH "CONFORMING TO"
-ANSI - C, BSD 4.3
+ANSI C, BSD 4.3
 .SH "BUGS"
 The details of what constitutes an uppercase or lowercase letter depend
 on the current locale.  For example, the default

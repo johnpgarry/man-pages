@@ -31,7 +31,7 @@ getgroups, setgroups \- get/set list of supplementary group IDs
 .sp
 .BI "int getgroups(int " size ", gid_t " list []);
 .sp 2
-.B #define __USE_BSD
+.B #define _BSD_SOURCE
 .br
 .B #include <grp.h>
 .sp
@@ -96,7 +96,7 @@ function is in POSIX.1.  Since
 requires privilege, it is not covered by POSIX.1.
 .SH BUGS
 The
-.B __USE_BSD
+.B _BSD_SOURCE
 flag probably shouldn't be required for
 .BR setgroups .
 .SH "SEE ALSO"

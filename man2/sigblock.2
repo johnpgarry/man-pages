@@ -85,10 +85,8 @@ and
 return the previous set of masked signals.
 .SH NOTES
 Prototypes for these functions are only available if
-.B __USE_BSD
-is defined before 
-.B <signal.h>
-is included.
+.B _BSD_SOURCE
+is defined before the inclusion of any system header file.
 .PP
 It is not possible to block
 .B SIGKILL

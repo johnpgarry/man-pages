@@ -78,7 +78,7 @@ function allows the file offset to be set beyond the end of the existing
 end-of-file of the file.  If data is later written at this point, subsequent
 reads of the data in the gap return bytes of zeros (until data is actually
 written into the gap).
-.SH "RETURN VALUES"
+.SH "RETURN VALUE"
 Upon successful completion,
 .B lseek
 returns the resulting offset location as measured in bytes from the

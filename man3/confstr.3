@@ -26,7 +26,9 @@
 confstr \- get configuration dependent string variables
 .SH SYNOPSIS
 .nf
-.B #define __USE_POSIX_2
+.B #define _POSIX_C_SOURCE 2
+or
+.B #define _XOPEN_SOURCE
 .nl
 .B #include <unistd.h>
 .sp

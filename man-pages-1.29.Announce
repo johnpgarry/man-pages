@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.28.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.29.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -27,23 +27,32 @@ with these man pages.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM. They are
 copyrighted by Sun Microsystems, Inc., but can be distributed freely.]
 
-Differences from version 1.27:
+Differences from version 1.28:
 
     The man pages
 
-	accept.2 capget.2 execve.2 sendfile.2 socket.2 unlink.2 vfork.2
+	ls.1
 
-	clock.3 fgetwc.3 fputwc.3 fwide.3 fwprintf.3 getwchar.3 iswalnum.3
-	iswalpha.3 iswblank.3 iswdigit.3 iswgraph.3 iswlower.3 iswpunct.3
-	iswspace.3 iswupper.3 iswxdigit.3 printf.3 putwchar.3 snprintf.3
-	swprintf.3 vfwprintf.3 vswprintf.3 vwprintf.3 wprintf.3
+	chown.2 getdents.2 getgroups.2 gethostname.2 getpagesize.2
+	getrlimit.2 pivot_root.2 prctl.2 ptrace.2 select.2 setup.2
+	sigblock.2 stat.2 sysinfo.2 truncate.2 uname.2
 
-	hosts.equiv.5
+	__setfpucw.3 bcmp.3  bcopy.3 bzero.3 confstr.3 daemon.3
+	dlclose.3 dlerror.3 dlopen.3 dlsym.3 fcloseall.3 fopen.3
+	fts.3 fts_children.3 fts_close.3 fts_open.3 fts_read.3 fts_set.3
+	getcwd.3 getdirentries.3 hsearch.3 iconv.3 iconv_close.3
+	iconv_open.3 lockf.3 random.3 readv.3 strtok.3 strtok_r.3
+	toupper.3
 
-	ip.7 iso_8859-2.7 netdevice.7 packet.7 signal.7 socket.7 unix.7
+	dsp56k.4
 
-    are new or have been updated.  The page charsets.4 was moved to charsets.7.
-    Typographical or grammatical errors have been corrected in several other places.
+	acct.5 environ.5 host.conf.5 proc.5 resolv.conf.5 resolver.5
+	shells.5
+
+	hier.7 suffixes.7 unicode.7
+
+    are new or have been updated. Typographical or grammatical errors
+    have been corrected in several other places.
 
 
 Here is a breakdown of what this distribution contains:
@@ -115,6 +124,7 @@ wrote, edited, or otherwise contributed to this project:
     Mitchum DSouza <m.dsouza@mrc-apu.cam.ac.uk>
     Nick Duffek <nsd@bbc.com>
     Nicolai Langfeldt <janl@ifi.uio.no>
+    Nicolás Lichtmaier <nick@debian.org>
     Niel Charley <N.Charley-CSSE93@computer-science.birmingham.ac.uk>
     Pawel Krawczyk
     Peter Memishian <meem@gnu.ai.mit.edu>

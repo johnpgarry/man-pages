@@ -129,7 +129,7 @@ X/OPEN does not document EFAULT, ENOMEM or EIO.
 .SH BUGS
 On NFS file systems, the return code may be wrong in case the NFS server
 performs the link creation and dies before it can say so.  Use
-.IR stat (2)
+.BR stat (2)
 to find out if the link got created.
 .SH "SEE ALSO"
 .BR symlink (2),
