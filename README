@@ -33,7 +33,8 @@ As it is, many distributions install these "man pages",
 to the detriment of their users.
 
 Copyrights: These man pages come under various copyrights.
-All are freely distributable when the nroff source is included.
+For the POSIX pages, see the file POSIX-COPYRIGHT.
+All other pages are freely distributable when the nroff source is included.
 
 Send corrections and additions to aeb@cwi.nl
 (man.7 has some info on the macros to use).

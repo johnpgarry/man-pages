@@ -1,0 +1,290 @@
+.\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
+.TH "<errno.h>" P 2003 POSIX
+.\" <errno.h> 
+.SH NAME
+errno.h - system error numbers
+.SH SYNOPSIS
+.LP
+\fB#include <errno.h>\fP
+.SH DESCRIPTION
+.LP
+Some of the functionality described on this reference page extends
+the ISO\0C standard. Any conflict between the
+requirements described here and the ISO\0C standard is unintentional.
+This volume of IEEE\0Std\01003.1-2001 defers to
+the ISO\0C standard. 
+.LP
+The
+ISO\0C standard only requires the symbols [EDOM], [EILSEQ], and [ERANGE]
+to be defined. 
+.LP
+The \fI<errno.h>\fP header shall provide a declaration for \fIerrno\fP
+and give positive values for the following
+symbolic constants. Their values shall be unique except as noted below.
+.TP
+.B E2BIG
+Argument list too long.
+.TP
+.B EACCES
+Permission denied.
+.TP
+.B EADDRINUSE
+Address in use.
+.TP
+.B EADDRNOTAVAIL
+Address not available.
+.TP
+.B EAFNOSUPPORT
+Address family not supported.
+.TP
+.B EAGAIN
+Resource unavailable, try again (may be the same value as [EWOULDBLOCK]).
+.TP
+.B EALREADY
+Connection already in progress.
+.TP
+.B EBADF
+Bad file descriptor.
+.TP
+.B EBADMSG
+Bad message.
+.TP
+.B EBUSY
+Device or resource busy.
+.TP
+.B ECANCELED
+Operation canceled.
+.TP
+.B ECHILD
+No child processes.
+.TP
+.B ECONNABORTED
+Connection aborted.
+.TP
+.B ECONNREFUSED
+Connection refused.
+.TP
+.B ECONNRESET
+Connection reset.
+.TP
+.B EDEADLK
+Resource deadlock would occur.
+.TP
+.B EDESTADDRREQ
+Destination address required.
+.TP
+.B EDOM
+Mathematics argument out of domain of function.
+.TP
+.B EDQUOT
+Reserved.
+.TP
+.B EEXIST
+File exists.
+.TP
+.B EFAULT
+Bad address.
+.TP
+.B EFBIG
+File too large.
+.TP
+.B EHOSTUNREACH
+Host is unreachable.
+.TP
+.B EIDRM
+Identifier removed.
+.TP
+.B EILSEQ
+Illegal byte sequence.
+.TP
+.B EINPROGRESS
+Operation in progress.
+.TP
+.B EINTR
+Interrupted function.
+.TP
+.B EINVAL
+Invalid argument.
+.TP
+.B EIO
+I/O error.
+.TP
+.B EISCONN
+Socket is connected.
+.TP
+.B EISDIR
+Is a directory.
+.TP
+.B ELOOP
+Too many levels of symbolic links.
+.TP
+.B EMFILE
+Too many open files.
+.TP
+.B EMLINK
+Too many links.
+.TP
+.B EMSGSIZE
+Message too large.
+.TP
+.B EMULTIHOP
+Reserved.
+.TP
+.B ENAMETOOLONG
+Filename too long.
+.TP
+.B ENETDOWN
+Network is down.
+.TP
+.B ENETRESET
+Connection aborted by network.
+.TP
+.B ENETUNREACH
+Network unreachable.
+.TP
+.B ENFILE
+Too many files open in system.
+.TP
+.B ENOBUFS
+No buffer space available.
+.TP
+.B ENODATA
+No message is available on the STREAM head read queue. 
+.TP
+.B ENODEV
+No such device.
+.TP
+.B ENOENT
+No such file or directory.
+.TP
+.B ENOEXEC
+Executable file format error.
+.TP
+.B ENOLCK
+No locks available.
+.TP
+.B ENOLINK
+Reserved.
+.TP
+.B ENOMEM
+Not enough space.
+.TP
+.B ENOMSG
+No message of the desired type.
+.TP
+.B ENOPROTOOPT
+Protocol not available.
+.TP
+.B ENOSPC
+No space left on device.
+.TP
+.B ENOSR
+No STREAM resources. 
+.TP
+.B ENOSTR
+Not a STREAM. 
+.TP
+.B ENOSYS
+Function not supported.
+.TP
+.B ENOTCONN
+The socket is not connected.
+.TP
+.B ENOTDIR
+Not a directory.
+.TP
+.B ENOTEMPTY
+Directory not empty.
+.TP
+.B ENOTSOCK
+Not a socket.
+.TP
+.B ENOTSUP
+Not supported.
+.TP
+.B ENOTTY
+Inappropriate I/O control operation.
+.TP
+.B ENXIO
+No such device or address.
+.TP
+.B EOPNOTSUPP
+Operation not supported on socket.
+.TP
+.B EOVERFLOW
+Value too large to be stored in data type.
+.TP
+.B EPERM
+Operation not permitted.
+.TP
+.B EPIPE
+Broken pipe.
+.TP
+.B EPROTO
+Protocol error.
+.TP
+.B EPROTONOSUPPORT
+.sp
+Protocol not supported.
+.TP
+.B EPROTOTYPE
+Protocol wrong type for socket.
+.TP
+.B ERANGE
+Result too large.
+.TP
+.B EROFS
+Read-only file system.
+.TP
+.B ESPIPE
+Invalid seek.
+.TP
+.B ESRCH
+No such process.
+.TP
+.B ESTALE
+Reserved.
+.TP
+.B ETIME
+Stream \fIioctl\fP() timeout. 
+.TP
+.B ETIMEDOUT
+Connection timed out.
+.TP
+.B ETXTBSY
+Text file busy.
+.TP
+.B EWOULDBLOCK
+Operation would block (may be the same value as [EAGAIN]).
+.TP
+.B EXDEV
+Cross-device link.
+.sp
+.LP
+\fIThe following sections are informative.\fP
+.SH APPLICATION USAGE
+.LP
+Additional error numbers may be defined on conforming systems; see
+the System Interfaces volume of
+IEEE\0Std\01003.1-2001.
+.SH RATIONALE
+.LP
+None.
+.SH FUTURE DIRECTIONS
+.LP
+None.
+.SH SEE ALSO
+.LP
+The System Interfaces volume of IEEE\0Std\01003.1-2001, Section 2.3,
+Error
+Numbers
+.SH COPYRIGHT
+Portions of this text are reprinted and reproduced in electronic form
+from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology
+-- Portable Operating System Interface (POSIX), The Open Group Base
+Specifications Issue 6, Copyright (C) 2001-2003 by the Institute of
+Electrical and Electronics Engineers, Inc and The Open Group. In the
+event of any discrepancy between this version and the original IEEE and
+The Open Group Standard, the original IEEE and The Open Group Standard
+is the referee document. The original Standard can be obtained online at
+http://www.opengroup.org/unix/online.html .

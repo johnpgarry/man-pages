@@ -131,7 +131,7 @@ Raw sockets fragment a packet when its total length exceeds the interface MTU
 (but see BUGS).
 A more network friendly and faster alternative is to implement path MTU 
 discovery as described in the
-.B IP_PMTU_DISCOVER 
+.B IP_MTU_DISCOVER 
 section of
 .BR ip (7).
 
@@ -192,7 +192,7 @@ all network errors are saved in the error queue.
 .TP
 .B EMSGSIZE 
 Packet too big. Either Path MTU Discovery is enabled (the
-.B IP_PMTU_DISCOVER
+.B IP_MTU_DISCOVER
 socket flag) or the packet size exceeds the maximum allowed IPv4 packet size
 of 64KB.  
 .TP

@@ -79,6 +79,7 @@ you call the system call by \fIname\fP.
 .nf
 .sp
 #include <stdio.h>
+#include <errno.h>
 #include <linux/unistd.h>	/* for _syscallX macros/related stuff */
 #include <linux/kernel.h>	/* for struct sysinfo */
 

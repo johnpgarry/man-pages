@@ -20,10 +20,12 @@
 .\" Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
 .\" USA.
 .\"
-.\" Wed Oct 18 20:23:54 MET 1995  Martin Schulze  <joey@infodrom.north.de>
+.\" 1995-10-18  Martin Schulze  <joey@infodrom.north.de>
 .\"	* first released
+.\" 2002-09-22  Seth W. Klein  <sk@sethwklein.net>
+.\"     * protocol numbers are now assigned by the IANA
 .\"
-.TH PROTOCOLS 5 1995-10-18 "Linux" "Linux Programmer's Manual"
+.TH PROTOCOLS 5 2002-09-22 "Linux" "Linux Programmer's Manual"
 .SH NAME
 protocols \- the protocols definition file
 .SH DESCRIPTION
@@ -34,8 +36,9 @@ even worse, just guessing them. These numbers will occur in the
 protocol field of any ip header.
 
 Keep this file untouched since changes would result in incorrect ip
-packages. Protocol numbers and names are specified by the DDN Network
-Information Center.
+packages. Protocol numbers and names are specified by the IANA
+(Internet Assigned Numbers Authority).
+.\" .. by the DDN Network Information Center.
 
 Each line is of the following format:
 
@@ -75,3 +78,5 @@ The protocols definition file.
 Guide to Yellow Pages Service
 
 Guide to BIND/Hesiod Service
+
+http://www.iana.org/assignments/protocol-numbers

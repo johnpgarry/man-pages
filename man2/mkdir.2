@@ -6,7 +6,7 @@
 .\" You may distribute it under the terms of the GNU General
 .\" Public Licence. It comes with NO WARRANTY.
 .\"
-.TH MKDIR 2 1994-03-29 "Linux 1.0" "Linux Programmer's Manual"
+.TH MKDIR 2 2003-12-09 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
 mkdir \- create a directory
 .SH SYNOPSIS
@@ -22,11 +22,14 @@ mkdir \- create a directory
 attempts to create a directory named
 .IR pathname .
 
+The parameter
 .I mode
 specifies the permissions to use. It is modified by the process's
-.BR umask
-in the usual way: the permissions of the created file are
-.BR "(mode & ~umask)" .
+.I umask
+in the usual way: the permissions of the created directory are
+.RI ( mode " & ~" umask " & 0777)."
+Other mode bits of the created directory depend on the operating system.
+For Linux, see below.
 
 The newly created directory will be owned by the effective uid of the
 process.  If the directory containing the file has the set group id
@@ -100,6 +103,12 @@ exhausted.
 .SH "CONFORMING TO"
 SVr4, POSIX, BSD, SYSV, X/OPEN.  SVr4 documents additional EIO, EMULTIHOP
 and ENOLINK error conditions; POSIX.1 omits ELOOP.
+.SH NOTES
+Under Linux apart from the permission bits, only the S_ISVTX mode bit
+is honored. That is, under Linux the created directory actually gets mode
+.RI ( mode " & ~" umask " & 01777)."
+See also
+.BR stat (2).
 .PP
 There are many infelicities in the protocol underlying NFS.  Some
 of these affect

@@ -1,0 +1,77 @@
+.\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
+.TH "<iso646.h>" P 2003 POSIX
+.\" <iso646.h> 
+.SH NAME
+iso646.h - alternative spellings
+.SH SYNOPSIS
+.LP
+\fB#include <iso646.h>\fP
+.SH DESCRIPTION
+.LP
+The functionality described on this reference page is aligned with
+the ISO\0C standard. Any conflict between the
+requirements described here and the ISO\0C standard is unintentional.
+This volume of IEEE\0Std\01003.1-2001 defers to
+the ISO\0C standard. 
+.LP
+The \fI<iso646.h>\fP header shall define the following eleven macros
+(on the left) that expand to the corresponding
+tokens (on the right):
+.TP
+and
+\fB&&\fP
+.TP
+and_eq
+\fB&=\fP
+.TP
+bitand
+\fB&\fP
+.TP
+bitor
+\fB|\fP
+.TP
+compl
+\fB~\fP
+.TP
+not
+\fB!\fP
+.TP
+not_eq
+\fB!=\fP
+.TP
+or
+\fB||\fP
+.TP
+or_eq
+\fB|=\fP
+.TP
+xor
+\fB^\fP
+.TP
+xor_eq
+\fB^=\fP
+.sp
+.LP
+\fIThe following sections are informative.\fP
+.SH APPLICATION USAGE
+.LP
+None.
+.SH RATIONALE
+.LP
+None.
+.SH FUTURE DIRECTIONS
+.LP
+None.
+.SH SEE ALSO
+.LP
+None.
+.SH COPYRIGHT
+Portions of this text are reprinted and reproduced in electronic form
+from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology
+-- Portable Operating System Interface (POSIX), The Open Group Base
+Specifications Issue 6, Copyright (C) 2001-2003 by the Institute of
+Electrical and Electronics Engineers, Inc and The Open Group. In the
+event of any discrepancy between this version and the original IEEE and
+The Open Group Standard, the original IEEE and The Open Group Standard
+is the referee document. The original Standard can be obtained online at
+http://www.opengroup.org/unix/online.html .

@@ -1,0 +1,99 @@
+.\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
+.TH "shutdown" P 2003 POSIX
+.\" shutdown 
+.SH NAME
+shutdown - shut down socket send and receive operations
+.SH SYNOPSIS
+.LP
+\fB#include <sys/socket.h>
+.br
+.sp
+int shutdown(int\fP \fIsocket\fP\fB, int\fP \fIhow\fP\fB);
+.br
+\fP
+.SH DESCRIPTION
+.LP
+The \fIshutdown\fP() function shall cause all or part of a full-duplex
+connection on the socket associated with the file
+descriptor \fIsocket\fP to be shut down.
+.LP
+The \fIshutdown\fP() function takes the following arguments:
+.TP
+\fIsocket\fP
+Specifies the file descriptor of the socket.
+.TP
+\fIhow\fP
+Specifies the type of shutdown. The values are as follows: 
+.TP
+SHUT_RD
+Disables further receive operations.
+.TP
+SHUT_WR
+Disables further send operations.
+.TP
+SHUT_RDWR
+Disables further send and receive operations.
+.sp
+.sp
+.LP
+The \fIshutdown\fP() function disables subsequent send and/or receive
+operations on a socket, depending on the value of the
+\fIhow\fP argument.
+.SH RETURN VALUE
+.LP
+Upon successful completion, \fIshutdown\fP() shall return 0; otherwise,
+-1 shall be returned and \fIerrno\fP set to indicate
+the error.
+.SH ERRORS
+.LP
+The \fIshutdown\fP() function shall fail if:
+.TP
+.B EBADF
+The \fIsocket\fP argument is not a valid file descriptor.
+.TP
+.B EINVAL
+The \fIhow\fP argument is invalid.
+.TP
+.B ENOTCONN
+The socket is not connected.
+.TP
+.B ENOTSOCK
+The \fIsocket\fP argument does not refer to a socket.
+.sp
+.LP
+The \fIshutdown\fP() function may fail if:
+.TP
+.B ENOBUFS
+Insufficient resources were available in the system to perform the
+operation.
+.sp
+.LP
+\fIThe following sections are informative.\fP
+.SH EXAMPLES
+.LP
+None.
+.SH APPLICATION USAGE
+.LP
+None.
+.SH RATIONALE
+.LP
+None.
+.SH FUTURE DIRECTIONS
+.LP
+None.
+.SH SEE ALSO
+.LP
+\fIgetsockopt\fP() , \fIread\fP() , \fIrecv\fP() , \fIrecvfrom\fP()
+, \fIrecvmsg\fP() , \fIselect\fP() , \fIsend\fP() , \fIsendto\fP()
+, \fIsetsockopt\fP() , \fIsocket\fP() , \fIwrite\fP() , the Base Definitions
+volume of IEEE\0Std\01003.1-2001, \fI<sys/socket.h>\fP
+.SH COPYRIGHT
+Portions of this text are reprinted and reproduced in electronic form
+from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology
+-- Portable Operating System Interface (POSIX), The Open Group Base
+Specifications Issue 6, Copyright (C) 2001-2003 by the Institute of
+Electrical and Electronics Engineers, Inc and The Open Group. In the
+event of any discrepancy between this version and the original IEEE and
+The Open Group Standard, the original IEEE and The Open Group Standard
+is the referee document. The original Standard can be obtained online at
+http://www.opengroup.org/unix/online.html .

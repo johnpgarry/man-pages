@@ -128,11 +128,11 @@ Those functions which must be performed by the kernel.
 Most of the
 .I libc
 functions, such as
-.BR qsort (3))
+.BR qsort (3).
 .TP
 .B 4 Special files
 Files found in
-.IR /dev )
+.IR /dev .
 .TP
 .B 5 File formats and conventions
 The format for
@@ -148,9 +148,7 @@ ASCII and other character codes, this man page, and other things.
 .B 8 System management commands
 Commands like
 .BR mount (8),
-many of which only
-.I root
-can execute.
+many of which only root can execute.
 .TP
 .B 9 Kernel routines
 This is an obsolete manual section.
@@ -170,15 +168,12 @@ headings include:
 NAME, SYNOPSIS, DESCRIPTION, RETURN VALUE,
 EXIT STATUS, ERROR HANDLING, ERRORS,
 OPTIONS, USAGE, EXAMPLES, FILES, ENVIRONMENT, DIAGNOSTICS, SECURITY,
-CONFORMING TO, NOTES,
-BUGS, AUTHOR, and SEE ALSO.
+CONFORMING TO, NOTES, BUGS, AUTHOR, and SEE ALSO.
 Where a traditional heading would apply, please use it;
 this kind of consistency can make the information easier to understand.
 However, feel free to create your own headings if they make things easier
 to understand.
-The only required heading is
-.IR NAME ,
-which should be the first section and
+The only required heading is NAME, which should be the first section and
 be followed on the next line by a one line description of the program:
 .RS
 .sp
@@ -252,8 +247,11 @@ configuration files, startup files,
 and files the program directly operates on.
 Give the full pathname of these files, and use the installation
 process to modify the directory part to match user preferences.
-For many programs, the default installation location is in /usr/local,
-so your base manual page should use /usr/local as the base.
+For many programs, the default installation location is in
+.IR /usr/local ,
+so your base manual page should use
+.I /usr/local
+as the base.
 .TP
 .B ENVIRONMENT
 lists all environment variables that affect your program or function

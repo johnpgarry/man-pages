@@ -1,0 +1,128 @@
+.\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
+.TH "<langinfo.h>" P 2003 POSIX
+.\" <langinfo.h> 
+.SH NAME
+langinfo.h - language information constants
+.SH SYNOPSIS
+.LP
+\fB#include <langinfo.h> \fP
+.SH DESCRIPTION
+.LP
+The \fI<langinfo.h>\fP header contains the constants used to identify
+items of \fIlanginfo\fP data (see \fInl_langinfo\fP()). The type of
+the constant, \fBnl_item\fP, shall be defined as described
+in \fI<nl_types.h>\fP .
+.LP
+The following constants shall be defined. The entries under \fBCategory\fP
+indicate in which \fIsetlocale\fP() category each item is defined.
+.TS C
+center;l l l l l l l l l l l.
+\fBConstant\fP 	 \fBCategory\fP 	 \fBMeaning\fP 	
+CODESET 	 \fILC_CTYPE\fP 	 Codeset name. 	
+D_T_FMT 	 \fILC_TIME\fP 	 String for formatting date and time. 	
+D_FMT 	 \fILC_TIME\fP 	 Date format string. 	
+T_FMT 	 \fILC_TIME\fP 	 Time format string. 	
+T_FMT_AMPM 	 \fILC_TIME\fP 	 a.m. or p.m. time format string. 	
+AM_STR 	 \fILC_TIME\fP 	 Ante-meridiem affix. 	
+PM_STR 	 \fILC_TIME\fP 	 Post-meridiem affix. 	
+DAY_1 	 \fILC_TIME\fP 	 Name of the first day of the week (for example, Sunday). 	
+DAY_2 	 \fILC_TIME\fP 	 Name of the second day of the week (for example, Monday). 	
+DAY_3 	 \fILC_TIME\fP 	 Name of the third day of the week (for example, Tuesday). 	
+DAY_4 	 \fILC_TIME\fP 	 Name of the fourth day of the week 	
+	 \fI\0\fP 	 (for example, Wednesday). 	
+DAY_5 	 \fILC_TIME\fP 	 Name of the fifth day of the week (for example, Thursday). 	
+DAY_6 	 \fILC_TIME\fP 	 Name of the sixth day of the week (for example, Friday). 	
+DAY_7 	 \fILC_TIME\fP 	 Name of the seventh day of the week 	
+	 \fI\0\fP 	 (for example, Saturday). 	
+ABDAY_1 	 \fILC_TIME\fP 	 Abbreviated name of the first day of the week. 	
+ABDAY_2 	 \fILC_TIME\fP 	 Abbreviated name of the second day of the week. 	
+ABDAY_3 	 \fILC_TIME\fP 	 Abbreviated name of the third day of the week. 	
+ABDAY_4 	 \fILC_TIME\fP 	 Abbreviated name of the fourth day of the week. 	
+ABDAY_5 	 \fILC_TIME\fP 	 Abbreviated name of the fifth day of the week. 	
+ABDAY_6 	 \fILC_TIME\fP 	 Abbreviated name of the sixth day of the week. 	
+ABDAY_7 	 \fILC_TIME\fP 	 Abbreviated name of the seventh day of the week. 	
+MON_1 	 \fILC_TIME\fP 	 Name of the first month of the year. 	
+MON_2 	 \fILC_TIME\fP 	 Name of the second month. 	
+MON_3 	 \fILC_TIME\fP 	 Name of the third month. 	
+MON_4 	 \fILC_TIME\fP 	 Name of the fourth month. 	
+MON_5 	 \fILC_TIME\fP 	 Name of the fifth month. 	
+MON_6 	 \fILC_TIME\fP 	 Name of the sixth month. 	
+MON_7 	 \fILC_TIME\fP 	 Name of the seventh month. 	
+MON_8 	 \fILC_TIME\fP 	 Name of the eighth month. 	
+MON_9 	 \fILC_TIME\fP 	 Name of the ninth month. 	
+MON_10 	 \fILC_TIME\fP 	 Name of the tenth month. 	
+MON_11 	 \fILC_TIME\fP 	 Name of the eleventh month. 	
+MON_12 	 \fILC_TIME\fP 	 Name of the twelfth month. 	
+ABMON_1 	 \fILC_TIME\fP 	 Abbreviated name of the first month. 	
+ABMON_2 	 \fILC_TIME\fP 	 Abbreviated name of the second month. 	
+ABMON_3 	 \fILC_TIME\fP 	 Abbreviated name of the third month. 	
+ABMON_4 	 \fILC_TIME\fP 	 Abbreviated name of the fourth month. 	
+ABMON_5 	 \fILC_TIME\fP 	 Abbreviated name of the fifth month. 	
+ABMON_6 	 \fILC_TIME\fP 	 Abbreviated name of the sixth month. 	
+ABMON_7 	 \fILC_TIME\fP 	 Abbreviated name of the seventh month. 	
+ABMON_8 	 \fILC_TIME\fP 	 Abbreviated name of the eighth month. 	
+ABMON_9 	 \fILC_TIME\fP 	 Abbreviated name of the ninth month. 	
+ABMON_10 	 \fILC_TIME\fP 	 Abbreviated name of the tenth month. 	
+ABMON_11 	 \fILC_TIME\fP 	 Abbreviated name of the eleventh month. 	
+ABMON_12 	 \fILC_TIME\fP 	 Abbreviated name of the twelfth month. 	
+ERA 	 \fILC_TIME\fP 	 Era description segments. 	
+ERA_D_FMT 	 \fILC_TIME\fP 	 Era date format string. 	
+ERA_D_T_FMT 	 \fILC_TIME\fP 	 Era date and time format string. 	
+ERA_T_FMT 	 \fILC_TIME\fP 	 Era time format string. 	
+ALT_DIGITS 	 \fILC_TIME\fP 	 Alternative symbols for digits. 	
+RADIXCHAR 	 \fILC_NUMERIC\fP 	 Radix character. 	
+THOUSEP 	 \fILC_NUMERIC\fP 	 Separator for thousands. 	
+YESEXPR 	 \fILC_MESSAGES\fP 	 Affirmative response expression. 	
+NOEXPR 	 \fILC_MESSAGES\fP 	 Negative response expression. 	
+CRNCYSTR 	 \fILC_MONETARY\fP 	 Local currency symbol, preceded by \fB'-'\fP if the symbol should appear before the value, \fB'+'\fP if the symbol should appear after the value, or \fB'.'\fP if the symbol should replace the radix character. If the local currency symbol is the empty string, implementations may return the empty string ( \fB""\fP ). 	
+.TE
+.LP
+If the locale's values for \fBp_cs_precedes\fP and \fBn_cs_precedes\fP
+do not match, the value of \fInl_langinfo\fP(CRNCYSTR)
+is unspecified.
+.LP
+The following shall be declared as a function and may also be defined
+as a macro. A function prototype shall be provided.
+.sp
+.RS
+.nf
+
+\fBchar *nl_langinfo(nl_item);
+\fP
+.fi
+.RE
+.LP
+Inclusion of the \fI<langinfo.h>\fP header may also make visible all
+symbols from \fI<nl_types.h>\fP.
+.LP
+\fIThe following sections are informative.\fP
+.SH APPLICATION USAGE
+.LP
+Wherever possible, users are advised to use functions compatible with
+those in the ISO\0C standard to access items of
+\fIlanginfo\fP data. In particular, the \fIstrftime\fP() function
+should be used to
+access date and time information defined in category \fILC_TIME .\fP
+The \fIlocaleconv\fP() function should be used to access information
+corresponding to RADIXCHAR,
+THOUSEP, and CRNCYSTR.
+.SH RATIONALE
+.LP
+None.
+.SH FUTURE DIRECTIONS
+.LP
+None.
+.SH SEE ALSO
+.LP
+The System Interfaces volume of IEEE\0Std\01003.1-2001, \fInl_langinfo\fP(),
+\fIlocaleconv\fP(), \fIstrfmon\fP(), \fIstrftime\fP(), \fILocale\fP
+.SH COPYRIGHT
+Portions of this text are reprinted and reproduced in electronic form
+from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology
+-- Portable Operating System Interface (POSIX), The Open Group Base
+Specifications Issue 6, Copyright (C) 2001-2003 by the Institute of
+Electrical and Electronics Engineers, Inc and The Open Group. In the
+event of any discrepancy between this version and the original IEEE and
+The Open Group Standard, the original IEEE and The Open Group Standard
+is the referee document. The original Standard can be obtained online at
+http://www.opengroup.org/unix/online.html .

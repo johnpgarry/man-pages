@@ -37,12 +37,16 @@ remove:
 	if [ "$$files" != "man\?/\*" ]; then for i in $$files; do \
 		rm -f $(MANDIR)/$$i $(MANDIR)/$$i.gz $(MANDIR)/$$i.bz2; \
 	done; fi
+	files=man??/*; \
+	if [ "$$files" != "man\?\?/\*" ]; then for i in $$files; do \
+		rm -f $(MANDIR)/$$i $(MANDIR)/$$i.gz $(MANDIR)/$$i.bz2; \
+	done; fi
 
 gz:
-	for i in man?; do $(GZIP) $$i/*; done
+	for i in man? man??; do $(GZIP) $$i/*; done
 
 bz2:
-	for i in man?; do $(BZIP2) $$i/*; done
+	for i in man? man??; do $(BZIP2) $$i/*; done
 
 # Use with
 #  make HTDIR=/some/dir HTOPTS=whatever html
@@ -59,7 +63,7 @@ html:
 
 README=$(MANDIR)/man1/README
 install:
-	for i in man?; do \
+	for i in man? man??; do \
 		install -d -m 755 $(MANDIR)/$$i; \
 		install -m 644 $$i/* $(MANDIR)/$$i; \
 	done; \

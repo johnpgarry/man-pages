@@ -25,6 +25,7 @@
 .\"	Added description for CLONE_NEWNS, which was added in 2.4.19
 .\" Slightly rephrased, aeb.
 .\" Modified 1 Feb 2003 - added CLONE_SIGHAND restriction, aeb.
+.\" Modified 1 Jan 2004 - various updates, aeb
 .\"
 .TH CLONE 2 2001-12-31 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
@@ -314,17 +315,14 @@ processes do not affect the other, as with
 
 .TP
 .B CLONE_PID
+(Obsolete)
 If
 .B CLONE_PID
 is set, the child process is created with the same process ID as 
-the calling process.
-
-If
-.B CLONE_PID
-is not set, the child process possesses a unique process ID, distinct
-from that of the calling process.
-
-This flag can only be specified by the system boot process (PID 0).
+the calling process. This is good for hacking the system, but otherwise
+of not much use. Since 2.3.21 this flag can be
+specified only by the system boot process (PID 0).
+It disappeared in Linux 2.5.16.
 
 .TP 
 .B CLONE_THREAD
@@ -332,6 +330,9 @@ This flag can only be specified by the system boot process (PID 0).
 If
 .B CLONE_THREAD
 is set, the child is placed in the same thread group as the calling process.
+.\" For a while there was CLONE_DETACHED (introduced in 2.5.32):
+.\" parent wants no child-exit signal. In 2.6.2 the need to give this
+.\" together with CLONE_THREAD disappeared.
 
 If
 .B CLONE_THREAD
@@ -407,18 +408,29 @@ were specified in
 was specified, but
 .B CLONE_SIGHAND
 was not. (Since Linux 2.5.35.)
-.TP 
+.TP
+.B EINVAL
+.B Precisely one of
+.B CLONE_DETACHED
+and
+.B CLONE_THREAD
+was specified. (Since Linux 2.6.0-test6.)
+.TP
+.B EINVAL
+.B CLONE_SIGHAND
+was specified, but
+.B CLONE_VM
+was not. (Since Linux 2.6.0-test6.)
+.TP
+.B EPERM
+.B CLONE_NEWNS
+was specified by a non-root process (process without CAP_SYS_ADMIN).
+.TP
 .B EPERM
 .B CLONE_PID
-was specified by a process with a non-zero PID.
+was specified by a process other than process 0.
+
 .SH BUGS
-
-As of version 2.1.97 of the kernel,
-the
-.B CLONE_PID
-flag should not be used, since other parts of the kernel and most system
-software still assume that process IDs are unique.
-
 There is no entry for
 .B clone
 in libc version 5.  libc 6 (a.k.a. glibc 2) provides
@@ -440,9 +452,7 @@ intended to be portable.  For programming threaded applications
 to use a library implementing the POSIX 1003.1c thread API, such as
 the LinuxThreads library (included in glibc2).  See
 .BR pthread_create (3).
-
-This manual page corresponds to kernels 2.0.x, 2.1.x, 2.2.x, 2.4.x,
-and to glibc 2.0.x and 2.1.x.
+.\" NPTL
 
 .SH "SEE ALSO"
 .BR fork (2),
