@@ -10,10 +10,10 @@ getdtablesize \- get descriptor table size
 .sp
 .B int getdtablesize(void);
 .SH DESCRIPTION
-.B getdtablesize
+.B gettablesize
 returns the maximum number of files a process can have open.
 .SH NOTES
-.B getdtablesize
+.B gettablesize
 is implemented as a library function in DLL 4.4.1.  This function returns
 .B OPEN_MAX
 (set to 256 in Linux 0.99.11) if
