@@ -30,8 +30,6 @@
 memmem \- locate a substring
 .SH SYNOPSIS
 .nf
-.B #define _GNU_SOURCE
-.br
 .B #include <string.h>
 .sp
 .BI "void *memmem(const void *" haystack ", size_t " haystacklen ,
@@ -56,7 +54,9 @@ dangerous function to use.
 .br
 Both old and new libc's have the bug that if \fIneedle\fP is empty
 \fIhaystack\fP-1 (instead of \fIhaystack\fP) is returned.
-And glibc 2.0 makes it worse, and returns a pointer to the
-last byte of `haystack'. This is fixed in glibc 2.1.
+And glibc (2.0.5) makes it worse, and returns a pointer to the
+last byte of `haystack'.
+Hopefully this will be fixed. For the time being, \fImemmem\fP()
+should not be used with an empty `needle'.
 .SH "SEE ALSO"
 .BR strstr (3)

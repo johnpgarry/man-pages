@@ -26,9 +26,7 @@
 .\"     386BSD man pages
 .\" Modified Sun Mar 28 00:25:51 1993, David Metcalfe
 .\" Modified Sat Jul 24 18:13:39 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sun Aug 20 21:47:07 2000, aeb
-.\"
-.TH RANDOM 3  "August 20, 2000" "GNU" "Linux Programmer's Manual"
+.TH RANDOM 3  "March 28, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 random, srandom, initstate, setstate \- random number generator.
 .SH SYNOPSIS
@@ -68,13 +66,12 @@ The \fBsetstate()\fP function changes the state array used by the
 \fBrandom()\fP function.  The state array \fIstate\fP is used for
 random number generation until the next call to \fBinitstate()\fP
 or \fBsetstate()\fP.  \fIstate\fP must first have been initialized 
-using \fBinitstate()\fP or be the result of a previous call of
-\fBsetstate()\fP.
+using \fBinitstate()\fP.
 .SH "RETURN VALUE"
 The \fBrandom()\fP function returns a value between 0 and RAND_MAX.
 The \fBsrandom()\fP function returns no value.  The \fBinitstate()\fP 
 and \fBsetstate()\fP functions return a pointer to the previous state 
-array, or NULL on error.
+array.  
 .SH "ERRORS"
 .TP
 .B EINVAL
@@ -87,5 +84,4 @@ error.
 .SH "CONFORMING TO"
 BSD 4.3
 .SH "SEE ALSO"
-.BR rand (3),
-.BR srand (3)
+.BR rand "(3), " srand (3)
