@@ -24,9 +24,6 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\"
-.\" Modified, Sun Feb 26 14:52:00 1995, faith@cs.unc.edu
-.\" "
 .TH BCOPY 3  "April 9, 1993" "GNU" "LINUX Programmer's Manual"
 .SH NAME
 bcopy \- copy byte strings
@@ -34,7 +31,7 @@ bcopy \- copy byte strings
 .nf
 .B #include <string.h>
 .sp
-.BI "void bcopy (const void *" src ", void *" dest ", int " n );
+.B void bcopy (const void *src, void *dest, int n);
 .fi
 .SH DESCRIPTION
 The \fBbcopy()\fP function copies the first \fIn\fP bytes of the source
@@ -45,4 +42,4 @@ The \fBbcopy()\fP function returns no value.
 .SH "CONFORMING TO"
 BSD 4.3
 .SH "SEE ALSO"
-.BR memccpy "(3), " memcpy "(3), " memmove "(3), " strcpy "(3), " strncpy (3)
+memccpy(3), memcpy(3), memmove(3), strcpy(3), strncpy(3)
