@@ -24,14 +24,14 @@
 .\"
 .\" Updated, aeb, 980612
 .\"
-.TH UNIMPLEMENTED 2 1998-06-12 "Linux 2.0" "Linux Programmer's Manual"
+.TH UNIMPLEMENTED 2 1998-06-12 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
-afs_syscall, break, ftime, gtty, lock, mpx, phys, prof, profil,
+afs_syscall, break, ftime, gtty, lock, mpx, prof, profil,
 stty, ulimit \- unimplemented system calls
 .SH SYNOPSIS
 Unimplemented system calls.
 .SH DESCRIPTION
-These system calls are not implemented in the Linux 2.0 kernel.
+These system calls are not implemented in the Linux 2.4 kernel.
 .SH "RETURN VALUE"
 These system calls always return \-1 and set
 .I errno
@@ -46,9 +46,10 @@ and
 are implemented as library functions.
 
 Some system calls, like
+.IR alloc_hugepages (2),
+.IR free_hugepages (2),
 .IR ioperm (2),
 .IR iopl (2),
-.IR ptrace (2)
 and
 .IR vm86 (2)
 only exist on certain architectures.

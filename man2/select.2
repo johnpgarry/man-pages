@@ -249,7 +249,9 @@ A non blocked signal was caught.
 .TP
 .B EINVAL
 .I n
-is negative.
+is negative or the value contained within
+.I timeout
+is invalid.
 .TP
 .B ENOMEM
 .B select

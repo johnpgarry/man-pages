@@ -30,16 +30,16 @@ ttyname, ttyname_r \- return name of a terminal
 .nf
 .B #include <unistd.h>
 .sp
-.BI "char *ttyname(int " desc );
+.BI "char *ttyname(int " fd );
 .br
-.BI "int ttyname_r(int " desc ", char *" buf ", size_t " buflen );
+.BI "int ttyname_r(int " fd ", char *" buf ", size_t " buflen );
 .fi
 .SH DESCRIPTION
 The function
 .BR ttyname ()
 returns a pointer to the NUL-terminated pathname of the terminal device
-that is open on the file descriptor \fIdesc\fP, or \fBNULL\fP on error
-(for example, if \fIdesc\fP is not connected to a terminal).
+that is open on the file descriptor \fIfd\fP, or \fBNULL\fP on error
+(for example, if \fIfd\fP is not connected to a terminal).
 The return value may point to static data, possibly overwritten by the
 next call.
 The function

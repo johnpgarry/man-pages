@@ -24,12 +24,13 @@
 .\"
 .\" typo corrected, aeb, 950825
 .\" added layout change from joey, 960722
+.\" changed prototype, documented 0xffffffff, aeb, 030101
 .\"
-.TH PERSONALITY 2 1996-07-22 "Linux 2.0" "Linux Programmer's Manual"
+.TH PERSONALITY 2 2003-01-01 "Linux 2.0" "Linux Programmer's Manual"
 .SH NAME
 personality \- set the process execution domain
 .SH SYNOPSIS
-.BI "int personality(unsigned long " persona );
+.BI "long personality(unsigned long " persona );
 .SH DESCRIPTION
 Linux supports different execution domains, or personalities, for each
 process. Among other things, execution domains tell Linux how to map
@@ -37,14 +38,16 @@ signal numbers into signal actions. The execution domain system allows
 Linux to provide limited support for binaries compiled under other
 Unix-like operating systems.
 
+This function will return the current
 .B personality
-will make the execution domain referenced by
+when
+.I persona
+equals 0xffffffff. Otherwise, it will make the execution domain
+referenced by
 .I persona
 the new execution domain of the current process.
 .SH "RETURN VALUE"
-On success,
-.I persona
-is made the new execution domain and the previous
+On success, the previous
 .I persona
 is returned. On error, \-1 is returned, and
 .I errno
@@ -52,8 +55,7 @@ is set appropriately.
 .SH ERRORS
 .TP
 .B EINVAL
-.I persona
-does not refer to a valid execution domain.
+The kernel was unable to change the personality.
 .PP
 .SH FILES
 .I /usr/include/linux/personality.h

@@ -192,7 +192,10 @@ Under Linux 2.0 there is no field giving pathname.
 Via the
 .I mem
 file one can access the pages of a process's memory through
-.IR open(2) ", " read(2) ", and " fseek(3) "."
+.BR open (2),
+.BR read (2),
+and
+.BR fseek (3).
 .TP
 .I root
 Unix and Linux support the idea of a per-process root of the
@@ -314,7 +317,7 @@ which have not been demand-loaded in, or which are swapped out.
 .TP
 \fIrlim\fP %lu
 Current limit in bytes on the rss of the process (usually
-4,294,967,295).
+4294967295 on i386).
 .TP
 \fIstartcode\fP %lu
 The address above which program text can run.
@@ -360,7 +363,7 @@ Cumulative \fInswap\fP for child processes.
 Signal to be sent to parent when we die.
 .TP
 \fIprocessor\fP %d
-Processor number last executed on.
+CPU number last executed on.
 .RE
 .TP
 .I statm
@@ -381,8 +384,22 @@ and
 in an format that's easier for humans to parse.
 .RE
 .TP
+.I apm
+Advanced power management version and battery information
+when CONFIG_APM is defined at kernel compilation time.
+.TP
 .I bus
 Contains subdirectories for installed busses.
+.RS
+.TP
+.I pccard
+Subdirectory for pcmcia devices when CONFIG_PCMCIA is set
+at kernel compilation time.
+.RS
+.TP
+.I drivers
+.RE
+.RE
 .RS
 .TP
 .I pci
@@ -400,7 +417,7 @@ and
 .RE
 .TP
 .I cmdline
-Argments passed to the Linux kernel at boot time.  Often done via
+Arguments passed to the Linux kernel at boot time.  Often done via
 a boot manager such as
 .BR lilo (1).
 .TP
@@ -435,6 +452,9 @@ A text listing of the filesystems which were compiled into the kernel.
 Incidentally, this is used by
 .BR mount (1)
 to cycle through different filesystems when none is specified.
+.TP
+.I fs
+Empty subdirectory.
 .TP
 .I ide
 .I ide
@@ -482,11 +502,12 @@ The total length of the file is the size of physical memory (RAM) plus
 .I kmsg
 This file can be used instead of the
 .BR syslog (2)
-system call to read kernel log messages.  A process must have superuser
-privileges to read this file, and only one process should make use of this
-facility or
+system call to read kernel messages.  A process must have superuser
+privileges to read this file, and only one process should read this
+file.  This file should not be read if a syslog process is running
+which uses the
 .BR syslog (2)
-to read this file.
+system call facility to log kernel messages.
 
 Information in this file is retrieved with the
 .BR dmesg (8)
@@ -594,6 +615,22 @@ Inter-|   Receive                                                |  Transmit
 .\" .TP
 .\" .I ipx_route
 .\" No information.
+.TP
+.I dev_mcast
+Defined in
+.IR /usr/src/linux/net/core/dev_mcast.c :
+.nf
+.in +5
+indx ifterface_name  dmi_u dmi_g dmi_address
+2    eth0            1     0     01005e000001
+3    eth1            1     0     01005e000001
+4    eth2            1     0     01005e000001
+.in
+.fi
+.TP
+.I igmp
+Internet Group Management Protocol.  Defined in
+.IR /usr/src/linux/net/core/igmp.c .
 .TP
 .I rarp
 This file uses the same format as the
@@ -787,12 +824,14 @@ These variables can be read and sometimes modified using
 the \fIproc\fP file system, and the
 .BR sysctl (2)
 system call. Presently, there are subdirectories
-.IR abi ", " debug ", " dev ", " fs ", " kernel ", " net ", " proc ", " sunrpc " and " vm
+.IR abi ", " debug ", " dev ", " fs ", " kernel ", " net ", " proc ", "
+.IR rxrpc ", " sunrpc " and " vm
 that each contain more files and subdirectories.
 .RS
 .TP
 .I abi
-This directory may be empty.  On some systems, it is not present.
+This directory may contain files with application binary information.
+On some systems, it is not present.
 .TP
 .I debug
 This directory may be empty.
@@ -811,8 +850,10 @@ and files
 .IR super-max " and " super-nr
 with function fairly clear from the name.
 .LP
-Documentation for the files in /proc/sys/binfmt_misc is in the kernel sources
-in Documentation/binfmt_misc.txt.
+Documentation for the files in
+.I /proc/sys/binfmt_misc
+can be found in the kernel sources in
+.IR Documentation/binfmt_misc.txt .
 .LP
 The file
 .I dentry-state
@@ -1091,13 +1132,20 @@ setting specifies the maximum number of bytes that may be written to the
 message queue.
 .LP
 The files
-.IR ostype " and " osrelease " give substrings of "
+.I ostype
+and
+.I osrelease
+give substrings of
 .IR /proc/version .
 .LP
 The files
-.IR overflowgid " and "
+.I overflowgid
+and
 .I overflowuid
-duplicate the files /proc/sys/fs/overflowgid and /proc/sys/fs/overflowuid.
+duplicate the files
+.I /proc/sys/fs/overflowgid
+and
+.IR /proc/sys/fs/overflowuid .
 .LP
 The file
 .I panic

@@ -36,7 +36,7 @@ ipc \- System V interprocess communication mechanisms
 .B
 # include <sys/shm.h>
 .SH DESCRIPTION
-The manual page refers to the Linux implementation of the System V
+This manual page refers to the Linux implementation of the System V
 interprocess communication mechanisms:
 message queues, semaphore sets, and shared memory segments.
 In the following, the word
@@ -54,23 +54,23 @@ structure, defined by the
 system header file, includes the following members:
 .sp
 .B
-	ushort cuid;	
+	ushort cuid;	 
 /* creator user id */
 .br
 .B
-	ushort cgid;	
+	ushort cgid;	 
 /* creator group id */
 .br
 .B
-	ushort uid;
+	ushort uid;	 
 /* owner user id */
 .br
 .B
-	ushort gid;
+	ushort gid;	
 /* owner group id */
 .br
 .B
-	ushort mode;
+	ushort mode;	
 /* r/w permissions */
 .PP
 The
@@ -269,12 +269,12 @@ containing the following members:
 /* pid for last operation */
 .br
 .B
-	ushort semncnt;	
-/* no. of awaiting semval to increase */
+	ushort semncnt;
+/* nr awaiting semval to increase */
 .br
 .B
-	ushort semzcnt;	
-/* no. of awaiting semval = 0 */
+	ushort semzcnt;
+/* nr awaiting semval = 0 */
 .TP 11
 .B semval
 Semaphore value: a non-negative integer.
@@ -305,7 +305,7 @@ containing the following members:
 	struct ipc_perm shm_perm;
 .br
 .B
-	int shm_segsz;	
+	int shm_segsz; 	
 /* size of segment */
 .br
 .B

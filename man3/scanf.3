@@ -125,14 +125,19 @@ Suppresses assignment.  The conversion that follows occurs as usual, but no
 pointer is used; the result of the conversion is simply discarded.
 .TP
 .B a 
-Indicates that the conversion will be 
+(glibc) Indicates that the conversion will be 
 .BR s ,
 the needed memory space for the string will be malloc'ed  and
 the pointer to it will be assigned to the  
 .I  char
 pointer variable, which does not have to be initialized before.
 This flag does not exist in 
-.IR "ANSI C" .
+.IR "ANSI C"
+(C89) and has a different meaning in C99.
+.TP
+.B a
+(C99) Equivalent to
+.BR f .
 .TP
 .B h
 Indicates that the conversion will be one of
@@ -235,7 +240,7 @@ be a pointer to
 .TP
 .B X
 Equivalent to
-.B x 
+.BR x .
 .TP
 .B f
 Matches an optionally signed floating-point number; the next pointer must
@@ -252,7 +257,7 @@ Equivalent to
 .TP
 .B E
 Equivalent to
-.BR f 
+.BR f .
 .TP
 .B s
 Matches a sequence of non-white-space characters; the next pointer must be

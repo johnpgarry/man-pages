@@ -57,12 +57,13 @@ html:
 		done; \
 	done; fi
 
+README=$(MANDIR)/man1/README
 install:
 	for i in man?; do \
 		install -d -m 755 $(MANDIR)/$$i; \
 		install -m 644 $$i/* $(MANDIR)/$$i; \
 	done; \
-	rm -f $(MANDIR)/man1/README
+	rm -f $(README) $(README).gz $(README).bz2
 
 # someone might also want to look at /var/catman/cat2 or so ...
 # a problem is that the location of cat pages varies a lot

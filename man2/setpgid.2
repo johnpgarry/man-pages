@@ -31,17 +31,16 @@
 .\"
 .\"     @(#)getpgrp.2	6.4 (Berkeley) 3/10/91
 .\"
-.\" Modified Sat Jul 24 01:15:33 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified 15 April 1995 by Michael Chastain <mec@shell.portal.com>:
+.\" Modified 1993-07-24 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1995-04-15 by Michael Chastain <mec@shell.portal.com>:
 .\"   Added 'getpgid'.
-.\" Modified 21 July 1996 by Andries Brouwer <aeb@cwi.nl>
-.\" Modified Wed Nov  6 04:02:50 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Thu Sep  2 13:55:37 1999 by Michael Haardt <michael@moria.de>
-.\" Modified 18 Jan 2002 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\" 	Provided detailed documentation of error conditions
+.\" Modified 1996-07-21 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 1996-11-06 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1999-09-02 by Michael Haardt <michael@moria.de>
+.\" Modified 2002-01-18 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2003-01-20 by Andries Brouwer <aeb@cwi.nl>
 .\"
-.\"
-.TH SETPGID 2 1999-09-02 "Linux" "Linux Programmer's Manual"
+.TH SETPGID 2 2003-01-20 "Linux" "Linux Programmer's Manual"
 .SH NAME
 setpgid, getpgid, setpgrp, getpgrp \- set/get process group
 .SH SYNOPSIS
@@ -79,12 +78,13 @@ If
 .I pid
 is zero, the process ID of the current process is used.
 
-In the Linux DLL 4.4.1 library,
-.B setpgrp
-simply calls
+The call
+.B setpgrp()
+is equivalent to
 .BR setpgid(0,0) .
 
-.B getpgrp
+Similarly,
+.B getpgrp()
 is equivalent to
 .BR getpgid(0) .
 Each process group is a member of a session and each process is a
@@ -151,8 +151,14 @@ a session leader
 (\fBsetpgid\fP, \fBsetpgrp\fP).
 .TP
 .B ESRCH
+For
+.BR getpgid :
 .I pid
 does not match any process.
+For
+.BR setpgid :
+.I pid
+is not the current process and not a child of the current process.
 .SH "CONFORMING TO"
 The functions
 .B setpgid
@@ -179,5 +185,6 @@ for some integer \fIn\fP larger than or equal to 500.
 .SH "SEE ALSO"
 .BR getuid (2),
 .BR setsid (2),
+.BR tcgetpgrp (3),
 .BR tcsetpgrp (3),
 .BR termios (3)

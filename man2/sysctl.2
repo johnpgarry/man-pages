@@ -84,7 +84,7 @@ int osnamelth;
 int name[] = { CTL_KERN, KERN_OSTYPE };
 
 main(){
-        osnamelth = SIZE(osname);
+        osnamelth = sizeof(osname);
         if (sysctl(name, SIZE(name), osname, &osnamelth, 0, 0))
                 perror("sysctl");
         else

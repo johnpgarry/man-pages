@@ -34,10 +34,8 @@
 .TH TERMIOS 3 2001-12-17 "Linux" "Linux Programmer's Manual"
 .SH NAME
 termios, tcgetattr, tcsetattr, tcsendbreak, tcdrain, tcflush, tcflow,
-cfmakeraw, cfgetospeed, cfgetispeed, cfsetispeed, cfsetospeed,
-tcgetpgrp, tcsetpgrp \- get and set
-terminal attributes, line control, get and set baud rate, get and set
-terminal foreground process group ID
+cfmakeraw, cfgetospeed, cfgetispeed, cfsetispeed, cfsetospeed \- get and set
+terminal attributes, line control, get and set baud rate
 .SH SYNOPSIS
 .ad l
 .ft B
@@ -66,10 +64,6 @@ terminal foreground process group ID
 .BI "int cfsetispeed(struct termios *" termios_p ", speed_t " speed );
 .sp
 .BI "int cfsetospeed(struct termios *" termios_p ", speed_t " speed );
-.sp
-.BI "pid_t tcgetpgrp(int " fd );
-.sp
-.BI "int tcsetpgrp(int " fd ", pid_t " pgrpid );
 .ft P
 .ad b
 .SH DESCRIPTION
@@ -582,13 +576,6 @@ sets the input baud rate stored in the \fBtermios\fP structure to
 .IR speed .
 If the input baud rate is set to zero, the input baud rate will be
 equal to the output baud rate.
-.LP
-.B tcgetpgrp()
-returns process group ID of foreground processing group, or \-1 on error.
-.LP
-.B tcsetpgrp()
-sets process group ID to \fIpgrpid\fP.  \fIpgrpid\fP must be the ID
-of a process group in the same session.
 .SH "RETURN VALUE"
 .LP
 .B cfgetispeed()
@@ -598,9 +585,6 @@ structure.
 .LP
 .B cfgetospeed()
 returns the output baud rate stored in the \fBtermios\fP structure.
-.LP
-.B tcgetpgrp()
-returns process group ID of foreground processing group, or \-1 on error.
 .LP
 All other functions return:
 .IP 0

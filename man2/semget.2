@@ -234,22 +234,9 @@ Values greater than
 .B SEMMSL * SEMMNI
 makes it irrelevant.
 .SH BUGS
-Use of
-.B IPC_PRIVATE
-doesn't inhibit to other processes the access to the allocated
-semaphore set.
-.PP
-There is currently no intrinsic way for a process to ensure
-exclusive access to a semaphore set.
-Asserting both
-.B IPC_CREAT
-and
-.B IPC_EXCL
-in
-.I semflg
-only ensures (on success) that a new semaphore set will be created,
-it doesn't imply exclusive access to the semaphore set.
-.PP
+The name choice IPC_PRIVATE was perhaps unfortunate, IPC_NEW
+would more clearly show its function.
+.LP
 The data structure associated with each semaphore in the set
 isn't initialized by the system call.
 In order to initialize those data structures, one has to execute a

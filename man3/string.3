@@ -33,9 +33,17 @@ strrchr, strsep, strspn, strstr, strtok, strxfrm, index, rindex
 \- string operations
 .SH SYNOPSIS
 .nf
-.B #include <string.h>
+.B #include <strings.h>
 .sp
 .BI "int strcasecmp(const char *" s1 ", const char *" s2 );
+.sp
+.BI "int strncasecmp(const char *" s1 ", const char *" s2 ", size_t " n );
+.sp
+.BI "char *index(const char *" s ", int " c );
+.sp
+.BI "char *rindex(const char *" s ", int " c );
+.sp
+.B #include <string.h>
 .sp
 .BI "char *strcat(char *" dest ", const char *" src );
 .sp
@@ -61,8 +69,6 @@ strrchr, strsep, strspn, strstr, strtok, strxfrm, index, rindex
 .sp
 .BI "char *strncpy(char *" dest ", const char *" src ", size_t " n );
 .sp
-.BI "int strncasecmp(const char *" s1 ", const char *" s2 ", size_t " n );
-.sp
 .BI "char *strpbrk(const char *" s ", const char *" accept );
 .sp
 .BI "char *strrchr(const char *" s ", int " c );
@@ -76,13 +82,9 @@ strrchr, strsep, strspn, strstr, strtok, strxfrm, index, rindex
 .BI "char *strtok(char *" s ", const char *" delim );
 .sp
 .BI "size_t strxfrm(char *" dest ", const char *" src ", size_t " n );
-.sp
-.BI "char *index(const char *" s ", int " c );
-.sp
-.BI "char *rindex(const char *" s ", int " c );
 .fi
 .SH DESCRIPTION
-The string functions perform string operations on NULL-terminated
+The string functions perform string operations on NUL-terminated
 strings.  See the individual man pages for descriptions of each
 function.
 .SH "SEE ALSO"

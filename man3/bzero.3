@@ -26,20 +26,25 @@
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 21:28:17 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 23:49:37 1996 by Eric S. Raymond <esr@thyrsus.com>
-.TH BZERO 3  1993-04-09 "GNU" "Linux Programmer's Manual"
+.TH BZERO 3  2002-12-31 "Linux" "Linux Programmer's Manual"
 .SH NAME
-bzero \- write zeros to a byte string
+bzero \- write zero bytes
 .SH SYNOPSIS
 .nf
-.B #include <string.h>
+.B #include <strings.h>
 .sp
 .BI "void bzero(void *" s ", size_t " n );
 .fi
 .SH DESCRIPTION
-The \fBbzero()\fP function sets the first \fIn\fP bytes of the byte
-string \fIs\fP to zero.
+The
+.B bzero()
+function sets the first
+.I n
+bytes of the byte area starting at
+.I s
+to zero.
 .SH "RETURN VALUE"
-The \fBbzero()\fP function returns no value.
+None.
 .SH "CONFORMING TO"
 4.3BSD.  This function is deprecated -- use
 .BR memset

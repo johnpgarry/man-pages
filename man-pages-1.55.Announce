@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.54.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.55.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,28 +12,26 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.53:
+Differences from version 1.54:
 
     The man pages
 
-	rm.1
+	alloc_hugepages.2 arch_prctl.2 clone.2 free_hugepages.2
+	futex.2 gettid.2 mmap.2 msgget.2 personality.2 recv.2
+	select.2 send.2 setpgid.2 shmget.2 syslog.2 tkill.2
+	undocumented.2
 
-	clone.2 dup.2 mount.2 msync.2 readv.2 sched_getaffinity.2
-	sched_setaffinity.2 select.2 select_tut.2 shmop.2 statfs.2
-	wait.2
+	bcmp.3 bcopy.3 bzero.3 getpt.3 grantpt.3 ptsname.3 remove.3
+	scanf.3 shm_open.3 string.3 tcgetpgrp.3 tcgetsid.3 unlockpt.3
 
-	errno.3 nl_langinfo.3 realpath.3 strftime.3
+	futex.4 ptmx.4 pts.4
 
-	tty_ioctl.4 vcs.4
+	proc.5
 
-	proc.5 securetty.5
-
-	capabilities.7 iso_8859-9.7 socket.7 tcp.7 unix.7
+	signal.7
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.
-
-    Page readv.3 was (merged into readv.2 and) removed.
 
 Here is a breakdown of what this distribution contains:
 
@@ -87,6 +85,7 @@ wrote, edited, or otherwise contributed to this project:
     James Sneeringer <jvs@ocslink.com>
     Jamie Lokier <jamie@imbolc.ucc.ie>
     Jens Schweikhardt <Jens.Schweikhardt@rus.uni-stuttgart.de>
+    Jeremy Phelps <jphelps@notreached.net>
     Jim Van Zandt <jrv@vanzandt.mv.com>
     Jochen Hein <Hein@Student.TU-Clausthal.de>
     Jochen Karrer <cip307.cip.physik.uni-wuerzburg.de>

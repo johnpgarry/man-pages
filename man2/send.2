@@ -35,7 +35,7 @@
 .\" Modified Tue Oct 22 17:55:49 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Oct 1998 by Andi Kleen
 .\"
-.TH SEND 2 1999-07 "Linux Man Page" "Linux Programmer's Manual"
+.TH SEND 2 2002-12-31 "Linux Man Page" "Linux Programmer's Manual"
 .SH NAME
 send, sendto, sendmsg \- send a message from a socket
 .SH SYNOPSIS
@@ -43,13 +43,13 @@ send, sendto, sendmsg \- send a message from a socket
 .br
 .B #include <sys/socket.h>
 .sp
-.BI "int send(int " s ", const void *" msg ", size_t " len ,
+.BI "ssize_t send(int " s ", const void *" msg ", size_t " len ,
 .BI "int " flags );
 .br
-.BI "int sendto(int " s ", const void *" msg ", size_t " len ,
+.BI "ssize_t sendto(int " s ", const void *" msg ", size_t " len ,
 .BI "int " flags ", const struct sockaddr *" to ", socklen_t " tolen );
 .br
-.BI "int sendmsg(int " s ", const struct msghdr *" msg ,
+.BI "ssize_t sendmsg(int " s ", const struct msghdr *" msg ,
 .BI "int " flags );
 .SH DESCRIPTION
 .BR Send ,

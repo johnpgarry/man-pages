@@ -1,5 +1,6 @@
-.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" Hey Emacs! This file is -*- nroff -*- source.
 .\"
+.\" Copyright 2003 Abhijit Menon-Sen <ams@wiw.org>
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
 .\" preserved on all copies.
@@ -20,44 +21,31 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" References consulted:
-.\"     Linux libc source code
-.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
-.\"     386BSD man pages
-.\"
-.\" Modified Sun Feb 26 14:52:00 1995 by Rik Faith <faith@cs.unc.edu>
-.\" Modified Tue Oct 22 23:48:10 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" "
-.TH BCOPY 3  2002-12-31 "Linux" "LINUX Programmer's Manual"
+.TH GETTID 2 "2003-02-01" "Linux 2.4.20" "Linux Programmer's Manual"
 .SH NAME
-bcopy \- copy byte sequence
+gettid \- get thread identification
 .SH SYNOPSIS
-.nf
-.B #include <strings.h>
+.B #include <sys/types.h>
+.br
+.B #include <linux/unistd.h>
 .sp
-.BI "void bcopy(const void *" src ", void *" dest ", size_t " n );
-.fi
+.B _syscall0(pid_t,gettid)
+.sp
+.B pid_t gettid(void);
 .SH DESCRIPTION
-The
-.B bcopy()
-function copies
-.I n
-bytes from
-.I src
-to
-.IR dest .
-The result is correct, even when both areas overlap.
-.SH "RETURN VALUE"
-None.
+\fBgettid\fP returns the thread ID of the current process. This is equal
+to the process ID (as returned by
+.BR getpid (2)),
+unless the process is part of a thread group (created by specifying
+the CLONE_THREAD flag to the
+.BR clone (2)
+system call). All processes in the same thread group
+have the same PID, but each one has a unique TID.
 .SH "CONFORMING TO"
-4.3BSD.  This function is deprecated -- use
-.B memcpy
-in new programs.  Note that the first two parameters
-are interchanged for
-.BR memcpy .
+\fBgettid\fP is Linux specific and should not be used in programs that
+are intended to be portable.
 .SH "SEE ALSO"
-.BR memccpy (3),
-.BR memcpy (3),
-.BR memmove (3),
-.BR strcpy (3),
-.BR strncpy (3)
+.BR getpid (2),
+.BR clone (2),
+.BR fork (2)
+

@@ -27,9 +27,9 @@ shm_open, shm_unlink \- Create/open or unlink POSIX shared memory objects
 .br
 .B #include <sys/mman.h>
 .sp
-.BI "void * shm_open(const char *" name ", int " oflag ", mode_t " mode );
+.BI "int shm_open(const char *" name ", int " oflag ", mode_t " mode );
 .sp
-.BI "int shm_inlink(const char *" name );
+.BI "int shm_unlink(const char *" name );
 .SH DESCRIPTION
 .B shm_open
 creates and opens a new, or opens an existing, POSIX shared memory object.

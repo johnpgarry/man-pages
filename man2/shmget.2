@@ -25,6 +25,8 @@
 .\"          with material from Giorgio Ciucci <giorgio@crcc.it>
 .\" Portions Copyright 1993 Giorgio Ciucci <giorgio@crcc.it>
 .\" Modified Tue Oct 22 22:03:17 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified, 8 Jan 2003, Michael Kerrisk, <mtk16@ext.canterbury.ac.nz>
+.\"	Removed EIDRM from errors - that can't happen...
 .\"
 .TH SHMGET 2 1993-11-28 "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
@@ -40,23 +42,23 @@ shmget \- allocates a shared memory segment
 .SH DESCRIPTION
 .B shmget()
 returns the identifier of the shared memory segment
-associated to the value of the argument
+associated with the value of the argument
 .IR key .
-A new shared memory segment, with size equal to the round up of
+A new shared memory segment, with size equal to the value of
 .I size
-to a multiple of
+rounded up to a multiple of
 .BR PAGE_SIZE ,
 is created if
 .I key
-has value
+has the value
 .B IPC_PRIVATE
 or
 .I key
 isn't
 .BR IPC_PRIVATE ,
-no shared memory segment is associated to
-.IR key ,
-and
+no shared memory segment corresponding to
+.IR key
+exists, and
 .B IPC_CREAT
 is asserted in
 .I shmflg
@@ -71,12 +73,11 @@ is composed of:
 .B IPC_CREAT
 to create a new segment. If this flag is not used, then 
 .B shmget()
-will find the segment associated with \fIkey\fP, check to see if 
-the user has permission to receive the \fIshmid\fP associated with the
-segment, and ensure the segment is not marked for destruction.
+will find the segment associated with \fIkey\fP and check to see if 
+the user has permission to access the segment.
 .TP
 .B IPC_EXCL
-used with \fBIPC_CREAT\fP to ensure failure if the segment exists. 
+used with \fBIPC_CREAT\fP to ensure failure if the segment already exists. 
 .TP
 .B mode_flags (lowest 9 bits)
 specifying the permissions granted to the owner, group, and world.
@@ -88,19 +89,20 @@ are copied into the
 .I shm_perm
 member of the 
 .I shmid_ds
-structure that defines the segment. The \fIshmid_ds\fP structure:
+structure that defines the segment.
+The \fIshmid_ds\fP structure has the following form:
 .PP
 .in +0.5i
 .nf
 struct shmid_ds {
-	struct	ipc_perm shm_perm;	/* operation perms */
-	int	shm_segsz;		/* size of segment (bytes) */
-	time_t	shm_atime;		/* last attach time */
-	time_t	shm_dtime;		/* last detach time */
-	time_t	shm_ctime;		/* last change time */
-	unsigned short	shm_cpid;	/* pid of creator */
-	unsigned short	shm_lpid;	/* pid of last operator */
-	short	shm_nattch;		/* no. of current attaches */
+    struct ipc_perm shm_perm;    /* operation perms */
+    int             shm_segsz;   /* size of segment (bytes) */
+    time_t          shm_atime;   /* last attach time */
+    time_t          shm_dtime;   /* last detach time */
+    time_t          shm_ctime;   /* last change time */
+    unsigned short  shm_cpid;    /* pid of creator */
+    unsigned short  shm_lpid;    /* pid of last operator */
+    short           shm_nattch;  /* no. of current attaches */
 };
 .fi
 .in -0.5i
@@ -108,18 +110,18 @@ struct shmid_ds {
 .in +0.5i
 .nf
 struct ipc_perm {
-  key_t  key;
-  ushort uid;   /* owner euid and egid */
-  ushort gid;
-  ushort cuid;  /* creator euid and egid */
-  ushort cgid;
-  ushort mode;  /* lower 9 bits of \fIshmflg\fP */
-  ushort seq;   /* sequence number */
+    key_t  key;
+    ushort uid;   /* owner euid and egid */
+    ushort gid;
+    ushort cuid;  /* creator euid and egid */
+    ushort cgid;
+    ushort mode;  /* lower 9 bits of \fIshmflg\fP */
+    ushort seq;   /* sequence number */
 };
 .fi
 .PP
-Furthermore, while creating,
-the system call initializes the system shared memory segment data structure
+When creating a new shared memory segment,
+the system call initializes the \fIshmid_ds\fP data structure
 .B shmid_ds
 as follows:
 .IP
@@ -183,21 +185,18 @@ On failure,
 is set to one of the following:
 .TP 12
 .B EINVAL
-is returned if a new segment was to be created and \fIsize\fP < \fBSHMMIN\fP
+if a new segment was to be created and \fIsize\fP < \fBSHMMIN\fP
 or \fIsize\fP > \fBSHMMAX\fP, or no new segment was to be created,
 a segment with given key existed, but \fIsize\fP is greater than the size
 of that segment.
 .TP
 .B EEXIST
-is returned if 
+if 
 .B IPC_CREAT | IPC_EXCL
 was specified and the segment exists.
 .TP
-.B EIDRM
-is returned if the segment is marked as destroyed, or was removed.
-.TP
 .B ENOSPC
-is returned if all possible shared memory id's have been taken
+if all possible shared memory id's have been taken
 .RB ( SHMMNI )
 or if allocating a segment of the requested
 .I size
@@ -205,16 +204,16 @@ would cause the system to exceed the system-wide limit on shared memory
 .RB ( SHMALL ).
 .TP
 .B ENOENT
-is returned if no segment exists for the given \fIkey\fP, and
+if no segment exists for the given \fIkey\fP, and
 .B IPC_CREAT
 was not specified.
 .TP
 .B EACCES
-is returned if the user does not have permission to access the 
+if the user does not have permission to access the 
 shared memory segment.
 .TP
 .B ENOMEM
-is returned if no memory could be allocated for segment overhead.
+if no memory could be allocated for segment overhead.
 .SH NOTES
 .B IPC_PRIVATE
 isn't a flag field but a
@@ -251,24 +250,13 @@ The implementation has no specific limits for the per process maximum
 number of shared memory segments
 .RB ( SHMSEG ).
 .SH BUGS
-Use of
-.B IPC_PRIVATE
-doesn't inhibit to other processes the access to the allocated
-shared memory segment.
-.PP
-There is currently no intrinsic way for a process to ensure
-exclusive access to a shared memory segment.
-Asserting both
-.B IPC_CREAT
-and
-.B IPC_EXCL
-in
-.I shmflg
-only ensures (on success) that a new shared memory segment will be created,
-it doesn't imply exclusive access to the segment.
+The name choice IPC_PRIVATE was perhaps unfortunate, IPC_NEW
+would more clearly show its function.
 .SH "CONFORMING TO"
 SVr4, SVID.  SVr4 documents an additional error condition EEXIST.
-Neither SVr4 nor SVID documents an EIDRM condition. 
+Until version 2.3.30 Linux would return EIDRM for a
+.B shmget
+on a shared memory segment scheduled for deletion.
 .SH "SEE ALSO"
 .BR ftok (3),
 .BR ipc (5),
