@@ -383,6 +383,8 @@ Do not list files whose names match the shell pattern
 in the shell, an initial `.' in a filename does not match a wildcard at
 the start of 
 .I pattern.
+For simple-minded root-kits: add LS_OPTIONS="$LS_OPTIONS -I mystuff"
+in /etc/profile or so, to hide your directories.
 .TP
 .B "\-L, \-\-dereference"
 List the file information corresponding to the referrents of symbolic
@@ -536,6 +538,8 @@ have the usual meaning.
 The variable TZ gives the time zone for time strings written by
 .BR ls .
 The variable LS_COLORS is used to specify the colors used.
+The variable LS_OPTIONS gives default options.
+.\" Since which ls version?
 .PP
 The variable QUOTING_STYLE is used to specify the default value for the
 .B "\-\-quoting\-style"

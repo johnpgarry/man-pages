@@ -21,9 +21,10 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Fri Jul 29th 12:56:44 BST 1994  Wilf. <G.Wilford@ee.surrey.ac.uk> 
-.\" Modified Fri Jan 31 17:06:56 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1997-01-31 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2002-03-09 by aeb
 .\"
-.TH SETGID 2 1994-07-29 "Linux 1.1.36" "Linux Programmer's Manual"
+.TH SETGID 2 2002-03-09 "Linux 2.5" "Linux Programmer's Manual"
 .SH NAME
 setgid \- set group identity
 .SH SYNOPSIS
@@ -40,25 +41,9 @@ superuser, the real and saved group ID's are also set.
 Under Linux, 
 .B setgid
 is implemented like the POSIX version with the _POSIX_SAVED_IDS feature.
-This allows a setgid (other than root) program to drop all of its group
+This allows a setgid program that is not suid root to drop all of its group
 privileges, do some un-privileged work, and then re-engage the original
 effective group ID in a secure manner.
-
-If the user is root or the program is setgid root, special care must be
-taken. The 
-.B setgid
-function checks the effective gid of the caller and if it is the superuser,
-all process related group ID's are set to
-.IR gid . 
-After this has occurred, it is impossible for the program to regain root
-privileges.             
-
-Thus, a setgid-root program wishing to temporarily drop root
-privileges, assume the identity of a non-root group, and then regain
-root privileges afterwards cannot use 
-.BR setgid .
-You can accomplish this with the (non-POSIX, BSD) call
-.BR setegid .
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -66,7 +51,7 @@ is set appropriately.
 .SH ERRORS
 .TP
 .B EPERM
-The user is not the super-user, and
+The user is not the super-user (does not have the CAP_SETGID capability), and
 .I gid
 does not match the effective group ID or saved set-group-ID of
 the calling process.

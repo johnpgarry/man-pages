@@ -43,7 +43,10 @@ A protocol of
 .B IPPROTO_RAW
 implies enabled
 .B IP_HDRINCL 
-and receives all IP protocols. Sending is not allowed.
+and is able to send any IP protocol that is specified in the passed header.
+Receiving of all IP protocols via
+.B IPPROTO_RAW
+is not possible using raw sockets.
 
 .TS
 tab(:) allbox;

@@ -72,7 +72,7 @@ function sets \fIcd\fP's conversion state to the initial state.
 .SH "RETURN VALUE"
 The \fBiconv\fP function returns the number of characters converted in a
 non-reversible way during this call; reversible conversions are not counted.
-In case of error, it sets \fBerrno\fP and returns (iconv_t)(-1).
+In case of error, it sets \fBerrno\fP and returns (size_t)(-1).
 .SH ERRORS
 The following errors can occur, among others:
 .TP

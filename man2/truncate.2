@@ -35,12 +35,15 @@
 .\" Modified Tue Oct 22 22:36:33 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Mon Dec 21 13:37:05 1998 by Andries Brouwer <aeb@cwi.nl>
 .\" Modified 7 Jan 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2002-04-06, aeb
 .\"
 .TH TRUNCATE 2 1998-12-21 "" "Linux Programmer's Manual"
 .SH NAME
 truncate, ftruncate \- truncate a file to a specified length
 .SH SYNOPSIS
 .B #include <unistd.h>
+.br
+.B #include <sys/types.h>
 .sp
 .BI "int truncate(const char *" path ", off_t " length );
 .br
@@ -63,6 +66,9 @@ If the file previously was shorter, it is extended, and
 the extended part reads as zero bytes.
 .LP
 The file pointer is not changed.
+.LP
+If the size changed, then the ctime and mtime fields for the file
+are updated, and suid and sgid mode bits may be cleared.
 .LP
 With
 .BR ftruncate ,

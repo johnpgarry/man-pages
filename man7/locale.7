@@ -20,8 +20,11 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Sat Jul 24 17:28:34 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sun Jun 01 17:16:34 1997 by Jochen Hein (jochen.hein@delphi.central.de)
+.\" Modified Sat Jul 24 17:28:34 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Sun Jun 01 17:16:34 1997 by Jochen Hein
+.\"   <jochen.hein@delphi.central.de>
+.\" Modified Thu Apr 25 00:43:19 2002 by Bruno Haible <bruno@clisp.org>
+.\"
 .TH LOCALE 7  1993-04-24 "Linux" "Linux Programmer's Manual"
 .SH NAME
 locale \- Description of multi-language support
@@ -82,8 +85,13 @@ used by the function
 .B LC_MESSAGES
 changes the language messages are displayed in and how an affirmative or
 negative answer looks like.  The GNU C-library contains the
+.BR gettext() ,
+.BR ngettext() ,
+and
 .B rpmatch()
-function to ease the use of these information. 
+functions to ease the use of these information.  The GNU gettext family of
+functions also obey the environment variable
+.BR LANGUAGE .
 .TP
 .B LC_NUMERIC
 changes the information used by the
@@ -177,12 +185,18 @@ struct lconv
 };
 .fi
 .SH "CONFORMS TO"
+.nf
 POSIX.1
+.fi
+The GNU gettext functions are specified in LI18NUX2000.
 .SH "SEE ALSO"
 .BR setlocale (3),
 .BR localeconv (3),
 .BR locale (1),
 .BR localedef (1),
+.BR nl_langinfo (3),
+.BR gettext (3),
+.BR ngettext (3),
 .BR rpmatch (3),
 .BR strfmon (3),
 .BR strcoll (3),

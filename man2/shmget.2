@@ -63,8 +63,8 @@ is asserted in
 (i.e.
 .IB shmflg &IPC_CREAT
 isn't zero).
-The presence in
 .PP
+The value
 .I shmflg
 is composed of:
 .TP 12
@@ -140,7 +140,7 @@ are set to the lowest order 9 bit of
 .IP
 .B shm_segsz
 is set to the value of
-.IR size.
+.IR size .
 .IP
 .BR shm_lpid ,
 .BR shm_nattch ,
@@ -148,7 +148,7 @@ is set to the value of
 and
 .B shm_dtime
 are set to
-.BR 0.
+.BR 0 .
 .IP
 .B shm_ctime
 is set to the current time.
@@ -198,11 +198,11 @@ is returned if the segment is marked as destroyed, or was removed.
 .TP
 .B ENOSPC
 is returned if all possible shared memory id's have been taken
-.BR "" ( SHMMNI )
+.RB ( SHMMNI )
 or if allocating a segment of the requested
 .I size
 would cause the system to exceed the system-wide limit on shared memory
-.BR "" ( SHMALL ).
+.RB ( SHMALL ).
 .TP
 .B ENOENT
 is returned if no segment exists for the given \fIkey\fP, and

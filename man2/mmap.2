@@ -30,8 +30,6 @@
 .SH NAME
 mmap, munmap \- map or unmap files or devices into memory
 .SH SYNOPSIS
-.B #include <unistd.h>
-.br
 .B #include <sys/mman.h>
 .sp
 .B #ifdef _POSIX_MAPPED_FILES
@@ -136,7 +134,8 @@ when no memory is available.
 .\" at any moment when the system runs out of memory.)
 .TP
 .B MAP_LOCKED
-If set, the mapped pages will not be swapped out.
+This flag is ignored.
+.\" If set, the mapped pages will not be swapped out.
 .TP
 .B MAP_GROWSDOWN
 Used for stacks. Indicates to the kernel VM system that the mapping
@@ -282,6 +281,7 @@ SVr4 documents additional error codes ENXIO and ENODEV.
 SUSv2 documents additional error codes EMFILE and EOVERFLOW.
 .SH "SEE ALSO"
 .BR getpagesize (2),
+.BR mmap2 (2),
 .BR mremap (2),
 .BR msync (2),
 .BR shm_open (2),

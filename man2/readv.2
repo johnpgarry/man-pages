@@ -32,14 +32,14 @@ readv, writev \- read or write a vector
 .SH SYNOPSIS
 .B #include <sys/uio.h>
 .sp
-.BI "int readv(int " fd ", const struct iovec *" vector ", int " count );
+.BI "ssize_t readv(int " fd ", const struct iovec *" vector ", int " count );
 .br
-.BI "int writev(int " fd ", const struct iovec *" vector ", int " count );
+.BI "ssize_t writev(int " fd ", const struct iovec *" vector ", int " count );
 .sp
 .nf
 \fBstruct iovec {\fP
-    \fB__ptr_t\fP \fIiov_base\fP\fB;\fP    /* Starting address */
-    \fBsize_t\fP \fIiov_len\fP\fB;\fP      /* Length in bytes  */
+    \fBvoid *\fP\fIiov_base\fP\fB;\fP    /* Starting address */
+    \fBsize_t\fP \fIiov_len\fP\fB;\fP    /* Length in bytes  */
 \fB};\fP
 .br
 .fi
@@ -99,9 +99,8 @@ Other errors may occur, depending on the object connected to \fIfd\fR.
 .B readv
 and
 .B writev
-functions first appeared in BSD 4.2), Unix98.  Linux libc5 uses
-\fBsize_t\fR as the type of the \fIcount\fR parameter, which is
-logical but non-standard.
+functions first appeared in BSD 4.2), Unix98.  Linux libc5 used
+\fBsize_t\fR as the type of the \fIcount\fR parameter.
 .SH "SEE ALSO"
 .BR read (2),
 .BR write (2),

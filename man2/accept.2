@@ -34,7 +34,8 @@
 .\" Modified Sat Jul 24 16:42:42 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Mon Oct 21 23:05:29 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified 1998-2000 by Andi Kleen to match Linux 2.2 reality
-.TH ACCEPT 2 2002-01-17 "Linux 2.2 Page" "Linux Programmer's Manual"
+.\" Modified Tue Apr 23 20:33:18 CEST 2002 by Roger Luethi <rl@hellgate.ch>
+.TH ACCEPT 2 2002-04-23 "Linux 2.2 Page" "Linux Programmer's Manual"
 .SH NAME
 accept \- accept a connection on a socket
 .SH SYNOPSIS
@@ -176,6 +177,8 @@ by retrying. In case of TCP/IP these are
 and
 .BR ENETUNREACH .
 .SH ERRORS
+.B accept
+shall fail if:
 .TP
 .BR EAGAIN " or " EWOULDBLOCK
 The socket is marked non-blocking and no connections are
@@ -191,32 +194,49 @@ The descriptor references a file, not a socket.
 The referenced socket is not of type
 .BR SOCK_STREAM . 
 .TP
+.B EINTR
+The system call was interrupted by a signal that was caught
+before a valid connection arrived. 
+.TP
+.B ECONNABORTED
+A connection has been aborted.
+.TP
+.B EINVAL
+Socket is not listening for connections.
+.TP
+.B EMFILE
+The per-process limit of open file descriptors has been reached.
+.TP
+.B ENFILE
+The system maximum for file descriptors has been reached.
+.PP
+.B accept
+may fail if:
+.TP
 .B EFAULT
 The
 .I addr
 parameter is not in a writable part of the user address space.
 .TP
-.B EPERM
-Firewall rules forbid connection.
-.TP
-.B EINTR
-The system call was interrupted by a signal that was caught
-before a valid connection arrived. 
-.TP
 .B ENOBUFS, ENOMEM
 Not enough free memory.  
 This often means that the memory allocation is limited by the socket buffer
 limits, not by the system memory.
+.TP
+.B EPROTO
+Protocol error.
+.PP
+Linux
+.B accept
+may fail if:
+.TP
+.B EPERM
+Firewall rules forbid connection.
 .PP
 In addition, network errors for the new socket and as defined
 for the protocol may be returned. Various Linux kernels can
 return other errors such as
-.BR EMFILE ,
-.BR EINVAL ,
 .BR ENOSR ,
-.BR ENOBUFS ,
-.BR EPERM ,
-.BR ECONNABORTED ,
 .BR ESOCKTNOSUPPORT ,
 .BR EPROTONOSUPPORT ,
 .BR ETIMEDOUT .
@@ -229,9 +249,9 @@ SVr4, 4.4BSD (the
 function first appeared in BSD 4.2).
 The BSD man page documents five possible error returns
 (EBADF, ENOTSOCK, EOPNOTSUPP, EWOULDBLOCK, EFAULT).
-SUSv2 documents errors EAGAIN, EBADF, ECONNABORTED, EFAULT, EINTR,
-EINVAL, EMFILE, ENFILE, ENOBUFS, ENOMEM, ENOSR, ENOTSOCK, EOPNOTSUPP,
-EPROTO, EWOULDBLOCK.
+SUSv3 documents errors EAGAIN, EBADF, ECONNABORTED, EINTR, EINVAL, EMFILE,
+ENFILE, ENOBUFS, ENOMEM, ENOTSOCK, EOPNOTSUPP, EPROTO, EWOULDBLOCK. In
+addition, SUSv2 documents EFAULT and ENOSR.
 .LP
 Linux accept does _not_ inherit socket flags like
 .BR O_NONBLOCK .

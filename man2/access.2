@@ -35,8 +35,9 @@
 .\" Modified Tue Jan 13 21:21:03 MET 1998 by Michael Haardt:
 .\"   Using access is often insecure
 .\" Modified Tue Oct 16 02:40:48 CEST 2001 by aeb
+.\" Modified Tue Apr 23 19:51:15 CEST 2002 by Roger Luethi <rl@hellgate.ch>
 .\"
-.TH ACCESS 2 2001-10-16 "Linux" "System calls"
+.TH ACCESS 2 2002-04-23 "Linux" "Linux Programmer's Manual"
 .SH NAME
 access \- check user's permissions for a file
 .SH SYNOPSIS
@@ -98,22 +99,17 @@ asked for a permission that is denied, or some other error occurred),
 .I errno
 is set appropriately.
 .SH ERRORS
+.B access
+shall fail if:
 .TP
 .B EACCES
 The requested access would be denied to the file or search permission
 is denied to one of the directories in
 .IR pathname .
 .TP
-.B EROFS
-Write permission was requested for a file on a read-only filesystem.
-.TP
-.B EFAULT
-.I pathname
-points outside your accessible address space.
-.TP
-.B EINVAL
-.I mode
-was incorrectly specified.
+.B ELOOP
+Too many symbolic links were encountered in resolving
+.IR pathname .
 .TP
 .B ENAMETOOLONG
 .I pathname
@@ -130,15 +126,28 @@ A component used as a directory in
 .I pathname
 is not, in fact, a directory.
 .TP
-.B ENOMEM
-Insufficient kernel memory was available.
+.B EROFS
+Write permission was requested for a file on a read-only filesystem.
+.PP
+.B access
+may fail if:
 .TP
-.B ELOOP
-Too many symbolic links were encountered in resolving
-.IR pathname .
+.B EFAULT
+.I pathname
+points outside your accessible address space.
+.TP
+.B EINVAL
+.I mode
+was incorrectly specified.
 .TP
 .B EIO
 An I/O error occurred.
+.TP
+.B ENOMEM
+Insufficient kernel memory was available.
+.TP
+.B ETXTBSY
+Attempt to write to executable which is being executed.
 .SH RESTRICTIONS
 .B access
 returns an error if any of the access types in the requested call

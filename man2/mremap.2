@@ -81,7 +81,7 @@ page aligned.
 .TP
 .B EFAULT
 "Segmentation fault." Some address in the range
-\fIold_address\fR to \fIold_address\fR+\fIold_size\fR is an invalid
+\fIold_address\fP to \fIold_address\fP+\fIold_size\fP is an invalid
 virtual memory address for this process.
 You can also get EFAULT even if there exist mappings that cover the
 whole address space requested, but those mappings are of different types.
@@ -90,9 +90,14 @@ whole address space requested, but those mappings are of different types.
 The memory segment is locked and cannot be re-mapped.
 .TP
 .B ENOMEM
-The memory area cannot be expanded at the current virtual address, and 
-the \fIMREMAP_MAYMOVE\fR flag is not set in \fIflags\fR. 
+The memory area cannot be expanded at the current virtual address, and the
+.B MREMAP_MAYMOVE
+flag is not set in \fIflags\fP. 
 Or, there is not enough (virtual) memory available.
+.SH NOTES
+With current glibc includes, in order to get the definition of
+.BR MREMAP_MAYMOVE ,
+you need to define _GNU_SOURCE before including <sys/mman.h>.
 .SH "CONFORMING TO"
 This call is Linux-specific, and should not be used in programs
 intended to be portable.  4.2BSD had a (never actually implemented)

@@ -17,6 +17,8 @@
 .\" write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 .\" Boston, MA 02111-1307, USA.
 .\"
+.\" Modified, 6 May 2002, Michael Kerrisk, mtk16@ext.canterbury.ac.nz
+.\"   Change listed order of /usr/lib and /lib
 .TH ldconfig 8 1999-12 "GNU C Library"
 .SH NAME
 
@@ -57,9 +59,9 @@ libraries found in the directories specified on the command line,
 in the file
 .IR /etc/ld.so.conf ,
 and in the trusted directories
-.RI ( /usr/lib
+.RI ( /lib
 and
-.IR /lib ).
+.IR /usr/lib ).
 The cache is used by the run-time linker,
 .IR ld.so
 or
@@ -99,9 +101,9 @@ Overrides quiet mode.
 .B \-n
 Only process directories specified on the command line.
 Don't process the trusted directories
-.RI ( /usr/lib
+.RI ( /lib
 and
-.IR /lib )
+.IR /usr/lib )
 nor those specified in
 .IR /etc/ld.so.conf .
 Implies

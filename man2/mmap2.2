@@ -1,6 +1,6 @@
 .\" Hey Emacs! This file is -*- nroff -*- source.
 .\"
-.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" Copyright (C) 2002, Michael Kerrisk
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -22,39 +22,44 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified 2002-04-15 by Roger Luethi <rl@hellgate.ch> and aeb
+.\" Modified 31 Jan 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"	Added description of mmap2
 .\"
-.TH GETDTABLESIZE 2 2002-04-15 "Linux 2.4" "Linux Programmer's Manual"
+.TH MMAP2 2 2002-01-31 "Linux 2.3.31" "Linux Programmer's Manual"
 .SH NAME
-getdtablesize \- get descriptor table size
+mmap2 \- map files or devices into memory
 .SH SYNOPSIS
-.B #include <unistd.h>
+.B #include <sys/mman.h>
+.br
+.B #include <syscall.h>
 .sp
-.B int getdtablesize(void);
+.BI "_syscall6(void *, " start ", size_t, " length ", int, " prot ,
+.BI "int, " flags ", int, " fd ", off_t, " pgoffset );
+.sp
+.BI "void * mmap2(void *" start ", size_t " length ", int " prot ,
+.BI "int " flags ", int " fd ", off_t " pgoffset );
+.sp
+.B #endif
 .SH DESCRIPTION
-.B getdtablesize
-returns the maximum number of files a process can have open,
-one more than the largest possible value for a file descriptor.
-.SH "RETURN VALUE"
-The current limit on the number of open files per process.
+The function
+.B mmap2
+operates in exactly the same way as
+.BR mmap (2),
+except that the final argument specifies the offset into the
+file in units of the system page size (instead of bytes).
+This enables applications that use a 32-bit off_t to map
+larger files (typically up to 2^44 bytes).
 .SH NOTES
-.B getdtablesize
-is implemented as a libc library function. The glibc version calls
-.BR getrlimit (2)
-and returns the current
-.B RLIMIT_NOFILE
-limit, or
-.B OPEN_MAX
-when that fails.
-The libc4 and libc5 versions return
-.B OPEN_MAX
-(set to 256 since Linux 0.98.4).
-.SH "CONFORMING TO"
-SVr4, 4.4BSD (the
-.B getdtablesize
-function first appeared in BSD 4.2).
+The function
+.B mmap2
+is available since Linux 2.3.31.
+It is Linux specific, and should be avoided in portable applications.
+See also the
+.I mmap64()
+function that is part of the LFS (Large File Summit).
 .SH "SEE ALSO"
-.BR close (2),
-.BR dup (2),
-.BR getrlimit (2),
-.BR open (2)
+.BR getpagesize (2),
+.BR mmap (2),
+.BR mremap (2),
+.BR msync (2),
+.BR shm_open (2)

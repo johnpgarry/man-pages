@@ -36,8 +36,10 @@
 .\"   Added 'getpgid'.
 .\" Modified 21 July 1996 by Andries Brouwer <aeb@cwi.nl>
 .\" Modified Wed Nov  6 04:02:50 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" FIXME -- error conditions need to be better documented, see kernel
 .\" Modified Thu Sep  2 13:55:37 1999 by Michael Haardt <michael@moria.de>
+.\" Modified 18 Jan 2002 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" 	Provided detailed documentation of error conditions
+.\"
 .\"
 .TH SETPGID 2 1999-09-02 "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -131,10 +133,22 @@ always returns the current process group.
 .TP
 .B EINVAL
 .I pgid
-is less than 0.
+is less than 0
+(\fBsetpgid\fP, \fBsetpgrp\fP).
+.TP
+.B EACCES
+An attempt was made to change the process group ID
+of one of the children of the calling process and the child had
+already performed an \fBexecve\fP
+(\fBsetpgid\fP, \fBsetpgrp\fP).
 .TP
 .B EPERM
-Various permission violations.
+An attempt was made to move a process into a process group in a 
+different session, or to change the process 
+group ID of one of the children of the calling process and the 
+child was in a different session, or to change the process group ID of
+a session leader
+(\fBsetpgid\fP, \fBsetpgrp\fP).
 .TP
 .B ESRCH
 .I pid
@@ -158,6 +172,10 @@ from the BSD function
 .BR setpgrp .
 Also SysV has a function with the same name, but it is identical to
 .BR setsid (2).
+.LP
+To get the prototypes under glibc, define both _XOPEN_SOURCE and
+_XOPEN_SOURCE_EXTENDED, or use "#define _XOPEN_SOURCE \fIn\fP"
+for some integer \fIn\fP larger than or equal to 500.
 .SH "SEE ALSO"
 .BR getuid (2),
 .BR setsid (2),

@@ -59,7 +59,7 @@ A colon-separated list of directories in the user's
 .PP
 The list of libraries cached in \fI/etc/ld.so.cache\fP.
 .PP
-\fI/usr/lib\fP, followed by \fI/lib\fP.
+\fI/lib\fP, followed by \fI/usr/lib\fP.
 .RE
 .PP
 If
@@ -171,9 +171,9 @@ int main(int argc, char **argv) {
     double (*cosine)(double);
     char *error;
 
-    handle = dlopen ("/lib/libm.so", RTLD_LAZY);
+    handle = dlopen ("libm.so", RTLD_LAZY);
     if (!handle) {
-        fputs (dlerror(), stderr);
+        fprintf (stderr, "%s\en", dlerror());
         exit(1);
     }
 
@@ -185,6 +185,7 @@ int main(int argc, char **argv) {
 
     printf ("%f\en", (*cosine)(2.0));
     dlclose(handle);
+    return 0;
 }
 .if t .ft P
 .fi
@@ -196,6 +197,10 @@ with the following command:
 .LP
 gcc -rdynamic -o foo foo.c -ldl
 .RE
+.SH NOTES
+The symbols RTLD_DEFAULT and RTLD_NEXT are defined by
+.I <dlfcn.h>
+only when _GNU_SOURCE was defined before including it.
 .SH ACKNOWLEDGEMENTS
 The dlopen interface standard comes from Solaris.
 The Linux dlopen implementation was primarily written by

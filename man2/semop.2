@@ -237,7 +237,7 @@ semaphore set as required by one of the specified operations.
 An operation could not go through and
 .BR IPC_NOWAIT
 was asserted in its
-.IB sem_flg .
+.IR sem_flg .
 .TP
 .B EFAULT
 The address pointed to by
@@ -321,7 +321,7 @@ does not fit in with the notion of having an atomic set of operations
 an array of semaphores.
 The undo requests for an array and each semaphore therein may have been
 accumulated over many
-.B semopt
+.B semop
 calls.
 Should the process sleep when
 exiting, or should all undo operations be applied with the

@@ -23,6 +23,8 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Based on comments from mm/filemap.c. Last modified on 10-06-2001
+.\" Modified, 25 Feb 2002, Michael Kerrisk, <mtk16@ext.canterbury.ac.nz>
+.\"	Added notes on MADV_DONTNEED
 .\"
 .TH MADVISE 2 2001-06-10 "Linux 2.4.5" "Linux Programmer's Manual"
 .SH NAME
@@ -43,7 +45,10 @@ and with size
 bytes. It allows an application to tell the kernel how it expects to use
 some mapped or shared memory areas, so that the kernel can choose
 appropriate read-ahead and caching techniques.
-This call does not influence the semantics of the application, but
+This call does not influence the semantics of the application 
+(except in the case of
+.BR MADV_DONTNEED ),
+but
 may influence its performance. The kernel is free to ignore the advice.
 .LP
 The advice is indicated in the 
@@ -70,6 +75,10 @@ Expect access in the near future.
 Do not expect access in the near future.
 (For the time being, the application is finished with the given range,
 so the kernel can free resources associated with it.)
+Subsequent accesses of pages in this range will succeed, but will result
+either in re-loading of the memory contents from the underlying mapped file
+(see \fBmmap\fP) or zero-fill-on-demand pages for mappings
+without an underlying file.
 .SH "RETURN VALUE"
 On success 
 .B madvise
