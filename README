@@ -14,7 +14,9 @@ Note that you may have to remove preformatted pages.
 
 Note that sometimes these pages are duplicates of pages
 also distributed in other packages. This has been reported
-about passwd.5 and mailaddr.7. Be careful not to
+about dlclose.3, dlerror.3, dlopen.3, dlsym.3 (found in ld.so),
+about resolver.3, resolv.conf.5 (found in bind-utils),
+and about passwd.5, and mailaddr.7. Be careful not to
 overwrite more up-to-date versions.
 Reports on further duplicates are welcome.
 Formerly present and now removed duplicates:

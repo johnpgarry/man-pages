@@ -22,7 +22,9 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH GETDOMAINNAME 2 "22 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.\" Modified Mon Aug 25 16:26:16 1997 by Nicolás Lichtmaier <nick@debian.org>
+.\"
+.TH GETDOMAINNAME 2 "25 August 1997" "Linux 2.0" "Linux Programmer's Manual"
 .SH NAME
 getdomainname, setdomainname \- get/set domain name
 .SH SYNOPSIS
@@ -34,6 +36,9 @@ getdomainname, setdomainname \- get/set domain name
 .SH DESCRIPTION
 These functions are used to access or to change the domain name of the
 current processor.
+If the NUL-terminated domain name requires more than \fIlen\fP bytes,
+.B getdomainname
+returns the first \fIlen\fP bytes (glibc) or returns an error (libc).
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -42,41 +47,35 @@ is set appropriately.
 .TP
 .B EINVAL
 For
-.BR getdomainname ,
+.BR getdomainname
+under libc:
 .I name
-points to
+is
 .B NULL
 or
 .I name
 is longer than
-.IR len .
+.I len
+bytes.
+.TP
+.B EINVAL
+For
+.BR setdomainname :
+.I len
+was negative or too large.
 .TP
 .B EPERM
 For
-.BR setdomainname ,
+.BR setdomainname :
 the caller was not the superuser.
 .TP
-.B EINVAL
+.B EFAULT
 For
-.BR setdomainname ,
-.I len
-was too long.
+.BR setdomainname :
+.I name
+pointed outside of user address space.
 .SH "CONFORMING TO"
 POSIX does not specify these calls.
-.SH BUGS
-.B getdomainname
-is not compliant with other implementations, since they always return
-.I len
-bytes, even if
-.I name
-is longer.  Linux, however, returns
-.B EINVAL
-in this case (as of DLL 4.4.1 libraries).
-.SH NOTES
-Under Linux,
-.B getdomainname
-is implemented at the library level by calling
-.BR uname (2).
 .SH "SEE ALSO"
 .BR gethostname (2),
 .BR sethostname (2),

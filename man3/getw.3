@@ -40,7 +40,8 @@ provided for compatibility with SVID.  We recommend you use
 is provided for compatibility with SVID, but we recommend you use
 \fBfwrite\fP(3) instead.
 .SH "RETURN VALUES"
-Normally, \fBgetw\fP returns the word read, and \fBputw\fP returns the word written.  On error, they return \fBEOF\fP.
+Normally, \fBgetw\fP returns the word read, and \fBputw\fP returns 0.
+On error, they return \fBEOF\fP.
 .SH BUGS
 The value returned on error is also a legitimate data value.
 \fBferror\fP(3) can be used to distinguish between the two cases.

@@ -106,6 +106,13 @@ a match is found and NULL otherwise.
 /etc/mtab           mounted file system description file
 .fi
 .SH "CONFORMING TO"
-BSD 4.3
+SunOS 4.1.3.
+.SH NOTES
+SysV also has a \fBgetmntent()\fP function but the calling sequence
+differs, and the returned structure is different. Under SysV
+.I /etc/mnttab
+is used.
+BSD 4.4 and Digital Unix have a routine \fBgetmntinfo()\fP,
+a wrapper around the system call \fBgetfsstat()\fP.
 .SH "SEE ALSO"
 .BR fopen "(3), " fstab (5)

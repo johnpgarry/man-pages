@@ -309,6 +309,10 @@ The argument
 .I s
 is an invalid descriptor.
 .TP
+.B ECONNREFUSED
+A remote host refused to allow the network connection (typically
+because it is not running the requested service).
+.TP
 .B ENOTCONN
 The socket is associated with a connection-oriented protocol
 and has not been connected (see

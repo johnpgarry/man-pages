@@ -91,3 +91,14 @@ is outside your accessible address space.
 .PP
 .SH "CONFORMING TO"
 SVr4.
+.SH NOTE
+On Linux with the
+.I proc
+filesystem mounted on
+.IR /proc ,
+the same information can be derived from
+.IR /proc/filesystems .
+.SH BUGS
+There is no libc or glibc support.
+There is no way to guess how large \fIbuf\fP should be.
+

@@ -107,7 +107,7 @@ linux/xia_fs.h:
 .fi
 .RE
 .PP
-Fields that are undefined for a particular file system are set to \-1.
+Fields that are undefined for a particular file system are set to 0.
 .B fstatfs
 returns the same information about an open file referenced by descriptor
 .IR fd .
@@ -181,6 +181,9 @@ The filesystem
 is open on does not support
 .BR statfs .
 .SH "CONFORMING TO"
-4.4BSD.
+The Linux
+.B statfs
+was inspired by the 4.4BSD one
+(but they do not use the same structure).
 .SH "SEE ALSO"
 .BR stat (2)

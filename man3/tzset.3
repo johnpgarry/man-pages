@@ -45,7 +45,8 @@ If the TZ variable does not appear in the environment, the \fItzname\fP
 variable is initialized with the best approximation of local wall clock
 time, as specified by the
 .BR tzfile (5)-format
-file \fI/usr/lib/zoneinfo/localtime\fP.
+file \fIlocaltime\fP
+found in the system timezone directory (see below).
 .PP
 If the TZ variable does appear in the environment but its value is NULL
 or its value cannot be interpreted using any of the formats specified
@@ -114,11 +115,16 @@ tzfile(5)-format file to read the time zone information from.  If
 relative to the system time conversion information directory 
 \fI/usr/lib/zoneinfo\fP.
 .SH FILES
+The system time zone directory used depends on the (g)libc version.
+Libc4 and libc5 use \fI/usr/lib/zoneinfo\fP, and, since libc-5.4.6,
+when this doesn't work, will try \fI/usr/share/zoneinfo\fP.
+Glibc2 will use the environment variable TZDIR, when that exists.
+This timezone directory contains the files
 .nf
-/usr/lib/zoneinfo                system time zone directory
-/usr/lib/zoneinfo/localtime      local time zone file
-/usr/lib/zoneinfo/posixrules     rules for POSIX-style TZ's
+localtime      local time zone file
+posixrules     rules for POSIX-style TZ's
 .fi
+Often \fI/etc/localtime\fP is a symlink to \fI/usr/lib/zoneinfo/localtime\fP.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3
 .SH "SEE ALSO"

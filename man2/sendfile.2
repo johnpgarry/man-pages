@@ -8,7 +8,7 @@
 .SH NAME
 sendfile \- transfer data between file descriptors
 .SH SYNOPSIS
-.B #include <unistd.h>
+.B #include <sys/sendfile.h>
 .sp
 .BI "ssize_t sendfile(int" " out_fd" ", int" " in_fd" ", off_t *" offset ", size_t" " count" )
 .\" The below is too ugly. Comments about glibc versions belong

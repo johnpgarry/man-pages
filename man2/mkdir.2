@@ -45,6 +45,11 @@ returns zero on success, or -1 if an error occurred (in which case,
 is set appropriately).
 .SH ERRORS
 .TP
+.B EPERM
+The filesystem containing
+.IR pathname
+does not support the creation of directories.
+.TP
 .B EEXIST
 .I pathname
 already exists (not necessarily as a directory).

@@ -402,7 +402,8 @@ the largest files listed first.
 .BI "\-T, \-\-tabsize " cols
 Assume that each tabstop is
 .I cols
-columns wide.  The default is 8. 
+columns wide.  The default is 8 and can be overridden by
+the environment variable TABSIZE when POSIXLY_CORRECT is not set.
 .B ls
 uses tabs where possible in the output, for efficiency. If 
 .I cols 
@@ -411,7 +412,7 @@ is zero, do not use tabs at all.
 .B "\-U, \-\-sort=none"
 Do not sort directory contents; list them in whatever order they are
 stored on the disk. (The difference between 
-.BR \-U and \-f 
+.BR \-U " and " \-f 
 is that the former doesn't disable or enable options.) This is especially
 useful when listing very large directories, since not doing any sorting
 can be noticeably faster.

@@ -206,9 +206,31 @@ otherwise be.
 For other conversions, the result is undefined.
 .TP
 .B \&0
-The value should be zero padded.  For all conversions except
-.BR n ,
-the converted value is padded on the left with zeros rather than blanks.
+The value should be zero padded.  For
+.BR d ,
+.BR i ,
+.BR o ,
+.BR u ,
+.BR x ,
+.BR X ,
+.BR a ,
+.BR A ,
+.BR e ,
+.BR E ,
+.BR f ,
+.BR F ,
+.BR g ,
+and
+.B G
+conversions, the converted value is padded on the left with zeros rather
+than blanks.
+If the
+.B \&0
+and
+.B \-
+flags both appear, the
+.B \&0
+flag is ignored.
 If a precision is given with a numeric conversion
 .BR "" ( d ,
 .BR i ,
@@ -220,6 +242,7 @@ and
 the
 .B \&0
 flag is ignored.
+For other conversions, the behavior is undefined.
 .TP
 .B \-
 The converted value is to be left adjusted on the field boundary.
@@ -744,7 +767,7 @@ The
 .BR vfprintf ,
 and
 .B vsprintf
-functions conform to ANSI C3.159-1989 (``ANSI C'') and ISO/IEC 9899:1999
+functions conform to ANSI X3.159-1989 (``ANSI C'') and ISO/IEC 9899:1999
 (``ISO C99'').
 The
 .B snprintf

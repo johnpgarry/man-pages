@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.29.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.30.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -27,29 +27,20 @@ with these man pages.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM. They are
 copyrighted by Sun Microsystems, Inc., but can be distributed freely.]
 
-Differences from version 1.28:
+Differences from version 1.29:
 
     The man pages
 
 	ls.1
 
-	chown.2 getdents.2 getgroups.2 gethostname.2 getpagesize.2
-	getrlimit.2 pivot_root.2 prctl.2 ptrace.2 select.2 setup.2
-	sigblock.2 stat.2 sysinfo.2 truncate.2 uname.2
+	getdomainname.2 gethostname.2 mkdir.2 mmap.2 recv.2 sendfile.2
+	setpgid.2 signal.2 statfs.2 sysfs.2 sysinfo.2 truncate.2
 
-	__setfpucw.3 bcmp.3  bcopy.3 bzero.3 confstr.3 daemon.3
-	dlclose.3 dlerror.3 dlopen.3 dlsym.3 fcloseall.3 fopen.3
-	fts.3 fts_children.3 fts_close.3 fts_open.3 fts_read.3 fts_set.3
-	getcwd.3 getdirentries.3 hsearch.3 iconv.3 iconv_close.3
-	iconv_open.3 lockf.3 random.3 readv.3 strtok.3 strtok_r.3
-	toupper.3
+	freeaddrinfo.3 freehostent.3 gai_strerror.3 getaddrinfo.3
+	getipnodebyname.3 getipnodebyaddr.3 getmntent.3 getw.3 inet.3
+	inet_ntop.3 inet_pton.3 printf.3 putenv.3 strptime.3 tzset.3
 
 	dsp56k.4
-
-	acct.5 environ.5 host.conf.5 proc.5 resolv.conf.5 resolver.5
-	shells.5
-
-	hier.7 suffixes.7 unicode.7
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.
@@ -78,7 +69,7 @@ The following people (listed in alphabetical order by first name)
 wrote, edited, or otherwise contributed to this project:
 
     Alain Knaff <Alain.Knaff@imag.fr>
-    Alan Cox <iialan@iifeak.swan.ac.uk>
+    Alan Cox <alan@lxorguk.ukuu.org.uk>
     Alan Curry <pacman@cqc.com>
     Andi Kleen <ak@muc.de>
     Andreas Jaeger <aj@arthur.rhein-neckar.de>
@@ -133,6 +124,7 @@ wrote, edited, or otherwise contributed to this project:
     Reed H. Petty <rhp@draper.net>
     Rik Faith <faith@cs.unc.edu>
     Robert K. Nichols <Robert.K.Nichols@att.com>
+    Sam Varshavchik <mrsam@stop.mail-abuse.org>
     Stephen Lee <sl14@cornell.edu>
     Steven Greenland <stevegr@sugar.neosoft.com>
     Thomas K. Dyas <tdyas@eden.rutgers.edu>
