@@ -1,0 +1,93 @@
+.\"
+.\" Copyright (c) 1995 Jochen Karrer <cip307.cip.physik.uni-wuerzburg.de>
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.TH "VERIFY_AREA" 9 "JANUARY 1996" "Linux 1.2.13" "Kernel Reference Guide"
+.SH NAME
+verify_area
+\- verify a virtual memory area in user space for read/write permission. 
+.SH SYNOPSIS
+.nf  
+
+.B #include <linux/mm.h>
+
+.B int verify_area(int type, const void * addr, u_long size);
+.fi
+.SH DESCRIPTION
+The virtual memory of a task is divided into the kernel space and the user
+space. Its necessary to check for write or read permissions 
+before doing any access
+to user space while in kernel mode  
+if the address of the access can be controlled by the user task, because 
+segmentaton violations
+in the kernel could leave kernel structures in an indeterminate state. 
+
+Because on 80386 pages can not be protected from access from the kernel by the
+hardware there would not even be a segmentation violation on an illegal access.
+So its very important for security, to check for permissions.
+
+.B verify_area()
+.RI "verifies" " size" " bytes of memory, starting at " addr " for
+read/write permissions.  
+.IR "type" " is one of" 
+.BR "VERIFY_READ" " or " "VERIFY_WRITE". 
+
+.SH RETURN VALUES
+.B verify_area()
+returns 
+.I 0 
+if the operation is permitted, or 
+.I -EFAULT 
+if operation is not 
+permitted.
+
+.SH EXAMPLE
+The following transfers 
+.I count 
+bytes from 
+.I kernel_buffer
+to 
+.I buffer
+in user space:
+.nf
+
+ int retval = verify_area(VERIFY_WRITE, buffer,count);
+ if(retval) 
+ 	return retval;	         /* not permitted */	
+ memcpy_tofs(buffer,kernel_buffer,count);
+ return 0;
+
+.fi
+.SH SOURCES
+.nf
+.B linux/mm/memory.c
+.fi
+
+.SH BUGS/LIMITATIONS
+Its not possible to check for read and write at the same time,
+because  
+.I type        
+is not a bitfield.
+
+.SH AUTHOR
+Linus Torvalds
+

@@ -21,8 +21,7 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\" Modified Sun Jul 25 11:05:58 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sat Feb 10 16:18:03 1996 by Urs Thuermann (urs@isnogud.escape.de)
-.TH HIER 7  "February 10, 1996" "Linux" "Linux Programmer's Manual"
+.TH HIER 7  "April 24, 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
 hier \- Description of the file system hierarchy
 .SH DESCRIPTION
@@ -32,16 +31,8 @@ A typical Linux system has, among others, the following directories:
 This is the root directory.  This is where the whole tree starts.
 .TP
 .I /bin
-This directory contains executable programs which are are needed in
-single user mode and to bring the system up or repair it.
-.TP
-.I /boot
-Contains static files for the boot loader.  This directory only holds
-the files which are needed during the boot process.  The map installer
-and configuration files should go to
-.I /sbin
-and
-.I /etc.
+This directory contains executable programs which are executed often,
+are needed to bring the system up or repair it.
 .TP
 .I /dev
 Special or device files, which refer to physical devices.  See
@@ -52,113 +43,123 @@ If both MS\-DOS and Linux are run on one computer, this is a typical
 place to mount a DOS file system.
 .TP
 .I /etc
-Contains configuration files which are local to the machine.  Some
-larger software packages, like X11, can have their own subdirectories
-below
-.I /etc.
-Site-wide configuration files may be placed here or in
-.I /usr/etc.
-Nevertheless, programs should always look for these files in
-.I /etc
-and you may have links for these files to
-.I /usr/etc.
+contains programs and other files necessary to system administration;
+normal users don't need any of this.  Usually, this directory is not
+in their
+.BR $PATH .
 .TP
 .I /etc/skel
 When a new user account is created, files from this directory are
 usually copied into the user's home directory.
 .TP
-.I /etc/X11
-Configuration files for the X11 window system.
+.I /etc/lilo
+The Linux Loader for booting the system goes here.
 .TP
-.I /home
-On machines with home directories for users, these are usually beneath
-this directory, directly or not.  The structure of this directory
-depends on local admininstration decisions.
+.I /install
+This is used by some installations scripts to keep track of which
+packages have been installed.
 .TP
 .I /lib
-This directory should hold those shared libraries that are necessary
-to boot the system and to run the commands in the root filesystem.
-.TP
-.I /mnt
-is a mount point for temporarily mounted filesystems
+Frequently\-used object code libraries, including dynamic libraries,
+which are linked at the time an executable starts up, plus some
+executables which usually are not called directly.
 .TP
 .I /proc
-This is a mount point for the
-.I proc
-filesystem, which provides information about running processes and
-the kernel.  This pseudo-file system is described in more detail in
-.I proc(5).
+This is the directory where information about running processes can be
+obtained.
 .TP
-.I /sbin
-Like
-.I /bin,
-this directory holds commands needed to boot the system, but which are
-usually not executed by normal users.
+.I /proc/[0-9]+
+This directory contains information about the process associated with
+its number; it has such files as the command line, the environment,
+the memory contents, or statistics about the process.
+.TP
+.I /proc/[0-9]+/fd
+A directory containing the file descriptors associated with the
+process.
+.TP
+.I /proc/[0-9]+/lib
+A directory containing the dynamic libraries associated with a process.
+.TP
+.I /proc/self
+This is a link to the directory associated with the calling process.
 .TP
 .I /tmp
 This directory contains temporary files which may be deleted with no
 notice, such as by a regular job or at system boot up.
 .TP
+.I /user
+This often is an empty directory, which can be used as a mount point
+for floppy disks.
+.TP
 .I /usr
-This directory is usually mounted from a seperate partition.  It
-should hold only sharable, read-only data, so that it can be mounted
-by various machines running Linux.
+Less\-frequently used commands and other things; this is often a mount
+point for a separate partition or volume.
 .TP
-.I /usr/X11R6
-The X-\Window system, version 11 release 6.
+.I /usr/TeX
+The TeX typesetting system.
 .TP
-.I /usr/X11R6/bin
+.I /usr/TeX/bin
+Binary commands for the TeX system.
+.I /usr/TeX/lib
+This contains data files connected with TeX, and may contain further
+subdirectories.
+.TP
+.I /usr/TeX/man
+Manual pages with the TeX system.
+.TP
+.I /usr/TeX/src
+Sources associates with TeX.
+.TP
+.I /usr/X386
+The X-\Windows system.
+.TP
+.I /usr/X386/bin
 Binaries which belong to the X\-Windows system; often, there is a
 symbolic link from the more traditional
 .I /usr/bin/X11
 to here.
 .TP
-.I /usr/X11R6/lib
+.I /usr/X386/lib
 Data files associated with the X\-Windows system.
 .TP
-.I /usr/X11R6/lib/X11
-These contain miscellaneous files needed to run X;  Often, there is a
-symbolic link from 
+.I /usr/X386/lib/X11
+These contain miscellaneous files needed to run X; among them
+configuration files.  Often, there is a symbolic link from
 .I /usr/lib/X11
 to this directory.
 .TP
-.I /usr/X11R6/include/X11
-Contains include files needed for compiling programs using the X11
-window system.  Often, there is a symbolic link from
-.I /usr/inlcude/X11
-to this directory.
+.I /usr/adm
+This often contains various log files.
 .TP
 .I /usr/bin
-This is the primary directory for executable programs.  Most programs
-executed by normal users which are not needed for booting or for
-repairing the system and which are not installed locally should be
-placed in this directory.
+This contains binaries which are not needed so often, or are not
+needed for bringing the system up or repairing it.  The decision
+whether to put something in
+.I /bin
+or
+.I /usr/bin
+should be guided by the simple consideration:  "If I put it in
+.I /usr/bin
+and
+.I /usr
+is not available on boot, do I still get the system up?"
 .TP
 .I /usr/bin/X11
 is the traditional place to look for X11 executables; on Linux, it
 usually is a symbolic link to
-.IR /usr/X11R6/bin .
+.IR /usr/X386/bin .
 .TP
-.I /usr/dict
-This directory holds files containing word lists for spell checkers.
+.I /usr/g++-include
+Include files to use with the GNU C++ compiler.
 .TP
-.I /usr/etc
-Site-wide configuration files to be shared between several machines
-may be stored in this directory.  However, commands should always
-reference those files using the
-.I /etc
-directory.  Links from files in
-.I /etc
-should point to the appropriate files in
-.I /usr/etc.
+.I /usr/homes
+This contains the home directories for normal users.
 .TP
 .I /usr/include
 Include files for the C compiler.
 .TP
 .I /usr/include/X11
-Include files for the C compiler and the X\-Windows system.  This is
-usually a symbolic link to
-.I /usr/X11R6/include/X11.
+Include files for the C compiler and the X\-Windows system.
 .TP
 .I /usr/include/asm
 Include files which declare some assembler functions.  This should be a
@@ -171,26 +172,42 @@ system release and should be a symbolic link to
 .I /usr/src/linux/include/linux
 to get at operating system specific information.
 .TP
-.I /usr/include/g++
-Include files to use with the GNU C++ compiler.
-.TP
 .I /usr/lib
-Object libraries, including dynamic libraries, plus some executables
-which usually are not invoked directly.  More complicated programs may
-have whole subdirectories there.
+Less -\ frequently used object libraries, including dynamic libraries,
+plus some executables which usually are not invoked directly.  More
+complicated programs may have whole subdirectories there.
 .TP
 .I /usr/lib/X11
 The usual place for data files associated with X programs, and
 configuration files for the X system itself.  On Linux, it usually is
 a symbolic link to
-.IR /usr/X11R6/lib/X11 .
+.IR /usr/X386/lib/X11 .
+.TP
+.I /usr/lib/X11/app-defaults
+X applications store their default resource (in other words,
+application defaults) here.  If you want to change the way a certain
+program looks, this is the place to look.
+.TP
+.I /usr/lib/X11/config
+This directory is used for the
+.BR imake (1)
+utility which incorporates information about the system into
+Makefiles.
+.TP
+.I /usr/lib/X11/twm
+Files for the
+.BR twm (1)
+window manager.
+.TP
+.I /usr/lib/X11/xinit
+Files for starting up the X Windows system.
 .TP
 .I /usr/lib/gcc-lib
-contains executables and include files for the GNU C compiler,
+contains configuration files for the system's C compiler,
 .BR gcc (1).
 .TP
 .I /usr/lib/groff
-Files for the GNU groff document formatting system.
+Files for the groff document formatting system.
 .TP
 .I /usr/lib/uucp
 Files for 
@@ -201,30 +218,17 @@ Files for timezone information.
 .TP
 .I /usr/local
 This is where programs which are local to the site typically go in.
+Some program packages, such as EMACS, may have their own
+subdirectories there.
 .TP
 .I /usr/local/bin
 Binaries for programs local to the site go there.
 .TP
-.I /usr/local/doc
-Local documnetation
-.TP
-.I /usr/local/etc
-Configuration files associated with locally installed programs go there.
-.TP
 .I /usr/local/lib
 Files associated with locally installed programs go there.
 .TP
-.I /usr/local/info
-Info pages associated with locally installed programs go there.
-.TP
 .I /usr/local/man
 Manpages associated with locally installed programs go there.
-.TP
-.I /usr/local/sbin
-Locally installed programs for system admininstration.
-.TP
-.I /usr/local/src
-Source code for locally installed software.
 .TP
 .I /usr/man
 Manpages go in there, into their subdirectories.
@@ -233,106 +237,70 @@ Manpages go in there, into their subdirectories.
 These directories contain preformatted manual pages according to their
 manpage section.
 .TP
-.I /usr/man/<locale>/man[1-9]
+.I /usr/man/man[1-9]
 These directories contain manual pages which are in source code form.
-Systems which use a unique language and code set for all manual pages
-may omit the
-.I <locale>
-substring.
 .TP
-.I /usr/sbin
-This directories contains program binaries for system admininstration
-which are not essentail for the boot process, for mounting
-.I /usr,
-or for system repair.
+.I /usr/openwin
+Files associated with the Open Windows Window manager for X go there.
 .TP
-.I /usr/src
-Source files for different parts of the system.
-.TP
-.I /usr/src/linux
-This contains the sources for the kernel of the operating system itself.
-.TP
-.I /usr/tmp
-An alternative place to store temporary files; This should be a link
-to
-.I /var/tmp.
-.TP
-.I /var
-This directory contains files which may change in size, such as spool
-and log files.
-.TP
-.I /var/adm
-This directory is superseded by
-.I /var/log
-and should be a symbolic link to
-.I /var/log.
-.TP
-.I /var/lock
-Lock files are plaed in this directory.  The naming convention for
-device lock files is
-.I LCK..<device>
-where
-.I <device>
-is the device's name in the filesystem.
-The format used is that of HDU UUCP lock files, i.e. lock files
-contain a PID as a 10-byte ASCII decimal number, followed by a newline
-character.
-.TP
-.I /var/log
-Miscelanous log files.
-.TP
-.I /var/preserve
+.I /usr/preserve
 This is where
 .BR vi (1)
 saves edit sessions so they can be restored later.
 .TP
-.I /var/run
-Run-time varaible files, like files holding process identifiers (PIDs)
-and logged user information
-.I (utmp).
-Files in this directory are usually cleared when the system boots.
-.TP
-.I /var/spool
+.I /usr/spool
 Spooled (or queued) files for various programs.
 .TP
-.I /var/spool/at
+.I /usr/spool/atjobs
 Spooled jobs for
 .BR at (1).
 .TP
-.I /var/spool/cron
+.I /usr/spool/cron
 Spooled jobs for
 .BR cron (1).
 .TP
-.I /var/spool/lpd
-Spooled files for printing.
+.I /usr/spool/lp1
+Spooled files for a printer.
 .TP
-.I /var/spool/mail
+.I /usr/spool/mail
 User's mailboxes.
 .TP
-.I /var/spool/smail
+.I /usr/spool/smail
 Spooled files for the
 .BR smail (1)
 mail delivery program.
 .TP
-.I /var/spool/news
-Spool directory for the news subsystem.
-.TP
-.I /var/spool/uucp
+.I /usr/spool/uucp
 Spooled files for
 .BR uucp (1).
 .TP
-.I /var/tmp
-Like
-.I /tmp,
-this directory holds temporary files stored for an unspecified duration.
+.I /usr/src
+Source files for different parts of the system.
+.TP
+.I /usr/src/libc-linux
+Sources for the C library.
+.TP
+.I /usr/src/linux
+This contains the sources for the operating system itself.
+.TP
+.I /usr/tmp
+An alternative place to store temporary files; often used if the files
+will be huge.
+.TP
+.I /var
+On some systems with more of a BSD flavour to them, this directory
+contains all the files which may change in size, such as spool and log
+files, and
+.I /usr
+only contains static files.  Often,
+.I /var
+is just a symbolic link to
+.IR /usr .
 .SH "CONFORMS TO"
-The Linux filesystem standard, Release 1.2
+The layout of this file system generally follows System V
+conventions.
 .SH BUGS
 This list is not exhaustive; different systems may be configured
 differently.
 .SH "SEE ALSO"
-.BR find (1),
-.BR ln (1),
-.BR mount (1), 
-.BR proc (5),
-The Linux Filesystem Standard
+.BR find "(1), " ln "(1), " mount (1)

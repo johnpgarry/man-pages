@@ -1,0 +1,125 @@
+.\"
+.\" Copyright (c) 1995 Jochen Karrer <cip307@cip.physik.uni-wuerzburg.de>
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.TH KERNEL_STAT 9 "SEPTEMBER 1995" "Linux 1.2.13" "Kernel Reference Guide"
+.SH NAME
+kernel_stat
+\- Internal data structure for Kernel statistics. 
+.SH SYNOPSIS
+.nf  
+.B #include <linux/kernel_stat.h>
+
+.B struct kernel_stat {
+.B        unsigned int cpu_user, cpu_nice, cpu_system;
+.B        unsigned int dk_drive[DK_NDRIVE];
+.B        unsigned int pgpgin, pgpgout;
+.B        unsigned int pswpin, pswpout;
+.B        unsigned int interrupts[16];
+.B        unsigned int ipackets, opackets;
+.B        unsigned int ierrors, oerrors;
+.B        unsigned int collisions;
+.B        unsigned int context_swtch;
+.B };
+.fi
+
+.SH DESCRIPTION
+.I kernel_stat 
+is a collection of fields for kernels statistics. 
+The  only
+variable of this type in the kernel is named
+.IR "kstat".  
+The contents of this struct is available in the proc filesystem
+with \'cat /proc/stat\'.
+
+The first three members of the struct are the times the processor was
+in a certain mode. They are incremented by the timer interrupt in
+linux/kernel/sched.c. 
+All times are in 1/100 sec for i386. 
+The mode is read from the registers on the stack. 
+
+.I kstat.cpu_user
+is the time  the processor was in User 
+mode running a task with
+a priority >= 15 ( nice <=0 ), since the system was booted.
+
+.I kstat.cpu_nice
+is the time  the processor was in User mode
+running a task with a priority < 15 ( nice >0 ), since
+the system was booted.
+
+.I kstat.cpu_system
+is the time the processor was in Kernel mode, running a task 
+which is not the idle task. 
+
+There is no field available for the idle time. The idle time can be calculated
+bye substracting the above times from the time since system is running.
+This is done for example in 
+.IR "get_kstat()" " in linux/fs/proc/array.c "
+
+.I kstat.dk_drive[]
+is for counting the number of requests to the disk-drives 0-3 since booting.
+The fields are common to the SCSI and IDE disks. So for example dk_drive[0]
+will be incremented by requests  
+to /dev/hda* and to /dev/sda*. The source for this  is in
+.IR "add_request()" " in"
+linux/drivers/block/ll_rw_blk.c. 
+
+.I kstat.pgpgin
+is incremented by one for every read-request added to the request list by ll_rw_block()
+in linux/drivers/block/ll_rw_page.c, and
+.I kstat.pgpgout 
+is incremented by one for every write-request. ll_rw_swap_file() and
+ll_rw_page() also add requests, but these are not counted. 
+
+ 
+.IR "kstat.pswpin"
+is incremented by one if a page gets swaped in, and   
+.I kstat.pswpout 
+is incremented by one if a page gets swapped out.
+See rw_swap_page() in linux/mm/swap.c.
+
+.I kstat.interrupts[]
+is for counting hardware interrupts, The corresponding field is incremented 
+before the handler is called. The i386 has sixteen interrupt  channels.
+(See linux/arch/i386/kernel/irq.c). 
+\'cat /proc/stat\' lists all interrupt counts, and more detailed information
+about interrupts, which have currently a 
+handler can be listed with \'cat /proc/interrupts\'. 
+
+
+.IR "kstat.ipackets" ", " "kstat.opackets" ", " "kstat.ierrors" 
+.RI ", " "kstat.oerrors" " and " "kstat.collisions" "
+are not used in Kernel 1.2, so they are not available in /proc/stat. 
+They are intended for network statistics.
+
+.I context_swtch
+is incremented by one before a context switch in schedule(). (linux/kernel/sched.c)
+
+.SH FILES
+.nf
+.B /proc/stat
+.B /proc/interrupts
+.fi
+
+.SH AUTHOR
+Linus Torvalds, Karl Keyte  and many others 

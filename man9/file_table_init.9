@@ -1,0 +1,34 @@
+.\" -*- nroff -*-
+.\"
+.\" Copyright 1993 by Dan Miner (dminer@nyx.cs.du.edu)
+.\"
+.\"  Permission is granted to freely distribute or modify this file
+.\"  for the purpose of improving Linux or its documentation efforts.
+.\"  If you modify this file, please put a date stamp and HOW you
+.\"  changed this file.  Thanks.   -DM
+.\"
+.\" $Id: file_table_init.9,v 1.1 1993/07/13 05:01:29 dminer Exp $
+.\"
+.TH FILE_TABLE_INIT 9 "July 9, 1993" "Linux 0.99.10" "Kernel Reference Guide"
+.SH NAME
+file_table_init \- initializes the file table in the kernel
+.SH SYNOPSIS
+.nf
+linux/fs/file_table.c
+
+unsigned long file_table_init(unsigned long \fIstart\fP, unsigned long \fIend\fP);
+.fi
+.SH DESCRIPTION
+This routine is called from \fIkernel_start\fP() in linux/init/main.c.  It
+sets \fIfirst_file\fP, a \fBstruct file\fP pointer, to NULL.  This is the
+head of the linked list of open files maintained in the kernel, the infamous
+file table in all UNIXs.
+.SH "RETURN VALUE"
+Returns \fIstart\fP
+.SH NOTES
+Since this is part of the kernel's startup routine, it has the option to 
+allocate memory, in kernel space, for itself.  It does not need to do
+this and returns the \fInew\fP start of memory for the next initializing
+section.  In this case, \fIstart\fP is returned unmodified.
+.SH AUTHOR
+Linus Torvalds

@@ -1,0 +1,87 @@
+.\"
+.\" Copyright (c) 1995 Jochen Karrer
+.\"                     <cip307@cip.physik.uni-wuerzburg.de>
+.\"                     <http://cip.physik.uni-wuerzburg.de/~cip307>
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.TH PLUG_DEVICE 9 "OCTOBER 1995" "Linux 1.2.13" "Kernel Reference Guide"
+.SH NAME
+plug_device, unplug_device
+\- Insert and remove dummy requests from a request queue.
+.SH SYNOPSIS
+.nf  
+
+.B #include <linux/blkdev.h>
+
+.B "static void plug_device(struct blk_dev_struct * dev, 
+.B "            	    struct request * plug);
+.B static void unplug_device(struct blk_dev_struct * dev);
+
+.fi
+.SH DESCRIPTION
+There is a linked list of requests for every blockdevice. A new
+request will be sorted into the list, and then the request function
+of the device driver will be called. But if there are no outstanding requests,
+the call to the request function would cause the requests being processed
+before the others are linked into the list, so the request function of
+device drivers is prevented from processing by a dummy request.
+.RS
+.RE
+
+
+.B plug_device()
+.RS
+inserts a dummy request to the request list of a device if there
+is currently no outstanding request in the queue.
+This prevents the requests from beeing started before they are
+sorted, because a blockdevice driver
+has to return from the request function without processing such a
+request. 
+This is done  by
+filling the invalid device number -1 and the invalid command -1 to the
+.RI "request pointed to by " "plug" ". In Kernel 1.3.28 or newer rq_status" 
+will be set to 
+.I RQ_INACTIVE 
+(see request(9)).
+
+.RE
+
+.B unplug_device()
+.RS
+.RI "If there is a dummy request for the device pointed to by " "dev",
+it will be removed from the request list, 
+and the outstanding requests will be processed.
+.RI
+
+.SH SOURCES
+linux/drivers/block/ll_rw_block.c
+
+.SH BUGS
+Block device drivers have to test if the request is aktive. I think
+this is not necessary, because this could be tested before calling
+the request function. 
+ 
+.SH AUTHOR
+Linus Torvalds
+
+.SH SEE ALSO
+request(9), make_request(9), add_request(9), get_request(9)

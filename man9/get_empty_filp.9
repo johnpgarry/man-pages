@@ -1,0 +1,39 @@
+.\" -*- nroff -*-
+.\"
+.\" Copyright 1993 by Dan Miner (dminer@nyx.cs.du.edu)
+.\"
+.\"  Permission is granted to freely distribute or modify this file
+.\"  for the purpose of improving Linux or its documentation efforts.
+.\"  If you modify this file, please put a date stamp and HOW you
+.\"  changed this file.  Thanks.   -DM
+.\"
+.\" $Id: get_empty_filp.9,v 1.1 1993/07/13 05:01:29 dminer Exp $
+.\"
+.TH GET_EMPTY_FILP 9 "July 12, 1993" "Linux 0.99.10" "Kernel Reference Guide"
+.SH NAME
+get_empty_filp \- fetches an unreferenced entry from the file table
+.SH SYNOPSIS
+.nf
+linux/fs/file_table.c
+
+struct file *get_empty_filp(void);
+.fi
+.SH DESCRIPTION
+This routine will seek out an entry that is not being referenced
+by any processes.  If none are found then it will add new entries
+to the file table, minimum of \fINR_FILE\fP entries.
+.SH NOTES
+Due to grow_files(), a whole page of entries is created at one time.
+This may make more than \fINR_FILE\fP entries.  Also when an
+unreferenced entry is found, it is moved to the ``end'' of the
+file table.  This heuristic is used to hopefully speed up finding
+unreferenced entries.
+.SH "RETURN VALUE"
+.IP "NULL" 1.0i
+No entries were found and the file table is full.
+.PP
+Returns a pointer to the entry in the file table.
+.SH AUTHOR
+Linus Torvalds
+.SH "SEE ALSO"
+.IR grow_files (9)
