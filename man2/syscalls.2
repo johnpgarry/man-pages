@@ -116,7 +116,7 @@ oldfstat, oldlstat, oldolduname, oldstat, olduname,
 open(2),
 pause(2),
 personality(2),
-phys(2),
+phys,
 pipe(2),
 prof, profil,
 ptrace(2),
@@ -195,9 +195,11 @@ Of the above, 5 are obsolete, namely
 oldfstat, oldlstat, oldolduname, oldstat and olduname
 (see also obsolete(2)),
 and 11 are unimplemented, namely
-afs_syscall, break, ftime, gtty, lock, mpx, phys(2), prof, profil,
+afs_syscall, break, ftime, gtty, lock, mpx, phys, prof, profil,
 stty and ulimit (see also unimplemented(2)).
 However, ftime(3), profil(3) and ulimit(3) exist as library routines.
+The slot for phys is in use since 2.1.116 for umount2;
+phys will never be implemented.
 
 Roughly speaking, the code belonging to the system call
 with number __NR_xxx defined in

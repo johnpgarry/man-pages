@@ -21,56 +21,48 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Tue Oct 22 17:53:56 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Fri Jun 19 10:59:15 1998 by Andries Brouwer <aeb@cwi.nl>
 .TH SEMCTL 2 "November 1, 1993" "Linux 0.99.13" "Linux Programmer's Manual" 
 .SH NAME
 semctl \- semaphore control operations
 .SH SYNOPSIS
 .nf
 .B
-# include <sys/types.h>
+#include <sys/types.h>
 .B
-# include <sys/ipc.h>
+#include <sys/ipc.h>
 .B
-# include <sys/sem.h>
+#include <sys/sem.h>
+
+#if defined(__GNU_LIBRARY__) && !defined(_SEM_SEMUN_UNDEFINED)
+/* union semun is defined by including <sys/sem.h> */
+#else
+/* according to X/OPEN we have to define it ourselves */
+union semun {
+        int val;                    /* value for SETVAL */
+        struct semid_ds *buf;       /* buffer for IPC_STAT, IPC_SET */
+        unsigned short int *array;  /* array for GETALL, SETALL */
+        struct seminfo *__buf;      /* buffer for IPC_INFO */
+};
+#endif
 .fi
 .sp
-.BI "int semctl ( int " semid ,
-.BI "int " semnun ,
+.BI "int semctl (int " semid ,
+.BI "int " semnum ,
 .BI "int " cmd ,
-.BI "union semun " arg " )"
+.BI "union semun " arg )
 .SH DESCRIPTION
 The function performs the control operation specified by
 .I cmd
 on the semaphore set (or on the
-.IR sumun -nth
+.IR semnum -th
 semaphore of the set) identified by
 .IR semid .
 The first semaphore of the set is indicated by a value
 .B 0
 for
-.IR semun .
+.IR semnum .
 .PP
-The type of
-.I arg
-is the union
-.sp
-.B
-union semun {
-.br
-.B
-	int val;
-/* used for SETVAL only */	
-.br
-.B
-	struct semid_ds *buf;
-/* for IPC_STAT and IPC_SET */
-.br
-.B
-	ushort *array;	
-/* used for GETALL and SETALL */
-.br
-.B
-};
 .sp
 Legal values for
 .I cmd
@@ -79,7 +71,7 @@ are
 .B IPC_STAT
 Copy info from the semaphore set data structure
 into the structure pointed to by
-.IB arg .buf .
+.IB arg .buf \fR.
 The argument
 .I semnum
 is ignored.
@@ -129,7 +121,7 @@ is ignored.
 Return
 .B semval
 for all semaphores of the set into
-.IB arg .array .
+.IB arg .array \fR.
 The argument
 .I semnum
 is ignored.
@@ -139,12 +131,12 @@ The calling process must have read access privileges on the semaphore set.
 The system call returns the value of
 .B semncnt
 for the
-.IR semno \-th
+.IR semnum \-th
 semaphore of the set
 (i.e. the number of processes waiting for an increase of
 .B semval
 for the
-.IR semno \-th
+.IR semnum \-th
 semaphore of the set).
 The calling process must have read access privileges on the semaphore set.
 .TP
@@ -152,12 +144,12 @@ The calling process must have read access privileges on the semaphore set.
 The system call returns the value of
 .B sempid
 for the
-.IR semno \-th
+.IR semnum \-th
 semaphore of the set
 (i.e. the pid of the process that executed the last
 .B semop
 call for the
-.IR semno \-th
+.IR semnum \-th
 semaphore of the set).
 The calling process must have read access privileges on the semaphore set.
 .TP
@@ -165,7 +157,7 @@ The calling process must have read access privileges on the semaphore set.
 The system call returns the value of
 .B semval
 for the
-.IR semno \-th
+.IR semnum \-th
 semaphore of the set.
 The calling process must have read access privileges on the semaphore set.
 .TP
@@ -173,12 +165,12 @@ The calling process must have read access privileges on the semaphore set.
 The system call returns the value of
 .B semzcnt
 for the
-.IR semno \-th
+.IR semnum \-th
 semaphore of the set
 (i.e. the number of processes waiting for
 .B semval
 of the
-.IR semno \-th
+.IR semnum \-th
 semaphore of the set to become 0).
 The calling process must have read access privileges on the semaphore set.
 .TP

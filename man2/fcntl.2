@@ -25,7 +25,7 @@
 .\"
 .\" Modified Sat Jul 24 13:39:26 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Sep 26 21:47:21 1995 by Andries Brouwer <aeb@cwi.nl>
-.\" and once more on 960413.
+.\" and again on 960413 and 980804.
 .\"
 .TH FCNTL 2 "26 September 1995" Linux "Linux Programmer's Manual"
 .SH NAME
@@ -136,6 +136,12 @@ or
 Like
 .BR F_SETLK ,
 but instead of returning an error we wait for the lock to be released.
+If a signal that is to be caught is received while
+.IR fcntl ()
+is waiting, it is interrupted and returns immediately
+(with return value \-1 and
+.I errno
+set to EINTR).
 .TP
 .B F_GETOWN
 Get the process ID or process group currently receiving SIGIO
@@ -173,7 +179,7 @@ POSIX has asynchronous I/O and the
 structure to achieve similar things.
 
 .SH "RETURN VALUE"
-The return value depends on the operation:
+For a successful call, the return value depends on the operation:
 .TP 0.9i
 .B F_DUPFD
 The new descriptor.
@@ -186,6 +192,13 @@ Value of flags.
 .TP
 .B F_GETOWN
 Value of descriptor owner.
+.TP
+.BR F_SETFD ,
+.BR F_SETFL ,
+.BR F_GETLK ,
+.BR F_SETLK ,
+.BR F_SETLKW
+Some value different from \-1.
 .PP
 On error, \-1 is returned, and
 .I errno
@@ -200,11 +213,14 @@ Operation is prohibited because the file has been memory-mapped by
 another process.
 .TP
 .B EDEADLK
-Specified write lock operation would cause a deadlock.
+It was detected that the specified F_SETLKW command would cause a deadlock.
 .TP
 .B EBADF
 .I fd
 is not an open file descriptor.
+.TP
+.B EINTR
+The F_SETLKW command was interrupted by a signal.
 .TP
 .B EINVAL
 For

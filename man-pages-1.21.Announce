@@ -1,29 +1,30 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.20.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.21.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+
+and in addition section 1 man pages for the fileutils-3.16 utilities.
 
 
-Differences from version 1.19:
+Differences from version 1.20:
 
-    The man pages
+    The man page
 
-	create_module.2, delete_module.2, init_module.2, query_module.2,
-	get_kernel_syms.2
+	phys.2
 
-	fstab.5 nfs.5 exports.5
-
-    have been removed since they belong to other packages.
+    have been removed since phys will never be implemented.
     
     The man pages
 
-	_llseek.2 _newselect.2 _sysctl.2 clone.2 fcntl.2 getsid.2
-	intro.2 llseek.2 rename.2 stat.2 syscalls.2 sysinfo.2
+	chgrp.1 chmod.1 chown.1 cp.1 dd.1 df.1 dircolors.1
+	du.1 install.1 ln.1 ls.1 mkdir.1 mkfifo.1 mknod.1
+	mv.1 rm.1 rmdir.1 touch.1
 
-	getopt.3 glob.3 opendir.3 popen.3 profil.3 regex.3 setlocale.3
-	system.3 ulimit.3
+	accept.2 fcntl.2 lchown.2 semctl.2 syscalls.2 umask.2 wait4.2
 
-	glob.7 regex.7
+	catgets.3 errno.3
+
+	suffixes.7
 
     are new or have been updated.  Typographical or grammatical errors
     have been corrected in several other places.

@@ -7,8 +7,11 @@
 MANDIR=/usr/man
 
 GZIP=gzip -9
+BZIP2=bzip2 -9
 
 all: screen remove gz install
+
+allbz: screen remove bz2 install
 
 screen:
 	mkdir not_installed
@@ -27,6 +30,9 @@ remove:
 
 gz:
 	for i in man?; do $(GZIP) $$i/*; done
+
+bz2:
+	for i in man?; do $(BZIP2) $$i/*; done
 
 install:
 	for i in man?; do \

@@ -1,0 +1,134 @@
+.\" Copyright Andries Brouwer, Ragnar Hojland Espinosa and A. Wik, 1998.
+.\"
+.\" This file may be copied under the conditions described
+.\" in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998
+.\" that should have been distributed together with this file.
+.\"
+.TH DU 1 "August 1998" "GNU fileutils 3.16"
+.SH NAME
+du \- estimate file space usage
+.SH SYNOPSIS
+.BI "du [" options "] [" file... ]
+.sp
+POSIX options:
+.B [\-askx]
+.sp
+GNU options (shortest form):
+.B [\-abchklmsxDLS]
+.B "[\-\-help] [\-\-version] [\-\-]"
+.SH DESCRIPTION
+.B du
+reports the amount of disk space used by the specified files,
+and by each directory in the hierarchies rooted at the
+specified files.
+Here `disk space used' means space used for the entire
+file hierarchy below the specified file.
+.PP
+With no arguments,
+.B du
+reports the disk space for the current directory.
+.SH "POSIX DETAILS"
+The output is in 512-byte units by default, but in
+1024-byte units when the \-k option is given.
+.SH "GNU DETAILS"
+The output is in 1024-byte units (when no units are
+specified by options), unless the environment variable
+.B POSIXLY_CORRECT
+is set, in which case POSIX is followed.
+.SH "POSIX OPTIONS"
+.TP
+.B "\-a"
+Show counts for all files encountered, not just directories.
+.TP
+.B "\-k"
+Use 1024-byte units instead of the default 512-byte units.
+.TP
+.B "\-s"
+Only output space usage for the actual arguments given,
+not for their subdirectories.
+.TP
+.B "\-x"
+Only count space on the same device as the argument given.
+.SH "GNU OPTIONS"
+.TP
+.B "\-a, \-\-all"
+Show counts for all files, not just directories.
+.TP
+.B "\-b, \-\-bytes"
+Print sizes in bytes, instead of kilobytes.
+.TP
+.B "\-c, \-\-total"
+Print a grand total of all arguments after all arguments have been
+processed.  This can be used to find out the total disk usage of a
+given set of files or directories.
+.TP
+.B "\-D, \-\-dereference\-args"
+Dereference symbolic links that are command line arguments.  Does
+not affect other symbolic links.  This is helpful for finding out
+the disk usage of directories, such as
+.IR /usr/tmp ,
+which are often symbolic links.
+.TP
+.B "\-h, \-\-human\-readable"
+Append a size letter, such as
+.B M
+for megabytes, to each size.
+.TP
+.B "\-k, \-\-kilobytes"
+Print sizes in kilobytes.
+.TP
+.B "\-l, \-\-count\-links"
+Count the size of all files, even if they have appeared already
+(as a hard link).
+.TP
+.B "\-L, \-\-dereference"
+Dereference symbolic links (show the disk space used by the file
+or directory that the link points to instead of the space used by
+the link).
+.TP
+.B "\-m, \-\-megabytes"
+Print sizes in megabyte (that 1,048,576 bytes) blocks.
+.TP
+.B "\-s, \-\-summarize"
+Display only a total for each argument.
+.TP
+.B "\-S, \-\-separate\-dirs"
+Report the size of each directory separately, not including the
+sizes of subdirectories.
+.TP
+.B "\-x, \-\-one\-file\-system"
+Skip directories that are on different filesystems from the one
+that the argument being processed is on.
+.SH "GNU STANDARD OPTIONS"
+.TP
+.B "\-\-help"
+Print a usage message on standard output and exit successfully.
+.TP
+.B "\-\-version"
+Print version information on standard output, then exit successfully.
+.TP
+.B "\-\-"
+Terminate option list.
+.SH BUGS
+On BSD systems,
+.B du
+reports sizes that are half the correct values
+for files that are NFS-mounted from HP-UX systems.  On HP-UX systems,
+it reports sizes that are twice the correct values for files that are
+NFS-mounted from BSD systems.  This is due to a flaw in HP-UX; it also
+affects the HP-UX
+.B du
+program.
+.SH ENVIRONMENT
+The variable POSIXLY_CORRECT determines the choice of unit.
+The variables LANG, LC_ALL, LC_CTYPE and LC_MESSAGES have the
+usual meaning.
+.SH "CONFORMING TO"
+POSIX 1003.2
+.SH NOTES
+This page describes
+.B du
+as found in the fileutils-3.16 package;
+other versions may differ slightly. Mail corrections and additions to
+aeb@cwi.nl and aw@mail1.bet1.puv.fi and ragnar@lightside.ddns.org .
+Report bugs in the program to fileutils-bugs@gnu.ai.mit.edu.

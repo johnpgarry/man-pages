@@ -120,6 +120,7 @@ or by calling
 The call returns \-1 on error.  If it succeeds, it returns a non-negative
 integer that is a descriptor for the accepted socket.
 .SH ERRORS
+The BSD man page documents five possible error returns.
 .TP
 .B EBADF
 The descriptor is invalid.
@@ -139,10 +140,25 @@ parameter is not in a writable part of the user address space.
 .B EWOULDBLOCK
 The socket is marked non-blocking and no connections are
 present to be accepted.
+.LP
+Various Linux kernels can return various other errors such as
+.BR EMFILE ,
+.BR EINVAL ,
+.BR ENOSR ,
+.BR ENOBUFS ,
+.BR EAGAIN ,
+.BR EPERM ,
+.BR ECONNABORTED ,
+.BR ESOCKTNOSUPPORT ,
+.BR EPROTONOSUPPORT ,
+.BR ETIMEDOUT ,
+.BR ERESTARTSYS .
 .SH CONFORMING TO
 SVr4, 4.4BSD (the
 .B accept
-function first appeared in BSD 4.2).  SVr4 documents an additional
-EOPNOTSUPP error condition.
+function first appeared in BSD 4.2).
+IRIX documents additional errors EMFILE and ENFILE.
+Solaris documents additional errors EINTR, ENODEV, ENOMEM,
+ENOSR and EPROTO.
 .SH "SEE ALSO"
 .BR bind "(2), " connect "(2), " listen "(2), " select "(2), " socket (2)

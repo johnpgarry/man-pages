@@ -20,28 +20,20 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH CATGETS 3 "29 November 1993"
+.\" Updated, aeb, 980809
+.TH CATGETS 3 "9 August 1998"
 .SH NAME
 catgets \- get message from a message catalog
 .SH SYNOPSIS
 .LP
 .nf
 .ft B
-#include <features.h>
-.br
 #include <nl_types.h>
 .ft
 .fi
 .LP
-.nf
-.ft B
-char *catgets(catalog, set_number, message_number, message)
-nl_catd catalog;
-int set_number;
-int message_number;
-char *message;
-.ft
-.fi
+.BI "char *catgets(nl_catd " catalog ", int " set_number ,
+.BI "int " message_number ", const char *" message );
 .SH DESCRIPTION
 .IX "catgets" "" "\fLcatgets\fR \(em read a program message" ""
 .LP
@@ -73,18 +65,22 @@ containing the null-terminated message string.
 On failure,
 .B catgets(\|)
 returns the value
-.I message
-if it fails because the message catalog specified by
-.I catalog
-is not available. On the other hand,
-.B catgets(\|)
-returns an empty string if the message catalog
-is available but does not contain the specified message.
+.IR message .
 .SH NOTES
 These functions are only available in libc.so.4.4.4c and above.
-The two possible error returns seem to be discarded in XPG4.2
+The Jan 1987 X/Open Portability Guide specifies a more subtle
+error return:
+.I message
+is returned if the message catalog specified by
+.I catalog
+is not available, while an empty string is returned
+when the message catalog is available but does not contain
+the specified message.
+These two possible error returns seem to be discarded in XPG4.2
 in favour of always returning
 .IR message .
+.SH "CONFORMING TO"
+XPG4.2
 .SH SEE ALSO
 .BR catopen (3),
 .BR setlocale (3)
