@@ -32,7 +32,7 @@ They have the form:
 _syscall\fIX\fP(\fItype\fP,\fIname\fP,\fIatype\fP,\fIa\fP)
 .RS
 .HP 1.0i
-where \fIX\fP is 0-5, which are the number of arguments taken by the 
+where \fIX\fP is 0\(en5, which are the number of arguments taken by the 
 system call
 .HP
 \fItype\fP is the return type of the system call
@@ -101,7 +101,7 @@ create one, especially for C++ users.
 .sp
 System calls are not required to return only positive or negative error
 codes.  You need to read the source to be sure how it will return errors.
-Usually, it is the negative of a standard error code.  ie.  -EPERM.
+Usually, it is the negative of a standard error code.  i.e., \-EPERM.
 .sp
 Some system calls require more than six arguments, these are handle
 differently.  And at this moment I don't know how... *smile*

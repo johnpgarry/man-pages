@@ -14,12 +14,12 @@ vhangup \- virtually \*(lqhangup\*(rq the current tty
 simulates a hangup on the current terminal.  This call arranges for other
 users to have a \*(lqclean\*(rq tty at login time.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
 .TP 0.8i
 .B EPERM
 The user is not the super-user.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR init (8)

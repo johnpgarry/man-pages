@@ -29,7 +29,7 @@ both names refer to the same file (and so have the same permissions
 and ownership) and it is impossible to tell which name was the
 `original'.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -102,12 +102,12 @@ Hard links, as created by
 cannot span filesystems. Use
 .B symlink
 if this is required.
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 SVID, AT&T, POSIX, BSD 4.3
 .SH BUGS
 See
 .BR open (2)
 re multiple files with the same name, and NFS.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR symlink "(2), " unlink "(2), " rename "(2), " open (2),
 .BR stat "(2), " ln "(1), " link (8).

@@ -2,29 +2,42 @@
 .\"
 .\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
 .\" May be distributed under the GNU General Public License
-.TH GETHOSTID 2 "23 July1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.\" Updated with additions from Mitchum DSouza (m.dsouza@mrc-apu.cam.ac.uk)
+.\" Portions Copyright 1993 Mitchum DSouza (m.dsouza@mrc-apu.cam.ac.uk)
+.\" May be distributed under the GNU General Public License
+.TH GETHOSTID 2 "29 November 1993" "Linux 0.99.13" "Linux Programmer's Manual"
 .SH NAME
-gethostid, sethostid \- get/set host's Internet number [NOT IMPLEMENTED]
+gethostid, sethostid \- get or set the unique identifier of the current host
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
 .B long int gethostid(void);
 .br
-.BR "int sethostid(long int " id )
+.BR "int sethostid(long int " hostid )
 .SH DESCRIPTION
-.BR WARNING :
-These function are not implemented in the Linux 0.99.11 kernel.
+Get or set a unique 32-bit identifier for the current machine.  The 32-bit
+identifier is intended to be unique among all UNIX systems in
+existence. This normally resembles the Internet address for the local
+machine, as returned by
+.BR gethostbyname (3),
+and thus usually never needs to be set.
 
-Get or set a unique 32-bit identifier for the current machine.
+The
+.B sethostid
+call is restricted to the superuser.
 
-Although prototypes are present in
-.IR /usr/include/unistd.h ,
-neither the 0.99.11 kernel, nor the DLL 4.4.1 libraries defines this
-function.
+The
+.I hostid
+argument is stored in the file
+.IR /etc/hostid .
+.SH RETURN VALUES
+.B gethostid
+returns the 32-bit identifier for the current host as set by
+.BR sethostid (2).
 .SH "CONFORMING TO"
 POSIX.1 does not define these functions, but ISO/IEC 9945-1:1990 mentions
-them in B.4.4.1.  In general, they deal with a 32-bit integer that is
-supposed to be unique among all machines in existence, and is often the
-Internet address of the machine.
-.SH SEE ALSO
+them in B.4.4.1.
+.SH FILES
+.I /etc/hostid
+.SH "SEE ALSO"
 .BR hostid "(1), " gethostbyname (3)

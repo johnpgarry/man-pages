@@ -104,9 +104,9 @@ with
 .I flags
 equal to
 .BR O_CREAT|O_WRONLY|O_TRUNC .
-.SH RETURN VALUE
+.SH "RETURN VALUE"
 .BR open " and " creat
-return the new file descriptor, or -1 if an error occurred (in which case,
+return the new file descriptor, or \-1 if an error occurred (in which case,
 .I errno
 is set appropriately).
 .SH ERRORS
@@ -173,7 +173,7 @@ whose expansion contains a reference to itself.
 was to be created but the device containing
 .I pathname
 has no room for the new file.
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH BUGS
 Currently (as of Linux 0.99pl7) all the normal filesystems sometime
@@ -189,7 +189,7 @@ is not currently implemented (as of Linux 0.99pl7).
 There are many infelicities in the protocol underlying NFS, affecting
 amongst others
 .BR O_SYNC ", " O_EXCL ", " O_NDELAY " and " O_APPEND .
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR read "(2), " write "(2), " fcntl "(2), " close (2),
 .BR unlink "(2), " mknod "(2), " stat "(2), " umask (2),
 .BR mount "(2), " socket "(2), " socket "(2), " fopen (3).

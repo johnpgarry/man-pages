@@ -70,7 +70,7 @@ except that multiple buffers are written out.
 .SH "RETURN VALUES"
 The
 .B readv()
-function returns the number of bytes or -1 on error; the
+function returns the number of bytes or \-1 on error; the
 .B writev()
 function returns the number of bytes written.
 .SH "ERRORS"
@@ -111,5 +111,5 @@ It is not advisable to mix calls to functions like
 .BR readv() " or " writev() ,
 which operate on file descriptors, with the functions from the stdio
 library; the results will be undefined and probably not what you want.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR read "(2), " write (2)

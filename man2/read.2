@@ -25,9 +25,9 @@ bytes from file descriptor
 .I fd
 into the buffer starting at
 .I buf.
-.SH RETURN VALUE
+.SH "RETURN VALUE"
 On success, the number of bytes read are returned (zero indicated end of
-file).  On error, -1 is returned, and
+file).  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -60,7 +60,7 @@ Other errors may occur, depending on the object connected to
 .IR fd .
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR readdir "(2), " write "(2), " write "(2), " fcntl "(2), " close "(2), "
 .BR lseek "(2), "
 .BR select "(2), " readlink "(2), " ioctl "(2), " fread (3).

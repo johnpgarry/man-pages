@@ -36,7 +36,7 @@ If
 .I oldpath
 refers to a symbolic link the link is renamed.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -122,7 +122,7 @@ whose expansion contains a reference to itself.
 .B ENOSPC
 The device containing the file has no room for the new directory
 entry.
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 POSIX, BSD 4.3, ANSI C
 .SH BUGS
 Currently (Linux 0.99pl7) most of the filesystems except Minix will
@@ -137,5 +137,5 @@ See
 re multiple files with the same name, and NFS; see
 .BR unlink (2)
 re NFS.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR link "(2), " unlink "(2), " symlink "(2), " mv "(1), " link (8).

@@ -91,7 +91,7 @@ received from (see
 If no messages are available at the socket, the receive call waits for a
 message to arrive, unless the socket is nonblocking (see
 .BR fcntl (2))
-in which case the value -1 is returned and the external variable
+in which case the value \-1 is returned and the external variable
 .I errno
 set to
 .BR EWOULDBLOCK .
@@ -226,7 +226,7 @@ buffer for ancillary data.
 is returned to indicate that expedited or out-of-band data were received.
 
 .SH "RETURN VALUES"
-These calls return the number of bytes received, or -1
+These calls return the number of bytes received, or \-1
 if an error occurred.
 .SH ERRORS
 .TP 0.8i

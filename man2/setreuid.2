@@ -51,8 +51,8 @@ arguments.  Unprivileged users may change the real user ID to the
 effective user ID and vice-versa; only the super-user may make other
 changes.
 
-Supplying a value of -1 for either the real or effective user ID forces
-the system to substitute the current ID in place of the -1 parameter.
+Supplying a value of \-1 for either the real or effective user ID forces
+the system to substitute the current ID in place of the \-1 parameter.
 .SH "NOTES FROM KERNEL SOURCE"
 In Linux 0.99.11, unprivileged users may change the real user ID to the
 effective uid or vice versa.  (BSD-style)
@@ -68,7 +68,7 @@ will be 100% compatible with BSD.  A program which uses just
 .B setuid
 will be 100% compatible with POSIX w/ Saved ID's.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -83,5 +83,5 @@ The
 function call appeared in BSD 4.2.
 .SH "CONFORMING TO"
 BSD 4.3
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR getuid "(2), " setuid (2)

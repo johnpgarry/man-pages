@@ -1,0 +1,63 @@
+.\" Copyright 1993 Giorgio Ciucci (giorgio@crcc.it)
+.\" May be distributed under the GNU General Public License.
+.TH FTOK 3 "November 1, 1993" "Linux 0.99.13" "Linux Programmer's Manual" 
+.SH NAME
+ftok \- convert a pathname and a project identifier to a System V IPC key
+.SH SYNOPSIS
+.nf
+.B
+# include <sys/types.h>
+.B
+# include <sys/ipc.h>
+.fi
+.sp
+.BI "key_t ftok ( char *" pathname ,
+.BI "char " proj " )"
+.SH DESCRIPTION
+The function converts the pathname of an existing accessible
+file and a project identifier into a
+.B key_t
+type System V IPC key.
+.SH "RETURN VALUE"
+On success the return value will be the converted
+.B key_t
+value,
+otherwise
+.B \-1
+with
+.B errno
+indicating the error as for the
+.BR stat (2)
+system call.
+.SH BUGS
+The generated
+.B key_t
+value is obtained
+.BR stat \-ing
+the disk file correspondig to
+.I pathname
+in order to get its i\-node number and the minor device number of the
+filesystem on which the disk file resides,
+then by combining the 8 bit
+.I proj
+value along with the the lower 16 bits of the i\-node number,
+along with the 8 bits of the minor device number.
+The algorithm does not guarantee a unique key value.
+In fact
+.IP \(bu
+Two different names linking to the same file produce same
+key values.
+.IP \(bu
+Using the lower 16 bits of the i\-node number, gives some
+chance (also usually small) to have same key values for file names
+referring to different i\-nodes.
+.IP \(bu
+Not discriminating among major device numbers,
+gives some chance of collision (also usually small) for
+systems with multiple disk controllers.
+.SH "SEE ALSO"
+.BR ipc (5),
+.BR msgget (2),
+.BR semget (2),
+.BR shmget (2),
+.BR stat (2).

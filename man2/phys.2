@@ -21,7 +21,7 @@ phys \- allow a process to access physical addresses [NOT IMPLEMENTED]
 .SH DESCRIPTION
 .BR WARNING :
 Since this function is not implemented as of Linux 0.99.11, it will always
-return -1 and set
+return \-1 and set
 .I errno
 to
 .BR ENOSYS .
@@ -40,7 +40,7 @@ is rounded up to the next MMU resolution boundary.  If \fIsize\fP is
 zero, any previous \fBphys\fP(2) mapping for that \fIphsynum\fP is
 nullified.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH "CONFORMING TO"

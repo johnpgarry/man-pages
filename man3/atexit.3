@@ -24,7 +24,7 @@ from the program's \fBmain\fP.  Functions so registered are called in
 the reverse order of their registration; no arguments are passed.
 .SH "RETURN VALUE"
 The \fBatexit()\fP function returns the value 0 if successful; otherwise
-the value -1 is returned and the global variable \fIerrno\fP is set to
+the value \-1 is returned and the global variable \fIerrno\fP is set to
 indicate the error.
 .SH "ERRORS"
 .TP 
@@ -32,5 +32,5 @@ indicate the error.
 Insufficient memory available to add the function.
 .SH "CONFORMING TO"
 SVID 3, BSD 4.3, ISO 9899 
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR exit "(3), " on_exit (3)

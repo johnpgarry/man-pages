@@ -27,10 +27,10 @@ is returned to the parent process as the process's exit status, and
 can be collected using one of the
 .B wait
 family of calls.
-.SH RETURN VALUE
+.SH "RETURN VALUE"
 .B _exit
 never returns.
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH NOTES
 .B _exit
@@ -39,6 +39,6 @@ does not call any functions registered with the ANSI C
 function and does not flush standard I/O buffers. To do these things,
 use
 .BR exit (3).
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR fork "(2), " execve "(2), " waitpid "(2), " wait4 "(2), " kill "(2), "
 .BR wait "(3), " exit (3)

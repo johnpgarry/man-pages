@@ -110,8 +110,8 @@ while the process is active (always true for
 the signal will be delivered immediately when generated.  Otherwise the
 delivery will be offset by a small time dependant on the system loading.
 .LP
-.SH RETURN VALUE
-On success, zero is returned.  On error, -1 is returned, and
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -129,7 +129,7 @@ is not one of
 .BR ITIMER_VIRT ,
 or
 .BR ITIMER_PROF .
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR gettimeofday (2),
 .BR sigaction (2),
 .BR signal (2).

@@ -92,11 +92,11 @@ written into the gap).
 
 Some devices are incapable of seeking.  The value of the pointer
 associated with such a device is undefined.
-.SH RETURN VALUES
+.SH "RETURN VALUES"
 Upon successful completion,
 .B lseek
 returns the resulting offset location as measured in bytes from the
-begining of the file.  Otherwise, a value of -1 is returned and
+begining of the file.  Otherwise, a value of \-1 is returned and
 .I errno
 is set to indicate the error.
 .SH ERRORS
@@ -118,5 +118,5 @@ POSIX, BSD 4.3
 This document's use of
 .I whence
 is incorrect English, but maintained for historical reasons.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR dup "(2), " open "(2), " fseek (3)

@@ -81,7 +81,7 @@ is returned, and the message is not transmitted.
 
 No indication of failure to deliver is implicit in a
 .BR send .
-Locally detected errors are indicated by a return value of -1.
+Locally detected errors are indicated by a return value of \-1.
 
 If no messages space is available at the socket to hold the message to be
 transmitted, then
@@ -119,8 +119,8 @@ See
 for a description of the
 .I msghdr
 structure.
-.SH RETURN VALUES
-The call returns the number of characters sent, or -1
+.SH "RETURN VALUES"
+The call returns the number of characters sent, or \-1
 if an error occurred.
 .SH ERRORS
 .TP 0.8i

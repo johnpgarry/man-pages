@@ -83,12 +83,12 @@ linux/xia_fs.h:   _XIAFS_SUPER_MAGIC    0x012FD16D
 .fi
 .RE
 .PP
-Fields that are undefined for a particular file system are set to -1.
+Fields that are undefined for a particular file system are set to \-1.
 .B Fstatfs
 returns the same information about an open file referenced by descriptor
 .IR fd .
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS

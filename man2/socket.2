@@ -146,7 +146,7 @@ The communications protocols used to implement a
 insure that data is not lost or duplicated.  If a piece of data for which
 the peer protocol has buffer space cannot be successfully transmitted
 within a reasonable length of time, then the connection is considered
-broken and calls will indicate an error with -1 returns and with
+broken and calls will indicate an error with \-1 returns and with
 .B ETIMEDOUT
 as the specific code in the global variable
 .IR errno .
@@ -193,8 +193,8 @@ These options are defined in the file
 and
 .BR getsockopt (2)
 are used to set and get options, respectively.
-.SH RETURN VALUES
-A -1 is returned if an error occurs, otherwise the return value is a
+.SH "RETURN VALUES"
+A \-1 is returned if an error occurs, otherwise the return value is a
 descriptor referencing the socket.
 .SH ERRORS
 .TP 0.8i
@@ -219,7 +219,7 @@ created until sufficient resources are freed.
 The
 .B socket
 function call appeared in BSD 4.2.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR accept "(2), " bind "(2), " connect "(2), " getprotoent "(3), "
 .BR getsockname "(2), " getsockopt "(2), " ioctl "(2), " listen "(2), "
 .BR read "(2), " recv "(2), " select "(2), " send "(2), " shutdown "(2), "

@@ -53,9 +53,9 @@ does not append a
 .B NUL
 character to
 .IR buf .
-.SH RETURN VALUES
+.SH "RETURN VALUES"
 The call returns the count of characters placed in the buffer
-if it succeeds, or a -1 if an error occurs, placing the error
+if it succeeds, or a \-1 if an error occurs, placing the error
 code in the global variable
 .IR errno .
 .SH ERRORS
@@ -92,5 +92,5 @@ extends outside the process's allocated address space.
 The
 .B readlink
 function call appeared in BSD 4.2.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR stat "(2), " lstat "(2), " symlink (2)

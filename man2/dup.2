@@ -36,9 +36,9 @@ uses the lowest-numbered unused descriptor for the new descriptor.
 .B dup2
 .RI "makes " newfd " be the copy of " oldfd ", closing " oldfd
 first if necessary.
-.SH RETURN VALUE
+.SH "RETURN VALUE"
 .BR dup " and " dup2
-return the new descriptor, or -1 if an error occurred (in which case,
+return the new descriptor, or \-1 if an error occurred (in which case,
 .I errno
 is set appropriately).
 .SH ERRORS
@@ -65,7 +65,7 @@ also sometimes returns
 .B EINVAL
 like
 .BR F_DUPFD .
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR F_DUPFD "(2), " fcntl "(2), " open "(2), " close (2).

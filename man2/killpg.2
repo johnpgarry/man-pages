@@ -61,7 +61,7 @@ special case the continue signal
 .B SIGCONT
 may be sent to any process that is a descendant of the current process.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .Sh ERRORS
@@ -86,5 +86,5 @@ sending process.
 The
 .B killpg
 function call appeared in BSD4.0.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR kill "(2), " getpgrp "(2), " signal (2)

@@ -1,21 +1,23 @@
 .\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Thu May 20 20:45:48 MET DST 1993
 .\" This file may be distributed under the GNU General Public License.
 .\" Modified Sat Jul 24 17:11:07 1993 by Rik Faith (faith@cs.unc.edu)
-.TH SHELLS 5 "May 20, 1993" "" "Linux Programmer's Manual"
+.\" Modified Sun Nov 21 10:49:38 1993 by Michael Haardt
+.TH SHELLS 5 "November 21, 1993" "" "Linux Programmer's Manual"
 .SH NAME
 shells \- pathnames of valid login shells
 .SH DESCRIPTION
 .B /etc/shells
 is a text file which contains the full pathnames of valid login shells.
 .SH EXAMPLES
-.B /etc/shells may contain the following paths:
+.B /etc/shells
+may contain the following paths:
 .sp
 .RS
-/bin/sh
+.B /bin/sh
 .br
-/bin/csh
+.B /bin/csh
 .RE
 .SH FILES
 /etc/shells
 .SH "SEE ALSO"
-.BR chsh (1)
+chsh(1)

@@ -23,7 +23,7 @@ acct \- switch process accounting on or off
 .SH DESCRIPTION
 .BR WARNING :
 Since this function is not implemented as of Linux 0.99.11, it will always
-return -1 and set
+return \-1 and set
 .I errno
 to
 .BR ENOSYS .
@@ -35,7 +35,7 @@ turned on, records for each terminating process are appended to
 \fIfilename\fP as it terminates.  An argument of \fBNULL\fP causes
 accounting to be turned off.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH NOTES

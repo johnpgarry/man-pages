@@ -18,7 +18,7 @@ rmdir \- delete a directory
 .B rmdir
 deletes a directory, which must be empty.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -81,11 +81,11 @@ refers to a file on a read-only filesystem.
 .I pathname
 contains a reference to a circular symbolic link, ie a symbolic link
 containing a reference to itself.
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 SVID, AT&T, POSIX, BSD 4.3
 .SH BUGS
 Infelicities in the protocol underlying NFS can cause the unexpected
 disappearance of directories which are still being used.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR rename "(2), " mkdir "(2), " chdir "(2), " unlink (2),
 .BR rmdir "(1), " rm (1)

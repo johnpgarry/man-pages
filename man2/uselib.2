@@ -15,7 +15,7 @@ uselib \- select shared library
 \fBuselib\fP selects the shared library binary that will be used by
 this processes.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -35,5 +35,5 @@ The library specified by
 is not readable.
 .SH "CONFORMING TO"
 \fBuselib()\fP is Linux specific.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR open "(2), mmap "(2), " ldd "(1), " gcc "(1), " ar "(1), " ld (1)

@@ -44,7 +44,7 @@ and
 .BR fork (2)
 do not create multiple instances of a lock.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -61,6 +61,6 @@ is implemented as a call to
 Please see
 .BR fcntl (2)
 for more details on errors.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR open "(2), " close "(2), " dup "(2), " execve "(2), " fcntl "(2), "
 .BR fork "(2), "

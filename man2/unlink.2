@@ -30,7 +30,7 @@ If the name referred to a socket, fifo or device the name for it is
 removed but processes which have the object open may continue to use
 it.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -77,11 +77,11 @@ Insufficient kernel memory was available.
 .B EROFS
 .I pathname
 refers to a file on a read-only filesystem.
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH BUGS
 Infelicities in the protocol underlying NFS can cause the unexpected
 disappearance of files which are still being used.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR link "(2), " rename "(2), " open "(2), " rmdir (2),
 .BR " mknod "(2), " mkfifo "(3), remove "(3), " rm "(1), " unlink (8).

@@ -21,7 +21,7 @@ reading the group database \fI/etc/group\fP and using all groups of
 which \fIuser\fP is a member.  The additional group \fIgroup\fP is
 also added to the list.
 .SH "RETURN VALUE"
-The \fBinitgroups()\fP function returns 0 on success, or -1 if an error
+The \fBinitgroups()\fP function returns 0 on success, or \-1 if an error
 occurs.
 .SH "ERRORS"
 .TP
@@ -36,5 +36,5 @@ Insufficient memory to allocate group information structure.
 .fi
 .SH "CONFORMING TO"
 SVID 3, BSD 4.3
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR getgroups "(2), " setgroups (2)

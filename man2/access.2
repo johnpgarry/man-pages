@@ -50,7 +50,7 @@ file.  Similarly, a DOS file may be found to be "executable," but the
 .BR execve (2)
 call will still fail.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -87,7 +87,7 @@ Insufficient kernel memory was available.
 .I pathname
 contains a reference to a circular symbolic link, i.e., a symbolic link
 containing a reference to itself.
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH BUGS
 .IR Important! " Currently (as of Linux 0.99pl11) the " real
@@ -96,6 +96,6 @@ uid and gid are only used when checking access to the final component of
 the checks on any intervening directories are made using the
 .I effective
 ids.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR stat "(2), " open "(2), " chmod "(2), " chown "(2), "
 .BR setuid "(2), " setgid (2).

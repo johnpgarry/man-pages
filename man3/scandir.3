@@ -34,7 +34,7 @@ alphabetical order.  Its parameters are the two directory entries,
 \fIa\fP and \fIb\fP, to compare.
 .SH "RETURN VALUE"
 The \fBscandir()\fP function returns the number of directory entries
-selected or -1 if an error occurs.
+selected or \-1 if an error occurs.
 .PP
 The \fBalphasort()\fP function returns an integer less than, equal to, 
 or greater than zero if the first argument is considered to be 
@@ -43,8 +43,8 @@ respectively less than, equal to, or greater than the second.
 .TP
 .B ENOMEM
 Insufficient memory to complete the operation.
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 BSD 4.3
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR opendir "(3), " readdir "(3), " closedir "(3), " rewinddir (3),
 .BR telldir "(3), " seekdir (3)

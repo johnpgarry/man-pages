@@ -75,7 +75,7 @@ A zero value of
 .I who
 denotes the current process, process group, or user.
 .I Prio
-is a value in the range -20 to 20.  The default priority is 0;
+is a value in the range \-20 to 20.  The default priority is 0;
 lower priorities cause more favorable scheduling.
 
 The
@@ -85,19 +85,19 @@ enjoyed by any of the specified processes.  The
 .B setpriority
 call sets the priorities of all of the specified processes
 to the specified value.  Only the super-user may lower priorities.
-.SH RETURN VALUES
+.SH "RETURN VALUES"
 Since
 .B getpriority
-can legitimately return the value -1, it is necessary
+can legitimately return the value \-1, it is necessary
 to clear the external variable
 .Va errno
 prior to the
 call, then check it afterward to determine
-if a -1 is an error or a legitimate value.
+if a \-1 is an error or a legitimate value.
 The
 .B setpriority
 call returns 0 if there is no error, or
--1 if there is.
+\-1 if there is.
 .SH ERRORS
 .TP 0.8i
 .B ESRCH

@@ -154,15 +154,15 @@ domain and in parent domains.  This option is used by
 .BR gethostbyname (3).
 [Enabled by default].
 .SH "RETURN VALUE"
-The \fBres_init()\fP function returns 0 on success, or -1 if an error
+The \fBres_init()\fP function returns 0 on success, or \-1 if an error
 occurs.
 .PP
 The \fBres_query()\fP, \fBres_search()\fP, \fBres_querydomain()\fP,
 \fBres_mkquery()\fP and \fBres_send()\fP functions return the length
-of the response, or -1 if an error occurs.
+of the response, or \-1 if an error occurs.
 .PP
 The \fBdn_comp()\fP and \fBdn_expand()\fP functions return the length
-of the compressed name, or -1 if an error occurs.
+of the compressed name, or \-1 if an error occurs.
 .SH FILES
 .nf
 /etc/resolv.conf          resolver configuration file
@@ -170,5 +170,5 @@ of the compressed name, or -1 if an error occurs.
 .fi
 .SH "CONFORMING TO"
 BSD 4.3
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR gethostbyname "(3), " hostname "(7), " named "(8), " resolv+ (8)

@@ -1,7 +1,11 @@
 .\" Copyright (c) 1993 Luigi P. Bai (lpb@softint.com) July 28, 1993
 .\" May be distributed under the GNU General Public License.
 .\" Modified Wed Jul 28 11:03:24 1993, Rik Faith (faith@cs.unc.edu)
-.TH SHMCTL 2 "July 28, 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.\" Modified Sun Nov 28 16:43:30 1993, Rik Faith (faith@cs.unc.edu)
+.\"          with material from Giorgio Ciucci (giorgio@crcc.it)
+.\" Portions Copyright 1993 Giorgio Ciucci (giorgio@crcc.it)
+.\" May be distributed under the GNU General Public License.
+.TH SHMCTL 2 "November 28, 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 shmctl \- shared memory control
 .SH SYNOPSIS
@@ -57,21 +61,27 @@ struct ipc_perm
 .PP
 The following \fIcmds\fP are available:
 .br
-.TP 0.8i
+.TP 12
 .B IPC_STAT
 is used to copy the information about the shared memory segment into
 the buffer \fIbuf\fP. The user must have \fBread\fP access to the 
 shared memory segment.
 .TP
 .B IPC_SET
-is used to apply the changes the user has made to the
-\fIuid\fP, \fIgid\fP, or \fImode\fP members of the \fIshm_perms\fP field.
-The user must be the owner, creator, or the super-user.
+is used to apply the changes the user has made to the \fIuid\fP, \fIgid\fP,
+or \fImode\fP members of the \fIshm_perms\fP field.  Only the lowest 9 bits
+of \fImode\fP are used.  The
+.I shm_ctime
+member is also updated.  The user must be the owner, creator, or the
+super-user.
 .TP
 .B IPC_RMID
 is used to mark the segment as destroyed. It will actually be destroyed
-after the last detach.
-The user must be the owner, creator, or the super-user.
+after the last detach.  (I.e., when the
+.I shm_nattch
+member of the associated structure
+.I shmid_ds
+is zero.)  The user must be the owner, creator, or the super-user.
 .PP
 The user \fImust\fP ensure that a segment is eventually destroyed; otherwise
 its pages that were faulted in will remain in memory or swap.
@@ -79,7 +89,7 @@ its pages that were faulted in will remain in memory or swap.
 In addition, the \fBsuper-user\fP can prevent or allow swapping of a shared
 memory segment with the following \fIcmds\fP: (Linux only)
 .br
-.TP 0.8i
+.TP 12
 .B SHM_LOCK
 prevents swapping of a shared memory segment. The user must fault in
 any pages that are required to be present after locking is enabled.
@@ -87,7 +97,17 @@ any pages that are required to be present after locking is enabled.
 .B SHM_UNLOCK
 allows the shared memory segment to be swapped out.
 .PP
-.SH SYSTEM CALLS
+The
+.BR IPC_INFO ,
+.BR SHM_STAT
+and
+.B SHM_INFO
+control calls are used by the
+.BR ipcs (1)
+program to provide information on allocated resources.  In the future,
+these man be modified as needed or moved to a proc file system interface.
+.PP
+.SH "SYSTEM CALLS"
 .TP
 .B fork()
 After a
@@ -105,15 +125,27 @@ Upon
 all attached shared memory segments are detached (not destroyed).
 .PP
 .SH "RETURN VALUE"
-0 is returned on success, -1 on error.
+0 is returned on success, \-1 on error.
 .SH ERRORS
-.TP 0.8i
+On error,
+.B errno
+will be set to one of the following:
+.TP 12
 .B EACCESS
 is returned if \fBIPC_STAT\fP is requested and
-\fIshm_perm.modes\fP does not allow read access.
+\fIshm_perm.modes\fP does not allow read access for
+.IR msqid .
 .TP
 .B EFAULT
-is returned if \fIbuf\fP is not accessible.
+The argument
+.I cmd
+has value
+.B IPC_SET
+or
+.B IPC_STAT
+but the address pointed to by
+.I buf
+isn't accessible.
 .TP
 .B EINVAL
 is returned if \fIshmid\fP is not a valid identifier, or \fIcmd\fP
@@ -126,5 +158,5 @@ is returned if \fIshmid\fP points to a removed identifier.
 is returned if \fBIPC_SET\fP or \fBIPC_RMID\fP is attempted, and the
 user is not the creator, the owner, or the super-user, and the user
 does not have permission granted to their group or to the world.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR shmget "(2), " shmop (2)

@@ -68,7 +68,7 @@ that must be deleted by the caller when it is no longer needed (using
 The rules used in name binding vary between communication domains.  Consult
 the manual entries in section 4 for detailed information.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -125,6 +125,6 @@ contains a circular reference (i.e., via a symbolic link)
 The
 .B bind
 function call appeared in BSD 4.2.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR accept "(2), " connect "(2), " listen "(2), "
 .BR socket "(2), " getsockname (2)

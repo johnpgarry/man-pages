@@ -26,7 +26,7 @@ will probably crash the system, and is not recommended.
 
 The I/O privilege level for a normal process is 0.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -42,5 +42,5 @@ The current user is not the super-user.
 has to be used when you want to access the I/O ports beyond the 0x3ff
 range: to get the full 65536 ports bitmapped you'd need 8kB of
 bitmaps/process, which is a bit excessive.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR ioperm (2)

@@ -71,7 +71,7 @@ multiple times to change their association.  Datagram sockets may dissolve
 the association by connecting to an invalid address, such as a null
 address.
 .SH "RETURN VALUE"
-If the connection or binding succeeds, zero is returned.  On error, -1 is
+If the connection or binding succeeds, zero is returned.  On error, \-1 is
 returned, and
 .I errno
 is set appropriately.
@@ -81,6 +81,6 @@ See the Linux kernel source code for details.
 The
 .B connect
 function call first appeared in BSD 4.2.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR accept "(2), " bind "(2), " listen "(2), "
 .BR socket "(2), " getsokname (2)

@@ -6,8 +6,9 @@
 .\" Public Licence. It comes with NO WARRANTY.
 .\"
 .\" Modified Sat Jul 24 13:35:59 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sun Nov 28 17:19:01 1993 by Rik Faith (faith@cs.unc.edu)
 .\"
-.TH WRITE 2 "24 July 1993" Linux "Linux Programmer's Manual"
+.TH WRITE 2 "28 November 1993" Linux "Linux Programmer's Manual"
 .SH NAME
 write \- write to a file descriptor
 .SH SYNOPSIS
@@ -15,7 +16,7 @@ write \- write to a file descriptor
 .br
 .B #include <unistd.h>
 .sp
-.BI "int write(int " fd ", const char *" buf ", size_t " count );
+.BI "ssize_t write(int " fd ", const char *" buf ", size_t " count );
 .SH DESCRIPTION
 .B write
 writes up to
@@ -24,9 +25,9 @@ bytes from file descriptor
 .I fd
 from the buffer starting at
 .I buf.
-.SH RETURN VALUE
+.SH "RETURN VALUE"
 On success, the number of bytes written are returned (zero indicated end of
-file).  On error, -1 is returned, and
+file).  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -71,7 +72,7 @@ Other errors may occur, depending on the object connected to
 .IR fd .
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR open "(2), " read "(2), " fcntl "(2), " close (2),
 .BR lseek "(2), "
 .BR select "(2), " ioctl "(2), " fwrite (3).

@@ -1,0 +1,97 @@
+.\" Copyright (c) 1990, 1991 The Regents of the University of California.
+.\" All rights reserved.
+.\"
+.\" This code is derived from software contributed to Berkeley by
+.\" Chris Torek and the American National Standards Committee X3,
+.\" on Information Processing Systems.
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\" 3. All advertising materials mentioning features or use of this software
+.\"    must display the following acknowledgement:
+.\"	This product includes software developed by the University of
+.\"	California, Berkeley and its contributors.
+.\" 4. Neither the name of the University nor the names of its contributors
+.\"    may be used to endorse or promote products derived from this software
+.\"    without specific prior written permission.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+.\" SUCH DAMAGE.
+.\"
+.\"     @(#)fread.3	6.6 (Berkeley) 6/29/91
+.\"
+.\" Converted for Linux, Mon Nov 29 15:37:33 1993, faith@cs.unc.edu
+.\"
+.TH FREAD 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
+.SH NAME
+fread, fwrite \- binary stream input/output
+.SH SYNOPSIS
+.B #include <stdio.h>
+.sp
+.BI "int fread( void *" ptr ", size_t " size ", size_t " nmemb ,
+.BI "FILE *" stream );
+.sp
+.BI "int fwrite( void *" ptr ", size_t " size ", size_t " nmemb ,
+.BI "FILE *" stream );
+.SH DESCRIPTION
+The function
+.B fread
+reads
+.I nmemb
+elements of data, each
+.I size
+bytes long, from the stream pointed to by
+.IR stream ,
+storing them at the location given by
+.IR ptr .
+.PP
+The function
+.B fwrite
+writes
+.I nmemb
+elements of data, each
+.I size
+bytes long, to the stream pointed to by
+.IR stream ,
+obtaining them from the location given by
+.IR ptr .
+.SH "RETURN VALUES"
+The functions
+.B fread
+and
+.B fwrite
+advance the file position indicator for the stream by the number of
+characters successfully read or written and return that number.  If an
+error occurs, or the end-of-file is reached, the return value is a short
+character count (or zero).
+.PP
+The function
+.B fread
+does not distinguish between end-of-file and error, and callers must use
+.BR feof (3)
+and
+.BR ferror (3)
+to determine which occurred.
+.SH "SEE ALSO"
+.BR read "(2), " write (2)
+.SH STANDARDS
+The functions
+.B fread
+and
+.B fwrite
+conform to ANSI C3.159-1989 (``ANSI C'').

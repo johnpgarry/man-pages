@@ -65,7 +65,7 @@ may receive an error with an indication of
 or, if the underlying protocol supports retransmission, the request may be
 ignored so that retries may succeed.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -92,5 +92,5 @@ The
 .I backlog
 is currently limited (silently) to 5. [Documenter's note: is this true for
 Linux?]
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR accept "(2), " connect "(2), " socket (2)

@@ -45,7 +45,7 @@ exists it will
 .I not
 be overwritten.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -108,12 +108,12 @@ Deleting the name referred to by a symlink will actually delete the
 file (unless it also has other hard links). If this behaviour is not
 desired, use
 .BR link .
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 SVID, AT&T, POSIX, BSD 4.3
 .SH BUGS
 See
 .BR open (2)
 re multiple files with the same name, and NFS.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR link "(2), " unlink "(2), " rename "(2), " open (2),
 .BR lstat "(2), " ln "(1), " link (8).
