@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "vi" P 2003 POSIX
+.TH "VI" P 2003 POSIX
 .\" vi 
 .SH NAME
-vi - screen-oriented (visual) display editor
+vi \- screen-oriented (visual) display editor
 .SH SYNOPSIS
 .LP
 \fBvi\fP \fB[\fP\fB-rR\fP\fB][\fP\fB-c\fP \fIcommand\fP\fB][\fP\fB-t\fP
@@ -15,7 +15,7 @@ POSIX2_CHAR_TERM symbol. On other systems it is optional.
 .LP
 The \fIvi\fP (visual) utility is a screen-oriented text editor. Only
 the open and visual modes of the editor are described in
-IEEE\0Std\01003.1-2001; see the line editor \fIex\fP for additional
+IEEE\ Std\ 1003.1-2001; see the line editor \fIex\fP for additional
 editing
 capabilities used in \fIvi\fP. The user can switch back and forth
 between \fIvi\fP and \fIex\fP and execute \fIex\fP commands from within
@@ -40,28 +40,28 @@ an error message such as "not an editor command" or
 report a syntax error. The implementation may either accept the commands
 and produce results on the screen that are the result of
 an unsuccessful attempt to meet the requirements of this volume of
-IEEE\0Std\01003.1-2001 or report an error describing the
+IEEE\ Std\ 1003.1-2001 or report an error describing the
 terminal-related deficiency.
 .SH OPTIONS
 .LP
 The \fIvi\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
-\fB-c\0\fP \fIcommand\fP
+.TP 7
+\fB-c\ \fP \fIcommand\fP
 See the \fIex\fP command description of the \fB-c\fP option.
-.TP
+.TP 7
 \fB-r\fP
 See the \fIex\fP command description of the \fB-r\fP option.
-.TP
+.TP 7
 \fB-R\fP
 See the \fIex\fP command description of the \fB-R\fP option.
-.TP
-\fB-t\0\fP \fItagstring\fP
+.TP 7
+\fB-t\ \fP \fItagstring\fP
 See the \fIex\fP command description of the \fB-t\fP option.
-.TP
-\fB-w\0\fP \fIsize\fP
+.TP 7
+\fB-w\ \fP \fIsize\fP
 See the \fIex\fP command description of the \fB-w\fP option.
 .sp
 .SH OPERANDS
@@ -129,7 +129,7 @@ and \fIvi\fP initialization for the \fIvi\fP utility.
 .LP
 The following symbols are used in this reference page to represent
 arguments to commands.
-.TP
+.TP 7
 \fIbuffer\fP
 See the description of \fIbuffer\fP in the EXTENDED DESCRIPTION section
 of the \fIex\fP
@@ -138,7 +138,7 @@ utility; see \fICommand Descriptions in ex\fP .
 In open and visual mode, when a command synopsis shows both [ \fIbuffer\fP]
 and [ \fIcount\fP] preceding the command name,
 they can be specified in either order.
-.TP
+.TP 7
 \fIcount\fP
 A positive integer used as an optional argument to most commands,
 either to give a repeat count or as a size. This argument is
@@ -151,7 +151,7 @@ The Synopsis lines for the \fIvi\fP commands <control>-G, <control>-L,
 \fIcount\fP as an optional argument. Regardless, it shall not be an
 error to specify a \fIcount\fP to these commands, and any
 specified \fIcount\fP shall be ignored.
-.TP
+.TP 7
 \fImotion\fP
 An optional trailing argument used by the \fB!\fP, \fB<\fP, \fB>\fP,
 \fBc\fP, \fBd\fP, and \fBy\fP commands, which
@@ -202,18 +202,18 @@ command, the effect shall be multiplicative.
 .LP
 The following symbols are used in this section to specify locations
 in the edit buffer:
-.TP
-\fIcurrent\0character\fP
+.TP 7
+\fIcurrent\ character\fP
 .sp
 The character that is currently indicated by the cursor.
-.TP
-\fIend\0of\0a\0line\fP
+.TP 7
+\fIend\ of\ a\ line\fP
 .sp
 The point located between the last non- <newline> (if any) and the
 terminating <newline> of a line. For an empty line,
 this location coincides with the beginning of the line.
-.TP
-\fIend\0of\0the\0edit\0buffer\fP
+.TP 7
+\fIend\ of\ the\ edit\ buffer\fP
 .sp
 The location corresponding to the end of the last line in the edit
 buffer.
@@ -221,162 +221,142 @@ buffer.
 .LP
 The following symbols are used in this section to specify command
 actions:
-.TP
+.TP 7
 \fIbigword\fP
 In the POSIX locale, \fIvi\fP shall recognize four kinds of \fIbigwords\fP:
-.in +5
-.LP
+.RS
+.IP " 1." 4
 A maximal sequence of non- <blank>s preceded and followed by <blank>s
 or the beginning or end of a line or the edit
 buffer
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 One or more sequential blank lines
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The first character in the edit buffer
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The last non- <newline> in the edit buffer
-.in -5
-.TP
+.LP
+.RE
+.TP 7
 \fIword\fP
 In the POSIX locale, \fIvi\fP shall recognize five kinds of words:
-.in +5
-.LP
+.RS
+.IP " 1." 4
 A maximal sequence of letters, digits, and underscores, delimited
 at both ends by:
 .RS
-.in +5
-.LP
+.IP " *" 3
 Characters other than letters, digits, or underscores
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The beginning or end of a line
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The beginning or end of the edit buffer
-.in -5
-.RE
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 2." 4
 A maximal sequence of characters other than letters, digits, underscores,
 or <blank>s, delimited at both ends by:
 .RS
-.in +5
-.LP
+.IP " *" 3
 A letter, digit, underscore
-.in -5
-.in +5
 .LP
+.IP " *" 3
 <blank>s
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The beginning or end of a line
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The beginning or end of the edit buffer
-.in -5
+.LP
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 One or more sequential blank lines
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The first character in the edit buffer
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 The last non- <newline> in the edit buffer
-.in -5
-.TP
-\fIsection\0boundary\fP
+.LP
+.RE
+.TP 7
+\fIsection\ boundary\fP
 .sp
 A \fIsection boundary\fP is one of the following: 
-.in +5
-.LP
+.RS
+.IP " 1." 4
 A line whose first character is a <form-feed>
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 A line whose first character is an open curly brace ( \fB'{'\fP )
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 A line whose first character is a period and whose second and third
 characters match a two-character pair in the \fBsections\fP
 edit option (see \fIed\fP)
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 A line whose first character is a period and whose only other character
 matches the first character of a two-character pair in
 the \fBsections\fP edit option, where the second character of the
 two-character pair is a <space>
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 The first line of the edit buffer
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 The last line of the edit buffer if the last line of the edit buffer
 is empty or if it is a \fB]]\fP or \fB}\fP command;
 otherwise, the last non- <newline> of the last line of the edit buffer
-.in -5
-.TP
-\fIparagraph\0boundary\fP
+.LP
+.RE
+.TP 7
+\fIparagraph\ boundary\fP
 .sp
 A \fIparagraph boundary\fP is one of the following: 
-.in +5
-.LP
+.RS
+.IP " 1." 4
 A section boundary
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 A line whose first character is a period and whose second and third
 characters match a two-character pair in the
 \fBparagraphs\fP edit option (see \fIed\fP)
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 A line whose first character is a period and whose only other character
 matches the first character of a two-character pair in
 the \fIparagraphs\fP edit option, where the second character of the
 two-character pair is a <space>
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 One or more sequential blank lines
-.in -5
-.TP
-\fIremembered\0search\0direction\fP
+.LP
+.RE
+.TP 7
+\fIremembered\ search\ direction\fP
 .sp
 See the description of \fIremembered search direction\fP in \fIed\fP.
-.TP
-\fIsentence\0boundary\fP
+.TP 7
+\fIsentence\ boundary\fP
 .sp
 A \fIsentence boundary\fP is one of the following: 
-.in +5
-.LP
+.RS
+.IP " 1." 4
 A paragraph boundary
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The first non- <blank> that occurs after a paragraph boundary
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The first non- <blank> that occurs after a period ( \fB'.'\fP ), exclamation
 mark ( \fB'!'\fP ), or question mark (
 \fB'?'\fP ), followed by two <space>s or the end of a line; any number
@@ -384,7 +364,8 @@ of closing parenthesis ( \fB')'\fP ), closing
 brackets ( \fB']'\fP ), double quote ( \fB' ),'\fP or single quote
 ( \fB'"\fP ) characters can appear between the
 punctuation mark and the two <space>s or end-of-line
-.in -5
+.LP
+.RE
 .sp
 .LP
 In the remainder of the description of the \fIvi\fP utility, the term
@@ -479,70 +460,60 @@ not from the beginning of a particular display line.
 The display cursor column in the display is based on the value of
 the current column, as follows, with each rule applied in
 turn:
-.in +5
-.LP
+.IP " 1." 4
 If the current column is after the last display line column used by
 the displayed line, the display cursor column shall be set
 to the last display line column occupied by the last non- <newline>
 in the current line; otherwise, the display cursor column
 shall be set to the current column.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the character of which some portion is displayed in the display
 line column specified by the display cursor column requires
 more than a single display line column:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If in text input mode, the display cursor column shall be adjusted
 to the first display line column in which any portion of that
 character is displayed.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Otherwise, the display cursor column shall be adjusted to the last
 display line column in which any portion of that character is
 displayed.
-.in -5
-.in -5
+.LP
+.RE
+.LP
 .LP
 The current column shall not be changed by these adjustments to the
 display cursor column.
 .LP
 If an error occurs during the parsing or execution of a \fIvi\fP command:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The terminal shall be alerted. Execution of the \fIvi\fP command shall
 stop, and the cursor (for example, the current line and
 column) shall not be further modified.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Unless otherwise specified by the following command sections, it is
 unspecified whether an informational message shall be
 displayed.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Any partially entered \fIvi\fP command shall be discarded.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the \fIvi\fP command resulted from a \fBmap\fP expansion, all characters
 from that \fBmap\fP expansion shall be discarded,
 except as otherwise specified by the \fBmap\fP command (see \fIed\fP).
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the \fIvi\fP command resulted from the execution of a buffer, no
 further commands caused by the execution of the buffer
 shall be executed.
-.in -5
-.RE
+.LP
 .SS Page Backwards
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -591,7 +562,7 @@ set to ( \fIline\fP - the number of new lines displayed on this screen).
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Scroll Forward
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -622,7 +593,7 @@ edit buffer; otherwise, set to the current line + \fIcount\fP.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Scroll Forward by Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -646,7 +617,7 @@ displayed; otherwise, set to the first line displayed.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Page Forward
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -696,7 +667,7 @@ on this screen).
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Display Information
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -710,7 +681,7 @@ on this screen).
 .LP
 This command shall be equivalent to the \fIex\fP \fBfile\fP command.
 .SS Move Cursor Backwards
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -735,16 +706,14 @@ be adjusted to the number of previous characters on the
 line.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 The text region shall be from the character before the starting cursor
 up to and including the \fIcount\fPth character before
 the starting cursor.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Any text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -754,7 +723,7 @@ If not used as a motion command:
 occupied by \fIcount\fP characters ending with the
 previous current column).
 .SS Move Down
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -788,15 +757,13 @@ If there are less than \fIcount\fP lines after the current line in
 the edit buffer, it shall be an error.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 The text region shall include the starting line and the next \fIcount\fP
 - 1 lines.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Any text copied to a buffer shall be in line mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -806,7 +773,7 @@ If not used as a motion command:
 <control>-M, and \fB+\fP commands;
 otherwise, unchanged.
 .SS Clear and Redisplay
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -825,7 +792,7 @@ Otherwise, clear and redisplay the screen.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Move Up
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -847,15 +814,13 @@ If there are less than \fIcount\fP lines before the current line in
 the edit buffer, it shall be an error.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 The text region shall include the starting line and the previous \fIcount\fP
 lines.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Any text copied to a buffer shall be in line mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -864,7 +829,7 @@ If not used as a motion command:
 \fICurrent column\fP: Set to non- <blank> for the \fB-\fP command;
 otherwise, unchanged.
 .SS Redraw Screen
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -888,7 +853,7 @@ do not fit on the terminal display shall be affected.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Scroll Backward
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -915,7 +880,7 @@ set to 1; otherwise, set to the current line -
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Scroll Backward by Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -941,7 +906,7 @@ displayed; otherwise, set to the first line displayed.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Edit the Alternate File
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -956,7 +921,7 @@ This command shall be equivalent to the \fIex\fP \fBedit\fP command,
 with the alternate
 pathname as its argument. 
 .SS Terminate Command or Input Mode
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -983,7 +948,7 @@ Otherwise, it shall be an error.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Search for tagstring
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1003,21 +968,19 @@ with the argument to
 that command defined as follows.
 .LP
 If the current character is a <blank>:
-.in +5
-.LP
+.IP " 1." 4
 Skip all <blank>s after the cursor up to the end of the line.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the end of the line is reached, it shall be an error.
-.in -5
+.LP
 .LP
 Then, the argument to the \fIex\fP \fBtag\fP command shall be the
 current character and all
 subsequent characters, up to the first non-word character or the end
 of the line.
 .SS Move Cursor Forward
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1036,19 +999,17 @@ on the current line, \fIcount\fP shall be adjusted
 to the number of non- <newline>s after the cursor on the line.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If the current or \fIcount\fPth character after the cursor is the
 last non- <newline> in the line, the text region shall
 be comprised of the current character up to and including the last
 non- <newline> in the line. Otherwise, the text region
 shall be from the current character up to, but not including, the
 \fIcount\fPth character after the cursor.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Any text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -1061,7 +1022,7 @@ current line, it shall be an error.
 of the \fIcount\fPth character after the current
 character.
 .SS Replace Text with Results from Shell Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1074,28 +1035,25 @@ character.
 .sp
 .LP
 If the motion command is the \fB!\fP command repeated:
-.in +5
-.LP
+.IP " 1." 4
 If the edit buffer is empty and no \fIcount\fP was supplied, the command
 shall be the equivalent of the \fIex\fP \fB:read\fP \fB!\fP command,
 with the text input, and no text shall be copied to any
 buffer.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If there are less than \fIcount\fP -1 lines after the current line
 in the edit buffer, it shall be an error.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 The text region shall be from the current line up to and including
 the next \fIcount\fP -1 lines.
-.in -5
-.in -5
+.LP
+.RE
+.LP
 .LP
 Otherwise, the text region shall be the lines in which any character
 of the text region specified by the motion command
@@ -1107,7 +1065,7 @@ This command shall be equivalent to the \fIex\fP \fB!\fP command for
 the specified
 lines.
 .SS Move Cursor to End-of-Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1123,36 +1081,32 @@ It shall be an error if there are less than ( \fIcount\fP -1) lines
 after the current line in the edit buffer.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If \fIcount\fP is 1:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 It shall be an error if the line is empty.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Otherwise, the text region shall consist of all characters from the
 starting cursor to the last non- <newline> in the
 line, inclusive, and any text copied to a buffer shall be in character
 mode.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 2." 4
 Otherwise, if the starting cursor position is at or before the first
 non- <blank> in the line, the text region shall
 consist of the current and the next \fIcount\fP -1 lines, and any
 text saved to a buffer shall be in line mode.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Otherwise, the text region shall consist of all characters from the
 starting cursor to the last non- <newline> in the line
 that is \fIcount\fP -1 lines forward from the current line, and any
 text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -1167,7 +1121,7 @@ column of the last non- <newline> of the current line
 as subsequent commands change the current line, until a command changes
 the current column.
 .SS Move to Matching Character
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1190,31 +1144,25 @@ respectively, that was at the current position or that was found on
 the current line.
 .LP
 Matching shall be determined as follows, for an open parenthesis:
-.in +5
-.LP
+.IP " 1." 4
 Set a counter to 1.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Search forwards until a parenthesis is found or the end of the edit
 buffer is reached.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the end of the edit buffer is reached, it shall be an error.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If an open parenthesis is found, increment the counter by 1.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 If a close parenthesis is found, decrement the counter by 1.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 If the counter is zero, the current character is the matching character.
-.in -5
+.LP
 .LP
 Matching for a close parenthesis shall be equivalent, except that
 the search shall be backwards, from the starting character to
@@ -1228,8 +1176,7 @@ open and close curly braces. It is implementation-defined whether
 other characters are searched for and matched as well.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If the matching cursor was after the starting cursor in the edit buffer,
 and the starting cursor position was at or before the
 first non- <blank> non- <newline> in the starting line, and the matching
@@ -1237,9 +1184,8 @@ cursor position was at or after the last non-
 <blank> non- <newline> in the matching line, the text region shall
 consist of the current line to the matching line,
 inclusive, and any text copied to a buffer shall be in line mode.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the matching cursor was before the starting cursor in the edit
 buffer, and the starting cursor position was at or after the
 last non- <blank> non- <newline> in the starting line, and the matching
@@ -1247,13 +1193,12 @@ cursor position was at or before the first non-
 <blank> non- <newline> in the matching line, the text region shall
 consist of the current line to the matching line,
 inclusive, and any text copied to a buffer shall be in line mode.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Otherwise, the text region shall consist of the starting character
 to the matching character, inclusive, and any text copied to
 a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -1263,7 +1208,7 @@ located.
 \fICurrent column\fP: Set to the last column where any portion of
 the matching character is displayed.
 .SS Repeat Substitution
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1280,7 +1225,7 @@ to the \fIex\fP
 \fB&\fP command with the current line as its addresses, and without
 \fIoptions\fP, \fIcount\fP, or \fIflags\fP.
 .SS Return to Previous Context at Beginning of Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1295,18 +1240,16 @@ It shall be an error if there is no line in the edit buffer marked
 by \fIcharacter\fP.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If the starting cursor is after the marked cursor, then the locations
 of the starting cursor and the marked cursor in the edit
 buffer shall be logically swapped.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The text region shall consist of the starting line up to and including
 the marked line, and any text copied to a buffer shall be
 in line mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -1314,7 +1257,7 @@ If not used as a motion command:
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Return to Previous Context
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1331,19 +1274,16 @@ the saved numbered character position, it shall be as if the marked
 position is the first non- <blank>.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 It shall be an error if the marked cursor references the same character
 in the edit buffer as the starting cursor.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the starting cursor is after the marked cursor, then the locations
 of the starting cursor and the marked cursor in the edit
 buffer shall be logically swapped.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the starting line is empty or the starting cursor is at or before
 the first non- <blank> non- <newline> of the
 starting line, and the marked cursor line is empty or the marked cursor
@@ -1352,9 +1292,8 @@ the text region shall consist of all lines containing characters from
 the starting cursor to the line before the marked cursor
 line, inclusive, and any text copied to a buffer shall be in line
 mode.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Otherwise, if the marked cursor line is empty or the marked cursor
 references a character at or before the first non-
 <blank> non- <newline> of the marked cursor line, the region of text
@@ -1362,13 +1301,12 @@ shall be from the starting cursor to the last non-
 <newline> of the line before the marked cursor line, inclusive, and
 any text copied to a buffer shall be in character
 mode.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Otherwise, the region of text shall be from the starting cursor (inclusive),
 to the marked cursor (exclusive), and any text
 copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -1377,7 +1315,7 @@ If not used as a motion command:
 \fICurrent column\fP: Set to the last column in which any portion
 of the character referenced by the mark is displayed.
 .SS Return to Previous Section
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1394,30 +1332,27 @@ of the previous section boundary, \fIcount\fP
 times.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If the starting cursor was at the first character of the starting
 line or the starting line was empty, and the first character
 of the boundary was the first character of the boundary line, the
 text region shall consist of the current line up to and including
 the line where the \fIcount\fPth next boundary starts, and any text
 copied to a buffer shall be in line mode.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the boundary was the last line of the edit buffer or the last non-
 <newline> of the last line of the edit buffer, the
 text region shall consist of the last character in the edit buffer
 up to and including the starting character, and any text saved
 to a buffer shall be in character mode.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Otherwise, the text region shall consist of the starting character
 up to but not including the first character in the
 \fIcount\fPth next boundary, and any text copied to a buffer shall
 be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -1428,7 +1363,7 @@ in the edit buffer starts.
 of the first character of the \fIcount\fPth next boundary is
 displayed, or column position 1 if the line is empty.
 .SS Move to Next Section
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1444,29 +1379,26 @@ Move the cursor forward through the edit buffer to the first character
 of the next section boundary, \fIcount\fP times.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If the starting cursor was at the first character of the starting
 line or the starting line was empty, and the first character
 of the boundary was the first character of the boundary line, the
 text region shall consist of the current line up to and including
 the line where the \fIcount\fPth previous boundary starts, and any
 text copied to a buffer shall be in line mode.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the boundary was the first line of the edit buffer, the text region
 shall consist of the first character in the edit buffer
 up to but not including the starting character, and any text copied
 to a buffer shall be in character mode.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Otherwise, the text region shall consist of the first character in
 the \fIcount\fPth previous section boundary up to but not
 including the starting character, and any text copied to a buffer
 shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -1477,7 +1409,7 @@ boundary in the edit buffer starts.
 of the first character of the \fIcount\fPth previous
 boundary is displayed, or column position 1 if the line is empty.
 .SS Move to First Non-<blank> Position on Current Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1489,30 +1421,26 @@ boundary is displayed, or column position 1 if the line is empty.
 .RE
 .sp
 If used as a motion command: 
-.in +5
-.LP
+.IP " 1." 4
 If the line has no non- <blank> non- <newline>s, or if the cursor
 is at the first non- <blank> non-
 <newline> of the line, it shall be an error.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the cursor is before the first non- <blank> non- <newline> of the
 line, the text region shall be comprised of the
 current character, up to, but not including, the first non- <blank>
 non- <newline> of the line.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the cursor is after the first non- <blank> non- <newline> of the
 line, the text region shall be from the
 character before the starting cursor up to and including the first
 non- <blank> non- <newline> of the line.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Any text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -1520,7 +1448,7 @@ If not used as a motion command:
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Current and Line Above
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1536,20 +1464,17 @@ If there are less than \fIcount\fP -1 lines after the current line
 in the edit buffer, it shall be an error.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If \fIcount\fP is less than 2, the text region shall be the current
 line.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, the text region shall include the starting line and the
 next \fIcount\fP -1 lines.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Any text copied to a buffer shall be in line mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -1557,7 +1482,7 @@ If not used as a motion command:
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Move Back to Beginning of Sentence
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1573,7 +1498,7 @@ Move backward to the beginning of a sentence. This command shall be
 equivalent to the \fB[[\fP command, with the exception that
 sentence boundaries shall be used instead of section boundaries.
 .SS Move Forward to Beginning of Sentence
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1589,7 +1514,7 @@ Move forward to the beginning of a sentence. This command shall be
 equivalent to the \fB]]\fP command, with the exception that
 sentence boundaries shall be used instead of section boundaries.
 .SS Move Back to Preceding Paragraph
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1606,7 +1531,7 @@ shall be equivalent to the \fB[[\fP command, with the
 exception that paragraph boundaries shall be used instead of section
 boundaries.
 .SS Move Forward to Next Paragraph
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1623,7 +1548,7 @@ shall be equivalent to the \fB]]\fP command, with the
 exception that paragraph boundaries shall be used instead of section
 boundaries.
 .SS Move to Specific Column Position
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1645,30 +1570,26 @@ shall be adjusted to be the last column in which any portion of the
 line is displayed on the screen.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If the line is empty, or the cursor character is the same as the character
 on the \fIcount\fPth column of the line, it shall be
 an error.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the cursor is before the \fIcount\fPth column of the line, the
 text region shall be comprised of the current character, up
 to but not including the character on the \fIcount\fPth column of
 the line.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the cursor is after the \fIcount\fPth column of the line, the text
 region shall be from the character before the starting
 cursor up to and including the character on the \fIcount\fPth column
 of the line.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Any text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -1678,7 +1599,7 @@ If not used as a motion command:
 of the character that is displayed in the \fIcount\fP column
 of the line is displayed.
 .SS Reverse Find Character
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1699,7 +1620,7 @@ search character.
 If there was no previous \fBF\fP, \fBf\fP, \fBT\fP, or \fBt\fP command,
 it shall be an error.
 .SS Repeat
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1738,24 +1659,20 @@ buffer logically incremented by 1.
 .LP
 If the repeated character is a text input command, the input text
 associated with that command is repeated literally:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Input characters are neither macro or abbreviation-expanded.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Input characters are not interpreted in any special way with the exception
 that <newline>, <carriage-return>, and
 <control>-T behave as described in Input Mode Commands in vi .
-.in -5
-.RE
+.LP
 .LP
 \fICurrent line\fP: Set as described for the repeated command.
 .LP
 \fICurrent column\fP: Set as described for the repeated command.
 .SS Find Regular Expression
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1820,31 +1737,26 @@ characters than <blank>s.
 The remembered search direction shall be set to forward.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 It shall be an error if the last match references the same character
 in the edit buffer as the starting cursor.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If any address offset is specified, the last match shall be adjusted
 by the specified offset as described previously.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the starting cursor is after the last match, then the locations
 of the starting cursor and the last match in the edit buffer
 shall be logically swapped.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If any address offset is specified, the text region shall consist
 of all lines containing characters from the starting cursor to
 the last match line, inclusive, and any text copied to a buffer shall
 be in line mode.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Otherwise, if the starting line is empty or the starting cursor is
 at or before the first non- <blank> non-
 <newline> of the starting line, and the last match line is empty or
@@ -1853,23 +1765,21 @@ match line, the text region shall consist of all lines containing
 characters from the starting cursor to the line before the last
 match line, inclusive, and any text copied to a buffer shall be in
 line mode.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 Otherwise, if the last match line is empty or the last match begins
 at a character at or before the first non- <blank>
 non- <newline> of the last match line, the region of text shall be
 from the current cursor to the last non- <newline>
 of the line before the last match line, inclusive, and any text copied
 to a buffer shall be in character mode.
-.in -5
-.in +5
 .LP
+.IP " 7." 4
 Otherwise, the region of text shall be from the current cursor (inclusive),
 to the first character of the last match
 (exclusive), and any text copied to a buffer shall be in character
 mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -1881,7 +1791,7 @@ unchanged.
 of the first character in the last matched string is
 displayed, if a match is found; otherwise, unchanged.
 .SS Move to First Character in Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1897,20 +1807,17 @@ shall not be interpreted as a command if it is
 immediately preceded by a digit.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If the cursor character is the first character in the line, it shall
 be an error.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The text region shall be from the character before the cursor character
 up to and including the first character in the line.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Any text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -1920,7 +1827,7 @@ If not used as a motion command:
 first character in the line is displayed, or if the line is
 empty, unchanged.
 .SS Execute an ex Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1949,7 +1856,7 @@ and \fIvi\fP shall return to command mode.
 .LP
 \fICurrent column\fP: As specified for the \fIex\fP command.
 .SS Repeat Find
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1967,7 +1874,7 @@ and with the same search character used for the last \fBF\fP, \fBf\fP,
 \fBT\fP, or \fBt\fP command. If there was no previous
 \fBF\fP, \fBf\fP, \fBT\fP, or \fBt\fP command, it shall be an error.
 .SS Shift Left
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1979,16 +1886,14 @@ and with the same search character used for the last \fBF\fP, \fBf\fP,
 .sp
 .LP
 If the motion command is the \fB<\fP command repeated:
-.in +5
-.LP
+.IP " 1." 4
 If there are less than \fIcount\fP -1 lines after the current line
 in the edit buffer, it shall be an error.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The text region shall be from the current line, up to and including
 the next \fIcount\fP -1 lines.
-.in -5
+.LP
 .LP
 Shift any line in the text region specified by the \fIcount\fP and
 motion command one shiftwidth (see the \fIex\fP \fBshiftwidth\fP option)
@@ -2004,7 +1909,7 @@ region specified by the motion command.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Shift Right
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2016,16 +1921,14 @@ region specified by the motion command.
 .sp
 .LP
 If the motion command is the \fB>\fP command repeated:
-.in +5
-.LP
+.IP " 1." 4
 If there are less than \fIcount\fP -1 lines after the current line
 in the edit buffer, it shall be an error.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The text region shall be from the current line, up to and including
 the next \fIcount\fP -1 lines.
-.in -5
+.LP
 .LP
 Shift any line with characters in the text region specified by the
 \fIcount\fP and motion command one shiftwidth (see the \fIex\fP \fBshiftwidth\fP
@@ -2041,7 +1944,7 @@ region specified by the motion command.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Scan Backwards for Regular Expression
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2056,29 +1959,25 @@ region specified by the motion command.
 Scan backwards; the \fB?\fP command shall be equivalent to the \fB/\fP
 command (see Find Regular
 Expression ) with the following exceptions:
-.in +5
-.LP
+.IP " 1." 4
 The input prompt shall be a \fB'?'\fP .
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Each search shall begin from the character before the first character
 of the last match (or, if it is the first search, the
 character before the cursor character).
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The search direction shall be from the cursor toward the beginning
 of the edit buffer, and the \fBwrapscan\fP edit option shall
 affect whether the search wraps to the end of the edit buffer and
 continues.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The remembered search direction shall be set to backward.
-.in -5
+.LP
 .SS Execute
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2110,7 +2009,7 @@ buffer were entered.
 .LP
 \fICurrent column\fP: As specified for the individual commands.
 .SS Reverse Case
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2144,7 +2043,7 @@ character after the cursor.
 of the ( \fIcount\fP-1)th character after the cursor is
 displayed.
 .SS Append
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2165,7 +2064,7 @@ command. A \fIcount\fP shall cause the input text to be appended \fIcount\fP
 (see Input Mode Commands in
 vi ).
 .SS Append at End-of-Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2189,7 +2088,7 @@ This command shall be equivalent to the \fIvi\fP command:
 .LP
 (see Append ).
 .SS Move Backward to Preceding Word
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2205,7 +2104,7 @@ With the exception that words are used as the delimiter instead of
 bigwords, this command shall be equivalent to the \fBB\fP
 command.
 .SS Move Backward to Preceding Bigword
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2224,16 +2123,14 @@ edit buffer, \fIcount\fP shall be adjusted to the number of
 bigword beginnings between the cursor and the start of the edit buffer.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 The text region shall be from the first character of the \fIcount\fPth
 previous bigword beginning up to but not including the
 cursor character.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Any text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -2243,7 +2140,7 @@ If not used as a motion command:
 the first character of the \fIcount\fPth previous bigword
 is displayed.
 .SS Change
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2255,20 +2152,17 @@ is displayed.
 .sp
 .LP
 If the motion command is the \fBc\fP command repeated:
-.in +5
-.LP
+.IP " 1." 4
 The buffer text shall be in line mode.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If there are less than \fIcount\fP -1 lines after the current line
 in the edit buffer, it shall be an error.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The text region shall be from the current line up to and including
 the next \fIcount\fP -1 lines.
-.in -5
+.LP
 .LP
 Otherwise, the buffer text mode and text region shall be as specified
 by the motion command.
@@ -2280,55 +2174,48 @@ is in line mode, the replaced text shall be copied into the
 numeric buffers as well.
 .LP
 If the buffer text is in line mode:
-.in +5
-.LP
+.IP " 1." 4
 Any lines that contain characters in the region shall be deleted,
 and the editor shall enter text input mode at the beginning of
 a new line which shall replace the first line deleted.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the \fBautoindent\fP edit option is set, \fBautoindent\fP characters
 equal to the \fBautoindent\fP characters on the first
 line deleted shall be inserted as if entered by the user.
-.in -5
+.LP
 .LP
 Otherwise, if characters from more than one line are in the region
 of text:
-.in +5
-.LP
+.IP " 1." 4
 The text shall be deleted.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Any text remaining in the last line in the text region shall be appended
 to the first line in the region, and the last line in
 the region shall be deleted.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The editor shall enter text input mode after the last character not
 deleted from the first line in the text region, if any;
 otherwise, on the first column of the first line in the region.
-.in -5
+.LP
 .LP
 Otherwise:
-.in +5
-.LP
+.IP " 1." 4
 If the glyph for \fB'$'\fP is smaller than the region, the end of
 the region shall be marked with a \fB'$'\fP .
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The editor shall enter text input mode, overwriting the region of
 text.
-.in -5
+.LP
 .LP
 \fICurrent line/column\fP: As specified for the text input commands
 (see Input Mode Commands in
 vi ).
 .SS Change to End-of-Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2352,7 +2239,7 @@ This command shall be equivalent to the \fIvi\fP command:
 .LP
 See the \fBc\fP command.
 .SS Delete
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2364,20 +2251,17 @@ See the \fBc\fP command.
 .sp
 .LP
 If the motion command is the \fBd\fP command repeated:
-.in +5
-.LP
+.IP " 1." 4
 The buffer text shall be in line mode.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If there are less than \fIcount\fP -1 lines after the current line
 in the edit buffer, it shall be an error.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The text region shall be from the current line up to and including
 the next \fIcount\fP -1 lines.
-.in -5
+.LP
 .LP
 Otherwise, the buffer text mode and text region shall be as specified
 by the motion command.
@@ -2398,40 +2282,35 @@ which case it shall be set to the last line in the edit buffer, or
 line 1 if the edit buffer is empty.
 .LP
 \fICurrent column\fP:
-.in +5
-.LP
+.IP " 1." 4
 If the line is empty, set to column position 1.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, if the buffer text is in line mode or the motion was from
 the cursor toward the end of the edit buffer:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If a character from the current line is displayed in the current column,
 set to the last column that displays any portion of
 that character.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Otherwise, set to the last column in which any portion of any character
 in the line is displayed.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 3." 4
 Otherwise, if a character is displayed in the column that began the
 text region, set to the last column that displays any
 portion of that character.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Otherwise, set to the last column in which any portion of any character
 in the line is displayed.
-.in -5
+.LP
 .SS Delete to End-of-Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2454,7 +2333,7 @@ line; equivalent to the \fIvi\fP command:
 .fi
 .RE
 .SS Move to End-of-Word
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2470,7 +2349,7 @@ With the exception that words are used instead of bigwords as the
 delimiter, this command shall be equivalent to the \fBE\fP
 command.
 .SS Move to End-of-Bigword
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2488,16 +2367,14 @@ edit buffer, \fIcount\fP shall be adjusted to the number of bigword
 endings between the cursor and the end of the edit buffer.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 The text region shall be from the last character of the \fIcount\fPth
 next bigword up to and including the cursor
 character.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Any text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -2507,7 +2384,7 @@ If not used as a motion command:
 the last character of the \fIcount\fPth next bigword is
 displayed.
 .SS Find Character in Current Line (Forward)
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2522,16 +2399,14 @@ It shall be an error if \fIcount\fP occurrences of the character do
 not occur after the cursor in the line.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 The text range shall be from the cursor character up to and including
 the \fIcount\fPth occurrence of the specified character
 after the cursor.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Any text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -2541,7 +2416,7 @@ If not used as a motion command:
 of the \fIcount\fPth occurrence of the specified character
 after the cursor appears in the line.
 .SS Find Character in Current Line (Reverse)
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2556,16 +2431,14 @@ It shall be an error if \fIcount\fP occurrences of the character do
 not occur before the cursor in the line.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 The text region shall be from the \fIcount\fPth occurrence of the
 specified character before the cursor, up to, but not
 including the cursor character.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Any text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -2575,7 +2448,7 @@ If not used as a motion command:
 of the \fIcount\fPth occurrence of the specified character
 before the cursor appears in the line.
 .SS Move to Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2592,15 +2465,13 @@ of the edit buffer. If \fIcount\fP is greater than the last
 line of the edit buffer, it shall be an error.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 The text region shall be from the cursor line up to and including
 the specified line.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Any text copied to a buffer shall be in line mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -2609,7 +2480,7 @@ otherwise, the last line.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Move to Top of Screen
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2626,20 +2497,17 @@ of which any portion appears on the display does not
 exist, it shall be an error.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If in open mode, the text region shall be the current line.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, the text region shall be from the starting line up to and
 including (the first line of the display + \fIcount\fP
 -1).
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Any text copied to a buffer shall be in line mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -2653,7 +2521,7 @@ Otherwise, it shall set the current line and current column as follows.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Insert Before Cursor
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2674,7 +2542,7 @@ command. A \fIcount\fP shall cause the input text to be appended \fIcount\fP
 (see Input Mode Commands in
 vi ).
 .SS Insert at Beginning of Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2689,7 +2557,7 @@ vi ).
 This command shall be equivalent to the \fIvi\fP command ^[ \fIcount\fP]
 \fBi\fP.
 .SS Join
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2720,7 +2588,7 @@ character following the last character in the initial line is
 displayed, or the last non- <newline> in the line if no characters
 were appended.
 .SS Move to Bottom of Screen
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2737,38 +2605,33 @@ which any portion appears on the display does not exist, it
 shall be an error.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If in open mode, the text region shall be the current line.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, the text region shall include all lines from the starting
 cursor line to (the last line of the display -(
 \fIcount\fP -1)).
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Any text copied to a buffer shall be in line mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If in open mode, this command shall set the current column to non-
 <blank> and do nothing else.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, it shall set the current line and current column as follows.
-.in -5
+.LP
 .LP
 \fICurrent line\fP: Set to (the last line of the display -( \fIcount\fP
 -1)).
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Mark Position
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2783,7 +2646,7 @@ This command shall be equivalent to the \fIex\fP \fBmark\fP command
 with the specified
 character as an argument.
 .SS Move to Middle of Screen
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2806,20 +2669,17 @@ The middle line of the display shall be calculated as follows:
 .RE
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If in open mode, the text region shall be the current line.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, the text region shall include all lines from the starting
 cursor line up to and including the middle line of the
 display.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Any text copied to a buffer shall be in line mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -2832,7 +2692,7 @@ Otherwise, it shall set the current line and current column as follows.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Repeat Regular Expression Find (Forward)
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2855,7 +2715,7 @@ command, the editor shall not enter text input mode on the
 last line on the screen, and shall behave as if the user entered a
 single \fB'!'\fP character as the text input.
 .SS Repeat Regular Expression Find (Reverse)
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2880,7 +2740,7 @@ the \fB!\fP command, the editor shall not enter text input
 mode on the last line on the screen, and shall behave as if the user
 entered a single \fB!\fP character as the text input.
 .SS Insert Empty Line Below
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2901,7 +2761,7 @@ time starting on a new, appended line.
 (see Input Mode Commands in
 vi ).
 .SS Insert Empty Line Above
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2922,7 +2782,7 @@ time starting on a new, appended line.
 (see Input Mode Commands in
 vi ).
 .SS Put from Buffer Following
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2953,39 +2813,34 @@ text, each time starting after the last added character.
 to line +1; otherwise, unchanged.
 .LP
 \fICurrent column\fP: If the buffer text is in line mode:
-.in +5
-.LP
+.IP " 1." 4
 If there is a non- <blank> in the first line of the buffer, set to
 the last column on which any portion of the first non-
 <blank> in the line is displayed.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If there is no non- <blank> in the first line of the buffer, set to
 the last column on which any portion of the last non-
 <newline> in the first line of the buffer is displayed.
-.in -5
+.LP
 .LP
 If the buffer text is in character mode:
-.in +5
-.LP
+.IP " 1." 4
 If the text in the buffer is from more than a single line, then set
 to the last column on which any portion of the first
 character from the buffer is displayed.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, if the buffer is the unnamed buffer, set to the last column
 on which any portion of the last character from the
 buffer is displayed.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Otherwise, set to the first column on which any portion of the first
 character from the buffer is displayed.
-.in -5
+.LP
 .SS Put from Buffer Before
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3015,33 +2870,29 @@ text, each time starting after the last added character.
 \fICurrent line\fP: Unchanged.
 .LP
 \fICurrent column\fP: If the buffer text is in line mode:
-.in +5
-.LP
+.IP " 1." 4
 If there is a non- <blank> in the first line of the buffer, set to
 the last column on which any portion of that character
 is displayed.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If there is no non- <blank> in the first line of the buffer, set to
 the last column on which any portion of the last non-
 <newline> in the first line of the buffer is displayed.
-.in -5
+.LP
 .LP
 If the buffer text is in character mode:
-.in +5
-.LP
+.IP " 1." 4
 If the buffer is the unnamed buffer, set to the last column on which
 any portion of the last character from the buffer is
 displayed.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, set to the first column on which any portion of the first
 character from the buffer is displayed.
-.in -5
+.LP
 .SS Enter ex Mode
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3059,7 +2910,7 @@ Leave visual or open mode and enter \fIex\fP command mode.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Replace Character
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3101,7 +2952,7 @@ of the last replaced character is displayed, or if the
 replacement character caused new lines to be created, set to non-
 <blank>.
 .SS Replace Characters
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3122,7 +2973,7 @@ the input.
 (see Input Mode Commands in
 vi ).
 .SS Substitute Character
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3144,7 +2995,7 @@ This command shall be equivalent to the \fIvi\fP command:
 .fi
 .RE
 .SS Substitute Lines
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3166,7 +3017,7 @@ This command shall be equivalent to the \fIvi\fP command:
 .fi
 .RE
 .SS Move Cursor to Before Character (Forward)
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3181,16 +3032,14 @@ It shall be an error if \fIcount\fP occurrences of the character do
 not occur after the cursor in the line.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 The text region shall be from the cursor up to but not including the
 \fIcount\fPth occurrence of the specified character after
 the cursor.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Any text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -3200,7 +3049,7 @@ If not used as a motion command:
 of the character before the \fIcount\fPth occurrence of the
 specified character after the cursor appears in the line.
 .SS Move Cursor to After Character (Reverse)
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3215,21 +3064,18 @@ It shall be an error if \fIcount\fP occurrences of the character do
 not occur before the cursor in the line.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If the character before the cursor is the specified character, it
 shall be an error.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The text region shall be from the character before the cursor up to
 but not including the \fIcount\fPth occurrence of the
 specified character before the cursor.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Any text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
 .LP
@@ -3239,7 +3085,7 @@ If not used as a motion command:
 of the character after the \fIcount\fPth occurrence of the
 specified character before the cursor appears in the line.
 .SS Undo
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3264,41 +3110,37 @@ non-
 <blank>.
 .LP
 Otherwise, if undoing a text input command:
-.in +5
-.LP
+.IP " 1." 4
 If the command was a \fBC\fP, \fBc\fP, \fBO\fP, \fBo\fP, \fBR\fP,
 \fBS\fP, or \fBs\fP command, the current column shall
 be set to the value it held when the text input command was entered.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, set to the last column in which any portion of the first
 character after the deleted text is displayed, or, if no
 non- <newline>s follow the text deleted from this line, set to the
 last column in which any portion of the last non-
 <newline> in the line is displayed, or 1 if the line is empty.
-.in -5
+.LP
 .LP
 Otherwise, if a single line was modified (that is, not added or deleted)
 by the \fBu\fP command:
-.in +5
-.LP
+.IP " 1." 4
 If text was added or changed, set to the last column in which any
 portion of the first character added or changed is
 displayed.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If text was deleted, set to the last column in which any portion of
 the first character after the deleted text is displayed, or,
 if no non- <newline>s follow the deleted text, set to the last column
 in which any portion of the last non- <newline>
 in the line is displayed, or 1 if the line is empty.
-.in -5
+.LP
 .LP
 Otherwise, set to non- <blank>.
 .SS Undo Current Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3319,7 +3161,7 @@ recent time that it became the current line.
 any portion of the first character in the line is
 displayed.
 .SS Move to Beginning of Word
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3335,7 +3177,7 @@ With the exception that words are used as the delimiter instead of
 bigwords, this command shall be equivalent to the \fBW\fP
 command.
 .SS Move to Beginning of Bigword
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3353,44 +3195,38 @@ of the edit buffer, \fIcount\fP shall be adjusted to move the cursor
 to the last bigword in the edit buffer.
 .LP
 If used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If the associated command is \fBc\fP, \fIcount\fP is 1, and the cursor
 is on a <blank>, the region of text shall be the
 current character and no further action shall be taken.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If there are less than \fIcount\fP bigwords between the cursor and
 the end of the edit buffer, then the command shall succeed,
 and the region of text shall include the last character of the edit
 buffer.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If there are <blank>s or an end-of-line that precede the \fIcount\fPth
 bigword, and the associated command is \fBc\fP,
 the region of text shall be up to and including the last character
 before the preceding <blank>s or end-of-line.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If there are <blank>s or an end-of-line that precede the bigword,
 and the associated command is \fBd\fP or \fBy\fP, the
 region of text shall be up to and including the last <blank> before
 the start of the bigword or end-of-line.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Any text copied to a buffer shall be in character mode.
-.in -5
+.LP
 .LP
 If not used as a motion command:
-.in +5
-.LP
+.IP " 1." 4
 If the cursor is on the last character of the edit buffer, it shall
 be an error.
-.in -5
+.LP
 .LP
 \fICurrent line\fP: Set to the line containing the current column.
 .LP
@@ -3398,7 +3234,7 @@ be an error.
 the first character of the \fIcount\fPth next bigword is
 displayed.
 .SS Delete Character at Cursor
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3427,7 +3263,7 @@ the current line, \fIcount\fP shall be adjusted to the number of non-
 last column that displays any part of the last non-
 <newline> of the line. Otherwise, unchanged.
 .SS Delete Character Before Cursor
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3454,7 +3290,7 @@ line.
 \fICurrent column\fP: Set to (current column - the width of the deleted
 characters).
 .SS Yank
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3469,20 +3305,17 @@ Copy (yank) the region of text into \fIbuffer\fP, if specified, and
 into the unnamed buffer.
 .LP
 If the motion command is the \fBy\fP command repeated:
-.in +5
-.LP
+.IP " 1." 4
 The buffer shall be in line mode.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If there are less than \fIcount\fP -1 lines after the current line
 in the edit buffer, it shall be an error.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The text region shall be from the current line up to and including
 the next \fIcount\fP -1 lines.
-.in -5
+.LP
 .LP
 Otherwise, the buffer text mode and text region shall be as specified
 by the motion command.
@@ -3493,23 +3326,20 @@ set to the first line in the edit buffer that is part of the text
 region specified by the motion command.
 .LP
 \fICurrent column\fP:
-.in +5
-.LP
+.IP " 1." 4
 If the motion was from the current cursor position toward the end
 of the edit buffer, unchanged.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, if the current line is empty, set to column position 1.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Otherwise, set to the last column that displays any part of the first
 character in the file that is part of the text region
 specified by the motion command.
-.in -5
+.LP
 .SS Yank Current Line
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3533,7 +3363,7 @@ This command shall be equivalent to the \fIvi\fP command:
 .SS Redraw Window
 .LP
 If in open mode, the \fBz\fP command shall have the Synopsis:
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3563,7 +3393,7 @@ is written.
 .LP
 If not in open mode, the \fBz\fP command shall have the following
 Synopsis:
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3584,26 +3414,26 @@ shall be set to \fIcount\fP (as described in the \fIex\fP \fBwindow\fP
 command), and the screen shall be redrawn.
 .LP
 \fIline\fP shall be placed as specified by the following characters:
-.TP
-<newline>,\0<carriage-return>
+.TP 7
+<newline>,\ <carriage-return>
 .sp
 Place the beginning of the line on the first line of the display.
-.TP
+.TP 7
 \fB\&.\fP
 Place the beginning of the line in the center of the display. The
 middle line of the display shall be calculated as described
 for the \fBM\fP command.
-.TP
+.TP 7
 \fB-\fP
 Place an unspecified portion of the line on the last line of the display.
-.TP
+.TP 7
 \fB+\fP
 If \fIline\fP was specified, equivalent to the <newline> case. If
 \fIline\fP was not specified, display a screen where
 the first line of the display shall be (current last line) +1. If
 there are no lines after the last line in the display, it shall
 be an error.
-.TP
+.TP 7
 \fB^\fP
 If \fIline\fP was specified, display a screen where the last line
 of the display shall contain an unspecified portion of the
@@ -3620,17 +3450,15 @@ edit buffer, it shall be an error.
 .LP
 \fICurrent line\fP: If \fIline\fP and the \fB'^'\fP character were
 specified:
-.in +5
-.LP
+.IP " 1." 4
 If the first screen was displayed as a result of the command attempting
 to display lines before the beginning of the edit
 buffer: if the first screen was already displayed, unchanged; otherwise,
 set to (current first line -1).
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, set to the last line of the display.
-.in -5
+.LP
 .LP
 If \fIline\fP and the \fB'+'\fP character were specified, set to the
 first line of the display.
@@ -3641,7 +3469,7 @@ Otherwise, unchanged.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Exit
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3661,15 +3489,13 @@ trailing \fB!\fP, or filename (see the \fIex\fP \fBxit\fP command).
 In text input mode, the current line shall consist of zero or more
 of the following categories, plus the terminating
 <newline>:
-.in +5
-.LP
+.IP " 1." 4
 Characters preceding the text input entry point
 .LP
 Characters in this category shall not be modified during text input
 mode.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 \fBautoindent\fP characters
 .LP
 \fBautoindent\fP characters shall be automatically inserted into each
@@ -3687,9 +3513,8 @@ Erasing any \fBautoindent\fP character
 turns the glyph into erase-columns and deletes the character from
 the edit buffer, but does not change its representation on the
 screen.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Text input characters
 .LP
 Text input characters are the characters entered by the user. Erasing
@@ -3699,52 +3524,48 @@ does not change its representation on the screen.
 .LP
 Each text input character entered by the user (that does not have
 a special meaning) shall be treated as follows:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 The text input character shall be appended to the last character in
 the edit buffer from the first, second, or third
 categories.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 If there are no erase-columns on the screen, the text input command
 was the \fBR\fP command, and characters in the fifth
 category from the original line follow the cursor, the next such character
 shall be deleted from the edit buffer. If the
 \fBslowopen\fP edit option is not set, the corresponding glyph on
 the screen shall become erase-columns.
-.in -5
-.in +5
 .LP
+.IP " c." 4
 If there are erase-columns on the screen, as many columns as they
 occupy, or as are necessary, shall be overwritten to display
 the text input character. (If only part of a multi-column glyph is
 overwritten, the remainder shall be left on the screen, and
 continue to be treated as erase-columns; it is unspecified whether
 the remainder of the glyph is modified in any way.)
-.in -5
-.in +5
 .LP
+.IP " d." 4
 If additional display line columns are needed to display the text
 input character:
-.in +5
-.LP
+.RS
+.IP " 1." 4
 If the \fBslowopen\fP edit option is set, the text input characters
 shall be displayed on subsequent display line columns,
 overwriting any characters displayed in those columns.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, any characters currently displayed on or after the column
 on the display line where the text input character is to be
 displayed shall be pushed ahead the number of display line columns
 necessary to display the rest of the text input character.
-.in -5
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.RE
+.LP
+.IP " 4." 4
 Erase-columns
 .LP
 Erase-columns are not logically part of the edit buffer, appearing
@@ -3757,9 +3578,8 @@ command (see Change );
 however, erasing \fBautoindent\fP or text input characters causes
 the glyphs of the erased characters to be treated as
 erase-columns.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Characters following the text region for the \fBc\fP command, or the
 text input entry point for all other commands
 .LP
@@ -3767,7 +3587,7 @@ Characters in this category shall not be modified during text input
 mode, except as specified in category 3.b. for the \fBR\fP
 text input command, or as <blank>s deleted when a <newline> or <carriage-return>
 is entered.
-.in -5
+.LP
 .LP
 It is unspecified whether it is an error to attempt to erase past
 the beginning of a line that was created by the entry of a
@@ -3780,31 +3600,26 @@ entered on the previous line, and all of the non-
 When text input mode is entered, or after a text input mode character
 is entered (except as specified for the special characters
 below), the cursor shall be positioned as follows:
-.in +5
-.LP
+.IP " 1." 4
 On the first column that displays any part of the first erase-column,
 if one exists
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, if the \fBslowopen\fP edit option is set, on the first
 display line column after the last character in the first,
 second, or third categories, if one exists
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Otherwise, the first column that displays any part of the first character
 in the fifth category, if one exists
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Otherwise, the display line column after the last character in the
 first, second, or third categories, if one exists
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Otherwise, on column position 1
-.in -5
+.LP
 .LP
 The characters that are updated on the screen during text input mode
 are unspecified, other than that the last text input
@@ -3815,7 +3630,7 @@ updated.
 The following specifications are for command characters entered during
 text input mode.
 .SS NUL
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3835,7 +3650,7 @@ expanded, nor are any characters interpreted in any special manner.
 It is unspecified whether implementations shall support more
 than 256 bytes of remembered input text.
 .SS <control>-D
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3856,15 +3671,13 @@ This command need not be supported on block-mode terminals.
 If the cursor does not follow an \fBautoindent\fP character, or an
 \fBautoindent\fP character and a \fB'0'\fP or
 \fB'^'\fP character:
-.in +5
-.LP
+.IP " 1." 4
 If the cursor is in column position 1, the <control>-D character shall
 be discarded and no further action taken.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, the <control>-D character shall have no special meaning.
-.in -5
+.LP
 .LP
 If the last input character was a \fB'0'\fP , the cursor shall be
 moved to column position 1.
@@ -3888,7 +3701,7 @@ erase-columns as described in Input Mode Commands in vi .
 a \fB'^'\fP or \fB'0'\fP ; otherwise, set to
 (column -1) -((column -2) % \fBshiftwidth\fP).
 .SS <control>-H
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3938,7 +3751,7 @@ in which case it shall be set to line -1.
 \fICurrent column\fP: Set to the first column that displays any portion
 of the character backed up over.
 .SS <newline>
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3999,7 +3812,7 @@ characters on the new line, if any, or the first column position after
 the last \fBautoindent\fP character, if any, or column
 position 1.
 .SS <control>-T
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -4027,7 +3840,7 @@ command) boundary.
 \fICurrent column\fP: Set to \fIcolumn\fP + \fBshiftwidth\fP - ((column
 -1) % \fBshiftwidth\fP).
 .SS <control>-U
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -4073,7 +3886,7 @@ in which case it shall be set to line -1.
 \fICurrent column\fP: Set to the first column that displays any portion
 of the last character backed up over.
 .SS <control>-V
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -4108,7 +3921,7 @@ character.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS <control>-W
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -4150,7 +3963,7 @@ in which case it shall be set to line -1.
 \fICurrent column\fP: Set to the first column that displays any portion
 of the last character backed up over.
 .SS <ESC>
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -4163,18 +3976,16 @@ of the last character backed up over.
 .sp
 .LP
 If input was part of a line-oriented command:
-.in +5
-.LP
+.IP " 1." 4
 If \fIinterrupt\fP was entered, text input mode shall be terminated
 and the editor shall return to command mode. The terminal
 shall be alerted.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If <ESC> was entered, text input mode shall be terminated and the
 command shall continue execution with the input
 provided.
-.in -5
+.LP
 .LP
 Otherwise, terminate text input mode and return to command mode.
 .LP
@@ -4191,27 +4002,24 @@ of the edit buffer.
 \fICurrent line\fP: Unchanged.
 .LP
 \fICurrent column\fP:
-.in +5
-.LP
+.IP " 1." 4
 If there are text input characters on the current line, the column
 shall be set to the last column where any portion of the last
 text input character is displayed.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, if a character is displayed in the current column, unchanged.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Otherwise, set to column position 1.
-.in -5
+.LP
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -4243,7 +4051,7 @@ portions of the \fIvi\fP utility
 specification point to \fIex\fP to avoid inadvertent divergence. While
 \fIex\fP and \fIvi\fP have historically been implemented as a single
 utility, this is not required by
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .LP
 It is recognized that portions of \fIvi\fP would be difficult, if
 not impossible, to implement satisfactorily on a block-mode
@@ -4254,19 +4062,19 @@ implementation should provide the full set of capabilities on
 all terminals capable of supporting them.
 .LP
 Historically, \fIvi\fP exited immediately if the standard input was
-not a terminal. IEEE\0Std\01003.1-2001 permits, but
+not a terminal. IEEE\ Std\ 1003.1-2001 permits, but
 does not require, this behavior. An end-of-file condition is not equivalent
 to an end-of-file character. A common end-of-file
 character, <control>-D, is historically a \fIvi\fP command.
 .LP
 The text in the STDOUT section reflects the usage of the verb \fIdisplay\fP
 in this section; some implementations of \fIvi\fP
-use standard output to write to the terminal, but IEEE\0Std\01003.1-2001
+use standard output to write to the terminal, but IEEE\ Std\ 1003.1-2001
 does not require that to be the case.
 .LP
 Historically, implementations reverted to open mode if the terminal
 was incapable of supporting full visual mode.
-IEEE\0Std\01003.1-2001 requires this behavior. Historically, the open
+IEEE\ Std\ 1003.1-2001 requires this behavior. Historically, the open
 mode of \fIvi\fP behaved roughly equivalently to the
 visual mode, with the exception that only a single line from the edit
 buffer (one "buffer line") was kept current at any time.
@@ -4274,13 +4082,13 @@ This line was normally displayed on the next-to-last line of a terminal
 with cursor addressing (and the last line performed its
 normal visual functions for line-oriented commands and messages).
 In addition, some few commands behaved differently in open mode
-than in visual mode. IEEE\0Std\01003.1-2001 requires conformance to
+than in visual mode. IEEE\ Std\ 1003.1-2001 requires conformance to
 historical practice.
 .LP
 Historically, \fIex\fP and \fIvi\fP implementations have expected
 text to proceed in the
 usual European/Latin order of left to right, top to bottom. There
-is no requirement in IEEE\0Std\01003.1-2001 that this be
+is no requirement in IEEE\ Std\ 1003.1-2001 that this be
 the case. The specification was deliberately written using words like
 "before", "after", "first", and "last" in order to
 permit implementations to support the natural text order of the language.
@@ -4297,7 +4105,7 @@ lines at the top of the screen). If a line was too long to fit in
 its entirety at the bottom of the screen, the screen lines where
 the line would have been displayed were displayed as single \fB'@'\fP
 characters, instead of displaying part of the line.
-IEEE\0Std\01003.1-2001 permits, but does not require, this behavior.
+IEEE\ Std\ 1003.1-2001 permits, but does not require, this behavior.
 Implementations are encouraged to attempt always to
 display a complete line at the bottom of the screen when doing scrolling
 or screen positioning by buffer lines.
@@ -4307,57 +4115,54 @@ output to dumb terminals over slow lines; that is,
 changes local to the cursor were updated, but changes to lines on
 the screen that were not close to the cursor were simply marked
 with an \fB'@'\fP sign instead of being updated to match the current
-text. IEEE\0Std\01003.1-2001 permits, but does not
+text. IEEE\ Std\ 1003.1-2001 permits, but does not
 require this feature because it is used ever less frequently as terminals
 become smarter and connections are faster.
 .SS Initialization in ex and vi
 .LP
 Historically, \fIvi\fP always had a line in the edit buffer, even
 if the edit buffer was "empty". For example:
-.in +5
-.LP
+.IP " 1." 4
 The \fIex\fP command \fB=\fP executed from visual mode wrote "1" when
 the buffer was
 empty.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Writes from visual mode of an empty edit buffer wrote files of a single
 character (a <newline>), while writes from \fIex\fP mode of an empty
 edit buffer wrote empty files.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Put and read commands into an empty edit buffer left an empty line
 at the top of the edit buffer.
-.in -5
 .LP
-For consistency, IEEE\0Std\01003.1-2001 does not permit any of these
+.LP
+For consistency, IEEE\ Std\ 1003.1-2001 does not permit any of these
 behaviors.
 .LP
 Historically, \fIvi\fP did not always return the terminal to its original
 modes; for example, ICRNL was modified if it was not
-originally set. IEEE\0Std\01003.1-2001 does not permit this behavior.
+originally set. IEEE\ Std\ 1003.1-2001 does not permit this behavior.
 .SS Command Descriptions in vi
 .LP
 Motion commands are among the most complicated aspects of \fIvi\fP
 to describe. With some exceptions, the text region and
 buffer type effect of a motion command on a \fIvi\fP command are described
 on a case-by-case basis. The descriptions of text
-regions in IEEE\0Std\01003.1-2001 are not intended to imply direction;
+regions in IEEE\ Std\ 1003.1-2001 are not intended to imply direction;
 that is, an inclusive region from line \fIn\fP to
 line \fIn\fP+5 is identical to a region from line \fIn\fP+5 to line
 \fIn\fP. This is of more than academic interest-movements to
 marks can be in either direction, and, if the \fBwrapscan\fP option
 is set, so can movements to search points. Historically, lines
 are always stored into buffers in text order; that is, from the start
-of the edit buffer to the end. IEEE\0Std\01003.1-2001
+of the edit buffer to the end. IEEE\ Std\ 1003.1-2001
 requires conformance to historical practice.
 .LP
 Historically, command counts were applied to any associated motion,
 and were multiplicative to any supplied motion count. For
 example, \fB2cw\fP is the same as \fBc2w\fP, and \fB2c3w\fP is the
-same as \fBc6w\fP. IEEE\0Std\01003.1-2001 requires
+same as \fBc6w\fP. IEEE\ Std\ 1003.1-2001 requires
 this behavior. Historically, \fIvi\fP commands that used bigwords,
 words, paragraphs, and sentences as objects treated groups of
 empty lines, or lines that contained only <blank>s, inconsistently.
@@ -4374,7 +4179,7 @@ command, fail in unexpected ways. If the lines contained only
 beep at the user, the \fBE\fP and \fBe\fP commands
 would treat the group as a single word, and the \fBB\fP and \fBb\fP
 commands would treat the lines as individual words. For
-consistency and simplicity of specification, IEEE\0Std\01003.1-2001
+consistency and simplicity of specification, IEEE\ Std\ 1003.1-2001
 requires that all \fIvi\fP commands treat groups of
 empty or blank lines as a single entity, and that movement through
 lines ending with <blank>s be consistent with other
@@ -4383,16 +4188,16 @@ movements.
 Historically, \fIvi\fP documentation indicated that any number of
 double quotes were skipped after punctuation marks at
 sentence boundaries; however, implementations only skipped single
-quotes. IEEE\0Std\01003.1-2001 requires both to be
+quotes. IEEE\ Std\ 1003.1-2001 requires both to be
 skipped.
 .LP
 Historically, the first and last characters in the edit buffer were
 word boundaries. This historical practice is required by
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .LP
 Historically, \fIvi\fP attempted to update the minimum number of columns
 on the screen possible, which could lead to misleading
-information being displayed. IEEE\0Std\01003.1-2001 makes no requirements
+information being displayed. IEEE\ Std\ 1003.1-2001 makes no requirements
 other than that the current character being
 entered is displayed correctly, leaving all other decisions in this
 area up to the implementation.
@@ -4400,7 +4205,7 @@ area up to the implementation.
 Historically, lines were arbitrarily folded between columns of any
 characters that required multiple column positions on the
 screen, with the exception of tabs, which terminated at the right-hand
-margin. IEEE\0Std\01003.1-2001 permits the former
+margin. IEEE\ Std\ 1003.1-2001 permits the former
 and requires the latter. Implementations that do not arbitrarily break
 lines between columns of characters that occupy multiple
 column positions should not permit the cursor to rest on a column
@@ -4441,7 +4246,7 @@ relevant commands ( <control>-B, <control>-D, <control>-F, <control>-U,
 <control>-E, \fBH\fP, \fBL\fP, and \fBM)\fP operate on display (screen)
 lines, not (edit) buffer lines.
 .LP
-IEEE\0Std\01003.1-2001 does not permit this behavior by default because
+IEEE\ Std\ 1003.1-2001 does not permit this behavior by default because
 the standard developers believed that users
 would find it too confusing. However, historical practice has been
 relaxed. For example, \fIex\fP and \fIvi\fP historically attempted,
@@ -4450,11 +4255,11 @@ line on the last lines of a screen; for example, if a line would not
 fit in its entirety, no part of the line was displayed, and
 the screen lines corresponding to the line contained single \fB'@'\fP
 characters. This behavior is permitted, but not required
-by IEEE\0Std\01003.1-2001, so that it is possible for implementations
+by IEEE\ Std\ 1003.1-2001, so that it is possible for implementations
 to support long lines in small screens more
 reasonably without changing the commands to be oriented to the display
 (instead of oriented to the buffer).
-IEEE\0Std\01003.1-2001 also permits implementations to refuse to edit
+IEEE\ Std\ 1003.1-2001 also permits implementations to refuse to edit
 any edit buffer containing a line that will not fit
 on the screen in its entirety.
 .LP
@@ -4468,15 +4273,15 @@ Scrolling has historically been the next choice, done when the target
 line is less than half a display away, and otherwise, the
 screen was redrawn. There were exceptions, however, in that \fIex\fP
 commands generally always
-caused the screen to be redrawn. IEEE\0Std\01003.1-2001 does not specify
+caused the screen to be redrawn. IEEE\ Std\ 1003.1-2001 does not specify
 a standard behavior because there may be external
 issues, such as connection speed, the number of characters necessary
 to redraw as opposed to scroll, or terminal capabilities that
 implementations will have to accommodate.
 .LP
-The current line in IEEE\0Std\01003.1-2001 maps one-to-one to a buffer
+The current line in IEEE\ Std\ 1003.1-2001 maps one-to-one to a buffer
 line in the file. The current column does not.
-There are two different column values that are described by IEEE\0Std\01003.1-2001.
+There are two different column values that are described by IEEE\ Std\ 1003.1-2001.
 The first is the current column value
 as set by many of the \fIvi\fP commands. This value is remembered
 for the lifetime of the editor. The second column value is the
@@ -4490,7 +4295,7 @@ Commands that set the current line, but that do not set the current
 cursor value (for example, \fBj\fP and \fBk\fP) attempt to
 get as close as possible to the remembered column position, so that
 the cursor tends to restrict itself to a vertical column as the
-user moves around in the edit buffer. IEEE\0Std\01003.1-2001 requires
+user moves around in the edit buffer. IEEE\ Std\ 1003.1-2001 requires
 conformance to historical practice, requiring that
 the display location of the cursor on the display line be adjusted
 from the current column value as necessary to support this
@@ -4499,7 +4304,7 @@ historical behavior.
 Historically, only a single line (and for some terminals, a single
 line minus 1 column) of characters could be entered by the
 user for the line-oriented commands; that is, \fB:\fP, \fB!\fP, \fB/\fP,
-or \fB?\fP. IEEE\0Std\01003.1-2001 permits,
+or \fB?\fP. IEEE\ Std\ 1003.1-2001 permits,
 but does not require, this limitation.
 .LP
 Historically, "soft" errors in \fIvi\fP caused the terminal to be
@@ -4522,7 +4327,7 @@ occurred. Also, behavior in this area might reasonably be based on
 a runtime evaluation of the speed of a network connection.
 Finally, some implementations have provided error messages for soft
 errors in order to assist naive users, based on the value of a
-verbose edit option. IEEE\0Std\01003.1-2001 does not list specific
+verbose edit option. IEEE\ Std\ 1003.1-2001 does not list specific
 errors for which an error message shall be displayed.
 Implementations should conform to historical practice in the absence
 of any strong reason to diverge.
@@ -4532,7 +4337,7 @@ The <control>-B and <control>-F commands historically considered it
 an error to attempt to page past the beginning
 or end of the file, whereas the <control>-D and <control>-U commands
 simply moved to the beginning or end of the file.
-For consistency, IEEE\0Std\01003.1-2001 requires the latter behavior
+For consistency, IEEE\ Std\ 1003.1-2001 requires the latter behavior
 for all four commands. All four commands still
 consider it an error if the current line is at the beginning ( <control>-B,
 <control>-U) or end ( <control>-F,
@@ -4567,7 +4372,7 @@ and without counts; for example, \fB3\fP <control>-F
 is not equivalent to entering the <control>-F command three times,
 and is not reversible by entering the <control>-B
 command three times. For consistency with other \fIvi\fP commands
-that take counts, IEEE\0Std\01003.1-2001 requires a
+that take counts, IEEE\ Std\ 1003.1-2001 requires a
 different calculation.
 .SS Scroll Forward
 .LP
@@ -4585,7 +4390,7 @@ used:
 .LP
 while System V used the value of the \fBscroll\fP edit option. The
 System V version is specified by
-IEEE\0Std\01003.1-2001 because the standard developers believed that
+IEEE\ Std\ 1003.1-2001 because the standard developers believed that
 it was more intuitive and permitted the user a method
 of setting the scroll value initially without also setting the number
 of lines that are displayed.
@@ -4593,11 +4398,11 @@ of lines that are displayed.
 .LP
 Historically, the <control>-E and <control>-Y commands considered
 it an error if the last and first lines,
-respectively, were already on the screen. IEEE\0Std\01003.1-2001 requires
+respectively, were already on the screen. IEEE\ Std\ 1003.1-2001 requires
 conformance to historical practice. Historically,
 the <control>-E and <control>-Y commands had no effect in open mode.
 For simplicity and consistency of specification,
-IEEE\0Std\01003.1-2001 requires that they behave as usual, albeit
+IEEE\ Std\ 1003.1-2001 requires that they behave as usual, albeit
 with a single line screen.
 .SS Clear and Redisplay
 .LP
@@ -4614,7 +4419,7 @@ The historical <control>-R command redisplayed only when necessary
 to update lines that had been deleted but not updated
 on the screen and that were flagged with \fB'@'\fP characters. There
 is no requirement that the screen be in any way refreshed
-if no lines of this form are currently displayed. IEEE\0Std\01003.1-2001
+if no lines of this form are currently displayed. IEEE\ Std\ 1003.1-2001
 permits implementations to extend this command to
 refresh lines on the screen flagged with \fB'@'\fP characters because
 they are too long to be displayed in the current
@@ -4627,7 +4432,7 @@ were word characters, up to the end of the line, were included. For
 example, with the cursor on the leading space or on the
 \fB'#'\fP character in the text \fB"#bar@"\fP , the tag was \fB"#bar"\fP
 \&. On the character \fB'b'\fP it was
-\fB"bar"\fP , and on the \fB'a'\fP it was \fB"ar"\fP . IEEE\0Std\01003.1-2001
+\fB"bar"\fP , and on the \fB'a'\fP it was \fB"ar"\fP . IEEE\ Std\ 1003.1-2001
 requires this behavior.
 .SS Replace Text with Results from Shell Command
 .LP
@@ -4647,7 +4452,7 @@ and \fB'>'\fP for searching HTML, or \fB#ifdef\fP, \fB#else\fP, and
 \fB#endif\fP for searching C source.
 .SS Repeat Substitution
 .LP
-IEEE\0Std\01003.1-2001 requires that any \fBc\fP and \fBg\fP flags
+IEEE\ Std\ 1003.1-2001 requires that any \fBc\fP and \fBg\fP flags
 specified to the previous substitute command be
 ignored; however, the \fBr\fP flag may still apply, if supported by
 the implementation.
@@ -4667,7 +4472,7 @@ the edit buffer were the first non- <blank> on the first and last
 lines of the edit buffer if one exists; otherwise, the last
 character of the first and last lines of the edit buffer if one exists.
 To increase consistency with other section locations, this
-has been simplified by IEEE\0Std\01003.1-2001 to the first character
+has been simplified by IEEE\ Std\ 1003.1-2001 to the first character
 of the first and last lines of the edit buffer, or the
 first and the last lines of the edit buffer if they are empty.
 .LP
@@ -4677,14 +4482,14 @@ and paragraph commands, but they were the first non- <blank> that
 occurred after those boundaries, as well. Historically, the
 \fIvi\fP section commands were documented as taking an optional window
 size as a \fIcount\fP preceding the command. This was not
-implemented in historical versions, so IEEE\0Std\01003.1-2001 requires
+implemented in historical versions, so IEEE\ Std\ 1003.1-2001 requires
 that the \fIcount\fP repeat the command, for
 consistency with other \fIvi\fP commands.
 .SS Repeat
 .LP
 Historically, mapped commands other than text input commands could
 not be repeated using the \fBperiod\fP command.
-IEEE\0Std\01003.1-2001 requires conformance to historical practice.
+IEEE\ Std\ 1003.1-2001 requires conformance to historical practice.
 .LP
 The restrictions on the interpretation of special characters (for
 example, <control>-H) in the repetition of text input
@@ -4704,7 +4509,7 @@ entered, but not during a command repetition. The character
 <control>-T is specifically exempted from this restriction. Historical
 implementations of \fIvi\fP ignored <control>-T
 characters that were input in the original command during command
-repetition. IEEE\0Std\01003.1-2001 prohibits this
+repetition. IEEE\ Std\ 1003.1-2001 prohibits this
 behavior.
 .SS Find Regular Expression
 .LP
@@ -4712,26 +4517,26 @@ Historically, commands did not affect the line searched to or from
 if the motion command was a search ( \fB/\fP, \fB?\fP,
 \fBN\fP, \fBn\fP) and the final position was the start/end of the
 line. There were some special cases and \fIvi\fP was not
-consistent. IEEE\0Std\01003.1-2001 does not permit this behavior,
+consistent. IEEE\ Std\ 1003.1-2001 does not permit this behavior,
 for consistency. Historical implementations permitted but
 were unable to handle searches as motion commands that wrapped (that
 is, due to the edit option \fBwrapscan\fP) to the original
-location. IEEE\0Std\01003.1-2001 requires that this behavior be treated
+location. IEEE\ Std\ 1003.1-2001 requires that this behavior be treated
 as an error.
 .LP
 Historically, the syntax \fB"/RE/0"\fP was used to force the command
-to cut text in line mode. IEEE\0Std\01003.1-2001
+to cut text in line mode. IEEE\ Std\ 1003.1-2001
 requires conformance to historical practice.
 .LP
 Historically, in open mode, a \fBz\fP specified to a search command
 redisplayed the current line instead of displaying the
 current screen with the current line highlighted. For consistency
-and simplicity of specification, IEEE\0Std\01003.1-2001
+and simplicity of specification, IEEE\ Std\ 1003.1-2001
 does not permit this behavior.
 .LP
 Historically, trailing \fBz\fP commands were permitted and ignored
 if entered as part of a search used as a motion command. For
-consistency and simplicity of specification, IEEE\0Std\01003.1-2001
+consistency and simplicity of specification, IEEE\ Std\ 1003.1-2001
 does not permit this behavior.
 .SS Execute an ex Command
 .LP
@@ -4739,7 +4544,7 @@ Historically, \fIvi\fP implementations restricted the commands that
 could be entered on the colon command line (for example,
 \fBappend\fP and \fBchange\fP), and some other commands were known
 to cause them to fail catastrophically. For consistency,
-IEEE\0Std\01003.1-2001 does not permit these restrictions. When executing
+IEEE\ Std\ 1003.1-2001 does not permit these restrictions. When executing
 an \fIex\fP
 command by entering \fB:\fP, it is not possible to enter a <newline>
 as part of the command because it is considered the end
@@ -4761,7 +4566,7 @@ vi
 .fi
 .RE
 .LP
-IEEE\0Std\01003.1-2001 requires that, if the \fIex\fP command overwrites
+IEEE\ Std\ 1003.1-2001 requires that, if the \fIex\fP command overwrites
 any part of
 the screen that would be erased by a refresh, \fIvi\fP pauses for
 a character from the user. Historically, this character could be
@@ -4771,25 +4576,25 @@ a bug, but implementations that have tried to be more rigorous by
 requiring that the user enter a specific character, or that the
 user enter a character after the message was displayed, have been
 forced by user indignation back into historical behavior.
-IEEE\0Std\01003.1-2001 requires conformance to historical practice.
+IEEE\ Std\ 1003.1-2001 requires conformance to historical practice.
 .SS Shift Left (Right)
 .LP
 Refer to the Rationale for the \fB!\fP and \fB/\fP commands. Historically,
 the \fB<\fP and \fB>\fP commands sometimes
 moved the cursor to the first non- <blank> (for example if the command
 was repeated or with \fB_\fP as the motion command),
-and sometimes left it unchanged. IEEE\0Std\01003.1-2001 does not permit
+and sometimes left it unchanged. IEEE\ Std\ 1003.1-2001 does not permit
 this inconsistency, requiring instead that the
 cursor always move to the first non- <blank>. Historically, the \fB<\fP
 and \fB>\fP commands did not support buffer
 arguments, although some implementations allow the specification of
 an optional buffer. This behavior is neither required nor
-disallowed by IEEE\0Std\01003.1-2001.
+disallowed by IEEE\ Std\ 1003.1-2001.
 .SS Execute
 .LP
 Historically, buffers could execute other buffers, and loops, infinite
 and otherwise, were possible.
-IEEE\0Std\01003.1-2001 requires conformance to historical practice.
+IEEE\ Std\ 1003.1-2001 requires conformance to historical practice.
 The * \fIbuffer\fP syntax of \fIex\fP is not required in \fIvi\fP,
 because it is not historical practice and has been used in some
 \fIvi\fP implementations to support additional scripting languages.
@@ -4797,7 +4602,7 @@ because it is not historical practice and has been used in some
 .LP
 Historically, the \fB~\fP command ignored any associated \fIcount\fP,
 and acted only on the characters in the current
-line. For consistency with other \fIvi\fP commands, IEEE\0Std\01003.1-2001
+line. For consistency with other \fIvi\fP commands, IEEE\ Std\ 1003.1-2001
 requires that an associated \fIcount\fP act on
 the next \fIcount\fP characters, and that the command move to subsequent
 lines if warranted by \fIcount\fP, to make it possible
@@ -4812,29 +4617,29 @@ positioning identically to the \fByank\fP command.
 Historically, \fIcount\fPs specified to the \fBA\fP, \fBa\fP, \fBI\fP,
 and \fBi\fP commands repeated the input of the first
 line \fIcount\fP times, and did not repeat the subsequent lines of
-the input text. IEEE\0Std\01003.1-2001 requires that
+the input text. IEEE\ Std\ 1003.1-2001 requires that
 the entire text input be repeated \fIcount\fP times.
 .SS Move Backward to Preceding Word
 .LP
 Historically, \fIvi\fP became confused if word commands were used
 as motion commands in empty files.
-IEEE\0Std\01003.1-2001 requires that this be an error. Historical
+IEEE\ Std\ 1003.1-2001 requires that this be an error. Historical
 implementations of \fIvi\fP had a large number of bugs
 in the word movement commands, and they varied greatly in behavior
 in the presence of empty lines, "words" made up of a single
 character, and lines containing only <blank>s. For consistency and
 simplicity of specification,
-IEEE\0Std\01003.1-2001 does not permit this behavior.
+IEEE\ Std\ 1003.1-2001 does not permit this behavior.
 .SS Change to End-of-Line
 .LP
 Some historical implementations of the \fBC\fP command did not behave
-as described by IEEE\0Std\01003.1-2001 when the
+as described by IEEE\ Std\ 1003.1-2001 when the
 \fB$\fP key was remapped because they were implemented by pushing
 the \fB$\fP key onto the input queue and reprocessing it.
-IEEE\0Std\01003.1-2001 does not permit this behavior. Historically,
+IEEE\ Std\ 1003.1-2001 does not permit this behavior. Historically,
 the \fBC\fP, \fBS\fP, and \fBs\fP commands did not
 copy replaced text into the numeric buffers. For consistency and simplicity
-of specification, IEEE\0Std\01003.1-2001
+of specification, IEEE\ Std\ 1003.1-2001
 requires that they behave like their respective \fBc\fP commands in
 all respects.
 .SS Delete
@@ -4843,21 +4648,21 @@ Historically, lines in open mode that were deleted were scrolled up,
 and an \fB@\fP glyph written over the beginning of the
 line. In the case of terminals that are incapable of the necessary
 cursor motions, the editor erased the deleted line from the
-screen. IEEE\0Std\01003.1-2001 requires conformance to historical
+screen. IEEE\ Std\ 1003.1-2001 requires conformance to historical
 practice; that is, if the terminal cannot display the
 \fB'@'\fP character, the line cannot remain on the screen.
 .SS Delete to End-of-Line
 .LP
 Some historical implementations of the \fBD\fP command did not behave
-as described by IEEE\0Std\01003.1-2001 when the
+as described by IEEE\ Std\ 1003.1-2001 when the
 \fB$\fP key was remapped because they were implemented by pushing
 the \fB$\fP key onto the input queue and reprocessing it.
-IEEE\0Std\01003.1-2001 does not permit this behavior.
+IEEE\ Std\ 1003.1-2001 does not permit this behavior.
 .SS Join
 .LP
 An historical oddity of \fIvi\fP is that the commands \fBJ\fP, \fB1J\fP,
 and \fB2J\fP are all equivalent.
-IEEE\0Std\01003.1-2001 requires conformance to historical practice.
+IEEE\ Std\ 1003.1-2001 requires conformance to historical practice.
 The \fIvi\fP \fBJ\fP command is specified in terms of
 the \fIex\fP \fBjoin\fP command with an \fIex\fP command
 \fIcount\fP value. The address correction for a \fIcount\fP that is
@@ -4867,7 +4672,7 @@ compatibility for both \fIex\fP and \fIvi\fP.
 .LP
 Historical practice is that only lowercase letters, plus \fB'`'\fP
 and \fB'"\fP , could be used to mark a cursor
-position. IEEE\0Std\01003.1-2001 requires conformance to historical
+position. IEEE\ Std\ 1003.1-2001 requires conformance to historical
 practice, but encourages implementations to support
 other characters as marks as well.
 .SS Repeat Regular Expression Find (Forward and Reverse)
@@ -4877,7 +4682,7 @@ motion components for the \fBc\fP command. With the
 exception of the \fBcN\fP command, which worked if the search crossed
 a line boundary, the text region would be discarded, and the
 user would not be in text input mode. For consistency and simplicity
-of specification, IEEE\0Std\01003.1-2001 does not
+of specification, IEEE\ Std\ 1003.1-2001 does not
 permit this behavior.
 .SS Insert Empty Line (Below and Above)
 .LP
@@ -4885,7 +4690,7 @@ Historically, counts to the \fBO\fP and \fBo\fP commands were used
 as the number of physical lines to open, if the terminal
 was dumb and the \fBslowopen\fP option was not set. This was intended
 to minimize traffic over slow connections and repainting for
-dumb terminals. IEEE\0Std\01003.1-2001 does not permit this behavior,
+dumb terminals. IEEE\ Std\ 1003.1-2001 does not permit this behavior,
 requiring that a \fIcount\fP to the open command
 behave as for other text input commands. This change to historical
 practice was made for consistency, and because a superset of the
@@ -4894,11 +4699,11 @@ functionality is provided by the \fBslowopen\fP edit option.
 .LP
 Historically, \fIcount\fPs to the \fBp\fP and \fBP\fP commands were
 ignored if the buffer was a line mode buffer, but were
-(mostly) implemented as described in IEEE\0Std\01003.1-2001 if the
+(mostly) implemented as described in IEEE\ Std\ 1003.1-2001 if the
 buffer was a character mode buffer. Because
 implementations exist that do not have this limitation, and because
 pasting lines multiple times is generally useful,
-IEEE\0Std\01003.1-2001 requires that \fIcount\fP be supported for
+IEEE\ Std\ 1003.1-2001 requires that \fIcount\fP be supported for
 all \fBp\fP and \fBP\fP commands.
 .LP
 Historical implementations of \fIvi\fP were widely known to have major
@@ -4911,7 +4716,7 @@ Historically, a \fBP\fP or \fBp\fP command (or an \fIex\fP \fBput\fP
 command executed
 from open or visual mode) executed in an empty file, left an empty
 line as the first line of the file. For consistency and
-simplicity of specification, IEEE\0Std\01003.1-2001 does not permit
+simplicity of specification, IEEE\ Std\ 1003.1-2001 does not permit
 this behavior.
 .SS Replace Character
 .LP
@@ -4919,14 +4724,14 @@ Historically, the \fBr\fP command did not correctly handle the \fIerase\fP
 and \fIword erase\fP characters as arguments, nor
 did it handle an associated \fIcount\fP greater than 1 with a <carriage-return>
 argument, for which it replaced \fIcount\fP
-characters with a single <newline>. IEEE\0Std\01003.1-2001 does not
+characters with a single <newline>. IEEE\ Std\ 1003.1-2001 does not
 permit these inconsistencies.
 .LP
 Historically, the \fBr\fP command permitted the <control>-V escaping
 of entered characters, such as <ESC> and the
 <carriage-return>; however, it required two leading <control>-V characters
 instead of one.
-IEEE\0Std\01003.1-2001 requires that this be changed for consistency
+IEEE\ Std\ 1003.1-2001 requires that this be changed for consistency
 with the other text input commands of \fIvi\fP.
 .LP
 Historically, it is an error to enter the \fBr\fP command if there
@@ -4935,7 +4740,7 @@ in the line. While a reasonable and unambiguous extension would be
 to permit the \fBr\fP command on empty lines, it would require
 that too large a \fIcount\fP be adjusted to match the number of characters
 at or after the cursor for consistency, which is
-sufficiently different from historical practice to be avoided. IEEE\0Std\01003.1-2001
+sufficiently different from historical practice to be avoided. IEEE\ Std\ 1003.1-2001
 requires conformance to historical
 practice.
 .SS Replace Characters
@@ -4948,7 +4753,7 @@ and no characters would be replaced by the
 where \fIn\fP was the number of characters
 that were needed to indent the rest of the line to the proper indentation
 level. This behavior is a bug and is not permitted by
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .SS Undo
 .LP
 Historical practice for cursor positioning after undoing commands
@@ -4965,7 +4770,7 @@ input command, followed by an \fBundo\fP would return the cursor to
 the location where the \fBo\fP command was entered, but a
 \fBcw\fP command followed by an \fBo\fP command followed by an \fBundo\fP
 would return the cursor to the first non-
-<blank> of the line. IEEE\0Std\01003.1-2001 requires the most useful
+<blank> of the line. IEEE\ Std\ 1003.1-2001 requires the most useful
 of these behaviors, and discards the least
 useful, in the interest of consistency and simplicity of specification.
 .SS Yank
@@ -4980,7 +4785,7 @@ motion commands, the \fByank\fP command moved the cursor but did not
 update the screen; for example, a subsequent command would
 move the cursor from the end of the motion, even though the cursor
 on the screen had not reflected the cursor movement for the
-\fByank\fP command. IEEE\0Std\01003.1-2001 requires that all \fByank\fP
+\fByank\fP command. IEEE\ Std\ 1003.1-2001 requires that all \fByank\fP
 commands associated with backward motions move
 the cursor to the end of the motion for consistency, and specifically,
 to make \fB'\fP commands as motions consistent with search
@@ -4988,15 +4793,15 @@ patterns as motions.
 .SS Yank Current Line
 .LP
 Some historical implementations of the \fBY\fP command did not behave
-as described by IEEE\0Std\01003.1-2001 when the
+as described by IEEE\ Std\ 1003.1-2001 when the
 \fB'_'\fP key was remapped because they were implemented by pushing
 the \fB'_'\fP key onto the input queue and reprocessing
-it. IEEE\0Std\01003.1-2001 does not permit this behavior.
+it. IEEE\ Std\ 1003.1-2001 does not permit this behavior.
 .SS Redraw Window
 .LP
 Historically, the \fBz\fP command always redrew the screen. This is
 permitted but not required by
-IEEE\0Std\01003.1-2001, because of the frequent use of the \fBz\fP
+IEEE\ Std\ 1003.1-2001, because of the frequent use of the \fBz\fP
 command in macros such as \fBmap n nz.\fP for screen
 positioning, instead of its use to change the screen size. The standard
 developers believed that expanding or scrolling the screen
@@ -5006,7 +4811,7 @@ and in the <control>-L and <control>-R commands.
 .LP
 The semantics of \fBz^\fP are confusing at best. Historical practice
 is that the screen before the screen that ended with the
-specified line is displayed. IEEE\0Std\01003.1-2001 requires conformance
+specified line is displayed. IEEE\ Std\ 1003.1-2001 requires conformance
 to historical practice.
 .LP
 Historically, the \fBz\fP command would not display a partial line
@@ -5015,18 +4820,18 @@ would normally have been displayed at the bottom of the screen, the
 command worked, but the partial line was replaced with
 \fB'@'\fP characters. If the partial line would normally have been
 displayed at the top of the screen, the command would fail.
-For consistency and simplicity of specification, IEEE\0Std\01003.1-2001
+For consistency and simplicity of specification, IEEE\ Std\ 1003.1-2001
 does not permit this behavior.
 .LP
 Historically, the \fBz\fP command with a line specification of 1 ignored
 the command. For consistency and simplicity of
-specification, IEEE\0Std\01003.1-2001 does not permit this behavior.
+specification, IEEE\ Std\ 1003.1-2001 does not permit this behavior.
 .LP
 Historically, the \fBz\fP command did not set the cursor column to
 the first non- <blank> for the character if the first
 screen was to be displayed, and was already displayed. For consistency
 and simplicity of specification,
-IEEE\0Std\01003.1-2001 does not permit this behavior.
+IEEE\ Std\ 1003.1-2001 does not permit this behavior.
 .SS Input Mode Commands in vi
 .LP
 Historical implementations of \fIvi\fP did not permit the user to
@@ -5069,14 +4874,14 @@ keystrokes:
 .LP
 the historical implementation results in the string \fB"bcd"\fP disappearing
 and then magically reappearing when the
-<ESC> character is entered. IEEE\0Std\01003.1-2001 requires the former
+<ESC> character is entered. IEEE\ Std\ 1003.1-2001 requires the former
 behavior when overwriting erase-columns-that
 is, overwriting characters that are no longer logically part of the
 edit buffer-and the latter behavior otherwise.
 .LP
 Historical implementations of \fIvi\fP discarded the <control>-D and
 <control>-T characters when they were entered
-at places where their command functionality was not appropriate. IEEE\0Std\01003.1-2001
+at places where their command functionality was not appropriate. IEEE\ Std\ 1003.1-2001
 requires that the <control>-T
 functionality always be available, and that <control>-D be treated
 as any other key when not operating on \fBautoindent\fP
@@ -5085,7 +4890,7 @@ characters.
 .LP
 Some historical implementations of \fIvi\fP limited the number of
 characters entered using the NUL input character to 256
-bytes. IEEE\0Std\01003.1-2001 permits this limitation; however, implementations
+bytes. IEEE\ Std\ 1003.1-2001 permits this limitation; however, implementations
 are encouraged to remove this limit.
 .SS <control>-D
 .LP
@@ -5114,13 +4919,13 @@ the characters inserted by <control>-T were treated
 as \fBautoindent\fP characters, and could not be erased using normal
 user erase characters. Because implementations exist that do
 not have these limitations, and as moving to a column boundary is
-generally useful, IEEE\0Std\01003.1-2001 requires that
+generally useful, IEEE\ Std\ 1003.1-2001 requires that
 both limitations be removed.
 .SS <control>-V
 .LP
 Historically, \fIvi\fP used \fB^V\fP, regardless of the value of the
 literal-next character of the terminal.
-IEEE\0Std\01003.1-2001 requires conformance to historical practice.
+IEEE\ Std\ 1003.1-2001 requires conformance to historical practice.
 .LP
 The uses described for <control>-V can also be accomplished with <control>-Q,
 which is useful on terminals that use
@@ -5131,15 +4936,15 @@ the <control>-Q unless \fBstty ixon\fP mode is set
 to off. (In addition, some historical implementations of \fIvi\fP
 explicitly set \fBixon\fP mode to on, so it was difficult for
 the user to set it to off.) Any of the command characters described
-in IEEE\0Std\01003.1-2001 can be made ineffective by
+in IEEE\ Std\ 1003.1-2001 can be made ineffective by
 their selection as \fItermios\fP control characters, using the \fIstty\fP
 utility or other
-methods described in the System Interfaces volume of IEEE\0Std\01003.1-2001.
+methods described in the System Interfaces volume of IEEE\ Std\ 1003.1-2001.
 .SS <ESC>
 .LP
 Historically, SIGINT alerted the terminal when used to end input mode.
 This behavior is permitted, but not required, by
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .SH FUTURE DIRECTIONS
 .LP
 None.

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_barrierattr_destroy" P 2003 POSIX
+.TH "PTHREAD_BARRIERATTR_DESTROY" P 2003 POSIX
 .\" pthread_barrierattr_destroy 
 .SH NAME
-pthread_barrierattr_destroy, pthread_barrierattr_init - destroy and
+pthread_barrierattr_destroy, pthread_barrierattr_init \- destroy and
 initialize the barrier attributes object
 (\fBADVANCED REALTIME THREADS\fP)
 .SH SYNOPSIS
@@ -47,13 +47,13 @@ otherwise, an error number shall be returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_barrierattr_destroy\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIattr\fP is invalid.
 .sp
 .LP
 The \fIpthread_barrierattr_init\fP() function shall fail if:
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory exists to initialize the barrier attributes object.
 .sp
@@ -79,7 +79,7 @@ None.
 .LP
 \fIpthread_barrierattr_getpshared\fP() , \fIpthread_barrierattr_setpshared\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP.
+IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP.
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

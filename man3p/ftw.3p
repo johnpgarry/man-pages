@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "ftw" P 2003 POSIX
+.TH "FTW" P 2003 POSIX
 .\" ftw 
 .SH NAME
-ftw - traverse (walk) a file tree
+ftw \- traverse (walk) a file tree
 .SH SYNOPSIS
 .LP
 \fB#include <ftw.h>
@@ -11,7 +11,7 @@ ftw - traverse (walk) a file tree
 int ftw(const char *\fP\fIpath\fP\fB, int (*\fP\fIfn\fP\fB)(const
 char *,
 .br
-\0\0\0\0\0\0 const struct stat *\fP\fIptr\fP\fB, int\fP \fIflag\fP\fB),
+\ \ \ \ \ \  const struct stat *\fP\fIptr\fP\fB, int\fP \fIflag\fP\fB),
 int\fP
 \fIndirs\fP\fB); \fP
 \fB
@@ -27,19 +27,19 @@ containing the name of the object, a pointer to a \fBstat\fP structure
 containing information about the object, and an integer.
 Possible values of the integer, defined in the \fI<ftw.h>\fP header,
 are:
-.TP
+.TP 7
 FTW_D
 For a directory.
-.TP
+.TP 7
 FTW_DNR
 For a directory that cannot be read.
-.TP
+.TP 7
 FTW_F
 For a file.
-.TP
+.TP 7
 FTW_SL
 For a symbolic link (but see also FTW_NS below).
-.TP
+.TP 7
 FTW_NS
 For an object other than a symbolic link on which \fIstat\fP() could
 not successfully be
@@ -97,26 +97,26 @@ or file.
 .SH ERRORS
 .LP
 The \fIftw\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied for any component of \fIpath\fP or read
 permission is denied for \fIpath\fP.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIpath\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing file or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B ENOTDIR
 A component of \fIpath\fP is not a directory.
-.TP
+.TP 7
 .B EOVERFLOW
 A field in the \fBstat\fP structure cannot be represented correctly
 in the current programming environment for one or more
@@ -124,14 +124,14 @@ files found in the file hierarchy.
 .sp
 .LP
 The \fIftw\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIndirs\fP argument is invalid.
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 Pathname resolution of a symbolic link produced an intermediate result
 whose length exceeds {PATH_MAX}.
@@ -181,7 +181,7 @@ None.
 \fIlongjmp\fP() , \fIlstat\fP() , \fImalloc\fP() , \fInftw\fP() ,
 \fIopendir\fP() , \fIsiglongjmp\fP() , \fIstat\fP() , the Base Definitions
 volume of
-IEEE\0Std\01003.1-2001, \fI<ftw.h>\fP, \fI<sys/stat.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<ftw.h>\fP, \fI<sys/stat.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_trace_start" P 2003 POSIX
+.TH "POSIX_TRACE_START" P 2003 POSIX
 .\" posix_trace_start 
 .SH NAME
-posix_trace_start, posix_trace_stop - trace start and stop (\fBTRACING\fP)
+posix_trace_start, posix_trace_stop \- trace start and stop (\fBTRACING\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <trace.h>
@@ -47,12 +47,12 @@ number.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the argument \fItrid\fP does not correspond to an active
 trace stream and thus no trace stream was started or
 stopped.
-.TP
+.TP 7
 .B EINTR
 The operation was interrupted by a signal and thus the trace stream
 was not necessarily started or stopped.
@@ -74,7 +74,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIposix_trace_create\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<trace.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<trace.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_rwlock_rdlock" P 2003 POSIX
+.TH "PTHREAD_RWLOCK_RDLOCK" P 2003 POSIX
 .\" pthread_rwlock_rdlock 
 .SH NAME
-pthread_rwlock_rdlock, pthread_rwlock_tryrdlock - lock a read-write
+pthread_rwlock_rdlock, pthread_rwlock_tryrdlock \- lock a read-write
 lock object for reading
 .SH SYNOPSIS
 .LP
@@ -85,7 +85,7 @@ shall be returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_rwlock_tryrdlock\fP() function shall fail if:
-.TP
+.TP 7
 .B EBUSY
 The read-write lock could not be acquired for reading because a writer
 holds the lock or a writer with the appropriate priority
@@ -94,18 +94,18 @@ was blocked on it.
 .LP
 The \fIpthread_rwlock_rdlock\fP() and \fIpthread_rwlock_tryrdlock\fP()
 functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIrwlock\fP does not refer to an initialized
 read-write lock object.
-.TP
+.TP 7
 .B EAGAIN
 The read lock could not be acquired because the maximum number of
 read locks for \fIrwlock\fP has been exceeded.
 .sp
 .LP
 The \fIpthread_rwlock_rdlock\fP() function may fail if:
-.TP
+.TP 7
 .B EDEADLK
 The current thread already owns the read-write lock for writing.
 .sp
@@ -120,7 +120,7 @@ None.
 .LP
 Applications using these functions may be subject to priority inversion,
 as discussed in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 3.285, Priority Inversion.
+IEEE\ Std\ 1003.1-2001, Section 3.285, Priority Inversion.
 .SH RATIONALE
 .LP
 None.
@@ -132,7 +132,7 @@ None.
 \fIpthread_rwlock_destroy\fP() , \fIpthread_rwlock_timedrdlock\fP()
 , \fIpthread_rwlock_timedwrlock\fP() , \fIpthread_rwlock_trywrlock\fP()
 , \fIpthread_rwlock_unlock\fP() , \fIpthread_rwlock_wrlock\fP() ,
-the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

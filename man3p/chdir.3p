@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "chdir" P 2003 POSIX
+.TH "CHDIR" P 2003 POSIX
 .\" chdir 
 .SH NAME
-chdir - change working directory
+chdir \- change working directory
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -25,32 +25,32 @@ unchanged, and \fIerrno\fP shall be set to indicate the error.
 .SH ERRORS
 .LP
 The \fIchdir\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied for any component of the pathname.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIpath\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing directory or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the pathname is not a directory.
 .sp
 .LP
 The \fIchdir\fP() function may fail if:
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 As a result of encountering a symbolic link in resolution of the \fIpath\fP
 argument, the length of the substituted pathname
@@ -89,7 +89,7 @@ current process.
 None.
 .SH SEE ALSO
 .LP
-\fIgetcwd\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIgetcwd\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sched_getscheduler" P 2003 POSIX
+.TH "SCHED_GETSCHEDULER" P 2003 POSIX
 .\" sched_getscheduler 
 .SH NAME
-sched_getscheduler - get scheduling policy (\fBREALTIME\fP)
+sched_getscheduler \- get scheduling policy (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <sched.h>
@@ -37,11 +37,11 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIsched_getscheduler\fP() function shall fail if:
-.TP
+.TP 7
 .B EPERM
 The requesting process does not have permission to determine the scheduling
 policy of the specified process.
-.TP
+.TP 7
 .B ESRCH
 No process can be found corresponding to that specified by \fIpid\fP.
 .sp
@@ -62,7 +62,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIsched_getparam\fP() , \fIsched_setparam\fP() , \fIsched_setscheduler\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<sched.h>\fP
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sched.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "chown" P 2003 POSIX
+.TH "CHOWN" P 2003 POSIX
 .\" chown 
 .SH NAME
-chown - change owner and group of a file
+chown \- change owner and group of a file
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -24,21 +24,17 @@ numeric values contained in \fIowner\fP and \fIgroup\fP, respectively.
 Only processes with an effective user ID equal to the user ID of the
 file or with appropriate privileges may change the
 ownership of a file. If _POSIX_CHOWN_RESTRICTED is in effect for \fIpath\fP:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Changing the user ID is restricted to processes with appropriate privileges.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Changing the group ID is permitted to a process with an effective
 user ID equal to the user ID of the file, but without
 appropriate privileges, if and only if \fIowner\fP is equal to the
 file's user ID or ( \fBuid_t\fP)-1 and \fIgroup\fP is equal
 either to the calling process' effective group ID or to one of its
 supplementary group IDs.
-.in -5
-.RE
+.LP
 .LP
 If the specified file is a regular file, one or more of the S_IXUSR,
 S_IXGRP, or S_IXOTH bits of the file mode are set, and the
@@ -70,49 +66,49 @@ the file.
 .SH ERRORS
 .LP
 The \fIchown\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied on a component of the path prefix.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIpath\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix is not a directory.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing file or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B EPERM
 The effective user ID does not match the owner of the file, or the
 calling process does not have appropriate privileges and
 _POSIX_CHOWN_RESTRICTED indicates that such privilege is required.
-.TP
+.TP 7
 .B EROFS
 The named file resides on a read-only file system.
 .sp
 .LP
 The \fIchown\fP() function may fail if:
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while reading or writing to the file system.
-.TP
+.TP 7
 .B EINTR
 The \fIchown\fP() function was interrupted by a signal which was caught.
-.TP
+.TP 7
 .B EINVAL
 The owner or group ID supplied is not a value supported by the implementation.
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 As a result of encountering a symbolic link in resolution of the \fIpath\fP
 argument, the length of the substituted pathname
@@ -138,7 +134,7 @@ is a serious problem for implementations that are intended to meet
 government security regulations. Version 7 and 4.3 BSD permit
 only the superuser to change the user ID of a file. Some government
 agencies (usually not ones concerned directly with security)
-find this limitation too confining. This volume of IEEE\0Std\01003.1-2001
+find this limitation too confining. This volume of IEEE\ Std\ 1003.1-2001
 uses \fImay\fP to permit secure implementations
 while not disallowing System V.
 .LP
@@ -165,7 +161,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIchmod\fP() , \fIpathconf\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/types.h>\fP, \fI<unistd.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/types.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

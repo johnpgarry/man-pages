@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sact" P 2003 POSIX
+.TH "SACT" P 2003 POSIX
 .\" sact 
 .SH NAME
-sact - print current SCCS file-editing activity (\fBDEVELOPMENT\fP)
+sact \- print current SCCS file-editing activity (\fBDEVELOPMENT\fP)
 .SH SYNOPSIS
 .LP
 \fBsact\fP \fIfile\fP\fB... \fP
@@ -20,7 +20,7 @@ None.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of an existing SCCS file or a directory. If \fIfile\fP
 is a directory, the \fIsact\fP utility shall behave as
@@ -46,29 +46,29 @@ Any SCCS files interrogated are files of an unspecified format.
 .LP
 The following environment variables shall affect the execution of
 \fIsact\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -84,27 +84,27 @@ format:
 .RS
 .nf
 
-\fB"%s%s%s%s%s\\n", <\fP\fISID\fP\fB>, <\fP\fInew SID\fP\fB>, <\fP\fIlogin\fP\fB>, <\fP\fIdate\fP\fB>, <\fP\fItime\fP\fB>
+\fB"%s %s %s %s %s\\n", <\fP\fISID\fP\fB>, <\fP\fInew SID\fP\fB>, <\fP\fIlogin\fP\fB>, <\fP\fIdate\fP\fB>, <\fP\fItime\fP\fB>
 \fP
 .fi
 .RE
-.TP
+.TP 7
 <\fISID\fP>
 Specifies the SID of a delta that currently exists in the SCCS file
 to which changes are made to make the new delta.
-.TP
-<\fInew\0SID\fP>
+.TP 7
+<\fInew\ SID\fP>
 Specifies the SID for the new delta to be created.
-.TP
+.TP 7
 <\fIlogin\fP>
 Contains the login name of the user who makes the delta (that is,
 who executed a \fIget\fP
 for editing).
-.TP
+.TP 7
 <\fIdate\fP>
 Contains the date that \fIget\fP \fB-e\fP was executed, in the format
 used by the \fIprs\fP \fB:D:\fP data keyword.
-.TP
+.TP 7
 <\fItime\fP>
 Contains the time that \fIget\fP \fB-e\fP was executed, in the format
 used by the \fIprs\fP \fB:T:\fP data keyword.
@@ -135,10 +135,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp

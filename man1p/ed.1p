@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "ed" P 2003 POSIX
+.TH "ED" P 2003 POSIX
 .\" ed 
 .SH NAME
-ed - edit text
+ed \- edit text
 .SH SYNOPSIS
 .LP
 \fBed\fP \fB[\fP\fB-p\fP \fIstring\fP\fB][\fP\fB-s\fP\fB][\fP\fIfile\fP\fB]\fP
@@ -16,14 +16,14 @@ DESCRIPTION section.
 .SH OPTIONS
 .LP
 The \fIed\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
-\fB-p\0\fP \fIstring\fP
+.TP 7
+\fB-p\ \fP \fIstring\fP
 Use \fIstring\fP as the prompt string when in command mode. By default,
 there shall be no prompt string.
-.TP
+.TP 7
 \fB-s\fP
 Suppress the writing of byte counts by \fBe\fP, \fBE\fP, \fBr\fP,
 and \fBw\fP commands and of the \fB'!'\fP prompt after
@@ -32,7 +32,7 @@ a !\fIcommand\fP.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 If the \fIfile\fP argument is given, \fIed\fP shall simulate an \fBe\fP
 command on the file named by the pathname,
@@ -51,40 +51,40 @@ The input files shall be text files.
 .LP
 The following environment variables shall affect the execution of
 \fIed\fP:
-.TP
+.TP 7
 \fIHOME\fP
 Determine the pathname of the user's home directory.
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements within regular
 expressions.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files) and
 the behavior of character classes within regular
 expressions.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -94,12 +94,12 @@ Determine the location of message catalogs for the processing of \fILC_MESSAGES
 The \fIed\fP utility shall take the standard action for all signals
 (see the ASYNCHRONOUS EVENTS section in \fIUtility Description Defaults\fP
 ) with the following exceptions:
-.TP
+.TP 7
 SIGINT
 The \fIed\fP utility shall interrupt its current activity, write the
 string \fB"?\\n"\fP to standard output, and return to
 command mode (see the EXTENDED DESCRIPTION section).
-.TP
+.TP 7
 SIGHUP
 If the buffer is not empty and has changed since the last write, the
 \fIed\fP utility shall attempt to write a copy of the
@@ -108,7 +108,7 @@ directory shall be used; if that fails, the file named
 \fBed.hup\fP in the directory named by the \fIHOME\fP environment
 variable shall be used. In any case, the \fIed\fP utility
 shall exit without returning to command mode.
-.TP
+.TP 7
 SIGQUIT
 The \fIed\fP utility shall ignore this event.
 .sp
@@ -152,7 +152,7 @@ is not considered part of the input text.
 .LP
 The \fIed\fP utility shall support basic regular expressions, as described
 in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 9.3, Basic Regular Expressions. Since
+IEEE\ Std\ 1003.1-2001, Section 9.3, Basic Regular Expressions. Since
 regular expressions in \fIed\fP are always matched against single
 lines (excluding the terminating <newline>s), never
 against any larger section of text, there is no way for a regular
@@ -172,31 +172,26 @@ buffer is not empty, the initial value for the current line
 shall be the last line in the edit buffer; otherwise, zero.
 .LP
 Addresses shall be constructed as follows:
-.in +5
-.LP
+.IP " 1." 4
 The period character ( \fB'.'\fP ) shall address the current line.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The dollar sign character ( \fB'$'\fP ) shall address the last line
 of the edit buffer.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The positive decimal number \fIn\fP shall address the \fIn\fPth line
 of the edit buffer.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The apostrophe-x character pair ( \fB"'x"\fP ) shall address the line
 marked with the mark name character \fIx\fP, which
 shall be a lowercase letter from the portable character set. It shall
 be an error if the character has not been set to mark a line
 or if the line that was marked is not currently present in the edit
 buffer.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 A BRE enclosed by slash characters ( \fB'/'\fP ) shall address the
 first line found by searching forwards from the line
 following the current line toward the end of the edit buffer and stopping
@@ -211,9 +206,8 @@ a literal slash instead of the BRE delimiter. If necessary, the search
 shall wrap around to the beginning of the buffer and
 continue up to and including the current line, so that the entire
 buffer is searched.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 A BRE enclosed by question-mark characters ( \fB'?'\fP ) shall address
 the first line found by searching backwards from the
 line preceding the current line toward the beginning of the edit buffer
@@ -229,33 +223,28 @@ question mark instead of the BRE delimiter. If necessary,
 the search shall wrap around to the end of the buffer and continue
 up to and including the current line, so that the entire buffer
 is searched.
-.in -5
-.in +5
 .LP
+.IP " 7." 4
 A plus-sign ( \fB'+'\fP ) or hyphen character ( \fB'-'\fP ) followed
 by a decimal number shall address the current line
 plus or minus the number. A plus-sign or hyphen character not followed
 by a decimal number shall address the current line plus or
 minus 1.
-.in -5
+.LP
 .LP
 Addresses can be followed by zero or more address offsets, optionally
 <blank>-separated. Address offsets are constructed
 as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 A plus-sign or hyphen character followed by a decimal number shall
 add or subtract, respectively, the indicated number of lines
 to or from the address. A plus-sign or hyphen character not followed
 by a decimal number shall add or subtract 1 to or from the
 address.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A decimal number shall add the indicated number of lines to the address.
-.in -5
-.RE
+.LP
 .LP
 It shall not be an error for an intermediate address value to be less
 than zero or greater than the last line in the edit
@@ -282,14 +271,14 @@ Addresses can be omitted on either side of the comma or semicolon
 separator, in which case the resulting address pairs shall be
 as follows:
 .TS C
-center;l l l l l l l l.
-\fBSpecified\fP 	 \fBResulting\fP 	
-, 	 1 , $ 	
-, addr 	 1 , addr 	
-addr , 	 addr , addr 	
-; 	 . ; $ 	
-; addr 	 . ; addr 	
-addr ; 	 addr ; addr 	
+center; l l.
+\fBSpecified\fP	\fBResulting\fP
+,	1 , $
+, addr	1 , addr
+addr ,	addr , addr
+;	. ; $
+; addr	. ; addr
+addr ;	addr ; addr
 .TE
 .LP
 Any <blank>s included between addresses, address separators, or address
@@ -351,9 +340,7 @@ the \fBe\fP or \fBq\fP command is repeated with no
 intervening command, it shall take effect.
 .LP
 If a terminal disconnect is detected:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If the buffer is not empty and has changed since the last write, the
 \fIed\fP utility shall attempt to write a copy of the
 buffer to a file named \fBed.hup\fP in the current directory. If this
@@ -361,30 +348,24 @@ write fails, \fIed\fP shall attempt to write a copy of the
 buffer to a filename \fBed.hup\fP in the directory named by the \fIHOME\fP
 environment variable. If both these attempts fail,
 \fIed\fP shall exit without saving the buffer.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The \fIed\fP utility shall not write the file to the currently remembered
 pathname or return to command mode, and shall
 terminate with a non-zero exit status.
-.in -5
-.RE
+.LP
 .LP
 If an end-of-file is detected on standard input:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If the \fIed\fP utility is in input mode, \fIed\fP shall terminate
 input mode and return to command mode. It is unspecified if
 any partially entered lines (that is, input text without a terminating
 <newline>) are discarded from the input text.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the \fIed\fP utility is in command mode, it shall act as if a \fBq\fP
 command had been entered.
-.in -5
-.RE
+.LP
 .LP
 If the closing delimiter of an RE or of a replacement string (for
 example, \fB'/'\fP ) in a \fBg\fP, \fBG\fP, \fBs\fP,
@@ -417,7 +398,7 @@ If an invalid command is entered, \fIed\fP shall write the string:
 via the \fBH\fP command) to standard output and shall
 continue in command mode with the current line number unchanged.
 .SS Append Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -437,7 +418,7 @@ address of the last inserted line or, if there were none, the addressed
 line. Address 0 shall be valid for this command; it shall
 cause the appended text to be placed at the beginning of the buffer.
 .SS Change Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -461,7 +442,7 @@ remain in the buffer, the current line number shall be set to zero.
 Address 0 shall be valid for this command; it shall be
 interpreted as if address 1 were specified.
 .SS Delete Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -480,7 +461,7 @@ at the end of the buffer, the current line number shall be set
 to the address of the new last line; if no lines remain in the buffer,
 the current line number shall be set to zero.
 .SS Edit Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -518,7 +499,7 @@ discarded upon the completion of a successful \fBe\fP command. If
 the buffer has changed since the last time the entire buffer was
 written, the user shall be warned, as described previously.
 .SS Edit Without Checking Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -534,7 +515,7 @@ of the \fBe\fP command except that the editor shall not
 check to see whether any changes have been made to the buffer since
 the last \fBw\fP command.
 .SS Filename Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -561,7 +542,7 @@ format:
 .LP
 The current line number shall be unchanged.
 .SS Global Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -596,7 +577,7 @@ other than <space> or <newline> can be used instead of a slash to
 delimit the RE. Within the RE, the RE delimiter
 itself can be used as a literal character if it is preceded by a backslash.
 .SS Interactive Global Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -632,7 +613,7 @@ instead of a slash to delimit the RE and the replacement. Within the
 RE, the RE delimiter itself can be used as a literal character
 if it is preceded by a backslash.
 .SS Help Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -648,7 +629,7 @@ The \fBh\fP command shall write a short message to standard output
 that explains the reason for the most recent \fB'?'\fP
 notification. The current line number shall be unchanged.
 .SS Help-Mode Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -668,7 +649,7 @@ is initially off. If the help-mode is being turned on, the \fBH\fP
 command also explains the previous \fB'?'\fP notification,
 if there was one. The current line number shall be unchanged.
 .SS Insert Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -689,7 +670,7 @@ from the \fBa\fP command only in the placement of the input
 text. Address 0 shall be valid for this command; it shall be interpreted
 as if address 1 were specified.
 .SS Join Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -707,7 +688,7 @@ this command shall do nothing. If lines are joined, the current line
 number shall be set to the address of the joined line;
 otherwise, the current line number shall be unchanged.
 .SS Mark Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -724,7 +705,7 @@ from the portable character set. The address \fB"'x"\fP shall then
 refer to this line; the current line number shall be
 unchanged.
 .SS List Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -738,7 +719,7 @@ unchanged.
 .LP
 The \fBl\fP command shall write to standard output the addressed lines
 in a visually unambiguous form. The characters listed in
-the Base Definitions volume of IEEE\0Std\01003.1-2001, Table 5-1,
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, Table 5-1,
 Escape Sequences and Associated Actions ( \fB'\\\\'\fP ,
 \fB'\\a'\fP , \fB'\\b'\fP , \fB'\\f'\fP , \fB'\\r'\fP , \fB'\\t'\fP
 , \fB'\\v'\fP ) shall be written as the
@@ -760,7 +741,7 @@ appended to any other command other than \fBe\fP, \fBE\fP, \fBf\fP,
 \fBq\fP, \fBQ\fP, \fBr\fP, \fBw\fP, or \fB!\fP. The
 current line number shall be set to the address of the last line written.
 .SS Move Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -779,7 +760,7 @@ beginning of the buffer. It shall be an error if address
 number shall be set to the address of the last line
 moved.
 .SS Number Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -798,7 +779,7 @@ last line written. The \fBn\fP command can be appended to
 any command other than \fBe\fP, \fBE\fP, \fBf\fP, \fBq\fP, \fBQ\fP,
 \fBr\fP, \fBw\fP, or \fB!\fP.
 .SS Print Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -816,7 +797,7 @@ the last line written. The \fBp\fP command can be appended to any
 command other than \fBe\fP, \fBE\fP, \fBf\fP, \fBq\fP,
 \fBQ\fP, \fBr\fP, \fBw\fP, or \fB!\fP.
 .SS Prompt Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -835,7 +816,7 @@ shall turn this mode on and off; it shall be initially
 on if the \fB-p\fP option is specified; otherwise, off. The current
 line number shall be unchanged.
 .SS Quit Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -851,7 +832,7 @@ The \fBq\fP command shall cause \fIed\fP to exit. If the buffer has
 changed since the last time the entire buffer was written,
 the user shall be warned, as described previously.
 .SS Quit Without Checking Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -867,7 +848,7 @@ The \fBQ\fP command shall cause \fIed\fP to exit without checking
 whether changes have been made in the buffer since the last
 \fBw\fP command.
 .SS Read Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -903,7 +884,7 @@ rest of the line shall be taken to be a shell command line whose output
 is to be read. Such a shell command line shall not be
 remembered as the current pathname.
 .SS Substitute Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -960,33 +941,33 @@ identical to the string that it replaces.
 .LP
 The application shall ensure that the value of \fIflags\fP is zero
 or more of:
-.TP
+.TP 7
 \fIcount\fP
 Substitute for the \fIcount\fPth occurrence only of the RE found on
 each addressed line.
-.TP
+.TP 7
 \fBg\fP
 Globally substitute for all non-overlapping instances of the RE rather
 than just the first one. If both \fBg\fP and
 \fIcount\fP are specified, the results are unspecified.
-.TP
+.TP 7
 \fBl\fP
 Write to standard output the final line in which a substitution was
 made. The line shall be written in the format specified for
 the \fBl\fP command.
-.TP
+.TP 7
 \fBn\fP
 Write to standard output the final line in which a substitution was
 made. The line shall be written in the format specified for
 the \fBn\fP command.
-.TP
+.TP 7
 \fBp\fP
 Write to standard output the final line in which a substitution was
 made. The line shall be written in the format specified for
 the \fBp\fP command.
 .sp
 .SS Copy Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1002,7 +983,7 @@ that a copy of the addressed lines shall be placed
 after address \fIaddress\fP (which can be 0); the current line number
 shall be set to the address of the last line added.
 .SS Undo Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1026,7 +1007,7 @@ command shall have no effect. The current line number shall be set
 to the value it had immediately before the command being undone
 started.
 .SS Global Non-Matched Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1042,7 +1023,7 @@ that the lines that are marked during the first step
 shall be those for which the line excluding the terminating <newline>
 does not match the RE.
 .SS Interactive Global Not-Matched Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1059,7 +1040,7 @@ This command shall be equivalent to the interactive global command
 first step shall be those for which the line excluding the terminating
 <newline> does not match the RE.
 .SS Write Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1100,7 +1081,7 @@ previously; thus, this alone shall not prevent the warning to the
 user if an attempt is made to destroy the editor buffer via the
 \fBe\fP or \fBq\fP commands.
 .SS Line Number Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1125,7 +1106,7 @@ output in the following format:
 .LP
 The current line number shall be unchanged by this command.
 .SS Shell Escape Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1159,7 +1140,7 @@ executed. The \fB!\fP command shall write:
 to standard output upon completion, unless the \fB-s\fP option is
 specified. The current line number shall be unchanged.
 .SS Null Command
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1178,10 +1159,10 @@ of the written line.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion without any file or command errors.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -1191,18 +1172,14 @@ When an error in the input script is encountered, or when an error
 is detected that is a consequence of the data (not) present
 in the file or due to an external condition such as a read or write
 error:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If the standard input is a terminal device file, all input shall be
 flushed, and a new command read.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the standard input is a regular file, \fIed\fP shall terminate
 with a non-zero exit status.
-.in -5
-.RE
+.LP
 .LP
 \fIThe following sections are informative.\fP
 .SH APPLICATION USAGE
@@ -1226,75 +1203,60 @@ The initial description of this utility was adapted from the SVID.
 It contains some features not found in Version 7 or
 BSD-derived systems. Some of the differences between the POSIX and
 BSD \fIed\fP utilities include, but need not be limited to:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The BSD \fB-\fP option does not suppress the \fB'!'\fP prompt after
 a \fB!\fP command.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 BSD does not support the special meanings of the \fB'%'\fP and \fB'!'\fP
 characters within a \fB!\fP command.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 BSD does not support the \fIaddresses\fP \fB';'\fP and \fB','\fP .
-.in -5
-.in +5
 .LP
+.IP " *" 3
 BSD allows the command/suffix pairs \fBpp\fP, \fBll\fP, and so on,
 which are unspecified in this volume of
-IEEE\0Std\01003.1-2001.
-.in -5
-.in +5
+IEEE\ Std\ 1003.1-2001.
 .LP
+.IP " *" 3
 BSD does not support the \fB'!'\fP character part of the \fBe\fP,
 \fBr\fP, or \fBw\fP commands.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A failed \fBg\fP command in BSD sets the line number to the last line
 searched if there are no matches.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 BSD does not default the \fIcommand list\fP to the \fBp\fP command.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 BSD does not support the \fBG\fP, \fBh\fP, \fBH\fP, \fBn\fP, or \fBV\fP
 commands.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 On BSD, if there is no inserted text, the insert command changes the
 current line to the referenced line -1; that is, the line
 before the specified line.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 On BSD, the \fIjoin\fP command with only a single address changes
 the current line to that
 address.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 BSD does not support the \fBP\fP command; moreover, in BSD it is synonymous
 with the \fBp\fP command.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 BSD does not support the \fIundo\fP of the commands \fBj\fP, \fBm\fP,
 \fBr\fP, \fBs\fP, or \fBt\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The Version 7 \fIed\fP command \fBW\fP, and the BSD \fIed\fP commands
 \fBW\fP, \fBwq\fP, and \fBz\fP are not present in
-this volume of IEEE\0Std\01003.1-2001.
-.in -5
-.RE
+this volume of IEEE\ Std\ 1003.1-2001.
+.LP
 .LP
 The \fB-s\fP option was added to allow the functionality of the now
 withdrawn \fB-\fP option in a manner compatible with the
@@ -1306,8 +1268,8 @@ their handling of large files; some of these have had problems with
 files larger than 100000 bytes. It was this limitation that
 prompted much of the desire to include a \fIsplit\fP command in this
 volume of
-IEEE\0Std\01003.1-2001. Since this limit was removed, this volume
-of IEEE\0Std\01003.1-2001 requires that
+IEEE\ Std\ 1003.1-2001. Since this limit was removed, this volume
+of IEEE\ Std\ 1003.1-2001 requires that
 implementations document the file size limits imposed by \fIed\fP
 in the conformance document. The limit {ED_LINE_MAX} was also
 removed; therefore, the global limit {LINE_MAX} is used for input
@@ -1346,7 +1308,7 @@ not worthwhile.
 .LP
 The description of how a NUL is written was removed. The NUL character
 cannot be in text files, and this volume of
-IEEE\0Std\01003.1-2001 should not dictate behavior in the case of
+IEEE\ Std\ 1003.1-2001 should not dictate behavior in the case of
 undefined, erroneous input.
 .LP
 Unlike some of the other editing utilities, the filenames accepted
@@ -1373,12 +1335,12 @@ BSD-based systems allow this, whereas System V does not.
 .LP
 Some BSD-based systems exit immediately upon receipt of end-of-file
 if all of the lines in the file have been deleted. Since
-this volume of IEEE\0Std\01003.1-2001 refers to the \fBq\fP command
+this volume of IEEE\ Std\ 1003.1-2001 refers to the \fBq\fP command
 in this instance, such behavior is not allowed.
 .LP
 Some historical implementations returned exit status zero even if
 command errors had occurred; this is not allowed by this
-volume of IEEE\0Std\01003.1-2001.
+volume of IEEE\ Std\ 1003.1-2001.
 .LP
 Some historical implementations contained a bug that allowed a single
 period to be entered in input mode as <backslash>
@@ -1391,7 +1353,7 @@ to delete that character.
 .LP
 It is difficult under some modes of some versions of historical operating
 system terminal drivers to distinguish between an
-end-of-file condition and terminal disconnect. IEEE\0Std\01003.1-2001
+end-of-file condition and terminal disconnect. IEEE\ Std\ 1003.1-2001
 does not require implementations to distinguish
 between the two situations, which permits historical implementations
 of the \fIed\fP utility on historical platforms to conform.
@@ -1401,7 +1363,7 @@ possible, and take appropriate action on terminal disconnect.
 Historically, \fIed\fP accepted a zero address for the \fBa\fP and
 \fBr\fP commands in order to insert text at the start of
 the edit buffer. When the buffer was empty the command \fB.=\fP returned
-zero. IEEE\0Std\01003.1-2001 requires conformance
+zero. IEEE\ Std\ 1003.1-2001 requires conformance
 to historical practice.
 .LP
 For consistency with the \fBa\fP and \fBr\fP commands and better user
@@ -1410,20 +1372,20 @@ also accept an address of 0, in which case 0\fIi\fP is treated as
 1\fIi\fP and likewise for the \fBc\fP command.
 .LP
 All of the following are valid addresses:
-.TP
+.TP 7
 \fB+++\fP
 Three lines after the current line.
-.TP
+.TP 7
 \fB/\fP\fIpattern\fP\fB/-\fP
 One line before the next occurrence of pattern.
-.TP
+.TP 7
 \fB-2\fP
 Two lines before the current line.
-.TP
-\fB3\0----\02\fP
+.TP 7
+\fB3\ ----\ 2\fP
 Line one (note the intermediate negative address).
-.TP
-\fB1\02\03\fP
+.TP 7
+\fB1\ 2\ 3\fP
 Line six.
 .sp
 .LP
@@ -1445,41 +1407,41 @@ example, \fB",,,"\fP or \fB";;;"\fP were considered an error. For
 consistency of address specification, this restriction is
 removed. The following table lists some of the address forms now possible:
 .TS C
-center;l l l l l l l l.
-\fBAddress\fP 	 \fBAddr1\fP 	 \fBAddr2\fP 	 \fBStatus\fP 	 \fBComment\fP 	
-7, 	 7 	 7 	 Historical 	 \0 	
-7,5, 	 5 	 5 	 Historical 	 \0 	
-7,5,9 	 5 	 9 	 Historical 	 \0 	
-7,9 	 7 	 9 	 Historical 	 \0 	
-7,+ 	 7 	 8 	 Historical 	 \0 	
-, 	 1 	 $ 	 Historical 	 \0 	
-,7 	 1 	 7 	 Extension 	 \0 	
-,, 	 $ 	 $ 	 Extension 	 \0 	
-,; 	 $ 	 $ 	 Extension 	 \0 	
-7; 	 7 	 7 	 Historical 	 \0 	
-7;5; 	 5 	 5 	 Historical 	 \0 	
-7;5;9 	 5 	 9 	 Historical 	 \0 	
-7;5,9 	 5 	 9 	 Historical 	 \0 	
-7;$;4 	 $ 	 4 	 Historical 	 Valid, but erroneous. 	
-7;9 	 7 	 9 	 Historical 	 \0 	
-7;+ 	 7 	 8 	 Historical 	 \0 	
-; 	 . 	 $ 	 Historical 	 \0 	
-;7 	 . 	 7 	 Extension 	 \0 	
-;; 	 $ 	 $ 	 Extension 	 \0 	
-;, 	 $ 	 $ 	 Extension 	 \0 	
+center; l2 l2 l2 l2 l.
+\fBAddress\fP	\fBAddr1\fP	\fBAddr2\fP	\fBStatus\fP	\fBComment\fP
+7,	7	7	Historical	\ 
+7,5,	5	5	Historical	\ 
+7,5,9	5	9	Historical	\ 
+7,9	7	9	Historical	\ 
+7,+	7	8	Historical	\ 
+,	1	$	Historical	\ 
+,7	1	7	Extension	\ 
+,,	$	$	Extension	\ 
+,;	$	$	Extension	\ 
+7;	7	7	Historical	\ 
+7;5;	5	5	Historical	\ 
+7;5;9	5	9	Historical	\ 
+7;5,9	5	9	Historical	\ 
+7;$;4	$	4	Historical	Valid, but erroneous.
+7;9	7	9	Historical	\ 
+7;+	7	8	Historical	\ 
+;	.	$	Historical	\ 
+;7	.	7	Extension	\ 
+;;	$	$	Extension	\ 
+;,	$	$	Extension	\ 
 .TE
 .LP
 Historically, values could be added to addresses by including them
 after one or more <blank>s; for example,
-\fB"3\0-\05p"\fP wrote the seventh line of the file, and \fB"/foo/\05"\fP
-was the same as \fB"5\0/foo/"\fP
-\&. However, only absolute values could be added; for example, \fB"5\0/foo/"\fP
-was an error. IEEE\0Std\01003.1-2001
+\fB"3\ -\ 5p"\fP wrote the seventh line of the file, and \fB"/foo/\ 5"\fP
+was the same as \fB"5\ /foo/"\fP
+\&. However, only absolute values could be added; for example, \fB"5\ /foo/"\fP
+was an error. IEEE\ Std\ 1003.1-2001
 requires conformance to historical practice.
 .LP
 Historically, \fIed\fP accepted the \fB'^'\fP character as an address,
 in which case it was identical to the hyphen
-character. IEEE\0Std\01003.1-2001 does not require or prohibit this
+character. IEEE\ Std\ 1003.1-2001 does not require or prohibit this
 behavior.
 .SH FUTURE DIRECTIONS
 .LP

@@ -2,7 +2,7 @@
 .TH "<net/if.h>" P 2003 POSIX
 .\" <net/if.h> 
 .SH NAME
-net/if.h - sockets local interfaces
+net/if.h \- sockets local interfaces
 .SH SYNOPSIS
 .LP
 \fB#include <net/if.h>\fP
@@ -24,7 +24,7 @@ char     *if_name  \fP Null-terminated name of the interface. \fB
 The \fI<net/if.h>\fP header shall define the following macro for the
 length of a buffer containing an interface name
 (including the terminating NULL character):
-.TP
+.TP 7
 IF_NAMESIZE
 Interface name length.
 .sp
@@ -55,7 +55,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIif_freenameindex\fP(),
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIif_freenameindex\fP(),
 \fIif_indextoname\fP(), \fIif_nameindex\fP(), \fIif_nametoindex\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

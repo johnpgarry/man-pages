@@ -2,16 +2,16 @@
 .TH "<time.h>" P 2003 POSIX
 .\" <time.h> 
 .SH NAME
-time.h - time types
+time.h \- time types
 .SH SYNOPSIS
 .LP
 \fB#include <time.h>\fP
 .SH DESCRIPTION
 .LP
 Some of the functionality described on this reference page extends
-the ISO\0C standard. Applications shall define
+the ISO\ C standard. Applications shall define
 the appropriate feature test macro (see the System Interfaces volume
-of IEEE\0Std\01003.1-2001, Section 2.2, The Compilation Environment)
+of IEEE\ Std\ 1003.1-2001, Section 2.2, The Compilation Environment)
 to enable the visibility of these symbols in this
 header. 
 .LP
@@ -39,21 +39,21 @@ Time is in effect, 0 if Daylight Savings Time is not in
 effect, and negative if the information is not available.
 .LP
 The \fI<time.h>\fP header shall define the following symbolic names:
-.TP
+.TP 7
 NULL
 Null pointer constant.
-.TP
+.TP 7
 CLOCKS_PER_SEC
 A number used to convert the value returned by the \fIclock\fP() function
 into
 seconds.
-.TP
+.TP 7
 CLOCK_PROCESS_CPUTIME_ID
 .sp
 The identifier of the CPU-time clock associated with the process making
 a \fIclock\fP() or
 \fItimer*\fP() function call. 
-.TP
+.TP 7
 CLOCK_THREAD_CPUTIME_ID
 .sp
 The identifier of the CPU-time clock associated with the thread making
@@ -86,15 +86,14 @@ struct timespec  it_value    \fP Timer expiration. \fB
 .RE
 .LP
 The following manifest constants shall be defined:
-.TP
+.TP 7
 CLOCK_REALTIME
 The identifier of the system-wide realtime clock.
-.TP
+.TP 7
 TIMER_ABSTIME
 Flag indicating time is absolute. For functions taking timer objects,
-this refers to the clock associated with the timer. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
-.TP
+this refers to the clock associated with the timer. 
+.TP 7
 CLOCK_MONOTONIC
 .sp
 The identifier for the system-wide monotonic clock, which is defined
@@ -226,7 +225,7 @@ None.
 .SH SEE ALSO
 .LP
 \fI<signal.h>\fP , \fI<sys/types.h>\fP , the System
-Interfaces volume of IEEE\0Std\01003.1-2001, \fIasctime\fP(), \fIclock\fP(),
+Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIasctime\fP(), \fIclock\fP(),
 \fIclock_getcpuclockid\fP(), \fIclock_getres\fP(), \fIclock_nanosleep\fP(),
 \fIctime\fP(), \fIdifftime\fP(), \fIgetdate\fP(), \fIgmtime\fP(),
 \fIlocaltime\fP(), \fImktime\fP(), \fInanosleep\fP(), \fIstrftime\fP(),

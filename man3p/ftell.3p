@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "ftell" P 2003 POSIX
+.TH "FTELL" P 2003 POSIX
 .\" ftell 
 .SH NAME
-ftell, ftello - return a file offset in a stream
+ftell, ftello \- return a file offset in a stream
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -18,12 +18,6 @@ long ftell(FILE *\fP\fIstream\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fIftell\fP() function shall obtain the current value of the file-position
 indicator for the stream pointed to by
 \fIstream\fP.
@@ -33,37 +27,37 @@ The
 that the return value is of type \fBoff_t\fP. 
 .SH RETURN VALUE
 .LP
-Upon successful completion, \fIftell\fP()   \0and \fIftello\fP() 
-\0shall return the current value of the file-position indicator for
+Upon successful completion, \fIftell\fP()   \ and \fIftello\fP() 
+\ shall return the current value of the file-position indicator for
 the stream measured in bytes
 from the beginning of the file.
 .LP
-Otherwise, \fIftell\fP()   \0and \fIftello\fP()  shall return
+Otherwise, \fIftell\fP()   \ and \fIftello\fP()  shall return
 -1, cast to \fBlong\fP and \fBoff_t\fP respectively, and set \fIerrno\fP
 to indicate the error.
 .SH ERRORS
 .LP
-The \fIftell\fP()   \0and \fIftello\fP()  functions
+The \fIftell\fP()   \ and \fIftello\fP()  functions
 shall fail if:
-.TP
+.TP 7
 .B EBADF
 The file descriptor underlying \fIstream\fP is not an open file descriptor.
-.TP
+.TP 7
 .B EOVERFLOW
 For \fIftell\fP(), the current file offset cannot be represented correctly
 in an object of type \fBlong\fP. 
-.TP
+.TP 7
 .B EOVERFLOW
 For \fIftello\fP(), the current file offset cannot be represented
 correctly in an object of type \fBoff_t\fP. 
-.TP
+.TP 7
 .B ESPIPE
 The file descriptor underlying \fIstream\fP is associated with a pipe
 or FIFO. 
 .sp
 .LP
 The \fIftell\fP() function may fail if:
-.TP
+.TP 7
 .B ESPIPE
 The file descriptor underlying \fIstream\fP is associated with a socket.
 .sp
@@ -84,7 +78,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfgetpos\fP() , \fIfopen\fP() , \fIfseek\fP()
-, \fIlseek\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIlseek\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<stdio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

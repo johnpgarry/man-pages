@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "getmsg" P 2003 POSIX
+.TH "GETMSG" P 2003 POSIX
 .\" getmsg 
 .SH NAME
-getmsg, getpmsg - receive next message from a STREAMS file (\fBSTREAMS\fP)
+getmsg, getpmsg \- receive next message from a STREAMS file (\fBSTREAMS\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <stropts.h>
@@ -10,15 +10,15 @@ getmsg, getpmsg - receive next message from a STREAMS file (\fBSTREAMS\fP)
 .sp
 int getmsg(int\fP \fIfildes\fP\fB, struct strbuf *restrict\fP \fIctlptr\fP\fB,
 .br
-\0\0\0\0\0\0 struct strbuf *restrict\fP \fIdataptr\fP\fB, int *restrict\fP
+\ \ \ \ \ \  struct strbuf *restrict\fP \fIdataptr\fP\fB, int *restrict\fP
 \fIflagsp\fP\fB);
 .br
 int getpmsg(int\fP \fIfildes\fP\fB, struct strbuf *restrict\fP \fIctlptr\fP\fB,
 .br
-\0\0\0\0\0\0 struct strbuf *restrict\fP \fIdataptr\fP\fB, int *restrict\fP
+\ \ \ \ \ \  struct strbuf *restrict\fP \fIdataptr\fP\fB, int *restrict\fP
 \fIbandp\fP\fB,
 .br
-\0\0\0\0\0\0 int *restrict\fP \fIflagsp\fP\fB); \fP
+\ \ \ \ \ \  int *restrict\fP \fIflagsp\fP\fB); \fP
 \fB
 .br
 \fP
@@ -150,27 +150,27 @@ set \fIerrno\fP to indicate the error.
 .SH ERRORS
 .LP
 The \fIgetmsg\fP() and \fIgetpmsg\fP() functions shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The O_NONBLOCK flag is set and no messages are available.
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor open for
 reading.
-.TP
+.TP 7
 .B EBADMSG
 The queued message to be read is not valid for \fIgetmsg\fP() or \fIgetpmsg\fP()
 or a pending file descriptor is at the
 STREAM head.
-.TP
+.TP 7
 .B EINTR
 A signal was caught during \fIgetmsg\fP() or \fIgetpmsg\fP().
-.TP
+.TP 7
 .B EINVAL
 An illegal value was specified by \fIflagsp\fP, or the STREAM or multiplexer
 referenced by \fIfildes\fP is linked (directly
 or indirectly) downstream from a multiplexer.
-.TP
+.TP 7
 .B ENOSTR
 A STREAM is not associated with \fIfildes\fP.
 .sp
@@ -265,7 +265,7 @@ None.
 .LP
 \fISTREAMS\fP , \fIpoll\fP() , \fIputmsg\fP() , \fIread\fP() , \fIwrite\fP()
 , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<stropts.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<stropts.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

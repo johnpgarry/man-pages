@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cksum" P 2003 POSIX
+.TH "CKSUM" P 2003 POSIX
 .\" cksum 
 .SH NAME
-cksum - write file checksums and sizes
+cksum \- write file checksums and sizes
 .SH SYNOPSIS
 .LP
 \fBcksum\fP \fB[\fP\fIfile\fP \fB...\fP\fB]\fP
@@ -12,22 +12,21 @@ The \fIcksum\fP utility shall calculate and write to standard output
 a cyclic redundancy check (CRC) for each input file, and
 also write to standard output the number of octets in each file. The
 CRC used is based on the polynomial used for CRC error
-checking in the ISO/IEC\08802-3:1996 standard (Ethernet).
+checking in the ISO/IEC\ 8802-3:1996 standard (Ethernet).
 .LP
 The encoding for the CRC checksum is defined by the generating polynomial:
 .sp
 .RS
 .nf
 
-\fIG\fP\fB(\fP\fIx\fP\fB)=\fP\fIx\fP\fB+\fP\fIx\fP\fB+\fP\fIx\fP\fB+\fP\fIx\fP\fB+\fP\fIx\fP\fB+\fP\fIx\fP\fB+\fP\fIx\fP\fB+\fP\fIx\fP\fB+\fP\fIx\fP\fB+\fP\fIx\fP\fB+\fP\fIx\fP\fB+\fP\fIx\fP\fB+\fP\fIx\fP\fB+\fP\fIx\fP\fB+1
+\fIG\fP\fB(\fP\fIx\fP\fB)=\fP\fIx\fP\fB**32+\fP\fIx\fP\fB**26+\fP\fIx\fP\fB**23+\fP\fIx\fP\fB**22+\fP\fIx\fP\fB**16+\fP\fIx\fP\fB**12+\fP\fIx\fP\fB**11+\fP\fIx\fP\fB**10+\fP\fIx\fP\fB**8+\fP\fIx\fP\fB**7+\fP\fIx\fP\fB**5+\fP\fIx\fP\fB**4+\fP\fIx\fP\fB**2+\fP\fIx\fP\fB+1
 \fP
 .fi
 .RE
 .LP
 Mathematically, the CRC value corresponding to a given file shall
 be defined by the following procedure:
-.in +5
-.LP
+.IP " 1." 4
 The \fIn\fP bits to be evaluated are considered to be the coefficients
 of a mod 2 polynomial \fIM\fP( \fIx\fP) of degree
 \fIn\fP-1. These \fIn\fP bits are the bits from the file, with the
@@ -38,30 +37,27 @@ achieve an integral number of octets, followed by one or more octets
 representing the length of the file as a binary value, least
 significant octet first. The smallest number of octets capable of
 representing this integer shall be used.
-.in -5
-.in +5
 .LP
-\fIM\fP( \fIx\fP) is multiplied by \fIx\fP (that is, shifted left
+.IP " 2." 4
+\fIM\fP( \fIx\fP) is multiplied by \fIx\fP**32 (that is, shifted left
 32 bits) and divided by
 \fIG\fP( \fIx\fP) using mod 2 division, producing a remainder \fIR\fP(
 \fIx\fP) of degree <= 31.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The coefficients of \fIR\fP( \fIx\fP) are considered to be a 32-bit
 sequence.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The bit sequence is complemented and the result is the CRC.
-.in -5
+.LP
 .SH OPTIONS
 .LP
 None.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file to be checked. If no \fIfile\fP operands are
 specified, the standard input shall be used.
@@ -77,29 +73,29 @@ The input files can be any file type.
 .LP
 The following environment variables shall affect the execution of
 \fIcksum\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -134,10 +130,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All files were processed successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -159,8 +155,8 @@ probably not impossible.
 Although input files to \fIcksum\fP can be any type, the results need
 not be what would be expected on character special device
 files or on file types not described by the System Interfaces volume
-of IEEE\0Std\01003.1-2001. Since this volume of
-IEEE\0Std\01003.1-2001 does not specify the block size used when doing
+of IEEE\ Std\ 1003.1-2001. Since this volume of
+IEEE\ Std\ 1003.1-2001 does not specify the block size used when doing
 input, checksums of character special files need not
 process all of the data in those files.
 .LP
@@ -288,7 +284,7 @@ to \fIcksum\fP. Although the historical \fIsum\fP commands will probably
 continue to be provided for many years, programs
 designed for portability across systems should use the new name.
 .LP
-The algorithm selected is based on that used by the ISO/IEC\08802-3:1996
+The algorithm selected is based on that used by the ISO/IEC\ 8802-3:1996
 standard (Ethernet) for the frame check sequence
 field. The algorithm used does not match the technical definition
 of a \fIchecksum\fP; the term is used for historical reasons.

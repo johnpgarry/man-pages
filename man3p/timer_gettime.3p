@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "timer_getoverrun" P 2003 POSIX
+.TH "TIMER_GETOVERRUN" P 2003 POSIX
 .\" timer_getoverrun 
 .SH NAME
-timer_getoverrun, timer_gettime, timer_settime - per-process timers
+timer_getoverrun, timer_gettime, timer_settime \- per-process timers
 (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
@@ -15,9 +15,9 @@ int timer_gettime(timer_t\fP \fItimerid\fP\fB, struct itimerspec *\fP\fIvalue\fP
 .br
 int timer_settime(timer_t\fP \fItimerid\fP\fB, int\fP \fIflags\fP\fB,
 .br
-\0\0\0\0\0\0 const struct itimerspec *restrict\fP \fIvalue\fP\fB,
+\ \ \ \ \ \  const struct itimerspec *restrict\fP \fIvalue\fP\fB,
 .br
-\0\0\0\0\0\0 struct itimerspec *restrict\fP \fIovalue\fP\fB); \fP
+\ \ \ \ \ \  struct itimerspec *restrict\fP \fIovalue\fP\fB); \fP
 \fB
 .br
 \fP
@@ -80,7 +80,7 @@ not expire before their scheduled time.
 Only a single signal shall be queued to the process for a given timer
 at any point in time. When a timer for which a signal is
 still pending expires, no signal shall be queued, and a timer overrun
-shall occur.   \0When a timer
+shall occur.   \ When a timer
 expiration signal is delivered to or accepted by a process, if the
 implementation supports the Realtime Signals Extension, the
 \fItimer_getoverrun\fP() function shall return the timer expiration
@@ -92,8 +92,7 @@ maximum of {DELAYTIMER_MAX}. If the number of such
 extra expirations is greater than or equal to {DELAYTIMER_MAX}, then
 the overrun count shall be set to {DELAYTIMER_MAX}. The value
 returned by \fItimer_getoverrun\fP() shall apply to the most recent
-expiration signal delivery or acceptance for the timer. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0"> If no expiration
+expiration signal delivery or acceptance for the timer.  If no expiration
 signal has been delivered for the timer, or if the
 Realtime Signals Extension is not supported, the return value of \fItimer_getoverrun\fP()
 is unspecified.
@@ -111,14 +110,14 @@ be returned, and \fIerrno\fP set to indicate the error.
 .LP
 The \fItimer_getoverrun\fP(), \fItimer_gettime\fP(), and \fItimer_settime\fP()
 functions shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fItimerid\fP argument does not correspond to an ID returned by
 \fItimer_create\fP() but not yet deleted by \fItimer_delete\fP().
 .sp
 .LP
 The \fItimer_settime\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 A \fIvalue\fP structure specified a nanosecond value less than zero
 or greater than or equal to 1000 million, and the
@@ -150,7 +149,7 @@ used to set and get time and interval values. Also note that
 some implementations may choose to adjust time and/or interval values
 to exactly match the ticks of the underlying clock.
 .LP
-This volume of IEEE\0Std\01003.1-2001 defines functions that allow
+This volume of IEEE\ Std\ 1003.1-2001 defines functions that allow
 an application to determine the
 implementation-supported resolution for the clocks and requires an
 implementation to document the resolution supported for timers
@@ -163,7 +162,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIclock_getres\fP() , \fItimer_create\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<time.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -2,24 +2,24 @@
 .TH "<string.h>" P 2003 POSIX
 .\" <string.h> 
 .SH NAME
-string.h - string operations
+string.h \- string operations
 .SH SYNOPSIS
 .LP
 \fB#include <string.h>\fP
 .SH DESCRIPTION
 .LP
 Some of the functionality described on this reference page extends
-the ISO\0C standard. Applications shall define
+the ISO\ C standard. Applications shall define
 the appropriate feature test macro (see the System Interfaces volume
-of IEEE\0Std\01003.1-2001, Section 2.2, The Compilation Environment)
+of IEEE\ Std\ 1003.1-2001, Section 2.2, The Compilation Environment)
 to enable the visibility of these symbols in this
 header. 
 .LP
 The \fI<string.h>\fP header shall define the following:
-.TP
+.TP 7
 NULL
 Null pointer constant.
-.TP
+.TP 7
 \fBsize_t\fP
 As described in \fI<stddef.h>\fP .
 .sp
@@ -84,7 +84,7 @@ None.
 .SH SEE ALSO
 .LP
 \fI<stddef.h>\fP , \fI<sys/types.h>\fP , the System
-Interfaces volume of IEEE\0Std\01003.1-2001, \fImemccpy\fP(), \fImemchr\fP(),
+Interfaces volume of IEEE\ Std\ 1003.1-2001, \fImemccpy\fP(), \fImemchr\fP(),
 \fImemcmp\fP(), \fImemcpy\fP(), \fImemmove\fP(), \fImemset\fP(), \fIstrcat\fP(),
 \fIstrchr\fP(), \fIstrcmp\fP(), \fIstrcoll\fP(), \fIstrcpy\fP(), \fIstrcspn\fP(),
 \fIstrdup\fP(), \fIstrerror\fP(), \fIstrlen\fP(), \fIstrncat\fP(),

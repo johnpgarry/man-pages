@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cacos" P 2003 POSIX
+.TH "CACOS" P 2003 POSIX
 .\" cacos 
 .SH NAME
-cacos, cacosf, cacosl - complex arc cosine functions
+cacos, cacosf, cacosl \- complex arc cosine functions
 .SH SYNOPSIS
 .LP
 \fB#include <complex.h>
@@ -17,20 +17,14 @@ long double complex cacosl(long double complex\fP \fIz\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 These functions shall compute the complex arc cosine of \fIz\fP, with
-branch cuts outside the interval [-1,\0+1] along the
+branch cuts outside the interval [-1,\ +1] along the
 real axis.
 .SH RETURN VALUE
 .LP
 These functions shall return the complex arc cosine value, in the
 range of a strip mathematically unbounded along the imaginary
-axis and in the interval [0,\0] along the real axis.
+axis and in the interval [0,\ pi] along the real axis.
 .SH ERRORS
 .LP
 No errors are defined.
@@ -50,7 +44,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIccos\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIccos\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<complex.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

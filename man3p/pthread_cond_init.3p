@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_cond_destroy" P 2003 POSIX
+.TH "PTHREAD_COND_DESTROY" P 2003 POSIX
 .\" pthread_cond_destroy 
 .SH NAME
-pthread_cond_destroy, pthread_cond_init - destroy and initialize condition
+pthread_cond_destroy, pthread_cond_init \- destroy and initialize condition
 variables
 .SH SYNOPSIS
 .LP
@@ -13,7 +13,7 @@ int pthread_cond_destroy(pthread_cond_t *\fP\fIcond\fP\fB);
 .br
 int pthread_cond_init(pthread_cond_t *restrict\fP \fIcond\fP\fB,
 .br
-\0\0\0\0\0\0 const pthread_condattr_t *restrict\fP \fIattr\fP\fB);
+\ \ \ \ \ \  const pthread_condattr_t *restrict\fP \fIattr\fP\fB);
 .br
 pthread_cond_t\fP \fIcond\fP \fB= PTHREAD_COND_INITIALIZER; \fP
 \fB
@@ -72,34 +72,34 @@ the state of the condition variable specified by
 .SH ERRORS
 .LP
 The \fIpthread_cond_destroy\fP() function may fail if:
-.TP
+.TP 7
 .B EBUSY
 The implementation has detected an attempt to destroy the object referenced
 by \fIcond\fP while it is referenced (for example,
 while being used in a \fIpthread_cond_wait\fP() or \fIpthread_cond_timedwait\fP())
 by another thread.
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIcond\fP is invalid.
 .sp
 .LP
 The \fIpthread_cond_init\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The system lacked the necessary resources (other than memory) to initialize
 another condition variable.
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory exists to initialize the condition variable.
 .sp
 .LP
 The \fIpthread_cond_init\fP() function may fail if:
-.TP
+.TP 7
 .B EBUSY
 The implementation has detected an attempt to reinitialize the object
 referenced by \fIcond\fP, a previously initialized, but
 not yet destroyed, condition variable.
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIattr\fP is invalid.
 .sp
@@ -179,7 +179,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_cond_broadcast\fP() , \fIpthread_cond_signal\fP() , \fIpthread_cond_timedwait\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

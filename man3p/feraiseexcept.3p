@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "feraiseexcept" P 2003 POSIX
+.TH "FERAISEEXCEPT" P 2003 POSIX
 .\" feraiseexcept 
 .SH NAME
-feraiseexcept - raise floating-point exception
+feraiseexcept \- raise floating-point exception
 .SH SYNOPSIS
 .LP
 \fB#include <fenv.h>
@@ -12,12 +12,6 @@ int feraiseexcept(int\fP \fIexcepts\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIferaiseexcept\fP() function shall attempt to raise the supported
 floating-point exceptions represented by the argument
@@ -59,7 +53,7 @@ None.
 .LP
 \fIfeclearexcept\fP() , \fIfegetexceptflag\fP() , \fIfesetexceptflag\fP()
 , \fIfetestexcept\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<fenv.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<fenv.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

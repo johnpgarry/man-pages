@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "basename" P 2003 POSIX
+.TH "BASENAME" P 2003 POSIX
 .\" basename 
 .SH NAME
-basename - return the last component of a pathname
+basename \- return the last component of a pathname
 .SH SYNOPSIS
 .LP
 \fB#include <libgen.h>
@@ -70,13 +70,13 @@ In the following table, the input string is the value pointed to by
 \fIpath\fP, and the output string is the return value of
 the \fIbasename\fP() function.
 .TS C
-center;l l l l l l l l l l l.
-\fBInput String\fP 	 \fBOutput String\fP 	
-"/usr/lib" 	 "lib" 	
-"/usr/" 	 "usr" 	
-"/" 	 "/" 	
-"///" 	 "/" 	
-"//usr//lib//" 	 "lib" 	
+center; l l.
+\fBInput String\fP	\fBOutput String\fP
+"/usr/lib"	"lib"
+"/usr/"	"usr"
+"/"	"/"
+"///"	"/"
+"//usr//lib//"	"lib"
 .TE
 .SH APPLICATION USAGE
 .LP
@@ -89,8 +89,8 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIdirname\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
-\fI<libgen.h>\fP, the Shell and Utilities volume of IEEE\0Std\01003.1-2001,
+\fIdirname\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
+\fI<libgen.h>\fP, the Shell and Utilities volume of IEEE\ Std\ 1003.1-2001,
 \fIbasename\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

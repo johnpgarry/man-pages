@@ -2,7 +2,7 @@
 .TH "<dirent.h>" P 2003 POSIX
 .\" <dirent.h> 
 .SH NAME
-dirent.h - format of directory entries
+dirent.h \- format of directory entries
 .SH SYNOPSIS
 .LP
 \fB#include <dirent.h>\fP
@@ -11,7 +11,7 @@ dirent.h - format of directory entries
 The internal format of directories is unspecified.
 .LP
 The \fI<dirent.h>\fP header shall define the following type:
-.TP
+.TP 7
 \fBDIR\fP
 A type representing a directory stream.
 .sp
@@ -68,12 +68,12 @@ None.
 Information similar to that in the \fI<dirent.h>\fP header is contained
 in a file \fI<sys/dir.h>\fP in 4.2 BSD and
 4.3 BSD. The equivalent in these implementations of \fBstruct dirent\fP
-from this volume of IEEE\0Std\01003.1-2001 is
+from this volume of IEEE\ Std\ 1003.1-2001 is
 \fBstruct direct\fP. The filename was changed because the name \fI<sys/dir.h>\fP
 was also used in earlier implementations
 to refer to definitions related to the older access method; this produced
 name conflicts. The name of the structure was changed
-because this volume of IEEE\0Std\01003.1-2001 does not completely
+because this volume of IEEE\ Std\ 1003.1-2001 does not completely
 define what is in the structure, so it could be different
 on some implementations from \fBstruct direct\fP.
 .LP
@@ -110,7 +110,7 @@ the filename.
 None.
 .SH SEE ALSO
 .LP
-\fI<sys/types.h>\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+\fI<sys/types.h>\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIclosedir\fP(), \fIopendir\fP(), \fIreaddir\fP(), \fIreaddir_r\fP(),
 \fIrewinddir\fP(), \fIseekdir\fP(), \fItelldir\fP()
 .SH COPYRIGHT

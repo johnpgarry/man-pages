@@ -1,7 +1,7 @@
 RELEASE
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.65.tar.gz - man pages for Linux
+    man-pages-1.66.tar.gz - man pages for Linux
 
 POSIX
 This release is the first to contain the POSIX 1003.1-2003 man pages.
@@ -30,22 +30,18 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.64:
-
-    POSIX pages were added
+Differences from version 1.65:
 
     The man pages
 
-	chroot.2 clone.2 intro.2 mkdir.2 remap_file_pages.2
+	sys_ipc.h.0p sys_mman.h.0p sys_msg.h.0p sys_resource.h.0p
+	sys_select.h.0p sys_sem.h.0p sys_shm.h.0p sys_socket.h.0p
+	sys_stat.h.0p sys_statvfs.h.0p sys_time.h.0p sys_timeb.h.0p
+	sys_times.h.0p sys_types.h.0p sys_uio.h.0p sys_un.h.0p
+	sys_utsname.h.0p sys_wait.h.0p
 
-	errno.3
-
-	sk98lin.4
-
-	elf.5 protocols.5 raw.7
-
-    are new or have been updated. Typographical or grammatical errors
-    have been corrected in several other places.
+    are new or have been updated. Two typographical errors have been
+    corrected. The nroff version of the POSIX pages was much improved.
 
 Here is a breakdown of what this distribution contains:
 

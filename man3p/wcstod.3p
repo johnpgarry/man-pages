@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "wcstod" P 2003 POSIX
+.TH "WCSTOD" P 2003 POSIX
 .\" wcstod 
 .SH NAME
-wcstod, wcstof, wcstold - convert a wide-character string to a double-precision
+wcstod, wcstof, wcstold \- convert a wide-character string to a double-precision
 number
 .SH SYNOPSIS
 .LP
@@ -17,63 +17,49 @@ float wcstof(const wchar_t *restrict\fP \fInptr\fP\fB, wchar_t **restrict\fP
 .br
 long double wcstold(const wchar_t *restrict\fP \fInptr\fP\fB,
 .br
-\0\0\0\0\0\0 wchar_t **restrict\fP \fIendptr\fP\fB);
+\ \ \ \ \ \  wchar_t **restrict\fP \fIendptr\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 These functions shall convert the initial portion of the wide-character
 string pointed to by \fInptr\fP to \fBdouble\fP,
 \fBfloat\fP, and \fBlong double\fP representation, respectively. First,
 they shall decompose the input wide-character string into
 three parts:
-.in +5
-.LP
+.IP " 1." 4
 An initial, possibly empty, sequence of white-space wide-character
 codes (as specified by \fIiswspace\fP())
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 A subject sequence interpreted as a floating-point constant or representing
 infinity or NaN
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 A final wide-character string of one or more unrecognized wide-character
 codes, including the terminating null wide-character
 code of the input wide-character string
-.in -5
+.LP
 .LP
 Then they shall attempt to convert the subject sequence to a floating-point
 number, and return the result.
 .LP
 The expected form of the subject sequence is an optional plus or minus
 sign, then one of the following:
-.RS
-.in +5
-.LP
+.IP " *" 3
 A non-empty sequence of decimal digits optionally containing a radix
 character, then an optional exponent part
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A 0x or 0X, then a non-empty sequence of hexadecimal digits optionally
 containing a radix character, then an optional binary
 exponent part
-.in -5
-.in +5
 .LP
+.IP " *" 3
 One of INF or INFINITY, or any other wide string equivalent except
 for case
-.in -5
-.in +5
 .LP
+.IP " *" 3
 One of NAN or NAN(\fIn-wchar-sequence_opt\fP), or any other wide string
 ignoring case in the NAN part,
 where:
@@ -89,8 +75,7 @@ where:
 \fP
 .fi
 .RE
-.in -5
-.RE
+.LP
 .LP
 The subject sequence is defined as the longest initial subsequence
 of the input wide string, starting with the first
@@ -132,7 +117,7 @@ radix character shall be as defined in the program's locale (category
 where the radix character is not defined, the radix character shall
 default to a period ( \fB'.'\fP ). 
 .LP
-In other than the C   \0or POSIX  locales, other
+In other than the C   \ or POSIX  locales, other
 implementation-defined subject sequences may be accepted.
 .LP
 If the subject sequence is empty or does not have the expected form,
@@ -152,7 +137,7 @@ set \fIerrno\fP to 0, then call \fIwcstod\fP(), \fIwcstof\fP(), or
 .LP
 Upon successful completion, these functions shall return the converted
 value. If no conversion could be performed, 0 shall be
-returned   \0and \fIerrno\fP may be set to [EINVAL]. 
+returned   \ and \fIerrno\fP may be set to [EINVAL]. 
 .LP
 If the correct value is outside the range of representable values,
 \(+-HUGE_VAL, \(+-HUGE_VALF, or \(+-HUGE_VALL
@@ -165,13 +150,13 @@ in the return type shall be returned and \fIerrno\fP set to [ERANGE].
 .SH ERRORS
 .LP
 The \fIwcstod\fP() function shall fail if:
-.TP
+.TP 7
 .B ERANGE
 The value to be returned would cause overflow or underflow.
 .sp
 .LP
 The \fIwcstod\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 No
 conversion could be performed. 
@@ -213,7 +198,7 @@ None.
 .LP
 \fIiswspace\fP() , \fIlocaleconv\fP() , \fIscanf\fP() , \fIsetlocale\fP()
 , \fIwcstol\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, Chapter 7, Locale,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 7, Locale,
 \fI<float.h>\fP, \fI<wchar.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

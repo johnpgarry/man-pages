@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fmod" P 2003 POSIX
+.TH "FMOD" P 2003 POSIX
 .\" fmod 
 .SH NAME
-fmod, fmodf, fmodl - floating-point remainder value function
+fmod, fmodf, fmodl \- floating-point remainder value function
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -16,12 +16,6 @@ long double fmodl(long double\fP \fIx\fP\fB, long double\fP \fIy\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 These functions shall return the floating-point remainder of the division
 of \fIx\fP by \fIy\fP.
@@ -40,8 +34,8 @@ non-zero, the result has the same sign as \fIx\fP and magnitude less
 than the magnitude of \fIy\fP.
 .LP
 If the correct value would cause underflow, and is not representable,
-a range error may occur, and   \0either 0.0 (if
-supported), or  \0an implementation-defined value shall be
+a range error may occur, and   \ either 0.0 (if
+supported), or  \ an implementation-defined value shall be
 returned.
 .LP
 If
@@ -66,8 +60,8 @@ returned.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
-Domain\0Error
+.TP 7
+Domain\ Error
 The \fIx\fP argument is infinite or \fIy\fP is zero. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -77,8 +71,8 @@ then the invalid floating-point exception shall be raised.
 .sp
 .LP
 These functions may fail if:
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The result underflows. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -106,7 +100,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfeclearexcept\fP() , \fIfetestexcept\fP() , \fIisnan\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, Section 4.18, Treatment
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, Section 4.18, Treatment
 of Error Conditions for Mathematical Functions, \fI<math.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

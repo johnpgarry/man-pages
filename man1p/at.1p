@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "at" P 2003 POSIX
+.TH "AT" P 2003 POSIX
 .\" at 
 .SH NAME
-at - execute commands at a later time
+at \- execute commands at a later time
 .SH SYNOPSIS
 .LP
 \fBat\fP \fB[\fP\fB-m\fP\fB][\fP\fB-f\fP \fIfile\fP\fB][\fP\fB-q\fP
@@ -61,20 +61,20 @@ line.
 .SH OPTIONS
 .LP
 The \fIat\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
-\fB-f\0\fP \fIfile\fP
+.TP 7
+\fB-f\ \fP \fIfile\fP
 Specify the pathname of a file to be used as the source of the at-job,
 instead of standard input.
-.TP
+.TP 7
 \fB-l\fP
 (The letter ell.) Report all jobs scheduled for the invoking user
 if no \fIat_job_id\fP operands are specified. If
 \fIat_job_id\fPs are specified, report only information for these
 jobs. The output shall be written to standard output.
-.TP
+.TP 7
 \fB-m\fP
 Send mail to the invoking user after the at-job has run, announcing
 its completion. Standard output and standard error produced
@@ -87,8 +87,8 @@ shall be provided to the user by means of mail, unless
 they are redirected elsewhere; if there is no such output to provide,
 the implementation need not notify the user of the job's
 completion.
-.TP
-\fB-q\0\fP \fIqueuename\fP
+.TP 7
+\fB-q\ \fP \fIqueuename\fP
 .sp
 Specify in which queue to schedule a job for submission. When used
 with the \fB-l\fP option, limit the search to that particular
@@ -99,12 +99,12 @@ If
 \fB-q\fP is specified along with either of the \fB-t\fP \fItime_arg\fP
 or \fItimespec\fP arguments, the results are
 unspecified.
-.TP
+.TP 7
 \fB-r\fP
 Remove the jobs with the specified \fIat_job_id\fP operands that were
 previously scheduled by the \fIat\fP utility.
-.TP
-\fB-t\0\fP \fItime_arg\fP
+.TP 7
+\fB-t\ \fP \fItime_arg\fP
 Submit the job to be run at the time specified by the \fItime\fP option-argument,
 which the application shall ensure has the
 format as specified by the \fItouch\fP \fB-t\fP \fItime\fP utility.
@@ -112,11 +112,11 @@ format as specified by the \fItouch\fP \fB-t\fP \fItime\fP utility.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIat_job_id\fP
 The name reported by a previous invocation of the \fIat\fP utility
 at the time the job was scheduled.
-.TP
+.TP 7
 \fItimespec\fP
 Submit the job to be run at the date and time specified. All of the
 \fItimespec\fP operands are interpreted as if they were
@@ -130,8 +130,9 @@ In the POSIX locale, the following describes the three parts of the
 time specification string. All of the values from the
 \fILC_TIME\fP categories in the POSIX locale shall be recognized in
 a case-insensitive manner.
-.TP
+.TP 7
 \fItime\fP
+.RS
 The time can be specified as one, two, or four digits. One-digit and
 two-digit numbers shall be taken to be hours; four-digit
 numbers to be hours and minutes. The time can alternatively be specified
@@ -145,20 +146,28 @@ except that they shall be case-insensitive and the
 string \fButc\fP is supported to indicate the time is in Coordinated
 Universal Time. In the POSIX locale, the \fItime\fP field
 can also be one of the following tokens: 
-.TP
+.TP 7
 \fBmidnight\fP
+.RS
 Indicates the time 12:00 am (00:00).
-.TP
+.RE
+.TP 7
 \fBnoon\fP
+.RS
 Indicates the time 12:00 pm.
-.TP
+.RE
+.TP 7
 \fBnow\fP
+.RS
 Indicates the current day and time. Invoking \fIat\fP <\fBnow\fP>
 shall submit an at-job for potentially immediate
 execution (that is, subject only to unspecified scheduling delays).
+.RE
 .sp
-.TP
+.RE
+.TP 7
 \fIdate\fP
+.RS
 An optional \fIdate\fP can be specified as either a month name (one
 of the values from the \fBmon\fP or \fBabmon\fP keywords
 in the \fILC_TIME\fP locale category) followed by a day number (and
@@ -166,12 +175,16 @@ possibly year number preceded by a comma), or a day of the
 week (one of the values from the \fBday\fP or \fBabday\fP keywords
 in the \fILC_TIME\fP locale category). In the POSIX locale,
 two special days shall be recognized: 
-.TP
+.TP 7
 \fBtoday\fP
+.RS
 Indicates the current day.
-.TP
+.RE
+.TP 7
 \fBtomorrow\fP
+.RS
 Indicates the day following the current day.
+.RE
 .sp
 .LP
 If no \fIdate\fP is given, \fBtoday\fP shall be assumed if the given
@@ -179,8 +192,10 @@ time is greater than the current time, and
 \fBtomorrow\fP shall be assumed if it is less. If the given month
 is less than the current month (and no year is given), next year
 shall be assumed.
-.TP
+.RE
+.TP 7
 \fIincrement\fP
+.RS
 The optional \fIincrement\fP shall be a number preceded by a plus
 sign ( \fB'+'\fP ) and suffixed by one of the following:
 \fBminutes\fP, \fBhours\fP, \fBdays\fP, \fBweeks\fP, \fBmonths\fP,
@@ -196,6 +211,7 @@ commands:
 at 2pm next week
 \fP
 .fi
+.RE
 .RE
 .sp
 .sp
@@ -367,37 +383,37 @@ utilities.
 .LP
 The following environment variables shall affect the execution of
 \fIat\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fILC_TIME\fP
 Determine the format and contents for date and time strings written
 and accepted by \fIat\fP.
-.TP
+.TP 7
 \fISHELL\fP
 Determine a name of a command interpreter to be used to invoke the
 at-job. If the variable is unset or null, \fIsh\fP shall be used.
@@ -406,7 +422,7 @@ shall do one of the following: use that shell; use \fIsh\fP; use the
 login shell from the user database; or any of the preceding accompanied
 by a warning
 diagnostic about which was chosen.
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone. The job shall be submitted for execution at
 the time specified by \fItimespec\fP or \fB-t\fP
@@ -478,11 +494,11 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 The \fIat\fP utility successfully submitted, removed, or listed a
 job or jobs.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -520,8 +536,7 @@ $\fP
 .fi
 .RE
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 This sequence can be used at a terminal:
 .sp
 .RS
@@ -533,9 +548,8 @@ EOT
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 This sequence, which demonstrates redirecting standard error to a
 pipe, is useful in a command procedure (the sequence of output
 redirection specifications is significant):
@@ -549,9 +563,8 @@ diff file1 file2 2>&1 >outfile | mailx mygroup
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 To have a job reschedule itself, \fIat\fP can be invoked from within
 the at-job. For example, this daily processing script
 named \fBmy.daily\fP runs every day (although \fIcrontab\fP is a more
@@ -566,9 +579,8 @@ for such work):
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The spacing of the three portions of the POSIX locale \fItimespec\fP
 is quite flexible as long as there are no ambiguities.
 Examples of various times and operand presentation include:
@@ -586,7 +598,7 @@ at '17
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 The \fIat\fP utility reads from standard input the commands to be

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "munmap" P 2003 POSIX
+.TH "MUNMAP" P 2003 POSIX
 .\" munmap 
 .SH NAME
-munmap - unmap pages of memory
+munmap \- unmap pages of memory
 .SH SYNOPSIS
 .LP
 \fB#include <sys/mman.h>
@@ -31,8 +31,7 @@ this address range shall be discarded.
 Any memory locks (see \fImlock\fP() and \fImlockall\fP() ) associated
 with
 this address range shall be removed, as if by an appropriate call
-to \fImunlock\fP(). <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+to \fImunlock\fP(). 
 .LP
 If a mapping removed from a typed memory object causes the corresponding
 address range of the memory pool to be inaccessible by any
@@ -56,15 +55,15 @@ error.
 .SH ERRORS
 .LP
 The \fImunmap\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 Addresses in the range [\fIaddr\fP,\fIaddr\fP+\fIlen\fP) are outside
 the valid range for the address space of a
 process.
-.TP
+.TP 7
 .B EINVAL
 The \fIlen\fP argument is 0.
-.TP
+.TP 7
 .B EINVAL
 The \fIaddr\fP argument is not a multiple of the page size as returned
 by \fIsysconf\fP().
@@ -96,7 +95,7 @@ None.
 .LP
 \fImlock\fP() , \fImlockall\fP() , \fImmap\fP()
 , \fIposix_typed_mem_open\fP() , \fIsysconf\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<signal.h>\fP, \fI<sys/mman.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP, \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

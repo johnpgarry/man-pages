@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pclose" P 2003 POSIX
+.TH "PCLOSE" P 2003 POSIX
 .\" pclose 
 .SH NAME
-pclose - close a pipe stream to or from a process
+pclose \- close a pipe stream to or from a process
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -22,23 +22,18 @@ However, if a call caused the termination status to be unavailable
 to \fIpclose\fP(), then \fIpclose\fP() shall return -1 with
 \fIerrno\fP set to [ECHILD] to report this situation. This can happen
 if the application calls one of the following functions:
-.RS
-.in +5
-.LP
+.IP " *" 3
 \fIwait\fP()
-.in -5
-.in +5
 .LP
+.IP " *" 3
 \fIwaitpid\fP() with a \fIpid\fP argument less than or equal to 0
 or equal to the
 process ID of the command line interpreter
-.in -5
-.in +5
 .LP
-Any other function not defined in this volume of IEEE\0Std\01003.1-2001
+.IP " *" 3
+Any other function not defined in this volume of IEEE\ Std\ 1003.1-2001
 that could do one of the above
-.in -5
-.RE
+.LP
 .LP
 In any case, \fIpclose\fP() shall not return before the child process
 created by \fIpopen\fP() has terminated.
@@ -64,7 +59,7 @@ error.
 .SH ERRORS
 .LP
 The \fIpclose\fP() function shall fail if:
-.TP
+.TP 7
 .B ECHILD
 The status of the child process could not be obtained, as described
 above.
@@ -91,7 +86,7 @@ If the stream pointed to by \fIstream\fP was not created by \fIpopen\fP(),
 historical
 implementations of \fIpclose\fP() return -1 without setting \fIerrno\fP.
 To avoid requiring \fIpclose\fP() to set \fIerrno\fP
-in this case, IEEE\0Std\01003.1-2001 makes the behavior unspecified.
+in this case, IEEE\ Std\ 1003.1-2001 makes the behavior unspecified.
 An application should not use \fIpclose\fP() to close
 any stream that was not created by \fIpopen\fP().
 .LP
@@ -99,7 +94,7 @@ Some historical implementations of \fIpclose\fP() either block or
 ignore the signals SIGINT, SIGQUIT, and SIGHUP while waiting
 for the child process to terminate. Since this behavior is not described
 for the \fIpclose\fP() function in
-IEEE\0Std\01003.1-2001, such implementations are not conforming. Also,
+IEEE\ Std\ 1003.1-2001, such implementations are not conforming. Also,
 some historical implementations return [EINTR] if a
 signal is received, even though the child process has not terminated.
 Such implementations are also considered non-conforming.
@@ -125,12 +120,12 @@ with it, and prints another prompt. The cycle repeats. Assuming
 that both processes do appropriate buffer flushing, this would be
 expected to work.
 .LP
-To conform to IEEE\0Std\01003.1-2001, \fIpclose\fP() must use \fIwaitpid\fP(),
+To conform to IEEE\ Std\ 1003.1-2001, \fIpclose\fP() must use \fIwaitpid\fP(),
 or some similar function, instead of \fIwait\fP().
 .LP
 The code sample below illustrates how the \fIpclose\fP() function
 might be implemented on a system conforming to
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .sp
 .RS
 .nf
@@ -160,7 +155,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfork\fP() , \fIpopen\fP() , \fIwaitpid\fP() ,
-the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<stdio.h>\fP
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<stdio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

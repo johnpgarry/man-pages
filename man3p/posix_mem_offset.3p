@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_mem_offset" P 2003 POSIX
+.TH "POSIX_MEM_OFFSET" P 2003 POSIX
 .\" posix_mem_offset 
 .SH NAME
-posix_mem_offset - find offset and length of a mapped typed memory
+posix_mem_offset \- find offset and length of a mapped typed memory
 block (\fBADVANCED REALTIME\fP)
 .SH SYNOPSIS
 .LP
@@ -12,10 +12,10 @@ block (\fBADVANCED REALTIME\fP)
 int posix_mem_offset(const void *restrict\fP \fIaddr\fP\fB, size_t\fP
 \fIlen\fP\fB,
 .br
-\0\0\0\0\0\0 off_t *restrict\fP \fIoff\fP\fB, size_t *restrict\fP
+\ \ \ \ \ \  off_t *restrict\fP \fIoff\fP\fB, size_t *restrict\fP
 \fIcontig_len\fP\fB,
 .br
-\0\0\0\0\0\0 int *restrict\fP \fIfildes\fP\fB); \fP
+\ \ \ \ \ \  int *restrict\fP \fIfildes\fP\fB); \fP
 \fB
 .br
 \fP
@@ -60,7 +60,7 @@ value shall be returned.
 .SH ERRORS
 .LP
 The \fIposix_mem_offset\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 The process has not mapped a memory object supported by this function
 at the given address \fIaddr\fP.
@@ -84,7 +84,7 @@ None.
 .SH SEE ALSO
 .LP
 \fImmap\fP() , \fIposix_typed_mem_open\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/mman.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

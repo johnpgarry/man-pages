@@ -1,13 +1,15 @@
 Begin3
 Title:          Section 2, 3, 4, 5 and 7 man pages for Linux
-Version:        1.65
-Entered-date:   2003-12-xx
-Description:    Over 1600 man pages for Linux
+Version:        1.66
+Entered-date:   2004-02-08
+Description:    Linux and POSIX manual pages
 Keywords:       man pages
 Author:         several
 Maintained-by:  Andries E. Brouwer (aeb@cwi.nl)
 Primary-site:   ftp://ftp.win.tue.nl/pub/linux-local/manpages
-                930k man-pages-1.65.tar.gz
+                2266k man-pages-1.66.tar.gz
 Alternate-site: ftp://ftp.XX.kernel.org/pub/linux/docs/manpages
-Copying-policy: several; all freely distributable if nroff source included
+Copying-policy: several; for the POSIX pages, see the file POSIX-COPYRIGHT;
+		the other pages are all freely distributable provided
+		nroff source is provided
 End

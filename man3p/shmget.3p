@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "shmget" P 2003 POSIX
+.TH "SHMGET" P 2003 POSIX
 .\" shmget 
 .SH NAME
-shmget - get an XSI shared memory segment
+shmget \- get an XSI shared memory segment
 .SH SYNOPSIS
 .LP
 \fB#include <sys/shm.h>
@@ -16,7 +16,7 @@ int shmget(key_t\fP \fIkey\fP\fB, size_t\fP \fIsize\fP\fB, int\fP
 .SH DESCRIPTION
 .LP
 The \fIshmget\fP() function operates on XSI shared memory (see the
-Base Definitions volume of IEEE\0Std\01003.1-2001,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 3.340, Shared Memory Object). It is unspecified whether this
 function
 interoperates with the realtime interprocess communication facilities
@@ -28,48 +28,37 @@ associated with \fIkey\fP.
 A shared memory identifier, associated data structure, and shared
 memory segment of at least \fIsize\fP bytes (see \fI<sys/shm.h>\fP)
 are created for \fIkey\fP if one of the following is true:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The argument \fIkey\fP is equal to IPC_PRIVATE.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The argument \fIkey\fP does not already have a shared memory identifier
 associated with it and (\fIshmflg\fP &IPC_CREAT)
 is non-zero.
-.in -5
-.RE
+.LP
 .LP
 Upon creation, the data structure associated with the new shared memory
 identifier shall be initialized as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The values of \fIshm_perm.cuid\fP, \fIshm_perm.uid\fP, \fIshm_perm.cgid\fP,
 and \fIshm_perm.gid\fP are set equal to the
 effective user ID and effective group ID, respectively, of the calling
 process.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The low-order nine bits of \fIshm_perm.mode\fP are set equal to the
 low-order nine bits of \fIshmflg\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The value of \fIshm_segsz\fP is set equal to the value of \fIsize\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The values of \fIshm_lpid\fP, \fIshm_nattch\fP, \fIshm_atime\fP, and
 \fIshm_dtime\fP are set equal to 0.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The value of \fIshm_ctime\fP is set equal to the current time.
-.in -5
-.RE
+.LP
 .LP
 When the shared memory segment is created, it shall be initialized
 with all zero values.
@@ -81,37 +70,37 @@ it shall return -1 and set \fIerrno\fP to indicate the error.
 .SH ERRORS
 .LP
 The \fIshmget\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 A shared memory identifier exists for \fIkey\fP but operation permission
 as specified by the low-order nine bits of
 \fIshmflg\fP would not be granted; see \fIXSI Interprocess Communication\fP
 \&.
-.TP
+.TP 7
 .B EEXIST
 A shared memory identifier exists for the argument \fIkey\fP but (\fIshmflg\fP
 &IPC_CREAT) &&(\fIshmflg\fP
 &IPC_EXCL) is non-zero.
-.TP
+.TP 7
 .B EINVAL
 A shared memory segment is to be created and the value of size is
 less than the system-imposed minimum or greater than the
 system-imposed maximum.
-.TP
+.TP 7
 .B EINVAL
 No shared memory segment is to be created and a shared memory segment
 exists for \fIkey\fP but the size of the segment
 associated with it is less than \fIsize\fP and \fIsize\fP is not 0.
-.TP
+.TP 7
 .B ENOENT
 A shared memory identifier does not exist for the argument \fIkey\fP
 and (\fIshmflg\fP &IPC_CREAT) is 0.
-.TP
+.TP 7
 .B ENOMEM
 A shared memory identifier and associated shared memory segment shall
 be created, but the amount of available physical memory
 is not sufficient to fill the request.
-.TP
+.TP 7
 .B ENOSPC
 A shared memory identifier is to be created, but the system-imposed
 limit on the maximum number of allowed shared memory
@@ -140,7 +129,7 @@ None.
 .LP
 \fIXSI Interprocess Communication\fP , \fIRealtime\fP , \fIshmat\fP()
 , \fIshmctl\fP() , \fIshmdt\fP() , \fIshm_open\fP() , \fIshm_unlink\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/shm.h>\fP
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/shm.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

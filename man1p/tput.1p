@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tput" P 2003 POSIX
+.TH "TPUT" P 2003 POSIX
 .\" tput 
 .SH NAME
-tput - change terminal characteristics
+tput \- change terminal characteristics
 .SH SYNOPSIS
 .LP
 \fBtput\fP \fB[\fP\fB-T\fP \fItype\fP\fB]\fP \fIoperand\fP\fB... \fP
@@ -17,11 +17,11 @@ displaying this information are unspecified.
 .SH OPTIONS
 .LP
 The \fItput\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following option shall be supported:
-.TP
-\fB-T\0\fP \fItype\fP
+.TP 7
+\fB-T\ \fP \fItype\fP
 Indicate the type of terminal. If this option is not supplied and
 the \fITERM\fP variable is unset or null, an unspecified
 default terminal type shall be used. The setting of \fItype\fP shall
@@ -31,14 +31,14 @@ take precedence over the value in \fITERM .\fP
 .LP
 The following strings shall be supported as operands by the implementation
 in the POSIX locale:
-.TP
+.TP 7
 \fBclear\fP
 Display the clear-screen sequence.
-.TP
+.TP 7
 \fBinit\fP
 Display the sequence that initializes the user's terminal in an implementation-defined
 manner.
-.TP
+.TP 7
 \fBreset\fP
 Display the sequence that resets the user's terminal in an implementation-defined
 manner.
@@ -57,33 +57,33 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fItput\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fITERM\fP
 Determine the terminal type. If this variable is unset or null, and
 if the \fB-T\fP option is not specified, an unspecified
@@ -110,22 +110,22 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 The requested string was written successfully.
-.TP
-\01
+.TP 7
+\ 1
 Unspecified.
-.TP
-\02
+.TP 7
+\ 2
 Usage error.
-.TP
-\03
+.TP 7
+\ 3
 No information is available about the specified terminal type.
-.TP
-\04
+.TP 7
+\ 4
 The specified operand is invalid.
-.TP
+.TP 7
 >4
 An error occurred.
 .sp
@@ -158,8 +158,7 @@ tput reset | mailx -s "Wake Up" ddg
 .fi
 .RE
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 Initialize the terminal according to the type of terminal in the environmental
 variable \fITERM .\fP This command can be
 included in a \fB.profile\fP file.
@@ -171,9 +170,8 @@ included in a \fB.profile\fP file.
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Reset a 450 terminal.
 .sp
 .RS
@@ -183,30 +181,25 @@ Reset a 450 terminal.
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 The list of operands was reduced to a minimum for the following reasons:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The only features chosen were those that were likely to be used by
 human users interacting with a terminal.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Specifying the full \fIterminfo\fP set was not considered desirable,
 but the standard developers did not want to select among
 operands.
-.in -5
-.in +5
 .LP
-This volume of IEEE\0Std\01003.1-2001 does not attempt to provide
+.IP " *" 3
+This volume of IEEE\ Std\ 1003.1-2001 does not attempt to provide
 applications with sophisticated terminal handling
 capabilities, as that falls outside of its assigned scope and intersects
 with the responsibilities of other standards bodies.
-.in -5
-.RE
+.LP
 .LP
 The difference between resetting and initializing a terminal is left
 unspecified as this varies greatly based on hardware types.

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "makecontext" P 2003 POSIX
+.TH "MAKECONTEXT" P 2003 POSIX
 .\" makecontext 
 .SH NAME
-makecontext, swapcontext - manipulate user contexts
+makecontext, swapcontext \- manipulate user contexts
 .SH SYNOPSIS
 .LP
 \fB#include <ucontext.h>
@@ -10,11 +10,11 @@ makecontext, swapcontext - manipulate user contexts
 .sp
 void makecontext(ucontext_t *\fP\fIucp\fP\fB, void (*\fP\fIfunc\fP\fB)(void),
 .br
-\0\0\0\0\0\0 int\fP \fIargc\fP\fB, ...);
+\ \ \ \ \ \  int\fP \fIargc\fP\fB, ...);
 .br
 int swapcontext(ucontext_t *restrict\fP \fIoucp\fP\fB,
 .br
-\0\0\0\0\0\0 const ucontext_t *restrict\fP \fIucp\fP\fB); \fP
+\ \ \ \ \ \  const ucontext_t *restrict\fP \fIucp\fP\fB); \fP
 \fB
 .br
 \fP
@@ -50,7 +50,7 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIswapcontext\fP() function shall fail if:
-.TP
+.TP 7
 .B ENOMEM
 The \fIucp\fP argument does not have enough stack left to complete
 the operation.
@@ -129,7 +129,7 @@ None.
 .LP
 \fIexit\fP() , \fIgetcontext\fP() , \fIsigaction\fP() , \fIsigprocmask\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<ucontext.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<ucontext.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fwide" P 2003 POSIX
+.TH "FWIDE" P 2003 POSIX
 .\" fwide 
 .SH NAME
-fwide - set stream orientation
+fwide \- set stream orientation
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -14,12 +14,6 @@ int fwide(FILE *\fP\fIstream\fP\fB, int\fP \fImode\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIfwide\fP() function shall determine the orientation of the
 stream pointed to by \fIstream\fP. If \fImode\fP is greater
@@ -35,8 +29,7 @@ shall not change it.
 Since no return value is reserved to indicate an error, an application
 wishing to check for error situations should set
 \fIerrno\fP to 0, then call \fIfwide\fP(), then check \fIerrno\fP,
-and if it is non-zero, assume an error has occurred. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+and if it is non-zero, assume an error has occurred. 
 .SH RETURN VALUE
 .LP
 The \fIfwide\fP() function shall return a value greater than zero
@@ -46,7 +39,7 @@ stream has no orientation.
 .SH ERRORS
 .LP
 The \fIfwide\fP() function may fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIstream\fP argument is not a valid stream. 
 .sp
@@ -67,7 +60,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<wchar.h>\fP
+The Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<wchar.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

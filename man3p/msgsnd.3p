@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "msgsnd" P 2003 POSIX
+.TH "MSGSND" P 2003 POSIX
 .\" msgsnd 
 .SH NAME
-msgsnd - XSI message send operation
+msgsnd \- XSI message send operation
 .SH SYNOPSIS
 .LP
 \fB#include <sys/msg.h>
@@ -17,7 +17,7 @@ int msgsnd(int\fP \fImsqid\fP\fB, const void *\fP\fImsgp\fP\fB, size_t\fP
 .SH DESCRIPTION
 .LP
 The \fImsgsnd\fP() function operates on XSI message queues (see the
-Base Definitions volume of IEEE\0Std\01003.1-2001,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 3.224, Message Queue). It is unspecified whether this function
 interoperates with the realtime interprocess communication facilities
 defined in \fIRealtime\fP .
@@ -53,71 +53,55 @@ system-imposed maximum.
 .LP
 The argument \fImsgflg\fP specifies the action to be taken if one
 or more of the following is true:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The number of bytes already on the queue is equal to \fBmsg_qbytes\fP;
 see \fI<sys/msg.h>\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The total number of messages on all queues system-wide is equal to
 the system-imposed limit.
-.in -5
-.RE
+.LP
 .LP
 These actions are as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If (\fImsgflg\fP & IPC_NOWAIT) is non-zero, the message shall not
 be sent and the calling thread shall return
 immediately.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If (\fImsgflg\fP & IPC_NOWAIT) is 0, the calling thread shall suspend
 execution until one of the following occurs:
 .RS
-.in +5
-.LP
+.IP " *" 3
 The condition responsible for the suspension no longer exists, in
 which case the message is sent.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The message queue identifier \fImsqid\fP is removed from the system;
 when this occurs, \fIerrno\fP shall be set equal to
 [EIDRM] and -1 shall be returned.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The calling thread receives a signal that is to be caught; in this
 case the message is not sent and the calling thread resumes
 execution in the manner prescribed in \fIsigaction\fP() .
-.in -5
+.LP
 .RE
-.in -5
-.RE
+.LP
 .LP
 Upon successful completion, the following actions are taken with respect
 to the data structure associated with \fImsqid\fP; see
 \fI<sys/msg.h>\fP:
-.RS
-.in +5
-.LP
+.IP " *" 3
 \fBmsg_qnum\fP shall be incremented by 1.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 \fBmsg_lspid\fP shall be set equal to the process ID of the calling
 process.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 \fBmsg_stime\fP shall be set equal to the current time.
-.in -5
-.RE
+.LP
 .SH RETURN VALUE
 .LP
 Upon successful completion, \fImsgsnd\fP() shall return 0; otherwise,
@@ -126,22 +110,22 @@ no message shall be sent, \fImsgsnd\fP() shall return
 .SH ERRORS
 .LP
 The \fImsgsnd\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Operation permission is denied to the calling process; see \fIXSI
 Interprocess
 Communication\fP .
-.TP
+.TP 7
 .B EAGAIN
 The message cannot be sent for one of the reasons cited above and
 (\fImsgflg\fP & IPC_NOWAIT) is non-zero.
-.TP
+.TP 7
 .B EIDRM
 The message queue identifier \fImsqid\fP is removed from the system.
-.TP
+.TP 7
 .B EINTR
 The \fImsgsnd\fP() function was interrupted by a signal.
-.TP
+.TP 7
 .B EINVAL
 The value of \fImsqid\fP is not a valid message queue identifier,
 or the value of \fImtype\fP is less than 1; or the value of
@@ -199,7 +183,7 @@ None.
 , \fImq_send\fP() , \fImq_setattr\fP() , \fImq_unlink\fP() , \fImsgctl\fP()
 , \fImsgget\fP() ,
 \fImsgrcv\fP() , \fIsigaction\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/msg.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/msg.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "stat" P 2003 POSIX
+.TH "STAT" P 2003 POSIX
 .\" stat 
 .SH NAME
-stat - get file status
+stat \- get file status
 .SH SYNOPSIS
 .LP
 \fB#include <sys/stat.h>
@@ -34,14 +34,14 @@ placed concerning the file.
 .LP
 The \fIstat\fP() function shall update any time-related fields (as
 described in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 4.7, File Times Update), before writing
+IEEE\ Std\ 1003.1-2001, Section 4.7, File Times Update), before writing
 into the \fBstat\fP structure.
 .LP
 Unless otherwise specified, the structure members \fIst_mode\fP, \fIst_ino\fP,
 \fIst_dev\fP, \fIst_uid\fP, \fIst_gid\fP,
 \fIst_atime\fP, \fIst_ctime\fP, and \fIst_mtime\fP shall have meaningful
 values for all file types defined in this volume of
-IEEE\0Std\01003.1-2001. The value of the member \fIst_nlink\fP shall
+IEEE\ Std\ 1003.1-2001. The value of the member \fIst_nlink\fP shall
 be set to the number of links to the file.
 .SH RETURN VALUE
 .LP
@@ -50,28 +50,28 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fIstat\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied for a component of the path prefix.
-.TP
+.TP 7
 .B EIO
 An error occurred while reading from the file system.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIpath\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing file or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix is not a directory.
-.TP
+.TP 7
 .B EOVERFLOW
 The file size in bytes or the number of blocks allocated to the file
 or the file serial number cannot be represented correctly
@@ -79,16 +79,16 @@ in the structure pointed to by \fIbuf\fP.
 .sp
 .LP
 The \fIstat\fP() function may fail if:
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 As a result of encountering a symbolic link in resolution of the \fIpath\fP
 argument, the length of the substituted pathname
 string exceeded {PATH_MAX}.
-.TP
+.TP 7
 .B EOVERFLOW
 A value to be stored would overflow one of the members of the \fBstat\fP
 structure.
@@ -213,7 +213,7 @@ None.
 .LP
 \fIfstat\fP() , \fIlstat\fP() , \fIreadlink\fP() , \fIsymlink\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/stat.h>\fP, \fI<sys/types.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/stat.h>\fP, \fI<sys/types.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

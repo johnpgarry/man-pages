@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sinh" P 2003 POSIX
+.TH "SINH" P 2003 POSIX
 .\" sinh 
 .SH NAME
-sinh, sinhf, sinhl - hyperbolic sine functions
+sinh, sinhf, sinhl \- hyperbolic sine functions
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -16,12 +16,6 @@ long double sinhl(long double\fP \fIx\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 These functions shall compute the hyperbolic sine of their argument
 \fIx\fP.
@@ -52,8 +46,8 @@ be returned.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The result would cause an overflow. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -64,8 +58,8 @@ raised.
 .sp
 .LP
 These functions may fail if:
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The value \fIx\fP is subnormal. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -94,7 +88,7 @@ None.
 .LP
 \fIasinh\fP() , \fIcosh\fP() , \fIfeclearexcept\fP() , \fIfetestexcept\fP()
 , \fIisnan\fP() , \fItanh\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 4.18, Treatment of Error Conditions
+IEEE\ Std\ 1003.1-2001, Section 4.18, Treatment of Error Conditions
 for
 Mathematical Functions, \fI<math.h>\fP
 .SH COPYRIGHT

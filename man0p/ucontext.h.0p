@@ -2,7 +2,7 @@
 .TH "<ucontext.h>" P 2003 POSIX
 .\" <ucontext.h> 
 .SH NAME
-ucontext.h - user context
+ucontext.h \- user context
 .SH SYNOPSIS
 .LP
 \fB#include <ucontext.h> \fP
@@ -58,7 +58,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fI<signal.h>\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+\fI<signal.h>\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIgetcontext\fP(), \fImakecontext\fP(), \fIsigaction\fP(), \fIsigprocmask\fP(),
 \fIsigaltstack\fP()
 .SH COPYRIGHT

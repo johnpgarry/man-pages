@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sed" P 2003 POSIX
+.TH "SED" P 2003 POSIX
 .\" sed 
 .SH NAME
-sed - stream editor
+sed \- stream editor
 .SH SYNOPSIS
 .LP
 \fBsed\fP \fB[\fP\fB-n\fP\fB]\fP \fIscript\fP\fB[\fP\fIfile\fP\fB...\fP\fB]\fP\fB
@@ -23,22 +23,22 @@ string or a combination of the option-arguments from the \fB-e\fP
 .SH OPTIONS
 .LP
 The \fIsed\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
 except that the order of presentation of the
 \fB-e\fP and \fB-f\fP options is significant.
 .LP
 The following options shall be supported:
-.TP
-\fB-e\0\fP \fIscript\fP
+.TP 7
+\fB-e\ \fP \fIscript\fP
 Add the editing commands specified by the \fIscript\fP option-argument
 to the end of the script of editing commands. The
 \fIscript\fP option-argument shall have the same properties as the
 \fIscript\fP operand, described in the OPERANDS section.
-.TP
-\fB-f\0\fP \fIscript_file\fP
+.TP 7
+\fB-f\ \fP \fIscript_file\fP
 Add the editing commands in the file \fIscript_file\fP to the end
 of the script.
-.TP
+.TP 7
 \fB-n\fP
 Suppress the default output (in which each line, after it is examined
 for editing, is written to standard output). Only lines
@@ -51,14 +51,14 @@ regardless of their origin.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file whose contents are read and edited. If multiple
 \fIfile\fP operands are specified, the named files shall
 be read in the order specified and the concatenation shall be edited.
 If no \fIfile\fP operands are specified, the standard input
 shall be used.
-.TP
+.TP 7
 \fIscript\fP
 A string to be used as the script of editing commands. The application
 shall not present a \fIscript\fP that violates the
@@ -78,37 +78,37 @@ commands.
 .LP
 The following environment variables shall affect the execution of
 \fIsed\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements within regular
 expressions.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files), and
 the behavior of character classes within regular
 expressions.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -196,11 +196,9 @@ the following form produces undefined results:
 .SS Regular Expressions in sed
 .LP
 The \fIsed\fP utility shall support the BREs described in the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Section 9.3, Basic Regular
+Definitions volume of IEEE\ Std\ 1003.1-2001, Section 9.3, Basic Regular
 Expressions, with the following additions:
-.RS
-.in +5
-.LP
+.IP " *" 3
 In a context address, the construction \fB"\\cBREc"\fP , where \fIc\fP
 is any character other than backslash or
 <newline>, shall be identical to \fB"/BRE/"\fP . If the character
@@ -209,20 +207,17 @@ then it shall be considered to be that literal character, which shall
 not terminate the BRE. For example, in the context address
 \fB"\\xabc\\xdefx"\fP , the second \fIx\fP stands for itself, so that
 the BRE is \fB"abcxdef"\fP .
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The escape sequence \fB'\\n'\fP shall match a <newline> embedded in
 the pattern space. A literal <newline> shall
 not be used in the BRE of a context address or in the substitute function.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If an RE is empty (that is, no pattern is specified) \fIsed\fP shall
 behave as if the last RE used in the last command applied
 (either as an address or as part of a substitute command) was specified.
-.in -5
-.RE
+.LP
 .SS Editing Commands in sed
 .LP
 In the following list of editing commands, the maximum number of permissible
@@ -283,13 +278,13 @@ before the first \fB'!'\fP character. It is
 unspecified whether <blank>s can follow a \fB'!'\fP character, and
 conforming applications shall not follow a \fB'!'\fP
 character with <blank>s.
-.TP
-\fB[\fP\fI2addr\fP\fB]\0{\fP\fIfunction\fP
-.TP
+.TP 7
+\fB[\fP\fI2addr\fP\fB]\ {\fP\fIfunction\fP
+.TP 7
 \fIfunction\fP
-.TP
+.TP 7
 \&...
-.TP
+.TP 7
 \fB}\fP
 Execute a list of \fIsed\fP functions only when the pattern space
 is selected. The list of \fIsed\fP functions shall be
@@ -299,13 +294,13 @@ by <blank>s. The functions can be preceded by <blank>s, but shall
 not be followed by <blank>s. The
 <right-brace> shall be preceded by a <newline> and can be preceded
 or followed by <blank>s.
-.TP
+.TP 7
 \fB[\fP\fI1addr\fP\fB]a\\\fP
-.TP
+.TP 7
 \fItext\fP
 Write text to standard output as described previously.
-.TP
-\fB[\fP\fI2addr\fP\fB]b\0[\fP\fIlabel\fP\fB]\fP
+.TP 7
+\fB[\fP\fI2addr\fP\fB]b\ [\fP\fIlabel\fP\fB]\fP
 .sp
 Branch to the \fB:\fP function bearing the \fIlabel\fP. If \fIlabel\fP
 is not specified, branch to the end of the script. The
@@ -314,46 +309,46 @@ to at least 8 characters; the actual length (greater than or
 equal to 8) that shall be supported by the implementation is unspecified.
 It is unspecified whether exceeding a label length causes
 an error or a silent truncation.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]c\\\fP
-.TP
+.TP 7
 \fItext\fP
 Delete the pattern space. With a 0 or 1 address or at the end of a
 2-address range, place \fItext\fP on the output and start
 the next cycle.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]d\fP
 Delete the pattern space and start the next cycle.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]D\fP
 Delete the initial segment of the pattern space through the first
 <newline> and start the next cycle.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]g\fP
 Replace the contents of the pattern space by the contents of the hold
 space.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]G\fP
 Append to the pattern space a <newline> followed by the contents of
 the hold space.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]h\fP
 Replace the contents of the hold space with the contents of the pattern
 space.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]H\fP
 Append to the hold space a <newline> followed by the contents of the
 pattern space.
-.TP
+.TP 7
 \fB[\fP\fI1addr\fP\fB]i\\\fP
-.TP
+.TP 7
 \fItext\fP
 Write \fItext\fP to standard output.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]l\fP
 (The letter ell.) Write the pattern space to standard output in a
 visually unambiguous form. The characters listed in the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Table 5-1, Escape Sequences
+Definitions volume of IEEE\ Std\ 1003.1-2001, Table 5-1, Escape Sequences
 and Associated Actions ( \fB'\\\\'\fP ,
 \fB'\\a'\fP , \fB'\\b'\fP , \fB'\\f'\fP , \fB'\\r'\fP , \fB'\\t'\fP
 , \fB'\\v'\fP ) shall be written as the
@@ -370,7 +365,7 @@ writing a backslash followed by a <newline>; the length
 at which folding occurs is unspecified, but should be appropriate
 for the output device. The end of each line shall be marked with
 a \fB'$'\fP .
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]n\fP
 Write the pattern space to standard output if the default output has
 not been suppressed, and replace the pattern space with
@@ -379,7 +374,7 @@ the next line of input, less its terminating <newline>.
 If no next line of input is available, the \fBn\fP command verb shall
 branch to the end of the script and quit without starting
 a new cycle.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]N\fP
 Append the next line of input, less its terminating <newline>, to
 the pattern space, using an embedded <newline> to
@@ -389,22 +384,22 @@ the current line number changes.
 If no next line of input is available, the \fBN\fP command verb shall
 branch to the end of the script and quit without starting
 a new cycle or copying the pattern space to standard output.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]p\fP
 Write the pattern space to standard output.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]P\fP
 Write the pattern space, up to the first <newline>, to standard output.
-.TP
+.TP 7
 \fB[\fP\fI1addr\fP\fB]q\fP
 Branch to the end of the script and quit without starting a new cycle.
-.TP
-\fB[\fP\fI1addr\fP\fB]r\0\fP \fIrfile\fP
+.TP 7
+\fB[\fP\fI1addr\fP\fB]r\ \fP \fIrfile\fP
 Copy the contents of \fIrfile\fP to standard output as described previously.
 If \fIrfile\fP does not exist or cannot be read,
 it shall be treated as if it were an empty file, causing no error
 condition.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]s/\fP\fIBRE\fP\fB/\fP\fIreplacement\fP\fB/\fP\fIflags\fP
 .sp
 Substitute the replacement string for instances of the BRE in the
@@ -439,41 +434,49 @@ be discarded from the BRE or the replacement before evaluating the
 BRE or using the replacement.
 .LP
 The value of \fIflags\fP shall be zero or more of:
-.TP
+.TP 7
 \fIn\fP
+.RS
 Substitute for the \fIn\fPth occurrence only of the BRE found within
 the pattern space.
-.TP
+.RE
+.TP 7
 \fBg\fP
+.RS
 Globally substitute for all non-overlapping instances of the BRE rather
 than just the first one. If both \fBg\fP and \fIn\fP
 are specified, the results are unspecified.
-.TP
+.RE
+.TP 7
 \fBp\fP
+.RS
 Write the pattern space to standard output if a replacement was made.
-.TP
-\fBw\0\fP \fIwfile\fP
+.RE
+.TP 7
+\fBw\ \fP \fIwfile\fP
+.RS
 Write. Append the pattern space to \fIwfile\fP if a replacement was
 made. A conforming application shall precede the
 \fIwfile\fP argument with one or more <blank>s. If the \fBw\fP flag
 is not the last flag value given in a concatenation of
 multiple flag values, the results are undefined.
+.RE
 .sp
-.TP
-\fB[\fP\fI2addr\fP\fB]t\0[\fP\fIlabel\fP\fB]\fP
+.TP 7
+\fB[\fP\fI2addr\fP\fB]t\ [\fP\fIlabel\fP\fB]\fP
 .sp
 Test. Branch to the \fB:\fP command verb bearing the \fIlabel\fP if
 any substitutions have been made since the most recent
 reading of an input line or execution of a \fBt\fP. If \fIlabel\fP
 is not specified, branch to the end of the script.
-.TP
-\fB[\fP\fI2addr\fP\fB]w\0\fP \fIwfile\fP
+.TP 7
+\fB[\fP\fI2addr\fP\fB]w\ \fP \fIwfile\fP
 .sp
 Append (write) the pattern space to \fIwfile\fP.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]x\fP
 Exchange the contents of the pattern and hold spaces.
-.TP
+.TP 7
 \fB[\fP\fI2addr\fP\fB]y/\fP\fIstring1\fP\fB/\fP\fIstring2\fP\fB/\fP
 .sp
 Replace all occurrences of characters in \fIstring1\fP with the corresponding
@@ -493,11 +496,11 @@ characters shall be counted as a single literal
 backslash character. The meaning of a backslash followed by any character
 that is not \fB'n'\fP , a backslash, or the delimiter
 character is undefined.
-.TP
+.TP 7
 \fB[\fP\fI0addr\fP\fB]:\fP\fIlabel\fP
 Do nothing. This command bears a \fIlabel\fP to which the \fBb\fP
 and \fBt\fP commands branch.
-.TP
+.TP 7
 \fB[\fP\fI1addr\fP\fB]=\fP
 Write the following to standard output: 
 .sp
@@ -508,10 +511,10 @@ Write the following to standard output:
 \fP
 .fi
 .RE
-.TP
+.TP 7
 \fB[\fP\fI0addr\fP\fB]\fP
 Ignore this empty command.
-.TP
+.TP 7
 \fB[\fP\fI0addr\fP\fB]#\fP
 Ignore the \fB'#'\fP and the remainder of the line (treat them as
 a comment), with the single exception that if the first
@@ -522,10 +525,10 @@ be suppressed; this shall be the equivalent of specifying
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -539,7 +542,7 @@ Default.
 Regular expressions match entire strings, not just individual lines,
 but a <newline> is matched by \fB'\\n'\fP in a
 \fIsed\fP RE; a <newline> is not allowed by the general definition
-of regular expression in IEEE\0Std\01003.1-2001.
+of regular expression in IEEE\ Std\ 1003.1-2001.
 Also note that \fB'\\n'\fP cannot be used to match a <newline> at
 the end of an arbitrary input line; <newline>s
 appear in the pattern space as a result of the \fBN\fP editing command.
@@ -577,7 +580,7 @@ blank lines from standard input.
 .RE
 .SH RATIONALE
 .LP
-This volume of IEEE\0Std\01003.1-2001 requires implementations to
+This volume of IEEE\ Std\ 1003.1-2001 requires implementations to
 support at least ten distinct \fIwfile\fPs, matching
 historical practice on many implementations. Implementations are encouraged
 to support more, but conforming applications should not
@@ -595,7 +598,7 @@ backspace-overstrike method, and other requirements to achieve unambiguous
 output were added. See the RATIONALE for \fIed\fP for details of the
 format chosen, which is the same as that chosen for \fIsed\fP.
 .LP
-This volume of IEEE\0Std\01003.1-2001 requires implementations to
+This volume of IEEE\ Std\ 1003.1-2001 requires implementations to
 provide pattern and hold spaces of at least 8192
 bytes, larger than the 4000 bytes spaces used by some historical implementations,
 but less than the 20480 bytes limit used in an
@@ -626,7 +629,7 @@ behaved in unexpected ways if this were not the case. The standard
 developers considered that this was incorrect behavior and that
 application developers should not have to avoid this feature. A correct
 implementation of this volume of
-IEEE\0Std\01003.1-2001 shall permit \fIscript_file\fPs that consist
+IEEE\ Std\ 1003.1-2001 shall permit \fIscript_file\fPs that consist
 only of comment lines.
 .LP
 Early proposals indicated that if \fB-e\fP and \fB-f\fP options were
@@ -648,7 +651,7 @@ echo a | sed -n 's/a/A/p'
 .fi
 .RE
 .LP
-this volume of IEEE\0Std\01003.1-2001, BSD, System V documentation,
+this volume of IEEE\ Std\ 1003.1-2001, BSD, System V documentation,
 and the SVID indicate that the first example should
 write two lines with \fBA\fP, whereas the second should write one.
 Some System V systems write the \fBA\fP only once in both
@@ -659,15 +662,12 @@ This is a case of a diametrical difference between systems that could
 not be reconciled through the compromise of declaring the
 behavior to be unspecified. The SVID/BSD/System V documentation behavior
 was adopted for this volume of
-IEEE\0Std\01003.1-2001 because:
-.RS
-.in +5
-.LP
+IEEE\ Std\ 1003.1-2001 because:
+.IP " *" 3
 No known documentation for any historic system describes the interaction
 between the \fBp\fP flag and the \fB-n\fP option.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The selected behavior is more correct as there is no technical justification
 for any interaction between the \fBp\fP flag and
 the \fB-n\fP option. A relationship between \fB-n\fP and the \fBp\fP
@@ -677,9 +677,8 @@ through the use of the \fBD\fP, \fBd\fP, \fBq\fP, or
 branching commands. Such scripts rely on the \fBp\fP suffix to write
 the pattern space because they do not make use of the default
 output at the "bottom" of the script.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Because the \fB-n\fP option makes the \fBp\fP flag unnecessary, any
 interaction would only be useful if \fIsed\fP scripts
 were written to run both with and without the \fB-n\fP option. This
@@ -688,14 +687,12 @@ programmers have coded the \fBp\fP flag expecting it to be unnecessary.
 Because the interaction was not documented, the likelihood
 of a programmer discovering the interaction and depending on it is
 further decreased.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Finally, scripts that break under the specified behavior produce too
 much output instead of too little, which is easier to
 diagnose and correct.
-.in -5
-.RE
+.LP
 .LP
 The form of the substitute command that uses the \fBn\fP suffix was
 limited to the first 512 matches in an early proposal. This
@@ -708,7 +705,7 @@ The \fBb\fP, \fBt\fP, and \fB:\fP commands are documented to ignore
 leading white space, but no mention is made of trailing
 white space. Historical implementations of \fIsed\fP assigned different
 locations to the labels \fB'x'\fP and
-\fB"x\0"\fP . This is not useful, and leads to subtle programming
+\fB"x\ "\fP . This is not useful, and leads to subtle programming
 errors, but it is historical practice, and changing it
 could theoretically break working scripts. Implementors are encouraged
 to provide warning messages about labels that are never used

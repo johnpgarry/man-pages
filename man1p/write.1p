@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "write" P 2003 POSIX
+.TH "WRITE" P 2003 POSIX
 .\" write 
 .SH NAME
-write - write to another user
+write \- write to another user
 .SH SYNOPSIS
 .LP
 \fBwrite\fP \fIuser_name\fP \fB[\fP\fIterminal\fP\fB]\fP\fB\fP
@@ -36,51 +36,43 @@ If the recipient wants to reply, this can be accomplished by typing:
 .LP
 upon receipt of the initial message. Whenever a line of input as delimited
 by an NL, EOF, or EOL special character (see the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Chapter 11, General
+Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 11, General
 Terminal
 Interface) is accumulated while in canonical input mode, the accumulated
 data shall be written on the other user's terminal.
 Characters shall be processed as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Typing <alert> shall write the alert character to the recipient's
 terminal.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Typing the erase and kill characters shall affect the sender's terminal
 in the manner described by the \fBtermios\fP interface
-in the Base Definitions volume of IEEE\0Std\01003.1-2001, Chapter
+in the Base Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter
 11, General
 Terminal Interface.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Typing the interrupt or end-of-file characters shall cause \fIwrite\fP
 to write an appropriate message ( \fB"EOT\\n"\fP in
 the POSIX locale) to the recipient's terminal and exit.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Typing characters from \fILC_CTYPE\fP classifications \fBprint\fP
 or \fBspace\fP shall cause those characters to be sent to
 the recipient's terminal.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 When and only when the \fIstty\fP \fBiexten\fP local mode is enabled,
 the existence and
 processing of additional special control characters and multi-byte
 or single-byte functions is implementation-defined.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Typing other non-printable characters shall cause implementation-defined
 sequences of printable characters to be written to the
 recipient's terminal.
-.in -5
-.RE
+.LP
 .LP
 To write to a user who is logged in more than once, the \fIterminal\fP
 argument can be used to indicate which terminal to write
@@ -100,12 +92,12 @@ None.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIuser_name\fP
 Login name of the person to whom the message shall be written. The
 application shall ensure that this operand is of the form
 returned by the \fIwho\fP utility.
-.TP
+.TP 7
 \fIterminal\fP
 Terminal identification in the same format provided by the \fIwho\fP
 utility.
@@ -121,31 +113,31 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIwrite\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files). If
 the recipient's locale does not use an \fILC_CTYPE\fP
 equivalent to the sender's, the results are undefined.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -171,10 +163,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 The addressed user is not logged on or the addressed user denies permission.
 .sp
@@ -193,7 +185,7 @@ full-screen terminals.
 None.
 .SH RATIONALE
 .LP
-The \fIwrite\fP utility was included in this volume of IEEE\0Std\01003.1-2001
+The \fIwrite\fP utility was included in this volume of IEEE\ Std\ 1003.1-2001
 since it can be implemented on all
 terminal types. The standard developers considered the \fItalk\fP
 utility, which cannot be
@@ -212,7 +204,7 @@ None.
 .SH SEE ALSO
 .LP
 \fImesg\fP , \fItalk\fP , \fIwho\fP , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Chapter 11, General
+Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 11, General
 Terminal
 Interface
 .SH COPYRIGHT

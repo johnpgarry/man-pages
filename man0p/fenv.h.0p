@@ -2,26 +2,20 @@
 .TH "<fenv.h>" P 2003 POSIX
 .\" <fenv.h> 
 .SH NAME
-fenv.h - floating-point environment
+fenv.h \- floating-point environment
 .SH SYNOPSIS
 .LP
 \fB#include <fenv.h>\fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fI<fenv.h>\fP header shall define the following data types through
 \fBtypedef\fP:
-.TP
+.TP 7
 \fBfenv_t\fP
 Represents the entire floating-point environment. The floating-point
 environment refers collectively to any floating-point
 status flags and control modes supported by the implementation.
-.TP
+.TP 7
 \fBfexcept_t\fP
 Represents the floating-point status flags collectively, including
 any status the implementation associates with the flags. A
@@ -146,32 +140,27 @@ their default settings.)
 .LP
 This header is designed to support the floating-point exception status
 flags and directed-rounding control modes required by the
-IEC\060559:1989 standard, and other similar floating-point state information.
+IEC\ 60559:1989 standard, and other similar floating-point state information.
 Also it is designed to facilitate code
 portability among all systems.
 .LP
 Certain application programming conventions support the intended model
 of use for the floating-point environment:
-.RS
-.in +5
-.LP
+.IP " *" 3
 A function call does not alter its caller's floating-point control
 modes, clear its caller's floating-point status flags, nor
 depend on the state of its caller's floating-point status flags unless
 the function is so documented.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A function call is assumed to require default floating-point control
 modes, unless its documentation promises otherwise.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A function call is assumed to have the potential for raising floating-point
 exceptions, unless its documentation promises
 otherwise.
-.in -5
-.RE
+.LP
 .LP
 With these conventions, an application can safely assume default floating-point
 control modes (or be unaware of them). The
@@ -227,7 +216,7 @@ exception macros, but is not required to; other representations might
 contain extra information about the exceptions.
 \fBfexcept_t\fP might be a \fBstruct\fP with a member for each exception
 (that might hold the address of the first or last
-floating-point instruction that caused that exception). The ISO/IEC\09899:1999
+floating-point instruction that caused that exception). The ISO/IEC\ 9899:1999
 standard makes no claims about the internals of
 an \fBfexcept_t\fP, and so the user cannot inspect it.
 .SS Exception and Rounding Macros
@@ -241,7 +230,7 @@ for this.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIfeclearexcept\fP(),
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIfeclearexcept\fP(),
 \fIfegetenv\fP(), \fIfegetexceptflag\fP(), \fIfegetround\fP(),
 \fIfeholdexcept\fP(), \fIferaiseexcept\fP(), \fIfesetenv\fP(), \fIfesetexceptflag\fP(),
 \fIfesetround\fP(),

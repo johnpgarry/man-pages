@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "waitid" P 2003 POSIX
+.TH "WAITID" P 2003 POSIX
 .\" waitid 
 .SH NAME
-waitid - wait for a child process to change state
+waitid \- wait for a child process to change state
 .SH SYNOPSIS
 .LP
 \fB#include <sys/wait.h>
@@ -42,21 +42,21 @@ and \fIid\fP is ignored.
 The \fIoptions\fP argument is used to specify which state changes
 \fIwaitid\fP() shall wait for. It is formed by OR'ing
 together one or more of the following flags:
-.TP
+.TP 7
 WEXITED
 Wait for processes that have exited.
-.TP
+.TP 7
 WSTOPPED
 Status shall be returned for any child that has stopped upon receipt
 of a signal.
-.TP
+.TP 7
 WCONTINUED
 Status shall be returned for any child that was stopped and has been
 continued.
-.TP
+.TP 7
 WNOHANG
 Return immediately if there are no children to wait for.
-.TP
+.TP 7
 WNOWAIT
 Keep the process whose status is returned in \fIinfop\fP in a waitable
 state. This shall not affect the state of the process;
@@ -80,13 +80,13 @@ error.
 .SH ERRORS
 .LP
 The \fIwaitid\fP() function shall fail if:
-.TP
+.TP 7
 .B ECHILD
 The calling process has no existing unwaited-for child processes.
-.TP
+.TP 7
 .B EINTR
 The \fIwaitid\fP() function was interrupted by a signal.
-.TP
+.TP 7
 .B EINVAL
 An invalid value was specified for \fIoptions\fP, or \fIidtype\fP
 and \fIid\fP specify an invalid set of processes.
@@ -108,7 +108,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIexec\fP() , \fIexit\fP() , \fIwait\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<sys/wait.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<sys/wait.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

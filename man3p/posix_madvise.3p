@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_madvise" P 2003 POSIX
+.TH "POSIX_MADVISE" P 2003 POSIX
 .\" posix_madvise 
 .SH NAME
-posix_madvise - memory advisory information and alignment control
+posix_madvise \- memory advisory information and alignment control
 (\fBADVANCED REALTIME\fP)
 .SH SYNOPSIS
 .LP
@@ -36,28 +36,28 @@ name value _SC_PAGESIZE is used.
 The advice to be applied to the memory range is specified by the \fIadvice\fP
 parameter and may be one of the following
 values:
-.TP
+.TP 7
 POSIX_MADV_NORMAL
 .sp
 Specifies that the application has no advice to give on its behavior
 with respect to the specified range. It is the default
 characteristic if no advice is given for a range of memory.
-.TP
+.TP 7
 POSIX_MADV_SEQUENTIAL
 .sp
 Specifies that the application expects to access the specified range
 sequentially from lower addresses to higher addresses.
-.TP
+.TP 7
 POSIX_MADV_RANDOM
 .sp
 Specifies that the application expects to access the specified range
 in a random order.
-.TP
+.TP 7
 POSIX_MADV_WILLNEED
 .sp
 Specifies that the application expects to access the specified range
 in the near future.
-.TP
+.TP 7
 POSIX_MADV_DONTNEED
 .sp
 Specifies that the application expects that it will not access the
@@ -73,10 +73,10 @@ the error.
 .SH ERRORS
 .LP
 The \fIposix_madvise\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIadvice\fP is invalid.
-.TP
+.TP 7
 .B ENOMEM
 Addresses in the range starting at \fIaddr\fP and continuing for \fIlen\fP
 bytes are partly or completely outside the range
@@ -84,12 +84,12 @@ allowed for the address space of the calling process.
 .sp
 .LP
 The \fIposix_madvise\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIaddr\fP is not a multiple of the value returned by
 \fIsysconf\fP()
 when the name value _SC_PAGESIZE is used.
-.TP
+.TP 7
 .B EINVAL
 The value of \fIlen\fP is zero.
 .sp
@@ -112,7 +112,7 @@ None.
 .SH SEE ALSO
 .LP
 \fImmap\fP() , \fIposix_fadvise\fP() , \fIsysconf\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/mman.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

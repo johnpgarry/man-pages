@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cmp" P 2003 POSIX
+.TH "CMP" P 2003 POSIX
 .\" cmp 
 .SH NAME
-cmp - compare two files
+cmp \- compare two files
 .SH SYNOPSIS
 .LP
 \fBcmp\fP \fB[\fP \fB-l | -s\fP \fB]\fP \fIfile1 file2\fP
@@ -16,25 +16,25 @@ Bytes and lines shall be numbered beginning with 1.
 .SH OPTIONS
 .LP
 The \fIcmp\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-l\fP
 (Lowercase ell.) Write the byte number (decimal) and the differing
 bytes (octal) for each difference.
-.TP
+.TP 7
 \fB-s\fP
 Write nothing for differing files; return exit status only.
 .sp
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIfile1\fP
 A pathname of the first file to be compared. If \fIfile1\fP is \fB'-'\fP
 , the standard input shall be used.
-.TP
+.TP 7
 \fIfile2\fP
 A pathname of the second file to be compared. If \fIfile2\fP is \fB'-'\fP
 , the standard input shall be used.
@@ -55,29 +55,29 @@ The input files can be any file type.
 .LP
 The following environment variables shall affect the execution of
 \fIcmp\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -111,9 +111,9 @@ When the \fB-l\fP option is used, the format shall be:
 .fi
 .RE
 .LP
-for each byte that differs. The first <\fIdiffering\0byte\fP> number
+for each byte that differs. The first <\fIdiffering\ byte\fP> number
 is from \fIfile1\fP while the second is from
-\fIfile2\fP. In both cases, <\fIbyte\0number\fP> shall be relative
+\fIfile2\fP. In both cases, <\fIbyte\ number\fP> shall be relative
 to the beginning of the file, beginning with 1.
 .LP
 No output shall be written to standard output when the \fB-s\fP option
@@ -134,7 +134,7 @@ specified:
 .fi
 .RE
 .LP
-The <\fIadditional\0info\fP> field shall either be null or a string
+The <\fIadditional\ info\fP> field shall either be null or a string
 that starts with a <blank> and contains no
 <newline>s. Some implementations report on the number of lines in
 this case.
@@ -147,14 +147,14 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 The files are identical.
-.TP
-\01
+.TP 7
+\ 1
 The files are different; this includes the case where one file is
 identical to the first part of the other.
-.TP
+.TP 7
 >1
 An error occurred.
 .sp
@@ -168,8 +168,8 @@ Default.
 Although input files to \fIcmp\fP can be any type, the results might
 not be what would be expected on character special device
 files or on file types not described by the System Interfaces volume
-of IEEE\0Std\01003.1-2001. Since this volume of
-IEEE\0Std\01003.1-2001 does not specify the block size used when doing
+of IEEE\ Std\ 1003.1-2001. Since this volume of
+IEEE\ Std\ 1003.1-2001 does not specify the block size used when doing
 input, comparisons of character special files need
 not compare all of the data in those files.
 .LP
@@ -216,7 +216,7 @@ the functionality of the utility changed between locales.
 .LP
 Some implementations report on the number of lines in the identical-but-shorter
 file case. This is allowed by the inclusion of
-the <\fIadditional\0info\fP> fields in the output format. The restriction
+the <\fIadditional\ info\fP> fields in the output format. The restriction
 on having a leading <blank> and no
 <newline>s is to make parsing for the filename easier. It is recognized
 that some filenames containing white-space characters

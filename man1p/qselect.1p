@@ -1,17 +1,17 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "qselect" P 2003 POSIX
+.TH "QSELECT" P 2003 POSIX
 .\" qselect 
 .SH NAME
-qselect - select batch jobs
+qselect \- select batch jobs
 .SH SYNOPSIS
 .LP
 \fBqselect\fP \fB[\fP\fB-a\fP \fB[\fP\fIop\fP\fB]\fP\fIdate_time\fP\fB][\fP\fB-A\fP
 \fIaccount_string\fP\fB][\fP\fB-c\fP \fB[\fP\fIop\fP\fB]\fP\fIinterval\fP\fB]
 .br
-\fP \fB\0\0\0\0\0\0\fP \fB[\fP\fB-h\fP \fIhold_list\fP\fB][\fP\fB-l\fP
+\fP \fB\ \ \ \ \ \ \fP \fB[\fP\fB-h\fP \fIhold_list\fP\fB][\fP\fB-l\fP
 \fIresource_list\fP\fB][\fP\fB-N\fP \fIname\fP\fB][\fP\fB-p\fP \fB[\fP\fIop\fP\fB]\fP\fIpriority\fP\fB]
 .br
-\fP \fB\0\0\0\0\0\0\fP \fB[\fP\fB-q\fP \fIdestination\fP\fB][\fP\fB-r\fP
+\fP \fB\ \ \ \ \ \ \fP \fB[\fP\fB-q\fP \fIdestination\fP\fB][\fP\fB-r\fP
 \fIy\fP\fB|\fP\fIn\fP\fB][\fP\fB-s\fP \fIstates\fP\fB][\fP\fB-u\fP
 \fIuser_list\fP\fB]\fP\fB\fP
 .SH DESCRIPTION
@@ -48,29 +48,29 @@ letter indicates the \fIop\fP as either mandatory or
 optional. Acceptable strings for the \fIop\fP component, and the relation
 the string indicates, are shown in the following
 list:
-.TP
+.TP 7
 \fB\&.eq.\fP
 The value represented by the attribute of the batch job is equal to
 the value represented by the option-argument.
-.TP
+.TP 7
 \fB\&.ge.\fP
 The value represented by the attribute of the batch job is greater
 than or equal to the value represented by the
 option-argument.
-.TP
+.TP 7
 \fB\&.gt.\fP
 The value represented by the attribute of the batch job is greater
 than the value represented by the option-argument.
-.TP
+.TP 7
 \fB\&.lt.\fP
 The value represented by the attribute of the batch job is less than
 the value represented by the option-argument.
-.TP
+.TP 7
 \fB\&.le.\fP
 The value represented by the attribute of the batch job is less than
 or equal to the value represented by the
 option-argument.
-.TP
+.TP 7
 \fB\&.ne.\fP
 The value represented by the attribute of the batch job is not equal
 to the value represented by the option-argument.
@@ -78,11 +78,11 @@ to the value represented by the option-argument.
 .SH OPTIONS
 .LP
 The \fIqselect\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported by the implementation:
-.TP
-\fB-a\0[\fP\fIop\fP\fB]\fP\fIdate_time\fP
+.TP 7
+\fB-a\ [\fP\fIop\fP\fB]\fP\fIdate_time\fP
 .sp
 Restrict selection to a specific time, or a range of times. 
 .LP
@@ -104,42 +104,54 @@ jobs for which the \fIExecution_Time\fP attribute is equal to the
 When comparing times, the \fIqselect\fP utility shall use the following
 definitions for the \fIop\fP component of the
 option-argument:
-.TP
+.TP 7
 \fB\&.eq.\fP
+.RS
 The time represented by value of the \fIExecution_Time\fP attribute
 of the batch job is equal to the time represented by the
 \fIdate_time\fP component of the option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.ge.\fP
+.RS
 The time represented by value of the \fIExecution_Time\fP attribute
 of the batch job is after or equal to the time represented
 by the \fIdate_time\fP component of the option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.gt.\fP
+.RS
 The time represented by value of the \fIExecution_Time\fP attribute
 of the batch job is after the time represented by the
 \fIdate_time\fP component of the option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.lt.\fP
+.RS
 The time represented by value of the \fIExecution_Time\fP attribute
 of the batch job is before the time represented by the
 \fIdate_time\fP component of the option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.le.\fP
+.RS
 The time represented by value of the \fIExecution_Time\fP attribute
 of the batch job is before or equal to the time
 represented by the \fIdate_time\fP component of the option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.ne.\fP
+.RS
 The time represented by value of the \fIExecution_Time\fP attribute
 of the batch job is not equal to the time represented by
 the \fIdate_time\fP component of the option-argument.
+.RE
 .sp
 .LP
 The \fIqselect\fP utility shall accept the defined character strings
 for the \fIop\fP component of the option-argument.
-.TP
-\fB-A\0\fP \fIaccount_string\fP
+.TP 7
+\fB-A\ \fP \fIaccount_string\fP
 .sp
 Restrict selection to the batch jobs charging a specified account.
 .LP
@@ -148,8 +160,8 @@ value of the \fIAccount_Name\fP attribute of the batch
 job matchs the value of the \fIaccount_string\fP option-argument.
 .LP
 The syntax of the \fIaccount_string\fP option-argument is unspecified.
-.TP
-\fB-c\0[\fP\fIop\fP\fB]\fP\fIinterval\fP
+.TP 7
+\fB-c\ [\fP\fIop\fP\fB]\fP\fIinterval\fP
 .sp
 Restrict selection to batch jobs within a range of checkpoint intervals.
 .LP
@@ -167,36 +179,48 @@ value of the \fICheckpoint\fP attribute is equal to the value of the
 When comparing checkpoint intervals, the \fIqselect\fP utility shall
 use the following definitions for the \fIop\fP component
 of the option-argument:
-.TP
+.TP 7
 \fB\&.eq.\fP
+.RS
 The value of the \fICheckpoint\fP attribute of the batch job equals
 the value of the \fIinterval\fP component of the
 option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.ge.\fP
+.RS
 The value of the \fICheckpoint\fP attribute of the batch job is greater
 than or equal to the value of the \fIinterval\fP
 component option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.gt.\fP
+.RS
 The value of the \fICheckpoint\fP attribute of the batch job is greater
 than the value of the \fIinterval\fP component
 option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.lt.\fP
+.RS
 The value of the \fICheckpoint\fP attribute of the batch job is less
 than the value of the \fIinterval\fP component
 option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.le.\fP
+.RS
 The value of the \fICheckpoint\fP attribute of the batch job is less
 than or equal to the value of the \fIinterval\fP
 component option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.ne.\fP
+.RS
 The value of the \fICheckpoint\fP attribute of the batch job does
 not equal the value of the \fIinterval\fP component
 option-argument.
+.RE
 .sp
 .LP
 The \fIqselect\fP utility shall accept the defined character strings
@@ -215,8 +239,8 @@ is defined to be:
 When comparing \fICheckpoint\fP attributes with an interval having
 the value of the single character \fB'u'\fP , only equality
 or inequality are valid comparisons.
-.TP
-\fB-h\0\fP \fIhold_list\fP
+.TP 7
+\fB-h\ \fP \fIhold_list\fP
 Restrict selection to batch jobs that have a specific type of hold.
 .LP
 The \fIqselect\fP utility shall select only batch jobs for which the
@@ -226,7 +250,7 @@ of the \fIhold_list\fP option-argument.
 The \fIqselect\fP \fB-h\fP option shall accept a value for the \fIhold_list\fP
 option-argument that is a string of
 alphanumeric characters in the portable character set (see the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Section 6.1, Portable
+Definitions volume of IEEE\ Std\ 1003.1-2001, Section 6.1, Portable
 Character Set).
 .LP
 The \fIqselect\fP utility shall accept a value for the \fIhold_list\fP
@@ -237,15 +261,21 @@ characters \fB'u'\fP , \fB's'\fP , or \fB'o'\fP , or the single character
 Each unique character in the \fIhold_list\fP option-argument of the
 \fIqselect\fP utility is defined as follows, each
 representing a different hold type:
-.TP
+.TP 7
 \fBu\fP
+.RS
 USER
-.TP
+.RE
+.TP 7
 \fBs\fP
+.RS
 SYSTEM
-.TP
+.RE
+.TP 7
 \fBo\fP
+.RS
 OPERATOR
+.RE
 .sp
 .LP
 If any of these characters are duplicated in the \fIhold_list\fP option-argument,
@@ -265,8 +295,8 @@ An implementation may define other hold types. The conformance document
 for an implementation shall describe any additional hold
 types, how they are specified, their internal behavior, and how they
 affect the behavior of the utility.
-.TP
-\fB-l\0\fP \fIresource_list\fP
+.TP 7
+\fB-l\ \fP \fIresource_list\fP
 .sp
 Restrict selection to batch jobs with specified resource limits and
 attributes. 
@@ -284,36 +314,48 @@ with the following syntax:
 When comparing resource values, the \fIqselect\fP utility shall use
 the following definitions for the \fIop\fP component of
 the option-argument:
-.TP
+.TP 7
 \fB\&.eq.\fP
+.RS
 The value of the resource of the same name in the \fIResource_List\fP
 attribute of the batch job equals the value of the value
 component of the option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.ge.\fP
+.RS
 The value of the resource of the same name in the \fIResource_List\fP
 attribute of the batch job is greater than or equal to
 the value of the \fIvalue\fP component of the option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.gt.\fP
+.RS
 The value of the resource of the same name in the \fIResource_List\fP
 attribute of the batch job is greater than the value of
 the value component of the option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.lt.\fP
+.RS
 The value of the resource of the same name in the \fIResource_List\fP
 attribute of the batch job is less than the value of the
 value component of the option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.ne.\fP
+.RS
 The value of the resource of the same name in the \fIResource_List\fP
 attribute of the batch job does not equal the value of
 the value component of the option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.le.\fP
+.RS
 The value of the resource of the same name in the \fIResource_List\fP
 attribute of the batch job is less than or equal to the
 value of the \fIvalue\fP component of the option-argument.
+.RE
 .sp
 .LP
 When comparing the limit of a \fIResource_List\fP attribute with the
@@ -330,8 +372,8 @@ Limits of \fIresource_name\fPs present in the \fIResource_List\fP
 attribute of the batch job that have no corresponding values
 in the \fIresource_list\fP option-argument shall not be considered
 when selecting batch jobs.
-.TP
-\fB-N\0\fP \fIname\fP
+.TP 7
+\fB-N\ \fP \fIname\fP
 Restrict selection to batch jobs with a specified name. 
 .LP
 The \fIqselect\fP utility shall select only batch jobs for which the
@@ -344,8 +386,8 @@ against batch job names.
 An implementation shall describe in the conformance document the format
 it supports for matching against the \fIJob_Name\fP
 attribute.
-.TP
-\fB-p\0[\fP\fIop\fP\fB]\fP\fIpriority\fP
+.TP 7
+\fB-p\ [\fP\fIop\fP\fB]\fP\fIpriority\fP
 .sp
 Restrict selection to batch jobs of the specified priority or range
 of priorities. 
@@ -365,39 +407,51 @@ option-argument.
 When comparing priority values, the \fIqselect\fP utility shall use
 the following definitions for the \fIop\fP component of
 the option-argument:
-.TP
+.TP 7
 \fB\&.eq.\fP
+.RS
 The value of the \fIPriority\fP attribute of the batch job equals
 the value of the \fIpriority\fP component of the
 option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.ge.\fP
+.RS
 The value of the \fIPriority\fP attribute of the batch job is greater
 than or equal to the value of the \fIpriority\fP
 component option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.gt.\fP
+.RS
 The value of the \fIPriority\fP attribute of the batch job is greater
 than the value of the \fIpriority\fP component
 option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.lt.\fP
+.RS
 The value of the \fIPriority\fP attribute of the batch job is less
 than the value of the \fIpriority\fP component
 option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.lt.\fP
+.RS
 The value of the \fIPriority\fP attribute of the batch job is less
 than or equal to the value of the \fIpriority\fP component
 option-argument.
-.TP
+.RE
+.TP 7
 \fB\&.ne.\fP
+.RS
 The value of the \fIPriority\fP attribute of the batch job does not
 equal the value of the \fIpriority\fP component
 option-argument.
+.RE
 .sp
-.TP
-\fB-q\0\fP \fIdestination\fP
+.TP 7
+\fB-q\ \fP \fIdestination\fP
 .sp
 Restrict selection to the specified batch queue or server, or both.
 .LP
@@ -427,8 +481,8 @@ queues at that batch server.
 If the option-argument describes both a batch queue and a batch server,
 the \fIqselect\fP utility shall select only batch jobs
 from the specified batch queue at the specified server.
-.TP
-\fB-r\0\fP \fBy\fP|\fBn\fP
+.TP 7
+\fB-r\ \fP \fBy\fP|\fBn\fP
 Restrict selection to batch jobs with the specified rerunability status.
 .LP
 The \fIqselect\fP utility shall select only batch jobs for which the
@@ -440,8 +494,8 @@ that consists of either the single character
 \fB'y'\fP or the single character \fB'n'\fP . The character \fB'y'\fP
 represents the value TRUE, and the character
 \fB'n'\fP represents the value FALSE.
-.TP
-\fB-s\0\fP \fIstates\fP
+.TP 7
+\fB-s\ \fP \fIstates\fP
 Restrict selection to batch jobs in the specified states. 
 .LP
 The \fIqselect\fP utility shall accept an option-argument that consists
@@ -455,31 +509,43 @@ additional meaning to repeated characters.
 .LP
 The \fIqselect\fP utility shall interpret the characters in the \fIstates\fP
 option-argument as follows:
-.TP
+.TP 7
 \fBe\fP
+.RS
 Represents the EXITING state.
-.TP
+.RE
+.TP 7
 \fBq\fP
+.RS
 Represents the QUEUED state.
-.TP
+.RE
+.TP 7
 \fBr\fP
+.RS
 Represents the RUNNING state.
-.TP
+.RE
+.TP 7
 \fBt\fP
+.RS
 Represents the TRANSITING state.
-.TP
+.RE
+.TP 7
 \fBh\fP
+.RS
 Represents the HELD state.
-.TP
+.RE
+.TP 7
 \fBw\fP
+.RS
 Represents the WAITING state.
+.RE
 .sp
 .LP
 For each character in the \fIstates\fP option-argument, the \fIqselect\fP
 utility shall select batch jobs in the corresponding
 state.
-.TP
-\fB-u\0\fP \fIuser_list\fP
+.TP 7
+\fB-u\ \fP \fIuser_list\fP
 Restrict selection to batch jobs owned by the specified user names.
 .LP
 The \fIqselect\fP utility shall select only the batch jobs of those
@@ -513,32 +579,32 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIqselect\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fILOGNAME\fP
 Determine the login name of the user.
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone used to interpret the \fIdate-time\fP option-argument.
 If \fITZ\fP is unset or null, an unspecified
@@ -576,10 +642,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -677,7 +743,7 @@ utility.
 .LP
 Historically, the \fIqselect\fP utility has not been a part of existing
 practice; it is an improvement that has been introduced
-in this volume of IEEE\0Std\01003.1-2001.
+in this volume of IEEE\ Std\ 1003.1-2001.
 .SH FUTURE DIRECTIONS
 .LP
 None.

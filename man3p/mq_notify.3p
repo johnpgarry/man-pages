@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mq_notify" P 2003 POSIX
+.TH "MQ_NOTIFY" P 2003 POSIX
 .\" mq_notify 
 .SH NAME
-mq_notify - notify process that a message is available (\fBREALTIME\fP)
+mq_notify \- notify process that a message is available (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <mqueue.h>
@@ -50,10 +50,10 @@ value of -1 and set \fIerrno\fP to indicate the error.
 .SH ERRORS
 .LP
 The \fImq_notify\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fImqdes\fP argument is not a valid message queue descriptor.
-.TP
+.TP 7
 .B EBUSY
 A process is already registered for notification by the message queue.
 .sp
@@ -75,7 +75,7 @@ None.
 .LP
 \fImq_open\fP() , \fImq_send\fP() , \fImq_timedsend\fP() , \fImsgctl\fP()
 , \fImsgget\fP() , \fImsgrcv\fP() , \fImsgsnd\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<mqueue.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<mqueue.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

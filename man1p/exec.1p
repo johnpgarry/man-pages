@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "exec" P 2003 POSIX
+.TH "EXEC" P 2003 POSIX
 .\" exec 
 .SH NAME
-exec - execute commands and open, close, or copy file descriptors
+exec \- execute commands and open, close, or copy file descriptors
 .SH SYNOPSIS
 .LP
 \fBexec\fP \fB[\fP\fIcommand\fP \fB[\fP\fIargument\fP \fB...\fP\fB]]\fP

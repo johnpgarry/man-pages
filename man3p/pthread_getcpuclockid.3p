@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_getcpuclockid" P 2003 POSIX
+.TH "PTHREAD_GETCPUCLOCKID" P 2003 POSIX
 .\" pthread_getcpuclockid 
 .SH NAME
-pthread_getcpuclockid - access a thread CPU-time clock (\fBADVANCED
+pthread_getcpuclockid \- access a thread CPU-time clock (\fBADVANCED
 REALTIME THREADS\fP)
 .SH SYNOPSIS
 .LP
@@ -30,7 +30,7 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_getcpuclockid\fP() function may fail if:
-.TP
+.TP 7
 .B ESRCH
 The value specified by \fIthread_id\fP does not refer to an existing
 thread.
@@ -54,7 +54,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIclock_getcpuclockid\fP() , \fIclock_getres\fP() , \fItimer_create\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP,
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP,
 \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

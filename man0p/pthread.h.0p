@@ -2,7 +2,7 @@
 .TH "<pthread.h>" P 2003 POSIX
 .\" <pthread.h> 
 .SH NAME
-pthread.h - threads
+pthread.h \- threads
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h> \fP
@@ -351,7 +351,7 @@ None.
 .SH SEE ALSO
 .LP
 \fI<sched.h>\fP , \fI<sys/types.h>\fP , \fI<time.h>\fP , the System
-Interfaces volume of IEEE\0Std\01003.1-2001, \fIpthread_attr_getguardsize\fP(),
+Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIpthread_attr_getguardsize\fP(),
 \fIpthread_attr_init\fP(), \fIpthread_attr_setscope\fP(), \fIpthread_barrier_destroy\fP(),
 \fIpthread_barrier_init\fP(), \fIpthread_barrier_wait\fP(), \fIpthread_barrierattr_destroy\fP(),
 \fIpthread_barrierattr_getpshared\fP(), \fIpthread_barrierattr_init\fP(),

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_getspecific" P 2003 POSIX
+.TH "PTHREAD_GETSPECIFIC" P 2003 POSIX
 .\" pthread_getspecific 
 .SH NAME
-pthread_getspecific, pthread_setspecific - thread-specific data management
+pthread_getspecific, pthread_setspecific \- thread-specific data management
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -61,13 +61,13 @@ indicate the error.
 No errors are returned from \fIpthread_getspecific\fP().
 .LP
 The \fIpthread_setspecific\fP() function shall fail if:
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory exists to associate the value with the key.
 .sp
 .LP
 The \fIpthread_setspecific\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The key value is invalid.
 .sp
@@ -96,7 +96,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_key_create\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_trace_attr_destroy" P 2003 POSIX
+.TH "POSIX_TRACE_ATTR_DESTROY" P 2003 POSIX
 .\" posix_trace_attr_destroy 
 .SH NAME
-posix_trace_attr_destroy, posix_trace_attr_init - destroy and initialize
+posix_trace_attr_destroy, posix_trace_attr_init \- destroy and initialize
 the trace stream attributes object
 (\fBTRACING\fP)
 .SH SYNOPSIS
@@ -38,7 +38,7 @@ object.
 .LP
 Implementations may add extensions to the trace attributes object
 structure as permitted in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 2, Conformance.
+IEEE\ Std\ 1003.1-2001, Chapter 2, Conformance.
 .LP
 The resulting attributes object (possibly modified by setting individual
 attributes values), when used by \fIposix_trace_create\fP(), defines
@@ -58,13 +58,13 @@ number.
 .SH ERRORS
 .LP
 The \fIposix_trace_attr_destroy\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIattr\fP is invalid.
 .sp
 .LP
 The \fIposix_trace_attr_init\fP() function shall fail if:
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory exists to initialize the trace attributes object.
 .sp
@@ -86,7 +86,7 @@ None.
 .LP
 \fIposix_trace_create\fP() , \fIposix_trace_get_attr\fP() , \fIuname\fP()
 , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<trace.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<trace.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

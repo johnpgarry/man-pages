@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "times" P 2003 POSIX
+.TH "TIMES" P 2003 POSIX
 .\" times 
 .SH NAME
-times - get process and waited-for child process times
+times \- get process and waited-for child process times
 .SH SYNOPSIS
 .LP
 \fB#include <sys/times.h>
@@ -25,30 +25,24 @@ when \fIwait\fP() or \fIwaitpid\fP() returns the
 process ID of this terminated child. If a child process has not waited
 for its children, their times shall not be included in its
 times.
-.RS
-.in +5
-.LP
+.IP " *" 3
 The \fItms_utime\fP structure member is the CPU time charged for the
 execution of user instructions of the calling process.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The \fItms_stime\fP structure member is the CPU time charged for execution
 by the system on behalf of the calling process.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The \fItms_cutime\fP structure member is the sum of the \fItms_utime\fP
 and \fItms_cutime\fP times of the child
 processes.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The \fItms_cstime\fP structure member is the sum of the \fItms_stime\fP
 and \fItms_cstime\fP times of the child
 processes.
-.in -5
-.RE
+.LP
 .SH RETURN VALUE
 .LP
 Upon successful completion, \fItimes\fP() shall return the elapsed
@@ -136,7 +130,7 @@ If the type \fBclock_t\fP is defined to be a signed 32-bit integer,
 it overflows in somewhat more than a year if there are 60
 clock ticks per second, or less than a year if there are 100. There
 are individual systems that run continuously for longer than
-that. This volume of IEEE\0Std\01003.1-2001 permits an implementation
+that. This volume of IEEE\ Std\ 1003.1-2001 permits an implementation
 to make the reference point for the returned value be
 the start-up time of the process, rather than system start-up time.
 .LP
@@ -150,7 +144,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIalarm\fP() , \fIexec\fP() , \fIfork\fP() , \fIsysconf\fP() , \fItime\fP()
-, \fIwait\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIwait\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<sys/times.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

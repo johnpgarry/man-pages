@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "aio_suspend" P 2003 POSIX
+.TH "AIO_SUSPEND" P 2003 POSIX
 .\" aio_suspend 
 .SH NAME
-aio_suspend - wait for an asynchronous I/O request (\fBREALTIME\fP)
+aio_suspend \- wait for an asynchronous I/O request (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <aio.h>
@@ -11,7 +11,7 @@ aio_suspend - wait for an asynchronous I/O request (\fBREALTIME\fP)
 int aio_suspend(const struct aiocb * const\fP \fIlist\fP\fB[], int\fP
 \fInent\fP\fB,
 .br
-\0\0\0\0\0\0 const struct timespec *\fP\fItimeout\fP\fB); \fP
+\ \ \ \ \ \  const struct timespec *\fP\fItimeout\fP\fB); \fP
 \fB
 .br
 \fP
@@ -39,7 +39,7 @@ undefined.
 If the time interval indicated in the \fBtimespec\fP structure pointed
 to by \fItimeout\fP passes before any of the I/O
 operations referenced by \fIlist\fP are completed, then \fIaio_suspend\fP()
-shall return with an error.   \0If the
+shall return with an error.   \ If the
 Monotonic Clock option is supported, the clock that shall be used
 to measure this time interval shall be the CLOCK_MONOTONIC clock.
 .SH RETURN VALUE
@@ -56,12 +56,12 @@ respectively.
 .SH ERRORS
 .LP
 The \fIaio_suspend\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 No asynchronous I/O indicated in the list referenced by \fIlist\fP
 completed in the time interval indicated by
 \fItimeout\fP.
-.TP
+.TP 7
 .B EINTR
 A signal interrupted the \fIaio_suspend\fP() function. Note that,
 since each asynchronous I/O operation may possibly provoke a
@@ -88,7 +88,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIaio_read\fP() , \fIaio_write\fP() , \fIlio_listio\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<aio.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<aio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

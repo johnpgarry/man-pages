@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "getsockopt" P 2003 POSIX
+.TH "GETSOCKOPT" P 2003 POSIX
 .\" getsockopt 
 .SH NAME
-getsockopt - get the socket options
+getsockopt \- get the socket options
 .SH SYNOPSIS
 .LP
 \fB#include <sys/socket.h>
@@ -11,7 +11,7 @@ getsockopt - get the socket options
 int getsockopt(int\fP \fIsocket\fP\fB, int\fP \fIlevel\fP\fB, int\fP
 \fIoption_name,\fP\fB
 .br
-\0\0\0\0\0\0 void *restrict\fP \fIoption_value\fP\fB, socklen_t *restrict\fP
+\ \ \ \ \ \  void *restrict\fP \fIoption_value\fP\fB, socklen_t *restrict\fP
 \fIoption_len\fP\fB);
 .br
 \fP
@@ -43,28 +43,28 @@ to use the \fIgetsockopt\fP() function.
 .LP
 The \fIoption_name\fP argument specifies a single option to be retrieved.
 It can be one of the following values defined in \fI<sys/socket.h>\fP:
-.TP
+.TP 7
 SO_DEBUG
 Reports whether debugging information is being recorded. This option
 shall store an \fBint\fP value. This is a Boolean
 option.
-.TP
+.TP 7
 SO_ACCEPTCONN
 Reports whether socket listening is enabled. This option shall store
 an \fBint\fP value. This is a Boolean option.
-.TP
+.TP 7
 SO_BROADCAST
 Reports whether transmission of broadcast messages is supported, if
 this is supported by the protocol. This option shall store
 an \fBint\fP value. This is a Boolean option.
-.TP
+.TP 7
 SO_REUSEADDR
 Reports whether the rules used in validating addresses supplied to
 \fIbind\fP() should
 allow reuse of local addresses, if this is supported by the protocol.
 This option shall store an \fBint\fP value. This is a
 Boolean option.
-.TP
+.TP 7
 SO_KEEPALIVE
 Reports whether connections are kept active with periodic transmission
 of messages, if this is supported by the protocol. 
@@ -73,7 +73,7 @@ If the connected socket fails to respond to these messages, the connection
 shall be broken and threads writing to that socket
 shall be notified with a SIGPIPE signal. This option shall store an
 \fBint\fP value. This is a Boolean option.
-.TP
+.TP 7
 SO_LINGER
 Reports whether the socket lingers on \fIclose\fP() if data is present.
 If SO_LINGER is
@@ -85,28 +85,28 @@ is issued, the system handles the call in a way that allows the process
 to
 continue as quickly as possible. This option shall store a \fBlinger\fP
 structure.
-.TP
+.TP 7
 SO_OOBINLINE
 Reports whether the socket leaves received out-of-band data (data
 marked urgent) inline. This option shall store an \fBint\fP
 value. This is a Boolean option.
-.TP
+.TP 7
 SO_SNDBUF
 Reports send buffer size information. This option shall store an \fBint\fP
 value.
-.TP
+.TP 7
 SO_RCVBUF
 Reports receive buffer size information. This option shall store an
 \fBint\fP value.
-.TP
+.TP 7
 SO_ERROR
 Reports information about error status and clears it. This option
 shall store an \fBint\fP value.
-.TP
+.TP 7
 SO_TYPE
 Reports the socket type. This option shall store an \fBint\fP value.
 Socket types are described in \fISocket Types\fP .
-.TP
+.TP 7
 SO_DONTROUTE
 Reports whether outgoing messages bypass the standard routing facilities.
 The destination shall be on a directly-connected
@@ -114,7 +114,7 @@ network, and messages are directed to the appropriate network interface
 according to the destination address. The effect, if any,
 of this option depends on what protocol is in use. This option shall
 store an \fBint\fP value. This is a Boolean option.
-.TP
+.TP 7
 SO_RCVLOWAT
 Reports the minimum number of bytes to process for socket input operations.
 The default value for SO_RCVLOWAT is 1. If
@@ -126,7 +126,7 @@ type of data next in the receive queue is different from that returned;
 for example, out-of-band data.) This option shall store an
 \fBint\fP value. Note that not all implementations allow this option
 to be retrieved.
-.TP
+.TP 7
 SO_RCVTIMEO
 Reports the timeout value for input operations. This option shall
 store a \fBtimeval\fP structure with the number of seconds
@@ -137,7 +137,7 @@ with a partial count or \fIerrno\fP set to [EAGAIN] or
 [EWOULDBLOCK] if no data was received. The default for this option
 is zero, which indicates that a receive operation shall not time
 out. Note that not all implementations allow this option to be retrieved.
-.TP
+.TP 7
 SO_SNDLOWAT
 Reports the minimum number of bytes to process for socket output operations.
 Non-blocking output operations shall process no
@@ -145,7 +145,7 @@ data if flow control does not allow the smaller of the send low water
 mark value or the entire request to be processed. This option
 shall store an \fBint\fP value. Note that not all implementations
 allow this option to be retrieved.
-.TP
+.TP 7
 SO_SNDTIMEO
 Reports the timeout value specifying the amount of time that an output
 function blocks because flow control prevents data from
@@ -169,29 +169,29 @@ the error.
 .SH ERRORS
 .LP
 The \fIgetsockopt\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIsocket\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B EINVAL
 The specified option is invalid at the specified socket level.
-.TP
+.TP 7
 .B ENOPROTOOPT
 .sp
 The option is not supported by the protocol.
-.TP
+.TP 7
 .B ENOTSOCK
 The \fIsocket\fP argument does not refer to a socket.
 .sp
 .LP
 The \fIgetsockopt\fP() function may fail if:
-.TP
+.TP 7
 .B EACCES
 The calling process does not have the appropriate privileges.
-.TP
+.TP 7
 .B EINVAL
 The socket has been shut down.
-.TP
+.TP 7
 .B ENOBUFS
 Insufficient resources are available in the system to complete the
 function.
@@ -213,7 +213,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIbind\fP() , \fIclose\fP() , \fIendprotoent\fP() , \fIsetsockopt\fP()
-, \fIsocket\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIsocket\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<sys/socket.h>\fP, \fI<netinet/in.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

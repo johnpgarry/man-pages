@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "lp" P 2003 POSIX
+.TH "LP" P 2003 POSIX
 .\" lp 
 .SH NAME
-lp - send files to a printer
+lp \- send files to a printer
 .SH SYNOPSIS
 .LP
 \fBlp\fP \fB[\fP\fB-c\fP\fB][\fP\fB-d\fP \fIdest\fP\fB][\fP\fB-n\fP
@@ -34,10 +34,10 @@ one of the \fB-o\fP \fIoption\fP values.
 .SH OPTIONS
 .LP
 The \fIlp\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-c\fP
 Exit only after further access to any of the input files is no longer
 required. The application can then safely delete or
@@ -50,8 +50,8 @@ in its entirety. It should also be noted that in the absence of the
 request is made but before it is printed may be reflected in the printed
 output. On some implementations, \fB-c\fP may be on by
 default.
-.TP
-\fB-d\0\fP \fIdest\fP
+.TP 7
+\fB-d\ \fP \fIdest\fP
 Specify a string that names the destination ( \fIdest\fP). If \fIdest\fP
 is a printer, the request shall be printed only on
 that specific printer. If \fIdest\fP is a class of printers, the request
@@ -67,31 +67,31 @@ destination is used. The \fB-d\fP \fIdest\fP option shall take precedence
 over \fILPDEST ,\fP which in turn shall take
 precedence over \fIPRINTER .\fP Results are undefined when \fIdest\fP
 contains a value that is not a valid destination name.
-.TP
+.TP 7
 \fB-m\fP
 Send mail (see \fImailx\fP ) after the files have been printed. By
 default, no mail is sent upon
 normal completion of the print request.
-.TP
-\fB-n\0\fP \fIcopies\fP
+.TP 7
+\fB-n\ \fP \fIcopies\fP
 Write \fIcopies\fP number of copies of the files, where \fIcopies\fP
 is a positive decimal integer. The methods for producing
 multiple copies and for arranging the multiple copies when multiple
 \fIfile\fP operands are used are unspecified, except that each
 file shall be output as an integral whole, not interleaved with portions
 of other files.
-.TP
-\fB-o\0\fP \fIoption\fP
+.TP 7
+\fB-o\ \fP \fIoption\fP
 Specify printer-dependent or class-dependent \fIoption\fPs. Several
 such \fIoption\fPs may be collected by specifying the
 \fB-o\fP option more than once.
-.TP
+.TP 7
 \fB-s\fP
 Suppress messages from \fIlp\fP.
-.TP
-\fB-t\0\fP \fItitle\fP
+.TP 7
+\fB-t\ \fP \fItitle\fP
 Write \fItitle\fP on the banner page of the output.
-.TP
+.TP 7
 \fB-w\fP
 Write a message on the user's terminal after the files have been printed.
 If the user is not logged in, then mail shall be sent
@@ -100,7 +100,7 @@ instead.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file to be output. If no \fIfile\fP operands are specified,
 or if a \fIfile\fP operand is \fB'-'\fP , the
@@ -121,33 +121,33 @@ The input files shall be text files.
 .LP
 The following environment variables shall affect the execution of
 \fIlp\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fILC_TIME\fP
 Determine the format and contents of date and time strings displayed
 in the \fIlp\fP banner page, if any.
-.TP
+.TP 7
 \fILPDEST\fP
 Determine the destination. If the \fILPDEST\fP environment variable
 is not set, the \fIPRINTER\fP environment variable shall
@@ -155,11 +155,11 @@ be used. The \fB-d\fP \fIdest\fP option takes precedence over \fILPDEST
 \&.\fP Results are undefined when \fB-d\fP is not
 specified and \fILPDEST\fP contains a value that is not a valid destination
 name.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fIPRINTER\fP
 Determine the output device or destination. If the \fILPDEST\fP and
 \fIPRINTER\fP environment variables are not set, an
@@ -168,7 +168,7 @@ and the \fILPDEST\fP environment variable shall take
 precedence over \fIPRINTER .\fP Results are undefined when \fB-d\fP
 is not specified, \fILPDEST\fP is unset, and \fIPRINTER\fP
 contains a value that is not a valid device or destination name.
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone used to calculate date and time strings displayed
 in the \fIlp\fP banner page, if any. If \fITZ\fP is
@@ -196,10 +196,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All input files were processed successfully.
-.TP
+.TP 7
 >0
 No output device was available, or an error occurred.
 .sp
@@ -217,13 +217,12 @@ size.
 A conforming application can use one of the \fIfile\fP operands only
 with the \fB-c\fP option or if the file is publicly
 readable and guaranteed to be available at the time of printing. This
-is because IEEE\0Std\01003.1-2001 gives the
+is because IEEE\ Std\ 1003.1-2001 gives the
 implementation the freedom to queue up the request for printing at
 some later time by a different process that might not be able to
 access the file.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 To print file \fIfile\fP:
 .sp
 .RS
@@ -232,9 +231,8 @@ To print file \fIfile\fP:
 \fBlp -c\fP \fIfile\fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 To print multiple files with headers:
 .sp
 .RS
@@ -244,7 +242,7 @@ To print multiple files with headers:
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 The \fIlp\fP utility was designed to be a basic version of a utility
@@ -268,7 +266,7 @@ other options to this utility, it should always be able to execute
 with no options or operands and send the standard input to an
 unspecified output device.
 .LP
-This volume of IEEE\0Std\01003.1-2001 makes no representations concerning
+This volume of IEEE\ Std\ 1003.1-2001 makes no representations concerning
 the format of the printed output, except that
 it must be "human-readable" and "non-volatile". Thus, writing by default
 to a disk or tape drive or a display terminal would
@@ -276,7 +274,7 @@ not qualify. (Such destinations are not prohibited when \fB-d\fP \fIdest\fP,
 \fILPDEST ,\fP or \fIPRINTER\fP are used,
 however.)
 .LP
-This volume of IEEE\0Std\01003.1-2001 is worded such that a "print
+This volume of IEEE\ Std\ 1003.1-2001 is worded such that a "print
 job" consisting of multiple input files, possibly
 in multiple copies, is guaranteed to print so that any one file is
 not intermixed with another, but there is no statement that all
@@ -290,7 +288,7 @@ there is no attempt to define a queuing mechanism
 .LP
 On some historical systems, the request ID reported on the STDOUT
 can be used to later cancel or find the status of a request
-using utilities not defined in this volume of IEEE\0Std\01003.1-2001.
+using utilities not defined in this volume of IEEE\ Std\ 1003.1-2001.
 .LP
 Although the historical System V \fIlp\fP and BSD \fIlpr\fP utilities
 have provided similar functionality, they used different
@@ -308,20 +306,15 @@ Some have commented that \fIlp\fP has far too little functionality
 to make it worthwhile. Requests have proposed additional
 options or operands or both that added functionality. The requests
 included:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Wording \fIrequiring\fP the output to be "hardcopy"
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A requirement for multiple printers
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Options for supporting various page-description languages
-.in -5
-.RE
+.LP
 .LP
 Given that a compliant system is not required to even have a printer,
 placing further restrictions upon the behavior of the
@@ -339,15 +332,12 @@ how the system administrator configures each individual system.
 Since the default destination, device type, queuing mechanisms, and
 acceptable forms of input are all unspecified, usage
 guidelines for what a conforming application can do are as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Use the command in a pipeline, or with \fB-c\fP, so that there are
 no permission problems and the files can be safely deleted
 or modified.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Limit output to text files of reasonable line lengths and printable
 characters and include no device-specific formatting
 information, such as a page description language. The meaning of "reasonable"
@@ -356,15 +346,14 @@ quality-of-implementation issue, but it should be apparent from historical
 usage patterns in the industry and the locale. The \fIpr\fP and \fIfold\fP
 utilities can be used to achieve
 reasonable formatting for the default page size of the implementation.
-.in -5
-.RE
+.LP
 .LP
 Alternatively, the application can arrange its installation in such
 a way that it requires the system administrator or operator
 to provide the appropriate information on \fIlp\fP options and environment
 variable values.
 .LP
-At a minimum, having this utility in this volume of IEEE\0Std\01003.1-2001
+At a minimum, having this utility in this volume of IEEE\ Std\ 1003.1-2001
 tells the industry that conforming
 applications require a means to print output and provides at least
 a command name and \fILPDEST\fP routing mechanism that can be
@@ -373,7 +362,7 @@ The use of "should" in the DESCRIPTION of \fIlp\fP clearly
 shows the intent of the standard developers, even if they cannot mandate
 that all systems (such as laptops) have printers.
 .LP
-This volume of IEEE\0Std\01003.1-2001 does not specify what the ownership
+This volume of IEEE\ Std\ 1003.1-2001 does not specify what the ownership
 of the process performing the writing to the
 output device may be. If \fB-c\fP is not used, it is unspecified whether
 the process performing the writing to the output device

@@ -1,9 +1,9 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "endutxent" P 2003 POSIX
+.TH "ENDUTXENT" P 2003 POSIX
 .\" endutxent 
 .SH NAME
 endutxent, getutxent, getutxid, getutxline, pututxline, setutxent
-- user accounting database functions
+\- user accounting database functions
 .SH SYNOPSIS
 .LP
 \fB#include <utmpx.h>
@@ -70,16 +70,52 @@ the type of the entry. Other members of the entry
 shall contain meaningful data based on the value of the \fIut_type\fP
 member as follows:
 .TS C
-center;l l l l l l l l l l l.
-\fBut_type Member\fP 	 \fBOther Members with Meaningful Data\fP 	
-EMPTY 	 No others 	
-BOOT_TIME 	 \fIut_tv\fP 	
-OLD_TIME 	 \fIut_tv\fP 	
-NEW_TIME 	 \fIut_tv\fP 	
-USER_PROCESS 	 \fIut_id\fP, \fIut_user\fP (login name of the user), \fIut_line\fP, \fIut_pid\fP, \fIut_tv\fP 	
-INIT_PROCESS 	 \fIut_id\fP, \fIut_pid\fP, \fIut_tv\fP 	
-LOGIN_PROCESS 	 \fIut_id\fP, \fIut_user\fP (implementation-defined name of the login process), \fIut_pid\fP, \fIut_tv\fP 	
-DEAD_PROCESS 	 \fIut_id\fP, \fIut_pid\fP, \fIut_tv\fP 	
+center; l lw(40).
+\fBut_type Member\fP	T{
+.na
+\fBOther Members with Meaningful Data\fP
+.ad
+T}
+EMPTY	T{
+.na
+No others
+.ad
+T}
+BOOT_TIME	T{
+.na
+\fIut_tv\fP
+.ad
+T}
+OLD_TIME	T{
+.na
+\fIut_tv\fP
+.ad
+T}
+NEW_TIME	T{
+.na
+\fIut_tv\fP
+.ad
+T}
+USER_PROCESS	T{
+.na
+\fIut_id\fP, \fIut_user\fP (login name of the user), \fIut_line\fP, \fIut_pid\fP, \fIut_tv\fP
+.ad
+T}
+INIT_PROCESS	T{
+.na
+\fIut_id\fP, \fIut_pid\fP, \fIut_tv\fP
+.ad
+T}
+LOGIN_PROCESS	T{
+.na
+\fIut_id\fP, \fIut_user\fP (implementation-defined name of the login process), \fIut_pid\fP, \fIut_tv\fP
+.ad
+T}
+DEAD_PROCESS	T{
+.na
+\fIut_id\fP, \fIut_pid\fP, \fIut_tv\fP
+.ad
+T}
 .TE
 .LP
 An implementation that provides extended security controls may impose
@@ -129,7 +165,7 @@ No errors are defined for the \fIendutxent\fP(), \fIgetutxent\fP(),
 \fIsetutxent\fP() functions.
 .LP
 The \fIpututxline\fP() function may fail if:
-.TP
+.TP 7
 .B EPERM
 The process does not have appropriate privileges.
 .sp
@@ -150,7 +186,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<utmpx.h>\fP
+The Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<utmpx.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "setlocale" P 2003 POSIX
+.TH "SETLOCALE" P 2003 POSIX
 .\" setlocale 
 .SH NAME
-setlocale - set program locale
+setlocale \- set program locale
 .SH SYNOPSIS
 .LP
 \fB#include <locale.h>
@@ -13,12 +13,6 @@ char *setlocale(int\fP \fIcategory\fP\fB, const char *\fP\fIlocale\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fIsetlocale\fP() function selects the appropriate piece of the
 program's locale, as specified by the \fIcategory\fP and
 \fIlocale\fP arguments, and may be used to change or query the program's
@@ -26,28 +20,28 @@ entire locale or portions thereof. The value
 \fILC_ALL\fP for \fIcategory\fP names the program's entire locale;
 other values for \fIcategory\fP name only a part of the
 program's locale:
-.TP
+.TP 7
 \fILC_COLLATE\fP
 Affects the behavior of regular expressions and the collation functions.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Affects the behavior of regular expressions, character classification,
 character conversion functions, and wide-character
 functions.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Affects what strings are expected by commands and utilities as affirmative
 or negative responses.  
 .LP
 It also affects what strings are given by commands and utilities as
 affirmative or negative responses, and the content of messages.
-.TP
+.TP 7
 \fILC_MONETARY\fP
 Affects the behavior of functions that handle monetary values.
-.TP
+.TP 7
 \fILC_NUMERIC\fP
 Affects the behavior of functions that handle numeric values.
-.TP
+.TP 7
 \fILC_TIME\fP
 Affects the behavior of the time conversion functions.
 .sp
@@ -57,23 +51,23 @@ the required setting of \fIcategory\fP. The contents
 of this string are implementation-defined. In addition, the following
 preset values of \fIlocale\fP are defined for all settings
 of \fIcategory\fP:
-.TP
+.TP 7
 "POSIX"
 Specifies the minimal environment for C-language translation called
 the POSIX locale. If \fIsetlocale\fP() is not invoked, the
 POSIX locale is the default at entry to \fImain\fP(). 
-.TP
+.TP 7
 "C"
 Equivalent to \fB"POSIX"\fP .
-.TP
+.TP 7
 ""
-Specifies an implementation-defined native environment.   \0This corresponds
+Specifies an implementation-defined native environment.   \ This corresponds
 to the value of the associated environment
 variables, \fILC_*\fP and \fILANG ;\fP see the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Chapter 7, Locale and the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Chapter 8, Environment Variables.
-.TP
-A\0null\0pointer
+of IEEE\ Std\ 1003.1-2001, Chapter 7, Locale and the Base Definitions
+volume of IEEE\ Std\ 1003.1-2001, Chapter 8, Environment Variables.
+.TP 7
+A\ null\ pointer
 Used to direct \fIsetlocale\fP() to query the current internationalized
 environment and return the name of the locale.
 .sp
@@ -137,36 +131,30 @@ Changing the setting of \fILC_MESSAGES\fP has no effect on catalogs
 that have already been opened by calls to \fIcatopen\fP().
 .SH RATIONALE
 .LP
-The ISO\0C standard defines a collection of functions to support internationalization.
+The ISO\ C standard defines a collection of functions to support internationalization.
 One of the most significant aspects
 of these functions is a facility to set and query the \fIinternational
 environment\fP. The international environment is a
 repository of information that affects the behavior of certain functionality,
 namely:
-.in +5
-.LP
+.IP " 1." 4
 Character handling
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Collating
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Date/time formatting
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Numeric editing
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Monetary formatting
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 Messaging
-.in -5
+.LP
 .LP
 The \fIsetlocale\fP() function provides the application developer
 with the ability to set all or portions, called
@@ -206,16 +194,14 @@ In addition, a special value called \fILC_ALL\fP directs \fIsetlocale\fP()
 to set all categories.
 .LP
 There are two primary uses of \fIsetlocale\fP():
-.in +5
-.LP
+.IP " 1." 4
 Querying the international environment to find out what it is set
 to
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Setting the international environment, or \fIlocale\fP, to a specific
 value
-.in -5
+.LP
 .LP
 The behavior of \fIsetlocale\fP() in these two areas is described
 below. Since it is difficult to describe the behavior in
@@ -250,8 +236,8 @@ environment so it can be changed and reset later, the return
 value should be copied to an array of \fBchar\fP in the calling program.
 .LP
 There are three ways to set the international environment with \fIsetlocale\fP():
-.TP
-\fIsetlocale\fP(\fIcategory\fP,\0\fIstring\fP)
+.TP 7
+\fIsetlocale\fP(\fIcategory\fP,\ \fIstring\fP)
 .sp
 This usage sets a specific \fIcategory\fP in the international environment
 to a specific value corresponding to the value of the
@@ -268,22 +254,22 @@ to a specific value corresponding to the value of the
 In this example, all categories of the international environment are
 set to the locale corresponding to the string
 \fB"fr_FR.ISO-8859-1"\fP , or to the French language as spoken in
-France using the ISO/IEC\08859-1:1998 standard
+France using the ISO/IEC\ 8859-1:1998 standard
 codeset.
 .LP
 If the string does not correspond to a valid locale, \fIsetlocale\fP()
 shall return a NULL pointer and the international
 environment is not changed. Otherwise, \fIsetlocale\fP() shall return
 the name of the locale just set.
-.TP
-\fIsetlocale\fP(\fIcategory\fP,\0"C")
+.TP 7
+\fIsetlocale\fP(\fIcategory\fP,\ "C")
 .sp
-The ISO\0C standard states that one locale must exist on all conforming
+The ISO\ C standard states that one locale must exist on all conforming
 implementations. The name of the locale is C and
 corresponds to a minimal international environment needed to support
 the C programming language.
-.TP
-\fIsetlocale\fP(\fIcategory\fP,\0"")
+.TP 7
+\fIsetlocale\fP(\fIcategory\fP,\ "")
 .sp
 This sets a specific category to an implementation-defined default.
 This corresponds to the value of the environment
@@ -310,7 +296,7 @@ None.
 , \fItowlower\fP() ,
 \fItowupper\fP() , \fIwcscoll\fP() , \fIwcstod\fP() , \fIwcstombs\fP()
 , \fIwcsxfrm\fP() ,
-\fIwctomb\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIwctomb\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<langinfo.h>\fP, \fI<locale.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

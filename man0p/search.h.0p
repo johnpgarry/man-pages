@@ -2,7 +2,7 @@
 .TH "<search.h>" P 2003 POSIX
 .\" <search.h> 
 .SH NAME
-search.h - search tables
+search.h \- search tables
 .SH SYNOPSIS
 .LP
 \fB#include <search.h> \fP
@@ -75,7 +75,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fI<sys/types.h>\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+\fI<sys/types.h>\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIhcreate\fP(), \fIinsque\fP(), \fIlsearch\fP(), \fIremque\fP(),
 \fItsearch\fP()
 .SH COPYRIGHT

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sigaddset" P 2003 POSIX
+.TH "SIGADDSET" P 2003 POSIX
 .\" sigaddset 
 .SH NAME
-sigaddset - add a signal to a signal set
+sigaddset \- add a signal to a signal set
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -35,7 +35,7 @@ the error.
 .SH ERRORS
 .LP
 The \fIsigaddset\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIsigno\fP argument is an invalid or unsupported
 signal number.
@@ -59,7 +59,7 @@ None.
 \fISignal Concepts\fP , \fIsigaction\fP() , \fIsigdelset\fP() , \fIsigemptyset\fP()
 , \fIsigfillset\fP() , \fIsigismember\fP() , \fIsigpending\fP() ,
 \fIsigprocmask\fP() , \fIsigsuspend\fP() , the Base Definitions volume
-of IEEE\0Std\01003.1-2001, \fI<signal.h>\fP
+of IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

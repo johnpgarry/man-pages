@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fchmod" P 2003 POSIX
+.TH "FCHMOD" P 2003 POSIX
 .\" fchmod 
 .SH NAME
-fchmod - change mode of a file
+fchmod \- change mode of a file
 .SH SYNOPSIS
 .LP
 \fB#include <sys/stat.h>
@@ -39,26 +39,26 @@ error.
 .SH ERRORS
 .LP
 The \fIfchmod\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not an open file descriptor.
-.TP
+.TP 7
 .B EPERM
 The effective user ID does not match the owner of the file and the
 process does not have appropriate privilege.
-.TP
+.TP 7
 .B EROFS
 The file referred to by \fIfildes\fP resides on a read-only file system.
 .sp
 .LP
 The \fIfchmod\fP() function may fail if:
-.TP
+.TP 7
 .B EINTR
 The \fIfchmod\fP() function was interrupted by a signal. 
-.TP
+.TP 7
 .B EINVAL
 The value of the \fImode\fP argument is invalid. 
-.TP
+.TP 7
 .B EINVAL
 The \fIfildes\fP argument refers to a pipe and the implementation
 disallows execution of \fIfchmod\fP() on a pipe.
@@ -101,7 +101,7 @@ None.
 .LP
 \fIchmod\fP() , \fIchown\fP() , \fIcreat\fP() , \fIfcntl\fP() , \fIfstatvfs\fP()
 , \fImknod\fP() , \fIopen\fP() , \fIread\fP() , \fIstat\fP() , \fIwrite\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/stat.h>\fP
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/stat.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -2,7 +2,7 @@
 .TH "<tar.h>" P 2003 POSIX
 .\" <tar.h> 
 .SH NAME
-tar.h - extended tar definitions
+tar.h \- extended tar definitions
 .SH SYNOPSIS
 .LP
 \fB#include <tar.h>\fP
@@ -13,45 +13,45 @@ follows.
 .LP
 General definitions:
 .TS C
-center;l l l l l l l l l l l.
-\fBName\fP 	 \fBDescription\fP 	 \fBValue\fP 	
-TMAGIC 	 "ustar" 	 ustar plus null byte. 	
-TMAGLEN 	 6 	 Length of the above. 	
-TVERSION 	 "00" 	 00 without a null byte. 	
-TVERSLEN 	 2 	 Length of the above. 	
+center; l2 l2 l.
+\fBName\fP	\fBDescription\fP	\fBValue\fP
+TMAGIC	"ustar"	ustar plus null byte.
+TMAGLEN	6	Length of the above.
+TVERSION	"00"	00 without a null byte.
+TVERSLEN	2	Length of the above.
 .TE
 .LP
 \fITypeflag\fP field definitions:
 .TS C
-center;l l l l l l l l l l l.
-\fBName\fP 	 \fBDescription\fP 	 \fBValue\fP 	
-REGTYPE 	 '0' 	 Regular file. 	
-AREGTYPE 	 '\\0' 	 Regular file. 	
-LNKTYPE 	 '1' 	 Link. 	
-SYMTYPE 	 '2' 	 Symbolic link. 	
-CHRTYPE 	 '3' 	 Character special. 	
-BLKTYPE 	 '4' 	 Block special. 	
-DIRTYPE 	 '5' 	 Directory. 	
-FIFOTYPE 	 '6' 	 FIFO special. 	
-CONTTYPE 	 '7' 	 Reserved. 	
+center; l l l.
+\fBName\fP	\fBDescription\fP	\fBValue\fP
+REGTYPE	'0'	Regular file.
+AREGTYPE	'\\0'	Regular file.
+LNKTYPE	'1'	Link.
+SYMTYPE	'2'	Symbolic link.
+CHRTYPE	'3'	Character special.
+BLKTYPE	'4'	Block special.
+DIRTYPE	'5'	Directory.
+FIFOTYPE	'6'	FIFO special.
+CONTTYPE	'7'	Reserved.
 .TE
 .LP
 \fIMode\fP field bit definitions (octal):
 .TS C
-center;l l l l l l l l l l l.
-\fBName\fP 	 \fBDescription\fP 	 \fBValue\fP 	
-TSUID 	 04000 	 Set UID on execution. 	
-TSGID 	 02000 	 Set GID on execution. 	
-TSVTX 	 01000 	 On directories, restricted deletion flag.\0\0\0 	
-TUREAD 	 00400 	 Read by owner. 	
-TUWRITE 	 00200 	 Write by owner special. 	
-TUEXEC 	 00100 	 Execute/search by owner. 	
-TGREAD 	 00040 	 Read by group. 	
-TGWRITE 	 00020 	 Write by group. 	
-TGEXEC 	 00010 	 Execute/search by group. 	
-TOREAD 	 00004 	 Read by other. 	
-TOWRITE 	 00002 	 Write by other. 	
-TOEXEC 	 00001 	 Execute/search by other. 	
+center; l1 l1 l.
+\fBName\fP	\fBDescription\fP	\fBValue\fP
+TSUID	04000	Set UID on execution.
+TSGID	02000	Set GID on execution.
+TSVTX	01000	On directories, restricted deletion flag.\ \ \ 
+TUREAD	00400	Read by owner.
+TUWRITE	00200	Write by owner special.
+TUEXEC	00100	Execute/search by owner.
+TGREAD	00040	Read by group.
+TGWRITE	00020	Write by group.
+TGEXEC	00010	Execute/search by group.
+TOREAD	00004	Read by other.
+TOWRITE	00002	Write by other.
+TOEXEC	00001	Execute/search by other.
 .TE
 .LP
 \fIThe following sections are informative.\fP
@@ -66,7 +66,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The Shell and Utilities volume of IEEE\0Std\01003.1-2001, \fIpax\fP
+The Shell and Utilities volume of IEEE\ Std\ 1003.1-2001, \fIpax\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

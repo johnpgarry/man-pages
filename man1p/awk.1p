@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "awk" P 2003 POSIX
+.TH "AWK" P 2003 POSIX
 .\" awk 
 .SH NAME
-awk - pattern scanning and processing language
+awk \- pattern scanning and processing language
 .SH SYNOPSIS
 .LP
 \fBawk\fP \fB[\fP\fB-F\fP \fIERE\fP\fB][\fP\fB-v\fP \fIassignment\fP\fB]\fP
@@ -42,23 +42,23 @@ fields and the \fBNF\fP built-in variable.
 .SH OPTIONS
 .LP
 The \fIawk\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
-\fB-F\0\fP \fIERE\fP
+.TP 7
+\fB-F\ \fP \fIERE\fP
 Define the input field separator to be the extended regular expression
 \fIERE\fP, before any input is read; see Regular Expressions .
-.TP
-\fB-f\0\fP \fIprogfile\fP
+.TP 7
+\fB-f\ \fP \fIprogfile\fP
 Specify the pathname of the file \fIprogfile\fP containing an \fIawk\fP
 program. If multiple instances of this option are
 specified, the concatenation of the files specified as \fIprogfile\fP
 in the order specified shall be the \fIawk\fP program. The
 \fIawk\fP program can alternatively be specified in the command line
 as a single argument.
-.TP
-\fB-v\0\fP \fIassignment\fP
+.TP 7
+\fB-v\ \fP \fIassignment\fP
 The application shall ensure that the \fIassignment\fP argument is
 in the same form as an \fIassignment\fP operand. The specified
 variable assignment shall occur prior to executing the \fIawk\fP program,
@@ -68,27 +68,30 @@ patterns (if any). Multiple occurrences of this option can be specified.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIprogram\fP
 If no \fB-f\fP option is specified, the first operand to \fIawk\fP
 shall be the text of the \fIawk\fP program. The
 application shall supply the \fIprogram\fP operand as a single argument
 to \fIawk\fP. If the text does not end in a
 <newline>, \fIawk\fP shall interpret the text as if it did.
-.TP
+.TP 7
 \fIargument\fP
 Either of the following two types of \fIargument\fP can be intermixed:
-.TP
+.TP 7
 \fIfile\fP
+.RS
 A pathname of a file that contains the input to be read, which is
 matched against the set of patterns in the program. If no
 \fIfile\fP operands are specified, or if a \fIfile\fP operand is \fB'-'\fP
 , the standard input shall be used.
-.TP
+.RE
+.TP 7
 \fIassignment\fP
+.RS
 An operand that begins with an underscore or alphabetic character
 from the portable character set (see the table in the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Section 6.1, Portable
+Definitions volume of IEEE\ Std\ 1003.1-2001, Section 6.1, Portable
 Character Set), followed by a sequence of underscores, digits, and
 alphabetics from the portable character set, followed by the
 \fB'='\fP character, shall specify a variable assignment rather than
@@ -112,6 +115,7 @@ while an assignment after the last \fIfile\fP argument shall
 occur before the \fBEND\fP actions (if any). If there are no \fIfile\fP
 arguments, assignments shall be executed before
 processing the standard input.
+.RE
 .sp
 .sp
 .SH STDIN
@@ -126,21 +130,16 @@ and \fIawk\fP shall exit with a return status of zero.
 .LP
 Input files to the \fIawk\fP program from any of the following sources
 shall be text files:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Any \fIfile\fP operands or their equivalents, achieved by modifying
 the \fIawk\fP variables \fBARGV\fP and \fBARGC\fP
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Standard input in the absence of any \fIfile\fP operands
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Arguments to the \fBgetline\fP function
-.in -5
-.RE
+.LP
 .LP
 Whether the variable \fBRS\fP is set to a value other than a <newline>
 or not, for these files, implementations shall
@@ -156,24 +155,24 @@ program.
 .LP
 The following environment variables shall affect the execution of
 \fIawk\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements within regular
 expressions and in comparisons of string values.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
@@ -182,12 +181,12 @@ behavior of character classes within regular expressions, the
 identification of characters as letters, and the mapping of uppercase
 and lowercase characters for the \fBtoupper\fP and
 \fBtolower\fP functions.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fILC_NUMERIC\fP
 Determine the radix character used when interpreting numeric input,
 performing conversions between numeric and string values, and
@@ -195,15 +194,15 @@ formatting numeric output. Regardless of locale, the period character
 (the decimal-point character of the POSIX locale) is the
 decimal-point character recognized in processing \fIawk\fP programs
 (including assignments in command line arguments).
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fIPATH\fP
 Determine the search path when looking for commands executed by \fIsystem\fP(\fIexpr\fP),
 or input and output pipes; see the
-Base Definitions volume of IEEE\0Std\01003.1-2001, Chapter 8, Environment
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 8, Environment
 Variables.
 .sp
 .LP
@@ -276,48 +275,50 @@ evaluated before lower precedence operators. In this table \fIexpr\fP,
 expression, while lvalue represents any entity that can be assigned
 to (that is, on the left side of an assignment operator). The
 precise syntax of expressions is given in Grammar .
+.sp
+.ce 1
 \fBTable: Expressions in Decreasing Precedence in \fIawk\fP\fP
 .TS C
-center;l l l l l l l l.
-\fBSyntax\fP 	 \fBName\fP 	 \fBType of Result\fP 	 \fBAssociativity\fP 	
-( \fIexpr\fP ) 	 Grouping 	 Type of \fIexpr\fP 	 N/A 	
-$\fIexpr\fP 	 Field reference 	 String 	 N/A 	
-++ lvalue 	 Pre-increment 	 Numeric 	 N/A 	
--- lvalue 	 Pre-decrement 	 Numeric 	 N/A 	
-lvalue ++ 	 Post-increment 	 Numeric 	 N/A 	
-lvalue -- 	 Post-decrement 	 Numeric 	 N/A 	
-\fIexpr\fP ^ \fIexpr\fP 	 Exponentiation 	 Numeric 	 Right 	
-! \fIexpr\fP 	 Logical not 	 Numeric 	 N/A 	
-+ \fIexpr\fP 	 Unary plus 	 Numeric 	 N/A 	
-- \fIexpr\fP 	 Unary minus 	 Numeric 	 N/A 	
-\fIexpr\fP * \fIexpr\fP 	 Multiplication 	 Numeric 	 Left 	
-\fIexpr\fP / \fIexpr\fP 	 Division 	 Numeric 	 Left 	
-\fIexpr\fP % \fIexpr\fP 	 Modulus 	 Numeric 	 Left 	
-\fIexpr\fP + \fIexpr\fP 	 Addition 	 Numeric 	 Left 	
-\fIexpr\fP - \fIexpr\fP 	 Subtraction 	 Numeric 	 Left 	
-\fIexpr\fP \fIexpr\fP 	 String concatenation 	 String 	 Left 	
-\fIexpr\fP < \fIexpr\fP 	 Less than 	 Numeric 	 None 	
-\fIexpr\fP <= \fIexpr\fP 	 Less than or equal to 	 Numeric 	 None 	
-\fIexpr\fP != \fIexpr\fP 	 Not equal to 	 Numeric 	 None 	
-\fIexpr\fP == \fIexpr\fP 	 Equal to 	 Numeric 	 None 	
-\fIexpr\fP > \fIexpr\fP 	 Greater than 	 Numeric 	 None 	
-\fIexpr\fP >= \fIexpr\fP 	 Greater than or equal to 	 Numeric 	 None 	
-\fIexpr\fP ~ \fIexpr\fP 	 ERE match 	 Numeric 	 None 	
-\fIexpr\fP !~ \fIexpr\fP 	 ERE non-match 	 Numeric 	 None 	
-\fIexpr\fP in array 	 Array membership 	 Numeric 	 Left 	
-( \fIindex\fP ) in \fIarray\fP 	 Multi-dimension array 	 Numeric 	 Left 	
-\0 	 membership 	 \0 	 \0 	
-\fIexpr\fP && \fIexpr\fP 	 Logical AND 	 Numeric 	 Left 	
-\fIexpr\fP || \fIexpr\fP 	 Logical OR 	 Numeric 	 Left 	
-\fIexpr1\fP ? \fIexpr2\fP : \fIexpr3\fP 	 Conditional expression 	 Type of selected 	 Right 	
-\0 	 \0 	 \fIexpr2\fP or \fIexpr3\fP 	 \0 	
-lvalue ^= \fIexpr\fP 	 Exponentiation assignment 	 Numeric 	 Right 	
-lvalue %= \fIexpr\fP 	 Modulus assignment 	 Numeric 	 Right 	
-lvalue *= \fIexpr\fP 	 Multiplication assignment 	 Numeric 	 Right 	
-lvalue /= \fIexpr\fP 	 Division assignment 	 Numeric 	 Right 	
-lvalue += \fIexpr\fP 	 Addition assignment 	 Numeric 	 Right 	
-lvalue -= \fIexpr\fP 	 Subtraction assignment 	 Numeric 	 Right 	
-lvalue = \fIexpr\fP 	 Assignment 	 Type of \fIexpr\fP 	 Right 	
+center; l1 l1 l1 l.
+\fBSyntax\fP	\fBName\fP	\fBType of Result\fP	\fBAssociativity\fP
+( \fIexpr\fP )	Grouping	Type of \fIexpr\fP	N/A
+$\fIexpr\fP	Field reference	String	N/A
+++ lvalue	Pre-increment	Numeric	N/A
+-- lvalue	Pre-decrement	Numeric	N/A
+lvalue ++	Post-increment	Numeric	N/A
+lvalue --	Post-decrement	Numeric	N/A
+\fIexpr\fP ^ \fIexpr\fP	Exponentiation	Numeric	Right
+! \fIexpr\fP	Logical not	Numeric	N/A
++ \fIexpr\fP	Unary plus	Numeric	N/A
+- \fIexpr\fP	Unary minus	Numeric	N/A
+\fIexpr\fP * \fIexpr\fP	Multiplication	Numeric	Left
+\fIexpr\fP / \fIexpr\fP	Division	Numeric	Left
+\fIexpr\fP % \fIexpr\fP	Modulus	Numeric	Left
+\fIexpr\fP + \fIexpr\fP	Addition	Numeric	Left
+\fIexpr\fP - \fIexpr\fP	Subtraction	Numeric	Left
+\fIexpr\fP \fIexpr\fP	String concatenation	String	Left
+\fIexpr\fP < \fIexpr\fP	Less than	Numeric	None
+\fIexpr\fP <= \fIexpr\fP	Less than or equal to	Numeric	None
+\fIexpr\fP != \fIexpr\fP	Not equal to	Numeric	None
+\fIexpr\fP == \fIexpr\fP	Equal to	Numeric	None
+\fIexpr\fP > \fIexpr\fP	Greater than	Numeric	None
+\fIexpr\fP >= \fIexpr\fP	Greater than or equal to	Numeric	None
+\fIexpr\fP ~ \fIexpr\fP	ERE match	Numeric	None
+\fIexpr\fP !~ \fIexpr\fP	ERE non-match	Numeric	None
+\fIexpr\fP in array	Array membership	Numeric	Left
+( \fIindex\fP ) in \fIarray\fP	Multi-dimension array	Numeric	Left
+\ 	membership	\ 	\ 
+\fIexpr\fP && \fIexpr\fP	Logical AND	Numeric	Left
+\fIexpr\fP || \fIexpr\fP	Logical OR	Numeric	Left
+\fIexpr1\fP ? \fIexpr2\fP : \fIexpr3\fP	Conditional expression	Type of selected	Right
+\ 	\ 	\fIexpr2\fP or \fIexpr3\fP	\ 
+lvalue ^= \fIexpr\fP	Exponentiation assignment	Numeric	Right
+lvalue %= \fIexpr\fP	Modulus assignment	Numeric	Right
+lvalue *= \fIexpr\fP	Multiplication assignment	Numeric	Right
+lvalue /= \fIexpr\fP	Division assignment	Numeric	Right
+lvalue += \fIexpr\fP	Addition assignment	Numeric	Right
+lvalue -= \fIexpr\fP	Subtraction assignment	Numeric	Right
+lvalue = \fIexpr\fP	Assignment	Type of \fIexpr\fP	Right
 .TE
 .LP
 Each expression shall have either a string value, a numeric value,
@@ -325,7 +326,7 @@ or both. Except as stated for specific contexts, the value of
 an expression shall be implicitly converted to the type needed for
 the context in which it is used. A string value shall be
 converted to a numeric value by the equivalent of the following calls
-to functions defined by the ISO\0C standard:
+to functions defined by the ISO\ C standard:
 .sp
 .RS
 .nf
@@ -349,7 +350,7 @@ call to the \fBsprintf\fP function with the value of the variable
 being converted as the first and only \fIexpr\fP argument. The result
 of the conversion is unspecified if the value of
 \fBCONVFMT\fP is not a floating-point format specification. This volume
-of IEEE\0Std\01003.1-2001 specifies no explicit
+of IEEE\ Std\ 1003.1-2001 specifies no explicit
 conversions between numbers and strings. An application can force
 an expression to be treated as a number by adding zero to it, or
 can force it to be treated as a string by concatenating the null string
@@ -357,57 +358,44 @@ can force it to be treated as a string by concatenating the null string
 .LP
 A string value shall be considered a \fInumeric string\fP if it comes
 from one of the following:
-.in +5
-.LP
+.IP " 1." 4
 Field variables
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Input from the \fIgetline\fP() function
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 \fBFILENAME\fP
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 \fBARGV\fP array elements
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 \fBENVIRON\fP array elements
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 Array elements created by the \fIsplit\fP() function
-.in -5
-.in +5
 .LP
+.IP " 7." 4
 A command line variable assignment
-.in -5
-.in +5
 .LP
+.IP " 8." 4
 Variable assignment from another numeric string variable
-.in -5
+.LP
 .LP
 and after all the following conversions have been applied, the resulting
 string would lexically be recognized as a \fBNUMBER\fP
 token as described by the lexical conventions in Grammar :
-.RS
-.in +5
-.LP
+.IP " *" 3
 All leading and trailing <blank>s are discarded.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the first non- <blank> is \fB'+'\fP or \fB'-'\fP , it is discarded.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Changing each occurrence of the decimal point character from the current
 locale to a period.
-.in -5
-.RE
+.LP
 .LP
 If a \fB'-'\fP character is ignored in the preceding description,
 the numeric value of the \fInumeric string\fP shall be the
@@ -422,37 +410,29 @@ value, a value of zero shall be treated as false and any
 other value shall be treated as true. Otherwise, a string value of
 the null string shall be treated as false and any other value
 shall be treated as true. A Boolean context shall be one of the following:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The first subexpression of a conditional expression
-.in -5
-.in +5
 .LP
+.IP " *" 3
 An expression operated on by logical NOT, logical AND, or logical
 OR
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The second expression of a \fBfor\fP statement
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The expression of an \fBif\fP statement
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The expression of the \fBwhile\fP clause in either a \fBwhile\fP or
 \fBdo\fP... \fBwhile\fP statement
-.in -5
-.in +5
 .LP
+.IP " *" 3
 An expression used as a pattern (as in Overall Program Structure)
-.in -5
-.RE
+.LP
 .LP
 All arithmetic shall follow the semantics of floating-point arithmetic
-as specified by the ISO\0C standard (see \fIConcepts Derived from
+as specified by the ISO\ C standard (see \fIConcepts Derived from
 the ISO C Standard\fP ).
 .LP
 The value of the expression:
@@ -464,7 +444,7 @@ The value of the expression:
 .fi
 .RE
 .LP
-shall be equivalent to the value returned by the ISO\0C standard function
+shall be equivalent to the value returned by the ISO\ C standard function
 call:
 .sp
 .RS
@@ -484,7 +464,7 @@ The expression:
 .fi
 .RE
 .LP
-shall be equivalent to the ISO\0C standard expression:
+shall be equivalent to the ISO\ C standard expression:
 .sp
 .RS
 .nf
@@ -504,7 +484,7 @@ expression:
 .fi
 .RE
 .LP
-shall be equivalent to the value returned by the ISO\0C standard function
+shall be equivalent to the value returned by the ISO\ C standard function
 call:
 .sp
 .RS
@@ -524,7 +504,7 @@ The expression:
 .fi
 .RE
 .LP
-shall be equivalent to the ISO\0C standard expression:
+shall be equivalent to the ISO\ C standard expression:
 .sp
 .RS
 .nf
@@ -563,18 +543,14 @@ within square brackets can be used as an lvalue and thus as
 an expression, as described in the grammar; see Grammar . Unsubscripted
 array names can be used in
 only the following contexts:
-.RS
-.in +5
-.LP
+.IP " *" 3
 A parameter in a function definition or function call
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The \fBNAME\fP token following any use of the keyword \fBin\fP as
 specified in the grammar (see Grammar ); if the name used in this
 context is not an array name, the behavior is undefined
-.in -5
-.RE
+.LP
 .LP
 A valid array \fIindex\fP shall consist of one or more comma-separated
 expressions, similar to the way in which
@@ -654,10 +630,10 @@ awk ).
 .LP
 Implementations shall support the following other special variables
 that are set by \fIawk\fP:
-.TP
+.TP 7
 \fBARGC\fP
 The number of elements in the \fBARGV\fP array.
-.TP
+.TP 7
 \fBARGV\fP
 An array of command line arguments, excluding options and the \fIprogram\fP
 argument, numbered from zero to \fBARGC\fP-1. 
@@ -671,16 +647,16 @@ shall not be treated as an input file. The name \fB'-'\fP
 indicates the standard input. If an argument matches the format of
 an \fIassignment\fP operand, this argument shall be treated as
 an \fIassignment\fP rather than a \fIfile\fP argument.
-.TP
+.TP 7
 \fBCONVFMT\fP
 The \fBprintf\fP format for converting numbers to strings (except
 for output statements, where \fBOFMT\fP is used);
 \fB"%.6g"\fP by default.
-.TP
+.TP 7
 \fBENVIRON\fP
 An array representing the value of the environment, as described in
 the \fIexec\fP functions defined in the System Interfaces
-volume of IEEE\0Std\01003.1-2001. The indices of the array shall be
+volume of IEEE\ Std\ 1003.1-2001. The indices of the array shall be
 strings consisting of the names of the environment
 variables, and the value of each array element shall be a string consisting
 of the value of that variable. If appropriate, the
@@ -696,21 +672,21 @@ redirections with the \fBprint\fP statement, the
 used shall be the environment at the time \fIawk\fP
 began executing; it is implementation-defined whether any modification
 of \fBENVIRON\fP affects this environment.
-.TP
+.TP 7
 \fBFILENAME\fP
 A pathname of the current input file. Inside a \fBBEGIN\fP action
 the value is undefined. Inside an \fBEND\fP action the
 value shall be the name of the last input file processed.
-.TP
+.TP 7
 \fBFNR\fP
 The ordinal number of the current record in the current file. Inside
 a \fBBEGIN\fP action the value shall be zero. Inside an
 \fBEND\fP action the value shall be the number of the last record
 processed in the last file processed.
-.TP
+.TP 7
 \fBFS\fP
 Input field separator regular expression; a <space> by default.
-.TP
+.TP 7
 \fBNF\fP
 The number of fields in the current record. Inside a \fBBEGIN\fP action,
 the use of \fBNF\fP is undefined unless a
@@ -719,30 +695,30 @@ Inside an \fBEND\fP action, \fBNF\fP shall retain
 the value it had for the last record read, unless a subsequent, redirected,
 \fBgetline\fP function without a \fIvar\fP argument
 is performed prior to entering the \fBEND\fP action.
-.TP
+.TP 7
 \fBNR\fP
 The ordinal number of the current record from the start of input.
 Inside a \fBBEGIN\fP action the value shall be zero. Inside
 an \fBEND\fP action the value shall be the number of the last record
 processed.
-.TP
+.TP 7
 \fBOFMT\fP
 The \fBprintf\fP format for converting numbers to strings in output
 statements (see Output
 Statements ); \fB"%.6g"\fP by default. The result of the conversion
 is unspecified if the value of \fBOFMT\fP is not a
 floating-point format specification.
-.TP
+.TP 7
 \fBOFS\fP
 The \fBprint\fP statement output field separation; <space> by default.
-.TP
+.TP 7
 \fBORS\fP
 The \fBprint\fP statement output record separator; a <newline> by
 default.
-.TP
+.TP 7
 \fBRLENGTH\fP
 The length of the string matched by the \fBmatch\fP function.
-.TP
+.TP 7
 \fBRS\fP
 The first character of the string value of \fBRS\fP shall be the input
 record separator; a <newline> by default. If
@@ -753,12 +729,12 @@ leading or trailing blank lines shall not result in empty
 records at the beginning or end of the input, and a <newline> shall
 always be a field separator, no matter what the value of
 \fBFS\fP is.
-.TP
+.TP 7
 \fBRSTART\fP
 The starting position of the string matched by the \fBmatch\fP function,
 numbering from 1. This shall always be equivalent to
 the return value of the \fBmatch\fP function.
-.TP
+.TP 7
 \fBSUBSEP\fP
 The subscript separator string for multi-dimensional arrays; the default
 value is implementation-defined.
@@ -767,10 +743,10 @@ value is implementation-defined.
 .LP
 The \fIawk\fP utility shall make use of the extended regular expression
 notation (see the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 9.4, Extended Regular Expressions)
+IEEE\ Std\ 1003.1-2001, Section 9.4, Extended Regular Expressions)
 except that it shall allow the use of C-language conventions for escaping
 special characters within the EREs, as specified in the
-table in the Base Definitions volume of IEEE\0Std\01003.1-2001, Chapter
+table in the Base Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter
 5, File
 Format Notation ( \fB'\\\\'\fP , \fB'\\a'\fP , \fB'\\b'\fP , \fB'\\f'\fP
 , \fB'\\n'\fP , \fB'\\r'\fP , \fB'\\t'\fP
@@ -782,15 +758,65 @@ can contain <newline>s, so even the
 within an ERE requires the escaping shown in the
 following table.
 .br
+.sp
+.ce 1
 \fBTable: Escape Sequences in \fIawk\fP\fP
 .TS C
-center;l l l l l l l l.
-\fBEscape\fP 	 \fB\0\fP 	 \fB\0\fP 	
-\fBSequence\fP 	 \fBDescription\fP 	 \fBMeaning\fP 	
-\\" 	 Backslash quotation-mark 	 Quotation-mark character 	
-\\/ 	 Backslash slash 	 Slash character 	
-\\ddd 	 A backslash character followed by the longest sequence of one, two, or three octal-digit characters (01234567). If all of the digits are 0 (that is, representation of the NUL character), the behavior is undefined. 	 The character whose encoding is represented by the one, two, or three-digit octal integer. Multi-byte characters require multiple, concatenated escape sequences of this type, including the leading \fB'\\'\fP for each byte. 	
-\\c 	 A backslash character followed by any character not described in this table or in the table in the Base Definitions volume of IEEE\0Std\01003.1-2001, Chapter 5, File Format Notation ( \fB'\\\\'\fP , \fB'\\a'\fP , \fB'\\b'\fP , \fB'\\f'\fP , \fB'\\n'\fP , \fB'\\r'\fP , \fB'\\t'\fP , \fB'\\v'\fP ). 	 Undefined 	
+center; l1 lw(30)1 lw(30).
+\fBEscape\fP	T{
+.na
+\fB\ \fP
+.ad
+T}	T{
+.na
+\fB\ \fP
+.ad
+T}
+\fBSequence\fP	T{
+.na
+\fBDescription\fP
+.ad
+T}	T{
+.na
+\fBMeaning\fP
+.ad
+T}
+\\"	T{
+.na
+Backslash quotation-mark
+.ad
+T}	T{
+.na
+Quotation-mark character
+.ad
+T}
+\\/	T{
+.na
+Backslash slash
+.ad
+T}	T{
+.na
+Slash character
+.ad
+T}
+\\ddd	T{
+.na
+A backslash character followed by the longest sequence of one, two, or three octal-digit characters (01234567). If all of the digits are 0 (that is, representation of the NUL character), the behavior is undefined.
+.ad
+T}	T{
+.na
+The character whose encoding is represented by the one, two, or three-digit octal integer. Multi-byte characters require multiple, concatenated escape sequences of this type, including the leading \fB'\\'\fP for each byte.
+.ad
+T}
+\\c	T{
+.na
+A backslash character followed by any character not described in this table or in the table in the Base Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 5, File Format Notation ( \fB'\\\\'\fP , \fB'\\a'\fP , \fB'\\b'\fP , \fB'\\f'\fP , \fB'\\n'\fP , \fB'\\r'\fP , \fB'\\t'\fP , \fB'\\v'\fP ).
+.ad
+T}	T{
+.na
+Undefined
+.ad
+T}
 .TE
 .LP
 A regular expression can be matched against a specific field or string
@@ -802,7 +828,7 @@ expression matches the string, the \fB'~'\fP expression
 shall evaluate to a value of 1, and the \fB"!~"\fP expression shall
 evaluate to a value of 0. (The regular expression
 matching operation is as defined by the term matched in the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Section 9.1, Regular Expression
+volume of IEEE\ Std\ 1003.1-2001, Section 9.1, Regular Expression
 Definitions, where a match occurs on any part of the
 string unless the regular expression is limited with the circumflex
 or dollar sign special characters.) If the regular expression
@@ -844,32 +870,28 @@ the \fB-F\fP \fIERE\fP option or by assigning a string
 containing the expression to the built-in variable \fBFS\fP. The default
 value of the \fBFS\fP variable shall be a single
 <space>. The following describes \fBFS\fP behavior:
-.in +5
-.LP
+.IP " 1." 4
 If \fBFS\fP is a null string, the behavior is unspecified.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If \fBFS\fP is a single character:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If \fBFS\fP is <space>, skip leading and trailing <blank>s; fields
 shall be delimited by sets of one or more
 <blank>s.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Otherwise, if \fBFS\fP is any other character \fIc\fP, fields shall
 be delimited by each single occurrence of \fIc\fP.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 3." 4
 Otherwise, the string value of \fBFS\fP shall be considered to be
 an extended regular expression. Each occurrence of a sequence
 matching the extended regular expression shall delimit fields.
-.in -5
+.LP
 .LP
 Except for the \fB'~'\fP and \fB"!~"\fP operators, and in the \fBgsub\fP,
 \fBmatch\fP, \fBsplit\fP, and
@@ -953,7 +975,7 @@ executed.
 .LP
 The \fBif\fP, \fBwhile\fP, \fBdo\fP... \fBwhile\fP, \fBfor\fP, \fBbreak\fP,
 and \fBcontinue\fP statements are based on
-the ISO\0C standard (see \fIConcepts Derived from the ISO C Standard\fP
+the ISO\ C standard (see \fIConcepts Derived from the ISO C Standard\fP
 ), except
 that the Boolean expressions shall be treated as described in Expressions
 in awk , and except in the
@@ -1033,7 +1055,7 @@ currently open with the value of \fIexpression\fP as its command name.
 The stream created shall be equivalent to one created by a
 call to the \fIpopen\fP() function defined in the System Interfaces
 volume of
-IEEE\0Std\01003.1-2001 with the value of \fIexpression\fP as the \fIcommand\fP
+IEEE\ Std\ 1003.1-2001 with the value of \fIexpression\fP as the \fIcommand\fP
 argument and a value of \fIw\fP as the
 \fImode\fP argument. As long as the stream remains open, subsequent
 calls in which \fIexpression\fP evaluates to the same string
@@ -1043,7 +1065,7 @@ Functions ) is called with an expression that evaluates to the same
 string value.
 At that time, the stream shall be closed as if by a call to the \fIpclose\fP()
 function
-defined in the System Interfaces volume of IEEE\0Std\01003.1-2001.
+defined in the System Interfaces volume of IEEE\ Std\ 1003.1-2001.
 .LP
 As described in detail by the grammar in Grammar , these output statements
 shall take a
@@ -1066,58 +1088,51 @@ list shall stand for the whole input record ($0).
 .LP
 The \fBprintf\fP statement shall produce output based on a notation
 similar to the File Format Notation used to describe file
-formats in this volume of IEEE\0Std\01003.1-2001 (see the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Chapter 5, File Format Notation).
+formats in this volume of IEEE\ Std\ 1003.1-2001 (see the Base Definitions
+volume of IEEE\ Std\ 1003.1-2001, Chapter 5, File Format Notation).
 Output shall be produced as specified with the first
 \fIexpression\fP argument as the string \fIformat\fP and subsequent
 \fIexpression\fP arguments as the strings \fIarg1\fP to
 \fIargn\fP, inclusive, with the following exceptions:
-.in +5
-.LP
+.IP " 1." 4
 The \fIformat\fP shall be an actual character string rather than a
 graphical representation. Therefore, it cannot contain empty
 character positions. The <space> in the \fIformat\fP string, in any
 context other than a \fIflag\fP of a conversion
 specification, shall be treated as an ordinary character that is copied
 to the output.
-.in -5
-.in +5
 .LP
-If the character set contains a \fB''\fP character and that character
+.IP " 2." 4
+If the character set contains a \fB' '\fP character and that character
 appears in
 the \fIformat\fP string, it shall be treated as an ordinary character
 that is copied to the output.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The \fIescape sequences\fP beginning with a backslash character shall
 be treated as sequences of ordinary characters that are
 copied to the output. Note that these same sequences shall be interpreted
 lexically by \fIawk\fP when they appear in literal
 strings, but they shall not be treated specially by the \fBprintf\fP
 statement.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 A \fIfield width\fP or \fIprecision\fP can be specified as the \fB'*'\fP
 character instead of a digit string. In this case
 the next argument from the expression list shall be fetched and its
 numeric value taken as the field width or precision.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 The implementation shall not precede or follow output from the \fBd\fP
 or \fBu\fP conversion specifier characters with
 <blank>s not specified by the \fIformat\fP string.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 The implementation shall not precede output from the \fBo\fP conversion
 specifier character with leading zeros not specified
 by the \fIformat\fP string.
-.in -5
-.in +5
 .LP
+.IP " 7." 4
 For the \fBc\fP conversion specifier character: if the argument has
 a numeric value, the character whose encoding is that
 value shall be output. If the value is zero or is not the encoding
@@ -1125,27 +1140,24 @@ of any character in the character set, the behavior is
 undefined. If the argument does not have a numeric value, the first
 character of the string value shall be output; if the string
 does not contain any characters, the behavior is undefined.
-.in -5
-.in +5
 .LP
+.IP " 8." 4
 For each conversion specification that consumes an argument, the next
 expression argument shall be evaluated. With the exception
 of the \fBc\fP conversion specifier character, the value shall be
 converted (according to the rules specified in Expressions in awk
 ) to the appropriate type for the conversion specification.
-.in -5
-.in +5
 .LP
+.IP " 9." 4
 If there are insufficient expression arguments to satisfy all the
 conversion specifications in the \fIformat\fP string, the
 behavior is undefined.
-.in -5
-.in +5
 .LP
+.IP "10." 4
 If any character sequence in the \fIformat\fP string begins with a
 \fB'%'\fP character, but does not form a valid conversion
 specification, the behavior is unspecified.
-.in -5
+.LP
 .LP
 Both \fBprint\fP and \fBprintf\fP can output at least {LINE_MAX} bytes.
 .SS Functions
@@ -1155,41 +1167,41 @@ string, input/output, and general.
 .SS Arithmetic Functions
 .LP
 The arithmetic functions, except for \fBint\fP, shall be based on
-the ISO\0C standard (see \fIConcepts Derived from the ISO C Standard\fP
+the ISO\ C standard (see \fIConcepts Derived from the ISO C Standard\fP
 ). The behavior is undefined in cases where the
-ISO\0C standard specifies that an error be returned or that the behavior
+ISO\ C standard specifies that an error be returned or that the behavior
 is undefined. Although the grammar (see Grammar ) permits built-in
 functions to appear with no arguments or parentheses, unless the argument
 or
 parentheses are indicated as optional in the following list (by displaying
 them within the \fB"[]"\fP brackets), such use is
 undefined.
-.TP
+.TP 7
 \fBatan2\fP(\fIy\fP,\fIx\fP)
-Return arctangent of \fIy\fP/\fIx\fP in radians in the range [-,].
-.TP
+Return arctangent of \fIy\fP/\fIx\fP in radians in the range [-pi,pi].
+.TP 7
 \fBcos\fP(\fIx\fP)
 Return cosine of \fIx\fP, where \fIx\fP is in radians.
-.TP
+.TP 7
 \fBsin\fP(\fIx\fP)
 Return sine of \fIx\fP, where \fIx\fP is in radians.
-.TP
+.TP 7
 \fBexp\fP(\fIx\fP)
 Return the exponential function of \fIx\fP.
-.TP
+.TP 7
 \fBlog\fP(\fIx\fP)
 Return the natural logarithm of \fIx\fP.
-.TP
+.TP 7
 \fBsqrt\fP(\fIx\fP)
 Return the square root of \fIx\fP.
-.TP
+.TP 7
 \fBint\fP(\fIx\fP)
 Return the argument truncated to an integer. Truncation shall be toward
 0 when \fIx\fP>0.
-.TP
+.TP 7
 \fBrand\fP()
 Return a random number \fIn\fP, such that 0<=\fIn\fP<1.
-.TP
+.TP 7
 \fBsrand\fP(\fB[\fP\fIexpr\fP\fB]\fP)
 Set the seed value for \fIrand\fP to \fIexpr\fP or use the time of
 day if \fIexpr\fP is omitted. The previous seed value
@@ -1203,30 +1215,30 @@ the grammar (see Grammar
 unless the argument or parentheses are indicated as
 optional in the following list (by displaying them within the \fB"[]"\fP
 brackets), such use is undefined.
-.TP
-\fBgsub\fP(\fIere\fP,\0\fIrepl\fP\fB[\fP,\0\fIin\fP\fB]\fP)
+.TP 7
+\fBgsub\fP(\fIere\fP,\ \fIrepl\fP\fB[\fP,\ \fIin\fP\fB]\fP)
 Behave like \fBsub\fP (see below), except that it shall replace all
 occurrences of the regular expression (like the \fIed\fP utility global
 substitute) in $0 or in the \fIin\fP argument, when specified.
-.TP
-\fBindex\fP(\fIs\fP,\0\fIt\fP)
+.TP 7
+\fBindex\fP(\fIs\fP,\ \fIt\fP)
 Return the position, in characters, numbering from 1, in string \fIs\fP
 where string \fIt\fP first occurs, or zero if it does
 not occur at all.
-.TP
+.TP 7
 \fBlength[\fP(\fB[\fP\fIs\fP\fB]\fP)\fB]\fP
 Return the length, in characters, of its argument taken as a string,
 or of the whole record, $0, if there is no argument.
-.TP
-\fBmatch\fP(\fIs\fP,\0\fIere\fP)
+.TP 7
+\fBmatch\fP(\fIs\fP,\ \fIere\fP)
 Return the position, in characters, numbering from 1, in string \fIs\fP
 where the extended regular expression \fIere\fP
 occurs, or zero if it does not occur at all. RSTART shall be set to
 the starting position (which is the same as the returned
 value), zero if no match is found; RLENGTH shall be set to the length
 of the matched string, -1 if no match is found.
-.TP
-\fBsplit\fP(\fIs\fP,\0\fIa\fP\fB[\fP,\0\fIfs\0\fP \fB]\fP)
+.TP 7
+\fBsplit\fP(\fIs\fP,\ \fIa\fP\fB[\fP,\ \fIfs\ \fP \fB]\fP)
 Split the string \fIs\fP into array elements \fIa\fP[1], \fIa\fP[2],
 \&..., \fIa\fP[\fIn\fP], and return \fIn\fP. All elements
 of the array shall be deleted before the split is performed. The separation
@@ -1236,12 +1248,12 @@ have a string value when created and, if appropriate, the
 array element shall be considered a numeric string (see Expressions
 in awk ). The effect of a null
 string as the value of \fIfs\fP is unspecified.
-.TP
-\fBsprintf\fP(\fIfmt\fP,\0\fIexpr\fP,\0\fIexpr\fP,\0...)
+.TP 7
+\fBsprintf\fP(\fIfmt\fP,\ \fIexpr\fP,\ \fIexpr\fP,\ ...)
 Format the expressions according to the \fBprintf\fP format given
 by \fIfmt\fP and return the resulting string.
-.TP
-\fBsub(\fP\fIere\fP,\0\fIrepl\fP\fB[\fP,\0\fIin\0\fP \fB]\fP)
+.TP 7
+\fBsub(\fP\fIere\fP,\ \fIrepl\fP\fB[\fP,\ \fIin\ \fP \fB]\fP)
 Substitute the string \fIrepl\fP in place of the first instance of
 the extended regular expression \fIERE\fP in string \fIin\fP
 and return the number of substitutions. An ampersand ( \fB'&'\fP )
@@ -1259,14 +1271,14 @@ lexical backslash escape sequence processing. If \fIin\fP is specified
 and it is not an lvalue (see Expressions in awk ), the behavior is
 undefined. If \fIin\fP is omitted, \fIawk\fP shall use the current
 record ($0) in its place.
-.TP
-\fBsubstr\fP(\fIs\fP,\0\fIm\fP\fB[\fP,\0\fIn\0\fP \fB]\fP)
+.TP 7
+\fBsubstr\fP(\fIs\fP,\ \fIm\fP\fB[\fP,\ \fIn\ \fP \fB]\fP)
 Return the at most \fIn\fP-character substring of \fIs\fP that begins
 at position \fIm\fP, numbering from 1. If \fIn\fP is
 omitted, or if \fIn\fP specifies more characters than are left in
 the string, the length of the substring shall be limited by the
 length of the string \fIs\fP.
-.TP
+.TP 7
 \fBtolower\fP(\fIs\fP)
 Return a string based on the string \fIs\fP. Each character in \fIs\fP
 that is an uppercase letter specified to have a
@@ -1274,7 +1286,7 @@ that is an uppercase letter specified to have a
 locale shall be replaced in the returned string by the
 lowercase letter specified by the mapping. Other characters in \fIs\fP
 shall be unchanged in the returned string.
-.TP
+.TP 7
 \fBtoupper\fP(\fIs\fP)
 Return a string based on the string \fIs\fP. Each character in \fIs\fP
 that is a lowercase letter specified to have a
@@ -1290,7 +1302,7 @@ regular expression as defined in Regular Expressions .
 .SS Input/Output and General Functions
 .LP
 The input/output and general functions are:
-.TP
+.TP 7
 \fBclose\fP(\fIexpression\fP)
 Close the file or pipe opened by a \fBprint\fP or \fBprintf\fP statement
 or a call to \fBgetline\fP with the same string-valued
@@ -1298,8 +1310,8 @@ or a call to \fBgetline\fP with the same string-valued
 arguments is implementation-defined. If the close was
 successful, the function shall return zero; otherwise, it shall return
 non-zero.
-.TP
-\fIexpression\0|\0\fP \fBgetline\0[\fP\fIvar\fP\fB]\fP
+.TP 7
+\fIexpression\ |\ \fP \fBgetline\ [\fP\fIvar\fP\fB]\fP
 Read a record of input from a stream piped from the output of a command.
 The stream shall be created if no stream is currently open
 with the value of \fIexpression\fP as its command name. The stream
@@ -1325,20 +1337,20 @@ operator, \fB'|'\fP shall behave as if it had a lower precedence than
 \fB'$'\fP . The result of evaluating other operators is
 unspecified, and conforming applications shall parenthesize properly
 all such usages.
-.TP
+.TP 7
 \fBgetline\fP
 Set $0 to the next input record from the current input file. This
 form of \fBgetline\fP shall set the \fBNF\fP, \fBNR\fP,
 and \fBFNR\fP variables.
-.TP
-\fBgetline\0\fP \fIvar\fP
+.TP 7
+\fBgetline\ \fP \fIvar\fP
 Set variable \fIvar\fP to the next input record from the current input
 file and, if appropriate, \fIvar\fP shall be
 considered a numeric string (see Expressions in awk ). This form of
 \fBgetline\fP shall set the
 \fBFNR\fP and \fBNR\fP variables.
-.TP
-\fBgetline\0[\fP\fIvar\fP\fB]\0\fP <\0\fIexpression\fP
+.TP 7
+\fBgetline\ [\fP\fIvar\fP\fB]\ \fP <\ \fIexpression\fP
 Read the next record of input from a named file. The \fIexpression\fP
 shall be evaluated to produce a string that is used as a
 pathname. If the file of that name is not currently open, it shall
@@ -1357,11 +1369,11 @@ concatenate) to the right of the \fB'<'\fP (up to the end of the expression
 containing the \fBgetline\fP). The result of
 evaluating such a construct is unspecified, and conforming applications
 shall parenthesize properly all such usages.
-.TP
+.TP 7
 \fBsystem\fP(\fIexpression\fP)
 Execute the command given by \fIexpression\fP in a manner equivalent
 to the \fIsystem\fP()
-function defined in the System Interfaces volume of IEEE\0Std\01003.1-2001
+function defined in the System Interfaces volume of IEEE\ Std\ 1003.1-2001
 and return the exit status of the command.
 .sp
 .LP
@@ -1813,27 +1825,22 @@ newline_opt      : /* empty */
 .RE
 .LP
 This grammar has several ambiguities that shall be resolved as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Operator precedence and associativity shall be as described in Expressions
 in Decreasing Precedence in \fIawk\fP .
-.in -5
-.in +5
 .LP
+.IP " *" 3
 In case of ambiguity, an \fBelse\fP shall be associated with the most
 immediately preceding \fBif\fP that would satisfy the
 grammar.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 In some contexts, a slash ( \fB'/'\fP ) that is used to surround an
 ERE could also be the division operator. This shall be
 resolved in such a way that wherever the division operator could appear,
 a slash is assumed to be the division operator. (There is
 no unary division operator.)
-.in -5
-.RE
+.LP
 .LP
 One convention that might not be obvious from the formal grammar is
 where <newline>s are acceptable. There are several
@@ -1858,34 +1865,29 @@ example:
 .LP
 The lexical conventions for \fIawk\fP programs, with respect to the
 preceding grammar, shall be as follows:
-.in +5
-.LP
+.IP " 1." 4
 Except as noted, \fIawk\fP shall recognize the longest possible token
 or delimiter beginning at a given point.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 A comment shall consist of any characters beginning with the number
 sign character and terminated by, but excluding the next
 occurrence of, a <newline>. Comments shall have no effect, except
 to delimit lexical tokens.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The <newline> shall be recognized as the token \fBNEWLINE\fP.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 A backslash character immediately followed by a <newline> shall have
 no effect.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 The token \fBSTRING\fP shall represent a string constant. A string
 constant shall begin with the character \fB' .'\fP Within
 a string constant, a backslash character shall be considered to begin
 an escape sequence as specified in the table in the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Chapter 5, File Format
+Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 5, File Format
 Notation (
 \fB'\\\\'\fP , \fB'\\a'\fP , \fB'\\b'\fP , \fB'\\f'\fP , \fB'\\n'\fP
 , \fB'\\r'\fP , \fB'\\t'\fP , \fB'\\v'\fP ). In
@@ -1897,14 +1899,13 @@ by the first unescaped occurrence of the character
 of the string shall be the sequence of all unescaped
 characters and values of escape sequences between, but not including,
 the two delimiting \fB''\fP characters.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 The token \fBERE\fP represents an extended regular expression constant.
 An ERE constant shall begin with the slash character.
 Within an ERE constant, a backslash character shall be considered
 to begin an escape sequence as specified in the table in the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Chapter 5, File Format
+Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 5, File Format
 Notation. In
 addition, the escape sequences in Expressions in Decreasing Precedence
 in \fIawk\fP shall be recognized. The application shall
@@ -1915,62 +1916,56 @@ constant. The extended regular expression represented by the
 ERE constant shall be the sequence of all unescaped characters and
 values of escape sequences between, but not including, the two
 delimiting slash characters.
-.in -5
-.in +5
 .LP
+.IP " 7." 4
 A <blank> shall have no effect, except to delimit lexical tokens or
 within \fBSTRING\fP or \fBERE\fP tokens.
-.in -5
-.in +5
 .LP
+.IP " 8." 4
 The token \fBNUMBER\fP shall represent a numeric constant. Its form
 and numeric value shall be equivalent to either of the
 tokens \fBfloating-constant\fP or \fBinteger-constant\fP as specified
-by the ISO\0C standard, with the following
+by the ISO\ C standard, with the following
 exceptions:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 An integer constant cannot begin with 0x or include the hexadecimal
 digits \fB'a'\fP , \fB'b'\fP , \fB'c'\fP ,
 \fB'd'\fP , \fB'e'\fP , \fB'f'\fP , \fB'A'\fP , \fB'B'\fP , \fB'C'\fP
 , \fB'D'\fP , \fB'E'\fP , or
 \fB'F'\fP .
-.in -5
-.in +5
 .LP
+.IP " b." 4
 The value of an integer constant beginning with 0 shall be taken in
 decimal rather than octal.
-.in -5
-.in +5
 .LP
+.IP " c." 4
 An integer constant cannot include a suffix ( \fB'u'\fP , \fB'U'\fP
 , \fB'l'\fP , or \fB'L'\fP ).
-.in -5
-.in +5
 .LP
+.IP " d." 4
 A floating constant cannot include a suffix ( \fB'f'\fP , \fB'F'\fP
 , \fB'l'\fP , or \fB'L'\fP ).
-.in -5
+.LP
+.RE
 .LP
 If the value is too large or too small to be representable (see \fIConcepts
 Derived from
 the ISO C Standard\fP ), the behavior is undefined.
-.in -5
-.in +5
 .LP
+.IP " 9." 4
 A sequence of underscores, digits, and alphabetics from the portable
 character set (see the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 6.1, Portable Character Set), beginning
+IEEE\ Std\ 1003.1-2001, Section 6.1, Portable Character Set), beginning
 with an underscore or alphabetic, shall be considered a word.
-.in -5
-.in +5
 .LP
+.IP "10." 4
 The following words are keywords that shall be recognized as individual
 tokens; the name of the token is the same as the
 keyword:
 .TS C
-center;l l l l l l l l.
+center; lw(13) lw(13) lw(13) lw(13) lw(13) lw(13).
+T{
 \fB
 .br
 BEGIN
@@ -1979,7 +1974,9 @@ break
 .br
 continue
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 delete
 .br
@@ -1987,7 +1984,9 @@ do
 .br
 else
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 END
 .br
@@ -1995,7 +1994,9 @@ exit
 .br
 for
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 function
 .br
@@ -2003,7 +2004,9 @@ getline
 .br
 if
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 in
 .br
@@ -2011,7 +2014,9 @@ next
 .br
 print
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 printf
 .br
@@ -2019,15 +2024,16 @@ return
 .br
 while
 .br
-\fP 	
+\fP
+T}
 .TE
-.in -5
-.in +5
 .LP
+.IP "11." 4
 The following words are names of built-in functions and shall be recognized
 as the token \fBBUILTIN_FUNC_NAME\fP:
 .TS C
-center;l l l l l l l l.
+center; lw(13) lw(13) lw(13) lw(13) lw(13) lw(13).
+T{
 \fB
 .br
 atan2
@@ -2038,7 +2044,9 @@ cos
 .br
 exp
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 gsub
 .br
@@ -2048,7 +2056,9 @@ int
 .br
 length
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 log
 .br
@@ -2058,7 +2068,9 @@ rand
 .br
 sin
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 split
 .br
@@ -2068,7 +2080,9 @@ sqrt
 .br
 srand
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 sub
 .br
@@ -2078,48 +2092,47 @@ system
 .br
 tolower
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 toupper
 .br
-\fP 	
+\fP
+T}
 .TE
 .LP
 The above-listed keywords and names of built-in functions are considered
 reserved words.
-.in -5
-.in +5
 .LP
+.IP "12." 4
 The token \fBNAME\fP shall consist of a word that is not a keyword
 or a name of a built-in function and is not followed
 immediately (without any delimiters) by the \fB'('\fP character.
-.in -5
-.in +5
 .LP
+.IP "13." 4
 The token \fBFUNC_NAME\fP shall consist of a word that is not a keyword
 or a name of a built-in function, followed immediately
 (without any delimiters) by the \fB'('\fP character. The \fB'('\fP
 character shall not be included as part of the token.
-.in -5
-.in +5
 .LP
+.IP "14." 4
 The following two-character sequences shall be recognized as the named
 tokens:
 .TS C
-center;l l l l l l l l.
-\fBToken Name\fP 	 \fBSequence\fP 	 \fBToken Name\fP 	 \fBSequence\fP 	
-\fBADD_ASSIGN\fP 	 += 	 \fBNO_MATCH\fP 	 !~ 	
-\fBSUB_ASSIGN\fP 	 -= 	 \fBEQ\fP 	 == 	
-\fBMUL_ASSIGN\fP 	 *= 	 \fBLE\fP 	 <= 	
-\fBDIV_ASSIGN\fP 	 /= 	 \fBGE\fP 	 >= 	
-\fBMOD_ASSIGN\fP 	 %= 	 \fBNE\fP 	 != 	
-\fBPOW_ASSIGN\fP 	 ^= 	 \fBINCR\fP 	 ++ 	
-\fBOR\fP 	 || 	 \fBDECR\fP 	 -- 	
-\fBAND\fP 	 && 	 \fBAPPEND\fP 	 >> 	
+center; l l l l.
+\fBToken Name\fP	\fBSequence\fP	\fBToken Name\fP	\fBSequence\fP
+\fBADD_ASSIGN\fP	+=	\fBNO_MATCH\fP	!~
+\fBSUB_ASSIGN\fP	-=	\fBEQ\fP	==
+\fBMUL_ASSIGN\fP	*=	\fBLE\fP	<=
+\fBDIV_ASSIGN\fP	/=	\fBGE\fP	>=
+\fBMOD_ASSIGN\fP	%=	\fBNE\fP	!=
+\fBPOW_ASSIGN\fP	^=	\fBINCR\fP	++
+\fBOR\fP	||	\fBDECR\fP	--
+\fBAND\fP	&&	\fBAPPEND\fP	>>
 .TE
-.in -5
-.in +5
 .LP
+.IP "15." 4
 The following single characters shall be recognized as tokens whose
 names are the character:
 .sp
@@ -2130,7 +2143,7 @@ names are the character:
 \fP
 .fi
 .RE
-.in -5
+.LP
 .LP
 There is a lexical ambiguity between the token \fBERE\fP and the tokens
 \fB'/'\fP and \fBDIV_ASSIGN\fP. When an input
@@ -2144,10 +2157,10 @@ recognized.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All input files were processed successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -2169,8 +2182,8 @@ specified in the EXTENDED DESCRIPTION section), the behavior is undefined.
 .LP
 The \fBindex\fP, \fBlength\fP, \fBmatch\fP, and \fBsubstr\fP functions
 should not be confused with similar functions in the
-ISO\0C standard; the \fIawk\fP versions deal with characters, while
-the ISO\0C standard deals with bytes.
+ISO\ C standard; the \fIawk\fP versions deal with characters, while
+the ISO\ C standard deals with bytes.
 .LP
 Because the concatenation operation is represented by adjacent expressions
 rather than an explicit operator, it is often
@@ -2199,8 +2212,7 @@ prints all lines from the standard input containing a single-quote
 character, prefixed with \fIquote\fP:.
 .LP
 The following are examples of simple \fIawk\fP programs:
-.in +5
-.LP
+.IP " 1." 4
 Write to the standard output all input lines for which field 3 is
 greater than 5:
 .sp
@@ -2211,9 +2223,8 @@ greater than 5:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Write every tenth line:
 .sp
 .RS
@@ -2223,9 +2234,8 @@ Write every tenth line:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Write any line with a substring matching the regular expression:
 .sp
 .RS
@@ -2235,9 +2245,8 @@ Write any line with a substring matching the regular expression:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Print any line with a substring containing a \fB'G'\fP or \fB'D'\fP
 , followed by a sequence of digits and characters.
 This example uses character classes \fBdigit\fP and \fBalpha\fP to
@@ -2251,9 +2260,8 @@ respectively:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Write any line in which the second field matches the regular expression
 and the fourth field does not:
 .sp
@@ -2264,9 +2272,8 @@ and the fourth field does not:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 Write any line in which the second field contains a backslash:
 .sp
 .RS
@@ -2276,9 +2283,8 @@ Write any line in which the second field contains a backslash:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 7." 4
 Write any line in which the second field contains a backslash. Note
 that backslash escapes are interpreted twice; once in
 lexical processing of the string and once in processing the regular
@@ -2291,9 +2297,8 @@ expression:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 8." 4
 Write the second to the last and the last field in each line. Separate
 the fields by a colon:
 .sp
@@ -2304,9 +2309,8 @@ the fields by a colon:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 9." 4
 Write the line number and number of fields in each line. The three
 strings representing the line number, the colon, and the
 number of fields are concatenated and that string is written to standard
@@ -2319,9 +2323,8 @@ output:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "10." 4
 Write lines longer than 72 characters:
 .sp
 .RS
@@ -2331,9 +2334,8 @@ Write lines longer than 72 characters:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "11." 4
 Write the first two fields in opposite order separated by \fBOFS\fP:
 .sp
 .RS
@@ -2343,9 +2345,8 @@ Write the first two fields in opposite order separated by \fBOFS\fP:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "12." 4
 Same, with input fields separated by a comma or <space>s and <tab>s,
 or both:
 .sp
@@ -2357,9 +2358,8 @@ or both:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "13." 4
 Add up the first column, print sum, and average:
 .sp
 .RS
@@ -2370,9 +2370,8 @@ END   {print "sum is ", s, " average is", s/NR}
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "14." 4
 Write fields in reverse order, one per line (many lines out for each
 line in):
 .sp
@@ -2383,9 +2382,8 @@ line in):
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "15." 4
 Write all lines between occurrences of the strings \fBstart\fP and
 \fBstop\fP:
 .sp
@@ -2396,9 +2394,8 @@ Write all lines between occurrences of the strings \fBstart\fP and
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "16." 4
 Write all lines whose first field is different from the previous one:
 .sp
 .RS
@@ -2408,9 +2405,8 @@ Write all lines whose first field is different from the previous one:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "17." 4
 Simulate \fIecho\fP:
 .sp
 .RS
@@ -2423,9 +2419,8 @@ Simulate \fIecho\fP:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "18." 4
 Write the path prefixes contained in the \fIPATH\fP environment variable,
 one per line:
 .sp
@@ -2440,9 +2435,8 @@ one per line:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "19." 4
 If there is a file named \fBinput\fP containing page headers of the
 form:
 .sp
@@ -2475,38 +2469,32 @@ then the command line:
 .RE
 .LP
 prints the file \fBinput\fP, filling in page numbers starting at 5.
-.in -5
+.LP
 .SH RATIONALE
 .LP
 This description is based on the new \fIawk\fP, "nawk", (see the referenced
 \fIThe AWK Programming Language\fP), which
 introduced a number of new features to the historical \fIawk\fP:
-.in +5
-.LP
+.IP " 1." 4
 New keywords: \fBdelete\fP, \fBdo\fP, \fBfunction\fP, \fBreturn\fP
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 New built-in functions: \fBatan2\fP, \fBclose\fP, \fBcos\fP, \fBgsub\fP,
 \fBmatch\fP, \fBrand\fP, \fBsin\fP,
 \fBsrand\fP, \fBsub\fP, \fBsystem\fP
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 New predefined variables: \fBFNR\fP, \fBARGC\fP, \fBARGV\fP, \fBRSTART\fP,
 \fBRLENGTH\fP, \fBSUBSEP\fP
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 New expression operators: \fB?\fP, \fB:\fP, \fB,\fP, \fB^\fP
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 The \fBFS\fP variable and the third argument to \fBsplit\fP, now treated
 as extended regular expressions.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 The operator precedence, changed to more closely match the C language.
 Two examples of code that operate differently are:
 .sp
@@ -2518,33 +2506,26 @@ if (!"wk" ~ /bwk/) ...
 \fP
 .fi
 .RE
-.in -5
+.LP
 .LP
 Several features have been added based on newer implementations of
 \fIawk\fP:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Multiple instances of \fB-f\fP \fIprogfile\fP are permitted.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The new option \fB-v\fP \fIassignment.\fP
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The new predefined variable \fBENVIRON\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 New built-in functions \fBtoupper\fP and \fBtolower\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 More formatting capabilities are added to \fBprintf\fP to match the
-ISO\0C standard.
-.in -5
-.RE
+ISO\ C standard.
+.LP
 .LP
 The overall \fIawk\fP syntax has always been based on the C language,
 with a few features from the shell command language and
@@ -2552,7 +2533,7 @@ other sources. Because of this, it is not completely compatible with
 any other language, which has caused confusion for some users.
 It is not the intent of the standard developers to address such issues.
 A few relatively minor changes toward making the language
-more compatible with the ISO\0C standard were made; most of these
+more compatible with the ISO\ C standard were made; most of these
 changes are based on similar changes in recent
 implementations, as described above. There remain several C-language
 conventions that are not in \fIawk\fP. One of the notable
@@ -2565,9 +2546,9 @@ that the \fIawk\fP language does provide.
 .LP
 Regular expressions in \fIawk\fP have been extended somewhat from
 historical implementations to make them a pure superset of
-extended regular expressions, as defined by IEEE\0Std\01003.1-2001
+extended regular expressions, as defined by IEEE\ Std\ 1003.1-2001
 (see the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 9.4, Extended Regular Expressions).
+IEEE\ Std\ 1003.1-2001, Section 9.4, Extended Regular Expressions).
 The
 main extensions are internationalization features and interval expressions.
 Historical implementations of \fIawk\fP have long
@@ -2576,12 +2557,12 @@ expressions, and this extension has been retained despite
 inconsistency with other utilities. The number of escape sequences
 recognized in both extended regular expressions and strings has
 varied (generally increasing with time) among implementations. The
-set specified by IEEE\0Std\01003.1-2001 includes most
+set specified by IEEE\ Std\ 1003.1-2001 includes most
 sequences known to be supported by popular implementations and by
-the ISO\0C standard. One sequence that is not supported is
+the ISO\ C standard. One sequence that is not supported is
 hexadecimal value escapes beginning with \fB'\\x'\fP . This would
 allow values expressed in more than 9 bits to be used within
-\fIawk\fP as in the ISO\0C standard. However, because this syntax
+\fIawk\fP as in the ISO\ C standard. However, because this syntax
 has a non-deterministic length, it does not permit the
 subsequent character to be a hexadecimal digit. This limitation can
 be dealt with in the C language by the use of lexical string
@@ -2589,7 +2570,7 @@ concatenation. In the \fIawk\fP language, concatenation could also
 be a solution for strings, but not for extended regular
 expressions (either lexical ERE tokens or strings used dynamically
 as regular expressions). Because of this limitation, the feature
-has not been added to IEEE\0Std\01003.1-2001.
+has not been added to IEEE\ Std\ 1003.1-2001.
 .LP
 When a string variable is used in a context where an extended regular
 expression normally appears (where the lexical token ERE
@@ -2653,7 +2634,7 @@ implementations the following program:
 .LP
 would perform a numeric comparison (and output numeric comparison)
 for each odd-numbered line, but perform a string comparison
-(and output string comparison) for each even-numbered line. IEEE\0Std\01003.1-2001
+(and output string comparison) for each even-numbered line. IEEE\ Std\ 1003.1-2001
 ensures that comparisons will be numeric
 if necessary. With historical implementations, the following program:
 .sp
@@ -2672,7 +2653,7 @@ if necessary. With historical implementations, the following program:
 .LP
 would output \fB"3.140000e+00"\fP twice, because in the second \fBprint\fP
 statement the constant \fB"3.14"\fP would have
-a string value from the previous conversion. IEEE\0Std\01003.1-2001
+a string value from the previous conversion. IEEE\ Std\ 1003.1-2001
 requires that the output of the second \fBprint\fP
 statement be \fB"3.140000"\fP . The behavior of historical implementations
 was seen as too unintuitive and unpredictable.
@@ -2730,7 +2711,7 @@ it match a text file in form. There is no way for an application or
 test suite to determine whether a literal <newline> is
 added or whether \fIawk\fP simply acts as if it did.
 .LP
-IEEE\0Std\01003.1-2001 requires several changes from historical implementations
+IEEE\ Std\ 1003.1-2001 requires several changes from historical implementations
 in order to support
 internationalization. Probably the most subtle of these is the use
 of the decimal-point character, defined by the \fILC_NUMERIC\fP
@@ -2742,7 +2723,7 @@ character (the decimal-point character of the POSIX locale) is the
 decimal-point character recognized in processing \fIawk\fP
 programs (including assignments in command line arguments). This is
 essentially the same convention as the one used in the
-ISO\0C standard. The difference is that the C language includes the
+ISO\ C standard. The difference is that the C language includes the
 \fIsetlocale\fP() function, which permits an application to modify
 its locale. Because of this
 capability, a C application begins executing with its locale set to
@@ -2750,7 +2731,7 @@ the C locale, and only executes in the environment-specified
 locale after an explicit call to \fIsetlocale\fP(). However, adding
 such an elaborate
 new feature to the \fIawk\fP language was seen as inappropriate for
-IEEE\0Std\01003.1-2001. It is possible to execute an
+IEEE\ Std\ 1003.1-2001. It is possible to execute an
 \fIawk\fP program explicitly in any desired locale by setting the
 environment in the shell.
 .LP
@@ -2873,7 +2854,7 @@ Not standardizing them seems the simplest course. The standard
 developers considered that \fBlength\fP merited special treatment,
 however, since it has been documented in the past and sees
 possibly substantial use in historical programs. Accordingly, this
-usage has been made legitimate, but Issue\05 removed the
+usage has been made legitimate, but Issue\ 5 removed the
 obsolescent marking for XSI-conforming implementations and many otherwise
 conforming applications depend on this feature.
 .LP
@@ -2891,36 +2872,32 @@ ampersand ( \fB'&'\fP ) character and preceding it with the backslash
 character was used to turn off its special
 meaning.
 .LP
-The description in the ISO\0POSIX-2:1993 standard introduced behavior
+The description in the ISO\ POSIX-2:1993 standard introduced behavior
 such that the backslash character was another special
 character and it was unspecified whether there were any other special
 characters. This description introduced several portability
 problems, some of which are described below, and so it has been replaced
 with the more historical description. Some of the problems
 include:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Historically, to create the replacement string, a script could use
 \fBgsub\fP( \fBERE\fP, \fB"\\\\&"\fP ), but with the
-ISO\0POSIX-2:1993 standard wording, it was necessary to use \fBgsub\fP(
+ISO\ POSIX-2:1993 standard wording, it was necessary to use \fBgsub\fP(
 \fBERE\fP, \fB"\\\\\\\\&"\fP ). Backslash
 characters are doubled here because all string literals are subject
 to lexical analysis, which would reduce each pair of backslash
 characters to a single backslash before being passed to \fBgsub\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Since it was unspecified what the special characters were, for portable
 scripts to guarantee that characters are printed
 literally, each character had to be preceded with a backslash. (For
 example, a portable script had to use \fBgsub\fP( \fBERE\fP,
 \fB"\\\\h\\\\i"\fP ) to produce a replacement string of \fB"hi"\fP
 \&.)
-.in -5
-.RE
 .LP
-The description for comparisons in the ISO\0POSIX-2:1993 standard
+.LP
+The description for comparisons in the ISO\ POSIX-2:1993 standard
 did not properly describe historical practice because of
 the way numeric strings are compared as numbers. The current rules
 cause the following code:
@@ -2967,17 +2944,17 @@ done numerically after evaluating \fB$1\fP to the value zero.
 .LP
 The phrase "... also shall have the numeric value of the numeric string"
 was removed from several sections of the
-ISO\0POSIX-2:1993 standard because is specifies an unnecessary implementation
+ISO\ POSIX-2:1993 standard because is specifies an unnecessary implementation
 detail. It is not necessary for
-IEEE\0Std\01003.1-2001 to specify that these objects be assigned two
+IEEE\ Std\ 1003.1-2001 to specify that these objects be assigned two
 different values. It is only necessary to specify that
 these objects may evaluate to two different values depending on context.
 .LP
 The description of numeric string processing is based on the behavior
 of the \fIatof\fP()
-function in the ISO\0C standard. While it is not a requirement for
+function in the ISO\ C standard. While it is not a requirement for
 an implementation to use this function, many historical
-implementations of \fIawk\fP do. In the ISO\0C standard, floating-point
+implementations of \fIawk\fP do. In the ISO\ C standard, floating-point
 constants use a period as a decimal point character
 for the language itself, independent of the current locale, but the
 \fIatof\fP() function and
@@ -2993,7 +2970,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIGrammar Conventions\fP , \fIgrep\fP , \fIlex\fP , \fIsed\fP , the
-System Interfaces volume of IEEE\0Std\01003.1-2001, \fIatof\fP(),
+System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIatof\fP(),
 \fIexec\fP, \fIpopen\fP(), \fIsetlocale\fP(), \fIstrtod\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "putmsg" P 2003 POSIX
+.TH "PUTMSG" P 2003 POSIX
 .\" putmsg 
 .SH NAME
-putmsg, putpmsg - send a message on a STREAM (\fBSTREAMS\fP)
+putmsg, putpmsg \- send a message on a STREAM (\fBSTREAMS\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <stropts.h>
@@ -10,11 +10,11 @@ putmsg, putpmsg - send a message on a STREAM (\fBSTREAMS\fP)
 .sp
 int putmsg(int\fP \fIfildes\fP\fB, const struct strbuf *\fP\fIctlptr\fP\fB,
 .br
-\0\0\0\0\0\0 const struct strbuf *\fP\fIdataptr\fP\fB, int\fP \fIflags\fP\fB);
+\ \ \ \ \ \  const struct strbuf *\fP\fIdataptr\fP\fB, int\fP \fIflags\fP\fB);
 .br
 int putpmsg(int\fP \fIfildes\fP\fB, const struct strbuf *\fP\fIctlptr\fP\fB,
 .br
-\0\0\0\0\0\0 const struct strbuf *\fP\fIdataptr\fP\fB, int\fP \fIband\fP\fB,
+\ \ \ \ \ \  const struct strbuf *\fP\fIdataptr\fP\fB, int\fP \fIband\fP\fB,
 int\fP
 \fIflags\fP\fB); \fP
 \fB
@@ -83,18 +83,14 @@ no message shall be sent and 0 shall be returned.
 The \fIputmsg\fP() function shall block if the STREAM write queue
 is full due to internal flow control conditions, with the
 following exceptions:
-.RS
-.in +5
-.LP
+.IP " *" 3
 For high-priority messages, \fIputmsg\fP() shall not block on this
 condition and continues processing the message.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 For other messages, \fIputmsg\fP() shall not block but shall fail
 when the write queue is full and O_NONBLOCK is set.
-.in -5
-.RE
+.LP
 .LP
 The \fIputmsg\fP() function shall also block, unless prevented by
 lack of internal resources, while waiting for the
@@ -109,19 +105,19 @@ return 0; otherwise, they shall return -1 and set
 .SH ERRORS
 .LP
 The \fIputmsg\fP() and \fIputpmsg\fP() functions shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 A non-priority message was specified, the O_NONBLOCK flag is set,
 and the STREAM write queue is full due to internal flow
 control conditions; or buffers could not be allocated for the message
 that was to be created.
-.TP
+.TP 7
 .B EBADF
 \fIfildes\fP is not a valid file descriptor open for writing.
-.TP
+.TP 7
 .B EINTR
 A signal was caught during \fIputmsg\fP().
-.TP
+.TP 7
 .B EINVAL
 An undefined value is specified in \fIflags\fP, or \fIflags\fP is
 set to RS_HIPRI or MSG_HIPRI and no control part is
@@ -129,22 +125,22 @@ supplied, or the STREAM or multiplexer referenced by \fIfildes\fP
 is linked (directly or indirectly) downstream from a
 multiplexer, or \fIflags\fP is set to MSG_HIPRI and \fIband\fP is
 non-zero (for \fIputpmsg\fP() only).
-.TP
+.TP 7
 .B ENOSR
 Buffers could not be allocated for the message that was to be created
 due to insufficient STREAMS memory resources.
-.TP
+.TP 7
 .B ENOSTR
 A STREAM is not associated with \fIfildes\fP.
-.TP
+.TP 7
 .B ENXIO
 A hangup condition was generated downstream for the specified STREAM.
-.TP
+.TP 7
 .B EPIPE] or [EIO
 The \fIfildes\fP argument refers to a STREAMS-based pipe and the other
 end of the pipe is closed. A SIGPIPE signal is
 generated for the calling thread.
-.TP
+.TP 7
 .B ERANGE
 The size of the data part of the message does not fall within the
 range specified by the maximum and minimum packet sizes of
@@ -168,16 +164,14 @@ prior error.
 .LP
 The value of \fIfd\fP is assumed to refer to an open STREAMS file.
 This call to \fIputmsg\fP() does the following:
-.in +5
-.LP
+.IP " 1." 4
 Creates a high-priority message with a control part and a data part,
 using the buffers pointed to by \fIctrlbuf\fP and
 \fIdatabuf\fP, respectively.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Sends the message to the STREAMS file identified by \fIfd\fP.
-.in -5
+.LP
 .sp
 .RS
 .nf
@@ -250,7 +244,7 @@ None.
 .LP
 \fISTREAMS\fP , \fIgetmsg\fP() , \fIpoll\fP() , \fIread\fP() , \fIwrite\fP()
 , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<stropts.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<stropts.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

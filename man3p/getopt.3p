@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "getopt" P 2003 POSIX
+.TH "GETOPT" P 2003 POSIX
 .\" getopt 
 .SH NAME
-getopt, optarg, opterr, optind, optopt - command option parsing
+getopt, optarg, opterr, optind, optopt \- command option parsing
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -20,7 +20,7 @@ extern int optind, opterr, optopt;
 .LP
 The \fIgetopt\fP() function is a command-line parser that shall follow
 Utility Syntax Guidelines 3, 4, 5, 6, 7, 9, and 10 in
-the Base Definitions volume of IEEE\0Std\01003.1-2001, Section 12.2,
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, Section 12.2,
 Utility Syntax Guidelines.
 .LP
 The parameters \fIargc\fP and \fIargv\fP are the argument count and
@@ -44,21 +44,19 @@ The \fIgetopt\fP() function shall return the next option character
 in \fIoptstring\fP, if there is one that matches. If the option takes
 an argument, \fIgetopt\fP() shall set the variable
 \fIoptarg\fP to point to the option-argument as follows:
-.in +5
-.LP
+.IP " 1." 4
 If the option was the last character in the string pointed to by an
 element of \fIargv\fP, then \fIoptarg\fP shall contain the
 next element of \fIargv\fP, and \fIoptind\fP shall be incremented
 by 2. If the resulting value of \fIoptind\fP is greater than
 \fIargc\fP, this indicates a missing option-argument, and \fIgetopt\fP()
 shall return an error indication.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, \fIoptarg\fP shall point to the string following the option
 character in that element of \fIargv\fP, and
 \fIoptind\fP shall be incremented by 1.
-.in -5
+.LP
 .LP
 If, when \fIgetopt\fP() is called:
 .sp
@@ -308,9 +306,9 @@ None.
 .SH SEE ALSO
 .LP
 \fIexec\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP, the Shell and Utilities
+IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP, the Shell and Utilities
 volume of
-IEEE\0Std\01003.1-2001
+IEEE\ Std\ 1003.1-2001
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

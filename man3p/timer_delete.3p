@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "timer_delete" P 2003 POSIX
+.TH "TIMER_DELETE" P 2003 POSIX
 .\" timer_delete 
 .SH NAME
-timer_delete - delete a per-process timer (\fBREALTIME\fP)
+timer_delete \- delete a per-process timer (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <time.h>
@@ -28,7 +28,7 @@ of zero. Otherwise, the function shall return a value of
 .SH ERRORS
 .LP
 The \fItimer_delete\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The timer ID specified by \fItimerid\fP is not a valid timer ID.
 .sp
@@ -48,7 +48,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fItimer_create\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fItimer_create\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

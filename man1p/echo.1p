@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "echo" P 2003 POSIX
+.TH "ECHO" P 2003 POSIX
 .\" echo 
 .SH NAME
-echo - write arguments to standard output
+echo \- write arguments to standard output
 .SH SYNOPSIS
 .LP
 \fBecho\fP \fB[\fP\fIstring\fP \fB...\fP\fB]\fP
@@ -15,7 +15,7 @@ the <newline> is written.
 .LP
 The \fIecho\fP utility shall not recognize the \fB"--"\fP argument
 in the manner specified by Guideline 10 of the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Section 12.2, Utility
+Definitions volume of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility
 Syntax
 Guidelines; \fB"--"\fP shall be recognized as a string operand.
 .LP
@@ -23,7 +23,7 @@ Implementations shall not support any options.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIstring\fP
 A string to be written to standard output. If the first operand is
 \fB-n\fP, or if any of the operands contain a backslash (
@@ -33,39 +33,59 @@ On XSI-conformant systems, if the first operand is \fB-n\fP, it shall
 be treated as a string, not an option. The following
 character sequences shall be recognized on XSI-conformant systems
 within any of the arguments:
-.TP
+.TP 7
 \fB\\a\fP
+.RS
 Write an <alert>.
-.TP
+.RE
+.TP 7
 \fB\\b\fP
+.RS
 Write a <backspace>.
-.TP
+.RE
+.TP 7
 \fB\\c\fP
+.RS
 Suppress the <newline> that otherwise follows the final argument in
 the output. All characters following the
 \fB'\\c'\fP in the arguments shall be ignored.
-.TP
+.RE
+.TP 7
 \fB\\f\fP
+.RS
 Write a <form-feed>.
-.TP
+.RE
+.TP 7
 \fB\\n\fP
+.RS
 Write a <newline>.
-.TP
+.RE
+.TP 7
 \fB\\r\fP
+.RS
 Write a <carriage-return>.
-.TP
+.RE
+.TP 7
 \fB\\t\fP
+.RS
 Write a <tab>.
-.TP
+.RE
+.TP 7
 \fB\\v\fP
+.RS
 Write a <vertical-tab>.
-.TP
+.RE
+.TP 7
 \fB\\\\\fP
+.RS
 Write a backslash character.
-.TP
+.RE
+.TP 7
 \fB\\0\fP\fInum\fP
+.RS
 Write an 8-bit value that is the zero, one, two, or three-digit octal
 number \fInum\fP.
+.RE
 .sp
 .sp
 .SH STDIN
@@ -78,29 +98,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIecho\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as opposed
 to multi-byte characters in arguments). 
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -112,9 +132,8 @@ Default.
 .LP
 The \fIecho\fP utility arguments shall be separated by single <space>s
 and a <newline> shall follow the last
-argument.   \0Output transformations shall occur based on the escape
-sequences in the input. See the OPERANDS section. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+argument.   \ Output transformations shall occur based on the escape
+sequences in the input. See the OPERANDS section. 
 .SH STDERR
 .LP
 The standard error shall be used only for diagnostic messages.
@@ -127,10 +146,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -149,11 +168,9 @@ The \fIprintf\fP utility can be used portably to emulate any of the
 traditional
 behaviors of the \fIecho\fP utility as follows (assuming that \fIIFS\fP
 has its standard value or is unset):
-.RS
-.in +5
-.LP
+.IP " *" 3
 The historic System V \fIecho\fP and the requirements on XSI implementations
-in this volume of IEEE\0Std\01003.1-2001
+in this volume of IEEE\ Std\ 1003.1-2001
 are equivalent to:
 .sp
 .RS
@@ -163,9 +180,8 @@ are equivalent to:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The BSD \fIecho\fP is equivalent to:
 .sp
 .RS
@@ -181,8 +197,7 @@ fi
 \fP
 .fi
 .RE
-.in -5
-.RE
+.LP
 .LP
 New applications are encouraged to use \fIprintf\fP instead of \fIecho\fP.
 .SH EXAMPLES

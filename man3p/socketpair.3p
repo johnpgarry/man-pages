@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "socketpair" P 2003 POSIX
+.TH "SOCKETPAIR" P 2003 POSIX
 .\" socketpair 
 .SH NAME
-socketpair - create a pair of connected sockets
+socketpair \- create a pair of connected sockets
 .SH SYNOPSIS
 .LP
 \fB#include <sys/socket.h>
@@ -11,7 +11,7 @@ socketpair - create a pair of connected sockets
 int socketpair(int\fP \fIdomain\fP\fB, int\fP \fItype\fP\fB, int\fP
 \fIprotocol\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fIsocket_vector\fP\fB[2]);
+\ \ \ \ \ \  int\fP \fIsocket_vector\fP\fB[2]);
 .br
 \fP
 .SH DESCRIPTION
@@ -24,20 +24,20 @@ descriptors used in referencing the created sockets shall be returned
 in \fIsocket_vector\fP[0] and \fIsocket_vector\fP[1].
 .LP
 The \fIsocketpair\fP() function takes the following arguments:
-.TP
+.TP 7
 \fIdomain\fP
 Specifies the communications domain in which the sockets are to be
 created.
-.TP
+.TP 7
 \fItype\fP
 Specifies the type of sockets to be created.
-.TP
+.TP 7
 \fIprotocol\fP
 Specifies a particular protocol to be used with the sockets. Specifying
 a \fIprotocol\fP of 0 causes \fIsocketpair\fP() to
 use an unspecified default protocol appropriate for the requested
 socket type.
-.TP
+.TP 7
 \fIsocket_vector\fP
 Specifies a 2-integer array to hold the file descriptors of the created
 socket pair.
@@ -47,16 +47,16 @@ The \fItype\fP argument specifies the socket type, which determines
 the semantics of communications over the socket. The
 following socket types are defined; implementations may specify additional
 socket types:
-.TP
+.TP 7
 SOCK_STREAM
 Provides sequenced, reliable, bidirectional, connection-mode byte
 streams, and may provide a transmission mechanism for
 out-of-band data.
-.TP
+.TP 7
 SOCK_DGRAM
 Provides datagrams, which are connectionless-mode, unreliable messages
 of fixed maximum length.
-.TP
+.TP 7
 SOCK_SEQPACKET
 Provides sequenced, reliable, bidirectional, connection-mode transmission
 paths for records. A record can be sent using one or
@@ -82,38 +82,38 @@ error.
 .SH ERRORS
 .LP
 The \fIsocketpair\fP() function shall fail if:
-.TP
+.TP 7
 .B EAFNOSUPPORT
 .sp
 The implementation does not support the specified address family.
-.TP
+.TP 7
 .B EMFILE
 No more file descriptors are available for this process.
-.TP
+.TP 7
 .B ENFILE
 No more file descriptors are available for the system.
-.TP
+.TP 7
 .B EOPNOTSUPP
 The specified protocol does not permit creation of socket pairs.
-.TP
+.TP 7
 .B EPROTONOSUPPORT
 .sp
 The protocol is not supported by the address family, or the protocol
 is not supported by the implementation.
-.TP
+.TP 7
 .B EPROTOTYPE
 The socket type is not supported by the protocol.
 .sp
 .LP
 The \fIsocketpair\fP() function may fail if:
-.TP
+.TP 7
 .B EACCES
 The process does not have appropriate privileges.
-.TP
+.TP 7
 .B ENOBUFS
 Insufficient resources were available in the system to perform the
 operation.
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory was available to fulfill the request.
 .sp
@@ -138,7 +138,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIsocket\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIsocket\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<sys/socket.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

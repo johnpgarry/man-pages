@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_barrier_destroy" P 2003 POSIX
+.TH "PTHREAD_BARRIER_DESTROY" P 2003 POSIX
 .\" pthread_barrier_destroy 
 .SH NAME
-pthread_barrier_destroy, pthread_barrier_init - destroy and initialize
+pthread_barrier_destroy, pthread_barrier_init \- destroy and initialize
 a barrier object (\fBADVANCED REALTIME
 THREADS\fP)
 .SH SYNOPSIS
@@ -14,7 +14,7 @@ int pthread_barrier_destroy(pthread_barrier_t *\fP\fIbarrier\fP\fB);
 .br
 int pthread_barrier_init(pthread_barrier_t *restrict\fP \fIbarrier\fP\fB,
 .br
-\0\0\0\0\0\0 const pthread_barrierattr_t *restrict\fP \fIattr\fP\fB,
+\ \ \ \ \ \  const pthread_barrierattr_t *restrict\fP \fIattr\fP\fB,
 unsigned\fP \fIcount\fP\fB);
 \fP
 \fB
@@ -66,35 +66,35 @@ error.
 .SH ERRORS
 .LP
 The \fIpthread_barrier_destroy\fP() function may fail if:
-.TP
+.TP 7
 .B EBUSY
 The implementation has detected an attempt to destroy a barrier while
 it is in use (for example, while being used in a \fIpthread_barrier_wait\fP()
 call) by another thread.
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIbarrier\fP is invalid.
 .sp
 .LP
 The \fIpthread_barrier_init\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The system lacks the necessary resources to initialize another barrier.
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIcount\fP is equal to zero.
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory exists to initialize the barrier.
 .sp
 .LP
 The \fIpthread_barrier_init\fP() function may fail if:
-.TP
+.TP 7
 .B EBUSY
 The implementation has detected an attempt to reinitialize a barrier
 while it is in use (for example, while being used in a \fIpthread_barrier_wait\fP()
 call) by another thread.
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIattr\fP is invalid.
 .sp
@@ -119,7 +119,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_barrier_wait\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

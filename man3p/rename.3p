@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "rename" P 2003 POSIX
+.TH "RENAME" P 2003 POSIX
 .\" rename 
 .SH NAME
-rename - rename a file
+rename \- rename a file
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -12,12 +12,6 @@ int rename(const char *\fP\fIold\fP\fB, const char *\fP\fInew\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIrename\fP() function shall change the name of a file. The \fIold\fP
 argument points to the pathname of the file to be
@@ -80,8 +74,7 @@ Upon successful completion, \fIrename\fP() shall mark for update the
 directory of each file.
 .LP
 If the \fIrename\fP() function fails for any reason other than [EIO],
-any file named by \fInew\fP shall be unaffected. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+any file named by \fInew\fP shall be unaffected. 
 .SH RETURN VALUE
 .LP
 Upon successful completion, \fIrename\fP() shall return 0; otherwise,
@@ -91,7 +84,7 @@ be set to indicate the error,  and neither the file named by
 .SH ERRORS
 .LP
 The \fIrename\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 A
 component of either path prefix denies search permission; or one of
@@ -99,57 +92,55 @@ the directories containing \fIold\fP or \fInew\fP denies
 write permissions; or, write permission is required and is denied
 for a directory pointed to by the \fIold\fP or \fInew\fP
 arguments. 
-.TP
+.TP 7
 .B EBUSY
 The directory named by \fIold\fP or \fInew\fP is currently in use
 by the system or another process, and the implementation
 considers this an error. 
-.TP
-.B EEXIST]\0or\0[ENOTEMPTY
+.TP 7
+.B EEXIST]\ or\ [ENOTEMPTY
 .sp
 The link named by \fInew\fP is a directory that is not an empty directory.
-.TP
+.TP 7
 .B EINVAL
 The \fInew\fP directory pathname contains a path prefix that names
 the \fIold\fP directory. 
-.TP
+.TP 7
 .B EIO
 A
 physical I/O error has occurred. 
-.TP
+.TP 7
 .B EISDIR
 The \fInew\fP argument points to a directory and the \fIold\fP argument
 points to a file that is not a directory. 
-.TP
+.TP 7
 .B ELOOP
 A
 loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument. 
-.TP
+.TP 7
 .B EMLINK
 The file named by \fIold\fP is a directory, and the link count of
-the parent directory of \fInew\fP would exceed {LINK_MAX}. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
-.TP
+the parent directory of \fInew\fP would exceed {LINK_MAX}. 
+.TP 7
 .B ENAMETOOLONG
 .sp
 The length of the \fIold\fP or \fInew\fP argument exceeds {PATH_MAX}
 or a pathname component is longer than {NAME_MAX}. 
-.TP
+.TP 7
 .B ENOENT
 The link named by \fIold\fP does not name an existing file, or either
-\fIold\fP or \fInew\fP points to an empty string. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
-.TP
+\fIold\fP or \fInew\fP points to an empty string. 
+.TP 7
 .B ENOSPC
 The directory that would contain \fInew\fP cannot be extended. 
-.TP
+.TP 7
 .B ENOTDIR
 A
 component of either path prefix is not a directory; or the \fIold\fP
 argument names a directory and \fInew\fP argument names a
 non-directory file. 
-.TP
+.TP 7
 .B EPERM] or [EACCES
 .sp
 The S_ISVTX flag is set on the directory containing the file referred
@@ -159,11 +150,11 @@ privileges; or \fInew\fP refers to an existing file, the
 S_ISVTX flag is set on the directory containing this file, and the
 caller is not the file owner, nor is the caller the directory
 owner, nor does the caller have appropriate privileges. 
-.TP
+.TP 7
 .B EROFS
 The requested operation requires writing in a directory on a read-only
 file system. 
-.TP
+.TP 7
 .B EXDEV
 The links named by \fInew\fP and \fIold\fP are on different file systems
 and the implementation does not support links between
@@ -171,21 +162,21 @@ file systems.
 .sp
 .LP
 The \fIrename\fP() function may fail if:
-.TP
+.TP 7
 .B EBUSY
 The file named by the \fIold\fP or \fInew\fP arguments is a named
 STREAM. 
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument. 
-.TP
+.TP 7
 .B ENAMETOOLONG
 .sp
 As a result of encountering a symbolic link in resolution of the \fIpath\fP
 argument, the length of the substituted pathname
 string exceeded {PATH_MAX}. 
-.TP
+.TP 7
 .B ETXTBSY
 The file to be renamed is a pure procedure (shared text) file that
 is being executed. 
@@ -220,7 +211,7 @@ behavior.
 .SH RATIONALE
 .LP
 This \fIrename\fP() function is equivalent for regular files to that
-defined by the ISO\0C standard. Its inclusion here
+defined by the ISO\ C standard. Its inclusion here
 expands that definition to include actions on directories and specifies
 behavior when the \fInew\fP parameter names a file that
 already exists. That specification requires that the action of the
@@ -257,7 +248,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIlink\fP() , \fIrmdir\fP() , \fIsymlink\fP() ,
-\fIunlink\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIunlink\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<stdio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

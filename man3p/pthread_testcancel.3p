@@ -1,9 +1,9 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_setcancelstate" P 2003 POSIX
+.TH "PTHREAD_SETCANCELSTATE" P 2003 POSIX
 .\" pthread_setcancelstate 
 .SH NAME
 pthread_setcancelstate, pthread_setcanceltype, pthread_testcancel
-- set cancelability state
+\- set cancelability state
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -47,13 +47,13 @@ error number shall be returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_setcancelstate\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The specified state is not PTHREAD_CANCEL_ENABLE or PTHREAD_CANCEL_DISABLE.
 .sp
 .LP
 The \fIpthread_setcanceltype\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The specified type is not PTHREAD_CANCEL_DEFERRED or PTHREAD_CANCEL_ASYNCHRONOUS.
 .sp
@@ -106,7 +106,7 @@ thread that is asynchronously cancelable.
 None.
 .SH SEE ALSO
 .LP
-\fIpthread_cancel\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIpthread_cancel\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

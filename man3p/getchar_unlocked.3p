@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "getc_unlocked" P 2003 POSIX
+.TH "GETC_UNLOCKED" P 2003 POSIX
 .\" getc_unlocked 
 .SH NAME
-getc_unlocked, getchar_unlocked, putc_unlocked, putchar_unlocked -
+getc_unlocked, getchar_unlocked, putc_unlocked, putchar_unlocked \-
 stdio with explicit client locking
 .SH SYNOPSIS
 .LP
@@ -122,7 +122,7 @@ Note that there is no need for functions of the form \fIgetc_locked\fP(),
 functionality of \fIgetc\fP(), \fIputc\fP(), \fIet
 al\fP. It would be inappropriate to use a feature test macro to switch
 a macro definition of \fIgetc\fP() between \fIgetc_locked\fP() and
-\fIgetc_unlocked\fP(), since the ISO\0C standard
+\fIgetc_unlocked\fP(), since the ISO\ C standard
 requires an actual function to exist, a function whose behavior could
 not be changed by the feature test macro. Also, providing
 both the \fIxxx_locked\fP() and \fIxxx_unlocked\fP() forms leads to
@@ -144,7 +144,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIgetc\fP() , \fIgetchar\fP() , \fIputc\fP() , \fIputchar\fP() ,
-the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<stdio.h>\fP
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<stdio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

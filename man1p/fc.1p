@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fc" P 2003 POSIX
+.TH "FC" P 2003 POSIX
 .\" fc 
 .SH NAME
-fc - process the command history list
+fc \- process the command history list
 .SH SYNOPSIS
 .LP
 \fBfc\fP \fB[\fP\fB-r\fP\fB][\fP\fB-e\fP \fIeditor\fP\fB]
@@ -61,87 +61,89 @@ reinvokes the previous command, suppressing standard error for both
 .SH OPTIONS
 .LP
 The \fIfc\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
-\fB-e\0\fP \fIeditor\fP
+.TP 7
+\fB-e\ \fP \fIeditor\fP
 Use the editor named by \fIeditor\fP to edit the commands. The \fIeditor\fP
 string is a utility name, subject to search via
-the \fIPATH\fP variable (see the Base Definitions volume of IEEE\0Std\01003.1-2001,
+the \fIPATH\fP variable (see the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Chapter 8, Environment Variables). The value in the \fIFCEDIT\fP variable
 shall be used as a
 default when \fB-e\fP is not specified. If \fIFCEDIT\fP is null or
 unset, \fIed\fP shall be
 used as the editor.
-.TP
+.TP 7
 \fB-l\fP
 (The letter ell.) List the commands rather than invoking an editor
 on them. The commands shall be written in the sequence
 indicated by the \fIfirst\fP and \fIlast\fP operands, as affected
 by \fB-r\fP, with each command preceded by the command
 number.
-.TP
+.TP 7
 \fB-n\fP
 Suppress command numbers when listing with \fB-l\fP.
-.TP
+.TP 7
 \fB-r\fP
 Reverse the order of the commands listed (with \fB-l\fP) or edited
 (with neither \fB-l\fP nor \fB-s\fP).
-.TP
+.TP 7
 \fB-s\fP
 Re-execute the command without invoking an editor.
 .sp
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
-\fIfirst\fP,\0\fIlast\fP
+.TP 7
+\fIfirst\fP,\ \fIlast\fP
 Select the commands to list or edit. The number of previous commands
 that can be accessed shall be determined by the value of
 the \fIHISTSIZE\fP variable. The value of \fIfirst\fP or \fIlast\fP
 or both shall be one of the following: 
-.TP
+.TP 7
 \fB[+]\fP\fInumber\fP
+.RS
 A positive number representing a command number; command numbers can
 be displayed with the \fB-l\fP option.
-.TP
+.RE
+.TP 7
 \fB-\fP\fInumber\fP
+.RS
 A negative decimal number representing the command that was executed
 \fInumber\fP of commands previously. For example, -1 is
 the immediately previous command.
-.TP
+.RE
+.TP 7
 \fIstring\fP
+.RS
 A string indicating the most recently entered command that begins
 with that string. If the \fIold\fP= \fInew\fP operand is
 not also specified with \fB-s\fP, the string form of the \fIfirst\fP
 operand cannot contain an embedded equal sign.
+.RE
 .sp
 .LP
 When the synopsis form with \fB-s\fP is used:
 .RS
-.in +5
-.LP
+.IP " *" 3
 If \fIfirst\fP is omitted, the previous command shall be used.
-.in -5
+.LP
 .RE
 .LP
 For the synopsis forms without \fB-s\fP:
 .RS
-.in +5
-.LP
+.IP " *" 3
 If \fIlast\fP is omitted, \fIlast\fP shall default to the previous
 command when \fB-l\fP is specified; otherwise, it shall
 default to \fIfirst\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIfirst\fP and \fIlast\fP are both omitted, the previous 16 commands
 shall be listed or the previous single command shall
 be edited (based on the \fB-l\fP option).
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIfirst\fP and \fIlast\fP are both present, all of the commands
 from \fIfirst\fP to \fIlast\fP shall be edited (without
 \fB-l\fP) or listed (with \fB-l\fP). Editing multiple commands shall
@@ -160,9 +162,8 @@ fc    20 10    fc -r 40 30
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " *" 3
 When a range of commands is used, it shall not be an error to specify
 \fIfirst\fP or \fIlast\fP values that are not in the
 history list; \fIfc\fP shall substitute the value representing the
@@ -180,9 +181,9 @@ fc 1 99
 .RE
 .LP
 shall list and edit, respectively, all ten commands.
-.in -5
+.LP
 .RE
-.TP
+.TP 7
 \fIold\fP=\fInew\fP
 Replace the first occurrence of string \fIold\fP in the commands to
 be re-executed by the string \fInew\fP.
@@ -197,14 +198,14 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIfc\fP:
-.TP
+.TP 7
 \fIFCEDIT\fP
 This variable, when expanded by the shell, shall determine the default
 value for the \fB-e\fP \fIeditor\fP option's
 \fIeditor\fP option-argument. If \fIFCEDIT\fP is null or unset, \fIed\fP
 shall be used as the
 editor.
-.TP
+.TP 7
 \fIHISTFILE\fP
 Determine a pathname naming a command history file. If the \fIHISTFILE\fP
 variable is not set, the shell may attempt to access
@@ -233,7 +234,7 @@ to the history file from those shells interact. As entries are
 deleted from the history file, they shall be deleted oldest first.
 It is unspecified when history file entries are physically
 removed from the history file.
-.TP
+.TP 7
 \fIHISTSIZE\fP
 Determine a decimal number representing the limit to the number of
 previous commands that are accessible. If this variable is
@@ -244,29 +245,29 @@ to access this variable only when initializing the history
 file, as described under \fIHISTFILE .\fP Therefore, it is unspecified
 whether changes made to \fIHISTSIZE\fP after the history
 file has been initialized are effective.
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -320,10 +321,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion of the listing.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -378,14 +379,14 @@ is not historical practice. Historical practice in \fIfc\fP of either
 To clarify this, a new option \fB-s\fP was introduced
 replacing the \fB[-e -]\fP. This resolves the conflict and makes \fIfc\fP
 conform to the Utility Syntax Guidelines.
-.TP
+.TP 7
 \fIHISTFILE\fP
 Some implementations of the KornShell check for the superuser and
 do not create a history file unless \fIHISTFILE\fP is set.
 This is done primarily to avoid creating unlinked files in the root
 file system when logging in during single-user mode.
 \fIHISTFILE\fP must be set for the superuser to have history.
-.TP
+.TP 7
 \fIHISTSIZE\fP
 Needed to limit the size of history files. It is the intent of the
 standard developers that when two shells share the same

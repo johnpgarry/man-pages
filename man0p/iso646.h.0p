@@ -2,52 +2,46 @@
 .TH "<iso646.h>" P 2003 POSIX
 .\" <iso646.h> 
 .SH NAME
-iso646.h - alternative spellings
+iso646.h \- alternative spellings
 .SH SYNOPSIS
 .LP
 \fB#include <iso646.h>\fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fI<iso646.h>\fP header shall define the following eleven macros
 (on the left) that expand to the corresponding
 tokens (on the right):
-.TP
+.TP 7
 and
 \fB&&\fP
-.TP
+.TP 7
 and_eq
 \fB&=\fP
-.TP
+.TP 7
 bitand
 \fB&\fP
-.TP
+.TP 7
 bitor
 \fB|\fP
-.TP
+.TP 7
 compl
 \fB~\fP
-.TP
+.TP 7
 not
 \fB!\fP
-.TP
+.TP 7
 not_eq
 \fB!=\fP
-.TP
+.TP 7
 or
 \fB||\fP
-.TP
+.TP 7
 or_eq
 \fB|=\fP
-.TP
+.TP 7
 xor
 \fB^\fP
-.TP
+.TP 7
 xor_eq
 \fB^=\fP
 .sp

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_trace_clear" P 2003 POSIX
+.TH "POSIX_TRACE_CLEAR" P 2003 POSIX
 .\" posix_trace_clear 
 .SH NAME
-posix_trace_clear - clear trace stream and trace log (\fBTRACING\fP)
+posix_trace_clear \- clear trace stream and trace log (\fBTRACING\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <sys/types.h>
@@ -62,7 +62,7 @@ corresponding error number.
 .SH ERRORS
 .LP
 The \fIposix_trace_clear\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fItrid\fP argument does not correspond to an active
 trace stream.
@@ -84,7 +84,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIposix_trace_attr_init\fP() , \fIposix_trace_create\fP() , \fIposix_trace_flush\fP()
-, \fIposix_trace_get_attr\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIposix_trace_get_attr\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<sys/types.h>\fP, \fI<trace.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

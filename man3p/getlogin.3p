@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "getlogin" P 2003 POSIX
+.TH "GETLOGIN" P 2003 POSIX
 .\" getlogin 
 .SH NAME
-getlogin, getlogin_r - get login name
+getlogin, getlogin_r \- get login name
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -56,23 +56,22 @@ error.
 .SH ERRORS
 .LP
 The \fIgetlogin\fP() and \fIgetlogin_r\fP() functions may fail if:
-.TP
+.TP 7
 .B EMFILE
 {OPEN_MAX} file descriptors are currently open in the calling process.
-.TP
+.TP 7
 .B ENFILE
 The maximum allowable number of files is currently open in the system.
-.TP
+.TP 7
 .B ENXIO
 The calling process has no controlling terminal.
 .sp
 .LP
 The \fIgetlogin_r\fP() function may fail if:
-.TP
+.TP 7
 .B ERANGE
 The value of \fInamesize\fP is smaller than the length of the string
-to be returned including the terminating null character. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+to be returned including the terminating null character. 
 .sp
 .LP
 \fIThe following sections are informative.\fP
@@ -160,7 +159,7 @@ None.
 .LP
 \fIgetpwnam\fP() , \fIgetpwuid\fP() , \fIgeteuid\fP() , \fIgetuid\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<limits.h>\fP, \fI<unistd.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<limits.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -2,7 +2,7 @@
 .TH "<glob.h>" P 2003 POSIX
 .\" <glob.h> 
 .SH NAME
-glob.h - pathname pattern-matching types
+glob.h \- pathname pattern-matching types
 .SH SYNOPSIS
 .LP
 \fB#include <glob.h>\fP
@@ -26,44 +26,44 @@ size_t   gl_offs \fP Slots to reserve at the beginning of \fIgl_pathv.\fP \fB
 .LP
 The following constants shall be provided as values for the \fIflags\fP
 argument:
-.TP
+.TP 7
 GLOB_APPEND
 Append generated pathnames to those previously obtained.
-.TP
+.TP 7
 GLOB_DOOFFS
 Specify how many null pointers to add to the beginning of \fIgl_pathv\fP.
-.TP
+.TP 7
 GLOB_ERR
 Cause \fIglob\fP() to return on error.
-.TP
+.TP 7
 GLOB_MARK
 Each pathname that is a directory that matches \fIpattern\fP has a
 slash appended.
-.TP
+.TP 7
 GLOB_NOCHECK
 If \fIpattern\fP does not match any pathname, then return a list consisting
 of only \fIpattern\fP.
-.TP
+.TP 7
 GLOB_NOESCAPE
 Disable backslash escaping.
-.TP
+.TP 7
 GLOB_NOSORT
 Do not sort the pathnames returned.
 .sp
 .LP
 The following constants shall be defined as error return values:
-.TP
+.TP 7
 GLOB_ABORTED
 The scan was stopped because GLOB_ERR was set or (*\fIerrfunc\fP)()
 returned non-zero.
-.TP
+.TP 7
 GLOB_NOMATCH
 The pattern does not match any existing pathname, and GLOB_NOCHECK
 was not set in \fIflags\fP.
-.TP
+.TP 7
 GLOB_NOSPACE
 An attempt to allocate memory failed.
-.TP
+.TP 7
 GLOB_NOSYS
 Reserved. 
 .sp
@@ -96,9 +96,9 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIglob\fP(),
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIglob\fP(),
 the Shell
-and Utilities volume of IEEE\0Std\01003.1-2001
+and Utilities volume of IEEE\ Std\ 1003.1-2001
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

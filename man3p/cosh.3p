@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cosh" P 2003 POSIX
+.TH "COSH" P 2003 POSIX
 .\" cosh 
 .SH NAME
-cosh, coshf, coshl - hyperbolic cosine functions
+cosh, coshf, coshl \- hyperbolic cosine functions
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -16,12 +16,6 @@ long double coshl(long double\fP \fIx\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 These functions shall compute the hyperbolic cosine of their argument
 \fIx\fP.
@@ -51,8 +45,8 @@ If \fIx\fP is \(+-Inf, +Inf shall be returned.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The result would cause an overflow. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -72,7 +66,7 @@ On error, the expressions (math_errhandling & MATH_ERRNO) and (math_errhandling
 & MATH_ERREXCEPT) are independent of
 each other, but at least one of them must be non-zero.
 .LP
-For IEEE\0Std\0754-1985 \fBdouble\fP, 710.5 < |\fIx\fP| implies that
+For IEEE\ Std\ 754-1985 \fBdouble\fP, 710.5 < |\fIx\fP| implies that
 \fIcosh\fP( \fIx\fP) has overflowed.
 .SH RATIONALE
 .LP
@@ -84,7 +78,7 @@ None.
 .LP
 \fIacosh\fP() , \fIfeclearexcept\fP() , \fIfetestexcept\fP() , \fIisnan\fP()
 , \fIsinh\fP() ,
-\fItanh\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fItanh\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 4.18, Treatment of Error Conditions for Mathematical Functions,
 \fI<math.h>\fP
 .SH COPYRIGHT

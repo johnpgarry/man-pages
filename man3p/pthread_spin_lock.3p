@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_spin_lock" P 2003 POSIX
+.TH "PTHREAD_SPIN_LOCK" P 2003 POSIX
 .\" pthread_spin_lock 
 .SH NAME
-pthread_spin_lock, pthread_spin_trylock - lock a spin lock object
+pthread_spin_lock, pthread_spin_trylock \- lock a spin lock object
 (\fBADVANCED REALTIME THREADS\fP)
 .SH SYNOPSIS
 .LP
@@ -37,20 +37,20 @@ error.
 .SH ERRORS
 .LP
 These functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIlock\fP does not refer to an initialized
 spin lock object.
 .sp
 .LP
 The \fIpthread_spin_lock\fP() function may fail if:
-.TP
+.TP 7
 .B EDEADLK
 The calling thread already holds the lock.
 .sp
 .LP
 The \fIpthread_spin_trylock\fP() function shall fail if:
-.TP
+.TP 7
 .B EBUSY
 A thread currently holds the lock.
 .sp
@@ -65,7 +65,7 @@ None.
 .LP
 Applications using this function may be subject to priority inversion,
 as discussed in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 3.285, Priority Inversion.
+IEEE\ Std\ 1003.1-2001, Section 3.285, Priority Inversion.
 .LP
 The \fIpthread_spin_lock\fP() and \fIpthread_spin_trylock\fP() functions
 are part of the Spin Locks option and need not be
@@ -79,7 +79,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_spin_destroy\fP() , \fIpthread_spin_unlock\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

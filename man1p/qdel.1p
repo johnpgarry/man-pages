@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "qdel" P 2003 POSIX
+.TH "QDEL" P 2003 POSIX
 .\" qdel 
 .SH NAME
-qdel - delete batch jobs
+qdel \- delete batch jobs
 .SH SYNOPSIS
 .LP
 \fBqdel\fP \fIjob_identifier\fP \fB... \fP
@@ -52,29 +52,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIqdel\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fILOGNAME\fP
 Determine the login name of the user.
 .sp
@@ -97,10 +97,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -144,7 +144,7 @@ identified individually by their job identifiers.
 .LP
 Historically, the \fIqdel\fP utility has been a component of NQS,
 the existing practice on which it is based. However, the
-\fIqdel\fP utility defined in this volume of IEEE\0Std\01003.1-2001
+\fIqdel\fP utility defined in this volume of IEEE\ Std\ 1003.1-2001
 does not provide an option for specifying a signal
 number to send to the batch job prior to the killing of the process;
 that capability has been subsumed by the \fIqsig\fP utility.

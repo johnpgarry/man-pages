@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_rwlock_timedrdlock" P 2003 POSIX
+.TH "PTHREAD_RWLOCK_TIMEDRDLOCK" P 2003 POSIX
 .\" pthread_rwlock_timedrdlock 
 .SH NAME
-pthread_rwlock_timedrdlock - lock a read-write lock for reading
+pthread_rwlock_timedrdlock \- lock a read-write lock for reading
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -12,7 +12,7 @@ pthread_rwlock_timedrdlock - lock a read-write lock for reading
 .sp
 int pthread_rwlock_timedrdlock(pthread_rwlock_t *restrict\fP \fIrwlock\fP\fB,
 .br
-\0\0\0\0\0\0 const struct timespec *restrict\fP \fIabs_timeout\fP\fB);
+\ \ \ \ \ \  const struct timespec *restrict\fP \fIabs_timeout\fP\fB);
 \fP
 \fB
 .br
@@ -62,20 +62,20 @@ shall be returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_rwlock_timedrdlock\fP() function shall fail if:
-.TP
+.TP 7
 .B ETIMEDOUT
 The lock could not be acquired before the specified timeout expired.
 .sp
 .LP
 The \fIpthread_rwlock_timedrdlock\fP() function may fail if:
-.TP
+.TP 7
 .B EAGAIN
 The read lock could not be acquired because the maximum number of
 read locks for lock would be exceeded.
-.TP
+.TP 7
 .B EDEADLK
 The calling thread already holds a write lock on \fIrwlock\fP.
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIrwlock\fP does not refer to an initialized
 read-write lock object, or the \fIabs_timeout\fP
@@ -93,7 +93,7 @@ None.
 .LP
 Applications using this function may be subject to priority inversion,
 as discussed in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 3.285, Priority Inversion.
+IEEE\ Std\ 1003.1-2001, Section 3.285, Priority Inversion.
 .LP
 The \fIpthread_rwlock_timedrdlock\fP() function is part of the Threads
 and Timeouts options and need not be provided on all
@@ -109,7 +109,7 @@ None.
 \fIpthread_rwlock_destroy\fP() , \fIpthread_rwlock_rdlock\fP() , \fIpthread_rwlock_timedwrlock\fP()
 , \fIpthread_rwlock_tryrdlock\fP() , \fIpthread_rwlock_trywrlock\fP()
 , \fIpthread_rwlock_unlock\fP() , \fIpthread_rwlock_wrlock\fP() ,
-the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP,
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP,
 \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

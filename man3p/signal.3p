@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "signal" P 2003 POSIX
+.TH "SIGNAL" P 2003 POSIX
 .\" signal 
 .SH NAME
-signal - signal management
+signal \- signal management
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -12,12 +12,6 @@ void (*signal(int\fP \fIsig\fP\fB, void (*\fP\fIfunc\fP\fB)(int)))(int);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 Use
 of this function is unspecified in a multi-threaded process. 
@@ -70,9 +64,7 @@ signal handler shall not call the \fIraise\fP() function.
 .LP
 If the signal occurs other than as the result of calling \fIabort\fP(),
 \fIraise\fP(),   \fIkill\fP(), \fIpthread_kill\fP(), or \fIsigqueue\fP(),
-<img
-src="../images/opt-end.gif" alt="[Option End]" border="0"> \0the behavior
-is undefined if the signal handler refers to any
+\ the behavior is undefined if the signal handler refers to any
 object with static storage duration other than by assigning a value
 to an object declared as volatile \fBsig_atomic_t\fP, or if
 the signal handler calls any function in the standard library other
@@ -100,7 +92,7 @@ is executed for some signals, and the equivalent of:
 .fi
 .RE
 .LP
-is executed for all other signals   \0(see \fIexec\fP). 
+is executed for all other signals   \ (see \fIexec\fP). 
 .SH RETURN VALUE
 .LP
 If the request can be honored, \fIsignal\fP() shall return the value
@@ -110,7 +102,7 @@ and a positive value shall be stored in \fIerrno\fP.
 .SH ERRORS
 .LP
 The \fIsignal\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIsig\fP argument is not a valid signal number or an attempt
 is made to catch a signal that cannot be caught or ignore a
@@ -118,7 +110,7 @@ signal that cannot be ignored.
 .sp
 .LP
 The \fIsignal\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 An
 attempt was made to set the action to SIG_DFL for a signal that cannot
@@ -146,7 +138,7 @@ None.
 .LP
 \fISignal Concepts\fP , \fIexec\fP() , \fIpause\fP() , \fIsigaction\fP()
 , \fIsigsuspend\fP() , \fIwaitid\fP() , the Base Definitions volume
-of IEEE\0Std\01003.1-2001, \fI<signal.h>\fP
+of IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "setreuid" P 2003 POSIX
+.TH "SETREUID" P 2003 POSIX
 .\" setreuid 
 .SH NAME
-setreuid - set real and effective user IDs
+setreuid \- set real and effective user IDs
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -35,10 +35,10 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fIsetreuid\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIruid\fP or \fIeuid\fP argument is invalid or out-of-range.
-.TP
+.TP 7
 .B EPERM
 The current process does not have appropriate privileges, and either
 an attempt was made to change the effective user ID to a
@@ -80,7 +80,7 @@ None.
 \fIgetegid\fP() , \fIgeteuid\fP() , \fIgetgid\fP() , \fIgetuid\fP()
 , \fIsetegid\fP() , \fIseteuid\fP() , \fIsetgid\fP() , \fIsetregid\fP()
 , \fIsetuid\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_once" P 2003 POSIX
+.TH "PTHREAD_ONCE" P 2003 POSIX
 .\" pthread_once 
 .SH NAME
-pthread_once - dynamic package initialization
+pthread_once \- dynamic package initialization
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -10,7 +10,7 @@ pthread_once - dynamic package initialization
 .sp
 int pthread_once(pthread_once_t *\fP\fIonce_control\fP\fB,
 .br
-\0\0\0\0\0\0 void (*\fP\fIinit_routine\fP\fB)(void));
+\ \ \ \ \ \  void (*\fP\fIinit_routine\fP\fB)(void));
 .br
 pthread_once_t\fP \fIonce_control\fP \fB= PTHREAD_ONCE_INIT; \fP
 \fB
@@ -46,7 +46,7 @@ the error.
 .SH ERRORS
 .LP
 The \fIpthread_once\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 If either \fIonce_control\fP or \fIinit_routine\fP is invalid.
 .sp
@@ -131,7 +131,7 @@ do not accept the construct
 None.
 .SH SEE ALSO
 .LP
-The Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+The Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

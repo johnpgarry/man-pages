@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "lstat" P 2003 POSIX
+.TH "LSTAT" P 2003 POSIX
 .\" lstat 
 .SH NAME
-lstat - get symbolic link status
+lstat \- get symbolic link status
 .SH SYNOPSIS
 .LP
 \fB#include <sys/stat.h>
@@ -36,28 +36,28 @@ error.
 .SH ERRORS
 .LP
 The \fIlstat\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 A component of the path prefix denies search permission.
-.TP
+.TP 7
 .B EIO
 An error occurred while reading from the file system.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of a pathname exceeds {PATH_MAX} or a pathname component
 is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix is not a directory.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing file or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B EOVERFLOW
 The file size in bytes or the number of blocks allocated to the file
 or the file serial number cannot be represented correctly
@@ -65,16 +65,16 @@ in the structure pointed to by \fIbuf\fP.
 .sp
 .LP
 The \fIlstat\fP() function may fail if:
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 As a result of encountering a symbolic link in resolution of the \fIpath\fP
 argument, the length of the substituted pathname
 string exceeded {PATH_MAX}.
-.TP
+.TP 7
 .B EOVERFLOW
 One of the members is too large to store into the structure pointed
 to by the \fIbuf\fP argument.
@@ -115,7 +115,7 @@ fields if the named file is not a symbolic link. While
 the \fIst_uid\fP, \fIst_gid\fP, \fIst_atime\fP, \fIst_mtime\fP, and
 \fIst_ctime\fP members of the \fBstat\fP structure may
 apply to a symbolic link, they are not required to do so. No functions
-in IEEE\0Std\01003.1-2001 are required to maintain
+in IEEE\ Std\ 1003.1-2001 are required to maintain
 any of these time fields.
 .SH FUTURE DIRECTIONS
 .LP
@@ -123,7 +123,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfstat\fP() , \fIreadlink\fP() , \fIstat\fP()
-, \fIsymlink\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIsymlink\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<sys/stat.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

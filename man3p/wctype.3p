@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "wctype" P 2003 POSIX
+.TH "WCTYPE" P 2003 POSIX
 .\" wctype 
 .SH NAME
-wctype - define character class
+wctype \- define character class
 .SH SYNOPSIS
 .LP
 \fB#include <wctype.h>
@@ -13,19 +13,14 @@ wctype_t wctype(const char *\fP\fIproperty\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fIwctype\fP() function is defined for valid character class names
 as defined in the current locale. The \fIproperty\fP
 argument is a string identifying a generic character class for which
 codeset-specific type information is required. The following
 character class names shall be defined in all locales:
 .TS C
-center;l l l l l l l l l l l.
+center; lw(26) lw(26) lw(26).
+T{
 \fB
 .br
 alnum
@@ -36,7 +31,9 @@ blank
 .br
 cntrl
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 digit
 .br
@@ -46,7 +43,9 @@ lower
 .br
 print
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 punct
 .br
@@ -56,7 +55,8 @@ upper
 .br
 xdigit
 .br
-\fP 	
+\fP
+T}
 .TE
 .LP
 Additional character class names defined in the locale definition
@@ -95,7 +95,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIiswctype\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIiswctype\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<wctype.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

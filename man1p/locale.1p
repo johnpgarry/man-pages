@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "locale" P 2003 POSIX
+.TH "LOCALE" P 2003 POSIX
 .\" locale 
 .SH NAME
-locale - get locale-specific information
+locale \- get locale-specific information
 .SH SYNOPSIS
 .LP
 \fBlocale\fP \fB[\fP\fB-a| -m\fP\fB]\fP\fB
@@ -23,59 +23,55 @@ When \fIlocale\fP is invoked without any arguments, it shall summarize
 the current locale environment for each locale category
 as determined by the settings of the environment variables defined
 in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 7, Locale.
+IEEE\ Std\ 1003.1-2001, Chapter 7, Locale.
 .LP
 When invoked with operands, it shall write values that have been assigned
 to the keywords in the locale categories, as
 follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Specifying a keyword name shall select the named keyword and the category
 containing that keyword.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Specifying a category name shall select the named category and all
 keywords in that category.
-.in -5
-.RE
+.LP
 .SH OPTIONS
 .LP
 The \fIlocale\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-a\fP
 Write information about all available public locales. The available
 locales shall include \fBPOSIX\fP, representing the POSIX
 locale. The manner in which the implementation determines what other
 locales are available is implementation-defined.
-.TP
+.TP 7
 \fB-c\fP
 Write the names of selected locale categories; see the STDOUT section.
 The \fB-c\fP option increases readability when more
 than one category is selected (for example, via more than one keyword
 name or via a category name). It is valid both with and
 without the \fB-k\fP option.
-.TP
+.TP 7
 \fB-k\fP
 Write the names and values of selected keywords. The implementation
 may omit values for some keywords; see the OPERANDS
 section.
-.TP
+.TP 7
 \fB-m\fP
 Write names of available charmaps; see the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 6.1, Portable Character Set.
+of IEEE\ Std\ 1003.1-2001, Section 6.1, Portable Character Set.
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIname\fP
 The name of a locale category as defined in the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Chapter 7, Locale, the name of a keyword
+of IEEE\ Std\ 1003.1-2001, Chapter 7, Locale, the name of a keyword
 in a locale category, or the reserved name
 \fBcharmap\fP. The named category or keyword shall be selected for
 output. If a single \fIname\fP represents both a locale
@@ -95,36 +91,36 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIlocale\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
 .sp
 .LP
 The application shall ensure that the \fILANG ,\fP \fILC_* ,\fP and
-\fINLSPATH\fP  \0environment variables specify the current locale
+\fINLSPATH\fP  \ environment variables specify the current locale
 environment to be written out; they shall be used
 if the \fB-a\fP option is not specified.
 .SH ASYNCHRONOUS EVENTS
@@ -134,7 +130,7 @@ Default.
 .LP
 If \fIlocale\fP is invoked without any options or operands, the names
 and values of the \fILANG\fP and \fILC_*\fP environment
-variables described in this volume of IEEE\0Std\01003.1-2001 shall
+variables described in this volume of IEEE\ Std\ 1003.1-2001 shall
 be written to the standard output, one variable per
 line, with \fILANG\fP first, and each line using the following format.
 Only those variables set in the environment and not
@@ -150,7 +146,7 @@ overridden by \fILC_ALL\fP shall be written using this format:
 .LP
 The names of those \fILC_*\fP variables associated with locale categories
 defined in this volume of
-IEEE\0Std\01003.1-2001 that are not set in the environment or are
+IEEE\ Std\ 1003.1-2001 that are not set in the environment or are
 overridden by \fILC_ALL\fP shall be written in the
 following format:
 .sp
@@ -162,17 +158,17 @@ following format:
 .fi
 .RE
 .LP
-The <\fIimplied\0value\fP> shall be the name of the locale that has
+The <\fIimplied\ value\fP> shall be the name of the locale that has
 been selected for that category by the
 implementation, based on the values in \fILANG\fP and \fILC_ALL ,\fP
 as described in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 8, Environment Variables.
+IEEE\ Std\ 1003.1-2001, Chapter 8, Environment Variables.
 .LP
-The <\fIvalue\fP> and <\fIimplied\0value\fP> shown above shall be
+The <\fIvalue\fP> and <\fIimplied\ value\fP> shown above shall be
 properly quoted for possible later reentry
 to the shell. The <\fIvalue\fP> shall not be quoted using double-quotes
 (so that it can be distinguished by the user from
-the <\fIimplied\0value\fP> case, which always requires double-quotes).
+the <\fIimplied\ value\fP> case, which always requires double-quotes).
 .LP
 The \fILC_ALL\fP variable shall be written last, using the first format
 shown above. If it is not set, it shall be written
@@ -187,8 +183,7 @@ as:
 .RE
 .LP
 If any arguments are specified:
-.in +5
-.LP
+.IP " 1." 4
 If the \fB-a\fP option is specified, the names of all the public locales
 shall be written, each in the following format:
 .sp
@@ -199,9 +194,8 @@ shall be written, each in the following format:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the \fB-c\fP option is specified, the names of all selected categories
 shall be written, each in the following format:
 .sp
@@ -220,9 +214,8 @@ that category.
 If the \fB-c\fP option is not specified, the names of the categories
 shall not be written; only the keywords, as selected by
 the <\fIname\fP> operand, shall be written.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the \fB-k\fP option is specified, the names and values of selected
 keywords shall be written. If a value is non-numeric, it
 shall be written in the following format:
@@ -238,7 +231,7 @@ shall be written in the following format:
 If the keyword was \fBcharmap\fP, the name of the charmap (if any)
 that was specified via the \fIlocaledef\fP \fB-f\fP option when the
 locale was created shall be written, with the word
-\fBcharmap\fP as <\fIkeyword\0name\fP>.
+\fBcharmap\fP as <\fIkeyword\ name\fP>.
 .LP
 If a value is numeric, it shall be written in one of the following
 formats:
@@ -257,9 +250,9 @@ formats:
 .fi
 .RE
 .LP
-where the <\fIescape\0character\fP> is that identified by the \fBescape_char\fP
+where the <\fIescape\ character\fP> is that identified by the \fBescape_char\fP
 keyword in the current locale; see
-the Base Definitions volume of IEEE\0Std\01003.1-2001, Section 7.3,
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, Section 7.3,
 Locale
 Definition.
 .LP
@@ -267,9 +260,8 @@ Compound keyword values (list entries) shall be separated in the output
 by semicolons. When included in keyword values, the
 semicolon, the double-quote, the backslash, and any control character
 shall be preceded (escaped) with the escape character.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If the \fB-k\fP option is not specified, selected keyword values shall
 be written, each in the following format:
 .sp
@@ -284,9 +276,8 @@ be written, each in the following format:
 If the keyword was \fBcharmap\fP, the name of the charmap (if any)
 that was specified via the \fIlocaledef\fP \fB-f\fP option when the
 locale was created shall be written.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 If the \fB-m\fP option is specified, then a list of all available
 charmaps shall be written, each in the format:
 .sp
@@ -300,7 +291,7 @@ charmaps shall be written, each in the format:
 .LP
 where <\fIcharmap\fP> is in a format suitable for use as the option-argument
 to the \fIlocaledef\fP \fB-f\fP option.
-.in -5
+.LP
 .SH STDERR
 .LP
 The standard error shall be used only for diagnostic messages.
@@ -313,10 +304,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All the requested information was found and output successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -331,7 +322,7 @@ If the \fILANG\fP environment variable is not set or set to an empty
 value, or one of the \fILC_*\fP environment variables is
 set to an unrecognized value, the actual locales assumed (if any)
 are implementation-defined as described in the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Chapter 8, Environment Variables.
+volume of IEEE\ Std\ 1003.1-2001, Chapter 8, Environment Variables.
 .LP
 Implementations are not required to write out the actual values for
 keywords in the categories \fILC_CTYPE\fP and \fILC_COLLATE
@@ -370,7 +361,7 @@ LC_ALL=
 .RE
 .LP
 The order of presentation of the categories is not specified by this
-volume of IEEE\0Std\01003.1-2001.
+volume of IEEE\ Std\ 1003.1-2001.
 .LP
 The command:
 .sp
@@ -436,7 +427,7 @@ it.
 None.
 .SH SEE ALSO
 .LP
-\fIlocaledef\fP , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIlocaledef\fP , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 7.3, Locale Definition
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

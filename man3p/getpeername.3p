@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "getpeername" P 2003 POSIX
+.TH "GETPEERNAME" P 2003 POSIX
 .\" getpeername 
 .SH NAME
-getpeername - get the name of the peer socket
+getpeername \- get the name of the peer socket
 .SH SYNOPSIS
 .LP
 \fB#include <sys/socket.h>
@@ -11,7 +11,7 @@ getpeername - get the name of the peer socket
 int getpeername(int\fP \fIsocket\fP\fB, struct sockaddr *restrict\fP
 \fIaddress\fP\fB,
 .br
-\0\0\0\0\0\0 socklen_t *restrict\fP \fIaddress_len\fP\fB);
+\ \ \ \ \ \  socklen_t *restrict\fP \fIaddress_len\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
@@ -36,25 +36,25 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fIgetpeername\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIsocket\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B EINVAL
 The socket has been shut down.
-.TP
+.TP 7
 .B ENOTCONN
 The socket is not connected or otherwise has not had the peer pre-specified.
-.TP
+.TP 7
 .B ENOTSOCK
 The \fIsocket\fP argument does not refer to a socket.
-.TP
+.TP 7
 .B EOPNOTSUPP
 The operation is not supported for the socket protocol.
 .sp
 .LP
 The \fIgetpeername\fP() function may fail if:
-.TP
+.TP 7
 .B ENOBUFS
 Insufficient resources were available in the system to complete the
 call.
@@ -77,7 +77,7 @@ None.
 .LP
 \fIaccept\fP() , \fIbind\fP() , \fIgetsockname\fP() , \fIsocket\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/socket.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/socket.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

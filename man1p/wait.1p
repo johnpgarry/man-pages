@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "wait" P 2003 POSIX
+.TH "WAIT" P 2003 POSIX
 .\" wait 
 .SH NAME
-wait - await process completion
+wait \- await process completion
 .SH SYNOPSIS
 .LP
 \fBwait\fP \fB[\fP\fIpid\fP\fB...\fP\fB]\fP
@@ -35,17 +35,16 @@ None.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIpid\fP
 One of the following: 
-.in +5
-.LP
+.RS
+.IP " 1." 4
 The unsigned decimal integer process ID of a command, for which the
 utility is to wait for the termination.
-.in -5
-.in +5
 .LP
-A job control job ID (see the Base Definitions volume of IEEE\0Std\01003.1-2001,
+.IP " 2." 4
+A job control job ID (see the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 3.203, Job Control Job ID) that identifies a background process
 group to be
 waited for. The job control job ID notation is applicable only for
@@ -53,12 +52,15 @@ invocations of \fIwait\fP in the current shell execution
 environment; see \fIShell Execution Environment\fP . The exit status
 of \fIwait\fP shall
 be determined by the last command in the pipeline. 
-.TP
+.TP 7
 \fBNote:\fP
+.RS
 The job control job ID type of \fIpid\fP is only available on systems
 supporting the User Portability Utilities option.
+.RE
 .sp
-.in -5
+.LP
+.RE
 .sp
 .SH STDIN
 .LP
@@ -70,29 +72,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIwait\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -125,15 +127,15 @@ by other signals, but the exact value is unspecified. (See
 the \fIkill\fP \fB-l\fP option.) Otherwise, the \fIwait\fP utility
 shall exit with one of
 the following values:
-.TP
-\0\0\0\00
+.TP 7
+\ \ \ \ 0
 The \fIwait\fP utility was invoked with no operands and all process
 IDs known by the invoking shell have terminated.
-.TP
+.TP 7
 1-126
 The \fIwait\fP utility detected an error.
-.TP
-\0\0127
+.TP 7
+\ \ 127
 The command identified by the last \fIpid\fP operand specified is
 unknown.
 .sp
@@ -169,7 +171,7 @@ it. This could be a serious problem when a job that was expected to
 run for a long time actually terminated quickly with a syntax
 or initialization error because the exit status returned was usually
 zero if the requested process ID was not found. This volume of
-IEEE\0Std\01003.1-2001 requires the implementation to keep the status
+IEEE\ Std\ 1003.1-2001 requires the implementation to keep the status
 of terminated jobs available until the status is
 requested, so that scripts like:
 .sp
@@ -258,13 +260,13 @@ pipeline:
 .LP
 The description of \fIwait\fP does not refer to the \fIwaitpid\fP()
 function from the
-System Interfaces volume of IEEE\0Std\01003.1-2001 because that would
+System Interfaces volume of IEEE\ Std\ 1003.1-2001 because that would
 needlessly overspecify this interface. However, the
 wording means that \fIwait\fP is required to wait for an explicit
 process when it is given an argument so that the status
 information of other processes is not consumed. Historical implementations
 use the \fIwait\fP() function defined in the System Interfaces volume
-of IEEE\0Std\01003.1-2001 until
+of IEEE\ Std\ 1003.1-2001 until
 \fIwait\fP() returns the requested process ID or finds that the requested
 process does not
 exist. Because this means that a shell script could not reliably get
@@ -299,7 +301,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIShell Command Language\fP , \fIkill\fP() , \fIsh\fP , the System
-Interfaces volume of IEEE\0Std\01003.1-2001, \fIwait\fP(), \fIwaitpid\fP()
+Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIwait\fP(), \fIwaitpid\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

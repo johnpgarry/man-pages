@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "shm_open" P 2003 POSIX
+.TH "SHM_OPEN" P 2003 POSIX
 .\" shm_open 
 .SH NAME
-shm_open - open a shared memory object (\fBREALTIME\fP)
+shm_open \- open a shared memory object (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <sys/mman.h>
@@ -47,17 +47,17 @@ are according to the value of \fIoflag\fP. The
 flags defined in the \fI<fcntl.h>\fP header. Applications specify
 exactly one of the first two values (access
 modes) below in the value of \fIoflag\fP:
-.TP
+.TP 7
 O_RDONLY
 Open for read access only.
-.TP
+.TP 7
 O_RDWR
 Open for read or write access.
 .sp
 .LP
 Any combination of the remaining flags may be specified in the value
 of \fIoflag\fP:
-.TP
+.TP 7
 O_CREAT
 If the shared memory object exists, this flag has no effect, except
 as noted under O_EXCL below. Otherwise, the shared memory
@@ -72,7 +72,7 @@ bits are set, the effect is unspecified. The \fImode\fP
 argument does not affect whether the shared memory object is opened
 for reading, for writing, or for both. The shared memory object
 has a size of zero.
-.TP
+.TP 7
 O_EXCL
 If O_EXCL and O_CREAT are set, \fIshm_open\fP() fails if the shared
 memory object exists. The check for the existence of the
@@ -81,7 +81,7 @@ exist is atomic with respect to other processes executing
 \fIshm_open\fP() naming the same shared memory object with O_EXCL
 and O_CREAT set. If O_EXCL is set and O_CREAT is not set, the
 result is undefined.
-.TP
+.TP 7
 O_TRUNC
 If the shared memory object exists, and it is successfully opened
 O_RDWR, the object shall be truncated to zero length and the
@@ -103,36 +103,36 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIshm_open\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 The shared memory object exists and the permissions specified by \fIoflag\fP
 are denied, or the shared memory object does not
 exist and permission to create the shared memory object is denied,
 or O_TRUNC is specified and write permission is denied.
-.TP
+.TP 7
 .B EEXIST
 O_CREAT and O_EXCL are set and the named shared memory object already
 exists.
-.TP
+.TP 7
 .B EINTR
 The \fIshm_open\fP() operation was interrupted by a signal.
-.TP
+.TP 7
 .B EINVAL
 The \fIshm_open\fP() operation is not supported for the given name.
-.TP
+.TP 7
 .B EMFILE
 Too many file descriptors are currently in use by this process.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIname\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENFILE
 Too many shared memory objects are currently open in the system.
-.TP
+.TP 7
 .B ENOENT
 O_CREAT is not set and the named shared memory object does not exist.
-.TP
+.TP 7
 .B ENOSPC
 There is insufficient space for the creation of the new shared memory
 object.
@@ -194,7 +194,7 @@ memory hardware support in order to ensure that the memory is contiguous.
 The set of valid open flags to \fIshm_open\fP() was restricted to
 O_RDONLY, O_RDWR, O_CREAT, and O_TRUNC because these could be
 easily implemented on most memory mapping systems. This volume of
-IEEE\0Std\01003.1-2001 is silent on the results if the
+IEEE\ Std\ 1003.1-2001 is silent on the results if the
 implementation cannot supply the requested file access because of
 implementation-defined reasons, including hardware ones.
 .LP
@@ -230,7 +230,7 @@ of an appropriate directory. One way is from the
 environment via \fIgetenv\fP(). Another would be from a configuration
 file.
 .LP
-This volume of IEEE\0Std\01003.1-2001 specifies that memory objects
+This volume of IEEE\ Std\ 1003.1-2001 specifies that memory objects
 have initial contents of zero when created. This is
 consistent with current behavior for both files and newly allocated
 memory. For those implementations that use physical memory, it
@@ -249,7 +249,7 @@ None.
 \fIclose\fP() , \fIdup\fP() , \fIexec\fP() , \fIfcntl\fP() , \fImmap\fP()
 , \fIshmat\fP() , \fIshmctl\fP() , \fIshmdt\fP() , \fIshm_unlink\fP()
 , \fIumask\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<fcntl.h>\fP, \fI<sys/mman.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<fcntl.h>\fP, \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

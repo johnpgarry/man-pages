@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "remainder" P 2003 POSIX
+.TH "REMAINDER" P 2003 POSIX
 .\" remainder 
 .SH NAME
-remainder, remainderf, remainderl - remainder function
+remainder, remainderf, remainderl \- remainder function
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -16,12 +16,6 @@ long double remainderl(long double\fP \fIx\fP\fB, long double\fP \fIy\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 These functions shall return the floating-point remainder \fIr\fP=
 \fIx\fP- \fIny\fP when \fIy\fP is non-zero. The value
@@ -46,8 +40,8 @@ or an implementation-defined value shall be returned.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
-Domain\0Error
+.TP 7
+Domain\ Error
 The \fIx\fP argument is \(+-Inf, or the \fIy\fP argument is \(+-0
 and the other argument is non-NaN. 
 .LP
@@ -75,7 +69,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIabs\fP() , \fIdiv\fP() , \fIfeclearexcept\fP() , \fIfetestexcept\fP()
-, \fIldiv\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIldiv\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 4.18, Treatment of Error Conditions for Mathematical Functions,
 \fI<math.h>\fP
 .SH COPYRIGHT

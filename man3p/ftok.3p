@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "ftok" P 2003 POSIX
+.TH "FTOK" P 2003 POSIX
 .\" ftok 
 .SH NAME
-ftok - generate an IPC key
+ftok \- generate an IPC key
 .SH SYNOPSIS
 .LP
 \fB#include <sys/ipc.h>
@@ -39,32 +39,32 @@ Upon successful completion, \fIftok\fP() shall return a key. Otherwise,
 .SH ERRORS
 .LP
 The \fIftok\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied for a component of the path prefix.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIpath\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing file or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix is not a directory.
 .sp
 .LP
 The \fIftok\fP() function may fail if:
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 Pathname resolution of a symbolic link produced an intermediate result
 whose length exceeds {PATH_MAX}.
@@ -127,7 +127,7 @@ None.
 .SH SEE ALSO
 .LP
 \fImsgget\fP() , \fIsemget\fP() , \fIshmget\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<sys/ipc.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<sys/ipc.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

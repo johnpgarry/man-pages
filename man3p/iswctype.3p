@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "iswctype" P 2003 POSIX
+.TH "ISWCTYPE" P 2003 POSIX
 .\" iswctype 
 .SH NAME
-iswctype - test character for a specified class
+iswctype \- test character for a specified class
 .SH SYNOPSIS
 .LP
 \fB#include <wctype.h>
@@ -12,12 +12,6 @@ int iswctype(wint_t\fP \fIwc\fP\fB, wctype_t\fP \fIcharclass\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIiswctype\fP() function shall determine whether the wide-character
 code \fIwc\fP has the character class
@@ -33,7 +27,7 @@ by a subsequent call to \fIsetlocale\fP() that has affected category
 .LP
 The \fIiswctype\fP() function shall return non-zero (true) if and
 only if \fIwc\fP has the property described by
-\fIcharclass\fP.   \0If \fIcharclass\fP is 0, \fIiswctype\fP() shall
+\fIcharclass\fP.   \ If \fIcharclass\fP is 0, \fIiswctype\fP() shall
 return 0. 
 .SH ERRORS
 .LP
@@ -97,7 +91,7 @@ None.
 \fIiswalnum\fP() , \fIiswalpha\fP() , \fIiswcntrl\fP() , \fIiswdigit\fP()
 , \fIiswgraph\fP() , \fIiswlower\fP() , \fIiswprint\fP() , \fIiswpunct\fP()
 , \fIiswspace\fP() , \fIiswupper\fP() , \fIiswxdigit\fP() , \fIsetlocale\fP()
-, \fIwctype\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIwctype\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<wchar.h>\fP, \fI<wctype.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

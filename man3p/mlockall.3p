@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mlockall" P 2003 POSIX
+.TH "MLOCKALL" P 2003 POSIX
 .\" mlockall 
 .SH NAME
-mlockall, munlockall - lock/unlock the address space of a process
+mlockall, munlockall \- lock/unlock the address space of a process
 (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
@@ -26,11 +26,11 @@ mapped by the address space of the process, those that are
 mapped in the future, or both. The \fIflags\fP argument is constructed
 from the bitwise-inclusive OR of one or more of the
 following symbolic constants, defined in \fI<sys/mman.h>\fP:
-.TP
+.TP 7
 MCL_CURRENT
 Lock all of the pages currently mapped into the address space of the
 process.
-.TP
+.TP 7
 MCL_FUTURE
 Lock all of the pages that become mapped into the address space of
 the process in the future, when those mappings are
@@ -82,22 +82,22 @@ the error.
 .SH ERRORS
 .LP
 The \fImlockall\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 Some or all of the memory identified by the operation could not be
 locked when the call was made.
-.TP
+.TP 7
 .B EINVAL
 The \fIflags\fP argument is zero, or includes unimplemented flags.
 .sp
 .LP
 The \fImlockall\fP() function may fail if:
-.TP
+.TP 7
 .B ENOMEM
 Locking all of the pages currently mapped into the address space of
 the process would exceed an implementation-defined limit on
 the amount of memory that the process may lock.
-.TP
+.TP 7
 .B EPERM
 The calling process does not have the appropriate privilege to perform
 the requested operation.
@@ -120,7 +120,7 @@ None.
 .LP
 \fIexec\fP() , \fIexit\fP() , \fIfork\fP() , \fImlock\fP() , \fImunmap\fP()
 , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/mman.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,14 +1,14 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "join" P 2003 POSIX
+.TH "JOIN" P 2003 POSIX
 .\" join 
 .SH NAME
-join - relational database operator
+join \- relational database operator
 .SH SYNOPSIS
 .LP
 \fBjoin\fP \fB[\fP\fB-a\fP \fIfile_number\fP \fB| -v\fP \fIfile_number\fP\fB][\fP\fB-e\fP
 \fIstring\fP\fB][\fP\fB-o\fP \fIlist\fP\fB][\fP\fB-t\fP \fIchar\fP\fB]
 .br
-\fP \fB\0\0\0\0\0\0\fP \fB[\fP\fB-1\fP \fIfield\fP\fB][\fP\fB-2\fP
+\fP \fB\ \ \ \ \ \ \fP \fB[\fP\fB-1\fP \fIfield\fP\fB][\fP\fB-2\fP
 \fIfield\fP\fB]\fP
 \fIfile1 file2\fP
 .SH DESCRIPTION
@@ -50,38 +50,38 @@ the results are unspecified.
 .SH OPTIONS
 .LP
 The \fIjoin\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
-\fB-a\0\fP \fIfile_number\fP
+.TP 7
+\fB-a\ \fP \fIfile_number\fP
 .sp
 Produce a line for each unpairable line in file \fIfile_number\fP,
 where \fIfile_number\fP is 1 or 2, in addition to the default
 output. If both \fB-a\fP1 and \fB-a\fP2 are specified, all unpairable
 lines shall be output.
-.TP
-\fB-e\0\fP \fIstring\fP
+.TP 7
+\fB-e\ \fP \fIstring\fP
 Replace empty output fields in the list selected by \fB-o\fP with
 the string \fIstring\fP.
-.TP
-\fB-o\0\fP \fIlist\fP
+.TP 7
+\fB-o\ \fP \fIlist\fP
 Construct the output line to comprise the fields specified in \fIlist\fP,
 each element of which shall have one of the
 following two forms: 
-.in +5
-.LP
+.RS
+.IP " 1." 4
 \fIfile_number.field\fP, where \fIfile_number\fP is a file number
 and \fIfield\fP is a decimal integer field number
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 0 (zero), representing the join field
-.in -5
+.LP
+.RE
 .LP
 The elements of \fIlist\fP shall be either comma-separated or <blank>-separated,
 as specified in Guideline 8 of the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Section 12.2, Utility
+Definitions volume of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility
 Syntax
 Guidelines. The fields specified by \fIlist\fP shall be written for
 all selected output lines. Fields selected by \fIlist\fP
@@ -89,33 +89,33 @@ that do not appear in the input shall be treated as empty output fields.
 (See the \fB-e\fP option.) Only specifically requested
 fields shall be written. The application shall ensure that \fIlist\fP
 is a single command line argument.
-.TP
-\fB-t\0\fP \fIchar\fP
+.TP 7
+\fB-t\ \fP \fIchar\fP
 Use character \fIchar\fP as a separator, for both input and output.
 Every appearance of \fIchar\fP in a line shall be
 significant. When this option is specified, the collating sequence
 shall be the same as \fIsort\fP without the \fB-b\fP option.
-.TP
-\fB-v\0\fP \fIfile_number\fP
+.TP 7
+\fB-v\ \fP \fIfile_number\fP
 .sp
 Instead of the default output, produce a line only for each unpairable
 line in \fIfile_number\fP, where \fIfile_number\fP is 1 or
 2. If both \fB-v\fP1 and \fB-v\fP2 are specified, all unpairable lines
 shall be output.
-.TP
-\fB-1\0\fP \fIfield\fP
+.TP 7
+\fB-1\ \fP \fIfield\fP
 Join on the \fIfield\fPth field of file 1. Fields are decimal integers
 starting with 1.
-.TP
-\fB-2\0\fP \fIfield\fP
+.TP 7
+\fB-2\ \fP \fIfield\fP
 Join on the \fIfield\fPth field of file 2. Fields are decimal integers
 starting with 1.
 .sp
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
-\fIfile1\fP,\0\fIfile2\fP
+.TP 7
+\fIfile1\fP,\ \fIfile2\fP
 A pathname of a file to be joined. If either of the \fIfile1\fP or
 \fIfile2\fP operands is \fB'-'\fP , the standard input
 shall be used in its place.
@@ -132,34 +132,34 @@ The input files shall be text files.
 .LP
 The following environment variables shall affect the execution of
 \fIjoin\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale of the collating sequence \fIjoin\fP expects
 to have been used when the input files were sorted.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -182,7 +182,7 @@ specified, the output shall be:
 .fi
 .RE
 .LP
-If the join field is not the first field in a file, the <\fIother\0file\0fields\fP>
+If the join field is not the first field in a file, the <\fIother\ file\ fields\fP>
 for that file shall be:
 .sp
 .RS
@@ -222,10 +222,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All input files were output successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -390,7 +390,7 @@ of \fIgrep\fP.
 .LP
 Some historical implementations have been encountered where a blank
 line in one of the input files was considered to be the end
-of the file; the description in this volume of IEEE\0Std\01003.1-2001
+of the file; the description in this volume of IEEE\ Std\ 1003.1-2001
 does not cite this as an allowable case.
 .SH FUTURE DIRECTIONS
 .LP

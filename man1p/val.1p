@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "val" P 2003 POSIX
+.TH "VAL" P 2003 POSIX
 .\" val 
 .SH NAME
-val - validate SCCS files (\fBDEVELOPMENT\fP)
+val \- validate SCCS files (\fBDEVELOPMENT\fP)
 .SH SYNOPSIS
 .LP
 \fBval -
@@ -22,42 +22,42 @@ by the options.
 .SH OPTIONS
 .LP
 The \fIval\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
 except that the usage of the \fB'-'\fP
 operand is not strictly as intended by the guidelines (that is, reading
 options and operands from standard input).
 .LP
 The following options shall be supported:
-.TP
-\fB-m\0\fP \fIname\fP
+.TP 7
+\fB-m\ \fP \fIname\fP
 Specify a \fIname\fP, which is compared with the SCCS %\fBM\fP% keyword
 in \fIfile\fP; see \fIget\fP
 \&.
-.TP
-\fB-r\0\fP \fISID\fP
+.TP 7
+\fB-r\ \fP \fISID\fP
 Specify a \fISID\fP (SCCS Identification String), an SCCS delta number.
 A check shall be made to determine whether the
-\fISID\fP is ambiguous (for example, \fB-r\01\fP is ambiguous because
+\fISID\fP is ambiguous (for example, \fB-r\ 1\fP is ambiguous because
 it physically does not exist but implies 1.1, 1.2, and
-so on, which may exist) or invalid (for example, \fB-r\01.0\fP or
-\fB-r\01.1.0\fP are invalid because neither case can
+so on, which may exist) or invalid (for example, \fB-r\ 1.0\fP or
+\fB-r\ 1.1.0\fP are invalid because neither case can
 exist as a valid delta number). If the \fISID\fP is valid and not
 ambiguous, a check shall be made to determine whether it
 actually exists.
-.TP
+.TP 7
 \fB-s\fP
 Silence the diagnostic message normally written to standard output
 for any error that is detected while processing each named
 file on a given command line.
-.TP
-\fB-y\0\fP \fItype\fP
+.TP 7
+\fB-y\ \fP \fItype\fP
 Specify a \fItype\fP, which shall be compared with the SCCS %\fBY\fP%
 keyword in \fIfile\fP; see \fIget\fP .
 .sp
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of an existing SCCS file. If exactly one \fIfile\fP operand
 appears, and it is \fB'-'\fP , the standard input
@@ -77,29 +77,29 @@ Any SCCS files processed shall be files of an unspecified format.
 .LP
 The following environment variables shall affect the execution of
 \fIval\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error,
 and informative messages written to standard output.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -110,14 +110,12 @@ Default.
 .SH STDOUT
 .LP
 The standard output shall consist of informative messages about either:
-.in +5
-.LP
+.IP " 1." 4
 Each file processed
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Each command line read from standard input
-.in -5
+.LP
 .LP
 If the standard input is not used, for each \fIfile\fP operand yielding
 a discrepancy, the output line shall have the following
@@ -157,15 +155,15 @@ The 8-bit code returned by \fIval\fP shall be a disjunction of the
 possible errors; that is, it can be interpreted as a bit
 string where set bits are interpreted as follows:
 .TS C
-center;l l l l l l l l.
-0x80 	 = 	 Missing file argument. 	
-0x40 	 = 	 Unknown or duplicate option. 	
-0x20 	 = 	 Corrupted SCCS file. 	
-0x10 	 = 	 Cannot open file or file not SCCS. 	
-0x08 	 = 	 \fISID\fP is invalid or ambiguous. 	
-0x04 	 = 	 \fISID\fP does not exist. 	
-0x02 	 = 	 %\fBY\fP%, \fB-y\fP mismatch. 	
-0x01 	 = 	 %\fBM\fP%, \fB-m\fP mismatch. 	
+center; l l l.
+0x80	=	Missing file argument.
+0x40	=	Unknown or duplicate option.
+0x20	=	Corrupted SCCS file.
+0x10	=	Cannot open file or file not SCCS.
+0x08	=	\fISID\fP is invalid or ambiguous.
+0x04	=	\fISID\fP does not exist.
+0x02	=	%\fBY\fP%, \fB-y\fP mismatch.
+0x01	=	%\fBM\fP%, \fB-m\fP mismatch.
 .TE
 .LP
 Note that \fIval\fP can process two or more files on a given command

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fchown" P 2003 POSIX
+.TH "FCHOWN" P 2003 POSIX
 .\" fchown 
 .SH NAME
-fchown - change owner and group of a file
+fchown \- change owner and group of a file
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -26,30 +26,30 @@ error.
 .SH ERRORS
 .LP
 The \fIfchown\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not an open file descriptor.
-.TP
+.TP 7
 .B EPERM
 The effective user ID does not match the owner of the file or the
 process does not have appropriate privilege and
 _POSIX_CHOWN_RESTRICTED indicates that such privilege is required.
-.TP
+.TP 7
 .B EROFS
 The file referred to by \fIfildes\fP resides on a read-only file system.
 .sp
 .LP
 The \fIfchown\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The owner or group ID is not a value supported by the implementation.
 The \fIfildes\fP argument refers to a pipe or socket
-\0or an \fIfattach\fP()-ed STREAM  \0and the implementation disallows
+\ or an \fIfattach\fP()-ed STREAM  \ and the implementation disallows
 execution of \fIfchown\fP() on a pipe.
-.TP
+.TP 7
 .B EIO
 A physical I/O error has occurred.
-.TP
+.TP 7
 .B EINTR
 The \fIfchown\fP() function was interrupted by a signal which was
 caught.
@@ -101,7 +101,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIchown\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIchown\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

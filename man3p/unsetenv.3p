@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "unsetenv" P 2003 POSIX
+.TH "UNSETENV" P 2003 POSIX
 .\" unsetenv 
 .SH NAME
-unsetenv - remove an environment variable
+unsetenv \- remove an environment variable
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -38,7 +38,7 @@ the environment shall be unchanged.
 .SH ERRORS
 .LP
 The \fIunsetenv\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIname\fP argument is a null pointer, points to an empty string,
 or points to a string containing an \fB'='\fP
@@ -61,7 +61,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIgetenv\fP() , \fIsetenv\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP, \fI<sys/types.h>\fP, \fI<unistd.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP, \fI<sys/types.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

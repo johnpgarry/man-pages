@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "dlsym" P 2003 POSIX
+.TH "DLSYM" P 2003 POSIX
 .\" dlsym 
 .SH NAME
-dlsym - obtain the address of a symbol from a dlopen object
+dlsym \- obtain the address of a symbol from a dlopen object
 .SH SYNOPSIS
 .LP
 \fB#include <dlfcn.h>
@@ -74,12 +74,12 @@ iptr = (int *)dlsym(handle, "my_object");
 .LP
 Special purpose values for \fIhandle\fP are reserved for future use.
 These values and their meanings are:
-.TP
+.TP 7
 RTLD_DEFAULT
 The symbol lookup happens in the normal global scope; that is, a search
 for a symbol using this handle would find the same
 definition as a direct use of this symbol in the program code.
-.TP
+.TP 7
 RTLD_NEXT
 Specifies the next object after this one that defines \fIname\fP.
 \fIThis one\fP refers to the object containing the
@@ -104,15 +104,15 @@ the statistics gathering function.
 .sp
 .SH RATIONALE
 .LP
-The ISO\0C standard does not require that pointers to functions can
+The ISO\ C standard does not require that pointers to functions can
 be cast back and forth to pointers to data. Indeed, the
-ISO\0C standard does not require that an object of type \fBvoid *\fP
+ISO\ C standard does not require that an object of type \fBvoid *\fP
 can hold a pointer to a function. Implementations
 supporting the XSI extension, however, do require that an object of
 type \fBvoid *\fP can hold a pointer to a function. The result
 of converting a pointer to a function into a pointer to another data
 type (except \fBvoid *\fP) is still undefined, however. Note
-that compilers conforming to the ISO\0C standard are required to generate
+that compilers conforming to the ISO\ C standard are required to generate
 a warning if a conversion from a \fBvoid *\fP
 pointer to a function pointer is attempted as in:
 .sp
@@ -135,7 +135,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIdlclose\fP() , \fIdlerror\fP() , \fIdlopen\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<dlfcn.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<dlfcn.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

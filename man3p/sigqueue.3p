@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sigqueue" P 2003 POSIX
+.TH "SIGQUEUE" P 2003 POSIX
 .\" sigqueue 
 .SH NAME
-sigqueue - queue a signal to a process (\fBREALTIME\fP)
+sigqueue \- queue a signal to a process (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -53,20 +53,20 @@ of zero. Otherwise, the function shall return a value of -1 and set
 .SH ERRORS
 .LP
 The \fIsigqueue\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 No resources are available to queue the signal. The process has already
 queued {SIGQUEUE_MAX} signals that are still pending at
 the receiver(s), or a system-wide resource limit has been exceeded.
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIsigno\fP argument is an invalid or unsupported
 signal number.
-.TP
+.TP 7
 .B EPERM
 The process does not have the appropriate privilege to send the signal
 to the receiving process.
-.TP
+.TP 7
 .B ESRCH
 The process \fIpid\fP does not exist.
 .sp
@@ -110,13 +110,13 @@ The \fIsigqueue\fP() function can fail if the system has insufficient
 resources to queue the signal. An explicit limit on the
 number of queued signals that a process could send was introduced.
 While the limit is "per-sender", this volume of
-IEEE\0Std\01003.1-2001 does not specify that the resources be part
+IEEE\ Std\ 1003.1-2001 does not specify that the resources be part
 of the state of the sender. This would require either
 that the sender be maintained after exit until all signals that it
 had sent to other processes were handled or that all such
 signals that had not yet been acted upon be removed from the queue(s)
 of the receivers. This volume of
-IEEE\0Std\01003.1-2001 does not preclude this behavior, but an implementation
+IEEE\ Std\ 1003.1-2001 does not preclude this behavior, but an implementation
 that allocated queuing resources from a
 system-wide pool (with per-sender limits) and that leaves queued signals
 pending after the sender exits is also permitted.
@@ -126,7 +126,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIRealtime Signals\fP , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<signal.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

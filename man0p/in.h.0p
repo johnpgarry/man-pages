@@ -2,18 +2,18 @@
 .TH "<netinet/in.h>" P 2003 POSIX
 .\" <netinet/in.h> 
 .SH NAME
-netinet/in.h - Internet address family
+netinet/in.h \- Internet address family
 .SH SYNOPSIS
 .LP
 \fB#include <netinet/in.h>\fP
 .SH DESCRIPTION
 .LP
 The \fI<netinet/in.h>\fP header shall define the following types:
-.TP
+.TP 7
 \fBin_port_t\fP
 Equivalent to the type \fBuint16_t\fP as defined in \fI<inttypes.h>\fP
 \&.
-.TP
+.TP 7
 \fBin_addr_t\fP
 Equivalent to the type \fBuint32_t\fP as defined in \fI<inttypes.h>\fP
 \&.
@@ -151,22 +151,22 @@ unsigned         ipv6mr_interface \fP Interface index. \fB
 The \fI<netinet/in.h>\fP header shall define the following macros
 for use as values of the \fIlevel\fP argument of \fIgetsockopt\fP()
 and \fIsetsockopt\fP():
-.TP
+.TP 7
 IPPROTO_IP
 Internet protocol.
-.TP
+.TP 7
 IPPROTO_IPV6
 Internet Protocol Version 6. 
-.TP
+.TP 7
 IPPROTO_ICMP
 Control message protocol.
-.TP
+.TP 7
 IPPROTO_RAW
 Raw IP Packets Protocol. 
-.TP
+.TP 7
 IPPROTO_TCP
 Transmission control protocol.
-.TP
+.TP 7
 IPPROTO_UDP
 User datagram protocol.
 .sp
@@ -174,10 +174,10 @@ User datagram protocol.
 The \fI<netinet/in.h>\fP header shall define the following macros
 for use as destination addresses for \fIconnect\fP(), \fIsendmsg\fP(),
 and \fIsendto\fP():
-.TP
+.TP 7
 INADDR_ANY
 IPv4 local host address.
-.TP
+.TP 7
 INADDR_BROADCAST
 IPv4 broadcast address.
 .sp
@@ -185,7 +185,7 @@ IPv4 broadcast address.
 The \fI<netinet/in.h>\fP header shall define the following macro to
 help applications declare buffers of the proper size
 to store IPv4 addresses in string form:
-.TP
+.TP 7
 INET_ADDRSTRLEN
 16. Length of the string form for IP.
 .sp
@@ -199,7 +199,7 @@ available as defined in \fI<arpa/inet.h>\fP . Inclusion of the
 The \fI<netinet/in.h>\fP header shall define the following macro to
 help applications declare buffers of the proper
 size to store IPv6 addresses in string form:
-.TP
+.TP 7
 INET6_ADDRSTRLEN
 46. Length of the string form for IPv6.
 .sp
@@ -208,27 +208,27 @@ The \fI<netinet/in.h>\fP header shall define the following macros,
 with distinct integer values, for use in the
 \fIoption_name\fP argument in the \fIgetsockopt\fP() or \fIsetsockopt\fP()
 functions at protocol level IPPROTO_IPV6:
-.TP
+.TP 7
 IPV6_JOIN_GROUP
 Join a multicast group.
-.TP
+.TP 7
 IPV6_LEAVE_GROUP
 Quit a multicast group.
-.TP
+.TP 7
 IPV6_MULTICAST_HOPS
 .sp
 Multicast hop limit.
-.TP
+.TP 7
 IPV6_MULTICAST_IF
 Interface to use for outgoing multicast packets.
-.TP
+.TP 7
 IPV6_MULTICAST_LOOP
 .sp
 Multicast packets are delivered back to the local application.
-.TP
+.TP 7
 IPV6_UNICAST_HOPS
 Unicast hop limit.
-.TP
+.TP 7
 IPV6_V6ONLY
 Restrict AF_INET6 socket to IPv6 communications only.
 .sp
@@ -237,51 +237,51 @@ The \fI<netinet/in.h>\fP header shall define the following macros
 that test for special IPv6 addresses. Each macro is of
 type \fBint\fP and takes a single argument of type \fBconst struct
 in6_addr *\fP:
-.TP
+.TP 7
 IN6_IS_ADDR_UNSPECIFIED
 .sp
 Unspecified address.
-.TP
+.TP 7
 IN6_IS_ADDR_LOOPBACK
 .sp
 Loopback address.
-.TP
+.TP 7
 IN6_IS_ADDR_MULTICAST
 .sp
 Multicast address.
-.TP
+.TP 7
 IN6_IS_ADDR_LINKLOCAL
 .sp
 Unicast link-local address.
-.TP
+.TP 7
 IN6_IS_ADDR_SITELOCAL
 .sp
 Unicast site-local address.
-.TP
+.TP 7
 IN6_IS_ADDR_V4MAPPED
 .sp
 IPv4 mapped address.
-.TP
+.TP 7
 IN6_IS_ADDR_V4COMPAT
 .sp
 IPv4-compatible address.
-.TP
+.TP 7
 IN6_IS_ADDR_MC_NODELOCAL
 .sp
 Multicast node-local address.
-.TP
+.TP 7
 IN6_IS_ADDR_MC_LINKLOCAL
 .sp
 Multicast link-local address.
-.TP
+.TP 7
 IN6_IS_ADDR_MC_SITELOCAL
 .sp
 Multicast site-local address.
-.TP
+.TP 7
 IN6_IS_ADDR_MC_ORGLOCAL
 .sp
 Multicast organization-local address.
-.TP
+.TP 7
 IN6_IS_ADDR_MC_GLOBAL
 .sp
 Multicast global address. 
@@ -300,7 +300,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIHost and Network Byte Orders\fP , \fI<arpa/inet.h>\fP , \fI<inttypes.h>\fP
-, \fI<sys/socket.h>\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+, \fI<sys/socket.h>\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIconnect\fP(), \fIgetsockopt\fP(), \fIhtonl\fP(), \fIhtons\fP(),
 \fIntohl\fP(), \fIntohs\fP(), \fIsendmsg\fP(), \fIsendto\fP(), \fIsetsockopt\fP()
 .SH COPYRIGHT

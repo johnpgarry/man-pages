@@ -1,36 +1,32 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pr" P 2003 POSIX
+.TH "PR" P 2003 POSIX
 .\" pr 
 .SH NAME
-pr - print files
+pr \- print files
 .SH SYNOPSIS
 .LP
 \fBpr\fP
 \fB[\fP\fB+\fP\fIpage\fP\fB][\fP\fB-\fP\fIcolumn\fP\fB][\fP\fB-adFmrt\fP\fB][\fP\fB-e\fP\fB[\fP\fIchar\fP\fB][\fP\fI
 gap\fP\fB]][\fP\fB-h\fP \fIheader\fP\fB][\fP\fB-i\fP\fB[\fP\fIchar\fP\fB][\fP\fIgap\fP\fB]]
 .sp
-\fP \fB\0\0\0\0\0\0\fP \fB[\fP\fB-l\fP
+\fP \fB\ \ \ \ \ \ \fP \fB[\fP\fB-l\fP
 \fIlines\fP\fB][\fP\fB-n\fP\fB[\fP\fIchar\fP\fB][\fP\fIwidth\fP\fB]][\fP\fB-o\fP
 \fIoffset\fP\fB][\fP\fB-s\fP\fB[\fP\fIchar\fP\fB]][\fP\fB-w\fP \fIwidth\fP\fB][\fP\fB-fp\fP\fB]
 .br
-\fP \fB\0\0\0\0\0\0\fP \fB[\fP\fIfile\fP\fB...\fP\fB]\fP
+\fP \fB\ \ \ \ \ \ \fP \fB[\fP\fIfile\fP\fB...\fP\fB]\fP
 .SH DESCRIPTION
 .LP
 The \fIpr\fP utility is a printing and pagination filter. If multiple
 input files are specified, each shall be read, formatted,
 and written to standard output. By default, the input shall be separated
 into 66-line pages, each with:
-.RS
-.in +5
-.LP
+.IP " *" 3
 A 5-line header that includes the page number, date, time, and the
 pathname of the file
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A 5-line trailer consisting of blank lines
-.in -5
-.RE
+.LP
 .LP
 If standard output is associated with a terminal, diagnostic messages
 shall be deferred until the \fIpr\fP utility has
@@ -43,7 +39,7 @@ shall be separated with at least one <blank>.
 .SH OPTIONS
 .LP
 The \fIpr\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
 except that: the \fIpage\fP option has a
 \fB'+'\fP delimiter; \fIpage\fP and \fIcolumn\fP can be multi-digit
 numbers; some of the option-arguments are optional; and
@@ -58,10 +54,10 @@ The following options shall be supported. In the following option
 descriptions, \fIcolumn\fP, \fIlines\fP, \fIoffset\fP,
 \fIpage\fP, and \fIwidth\fP are positive decimal integers; \fIgap\fP
 is a non-negative decimal integer.
-.TP
+.TP 7
 \fB+\fP\fIpage\fP
 Begin output at page number \fIpage\fP of the formatted input.
-.TP
+.TP 7
 \fB-\fP\fIcolumn\fP
 Produce multi-column output that is arranged in \fIcolumn\fP columns
 (the default shall be 1) and is written down each column
@@ -72,18 +68,18 @@ Whether or not text columns are produced with identical
 vertical lengths is unspecified, but a text column shall never exceed
 the length of the page (see the \fB-l\fP option). When used
 with \fB-t\fP, use the minimum number of lines to write the output.
-.TP
+.TP 7
 \fB-a\fP
 Modify the effect of the \fB-\fP \fIcolumn\fP option so that the columns
 are filled across the page in a round-robin order
 (for example, when \fIcolumn\fP is 2, the first input line heads column
 1, the second heads column 2, the third is the second line
 in column 1, and so on).
-.TP
+.TP 7
 \fB-d\fP
 Produce output that is double-spaced; append an extra <newline> following
 every <newline> found in the input.
-.TP
+.TP 7
 \fB-e[\fP\fIchar\fP\fB][\fP\fIgap\fP\fB]\fP
 .sp
 Expand each input <tab> to the next greater column position specified
@@ -93,21 +89,21 @@ to 8. All <tab>s in the input shall be expanded
 into the appropriate number of <space>s. If any non-digit character,
 \fIchar\fP, is specified, it shall be used as the input
 <tab>.
-.TP
+.TP 7
 \fB-f\fP
 Use a <form-feed> for new pages, instead of the default behavior that
 uses a sequence of <newline>s. Pause before
 beginning the first page if the standard output is associated with
 a terminal. 
-.TP
+.TP 7
 \fB-F\fP
 Use a <form-feed> for new pages, instead of the default behavior that
 uses a sequence of <newline>s.
-.TP
-\fB-h\0\fP \fIheader\fP
+.TP 7
+\fB-h\ \fP \fIheader\fP
 Use the string \fIheader\fP to replace the contents of the \fIfile\fP
 operand in the page header.
-.TP
+.TP 7
 \fB-i[\fP\fIchar\fP\fB][\fP\fIgap\fP\fB]\fP
 In output, replace multiple <space>s with <tab>s wherever two or more
 adjacent <space>s reach column
@@ -116,14 +112,14 @@ If \fIgap\fP is zero or is omitted, default tab settings at
 every eighth column position shall be assumed. If any non-digit character,
 \fIchar\fP, is specified, it shall be used as the
 output <tab>.
-.TP
-\fB-l\0\fP \fIlines\fP
+.TP 7
+\fB-l\ \fP \fIlines\fP
 Override the 66-line default and reset the page length to \fIlines\fP.
 If \fIlines\fP is not greater than the sum of both the
 header and trailer depths (in lines), the \fIpr\fP utility shall suppress
 both the header and trailer, as if the \fB-t\fP option
 were in effect.
-.TP
+.TP 7
 \fB-m\fP
 Merge files. Standard output shall be formatted so the \fIpr\fP utility
 writes one line from each file specified by a
@@ -131,7 +127,7 @@ writes one line from each file specified by a
 widths, in terms of the number of column positions.
 Implementations shall support merging of at least nine \fIfile\fP
 operands.
-.TP
+.TP 7
 \fB-n[\fP\fIchar\fP\fB][\fP\fIwidth\fP\fB]\fP
 .sp
 Provide \fIwidth\fP-digit line numbering (default for \fIwidth\fP
@@ -141,32 +137,32 @@ of \fB-m\fP output. If \fIchar\fP (any non-digit character)
 is given, it shall be appended to the line number to separate it from
 whatever follows (default for \fIchar\fP is a
 <tab>).
-.TP
-\fB-o\0\fP \fIoffset\fP
+.TP 7
+\fB-o\ \fP \fIoffset\fP
 Each line of output shall be preceded by offset <space>s. If the \fB-o\fP
 option is not specified, the default offset
 shall be zero. The space taken is in addition to the output line width
 (see the \fB-w\fP option below).
-.TP
+.TP 7
 \fB-p\fP
 Pause before beginning each page if the standard output is directed
 to a terminal ( \fIpr\fP shall write an <alert> to
 standard error and wait for a <carriage-return> to be read on \fB/dev/tty\fP).
-.TP
+.TP 7
 \fB-r\fP
 Write no diagnostic reports on failure to open files.
-.TP
+.TP 7
 \fB-s[\fP\fIchar\fP\fB]\fP
 Separate text columns by the single character \fIchar\fP instead of
 by the appropriate number of <space>s (default for
 \fIchar\fP shall be <tab>).
-.TP
+.TP 7
 \fB-t\fP
 Write neither the five-line identifying header nor the five-line trailer
 usually supplied for each page. Quit writing after the
 last line of each file without spacing to the end of the page.
-.TP
-\fB-w\0\fP \fIwidth\fP
+.TP 7
+\fB-w\ \fP \fIwidth\fP
 Set the width of the line to \fIwidth\fP column positions for multiple
 text-column output only. If the \fB-w\fP option is not
 specified and the \fB-s\fP option is not specified, the default width
@@ -178,7 +174,7 @@ For single column output, input lines shall not be truncated.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file to be written. If no \fIfile\fP operands are
 specified, or if a \fIfile\fP operand is \fB'-'\fP , the
@@ -199,19 +195,19 @@ the \fB-p\fP option.
 .LP
 The following environment variables shall affect the execution of
 \fIpr\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
@@ -220,20 +216,20 @@ which characters are defined as printable (character class
 \fBprint\fP). Non-printable characters are still written to standard
 output, but are not counted for the purpose for column-width
 and line-length calculations.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fILC_TIME\fP
 Determine the format of the date and time for use in writing header
 lines.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone used to calculate date and time strings written
 in header lines. If \fITZ\fP is unset or null, an
@@ -249,7 +245,7 @@ before terminating.
 The \fIpr\fP utility output shall be a paginated version of the original
 file (or files). This pagination shall be accomplished
 using either <form-feed>s or a sequence of <newline>s, as controlled
-by the \fB-F\fP   \0or \fB-f\fP
+by the \fB-F\fP   \ or \fB-f\fP
 option. Page headers shall be generated unless the \fB-t\fP option
 is specified. The page headers shall be of the form:
 .sp
@@ -261,7 +257,7 @@ is specified. The page headers shall be of the form:
 .fi
 .RE
 .LP
-In the POSIX locale, the <\fIoutput\0of\0date\fP> field, representing
+In the POSIX locale, the <\fIoutput\ of\ date\fP> field, representing
 the date and time of last modification of
 the input file (or the current date and time if the input file is
 standard input), shall be equivalent to the output of the
@@ -302,10 +298,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -318,8 +314,7 @@ Default.
 .LP
 None.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 Print a numbered list of all files in the current directory:
 .sp
 .RS
@@ -329,9 +324,8 @@ Print a numbered list of all files in the current directory:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Print \fBfile1\fP and \fBfile2\fP as a double-spaced, three-column
 listing headed by "file list'':
 .sp
@@ -342,9 +336,8 @@ listing headed by "file list'':
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Write \fBfile1\fP on \fBfile2\fP, expanding tabs to columns 10, 19,
 28, ...:
 .sp
@@ -355,7 +348,7 @@ Write \fBfile1\fP on \fBfile2\fP, expanding tabs to columns 10, 19,
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 This utility is one of those that does not follow the Utility Syntax
@@ -363,7 +356,7 @@ Guidelines because of its historical origins. The standard
 developers could have added new options that obeyed the guidelines
 (and marked the old options obsolescent) or devised an entirely
 new utility; there are examples of both actions in this volume of
-IEEE\0Std\01003.1-2001. Because of its widespread use by
+IEEE\ Std\ 1003.1-2001. Because of its widespread use by
 historical applications, the standard developers decided to exempt
 this version of \fIpr\fP from many of the guidelines.
 .LP
@@ -396,11 +389,11 @@ concerning historical practice and as a result the \fB-F\fP
 option was added. XSI-conformant systems support the System V historical
 actions for the \fB-f\fP option.
 .LP
-The <\fIoutput\0of\0date\fP> field in the \fB-l\fP format is specified
+The <\fIoutput\ of\ date\fP> field in the \fB-l\fP format is specified
 only for the POSIX locale. As noted, the
 format can be different in other locales. No mechanism for defining
 this is present in this volume of
-IEEE\0Std\01003.1-2001, as the appropriate vehicle is a message catalog;
+IEEE\ Std\ 1003.1-2001, as the appropriate vehicle is a message catalog;
 that is, the format should be specified as a
 "message".
 .SH FUTURE DIRECTIONS

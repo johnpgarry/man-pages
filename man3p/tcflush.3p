@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tcflush" P 2003 POSIX
+.TH "TCFLUSH" P 2003 POSIX
 .\" tcflush 
 .SH NAME
-tcflush - flush non-transmitted output data, non-read input data,
+tcflush \- flush non-transmitted output data, non-read input data,
 or both
 .SH SYNOPSIS
 .LP
@@ -19,23 +19,18 @@ to the object referred to by \fIfildes\fP (an open file
 descriptor associated with a terminal) but not transmitted, or data
 received but not read, depending on the value of
 \fIqueue_selector\fP:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If \fIqueue_selector\fP is TCIFLUSH, it shall flush data received
 but not read.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIqueue_selector\fP is TCOFLUSH, it shall flush data written but
 not transmitted.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIqueue_selector\fP is TCIOFLUSH, it shall flush both data received
 but not read and data written but not transmitted.
-.in -5
-.RE
+.LP
 .LP
 Attempts to use \fItcflush\fP() from a process which is a member of
 a background process group on a \fIfildes\fP associated
@@ -50,19 +45,19 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fItcflush\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B EINVAL
 The \fIqueue_selector\fP argument is not a supported value.
-.TP
+.TP 7
 .B ENOTTY
 The file associated with \fIfildes\fP is not a terminal.
 .sp
 .LP
 The \fItcflush\fP() function may fail if:
-.TP
+.TP 7
 .B EIO
 The process group of the writing process is orphaned, and the writing
 process is not ignoring or blocking SIGTTOU.
@@ -83,7 +78,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fItcdrain\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fItcdrain\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Chapter 11, General Terminal Interface, \fI<termios.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

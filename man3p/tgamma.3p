@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tgamma" P 2003 POSIX
+.TH "TGAMMA" P 2003 POSIX
 .\" tgamma 
 .SH NAME
-tgamma, tgammaf, tgammal - compute gamma() function
+tgamma, tgammaf, tgammal \- compute gamma() function
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -16,12 +16,6 @@ long double tgammal(long double\fP \fIx\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 These functions shall compute the \fIgamma\fP() function of \fIx\fP.
 .LP
@@ -61,17 +55,17 @@ returned.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
-Domain\0Error
-The value of \fIx\fP is a negative integer,   \0or \fIx\fP is -Inf.
+.TP 7
+Domain\ Error
+The value of \fIx\fP is a negative integer,   \ or \fIx\fP is -Inf.
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
 then \fIerrno\fP shall be set to [EDOM]. If the
 integer expression (math_errhandling & MATH_ERREXCEPT) is non-zero,
 then the invalid floating-point exception shall be
 raised.
-.TP
-Pole\0Error
+.TP 7
+Pole\ Error
 The value of \fIx\fP is zero. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -80,8 +74,8 @@ integer expression (math_errhandling & MATH_ERREXCEPT) is non-zero,
 then the divide-by-zero floating-point exception shall be
 raised. 
 .br
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The value overflows. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -97,7 +91,7 @@ raised.
 None.
 .SH APPLICATION USAGE
 .LP
-For IEEE\0Std\0754-1985 \fBdouble\fP, overflow happens when 0 < \fIx\fP
+For IEEE\ Std\ 754-1985 \fBdouble\fP, overflow happens when 0 < \fIx\fP
 < 1/DBL_MAX, and 171.7 <
 \fIx\fP.
 .LP
@@ -116,7 +110,7 @@ may be changed to a pole error and a return value of
 .SH SEE ALSO
 .LP
 \fIfeclearexcept\fP() , \fIfetestexcept\fP() , \fIlgamma\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, Section 4.18, Treatment
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, Section 4.18, Treatment
 of Error Conditions for Mathematical Functions, \fI<math.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

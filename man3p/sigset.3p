@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sighold" P 2003 POSIX
+.TH "SIGHOLD" P 2003 POSIX
 .\" sighold 
 .SH NAME
-sighold, sigignore, sigpause, sigrelse, sigset - signal management
+sighold, sigignore, sigpause, sigrelse, sigset \- signal management
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -85,13 +85,13 @@ to indicate the error.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIsig\fP argument is an illegal signal number.
 .sp
 .LP
 The \fIsigset\fP() and \fIsigignore\fP() functions shall fail if:
-.TP
+.TP 7
 .B EINVAL
 An attempt is made to catch a signal that cannot be caught, or to
 ignore a signal that cannot be ignored.
@@ -127,7 +127,7 @@ None.
 \fISignal Concepts\fP , \fIexec\fP() , \fIpause\fP() , \fIsigaction\fP()
 , \fIsignal\fP() , \fIsigsuspend\fP() , \fIwaitid\fP() , the Base
 Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<signal.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

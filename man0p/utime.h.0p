@@ -2,7 +2,7 @@
 .TH "<utime.h>" P 2003 POSIX
 .\" <utime.h> 
 .SH NAME
-utime.h - access and modification times structure
+utime.h \- access and modification times structure
 .SH SYNOPSIS
 .LP
 \fB#include <utime.h>\fP
@@ -48,7 +48,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fI<sys/types.h>\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+\fI<sys/types.h>\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIutime\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

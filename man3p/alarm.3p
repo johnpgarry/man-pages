@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "alarm" P 2003 POSIX
+.TH "ALARM" P 2003 POSIX
 .\" alarm 
 .SH NAME
-alarm - schedule an alarm signal
+alarm \- schedule an alarm signal
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -27,8 +27,7 @@ been generated, the call shall result in rescheduling the time at
 which the SIGALRM signal is generated.
 .LP
 Interactions between \fIalarm\fP() and any of \fIsetitimer\fP(), \fIualarm\fP(),
-or \fIusleep\fP() are unspecified. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+or \fIusleep\fP() are unspecified. 
 .SH RETURN VALUE
 .LP
 If there is a previous \fIalarm\fP() request with time remaining,
@@ -56,7 +55,7 @@ Application writers should note that the type of the argument \fIseconds\fP
 and the return value of \fIalarm\fP() is
 \fBunsigned\fP. That means that a Strictly Conforming POSIX System
 Interfaces Application cannot pass a value greater than the
-minimum guaranteed value for {UINT_MAX}, which the ISO\0C standard
+minimum guaranteed value for {UINT_MAX}, which the ISO\ C standard
 sets as 65535, and any application passing a larger value is
 restricting its portability. A different type was considered, but
 historical implementations, including those with a 16-bit
@@ -107,7 +106,7 @@ None.
 .LP
 alarm , \fIexec\fP() , \fIfork\fP() , \fIgetitimer\fP() , \fIpause\fP()
 , \fIsigaction\fP() , \fIsleep\fP() , \fIualarm\fP()
-, \fIusleep\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIusleep\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<signal.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

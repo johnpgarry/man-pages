@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "strtoimax" P 2003 POSIX
+.TH "STRTOIMAX" P 2003 POSIX
 .\" strtoimax 
 .SH NAME
-strtoimax, strtoumax - convert string to integer type
+strtoimax, strtoumax \- convert string to integer type
 .SH SYNOPSIS
 .LP
 \fB#include <inttypes.h>
@@ -11,21 +11,15 @@ strtoimax, strtoumax - convert string to integer type
 intmax_t strtoimax(const char *restrict\fP \fInptr\fP\fB, char **restrict\fP
 \fIendptr\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fIbase\fP\fB);
+\ \ \ \ \ \  int\fP \fIbase\fP\fB);
 .br
 uintmax_t strtoumax(const char *restrict\fP \fInptr\fP\fB, char **restrict\fP
 \fIendptr\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fIbase\fP\fB);
+\ \ \ \ \ \  int\fP \fIbase\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 These functions shall be equivalent to the \fIstrtol\fP(), \fIstrtoll\fP(),
 \fIstrtoul\fP(), and \fIstrtoull\fP() functions, except that the initial
@@ -44,13 +38,13 @@ and \fIerrno\fP shall be set to [ERANGE].
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
+.TP 7
 .B ERANGE
 The value to be returned is not representable.
 .sp
 .LP
 These functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIbase\fP is not supported.
 .sp
@@ -71,7 +65,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIstrtol\fP() , \fIstrtoul\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<inttypes.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<inttypes.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

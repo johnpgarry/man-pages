@@ -2,16 +2,16 @@
 .TH "<stdint.h>" P 2003 POSIX
 .\" <stdint.h> 
 .SH NAME
-stdint.h - integer types
+stdint.h \- integer types
 .SH SYNOPSIS
 .LP
 \fB#include <stdint.h>\fP
 .SH DESCRIPTION
 .LP
 Some of the functionality described on this reference page extends
-the ISO\0C standard. Applications shall define
+the ISO\ C standard. Applications shall define
 the appropriate feature test macro (see the System Interfaces volume
-of IEEE\0Std\01003.1-2001, Section 2.2, The Compilation Environment)
+of IEEE\ Std\ 1003.1-2001, Section 2.2, The Compilation Environment)
 to enable the visibility of these symbols in this
 header. 
 .LP
@@ -20,7 +20,7 @@ specified widths, and shall define corresponding
 sets of macros. It shall also define macros that specify limits of
 integer types corresponding to types defined in other standard
 headers. 
-.TP
+.TP 7
 \fBNote:\fP
 The "width" of an integer type is the number of bits used to store
 its value in a pure binary system; the actual type may use
@@ -33,28 +33,21 @@ range 0 to
 .sp
 .LP
 Types are defined in the following categories:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Integer types having certain exact widths
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Integer types having at least certain specified widths
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Fastest integer types having at least certain specified widths
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Integer types wide enough to hold pointers to objects
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Integer types having greatest width
-.in -5
-.RE
+.LP
 .LP
 (Some of these types may denote the same type.)
 .LP
@@ -74,7 +67,7 @@ optional).
 .LP
 When \fBtypedef\fP names differing only in the absence or presence
 of the initial \fIu\fP are defined, they shall denote
-corresponding signed and unsigned types as described in the ISO/IEC\09899:1999
+corresponding signed and unsigned types as described in the ISO/IEC\ 9899:1999
 standard, Section 6.2.5; an implementation
 providing one of these corresponding types shall also provide the
 other.
@@ -82,9 +75,7 @@ other.
 In the following descriptions, the symbol \fIN\fP represents an unsigned
 decimal integer with no leading zeros (for example, 8
 or 24, but not 04 or 048).
-.RS
-.in +5
-.LP
+.IP " *" 3
 Exact-width integer types
 .LP
 The \fBtypedef\fP name \fBint\fP \fIN\fP \fB_t\fP designates a signed
@@ -121,32 +112,28 @@ these requirements, then the following types are required:
 In
 particular, this will be the case if any of the following are true:
 .RS
-.in +5
-.LP
+.IP " *" 3
 The implementation supports the _POSIX_V6_ILP32_OFFBIG programming
 environment and the application is being built in the
 _POSIX_V6_ILP32_OFFBIG programming environment (see the Shell and
-Utilities volume of IEEE\0Std\01003.1-2001, \fIc99\fP, Programming
+Utilities volume of IEEE\ Std\ 1003.1-2001, \fIc99\fP, Programming
 Environments).
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The implementation supports the _POSIX_V6_LP64_OFF64 programming environment
 and the application is being built in the
 _POSIX_V6_LP64_OFF64 programming environment.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The implementation supports the _POSIX_V6_LPBIG_OFFBIG programming
 environment and the application is being built in the
 _POSIX_V6_LPBIG_OFFBIG programming environment. 
-.in -5
+.LP
 .RE
 .LP
 All other types of this form are optional.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Minimum-width integer types
 .LP
 The \fBtypedef\fP name \fBint_least\fP \fIN\fP \fB_t\fP designates
@@ -166,9 +153,8 @@ The following types are required: \fBint_least8_t\fP \fBint_least16_t\fP
 \fBuint_least8_t\fP \fBuint_least16_t\fP \fBuint_least32_t\fP \fBuint_least64_t\fP
 .LP
 All other types of this form are optional.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Fastest minimum-width integer types
 .LP
 Each of the following types designates an integer type that is usually
@@ -191,9 +177,8 @@ The following types are required: \fBint_fast8_t\fP \fBint_fast16_t\fP
 \fBuint_fast8_t\fP \fBuint_fast16_t\fP \fBuint_fast32_t\fP \fBuint_fast64_t\fP
 .LP
 All other types of this form are optional.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Integer types capable of holding object pointers
 .LP
 The following type designates a signed integer type with the property
@@ -209,10 +194,9 @@ the result will compare equal to the original pointer:
 \fBuintptr_t\fP
 .LP
 On XSI-conformant systems, the \fBintptr_t\fP and \fBuintptr_t\fP
-types are required;  \0otherwise, they are optional.
-.in -5
-.in +5
+types are required;  \ otherwise, they are optional.
 .LP
+.IP " *" 3
 Greatest-width integer types
 .LP
 The following type designates a signed integer type capable of representing
@@ -224,9 +208,8 @@ representing any value of any unsigned integer type:
 \fBuintmax_t\fP
 .LP
 These types are required.
-.in -5
-.RE
-.TP
+.LP
+.TP 7
 \fBNote:\fP
 Applications can test for optional types by using the corresponding
 limit macro from Limits of
@@ -246,158 +229,166 @@ converted according to the integer promotions. Its implementation-defined
 value shall be equal to or greater in magnitude (absolute
 value) than the corresponding value given below, with the same sign,
 except where stated to be exactly the given value.
-.RS
-.in +5
-.LP
+.IP " *" 3
 Limits of exact-width integer types
 .RS
-.in +5
-.LP
+.IP " *" 3
 Minimum values of exact-width signed integer types:
-.TP
+.TP 7
 {INT\fIN\fP_MIN}
+.RS
 Exactly -(2 **N-1)
-.sp
-.in -5
-.in +5
-.LP
-Maximum values of exact-width signed integer types:
-.TP
-{INT\fIN\fP_MAX}
-Exactly 2**N-1 -1
-.sp
-.in -5
-.in +5
-.LP
-Maximum values of exact-width unsigned integer types:
-.TP
-{UINT\fIN\fP_MAX}
-Exactly 2 **N -1
-.sp
-.in -5
 .RE
-.in -5
-.in +5
+.sp
 .LP
+.IP " *" 3
+Maximum values of exact-width signed integer types:
+.TP 7
+{INT\fIN\fP_MAX}
+.RS
+Exactly 2**N-1 -1
+.RE
+.sp
+.LP
+.IP " *" 3
+Maximum values of exact-width unsigned integer types:
+.TP 7
+{UINT\fIN\fP_MAX}
+.RS
+Exactly 2 **N -1
+.RE
+.sp
+.LP
+.RE
+.LP
+.IP " *" 3
 Limits of minimum-width integer types
 .RS
-.in +5
-.LP
+.IP " *" 3
 Minimum values of minimum-width signed integer types:
-.TP
+.TP 7
 {INT_LEAST\fIN\fP_MIN}
+.RS
 -(2 ** N-1 -1)
-.sp
-.in -5
-.in +5
-.LP
-Maximum values of minimum-width signed integer types:
-.TP
-{INT_LEAST\fIN\fP_MAX}
-2 ** N-1 -1
-.sp
-.in -5
-.in +5
-.LP
-Maximum values of minimum-width unsigned integer types:
-.TP
-{UINT_LEAST\fIN\fP_MAX}
-2 ** N -1
-.sp
-.in -5
 .RE
-.in -5
-.in +5
+.sp
 .LP
+.IP " *" 3
+Maximum values of minimum-width signed integer types:
+.TP 7
+{INT_LEAST\fIN\fP_MAX}
+.RS
+2 ** N-1 -1
+.RE
+.sp
+.LP
+.IP " *" 3
+Maximum values of minimum-width unsigned integer types:
+.TP 7
+{UINT_LEAST\fIN\fP_MAX}
+.RS
+2 ** N -1
+.RE
+.sp
+.LP
+.RE
+.LP
+.IP " *" 3
 Limits of fastest minimum-width integer types
 .RS
-.in +5
-.LP
+.IP " *" 3
 Minimum values of fastest minimum-width signed integer types:
-.TP
+.TP 7
 {INT_FAST\fIN\fP_MIN}
+.RS
 -(2 ** N-1 -1)
-.sp
-.in -5
-.in +5
-.LP
-Maximum values of fastest minimum-width signed integer types:
-.TP
-{INT_FAST\fIN\fP_MAX}
-2 ** N-1 -1
-.sp
-.in -5
-.in +5
-.LP
-Maximum values of fastest minimum-width unsigned integer types:
-.TP
-{UINT_FAST\fIN\fP_MAX}
-2 ** N -1
-.sp
-.in -5
 .RE
-.in -5
-.in +5
+.sp
 .LP
+.IP " *" 3
+Maximum values of fastest minimum-width signed integer types:
+.TP 7
+{INT_FAST\fIN\fP_MAX}
+.RS
+2 ** N-1 -1
+.RE
+.sp
+.LP
+.IP " *" 3
+Maximum values of fastest minimum-width unsigned integer types:
+.TP 7
+{UINT_FAST\fIN\fP_MAX}
+.RS
+2 ** N -1
+.RE
+.sp
+.LP
+.RE
+.LP
+.IP " *" 3
 Limits of integer types capable of holding object pointers
 .RS
-.in +5
-.LP
+.IP " *" 3
 Minimum value of pointer-holding signed integer type:
-.TP
+.TP 7
 {INTPTR_MIN}
+.RS
 -(2 ** 15 -1)
-.sp
-.in -5
-.in +5
-.LP
-Maximum value of pointer-holding signed integer type:
-.TP
-{INTPTR_MAX}
-2 ** 15 -1
-.sp
-.in -5
-.in +5
-.LP
-Maximum value of pointer-holding unsigned integer type:
-.TP
-{UINTPTR_MAX}
-2 ** 16 -1
-.sp
-.in -5
 .RE
-.in -5
-.in +5
+.sp
 .LP
+.IP " *" 3
+Maximum value of pointer-holding signed integer type:
+.TP 7
+{INTPTR_MAX}
+.RS
+2 ** 15 -1
+.RE
+.sp
+.LP
+.IP " *" 3
+Maximum value of pointer-holding unsigned integer type:
+.TP 7
+{UINTPTR_MAX}
+.RS
+2 ** 16 -1
+.RE
+.sp
+.LP
+.RE
+.LP
+.IP " *" 3
 Limits of greatest-width integer types
 .RS
-.in +5
-.LP
+.IP " *" 3
 Minimum value of greatest-width signed integer type:
-.TP
+.TP 7
 {INTMAX_MIN}
+.RS
 -(2 ** 63 -1)
+.RE
 .sp
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Maximum value of greatest-width signed integer type:
-.TP
+.TP 7
 {INTMAX_MAX}
+.RS
 2 ** 63 -1
+.RE
 .sp
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Maximum value of greatest-width unsigned integer type:
-.TP
+.TP 7
 {UINTMAX_MAX}
+.RS
 2 ** 64 -1
+.RE
 .sp
-.in -5
+.LP
 .RE
-.in -5
-.RE
+.LP
 .SS Limits of Other Integer Types
 .LP
 The following macros specify the minimum and maximum limits of integer
@@ -411,60 +402,71 @@ an expression that is an object of the corresponding type
 converted according to the integer promotions. Its implementation-defined
 value shall be equal to or greater in magnitude (absolute
 value) than the corresponding value given below, with the same sign.
-.RS
-.in +5
-.LP
+.IP " *" 3
 Limits of \fBptrdiff_t\fP:
-.TP
+.TP 7
 {PTRDIFF_MIN}
+.RS
 -65535
-.TP
-{PTRDIFF_MAX}
-+65535
-.sp
-.in -5
-.in +5
-.LP
-Limits of \fBsig_atomic_t\fP:
-.TP
-{SIG_ATOMIC_MIN}
-See below.
-.TP
-{SIG_ATOMIC_MAX}
-See below.
-.sp
-.in -5
-.in +5
-.LP
-Limit of \fBsize_t\fP:
-.TP
-{SIZE_MAX}
-65535
-.sp
-.in -5
-.in +5
-.LP
-Limits of \fBwchar_t\fP:
-.TP
-{WCHAR_MIN}
-See below.
-.TP
-{WCHAR_MAX}
-See below.
-.sp
-.in -5
-.in +5
-.LP
-Limits of \fBwint_t\fP:
-.TP
-{WINT_MIN}
-See below.
-.TP
-{WINT_MAX}
-See below.
-.sp
-.in -5
 .RE
+.TP 7
+{PTRDIFF_MAX}
+.RS
++65535
+.RE
+.sp
+.LP
+.IP " *" 3
+Limits of \fBsig_atomic_t\fP:
+.TP 7
+{SIG_ATOMIC_MIN}
+.RS
+See below.
+.RE
+.TP 7
+{SIG_ATOMIC_MAX}
+.RS
+See below.
+.RE
+.sp
+.LP
+.IP " *" 3
+Limit of \fBsize_t\fP:
+.TP 7
+{SIZE_MAX}
+.RS
+65535
+.RE
+.sp
+.LP
+.IP " *" 3
+Limits of \fBwchar_t\fP:
+.TP 7
+{WCHAR_MIN}
+.RS
+See below.
+.RE
+.TP 7
+{WCHAR_MAX}
+.RS
+See below.
+.RE
+.sp
+.LP
+.IP " *" 3
+Limits of \fBwint_t\fP:
+.TP 7
+{WINT_MIN}
+.RS
+See below.
+.RE
+.TP 7
+{WINT_MAX}
+.RS
+See below.
+.RE
+.sp
+.LP
 .LP
 If \fBsig_atomic_t\fP (see the \fI<signal.h>\fP header) is defined
 as a signed
@@ -508,9 +510,7 @@ The value of the expression shall be that of the argument.
 The argument in any instance of these macros shall be a decimal, octal,
 or hexadecimal constant with a value that does not
 exceed the limits for the corresponding type.
-.RS
-.in +5
-.LP
+.IP " *" 3
 Macros for minimum-width integer constant expressions
 .LP
 The macro \fIINTN_C\fP( \fIvalue\fP) shall expand to an integer constant
@@ -520,9 +520,8 @@ to an integer constant expression corresponding to the
 type \fBuint_least\fP \fIN\fP \fB_t\fP. For example, if \fBuint_least64_t\fP
 is a name for the type \fBunsigned long long\fP,
 then \fIUINT64_C\fP(0x123) might expand to the integer constant 0x123ULL.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Macros for greatest-width integer constant expressions
 .LP
 The following macro expands to an integer constant expression having
@@ -532,8 +531,7 @@ the value specified by its argument and the type
 The following macro expands to an integer constant expression having
 the value specified by its argument and the type
 \fBuintmax_t\fP: UINTMAX_C(\fIvalue\fP)
-.in -5
-.RE
+.LP
 .LP
 \fIThe following sections are informative.\fP
 .SH APPLICATION USAGE
@@ -550,18 +548,14 @@ instead of the \fI<inttypes.h>\fP header avoids defining such a large
 number of macros.
 .LP
 As a consequence of adding \fBint8_t\fP, the following are true:
-.RS
-.in +5
-.LP
+.IP " *" 3
 A byte is exactly 8 bits.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 {CHAR_BIT} has the value 8, {SCHAR_MAX} has the value 127, {SCHAR_MIN}
 has the value -127 or -128, and {UCHAR_MAX} has the value
 255.
-.in -5
-.RE
+.LP
 .SH FUTURE DIRECTIONS
 .LP
 \fBtypedef\fP names beginning with \fBint\fP or \fBuint\fP and ending

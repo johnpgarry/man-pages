@@ -2,16 +2,16 @@
 .TH "<ctype.h>" P 2003 POSIX
 .\" <ctype.h> 
 .SH NAME
-ctype.h - character types
+ctype.h \- character types
 .SH SYNOPSIS
 .LP
 \fB#include <ctype.h>\fP
 .SH DESCRIPTION
 .LP
 Some of the functionality described on this reference page extends
-the ISO\0C standard. Applications shall define
+the ISO\ C standard. Applications shall define
 the appropriate feature test macro (see the System Interfaces volume
-of IEEE\0Std\01003.1-2001, Section 2.2, The Compilation Environment)
+of IEEE\ Std\ 1003.1-2001, Section 2.2, The Compilation Environment)
 to enable the visibility of these symbols in this
 header. 
 .LP
@@ -70,7 +70,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fI<locale.h>\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+\fI<locale.h>\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIisalnum\fP(), \fIisalpha\fP(), \fIisascii\fP(), \fIiscntrl\fP(),
 \fIisdigit\fP(), \fIisgraph\fP(), \fIislower\fP(), \fIisprint\fP(),
 \fIispunct\fP(), \fIisspace\fP(), \fIisupper\fP(), \fIisxdigit\fP(),

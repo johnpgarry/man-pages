@@ -1,22 +1,22 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "grep" P 2003 POSIX
+.TH "GREP" P 2003 POSIX
 .\" grep 
 .SH NAME
-grep - search a file for a pattern
+grep \- search a file for a pattern
 .SH SYNOPSIS
 .LP
 \fBgrep\fP \fB[\fP\fB-E| -F\fP\fB][\fP\fB-c| -l| -q\fP\fB][\fP\fB-insvx\fP\fB]\fP
 \fB-e\fP
 \fIpattern_list...
 .br
-\fP \fB\0\0\0\0\0\0\fP \fI\fP\fB[\fP\fB-f\fP
+\fP \fB\ \ \ \ \ \ \fP \fI\fP\fB[\fP\fB-f\fP
 \fIpattern_file\fP\fB]\fP\fB...\fP\fB[\fP\fIfile\fP\fB...\fP\fB]\fP\fB
 .br
 .sp
 grep\fP \fB[\fP\fB-E| -F\fP\fB][\fP\fB-c| -l| -q\fP\fB][\fP\fB-insvx\fP\fB][\fP\fB-e\fP
 \fIpattern_list\fP\fB]...
 .br
-\fP \fB\0\0\0\0\0\0\fP \fB\fP\fB-f\fP
+\fP \fB\ \ \ \ \ \ \fP \fB\fP\fB-f\fP
 \fIpattern_file\fP\fB...\fP\fB[\fP\fIfile\fP\fB...\fP\fB]\fP\fB
 .br
 .sp
@@ -36,7 +36,7 @@ the \fIpattern_file\fP's contents shall consist of one or more patterns
 terminated by <newline>. By default, an input line
 shall be selected if any pattern, treated as an entire basic regular
 expression (BRE) as described in the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 9.3, Basic Regular Expressions,
+of IEEE\ Std\ 1003.1-2001, Section 9.3, Basic Regular Expressions,
 matches any part of the line excluding the terminating <newline>;
 a null BRE shall match every line. By default, each
 selected input line shall be written to the standard output.
@@ -51,28 +51,28 @@ the input, there is no way for a pattern to match a
 .SH OPTIONS
 .LP
 The \fIgrep\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-E\fP
 Match using extended regular expressions. Treat each pattern specified
 as an ERE, as described in the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 9.4, Extended Regular Expressions.
+of IEEE\ Std\ 1003.1-2001, Section 9.4, Extended Regular Expressions.
 If any entire ERE pattern matches some part of an input line excluding
 the terminating <newline>, the line shall be matched.
 A null ERE shall match every line.
-.TP
+.TP 7
 \fB-F\fP
 Match using fixed strings. Treat each pattern specified as a string
 instead of a regular expression. If an input line contains
 any of the patterns as a contiguous sequence of bytes, the line shall
 be matched. A null string shall match every line.
-.TP
+.TP 7
 \fB-c\fP
 Write only a count of selected lines to standard output.
-.TP
-\fB-e\0\fP \fIpattern_list\fP
+.TP 7
+\fB-e\ \fP \fIpattern_list\fP
 .sp
 Specify one or more patterns to be used during the search for input.
 The application shall ensure that patterns in
@@ -80,14 +80,14 @@ The application shall ensure that patterns in
 be specified by two adjacent <newline>s in
 \fIpattern_list\fP. Unless the \fB-E\fP or \fB-F\fP option is also
 specified, each pattern shall be treated as a BRE, as
-described in the Base Definitions volume of IEEE\0Std\01003.1-2001,
+described in the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section
 9.3, Basic Regular Expressions. Multiple \fB-e\fP and \fB-f\fP options
 shall be accepted by the \fIgrep\fP utility. All of
 the specified patterns shall be used when matching lines, but the
 order of evaluation is unspecified.
-.TP
-\fB-f\0\fP \fIpattern_file\fP
+.TP 7
+\fB-f\ \fP \fIpattern_file\fP
 .sp
 Read one or more patterns from the file named by the pathname \fIpattern_file\fP.
 Patterns in \fIpattern_file\fP shall be
@@ -95,13 +95,13 @@ terminated by a <newline>. A null pattern can be specified by an empty
 line in \fIpattern_file\fP. Unless the \fB-E\fP or
 \fB-F\fP option is also specified, each pattern shall be treated as
 a BRE, as described in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 9.3, Basic Regular Expressions.
-.TP
+IEEE\ Std\ 1003.1-2001, Section 9.3, Basic Regular Expressions.
+.TP 7
 \fB-i\fP
 Perform pattern matching in searches without regard to case; see the
-Base Definitions volume of IEEE\0Std\01003.1-2001,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 9.2, Regular Expression General Requirements.
-.TP
+.TP 7
 \fB-l\fP
 (The letter ell.) Write only the names of files containing selected
 lines to standard output. Pathnames shall be written once
@@ -109,27 +109,27 @@ per file searched. If the standard input is searched, a pathname of
 \fB"(standard input)"\fP shall be written, in the POSIX
 locale. In other locales, \fB"standard input"\fP may be replaced by
 something more appropriate in those locales.
-.TP
+.TP 7
 \fB-n\fP
 Precede each output line by its relative line number in the file,
 each file starting at line 1. The line number counter shall
 be reset for each file processed.
-.TP
+.TP 7
 \fB-q\fP
 Quiet. Nothing shall be written to the standard output, regardless
 of matching lines. Exit with zero status if an input line is
 selected.
-.TP
+.TP 7
 \fB-s\fP
 Suppress the error messages ordinarily written for nonexistent or
 unreadable files. Other error messages shall not be
 suppressed.
-.TP
+.TP 7
 \fB-v\fP
 Select lines not matching any of the specified patterns. If the \fB-v\fP
 option is not specified, selected lines shall be
 those that match any of the specified patterns.
-.TP
+.TP 7
 \fB-x\fP
 Consider only input lines that use all characters in the line excluding
 the terminating <newline> to match an entire
@@ -138,12 +138,12 @@ fixed string or regular expression to be matching lines.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIpattern_list\fP
 Specify one or more patterns to be used during the search for input.
 This operand shall be treated as if it were specified as
 \fB-e\fP \fIpattern_list\fP.
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file to be searched for the patterns. If no \fIfile\fP
 operands are specified, the standard input shall be
@@ -160,37 +160,37 @@ The input files shall be text files.
 .LP
 The following environment variables shall affect the execution of
 \fIgrep\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements within regular
 expressions.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files) and
 the behavior of character classes within regular
 expressions.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -226,9 +226,7 @@ each output line by:
 .LP
 The remainder of each output line shall depend on the other options
 specified:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If the \fB-c\fP option is in effect, the remainder of each output
 line shall contain:
 .sp
@@ -239,9 +237,8 @@ line shall contain:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Otherwise, if \fB-c\fP is not in effect and the \fB-n\fP option is
 in effect, the following shall be written to standard
 output:
@@ -253,9 +250,8 @@ output:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Finally, the following shall be written to standard output:
 .sp
 .RS
@@ -265,8 +261,7 @@ Finally, the following shall be written to standard output:
 \fP
 .fi
 .RE
-.in -5
-.RE
+.LP
 .SH STDERR
 .LP
 The standard error shall be used only for diagnostic messages.
@@ -279,13 +274,13 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 One or more lines were selected.
-.TP
-\01
+.TP 7
+\ 1
 No lines were selected.
-.TP
+.TP 7
 >1
 An error occurred.
 .sp
@@ -333,8 +328,7 @@ as arguments (because it exits zero if it finds a match even
 if \fIgrep\fP detected an access or read error on earlier \fIfile\fP
 operands).
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 To find all uses of the word \fB"Posix"\fP (in any case) in file \fBtext.mm\fP
 and write with line numbers:
 .sp
@@ -345,9 +339,8 @@ and write with line numbers:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 To find all empty lines in the standard input:
 .sp
 .RS
@@ -367,9 +360,8 @@ or:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Both of the following commands print all lines containing strings
 \fB"abc"\fP or \fB"def"\fP or both:
 .sp
@@ -384,9 +376,8 @@ def'
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Both of the following commands print all lines matching exactly \fB"abc"\fP
 or \fB"def"\fP :
 .sp
@@ -401,7 +392,7 @@ def'
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 This \fIgrep\fP has been enhanced in an upwards-compatible way to

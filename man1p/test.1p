@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "test" P 2003 POSIX
+.TH "TEST" P 2003 POSIX
 .\" test 
 .SH NAME
-test - evaluate expression
+test \- evaluate expression
 .SH SYNOPSIS
 .LP
 \fBtest\fP \fB[\fP\fIexpression\fP\fB]\fP\fB
@@ -26,7 +26,7 @@ square brackets are separate arguments.
 .LP
 The \fItest\fP utility shall not recognize the \fB"--"\fP argument
 in the manner specified by guideline 10 in the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Section 12.2, Utility
+Definitions volume of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility
 Syntax
 Guidelines.
 .LP
@@ -38,109 +38,109 @@ are presented as separate arguments to the \fItest\fP
 utility.
 .LP
 The following primaries can be used to construct \fIexpression\fP:
-.TP
-\fB-b\0\fP \fIfile\fP
+.TP 7
+\fB-b\ \fP \fIfile\fP
 True if \fIfile\fP exists and is a block special file.
-.TP
-\fB-c\0\fP \fIfile\fP
+.TP 7
+\fB-c\ \fP \fIfile\fP
 True if \fIfile\fP exists and is a character special file.
-.TP
-\fB-d\0\fP \fIfile\fP
+.TP 7
+\fB-d\ \fP \fIfile\fP
 True if \fIfile\fP exists and is a directory.
-.TP
-\fB-e\0\fP \fIfile\fP
+.TP 7
+\fB-e\ \fP \fIfile\fP
 True if \fIfile\fP exists.
-.TP
-\fB-f\0\fP \fIfile\fP
+.TP 7
+\fB-f\ \fP \fIfile\fP
 True if \fIfile\fP exists and is a regular file.
-.TP
-\fB-g\0\fP \fIfile\fP
+.TP 7
+\fB-g\ \fP \fIfile\fP
 True if \fIfile\fP exists and its set-group-ID flag is set.
-.TP
-\fB-h\0\fP \fIfile\fP
+.TP 7
+\fB-h\ \fP \fIfile\fP
 True if \fIfile\fP exists and is a symbolic link.
-.TP
-\fB-L\0\fP \fIfile\fP
+.TP 7
+\fB-L\ \fP \fIfile\fP
 True if \fIfile\fP exists and is a symbolic link.
-.TP
-\fB-n\0\fP \fIstring\fP
+.TP 7
+\fB-n\ \fP \fIstring\fP
 True if the length of \fIstring\fP is non-zero.
-.TP
-\fB-p\0\fP \fIfile\fP
+.TP 7
+\fB-p\ \fP \fIfile\fP
 True if \fIfile\fP is a FIFO.
-.TP
-\fB-r\0\fP \fIfile\fP
+.TP 7
+\fB-r\ \fP \fIfile\fP
 True if \fIfile\fP exists and is readable. True shall indicate that
 permission to read from \fIfile\fP will be granted, as
 defined in \fIFile Read, Write, and Creation\fP .
-.TP
-\fB-S\0\fP \fIfile\fP
+.TP 7
+\fB-S\ \fP \fIfile\fP
 True if \fIfile\fP exists and is a socket.
-.TP
-\fB-s\0\fP \fIfile\fP
+.TP 7
+\fB-s\ \fP \fIfile\fP
 True if \fIfile\fP exists and has a size greater than zero.
-.TP
-\fB-t\0\fP \fIfile_descriptor\fP
+.TP 7
+\fB-t\ \fP \fIfile_descriptor\fP
 .sp
 True if the file whose file descriptor number is \fIfile_descriptor\fP
 is open and is associated with a terminal.
-.TP
-\fB-u\0\fP \fIfile\fP
+.TP 7
+\fB-u\ \fP \fIfile\fP
 True if \fIfile\fP exists and its set-user-ID flag is set.
-.TP
-\fB-w\0\fP \fIfile\fP
+.TP 7
+\fB-w\ \fP \fIfile\fP
 True if \fIfile\fP exists and is writable. True shall indicate that
 permission to write from \fIfile\fP will be granted, as
 defined in \fIFile Read, Write, and Creation\fP .
-.TP
-\fB-x\0\fP \fIfile\fP
+.TP 7
+\fB-x\ \fP \fIfile\fP
 True if \fIfile\fP exists and is executable. True shall indicate that
 permission to execute \fIfile\fP will be granted, as
 defined in \fIFile Read, Write, and Creation\fP . If \fIfile\fP is
 a directory,
 true shall indicate that permission to search \fIfile\fP will be granted.
-.TP
-\fB-z\0\fP \fIstring\fP
+.TP 7
+\fB-z\ \fP \fIstring\fP
 True if the length of string \fIstring\fP is zero.
-.TP
+.TP 7
 \fIstring\fP
 True if the string \fIstring\fP is not the null string.
-.TP
-\fIs1\fP\fB\0=\0\fP \fIs2\fP
+.TP 7
+\fIs1\fP\fB\ =\ \fP \fIs2\fP
 True if the strings \fIs1\fP and \fIs2\fP are identical.
-.TP
-\fIs1\fP\fB\0!=\0\fP \fIs2\fP
+.TP 7
+\fIs1\fP\fB\ !=\ \fP \fIs2\fP
 True if the strings \fIs1\fP and \fIs2\fP are not identical.
-.TP
-\fIn1\fP\fB\0-eq\0\fP \fIn2\fP
+.TP 7
+\fIn1\fP\fB\ -eq\ \fP \fIn2\fP
 True if the integers \fIn1\fP and \fIn2\fP are algebraically equal.
-.TP
-\fIn1\fP\fB\0-ne\0\fP \fIn2\fP
+.TP 7
+\fIn1\fP\fB\ -ne\ \fP \fIn2\fP
 True if the integers \fIn1\fP and \fIn2\fP are not algebraically equal.
-.TP
-\fIn1\fP\fB\0-gt\0\fP \fIn2\fP
+.TP 7
+\fIn1\fP\fB\ -gt\ \fP \fIn2\fP
 True if the integer \fIn1\fP is algebraically greater than the integer
 \fIn2\fP.
-.TP
-\fIn1\fP\fB\0-ge\0\fP \fIn2\fP
+.TP 7
+\fIn1\fP\fB\ -ge\ \fP \fIn2\fP
 True if the integer \fIn1\fP is algebraically greater than or equal
 to the integer \fIn2\fP.
-.TP
-\fIn1\fP\fB\0-lt\0\fP \fIn2\fP
+.TP 7
+\fIn1\fP\fB\ -lt\ \fP \fIn2\fP
 True if the integer \fIn1\fP is algebraically less than the integer
 \fIn2\fP.
-.TP
-\fIn1\fP\fB\0-le\0\fP \fIn2\fP
+.TP 7
+\fIn1\fP\fB\ -le\ \fP \fIn2\fP
 True if the integer \fIn1\fP is algebraically less than or equal to
 the integer \fIn2\fP.
-.TP
-\fIexpression1\fP\fB\0-a\0\fP \fIexpression2\fP
+.TP 7
+\fIexpression1\fP\fB\ -a\ \fP \fIexpression2\fP
 .sp
 True if both \fIexpression1\fP and \fIexpression2\fP are true. The
 \fB-a\fP binary primary is left associative. It has a higher
 precedence than \fB-o\fP. 
-.TP
-\fIexpression1\fP\fB\0-o\0\fP \fIexpression2\fP
+.TP 7
+\fIexpression1\fP\fB\ -o\ \fP \fIexpression2\fP
 .sp
 True if either \fIexpression1\fP or \fIexpression2\fP is true. The
 \fB-o\fP binary primary is left associative. 
@@ -152,11 +152,11 @@ link, \fItest\fP shall evaluate the expression by resolving the symbolic
 link and using the file referenced by the link.
 .LP
 These primaries can be combined with the following operators:
-.TP
-\fB!\0\fP \fIexpression\fP
+.TP 7
+\fB!\ \fP \fIexpression\fP
 True if \fIexpression\fP is false.
-.TP
-\fB(\0\fP \fIexpression\0\fP \fB)\fP
+.TP 7
+\fB(\ \fP \fIexpression\ \fP \fB)\fP
 True if \fIexpression\fP is true. The parentheses can be used to alter
 the normal precedence and associativity. 
 .sp
@@ -196,70 +196,60 @@ shall not be counted in this algorithm.)
 .LP
 In the following list, $1, $2, $3, and $4 represent the arguments
 presented to \fItest\fP:
-.TP
-0\0arguments:
+.TP 7
+0\ arguments:
 Exit false (1).
-.TP
-1\0argument:
+.TP 7
+1\ argument:
 Exit true (0) if $1 is not null; otherwise, exit false.
-.TP
-2\0arguments:
+.TP 7
+2\ arguments:
 .RS
-.in +5
-.LP
+.IP " *" 3
 If $1 is \fB'!'\fP , exit true if $2 is null, false if $2 is not null.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If $1 is a unary primary, exit true if the unary test is true, false
 if the unary test is false.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Otherwise, produce unspecified results.
-.in -5
+.LP
 .RE
-.TP
-3\0arguments:
+.TP 7
+3\ arguments:
 .RS
-.in +5
-.LP
+.IP " *" 3
 If $2 is a binary primary, perform the binary test of $1 and $3.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If $1 is \fB'!'\fP , negate the two-argument test of $2 and $3.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If $1 is \fB'('\fP and $3 is \fB')'\fP , perform the unary test of
 $2. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Otherwise, produce unspecified results.
-.in -5
-.RE
-.TP
-4\0arguments:
-.RS
-.in +5
 .LP
+.RE
+.TP 7
+4\ arguments:
+.RS
+.IP " *" 3
 If $1 is \fB'!'\fP , negate the three-argument test of $2, $3, and
 $4.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If $1 is \fB'('\fP and $4 is \fB')'\fP , perform the two-argument
 test of $2 and $3. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Otherwise, the results are unspecified.
-.in -5
+.LP
 .RE
-.TP
->4\0arguments:
+.TP 7
+>4\ arguments:
 The results are unspecified. 
 .LP
 On XSI-conformant systems, combinations of primaries and operators
@@ -278,29 +268,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fItest\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -323,13 +313,13 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 \fIexpression\fP evaluated to true.
-.TP
-\01
+.TP 7
+\ 1
 \fIexpression\fP evaluated to false or \fIexpression\fP was missing.
-.TP
+.TP 7
 >1
 An error occurred.
 .sp
@@ -540,8 +530,7 @@ test "X$1" = "Xbat" && test "X$2" = "Xball"
 .fi
 .RE
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 Exit if there are not two or three arguments (two variations):
 .sp
 .RS
@@ -552,9 +541,8 @@ if [ $# -lt 2 -o $# -gt 3 ]; then exit 1; fi
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Perform a \fImkdir\fP if a directory does not exist:
 .sp
 .RS
@@ -564,9 +552,8 @@ Perform a \fImkdir\fP if a directory does not exist:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Wait for a file to become non-readable:
 .sp
 .RS
@@ -580,9 +567,8 @@ echo '"thefile" is no longer readable'
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Perform a command if the argument is one of three strings (two variations):
 .sp
 .RS
@@ -600,7 +586,7 @@ esac
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 The KornShell-derived conditional command (double bracket \fB[[]]\fP)
@@ -620,16 +606,16 @@ XSI-conformant systems support more than four arguments.
 .LP
 XSI-conformant systems support the combining of primaries with the
 following constructs:
-.TP
+.TP 7
 \fIexpression1\fP \fB-a\fP \fIexpression2\fP
 .sp
 True if both \fIexpression1\fP and \fIexpression2\fP are true.
-.TP
+.TP 7
 \fIexpression1\fP \fB-o\fP \fIexpression2\fP
 .sp
 True if at least one of \fIexpression1\fP and \fIexpression2\fP are
 true.
-.TP
+.TP 7
 \fB(\fP \fIexpression\fP \fB)\fP
 .sp
 True if \fIexpression\fP is true.
@@ -637,46 +623,38 @@ True if \fIexpression\fP is true.
 .LP
 In evaluating these more complex combined expressions, the following
 precedence rules are used:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The unary primaries have higher precedence than the algebraic binary
 primaries.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The unary primaries have lower precedence than the string binary primaries.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The unary and binary primaries have higher precedence than the unary
 \fIstring\fP primary.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The \fB!\fP operator has higher precedence than the \fB-a\fP operator,
 and the \fB-a\fP operator has higher precedence than
 the \fB-o\fP operator.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The \fB-a\fP and \fB-o\fP operators are left associative.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The parentheses can be used to alter the normal precedence and associativity.
-.in -5
-.RE
+.LP
 .LP
 The BSD and System V versions of \fB-f\fP are not the same. The BSD
 definition was:
-.TP
-\fB-f\0\fP \fIfile\fP
+.TP 7
+\fB-f\ \fP \fIfile\fP
 True if \fIfile\fP exists and is not a directory.
 .sp
 .LP
 The SVID version (true if the file exists and is a regular file) was
-chosen for this volume of IEEE\0Std\01003.1-2001
+chosen for this volume of IEEE\ Std\ 1003.1-2001
 because its use is consistent with the \fB-b\fP, \fB-c\fP, \fB-d\fP,
 and \fB-p\fP operands ( \fIfile\fP exists and is a
 specific file type).
@@ -712,18 +690,18 @@ primary (with the same meaning), but this was changed to \fB-e\fP
 because there were concerns about the high probability of humans
 confusing the \fB-a\fP primary with the \fB-a\fP binary operator.
 .LP
-The following options were not included in this volume of IEEE\0Std\01003.1-2001,
+The following options were not included in this volume of IEEE\ Std\ 1003.1-2001,
 although they are provided by some
 implementations. These operands should not be used by new implementations
 for other purposes:
-.TP
-\fB-k\0\fP \fIfile\fP
+.TP 7
+\fB-k\ \fP \fIfile\fP
 True if \fIfile\fP exists and its sticky bit is set.
-.TP
-\fB-C\0\fP \fIfile\fP
+.TP 7
+\fB-C\ \fP \fIfile\fP
 True if \fIfile\fP is a contiguous file.
-.TP
-\fB-V\0\fP \fIfile\fP
+.TP 7
+\fB-V\ \fP \fIfile\fP
 True if \fIfile\fP is a version file.
 .sp
 .LP
@@ -731,8 +709,8 @@ The following option was not included because it was undocumented
 in most implementations, has been removed from some
 implementations (including System V), and the functionality is provided
 by the shell (see \fIParameter Expansion\fP .
-.TP
-\fB-l\0\fP \fIstring\fP
+.TP 7
+\fB-l\ \fP \fIstring\fP
 The length of the string \fIstring\fP.
 .sp
 .LP

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "date" P 2003 POSIX
+.TH "DATE" P 2003 POSIX
 .\" date 
 .SH NAME
-date - write the date and time
+date \- write the date and time
 .SH SYNOPSIS
 .LP
 \fBdate\fP \fB[\fP\fB-u\fP\fB] [\fP\fB+\fP\fIformat\fP\fB]\fP\fB
@@ -18,7 +18,7 @@ date - write the date and time
 .SH DESCRIPTION
 .LP
 The \fIdate\fP utility shall write the date and time to standard output
-\0or attempt
+\ or attempt
 to set the system date and time.  By default, the current date and
 time shall be written. If an operand beginning with \fB'+'\fP is specified,
 the output format of \fIdate\fP shall be controlled
@@ -26,10 +26,10 @@ by the conversion specifications and other text in the operand.
 .SH OPTIONS
 .LP
 The \fIdate\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following option shall be supported:
-.TP
+.TP 7
 \fB-u\fP
 Perform operations as if the \fITZ\fP environment variable was set
 to the string \fB"UTC0"\fP , or its equivalent
@@ -40,7 +40,7 @@ or the system default if that variable is unset or null.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 +\fIformat\fP
 When the format is specified, each conversion specifier shall be replaced
 in the standard output by its corresponding value.
@@ -49,117 +49,117 @@ The output shall always be terminated with a
 <newline>.
 .sp
 .SS Conversion Specifications
-.TP
+.TP 7
 \fB%a\fP
 Locale's abbreviated weekday name.
-.TP
+.TP 7
 \fB%A\fP
 Locale's full weekday name.
-.TP
+.TP 7
 \fB%b\fP
 Locale's abbreviated month name.
-.TP
+.TP 7
 \fB%B\fP
 Locale's full month name.
-.TP
+.TP 7
 \fB%c\fP
 Locale's appropriate date and time representation.
-.TP
+.TP 7
 \fB%C\fP
 Century (a year divided by 100 and truncated to an integer) as a decimal
 number [00,99].
-.TP
+.TP 7
 \fB%d\fP
 Day of the month as a decimal number [01,31].
-.TP
+.TP 7
 \fB%D\fP
 Date in the format \fImm\fP/\fIdd\fP/\fIyy\fP.
-.TP
+.TP 7
 \fB%e\fP
 Day of the month as a decimal number [1,31] in a two-digit field with
 leading space character fill.
-.TP
+.TP 7
 \fB%h\fP
 A synonym for \fB%b\fP .
-.TP
+.TP 7
 \fB%H\fP
 Hour (24-hour clock) as a decimal number [00,23].
-.TP
+.TP 7
 \fB%I\fP
 Hour (12-hour clock) as a decimal number [01,12].
-.TP
+.TP 7
 \fB%j\fP
 Day of the year as a decimal number [001,366].
-.TP
+.TP 7
 \fB%m\fP
 Month as a decimal number [01,12].
-.TP
+.TP 7
 \fB%M\fP
 Minute as a decimal number [00,59].
-.TP
+.TP 7
 \fB%n\fP
 A <newline>.
-.TP
+.TP 7
 \fB%p\fP
 Locale's equivalent of either AM or PM.
-.TP
+.TP 7
 \fB%r\fP
 12-hour clock time [01,12] using the AM/PM notation; in the POSIX
 locale, this shall be equivalent to \fB%I\fP : \fB%M\fP
 : \fB%S\fP \fB%p\fP .
-.TP
+.TP 7
 \fB%S\fP
 Seconds as a decimal number [00,60].
-.TP
+.TP 7
 \fB%t\fP
 A <tab>.
-.TP
+.TP 7
 \fB%T\fP
 24-hour clock time [00,23] in the format \fIHH\fP:\fIMM\fP:\fISS\fP.
-.TP
+.TP 7
 \fB%u\fP
 Weekday as a decimal number [1,7] (1=Monday).
-.TP
+.TP 7
 \fB%U\fP
 Week of the year (Sunday as the first day of the week) as a decimal
 number [00,53]. All days in a new year preceding the first
 Sunday shall be considered to be in week 0.
-.TP
+.TP 7
 \fB%V\fP
 Week of the year (Monday as the first day of the week) as a decimal
 number [01,53]. If the week containing January 1 has four
 or more days in the new year, then it shall be considered week 1;
 otherwise, it shall be the last week of the previous year, and
 the next week shall be week 1.
-.TP
+.TP 7
 \fB%w\fP
 Weekday as a decimal number [0,6] (0=Sunday).
-.TP
+.TP 7
 \fB%W\fP
 Week of the year (Monday as the first day of the week) as a decimal
 number [00,53]. All days in a new year preceding the first
 Monday shall be considered to be in week 0.
-.TP
+.TP 7
 \fB%x\fP
 Locale's appropriate date representation.
-.TP
+.TP 7
 \fB%X\fP
 Locale's appropriate time representation.
-.TP
+.TP 7
 \fB%y\fP
 Year within century [00,99].
-.TP
+.TP 7
 \fB%Y\fP
 Year with century as a decimal number.
-.TP
+.TP 7
 \fB%Z\fP
 Timezone name, or no characters if no timezone is determinable.
-.TP
+.TP 7
 \fB%%\fP
 A percent sign character.
 .sp
 .LP
-See the Base Definitions volume of IEEE\0Std\01003.1-2001, Section
+See the Base Definitions volume of IEEE\ Std\ 1003.1-2001, Section
 7.3.5, LC_TIME for the conversion specifier values in the POSIX locale.
 .SS Modified Conversion Specifications
 .LP
@@ -167,78 +167,78 @@ Some conversion specifiers can be modified by the \fBE\fP and \fBO\fP
 modifier characters to indicate a different format
 or specification as specified in the \fILC_TIME\fP locale description
 (see the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 7.3.5, LC_TIME). If the
+IEEE\ Std\ 1003.1-2001, Section 7.3.5, LC_TIME). If the
 corresponding keyword (see \fBera\fP, \fBera_year\fP, \fBera_d_fmt\fP,
 and \fBalt_digits\fP in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 7.3.5, LC_TIME) is not specified or
+IEEE\ Std\ 1003.1-2001, Section 7.3.5, LC_TIME) is not specified or
 not supported for the current locale, the unmodified conversion specifier
 value shall be used.
-.TP
+.TP 7
 \fB%Ec\fP
 Locale's alternative appropriate date and time representation.
-.TP
+.TP 7
 \fB%EC\fP
 The name of the base year (period) in the locale's alternative representation.
-.TP
+.TP 7
 \fB%Ex\fP
 Locale's alternative date representation.
-.TP
+.TP 7
 \fB%EX\fP
 Locale's alternative time representation.
-.TP
+.TP 7
 \fB%Ey\fP
 Offset from \fB%EC\fP (year only) in the locale's alternative representation.
-.TP
+.TP 7
 \fB%EY\fP
 Full alternative year representation.
-.TP
+.TP 7
 \fB%Od\fP
 Day of month using the locale's alternative numeric symbols.
-.TP
+.TP 7
 \fB%Oe\fP
 Day of month using the locale's alternative numeric symbols.
-.TP
+.TP 7
 \fB%OH\fP
 Hour (24-hour clock) using the locale's alternative numeric symbols.
-.TP
+.TP 7
 \fB%OI\fP
 Hour (12-hour clock) using the locale's alternative numeric symbols.
-.TP
+.TP 7
 \fB%Om\fP
 Month using the locale's alternative numeric symbols.
-.TP
+.TP 7
 \fB%OM\fP
 Minutes using the locale's alternative numeric symbols.
-.TP
+.TP 7
 \fB%OS\fP
 Seconds using the locale's alternative numeric symbols.
-.TP
+.TP 7
 \fB%Ou\fP
 Weekday as a number in the locale's alternative representation (Monday
 = 1).
-.TP
+.TP 7
 \fB%OU\fP
 Week number of the year (Sunday as the first day of the week) using
 the locale's alternative numeric symbols.
-.TP
+.TP 7
 \fB%OV\fP
 Week number of the year (Monday as the first day of the week, rules
 corresponding to \fB%V\fP ), using the locale's
 alternative numeric symbols.
-.TP
+.TP 7
 \fB%Ow\fP
 Weekday as a number in the locale's alternative representation (Sunday
 = 0).
-.TP
+.TP 7
 \fB%OW\fP
 Week number of the year (Monday as the first day of the week) using
 the locale's alternative numeric symbols.
-.TP
+.TP 7
 \fB%Oy\fP
 Year (offset from \fB%C\fP ) in alternative representation.
 .sp
 .sp
-.TP
+.TP 7
 \fImmddhhmm\fP\fB[[\fP\fIcc\fP\fB]\fP\fIyy\fP\fB]\fP
 .sp
 Attempt to set the system date and time from the value given in the
@@ -253,12 +253,14 @@ If century is not specified, then values in the range [69,99] shall
 refer to years 1969 to 1999 inclusive, and values in the range
 [00,68] shall refer to years 2000 to 2068 inclusive. The current year
 is the default if \fIyy\fP is omitted.   
-.TP
+.TP 7
 \fBNote:\fP
-It is expected that in a future version of IEEE\0Std\01003.1-2001
+.RS
+It is expected that in a future version of IEEE\ Std\ 1003.1-2001
 the default century inferred from a 2-digit year will
 change. (This would apply to all commands accepting a 2-digit year
 as input.)
+.RE
 .sp
 .sp
 .SH STDIN
@@ -271,37 +273,37 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIdate\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fILC_TIME\fP
 Determine the format and contents of date and time strings written
 by \fIdate\fP.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone in which the time and date are written, unless
 the \fB-u\fP option is specified. If the \fITZ\fP
@@ -335,10 +337,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 The date was written successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -436,8 +438,7 @@ With the above date, the command:
 would yield 3.IX.1991. With the same \fBd_fmt\fP, but without the
 \fBalt_digits\fP, the command would yield 3.9.1991.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 The following are input/output examples of \fIdate\fP used at arbitrary
 times in the POSIX locale:
 .sp
@@ -457,9 +458,8 @@ $\fP \fBdate "+TIME: %r"
 \fP\fBTIME: 01:36:32 PM\fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Examples for Denmark, where the default date and time format is \fB%a\fP
 \fB%d\fP \fB%b\fP \fB%Y\fP \fB%T\fP
 \fB%Z\fP :
@@ -477,9 +477,8 @@ $\fP \fBLANG=da_DK.iso_8859-1 \\
 KLOKKEN: 15:03:56\fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Examples for Germany, where the default date and time format is \fB%a\fP
 \fB%d\fP . \fB%h\fP . \fB%Y\fP ,
 \fB%T\fP \fB%Z\fP :
@@ -496,9 +495,8 @@ $\fP \fBLANG=De_DE.88591 date "+DATUM: %A, %d. %B %Y%nZEIT: %H:%M:%S"
 ZEIT: 15:02:02\fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Examples for France, where the default date and time format is \fB%a\fP
 \fB%d\fP \fB%h\fP \fB%Y\fP \fB%Z\fP
 \fB%T\fP :
@@ -515,10 +513,10 @@ $\fP \fBLANG=Fr_FR.88591 date "+JOUR: %A %d %B %Y%nHEURE: %H:%M:%S"
 HEURE: 15:03:56\fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
-Some of the new options for formatting are from the ISO\0C standard.
+Some of the new options for formatting are from the ISO\ C standard.
 The \fB-u\fP option was introduced to allow portable
 access to Coordinated Universal Time (UTC). The string \fB"GMT0"\fP
 is allowed as an equivalent \fITZ\fP value to be compatible
@@ -526,7 +524,7 @@ with all of the systems using the BSD implementation, where this option
 originated.
 .LP
 The \fB%e\fP format conversion specification (adopted from System
-V) was added because the ISO\0C standard conversion
+V) was added because the ISO\ C standard conversion
 specifications did not provide any way to produce the historical default
 \fIdate\fP output during the first nine days of any
 month.
@@ -534,22 +532,19 @@ month.
 There are two varieties of day and week numbering supported (in addition
 to any others created with the locale-dependent
 \fB%E\fP and \fB%O\fP modifier characters):
-.RS
-.in +5
-.LP
+.IP " *" 3
 The historical variety in which Sunday is the first day of the week
 and the weekdays preceding the first Sunday of the year are
 considered week 0. These are represented by \fB%w\fP and \fB%U\fP
 \&. A variant of this is \fB%W\fP , using Monday as the
 first day of the week, but still referring to week 0. This view of
 the calendar was retained because so many historical
-applications depend on it and the ISO\0C standard \fIstrftime\fP()
+applications depend on it and the ISO\ C standard \fIstrftime\fP()
 function, on which
 many \fIdate\fP implementations are based, was defined in this way.
-.in -5
-.in +5
 .LP
-The international standard, based on the ISO\08601:2000 standard where
+.IP " *" 3
+The international standard, based on the ISO\ 8601:2000 standard where
 Monday is the first weekday and the algorithm for the
 first week number is more complex: If the week (Monday to Sunday)
 containing January 1 has four or more days in the new year, then
@@ -557,14 +552,13 @@ it is week 1; otherwise, it is week 53 of the previous year, and the
 next week is week 1. These are represented by the new
 conversion specifications \fB%u\fP and \fB%V\fP , added as a result
 of international comments.
-.in -5
-.RE
+.LP
 .SH FUTURE DIRECTIONS
 .LP
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIprintf\fP(),
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIprintf\fP(),
 \fIstrftime\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -2,53 +2,53 @@
 .TH "<stdlib.h>" P 2003 POSIX
 .\" <stdlib.h> 
 .SH NAME
-stdlib.h - standard library definitions
+stdlib.h \- standard library definitions
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>\fP
 .SH DESCRIPTION
 .LP
 Some of the functionality described on this reference page extends
-the ISO\0C standard. Applications shall define
+the ISO\ C standard. Applications shall define
 the appropriate feature test macro (see the System Interfaces volume
-of IEEE\0Std\01003.1-2001, Section 2.2, The Compilation Environment)
+of IEEE\ Std\ 1003.1-2001, Section 2.2, The Compilation Environment)
 to enable the visibility of these symbols in this
 header. 
 .LP
 The \fI<stdlib.h>\fP header shall define the following macros:
-.TP
+.TP 7
 EXIT_FAILURE
 Unsuccessful termination for \fIexit\fP(); evaluates to a non-zero
 value.
-.TP
+.TP 7
 EXIT_SUCCESS
 Successful termination for \fIexit\fP(); evaluates to 0.
-.TP
+.TP 7
 NULL
 Null pointer.
-.TP
+.TP 7
 {RAND_MAX}
 Maximum value returned by \fIrand\fP(); at least 32767.
-.TP
+.TP 7
 {MB_CUR_MAX}
 Integer expression whose value is the maximum number of bytes in a
 character specified by the current locale.
 .sp
 .LP
 The following data types shall be defined through \fBtypedef\fP:
-.TP
+.TP 7
 \fBdiv_t\fP
 Structure type returned by the \fIdiv\fP() function.
-.TP
+.TP 7
 \fBldiv_t\fP
 Structure type returned by the \fIldiv\fP() function.
-.TP
+.TP 7
 \fBlldiv_t\fP
 Structure type returned by the \fIlldiv\fP() function.
-.TP
+.TP 7
 \fBsize_t\fP
 As described in \fI<stddef.h>\fP .
-.TP
+.TP 7
 \fBwchar_t\fP
 As described in \fI<stddef.h>\fP .
 .sp
@@ -196,8 +196,7 @@ int           wctomb(char *, wchar_t);
 .LP
 Inclusion of the \fI<stdlib.h>\fP header may also make visible all
 symbols from \fI<stddef.h>\fP, \fI<limits.h>\fP, \fI<math.h>\fP, and
-\fI<sys/wait.h>\fP. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+\fI<sys/wait.h>\fP. 
 .LP
 \fIThe following sections are informative.\fP
 .SH APPLICATION USAGE
@@ -212,7 +211,7 @@ None.
 .SH SEE ALSO
 .LP
 \fI<limits.h>\fP , \fI<math.h>\fP , \fI<stddef.h>\fP , \fI<sys/types.h>\fP
-, \fI<sys/wait.h>\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+, \fI<sys/wait.h>\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fI_Exit\fP(), \fIa64l\fP(), \fIabort\fP(), \fIabs\fP(), \fIatexit\fP(),
 \fIatof\fP(), \fIatoi\fP(), \fIatol\fP(), \fIatoll\fP(), \fIbsearch\fP(),
 \fIcalloc\fP(), \fIdiv\fP(), \fIdrand48\fP(), \fIerand48\fP(), \fIexit\fP(),

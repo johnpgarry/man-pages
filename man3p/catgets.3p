@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "catgets" P 2003 POSIX
+.TH "CATGETS" P 2003 POSIX
 .\" catgets 
 .SH NAME
-catgets - read a program message
+catgets \- read a program message
 .SH SYNOPSIS
 .LP
 \fB#include <nl_types.h>
@@ -36,23 +36,23 @@ for any reason, \fIs\fP shall be returned and
 .SH ERRORS
 .LP
 The \fIcatgets\fP() function may fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIcatd\fP argument is not a valid message catalog descriptor
 open for reading.
-.TP
+.TP 7
 .B EBADMSG
 The message identified by \fIset_id\fP and \fImsg_id\fP in the specified
 message catalog did not satisfy
 implementation-defined security criteria.
-.TP
+.TP 7
 .B EINTR
 The read operation was terminated due to the receipt of a signal,
 and no data was transferred.
-.TP
+.TP 7
 .B EINVAL
 The message catalog identified by \fIcatd\fP is corrupted.
-.TP
+.TP 7
 .B ENOMSG
 The message identified by \fIset_id\fP and \fImsg_id\fP is not in
 the message catalog.
@@ -74,7 +74,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIcatclose\fP() , \fIcatopen\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<nl_types.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<nl_types.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

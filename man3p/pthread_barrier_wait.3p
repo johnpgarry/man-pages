@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_barrier_wait" P 2003 POSIX
+.TH "PTHREAD_BARRIER_WAIT" P 2003 POSIX
 .\" pthread_barrier_wait 
 .SH NAME
-pthread_barrier_wait - synchronize at a barrier (\fBADVANCED REALTIME
+pthread_barrier_wait \- synchronize at a barrier (\fBADVANCED REALTIME
 THREADS\fP)
 .SH SYNOPSIS
 .LP
@@ -62,7 +62,7 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_barrier_wait\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIbarrier\fP does not refer to an initialized
 barrier object.
@@ -78,7 +78,7 @@ None.
 .LP
 Applications using this function may be subject to priority inversion,
 as discussed in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 3.285, Priority Inversion.
+IEEE\ Std\ 1003.1-2001, Section 3.285, Priority Inversion.
 .LP
 The \fIpthread_barrier_wait\fP() function is part of the Barriers
 option and need not be provided on all implementations.
@@ -91,7 +91,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_barrier_destroy\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

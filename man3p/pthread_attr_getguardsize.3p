@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_attr_getguardsize" P 2003 POSIX
+.TH "PTHREAD_ATTR_GETGUARDSIZE" P 2003 POSIX
 .\" pthread_attr_getguardsize 
 .SH NAME
-pthread_attr_getguardsize, pthread_attr_setguardsize - get and set
+pthread_attr_getguardsize, pthread_attr_setguardsize \- get and set
 the thread guardsize attribute
 .SH SYNOPSIS
 .LP
@@ -11,11 +11,11 @@ the thread guardsize attribute
 .sp
 int pthread_attr_getguardsize(const pthread_attr_t *restrict\fP \fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 size_t *restrict\fP \fIguardsize\fP\fB);
+\ \ \ \ \ \  size_t *restrict\fP \fIguardsize\fP\fB);
 .br
 int pthread_attr_setguardsize(pthread_attr_t\fP \fI*attr\fP\fB,
 .br
-\0\0\0\0\0\0 size_t\fP \fIguardsize\fP\fB); \fP
+\ \ \ \ \ \  size_t\fP \fIguardsize\fP\fB); \fP
 \fB
 .br
 \fP
@@ -72,10 +72,10 @@ otherwise, an error number shall be returned to indicate the error.
 .LP
 The \fIpthread_attr_getguardsize\fP() and \fIpthread_attr_setguardsize\fP()
 functions shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The attribute \fIattr\fP is invalid.
-.TP
+.TP 7
 .B EINVAL
 The parameter \fIguardsize\fP is invalid.
 .sp
@@ -93,24 +93,22 @@ None.
 .LP
 The \fIguardsize\fP attribute is provided to the application for two
 reasons:
-.in +5
-.LP
+.IP " 1." 4
 Overflow protection can potentially result in wasted system resources.
 An application that creates a large number of threads,
 and which knows its threads never overflow their stack, can save system
 resources by turning off guard areas.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 When threads allocate large data structures on the stack, large guard
 areas may be needed to detect stack overflow.
-.in -5
+.LP
 .SH FUTURE DIRECTIONS
 .LP
 None.
 .SH SEE ALSO
 .LP
-The Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP,
+The Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP,
 \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

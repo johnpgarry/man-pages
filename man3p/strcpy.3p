@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "strcpy" P 2003 POSIX
+.TH "STRCPY" P 2003 POSIX
 .\" strcpy 
 .SH NAME
-strcpy - copy a string
+strcpy \- copy a string
 .SH SYNOPSIS
 .LP
 \fB#include <string.h>
@@ -13,12 +13,6 @@ char *strcpy(char *restrict\fP \fIs1\fP\fB, const char *restrict\fP
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIstrcpy\fP() function shall copy the string pointed to by \fIs2\fP
 (including the terminating null byte) into the array
@@ -100,7 +94,7 @@ strcpy(curtbl->data, data);
 Character movement is performed differently in different implementations.
 Thus, overlapping moves may yield surprises.
 .LP
-This issue is aligned with the ISO\0C standard; this does not affect
+This issue is aligned with the ISO\ C standard; this does not affect
 compatibility with XPG3 applications. Reliable error
 detection by this function was never guaranteed.
 .SH RATIONALE
@@ -111,7 +105,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIstrncpy\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIstrncpy\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<string.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "aio_cancel" P 2003 POSIX
+.TH "AIO_CANCEL" P 2003 POSIX
 .\" aio_cancel 
 .SH NAME
-aio_cancel - cancel an asynchronous I/O request (\fBREALTIME\fP)
+aio_cancel \- cancel an asynchronous I/O request (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <aio.h>
@@ -57,7 +57,7 @@ already completed. Otherwise, the function shall return -1 and set
 .SH ERRORS
 .LP
 The \fIaio_cancel\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor.
 .sp
@@ -81,7 +81,7 @@ None.
 .LP
 \fIaio_read\fP() , \fIaio_write\fP() , the Base Definitions volume
 of
-IEEE\0Std\01003.1-2001, \fI<aio.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<aio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

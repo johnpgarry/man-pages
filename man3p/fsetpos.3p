@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fsetpos" P 2003 POSIX
+.TH "FSETPOS" P 2003 POSIX
 .\" fsetpos 
 .SH NAME
-fsetpos - set current file position
+fsetpos \- set current file position
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -12,12 +12,6 @@ int fsetpos(FILE *\fP\fIstream\fP\fB, const fpos_t *\fP\fIpos\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIfsetpos\fP() function shall set the file position and state
 indicators for the stream pointed to by \fIstream\fP
@@ -44,37 +38,37 @@ it shall return a non-zero value and set \fIerrno\fP to
 indicate the error.
 .SH ERRORS
 .LP
-The \fIfsetpos\fP() function shall fail if,   \0either the \fIstream\fP
+The \fIfsetpos\fP() function shall fail if,   \ either the \fIstream\fP
 is unbuffered or the \fIstream\fP's
 buffer needed to be flushed, and the call to \fIfsetpos\fP() causes
 an underlying \fIlseek\fP() or \fIwrite\fP() to be invoked, and: 
-.TP
+.TP 7
 .B EAGAIN
 The O_NONBLOCK flag is set for the file descriptor and the process
 would be delayed in the write operation. 
-.TP
+.TP 7
 .B EBADF
 The file descriptor underlying the stream file is not open for writing
 or the stream's buffer needed to be flushed and the file is
 not open. 
-.TP
+.TP 7
 .B EFBIG
 An
 attempt was made to write a file that exceeds the maximum file size.
-.TP
+.TP 7
 .B EFBIG
 An attempt was made to write a file that exceeds the process' file
 size limit. 
-.TP
+.TP 7
 .B EFBIG
 The file is a regular file and an attempt was made to write at or
 beyond the offset maximum associated with the corresponding
 stream. 
-.TP
+.TP 7
 .B EINTR
 The write operation was terminated due to the receipt of a signal,
 and no data was transferred. 
-.TP
+.TP 7
 .B EIO
 A
 physical I/O error has occurred, or the process is a member of a background
@@ -83,19 +77,19 @@ terminal, TOSTOP is set, the process is neither ignoring nor
 blocking SIGTTOU, and the process group of the process is orphaned.
 This error may also be returned under implementation-defined
 conditions. 
-.TP
+.TP 7
 .B ENOSPC
 There was no free space remaining on the device containing the file.
-.TP
+.TP 7
 .B ENXIO
 A
 request was made of a nonexistent device, or the request was outside
 the capabilities of the device. 
-.TP
+.TP 7
 .B EPIPE
 The file descriptor underlying \fIstream\fP is associated with a pipe
 or FIFO. 
-.TP
+.TP 7
 .B EPIPE
 An
 attempt was made to write to a pipe or FIFO that is not open for reading
@@ -120,7 +114,7 @@ None.
 .LP
 \fIfopen\fP() , \fIftell\fP() , \fIlseek\fP() , \fIrewind\fP() , \fIungetc\fP()
 , \fIwrite\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<stdio.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<stdio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "crypt" P 2003 POSIX
+.TH "CRYPT" P 2003 POSIX
 .\" crypt 
 .SH NAME
-crypt - string encoding function (\fBCRYPT\fP)
+crypt \- string encoding function (\fBCRYPT\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -50,7 +50,7 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIcrypt\fP() function shall fail if:
-.TP
+.TP 7
 .B ENOSYS
 The functionality is not supported on this implementation.
 .sp
@@ -68,7 +68,7 @@ compared to the password stored in the user database. The second
 call to \fIcrypt\fP() encodes the new password before it is stored.
 .LP
 The \fIputpwent\fP() function, used in the following example, is not
-part of IEEE\0Std\01003.1-2001.
+part of IEEE\ Std\ 1003.1-2001.
 .sp
 .RS
 .nf
@@ -119,7 +119,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIencrypt\fP() , \fIsetkey\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

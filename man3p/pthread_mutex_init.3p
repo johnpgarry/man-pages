@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_mutex_destroy" P 2003 POSIX
+.TH "PTHREAD_MUTEX_DESTROY" P 2003 POSIX
 .\" pthread_mutex_destroy 
 .SH NAME
-pthread_mutex_destroy, pthread_mutex_init - destroy and initialize
+pthread_mutex_destroy, pthread_mutex_init \- destroy and initialize
 a mutex
 .SH SYNOPSIS
 .LP
@@ -13,7 +13,7 @@ int pthread_mutex_destroy(pthread_mutex_t *\fP\fImutex\fP\fB);
 .br
 int pthread_mutex_init(pthread_mutex_t *restrict\fP \fImutex\fP\fB,
 .br
-\0\0\0\0\0\0 const pthread_mutexattr_t *restrict\fP \fIattr\fP\fB);
+\ \ \ \ \ \  const pthread_mutexattr_t *restrict\fP \fIattr\fP\fB);
 .br
 pthread_mutex_t\fP \fImutex\fP \fB= PTHREAD_MUTEX_INITIALIZER; \fP
 \fB
@@ -67,37 +67,37 @@ the state of the mutex specified by \fImutex\fP.
 .SH ERRORS
 .LP
 The \fIpthread_mutex_destroy\fP() function may fail if:
-.TP
+.TP 7
 .B EBUSY
 The implementation has detected an attempt to destroy the object referenced
 by \fImutex\fP while it is locked or referenced
 (for example, while being used in a \fIpthread_cond_timedwait\fP()
 or \fIpthread_cond_wait\fP()) by another thread.
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fImutex\fP is invalid.
 .sp
 .LP
 The \fIpthread_mutex_init\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The system lacked the necessary resources (other than memory) to initialize
 another mutex.
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory exists to initialize the mutex.
-.TP
+.TP 7
 .B EPERM
 The caller does not have the privilege to perform the operation.
 .sp
 .LP
 The \fIpthread_mutex_init\fP() function may fail if:
-.TP
+.TP 7
 .B EBUSY
 The implementation has detected an attempt to reinitialize the object
 referenced by \fImutex\fP, a previously initialized, but
 not yet destroyed, mutex.
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIattr\fP is invalid.
 .sp
@@ -114,7 +114,7 @@ None.
 .SH RATIONALE
 .SS Alternate Implementations Possible
 .LP
-This volume of IEEE\0Std\01003.1-2001 supports several alternative
+This volume of IEEE\ Std\ 1003.1-2001 supports several alternative
 implementations of mutexes. An implementation may
 store the lock directly in the object of type \fBpthread_mutex_t\fP.
 Alternatively, an implementation may store the lock in the
@@ -122,7 +122,7 @@ heap and merely store a pointer, handle, or unique ID in the mutex
 object. Either implementation has advantages or may be required
 on certain hardware configurations. So that portable code can be written
 that is invariant to this choice, this volume of
-IEEE\0Std\01003.1-2001 does not define assignment or equality for
+IEEE\ Std\ 1003.1-2001 does not define assignment or equality for
 this type, and it uses the term "initialize" to
 reinforce the (more restrictive) notion that the lock may actually
 reside in the mutex object itself.
@@ -159,7 +159,7 @@ version. To forbid this optionality would be a disservice to users.
 By carefully limiting the use of "undefined behavior" only to things
 that an erroneous (badly coded) application might do, and
 by defining that resource-not-available errors are mandatory, this
-volume of IEEE\0Std\01003.1-2001 ensures that a
+volume of IEEE\ Std\ 1003.1-2001 ensures that a
 fully-conforming application is portable across the full range of
 implementations, while not forcing all implementations to add
 overhead to check for numerous things that a correct program never
@@ -350,7 +350,7 @@ None.
 \fIpthread_mutex_getprioceiling\fP() , \fIpthread_mutex_lock\fP()
 , \fIpthread_mutex_timedlock\fP() , \fIpthread_mutexattr_getpshared\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

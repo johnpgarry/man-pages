@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fwprintf" P 2003 POSIX
+.TH "FWPRINTF" P 2003 POSIX
 .\" fwprintf 
 .SH NAME
-fwprintf, swprintf, wprintf - print formatted wide-character output
+fwprintf, swprintf, wprintf \- print formatted wide-character output
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -15,18 +15,12 @@ int fwprintf(FILE *restrict\fP \fIstream\fP\fB, const wchar_t *restrict\fP
 .br
 int swprintf(wchar_t *restrict\fP \fIws\fP\fB, size_t\fP \fIn\fP\fB,
 .br
-\0\0\0\0\0\0 const wchar_t *restrict\fP \fIformat\fP\fB, ...);
+\ \ \ \ \ \  const wchar_t *restrict\fP \fIformat\fP\fB, ...);
 .br
 int wprintf(const wchar_t *restrict\fP \fIformat\fP\fB, ...);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIfwprintf\fP() function shall place output on the named output
 \fIstream\fP. The \fIwprintf\fP() function shall place
@@ -87,17 +81,14 @@ locale, or in a locale where the radix character is not defined, the
 radix character shall default to a period ( \fB'.'\fP ).
 .LP
 Each conversion specification is introduced by the \fB'%'\fP wide
-character   \0or by the
-wide-character sequence \fB"%\fP\fIn\fP\fB$"\fP,  \0after
+character   \ or by the
+wide-character sequence \fB"%\fP\fIn\fP\fB$"\fP,  \ after
 which the following appear in sequence:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Zero or more \fIflags\fP (in any order), which modify the meaning
 of the conversion specification.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 An optional minimum \fIfield width\fP. If the converted value has
 fewer wide characters than the field width, it shall be
 padded with spaces by default on the left; it shall be padded on the
@@ -105,9 +96,8 @@ right, if the left-adjustment flag ( \fB'-'\fP ), described
 below, is given to the field width. The field width takes the form
 of an asterisk ( \fB'*'\fP ), described below, or a decimal
 integer.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 An optional \fIprecision\fP that gives the minimum number of digits
 to appear for the \fBd\fP , \fBi\fP , \fBo\fP ,
 \fBu\fP , \fBx\fP , and \fBX\fP conversion specifiers; the number
@@ -122,17 +112,14 @@ an asterisk ( \fB'*'\fP ), described below, or an optional decimal
 digit string, where a null digit string is treated as 0. If a
 precision appears with any other conversion wide character, the behavior
 is undefined.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 An optional length modifier that specifies the size of the argument.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A \fIconversion specifier\fP wide character that indicates the type
 of conversion to be applied.
-.in -5
-.RE
+.LP
 .LP
 A field width, or precision, or both, may be indicated by an asterisk
 ( \fB'*'\fP ). In this case an argument of type
@@ -141,7 +128,7 @@ ensure that arguments specifying field width, or precision, or
 both appear in that order before the argument, if any, to be converted.
 A negative field width is taken as a \fB'-'\fP flag
 followed by a positive field width. A negative precision is taken
-as if the precision were omitted.   \0In
+as if the precision were omitted.   \ In
 \fIformat\fP wide-character strings containing the \fB"%\fP\fIn\fP\fB$"\fP
 form of a conversion specification, a field
 width or precision may be indicated by the sequence \fB"*\fP\fIm\fP\fB$"\fP,
@@ -159,32 +146,32 @@ the field width or precision, for example:
 .RE
 .LP
 The flag wide characters and their meanings are:
-.TP
+.TP 7
 \fB'\fP
 The integer portion of the result of a decimal conversion ( \fB%i\fP
 , \fB%d\fP , \fB%u\fP , \fB%f\fP , \fB%F\fP ,
 \fB%g\fP , or \fB%G\fP ) shall be formatted with thousands' grouping
 wide characters. For other conversions, the behavior is
 undefined. The numeric grouping wide character is used. 
-.TP
+.TP 7
 \fB-\fP
 The result of the conversion shall be left-justified within the field.
 The conversion shall be right-justified if this flag is
 not specified.
-.TP
+.TP 7
 \fB+\fP
 The result of a signed conversion shall always begin with a sign (
 \fB'+'\fP or \fB'-'\fP ). The conversion shall begin
 with a sign only when a negative value is converted if this flag is
 not specified.
-.TP
+.TP 7
 <space>
 If the first wide character of a signed conversion is not a sign,
 or if a signed conversion results in no wide characters, a
 <space> shall be prefixed to the result. This means that if the <space>
 and \fB'+'\fP flags both appear, the
 <space> flag shall be ignored.
-.TP
+.TP 7
 \fB#\fP
 Specifies that the value is to be converted to an alternative form.
 For \fBo\fP conversion, it increases the precision (if
@@ -199,7 +186,7 @@ only if a digit follows it. For \fBg\fP and \fBG\fP
 conversion specifiers, trailing zeros shall \fInot\fP be removed from
 the result as they normally are. For other conversion
 specifiers, the behavior is undefined.
-.TP
+.TP 7
 \fB0\fP
 For \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP , \fBx\fP , \fBX\fP , \fBa\fP
 , \fBA\fP , \fBe\fP ,
@@ -217,7 +204,7 @@ undefined.
 .sp
 .LP
 The length modifiers and their meanings are:
-.TP
+.TP 7
 \fBhh\fP
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , or \fBX\fP conversion specifier
@@ -227,7 +214,7 @@ promotions, but its value shall be converted to \fBsigned char\fP
 or \fBunsigned char\fP before printing); or that a following
 \fBn\fP conversion specifier applies to a pointer to a \fBsigned char\fP
 argument.
-.TP
+.TP 7
 \fBh\fP
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , or \fBX\fP conversion specifier
@@ -237,8 +224,8 @@ promotions, but its value shall be converted to \fBshort\fP or \fBunsigned
 short\fP before printing); or that a following
 \fBn\fP conversion specifier applies to a pointer to a \fBshort\fP
 argument.
-.TP
-\fBl\fP\0(ell)
+.TP 7
+\fBl\fP\ (ell)
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , or \fBX\fP conversion specifier
 applies to a \fBlong\fP or \fBunsigned long\fP argument; that a following
@@ -249,22 +236,22 @@ applies to a \fBwint_t\fP argument; that a following
 argument; or has no effect on a following \fBa\fP ,
 \fBA\fP , \fBe\fP , \fBE\fP , \fBf\fP , \fBF\fP , \fBg\fP , or \fBG\fP
 conversion specifier.
-.TP
-\fBll\fP\0(ell-ell)
+.TP 7
+\fBll\fP\ (ell-ell)
 .sp
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , or \fBX\fP conversion specifier
 applies to a \fBlong long\fP or \fBunsigned long long\fP argument;
 or that a following \fBn\fP conversion specifier applies to
 a pointer to a \fBlong long\fP argument.
-.TP
+.TP 7
 \fBj\fP
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , or \fBX\fP conversion specifier
 applies to an \fBintmax_t\fP or \fBuintmax_t\fP argument; or that
 a following \fBn\fP conversion specifier applies to a
 pointer to an \fBintmax_t\fP argument.
-.TP
+.TP 7
 \fBz\fP
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , or \fBX\fP conversion specifier
@@ -272,14 +259,14 @@ applies to a \fBsize_t\fP or the corresponding signed integer type
 argument; or that a following \fBn\fP conversion specifier
 applies to a pointer to a signed integer type corresponding to a \fBsize_t\fP
 argument.
-.TP
+.TP 7
 \fBt\fP
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , or \fBX\fP conversion specifier
 applies to a \fBptrdiff_t\fP or the corresponding \fBunsigned\fP type
 argument; or that a following \fBn\fP conversion
 specifier applies to a pointer to a \fBptrdiff_t\fP argument.
-.TP
+.TP 7
 \fBL\fP
 Specifies that a following \fBa\fP , \fBA\fP , \fBe\fP , \fBE\fP ,
 \fBf\fP , \fBF\fP , \fBg\fP , or
@@ -290,8 +277,8 @@ If a length modifier appears with any conversion specifier other than
 as specified above, the behavior is undefined.
 .LP
 The conversion specifiers and their meanings are:
-.TP
-\fBd\fP,\0\fBi\fP
+.TP 7
+\fBd\fP,\ \fBi\fP
 The \fBint\fP argument shall be converted to a signed decimal in the
 style \fB"[-]\fP\fIdddd"\fP. The precision specifies
 the minimum number of digits to appear; if the value being converted
@@ -299,7 +286,7 @@ can be represented in fewer digits, it shall be expanded with
 leading zeros. The default precision shall be 1. The result of converting
 zero with an explicit precision of zero shall be no wide
 characters.
-.TP
+.TP 7
 \fBo\fP
 The \fBunsigned\fP argument shall be converted to unsigned octal format
 in the style \fB"dddd"\fP . The precision specifies
@@ -308,7 +295,7 @@ can be represented in fewer digits, it shall be expanded with
 leading zeros. The default precision shall be 1. The result of converting
 zero with an explicit precision of zero shall be no wide
 characters.
-.TP
+.TP 7
 \fBu\fP
 The \fBunsigned\fP argument shall be converted to unsigned decimal
 format in the style \fB"dddd"\fP . The precision
@@ -317,7 +304,7 @@ converted can be represented in fewer digits, it shall be
 expanded with leading zeros. The default precision shall be 1. The
 result of converting zero with an explicit precision of zero
 shall be no wide characters.
-.TP
+.TP 7
 \fBx\fP
 The \fBunsigned\fP argument shall be converted to unsigned hexadecimal
 format in the style \fB"dddd"\fP ; the letters
@@ -326,13 +313,13 @@ of digits to appear; if the value being converted can be
 represented in fewer digits, it shall be expanded with leading zeros.
 The default precision shall be 1. The result of converting
 zero with an explicit precision of zero shall be no wide characters.
-.TP
+.TP 7
 \fBX\fP
 Equivalent to the \fBx\fP conversion specifier, except that letters
 \fB"ABCDEF"\fP are used instead of \fB"abcdef"\fP
 \&.
-.TP
-\fBf\fP,\0\fBF\fP
+.TP 7
+\fBf\fP,\ \fBF\fP
 The \fBdouble\fP argument shall be converted to decimal notation in
 the style \fB"[-]\fP\fIddd.ddd"\fP, where the number
 of digits after the radix character shall be equal to the precision
@@ -353,8 +340,8 @@ which style, and the meaning of any
 specifier produces \fB"INF"\fP ,
 \fB"INFINITY"\fP , or \fB"NAN"\fP instead of \fB"inf"\fP , \fB"infinity"\fP
 , or \fB"nan"\fP , respectively.
-.TP
-\fBe\fP,\0\fBE\fP
+.TP 7
+\fBe\fP,\ \fBE\fP
 The \fBdouble\fP argument shall be converted in the style \fB"[-]\fP\fId.ddd\fPe\fB\(+-dd"\fP,
 where there shall be
 one digit before the radix character (which is non-zero if the argument
@@ -371,8 +358,8 @@ If the value is zero, the exponent shall be zero.
 A \fBdouble\fP argument representing an infinity or NaN shall be converted
 in the style of an \fBf\fP or \fBF\fP
 conversion specifier.
-.TP
-\fBg\fP,\0\fBG\fP
+.TP 7
+\fBg\fP,\ \fBG\fP
 The \fBdouble\fP argument shall be converted in the style \fBf\fP
 or \fBe\fP (or in the style \fBF\fP or \fBE\fP
 in the case of a \fBG\fP conversion specifier), with the precision
@@ -387,8 +374,8 @@ a radix character shall appear only if it is followed by a digit.
 A \fBdouble\fP argument representing an infinity or NaN shall be converted
 in the style of an \fBf\fP or \fBF\fP
 conversion specifier.
-.TP
-\fBa\fP,\0\fBA\fP
+.TP 7
+\fBa\fP,\ \fBA\fP
 A \fBdouble\fP argument representing a floating-point number shall
 be converted in the style \fB"[-]0xh.hhhhp\(+-d"\fP,
 where there shall be one hexadecimal digit (which is non-zero if the
@@ -414,14 +401,14 @@ be zero.
 A \fBdouble\fP argument representing an infinity or NaN shall be converted
 in the style of an \fBf\fP or \fBF\fP
 conversion specifier.
-.TP
+.TP 7
 \fBc\fP
 If no \fBl\fP (ell) qualifier is present, the \fBint\fP argument shall
 be converted to a wide character as if by calling
 the \fIbtowc\fP() function and the resulting wide character shall
 be written. Otherwise, the
 \fBwint_t\fP argument shall be converted to \fBwchar_t\fP, and written.
-.TP
+.TP 7
 \fBs\fP
 If no \fBl\fP (ell) qualifier is present, the application shall ensure
 that the argument is a pointer to a character array
@@ -445,13 +432,13 @@ precision is specified, or is greater than the size of the array,
 the application shall ensure that the array contains a null wide
 character. If a precision is specified, no more than that many wide
 characters shall be written.
-.TP
+.TP 7
 \fBp\fP
 The application shall ensure that the argument is a pointer to \fBvoid\fP.
 The value of the pointer shall be converted to a
 sequence of printable wide characters in an implementation-defined
 manner.
-.TP
+.TP 7
 \fBn\fP
 The application shall ensure that the argument is a pointer to an
 integer into which is written the number of wide characters
@@ -459,13 +446,13 @@ written to the output so far by this call to one of the \fIfwprintf\fP()
 functions. No argument shall be converted, but one shall
 be consumed. If the conversion specification includes any flags, a
 field width, or a precision, the behavior is undefined.
-.TP
+.TP 7
 \fBC\fP
 Equivalent to \fBlc\fP . 
-.TP
+.TP 7
 \fBS\fP
 Equivalent to \fBls\fP . 
-.TP
+.TP 7
 \fB%\fP
 Output a \fB'%'\fP wide character; no argument shall be converted.
 The entire conversion specification shall be \fB%%\fP
@@ -514,11 +501,11 @@ call to \fIexit\fP() or \fIabort\fP().
 Upon successful completion, these functions shall return the number
 of wide characters transmitted, excluding the terminating
 null wide character in the case of \fIswprintf\fP(), or a negative
-value if an output error was encountered,   \0and set
+value if an output error was encountered,   \ and set
 \fIerrno\fP to indicate the error. 
 .LP
 If \fIn\fP or more wide characters were requested to be written, \fIswprintf\fP()
-shall return a negative value,   \0and set
+shall return a negative value,   \ and set
 \fIerrno\fP to indicate the error. 
 .SH ERRORS
 .LP
@@ -526,17 +513,17 @@ For the conditions under which \fIfwprintf\fP() and \fIwprintf\fP()
 fail and may fail, refer to \fIfputwc\fP() .
 .LP
 In addition, all forms of \fIfwprintf\fP() may fail if:
-.TP
+.TP 7
 .B EILSEQ
 A wide-character code that does not correspond to a valid character
 has been detected. 
-.TP
+.TP 7
 .B EINVAL
 There are insufficient arguments. 
 .sp
 .LP
 In addition, \fIwprintf\fP() and \fIfwprintf\fP() may fail if:
-.TP
+.TP 7
 .B ENOMEM
 Insufficient storage space is available. 
 .sp
@@ -609,7 +596,7 @@ None.
 .LP
 \fIbtowc\fP() , \fIfputwc\fP() , \fIfwscanf\fP() , \fImbrtowc\fP()
 , \fIsetlocale\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, Chapter 7,
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 7,
 Locale, \fI<stdio.h>\fP, \fI<wchar.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

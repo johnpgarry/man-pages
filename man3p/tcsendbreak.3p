@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tcsendbreak" P 2003 POSIX
+.TH "TCSENDBREAK" P 2003 POSIX
 .\" tcsendbreak 
 .SH NAME
-tcsendbreak - send a break for a specific duration
+tcsendbreak \- send a break for a specific duration
 .SH SYNOPSIS
 .LP
 \fB#include <termios.h>
@@ -42,16 +42,16 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fItcsendbreak\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B ENOTTY
 The file associated with \fIfildes\fP is not a terminal.
 .sp
 .LP
 The \fItcsendbreak\fP() function may fail if:
-.TP
+.TP 7
 .B EIO
 The process group of the writing process is orphaned, and the writing
 process is not ignoring or blocking SIGTTOU.
@@ -72,7 +72,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The Base Definitions volume of IEEE\0Std\01003.1-2001, Chapter 11,
+The Base Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 11,
 General
 Terminal Interface, \fI<termios.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT

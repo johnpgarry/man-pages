@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "closedir" P 2003 POSIX
+.TH "CLOSEDIR" P 2003 POSIX
 .\" closedir 
 .SH NAME
-closedir - close a directory stream
+closedir \- close a directory stream
 .SH SYNOPSIS
 .LP
 \fB#include <dirent.h>
@@ -26,10 +26,10 @@ the error.
 .SH ERRORS
 .LP
 The \fIclosedir\fP() function may fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIdirp\fP argument does not refer to an open directory stream.
-.TP
+.TP 7
 .B EINTR
 The \fIclosedir\fP() function was interrupted by a signal.
 .sp
@@ -74,7 +74,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIopendir\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIopendir\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<dirent.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

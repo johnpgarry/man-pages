@@ -2,14 +2,14 @@
 .TH "<iconv.h>" P 2003 POSIX
 .\" <iconv.h> 
 .SH NAME
-iconv.h - codeset conversion facility
+iconv.h \- codeset conversion facility
 .SH SYNOPSIS
 .LP
 \fB#include <iconv.h> \fP
 .SH DESCRIPTION
 .LP
 The \fI<iconv.h>\fP header shall define the following type:
-.TP
+.TP 7
 \fBiconv_t\fP
 Identifies the conversion from one codeset to another.
 .sp
@@ -40,7 +40,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIiconv\fP(),
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIiconv\fP(),
 \fIiconv_close\fP(), \fIiconv_open\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

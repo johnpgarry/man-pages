@@ -2,25 +2,25 @@
 .TH "<math.h>" P 2003 POSIX
 .\" <math.h> 
 .SH NAME
-math.h - mathematical declarations
+math.h \- mathematical declarations
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>\fP
 .SH DESCRIPTION
 .LP
 Some of the functionality described on this reference page extends
-the ISO\0C standard. Applications shall define
+the ISO\ C standard. Applications shall define
 the appropriate feature test macro (see the System Interfaces volume
-of IEEE\0Std\01003.1-2001, Section 2.2, The Compilation Environment)
+of IEEE\ Std\ 1003.1-2001, Section 2.2, The Compilation Environment)
 to enable the visibility of these symbols in this
 header. 
 .LP
 The \fI<math.h>\fP header shall include definitions for at least the
 following types:
-.TP
+.TP 7
 \fBfloat_t\fP
 A real-floating type at least as wide as \fBfloat\fP.
-.TP
+.TP 7
 \fBdouble_t\fP
 A real-floating type at least as wide as \fBdouble\fP, and at least
 as wide as \fBfloat_t\fP.
@@ -58,73 +58,73 @@ int isunordered(real-floating x, real-floating y);
 The \fI<math.h>\fP header shall provide for the following constants.
 The values are of type \fBdouble\fP and are
 accurate within the precision of the \fBdouble\fP type.
-.TP
+.TP 7
 M_E
 Value of \fIe\fP
-.TP
+.TP 7
 M_LOG2E
 Value of log_2\fIe\fP
-.TP
+.TP 7
 M_LOG10E
 Value of log_10\fIe\fP
-.TP
+.TP 7
 M_LN2
 Value of log_e2
-.TP
+.TP 7
 M_LN10
 Value of log_e10
-.TP
+.TP 7
 M_PI
 Value of pi
-.TP
+.TP 7
 M_PI_2
 Value of pi/2
-.TP
+.TP 7
 M_PI_4
 Value of pi/4
-.TP
+.TP 7
 M_1_PI
 Value of 1/pi
-.TP
+.TP 7
 M_2_PI
 Value of 2/pi
-.TP
+.TP 7
 M_2_SQRTPI
 Value of 2/ sqrt pi
-.TP
+.TP 7
 M_SQRT2
 Value of sqrt 2
-.TP
+.TP 7
 M_SQRT1_2
 Value of 1/sqrt 2 
 .sp
 .LP
 The header shall define the following symbolic constants:
-.TP
+.TP 7
 MAXFLOAT
 Value of maximum non-infinite single-precision floating-point number.
-.TP
+.TP 7
 HUGE_VAL
 A positive \fBdouble\fP expression, not necessarily representable
 as a \fBfloat\fP. Used as an error value returned by the
 mathematics library. HUGE_VAL evaluates to +infinity on systems supporting
-IEEE\0Std\0754-1985.
-.TP
+IEEE\ Std\ 754-1985.
+.TP 7
 HUGE_VALF
 A positive \fBfloat\fP constant expression. Used as an error value
 returned by the mathematics library. HUGE_VALF evaluates to
-+infinity on systems supporting IEEE\0Std\0754-1985.
-.TP
++infinity on systems supporting IEEE\ Std\ 754-1985.
+.TP 7
 HUGE_VALL
 A positive \fBlong double\fP constant expression. Used as an error
 value returned by the mathematics library. HUGE_VALL
-evaluates to +infinity on systems supporting IEEE\0Std\0754-1985.
-.TP
+evaluates to +infinity on systems supporting IEEE\ Std\ 754-1985.
+.TP 7
 INFINITY
 A constant expression of type \fBfloat\fP representing positive or
 unsigned infinity, if available; else a positive constant
 of type \fBfloat\fP that overflows at translation time.
-.TP
+.TP 7
 NAN
 A constant expression of type \fBfloat\fP representing a quiet NaN.
 This symbolic constant is only defined if the
@@ -422,7 +422,7 @@ extern int signgam;
 .LP
 The behavior of each of the functions defined in \fI<math.h>\fP is
 specified in the System Interfaces volume of
-IEEE\0Std\01003.1-2001 for all representable values of its input arguments,
+IEEE\ Std\ 1003.1-2001 for all representable values of its input arguments,
 except where stated otherwise. Each function
 shall execute as if it were a single operation without generating
 any externally visible exceptional conditions.
@@ -447,16 +447,16 @@ other context, the behavior is undefined. The default state (on
 or off) for the pragma is implementation-defined.
 .SH RATIONALE
 .LP
-Before the ISO/IEC\09899:1999 standard, the math library was defined
+Before the ISO/IEC\ 9899:1999 standard, the math library was defined
 only for the floating type \fBdouble\fP. All the names
 formed by appending \fB'f'\fP or \fB'l'\fP to a name in \fI<math.h>\fP
 were reserved to allow for the definition of
-\fBfloat\fP and \fBlong double\fP libraries; and the ISO/IEC\09899:1999
+\fBfloat\fP and \fBlong double\fP libraries; and the ISO/IEC\ 9899:1999
 standard provides for all three versions of math
 functions.
 .LP
 The functions \fIecvt\fP(), \fIfcvt\fP(), and \fIgcvt\fP() have been
-dropped from the ISO\0C standard since their capability is available
+dropped from the ISO\ C standard since their capability is available
 through \fIsprintf\fP(). These are provided on XSI-conformant systems
 supporting the
 Legacy Option Group.
@@ -466,7 +466,7 @@ None.
 .SH SEE ALSO
 .LP
 \fI<stddef.h>\fP , \fI<sys/types.h>\fP , the System
-Interfaces volume of IEEE\0Std\01003.1-2001, \fIacos\fP(), \fIacosh\fP(),
+Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIacos\fP(), \fIacosh\fP(),
 \fIasin\fP(), \fIatan\fP(), \fIatan2\fP(), \fIcbrt\fP(), \fIceil\fP(),
 \fIcos\fP(), \fIcosh\fP(), \fIerf\fP(), \fIexp\fP(), \fIexpm1\fP(),
 \fIfabs\fP(), \fIfloor\fP(), \fIfmod\fP(), \fIfrexp\fP(), \fIhypot\fP(),

@@ -2,16 +2,16 @@
 .TH "<inttypes.h>" P 2003 POSIX
 .\" <inttypes.h> 
 .SH NAME
-inttypes.h - fixed size integer types
+inttypes.h \- fixed size integer types
 .SH SYNOPSIS
 .LP
 \fB#include <inttypes.h>\fP
 .SH DESCRIPTION
 .LP
 Some of the functionality described on this reference page extends
-the ISO\0C standard. Applications shall define
+the ISO\ C standard. Applications shall define
 the appropriate feature test macro (see the System Interfaces volume
-of IEEE\0Std\01003.1-2001, Section 2.2, The Compilation Environment)
+of IEEE\ Std\ 1003.1-2001, Section 2.2, The Compilation Environment)
 to enable the visibility of these symbols in this
 header. 
 .LP
@@ -20,7 +20,7 @@ header.
 .LP
 The \fI<inttypes.h>\fP header shall include a definition of at least
 the following type:
-.TP
+.TP 7
 \fBimaxdiv_t\fP
 Structure type that is the type of the value returned by the \fIimaxdiv\fP()
 function.
@@ -45,33 +45,33 @@ of an integer of type \fBint_fast32_t\fP.
 .LP
 The \fIfprintf\fP() macros for signed integers are:
 .TS C
-center;l l l l l l l l l l l.
-PRId\fIN\fP 	 PRIdLEAST\fIN\fP 	 PRIdFAST\fIN\fP 	 PRIdMAX 	 PRIdPTR 	
-PRIi\fIN\fP 	 PRIiLEAST\fIN\fP 	 PRIiFAST\fIN\fP 	 PRIiMAX 	 PRIiPTR 	
+center; l2 l2 l2 l2 l.
+PRId\fIN\fP	PRIdLEAST\fIN\fP	PRIdFAST\fIN\fP	PRIdMAX	PRIdPTR
+PRIi\fIN\fP	PRIiLEAST\fIN\fP	PRIiFAST\fIN\fP	PRIiMAX	PRIiPTR
 .TE
 .LP
 The \fIfprintf\fP() macros for unsigned integers are:
 .TS C
-center;l l l l l l l l l l l.
-PRIo\fIN\fP 	 PRIoLEAST\fIN\fP 	 PRIoFAST\fIN\fP 	 PRIoMAX 	 PRIoPTR 	
-PRIu\fIN\fP 	 PRIuLEAST\fIN\fP 	 PRIuFAST\fIN\fP 	 PRIuMAX 	 PRIuPTR 	
-PRIx\fIN\fP 	 PRIxLEAST\fIN\fP 	 PRIxFAST\fIN\fP 	 PRIxMAX 	 PRIxPTR 	
-PRIX\fIN\fP 	 PRIXLEAST\fIN\fP 	 PRIXFAST\fIN\fP 	 PRIXMAX 	 PRIXPTR 	
+center; l2 l2 l2 l2 l.
+PRIo\fIN\fP	PRIoLEAST\fIN\fP	PRIoFAST\fIN\fP	PRIoMAX	PRIoPTR
+PRIu\fIN\fP	PRIuLEAST\fIN\fP	PRIuFAST\fIN\fP	PRIuMAX	PRIuPTR
+PRIx\fIN\fP	PRIxLEAST\fIN\fP	PRIxFAST\fIN\fP	PRIxMAX	PRIxPTR
+PRIX\fIN\fP	PRIXLEAST\fIN\fP	PRIXFAST\fIN\fP	PRIXMAX	PRIXPTR
 .TE
 .LP
 The \fIfscanf\fP() macros for signed integers are:
 .TS C
-center;l l l l l l l l l l l.
-SCNd\fIN\fP 	 SCNdLEAST\fIN\fP 	 SCNdFAST\fIN\fP 	 SCNdMAX 	 SCNdPTR 	
-SCNi\fIN\fP 	 SCNiLEAST\fIN\fP 	 SCNiFAST\fIN\fP 	 SCNiMAX 	 SCNiPTR 	
+center; l2 l2 l2 l2 l.
+SCNd\fIN\fP	SCNdLEAST\fIN\fP	SCNdFAST\fIN\fP	SCNdMAX	SCNdPTR
+SCNi\fIN\fP	SCNiLEAST\fIN\fP	SCNiFAST\fIN\fP	SCNiMAX	SCNiPTR
 .TE
 .LP
 The \fIfscanf\fP() macros for unsigned integers are:
 .TS C
-center;l l l l l l l l l l l.
-SCNo\fIN\fP 	 SCNoLEAST\fIN\fP 	 SCNoFAST\fIN\fP 	 SCNoMAX 	 SCNoPTR 	
-SCNu\fIN\fP 	 SCNuLEAST\fIN\fP 	 SCNuFAST\fIN\fP 	 SCNuMAX 	 SCNuPTR 	
-SCNx\fIN\fP 	 SCNxLEAST\fIN\fP 	 SCNxFAST\fIN\fP 	 SCNxMAX 	 SCNxPTR 	
+center; l2 l2 l2 l2 l.
+SCNo\fIN\fP	SCNoLEAST\fIN\fP	SCNoFAST\fIN\fP	SCNoMAX	SCNoPTR
+SCNu\fIN\fP	SCNuLEAST\fIN\fP	SCNuFAST\fIN\fP	SCNuMAX	SCNuPTR
+SCNx\fIN\fP	SCNxLEAST\fIN\fP	SCNxFAST\fIN\fP	SCNxMAX	SCNxPTR
 .TE
 .LP
 For each type that the implementation provides in \fI<stdint.h>\fP,
@@ -122,13 +122,13 @@ The purpose of \fI<inttypes.h>\fP is to provide a set of integer types
 whose definitions are consistent across machines
 and independent of operating systems and other implementation idiosyncrasies.
 It defines, via \fBtypedef\fP, integer types of
-various sizes. Implementations are free to \fBtypedef\fP them as ISO\0C
+various sizes. Implementations are free to \fBtypedef\fP them as ISO\ C
 standard integer types or extensions that they
 support. Consistent use of this header will greatly increase the portability
 of applications across platforms.
 .SH RATIONALE
 .LP
-The ISO/IEC\09899:1990 standard specified that the language should
+The ISO/IEC\ 9899:1990 standard specified that the language should
 support four signed and unsigned integer data types-
 \fBchar\fP, \fBshort\fP, \fBint\fP, and \fBlong\fP- but placed very
 little requirement on their size other than that \fBint\fP
@@ -140,7 +140,7 @@ respectively. For 32-bit systems, the common practice has been to
 assign 8, 16, 32, and 32 bits to these types. This difference in
 \fBint\fP size can create some problems for users who migrate from
 one system to another which assigns different sizes to integer
-types, because the ISO\0C standard integer promotion rule can produce
+types, because the ISO\ C standard integer promotion rule can produce
 silent changes unexpectedly. The need for defining an
 extended integer type increased with the introduction of 64-bit systems.
 .SH FUTURE DIRECTIONS
@@ -150,7 +150,7 @@ or \fB'X'\fP may be added to the macros defined in the
 \fI<inttypes.h>\fP header.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIimaxdiv\fP()
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIimaxdiv\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

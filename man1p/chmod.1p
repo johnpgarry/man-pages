@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "chmod" P 2003 POSIX
+.TH "CHMOD" P 2003 POSIX
 .\" chmod 
 .SH NAME
-chmod - change the file modes
+chmod \- change the file modes
 .SH SYNOPSIS
 .LP
 \fBchmod\fP \fB[\fP\fB-R\fP\fB]\fP \fImode file\fP \fB...\fP
@@ -14,7 +14,7 @@ specified by the \fImode\fP operand.
 .LP
 It is implementation-defined whether and how the \fIchmod\fP utility
 affects any alternate or additional file access control
-mechanism (see the Base Definitions volume of IEEE\0Std\01003.1-2001,
+mechanism (see the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 4.4, File Access Permissions) being used for the specified
 file.
 .LP
@@ -24,10 +24,10 @@ permitted to change the file mode bits of a file.
 .SH OPTIONS
 .LP
 The \fIchmod\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following option shall be supported:
-.TP
+.TP 7
 \fB-R\fP
 Recursively change file mode bits. For each \fIfile\fP operand that
 names a directory, \fIchmod\fP shall change the file mode
@@ -36,12 +36,12 @@ bits of the directory and all files in the file hierarchy below it.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fImode\fP
 Represents the change to be made to the file mode bits of each file
 named by one of the \fIfile\fP operands; see the EXTENDED
 DESCRIPTION section.
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file whose file mode bits shall be modified.
 .sp
@@ -55,29 +55,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIchmod\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -136,7 +136,7 @@ If multiple \fBactionlist\fPs are grouped with a single \fBwholist\fP
 in the grammar, each \fBactionlist\fP shall be applied
 in the order specified with that \fBwholist\fP. The \fIop\fP symbols
 shall represent the operation performed, as follows:
-.TP
+.TP 7
 \fB+\fP
 If \fBperm\fP is not specified, the \fB'+'\fP operation shall not
 change the file mode bits. 
@@ -148,7 +148,7 @@ mask of the invoking process, shall be set.
 .LP
 Otherwise, the file mode bits represented by the specified \fBwho\fP
 and \fBperm\fP values shall be set.
-.TP
+.TP 7
 \fB-\fP
 If \fBperm\fP is not specified, the \fB'-'\fP operation shall not
 change the file mode bits. 
@@ -160,11 +160,11 @@ mask of the invoking process, shall be cleared.
 .LP
 Otherwise, the file mode bits represented by the specified \fBwho\fP
 and \fBperm\fP values shall be cleared.
-.TP
+.TP 7
 \fB=\fP
 Clear the file mode bits specified by the \fBwho\fP value, or, if
 no \fBwho\fP value is specified, all of the file mode bits
-specified in this volume of IEEE\0Std\01003.1-2001. 
+specified in this volume of IEEE\ Std\ 1003.1-2001. 
 .LP
 If \fBperm\fP is not specified, the \fB'='\fP operation shall make
 no further modifications to the file mode bits.
@@ -180,20 +180,16 @@ and \fBperm\fP values shall be set.
 .LP
 When using the symbolic mode form on a regular file, it is implementation-defined
 whether or not:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Requests to set the set-user-ID-on-execution or set-group-ID-on-execution
 bit when all execute bits are currently clear and none
 are being set are ignored.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Requests to clear all execute bits also clear the set-user-ID-on-execution
 and set-group-ID-on-execution bits.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Requests to clear the set-user-ID-on-execution or set-group-ID-on-execution
 bits when all execute bits are currently clear are
 ignored. However, if the command \fIls\fP \fB-l\fP \fIfile\fP writes
@@ -202,8 +198,7 @@ position indicating that the set-user-ID-on-execution or set-group-ID-on-executi
 is set, the commands \fIchmod\fP \fBu-s\fP
 \fIfile\fP or \fIchmod\fP \fBg-s\fP \fIfile\fP, respectively, shall
 not be ignored.
-.in -5
-.RE
+.LP
 .LP
 When using the symbolic mode form on other file types, it is implementation-defined
 whether or not requests to set or clear the
@@ -239,11 +234,11 @@ is implementation-defined whether or not requests to set or
 clear the set-user-ID-on-execution or set-group-ID-on-execution bits
 are honored.
 .TS C
-center;l l l l l l l l.
-\fBOctal\fP 	 \fBMode Bit\fP 	 \fBOctal\fP 	 \fBMode Bit\fP 	 \fBOctal\fP 	 \fBMode Bit\fP 	 \fBOctal\fP 	 \fBMode Bit\fP 	
-\fB4000\fP 	 S_ISUID 	 \fB0400\fP 	 S_IRUSR 	 \fB0040\fP 	 S_IRGRP 	 \fB0004\fP 	 S_IROTH 	
-\fB2000\fP 	 S_ISGID 	 \fB0200\fP 	 S_IWUSR 	 \fB0020\fP 	 S_IWGRP 	 \fB0002\fP 	 S_IWOTH 	
-\fB1000\fP 	 S_ISVTX 	 \fB0100\fP 	 S_IXUSR 	 \fB0010\fP 	 S_IXGRP 	 \fB0001\fP 	 S_IXOTH 	
+center; l1 l1 l1 l1 l1 l1 l1 l.
+\fBOctal\fP	\fBMode Bit\fP	\fBOctal\fP	\fBMode Bit\fP	\fBOctal\fP	\fBMode Bit\fP	\fBOctal\fP	\fBMode Bit\fP
+\fB4000\fP	S_ISUID	\fB0400\fP	S_IRUSR	\fB0040\fP	S_IRGRP	\fB0004\fP	S_IROTH
+\fB2000\fP	S_ISGID	\fB0200\fP	S_IWUSR	\fB0020\fP	S_IWGRP	\fB0002\fP	S_IWOTH
+\fB1000\fP	S_ISVTX	\fB0100\fP	S_IXUSR	\fB0010\fP	S_IXGRP	\fB0001\fP	S_IXOTH
 .TE
 .LP
 When bits are set in the octal number other than those listed in the
@@ -321,10 +316,10 @@ perm             : 'r' | 'w' | 'x' | 'X' | 's' | 't'
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 The utility executed successfully and all requested changes were made.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -347,7 +342,7 @@ should not try to make a hierarchy inaccessible to themselves.
 .LP
 Some implementations of \fIchmod\fP never used the process' \fIumask\fP
 when changing
-modes; systems conformant with this volume of IEEE\0Std\01003.1-2001
+modes; systems conformant with this volume of IEEE\ Std\ 1003.1-2001
 do so when \fBwho\fP is not specified. Note the
 difference between:
 .sp
@@ -377,23 +372,47 @@ set-user-ID and set-group-ID bits on directories are
 interpreted.
 .SH EXAMPLES
 .TS C
-center;l l l l l l l l.
-\fBMode\fP 	 \fBResults\fP 	
-\fIa\fP+= 	 Equivalent to \fIa\fP+, \fIa\fP=; clears all file mode bits. 	
-\fIgo\fP+-w 	 Equivalent to \fIgo\fP+, \fIgo\fP- \fIw\fP; clears group and other write bits. 	
-\fIg\fP=\fIo\fP-\fIw\fP 	 Equivalent to \fIg\fP= \fIo\fP, \fIg\fP- \fIw\fP; sets group bit to match other bits and then clears group write bit. 	
-\fIg\fP-\fIr\fP+\fIw\fP 	 Equivalent to \fIg\fP- \fIr\fP, \fIg\fP+ \fIw\fP; clears group read bit and sets group write bit. 	
-\fIuo\fP=\fIg\fP 	 Sets owner bits to match group bits and sets other bits to match group bits. 	
+center; l lw(40).
+\fBMode\fP	T{
+.na
+\fBResults\fP
+.ad
+T}
+\fIa\fP+=	T{
+.na
+Equivalent to \fIa\fP+, \fIa\fP=; clears all file mode bits.
+.ad
+T}
+\fIgo\fP+-w	T{
+.na
+Equivalent to \fIgo\fP+, \fIgo\fP- \fIw\fP; clears group and other write bits.
+.ad
+T}
+\fIg\fP=\fIo\fP-\fIw\fP	T{
+.na
+Equivalent to \fIg\fP= \fIo\fP, \fIg\fP- \fIw\fP; sets group bit to match other bits and then clears group write bit.
+.ad
+T}
+\fIg\fP-\fIr\fP+\fIw\fP	T{
+.na
+Equivalent to \fIg\fP- \fIr\fP, \fIg\fP+ \fIw\fP; clears group read bit and sets group write bit.
+.ad
+T}
+\fIuo\fP=\fIg\fP	T{
+.na
+Sets owner bits to match group bits and sets other bits to match group bits.
+.ad
+T}
 .TE
 .SH RATIONALE
 .LP
 The functionality of \fIchmod\fP is described substantially through
 references to concepts defined in the System Interfaces
-volume of IEEE\0Std\01003.1-2001. In this way, there is less duplication
+volume of IEEE\ Std\ 1003.1-2001. In this way, there is less duplication
 of effort required for describing the interactions
 of permissions. However, the behavior of this utility is not described
 in terms of the \fIchmod\fP() function from the System Interfaces
-volume of IEEE\0Std\01003.1-2001 because
+volume of IEEE\ Std\ 1003.1-2001 because
 that specification requires certain side effects upon alternate file
 access control mechanisms that might not be appropriate,
 depending on the implementation.
@@ -407,10 +426,10 @@ the \fBperm\fP symbols \fBs\fP and \fBx\fP so that the
 mandatory locking mode is not changed without explicit indication
 that that was what the user intended. Therefore, the details on
 how the implementation treats these conditions must be defined in
-the documentation. This volume of IEEE\0Std\01003.1-2001
+the documentation. This volume of IEEE\ Std\ 1003.1-2001
 does not require mandatory locking (nor does the System Interfaces
-volume of IEEE\0Std\01003.1-2001), but does allow it as
-an extension. However, this volume of IEEE\0Std\01003.1-2001 does
+volume of IEEE\ Std\ 1003.1-2001), but does allow it as
+an extension. However, this volume of IEEE\ Std\ 1003.1-2001 does
 require that the \fIls\fP and \fIchmod\fP utilities work consistently
 in this area. If \fIls\fP \fB-l\fP \fIfile\fP indicates that the set-group-ID
 bit is set, \fIchmod\fP \fBg-s\fP
@@ -423,9 +442,9 @@ number of errors that occurred; this practice is unworkable since
 it can overflow the range of valid exit status values. This
 problem is avoided here by specifying only 0 and >0 as exit values.
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001 indicates that
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001 indicates that
 implementation-defined restrictions may cause the
-S_ISUID and S_ISGID bits to be ignored. This volume of IEEE\0Std\01003.1-2001
+S_ISUID and S_ISGID bits to be ignored. This volume of IEEE\ Std\ 1003.1-2001
 allows the \fIchmod\fP utility to choose to
 modify these bits before calling \fIchmod\fP() (or some function providing
 equivalent
@@ -439,7 +458,7 @@ it provides commonly desired functionality when doing
 recursive ( \fB-R\fP option) modifications. Similar functionality
 is not provided by the \fIfind\fP utility. Historical BSD versions
 of \fIchmod\fP, however, only supported \fBX\fP with
-\fIop\fP+; it has been extended in this volume of IEEE\0Std\01003.1-2001
+\fIop\fP+; it has been extended in this volume of IEEE\ Std\ 1003.1-2001
 because it is also useful with \fIop\fP=. (It
 has also been added for \fIop\fP- even though it duplicates \fBx\fP,
 in this case, because it is intuitive and easier to
@@ -456,7 +475,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIls\fP , \fIumask\fP , the System Interfaces volume of
-IEEE\0Std\01003.1-2001, \fIchmod\fP()
+IEEE\ Std\ 1003.1-2001, \fIchmod\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

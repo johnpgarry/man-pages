@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "atexit" P 2003 POSIX
+.TH "ATEXIT" P 2003 POSIX
 .\" atexit 
 .SH NAME
-atexit - register a function to run at process termination
+atexit \- register a function to run at process termination
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -12,12 +12,6 @@ int atexit(void (*\fP\fIfunc\fP\fB)(void));
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIatexit\fP() function shall register the function pointed to
 by \fIfunc\fP, to be called without arguments at normal
@@ -64,7 +58,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIexit\fP() , \fIsysconf\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

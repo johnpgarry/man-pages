@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_attr_getschedpolicy" P 2003 POSIX
+.TH "PTHREAD_ATTR_GETSCHEDPOLICY" P 2003 POSIX
 .\" pthread_attr_getschedpolicy 
 .SH NAME
-pthread_attr_getschedpolicy, pthread_attr_setschedpolicy - get and
+pthread_attr_getschedpolicy, pthread_attr_setschedpolicy \- get and
 set the schedpolicy attribute (\fBREALTIME
 THREADS\fP)
 .SH SYNOPSIS
@@ -13,7 +13,7 @@ THREADS\fP)
 int pthread_attr_getschedpolicy(const pthread_attr_t *restrict\fP
 \fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 int *restrict\fP \fIpolicy\fP\fB);
+\ \ \ \ \ \  int *restrict\fP \fIpolicy\fP\fB);
 .br
 int pthread_attr_setschedpolicy(pthread_attr_t *\fP\fIattr\fP\fB,
 int\fP \fIpolicy\fP\fB); \fP
@@ -29,7 +29,7 @@ functions, respectively, shall get and set the
 The supported values of \fIpolicy\fP shall include SCHED_FIFO, SCHED_RR,
 and SCHED_OTHER, which are defined in the \fI<sched.h>\fP header.
 When threads executing with the scheduling policy SCHED_FIFO,
-SCHED_RR,   \0or SCHED_SPORADIC  are waiting on a mutex, they
+SCHED_RR,   \ or SCHED_SPORADIC  are waiting on a mutex, they
 shall acquire the mutex in priority order when the mutex is unlocked.
 .SH RETURN VALUE
 .LP
@@ -39,10 +39,10 @@ otherwise, an error number shall be returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_attr_setschedpolicy\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIpolicy\fP is not valid.
-.TP
+.TP 7
 .B ENOTSUP
 An attempt was made to set the attribute to an unsupported value.
 .sp
@@ -69,7 +69,7 @@ None.
 .LP
 \fIpthread_attr_destroy\fP() , \fIpthread_attr_getscope\fP() , \fIpthread_attr_getinheritsched\fP()
 , \fIpthread_attr_getschedparam\fP() , \fIpthread_create\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP,
 \fI<sched.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

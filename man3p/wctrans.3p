@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "wctrans" P 2003 POSIX
+.TH "WCTRANS" P 2003 POSIX
 .\" wctrans 
 .SH NAME
-wctrans - define character mapping
+wctrans \- define character mapping
 .SH SYNOPSIS
 .LP
 \fB#include <wctype.h>
@@ -12,12 +12,6 @@ wctrans_t wctrans(const char *\fP\fIcharclass\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIwctrans\fP() function is defined for valid character mapping
 names identified in the current locale. The
@@ -36,8 +30,8 @@ valid until a call to \fIsetlocale\fP() that modifies the category
 \fILC_CTYPE .\fP
 .SH RETURN VALUE
 .LP
-The \fIwctrans\fP() function shall return 0   \0and may set \fIerrno\fP
-to indicate the error  \0if the given character mapping name is not
+The \fIwctrans\fP() function shall return 0   \ and may set \fIerrno\fP
+to indicate the error  \ if the given character mapping name is not
 valid for the current
 locale (category \fILC_CTYPE );\fP otherwise, it shall return a non-zero
 object of type \fBwctrans_t\fP that can be used in calls
@@ -45,7 +39,7 @@ to \fItowctrans\fP().
 .SH ERRORS
 .LP
 The \fIwctrans\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The character mapping name pointed to by \fIcharclass\fP is not valid
 in the current locale. 
@@ -66,7 +60,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fItowctrans\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fItowctrans\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<wctype.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

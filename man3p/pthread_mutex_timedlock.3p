@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_mutex_timedlock" P 2003 POSIX
+.TH "PTHREAD_MUTEX_TIMEDLOCK" P 2003 POSIX
 .\" pthread_mutex_timedlock 
 .SH NAME
-pthread_mutex_timedlock - lock a mutex (\fBADVANCED REALTIME\fP)
+pthread_mutex_timedlock \- lock a mutex (\fBADVANCED REALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -12,7 +12,7 @@ pthread_mutex_timedlock - lock a mutex (\fBADVANCED REALTIME\fP)
 .sp
 int pthread_mutex_timedlock(pthread_mutex_t *restrict\fP \fImutex\fP\fB,
 .br
-\0\0\0\0\0\0 const struct timespec *restrict\fP \fIabs_timeout\fP\fB);
+\ \ \ \ \ \  const struct timespec *restrict\fP \fIabs_timeout\fP\fB);
 \fP
 \fB
 .br
@@ -36,8 +36,7 @@ by \fIabs_timeout\fP has already been passed at the time of the call.
 If the Timers option is supported, the timeout shall be based on the
 CLOCK_REALTIME clock; if the Timers option is not supported,
 the timeout shall be based on the system clock as returned by the
-\fItime\fP() function. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+\fItime\fP() function. 
 .LP
 The resolution of the timeout shall be the resolution of the clock
 on which it is based. The \fBtimespec\fP data type is
@@ -62,31 +61,31 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_mutex_timedlock\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The mutex was created with the protocol attribute having the value
 PTHREAD_PRIO_PROTECT and the calling thread's priority is
 higher than the mutex' current priority ceiling.
-.TP
+.TP 7
 .B EINVAL
 The process or thread would have blocked, and the \fIabs_timeout\fP
 parameter specified a nanoseconds field value less than
 zero or greater than or equal to 1000 million.
-.TP
+.TP 7
 .B ETIMEDOUT
 The mutex could not be locked before the specified timeout expired.
 .sp
 .LP
 The \fIpthread_mutex_timedlock\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fImutex\fP does not refer to an initialized
 mutex object.
-.TP
+.TP 7
 .B EAGAIN
 The mutex could not be acquired because the maximum number of recursive
 locks for \fImutex\fP has been exceeded. 
-.TP
+.TP 7
 .B EDEADLK
 The current thread already owns the mutex.
 .sp
@@ -111,7 +110,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_mutex_destroy\fP() , \fIpthread_mutex_lock\fP() , \fIpthread_mutex_trylock\fP()
-, \fItime\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fItime\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<pthread.h>\fP, \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sigdelset" P 2003 POSIX
+.TH "SIGDELSET" P 2003 POSIX
 .\" sigdelset 
 .SH NAME
-sigdelset - delete a signal from a signal set
+sigdelset \- delete a signal from a signal set
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -34,7 +34,7 @@ the error.
 .SH ERRORS
 .LP
 The \fIsigdelset\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIsigno\fP argument is not a valid signal number, or is an unsupported
 signal number.
@@ -58,7 +58,7 @@ None.
 \fISignal Concepts\fP , \fIsigaction\fP() , \fIsigaddset\fP() , \fIsigemptyset\fP()
 , \fIsigfillset\fP() , \fIsigismember\fP() , \fIsigpending\fP() ,
 \fIsigprocmask\fP() , \fIsigsuspend\fP() , the Base Definitions volume
-of IEEE\0Std\01003.1-2001, \fI<signal.h>\fP
+of IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

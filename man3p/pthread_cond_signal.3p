@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_cond_broadcast" P 2003 POSIX
+.TH "PTHREAD_COND_BROADCAST" P 2003 POSIX
 .\" pthread_cond_broadcast 
 .SH NAME
-pthread_cond_broadcast, pthread_cond_signal - broadcast or signal
+pthread_cond_broadcast, pthread_cond_signal \- broadcast or signal
 a condition
 .SH SYNOPSIS
 .LP
@@ -59,7 +59,7 @@ error number shall be returned to indicate the error.
 .LP
 The \fIpthread_cond_broadcast\fP() and \fIpthread_cond_signal\fP()
 function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value \fIcond\fP does not refer to an initialized condition variable.
 .sp
@@ -160,7 +160,7 @@ condition wait. This also makes the application tolerate superfluous
 condition broadcasts or signals on the same condition variable
 that may be coded in some other part of the application. The resulting
 applications are thus more robust. Therefore,
-IEEE\0Std\01003.1-2001 explicitly documents that spurious wakeups
+IEEE\ Std\ 1003.1-2001 explicitly documents that spurious wakeups
 may occur.
 .SH FUTURE DIRECTIONS
 .LP
@@ -168,7 +168,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_cond_destroy\fP() , \fIpthread_cond_timedwait\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

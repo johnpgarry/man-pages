@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "getcwd" P 2003 POSIX
+.TH "GETCWD" P 2003 POSIX
 .\" getcwd 
 .SH NAME
-getcwd - get the pathname of the current working directory
+getcwd \- get the pathname of the current working directory
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -29,20 +29,20 @@ the array pointed to by \fIbuf\fP are then undefined.
 .SH ERRORS
 .LP
 The \fIgetcwd\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIsize\fP argument is 0.
-.TP
+.TP 7
 .B ERANGE
 The \fIsize\fP argument is greater than 0, but is smaller than the
 length of the pathname +1.
 .sp
 .LP
 The \fIgetcwd\fP() function may fail if:
-.TP
+.TP 7
 .B EACCES
 Read or search permission was denied for a component of the pathname.
-.TP
+.TP 7
 .B ENOMEM
 Insufficient storage space is available.
 .sp
@@ -93,9 +93,9 @@ pathname is and can allocate an appropriate amount of space. But the
 programmer would have to use the \fIfree\fP() function to free the
 resulting object, or each use of \fIgetcwd\fP() would further
 reduce the available memory. Also, \fImalloc\fP() and \fIfree\fP()
-are used nowhere else in this volume of IEEE\0Std\01003.1-2001. Finally,
+are used nowhere else in this volume of IEEE\ Std\ 1003.1-2001. Finally,
 \fIgetcwd\fP() is taken from the SVID where it has the two arguments
-used in this volume of IEEE\0Std\01003.1-2001.
+used in this volume of IEEE\ Std\ 1003.1-2001.
 .LP
 The older function \fIgetwd\fP() was rejected for use in this context
 because it had only
@@ -123,7 +123,7 @@ of the application writer or user. Some implementations can
 avoid this occurrence (for example, by implementing \fIgetcwd\fP()
 using \fIpwd\fP, where \fIpwd\fP is a set-user-root process), thus
 the error was made optional. Since this volume of
-IEEE\0Std\01003.1-2001 permits the addition of other errors, this
+IEEE\ Std\ 1003.1-2001 permits the addition of other errors, this
 would be a common addition and yet one that applications
 could not be expected to deal with without this addition.
 .SH FUTURE DIRECTIONS
@@ -131,7 +131,7 @@ could not be expected to deal with without this addition.
 None.
 .SH SEE ALSO
 .LP
-\fImalloc\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fImalloc\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

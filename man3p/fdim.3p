@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fdim" P 2003 POSIX
+.TH "FDIM" P 2003 POSIX
 .\" fdim 
 .SH NAME
-fdim, fdimf, fdiml - compute positive difference between two floating-point
+fdim, fdimf, fdiml \- compute positive difference between two floating-point
 numbers
 .SH SYNOPSIS
 .LP
@@ -17,12 +17,6 @@ long double fdiml(long double\fP \fIx\fP\fB, long double\fP \fIy\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 These functions shall determine the positive difference between their
 arguments. If \fIx\fP is greater than \fIy\fP, \fIx\fP-
@@ -47,7 +41,7 @@ respectively.
 .LP
 If \fIx\fP- \fIy\fP is positive and underflows, a range error may
 occur, and either ( \fIx\fP- \fIy\fP) (if representable),
-\0or 0.0 (if supported),  or an implementation-defined value
+\ or 0.0 (if supported),  or an implementation-defined value
 shall be returned.
 .LP
 If
@@ -55,8 +49,8 @@ If
 .SH ERRORS
 .LP
 The \fIfdim\fP() function shall fail if:
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The result overflows. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -67,8 +61,8 @@ raised.
 .sp
 .LP
 The \fIfdim\fP() function may fail if:
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The result underflows. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -84,7 +78,7 @@ raised.
 None.
 .SH APPLICATION USAGE
 .LP
-On implementations supporting IEEE\0Std\0754-1985, \fIx\fP- \fIy\fP
+On implementations supporting IEEE\ Std\ 754-1985, \fIx\fP- \fIy\fP
 cannot underflow, and hence the 0.0 return value
 is shaded as an extension for implementations supporting the XSI extension
 rather than an MX extension.
@@ -102,7 +96,7 @@ None.
 .LP
 \fIfeclearexcept\fP() , \fIfetestexcept\fP() , \fIfmax\fP() , \fIfmin\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 4.18, Treatment of Error Conditions
+IEEE\ Std\ 1003.1-2001, Section 4.18, Treatment of Error Conditions
 for
 Mathematical Functions, \fI<math.h>\fP
 .SH COPYRIGHT

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_condattr_destroy" P 2003 POSIX
+.TH "PTHREAD_CONDATTR_DESTROY" P 2003 POSIX
 .\" pthread_condattr_destroy 
 .SH NAME
-pthread_condattr_destroy, pthread_condattr_init - destroy and initialize
+pthread_condattr_destroy, pthread_condattr_init \- destroy and initialize
 the condition variable attributes
 object
 .SH SYNOPSIS
@@ -40,7 +40,7 @@ one or more condition variables, any function affecting
 the attributes object (including destruction) shall not affect any
 previously initialized condition variables.
 .LP
-This volume of IEEE\0Std\01003.1-2001 requires two attributes, the
+This volume of IEEE\ Std\ 1003.1-2001 requires two attributes, the
 \fIclock\fP attribute and the \fIprocess-shared\fP
 attribute.
 .LP
@@ -55,13 +55,13 @@ an error number shall be returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_condattr_destroy\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIattr\fP is invalid.
 .sp
 .LP
 The \fIpthread_condattr_init\fP() function shall fail if:
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory exists to initialize the condition variable attributes
 object.
@@ -90,7 +90,7 @@ None.
 .LP
 \fIpthread_attr_destroy\fP() , \fIpthread_cond_destroy\fP() , \fIpthread_condattr_getpshared\fP()
 , \fIpthread_create\fP() , \fIpthread_mutex_destroy\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "batch" P 2003 POSIX
+.TH "BATCH" P 2003 POSIX
 .\" batch 
 .SH NAME
-batch - schedule commands to be executed in a batch queue
+batch \- schedule commands to be executed in a batch queue
 .SH SYNOPSIS
 .LP
 \fB\fP \fIbatch\fP\fB\fP
@@ -57,37 +57,37 @@ utilities.
 .LP
 The following environment variables shall affect the execution of
 \fIbatch\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fILC_TIME\fP
 Determine the format and contents for date and time strings written
 by \fIbatch\fP.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fISHELL\fP
 Determine the name of a command interpreter to be used to invoke the
 at-job. If the variable is unset or null, \fIsh\fP shall be used.
@@ -96,7 +96,7 @@ shall do one of the following: use that shell; use \fIsh\fP; use the
 login shell from the user database; any of the preceding accompanied
 by a warning
 diagnostic about which was chosen.
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone. The job shall be submitted for execution at
 the time specified by \fItimespec\fP or \fB-t\fP
@@ -155,10 +155,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -172,8 +172,7 @@ The job shall not be scheduled.
 It may be useful to redirect standard output within the specified
 commands.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 This sequence can be used at a terminal:
 .sp
 .RS
@@ -185,9 +184,8 @@ EOT
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 This sequence, which demonstrates redirecting standard error to a
 pipe, is useful in a command procedure (the sequence of output
 redirection specifications is significant):
@@ -201,7 +199,7 @@ redirection specifications is significant):
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 Early proposals described \fIbatch\fP in a manner totally separated

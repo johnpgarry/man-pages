@@ -1,11 +1,11 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_trace_attr_getinherited" P 2003 POSIX
+.TH "POSIX_TRACE_ATTR_GETINHERITED" P 2003 POSIX
 .\" posix_trace_attr_getinherited 
 .SH NAME
 posix_trace_attr_getinherited, posix_trace_attr_getlogfullpolicy,
 posix_trace_attr_getstreamfullpolicy,
 posix_trace_attr_setinherited, posix_trace_attr_setlogfullpolicy,
-posix_trace_attr_setstreamfullpolicy - retrieve and set the
+posix_trace_attr_setstreamfullpolicy \- retrieve and set the
 behavior of a trace stream (\fBTRACING\fP)
 .SH SYNOPSIS
 .LP
@@ -17,38 +17,38 @@ behavior of a trace stream (\fBTRACING\fP)
 \fBint posix_trace_attr_getinherited(const trace_attr_t *restrict\fP
 \fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 int *restrict\fP \fIinheritancepolicy\fP\fB);
+\ \ \ \ \ \  int *restrict\fP \fIinheritancepolicy\fP\fB);
 .br
 \fP
 .LP
 \fBint posix_trace_attr_getlogfullpolicy(const trace_attr_t *restrict\fP
 \fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 int *restrict\fP \fIlogpolicy\fP\fB);
+\ \ \ \ \ \  int *restrict\fP \fIlogpolicy\fP\fB);
 .br
 \fP
 .LP
 \fBint posix_trace_attr_getstreamfullpolicy(const trace_attr_t *\fP\fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 int *\fP\fIstreampolicy\fP\fB);
+\ \ \ \ \ \  int *\fP\fIstreampolicy\fP\fB);
 .br
 \fP
 .LP
 \fBint posix_trace_attr_setinherited(trace_attr_t *\fP\fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fIinheritancepolicy\fP\fB);
+\ \ \ \ \ \  int\fP \fIinheritancepolicy\fP\fB);
 .br
 \fP
 .LP
 \fBint posix_trace_attr_setlogfullpolicy(trace_attr_t *\fP\fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fIlogpolicy\fP\fB);
+\ \ \ \ \ \  int\fP \fIlogpolicy\fP\fB);
 .br
 \fP
 .LP
 \fBint posix_trace_attr_setstreamfullpolicy(trace_attr_t *\fP\fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fIstreampolicy\fP\fB); \fP
+\ \ \ \ \ \  int\fP \fIstreampolicy\fP\fB); \fP
 \fB
 .br
 \fP
@@ -61,13 +61,13 @@ traced processes across the \fIfork\fP() and \fIspawn\fP() operations.
 The \fIinheritance\fP attribute of the attributes object
 pointed to by the \fIattr\fP argument shall be set to one of the following
 values defined by manifest constants in the \fI<trace.h>\fP header:
-.TP
+.TP 7
 POSIX_TRACE_CLOSE_FOR_CHILD
 .sp
 After a \fIfork\fP() or \fIspawn\fP() operation, the child shall not
 be traced, and tracing
 of the parent shall continue.
-.TP
+.TP 7
 POSIX_TRACE_INHERITED
 .sp
 After a \fIfork\fP() or \fIspawn\fP() operation, if the parent is
@@ -85,7 +85,7 @@ attribute of the attributes object pointed to by the
 .LP
 The \fIlog-full-policy\fP attribute shall be set to one of the following
 values defined by manifest constants in the \fI<trace.h>\fP header:
-.TP
+.TP 7
 POSIX_TRACE_LOOP
 .sp
 The trace log shall loop until the associated trace stream is stopped.
@@ -93,7 +93,7 @@ This policy means that when the trace log gets full, the
 file system shall reuse the resources allocated to the oldest trace
 events that were recorded. In this way, the trace log will
 always contain the most recent trace events flushed.
-.TP
+.TP 7
 POSIX_TRACE_UNTIL_FULL
 .sp
 The trace stream shall be flushed to the trace log until the trace
@@ -102,7 +102,7 @@ log is full. This condition can be deduced from the
 structure defined in \fI<trace.h>\fP). The last recorded trace event
 shall be the POSIX_TRACE_STOP trace
 event.
-.TP
+.TP 7
 POSIX_TRACE_APPEND
 .sp
 The associated trace stream shall be flushed to the trace log without
@@ -122,7 +122,7 @@ to by the \fIattr\fP argument.
 The \fIstream-full-policy\fP attribute shall be set to one of the
 following values defined by manifest constants in the \fI<trace.h>\fP
 header:
-.TP
+.TP 7
 POSIX_TRACE_LOOP
 .sp
 The trace stream shall loop until explicitly stopped by the \fIposix_trace_stop\fP()
@@ -130,7 +130,7 @@ function. This policy means that when the trace stream is full,
 the trace system shall reuse the resources allocated to the oldest
 trace events recorded. In this way, the trace stream will always
 contain the most recent trace events recorded.
-.TP
+.TP 7
 POSIX_TRACE_UNTIL_FULL
 .sp
 The trace stream will run until the trace stream resources are exhausted.
@@ -150,7 +150,7 @@ restart the trace stream when
 it is empty and may restart it sooner. A POSIX_TRACE_START trace event
 shall be reported before reporting the next recorded trace
 event.
-.TP
+.TP 7
 POSIX_TRACE_FLUSH
 .sp
 If the Trace Log option is supported, this policy is identical to
@@ -191,7 +191,7 @@ content of this object is undefined.
 .SH ERRORS
 .LP
 These functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by at least one of the arguments is invalid.
 .sp
@@ -215,7 +215,7 @@ None.
 , \fIposix_trace_flush\fP() , \fIposix_trace_get_attr\fP() , \fIposix_trace_getnext_event\fP()
 , \fIposix_trace_start\fP() , \fIposix_trace_timedgetnext_event\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<trace.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<trace.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_attr_getscope" P 2003 POSIX
+.TH "PTHREAD_ATTR_GETSCOPE" P 2003 POSIX
 .\" pthread_attr_getscope 
 .SH NAME
-pthread_attr_getscope, pthread_attr_setscope - get and set the contentionscope
+pthread_attr_getscope, pthread_attr_setscope \- get and set the contentionscope
 attribute (\fBREALTIME
 THREADS\fP)
 .SH SYNOPSIS
@@ -12,7 +12,7 @@ THREADS\fP)
 .sp
 int pthread_attr_getscope(const pthread_attr_t *restrict\fP \fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 int *restrict\fP \fIcontentionscope\fP\fB);
+\ \ \ \ \ \  int *restrict\fP \fIcontentionscope\fP\fB);
 .br
 int pthread_attr_setscope(pthread_attr_t *\fP\fIattr\fP\fB, int\fP
 \fIcontentionscope\fP\fB); \fP
@@ -38,10 +38,10 @@ error number shall be returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_attr_setscope\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIcontentionscope\fP is not valid.
-.TP
+.TP 7
 .B ENOTSUP
 An attempt was made to set the attribute to an unsupported value.
 .sp
@@ -68,7 +68,7 @@ None.
 .LP
 \fIpthread_attr_destroy\fP() , \fIpthread_attr_getinheritsched\fP()
 , \fIpthread_attr_getschedpolicy\fP() , \fIpthread_attr_getschedparam\fP()
-, \fIpthread_create\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIpthread_create\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<pthread.h>\fP, \fI<sched.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mlock" P 2003 POSIX
+.TH "MLOCK" P 2003 POSIX
 .\" mlock 
 .SH NAME
-mlock, munlock - lock or unlock a range of process address space (\fBREALTIME\fP)
+mlock, munlock \- lock or unlock a range of process address space (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <sys/mman.h>
@@ -60,7 +60,7 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fImlock\fP() and \fImunlock\fP() functions shall fail if:
-.TP
+.TP 7
 .B ENOMEM
 Some or all of the address range specified by the \fIaddr\fP and \fIlen\fP
 arguments does not correspond to valid mapped
@@ -68,25 +68,25 @@ pages in the address space of the process.
 .sp
 .LP
 The \fImlock\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 Some or all of the memory identified by the operation could not be
 locked when the call was made.
 .sp
 .LP
 The \fImlock\fP() and \fImunlock\fP() functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIaddr\fP argument is not a multiple of {PAGESIZE}.
 .sp
 .LP
 The \fImlock\fP() function may fail if:
-.TP
+.TP 7
 .B ENOMEM
 Locking the pages mapped by the specified range would exceed an implementation-defined
 limit on the amount of memory that the
 process may lock.
-.TP
+.TP 7
 .B EPERM
 The calling process does not have the appropriate privilege to perform
 the requested operation.
@@ -109,7 +109,7 @@ None.
 .LP
 \fIexec\fP() , \fIexit\fP() , \fIfork\fP() , \fImlockall\fP() , \fImunmap\fP()
 , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/mman.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

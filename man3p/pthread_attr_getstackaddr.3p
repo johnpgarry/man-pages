@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_attr_getstackaddr" P 2003 POSIX
+.TH "PTHREAD_ATTR_GETSTACKADDR" P 2003 POSIX
 .\" pthread_attr_getstackaddr 
 .SH NAME
-pthread_attr_getstackaddr, pthread_attr_setstackaddr - get and set
+pthread_attr_getstackaddr, pthread_attr_setstackaddr \- get and set
 the stackaddr attribute
 .SH SYNOPSIS
 .LP
@@ -14,7 +14,7 @@ the stackaddr attribute
 \fBint pthread_attr_getstackaddr(const pthread_attr_t *restrict\fP
 \fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 void **restrict\fP \fIstackaddr\fP\fB);
+\ \ \ \ \ \  void **restrict\fP \fIstackaddr\fP\fB);
 .br
 int pthread_attr_setstackaddr(pthread_attr_t *\fP\fIattr\fP\fB, void
 *\fP\fIstackaddr\fP\fB); \fP
@@ -65,7 +65,7 @@ stack grows "up" from low memory to high, and on which a
 the stack pointer register. Further, on a machine where the
 stack grows "down" from high memory to low, interpretation of the
 address as the "low memory" address requires a determination
-of the intended size of the stack. IEEE\0Std\01003.1-2001 has introduced
+of the intended size of the stack. IEEE\ Std\ 1003.1-2001 has introduced
 the new interfaces \fIpthread_attr_setstack\fP() and \fIpthread_attr_getstack\fP()
 to resolve these ambiguities.
 .SH RATIONALE
@@ -79,7 +79,7 @@ None.
 \fIpthread_attr_destroy\fP() , \fIpthread_attr_getdetachstate\fP()
 , \fIpthread_attr_getstack\fP() , \fIpthread_attr_getstacksize\fP()
 , \fIpthread_attr_setstack\fP() , \fIpthread_create\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<limits.h>\fP,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<limits.h>\fP,
 \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

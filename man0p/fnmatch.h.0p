@@ -2,27 +2,27 @@
 .TH "<fnmatch.h>" P 2003 POSIX
 .\" <fnmatch.h> 
 .SH NAME
-fnmatch.h - filename-matching types
+fnmatch.h \- filename-matching types
 .SH SYNOPSIS
 .LP
 \fB#include <fnmatch.h>\fP
 .SH DESCRIPTION
 .LP
 The \fI<fnmatch.h>\fP header shall define the following constants:
-.TP
+.TP 7
 FNM_NOMATCH
 The string does not match the specified pattern.
-.TP
+.TP 7
 FNM_PATHNAME
 Slash in \fIstring\fP only matches slash in \fIpattern\fP.
-.TP
+.TP 7
 FNM_PERIOD
 Leading period in \fIstring\fP must be exactly matched by period in
 \fIpattern\fP.
-.TP
+.TP 7
 FNM_NOESCAPE
 Disable backslash escaping.
-.TP
+.TP 7
 FNM_NOSYS
 Reserved. 
 .sp
@@ -50,9 +50,9 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIfnmatch\fP(),
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIfnmatch\fP(),
 the
-Shell and Utilities volume of IEEE\0Std\01003.1-2001
+Shell and Utilities volume of IEEE\ Std\ 1003.1-2001
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fwscanf" P 2003 POSIX
+.TH "FWSCANF" P 2003 POSIX
 .\" fwscanf 
 .SH NAME
-fwscanf, swscanf, wscanf - convert formatted wide-character input
+fwscanf, swscanf, wscanf \- convert formatted wide-character input
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -15,18 +15,12 @@ int fwscanf(FILE *restrict\fP \fIstream\fP\fB, const wchar_t *restrict\fP
 .br
 int swscanf(const wchar_t *restrict\fP \fIws\fP\fB,
 .br
-\0\0\0\0\0\0 const wchar_t *restrict\fP \fIformat\fP\fB, ... );
+\ \ \ \ \ \  const wchar_t *restrict\fP \fIformat\fP\fB, ... );
 .br
 int wscanf(const wchar_t *restrict\fP \fIformat\fP\fB, ... );
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIfwscanf\fP() function shall read from the named input \fIstream\fP.
 The \fIwscanf\fP() function shall read from the
@@ -79,31 +73,25 @@ following: one or more white-space wide characters ( <space>s, <tab>s,
 <newline>s, <vertical-tab>s, or
 <form-feed>s); an ordinary wide character (neither \fB'%'\fP nor a
 white-space character); or a conversion specification.
-Each conversion specification is introduced by a \fB'%'\fP   \0or
+Each conversion specification is introduced by a \fB'%'\fP   \ or
 the sequence \fB"%\fP\fIn\fP\fB$"\fP  after which the following appear
 in sequence:
-.RS
-.in +5
-.LP
+.IP " *" 3
 An optional assignment-suppressing character \fB'*'\fP .
-.in -5
-.in +5
 .LP
+.IP " *" 3
 An optional non-zero decimal integer that specifies the maximum field
 width.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 An optional length modifier that specifies the size of the receiving
 object.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A conversion specifier wide character that specifies the type of conversion
 to be applied. The valid conversion specifiers are
 described below.
-.in -5
-.RE
+.LP
 .LP
 The \fIfwscanf\fP() functions shall execute each directive of the
 format in turn. If a directive fails, as detailed below, the
@@ -157,7 +145,7 @@ failure. Unless assignment suppression was indicated by a \fB'*'\fP
 , the result of the conversion shall be placed in the object
 pointed to by the first argument following the \fIformat\fP argument
 that has not already received a conversion result if the
-conversion specification is introduced by \fB%\fP ,   \0or in the
+conversion specification is introduced by \fB%\fP ,   \ or in the
 \fIn\fPth argument if introduced by the wide-character
 sequence \fB"%\fP\fIn\fP\fB$"\fP.  If this object does not
 have an appropriate type, or if the result of the conversion cannot
@@ -165,20 +153,20 @@ be represented in the space provided, the behavior is
 undefined.
 .LP
 The length modifiers and their meanings are:
-.TP
+.TP 7
 \fBhh\fP
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , \fBX\fP , or \fBn\fP
 conversion specifier applies to an argument with type pointer to \fBsigned
 char\fP or \fBunsigned char\fP.
-.TP
+.TP 7
 \fBh\fP
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , \fBX\fP , or \fBn\fP
 conversion specifier applies to an argument with type pointer to \fBshort\fP
 or \fBunsigned short\fP.
-.TP
-\fBl\fP\0(ell)
+.TP 7
+\fBl\fP\ (ell)
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , \fBX\fP , or \fBn\fP
 conversion specifier applies to an argument with type pointer to \fBlong\fP
@@ -188,32 +176,32 @@ conversion specifier applies to an
 argument with type pointer to \fBdouble\fP; or that a following \fBc\fP
 , \fBs\fP , or \fB[\fP conversion specifier
 applies to an argument with type pointer to \fBwchar_t\fP.
-.TP
-\fBll\fP\0(ell-ell)
+.TP 7
+\fBll\fP\ (ell-ell)
 .sp
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , \fBX\fP , or \fBn\fP conversion
 specifier applies to an argument with type pointer to \fBlong long\fP
 or \fBunsigned long long\fP.
-.TP
+.TP 7
 \fBj\fP
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , \fBX\fP , or \fBn\fP
 conversion specifier applies to an argument with type pointer to \fBintmax_t\fP
 or \fBuintmax_t\fP.
-.TP
+.TP 7
 \fBz\fP
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , \fBX\fP , or \fBn\fP
 conversion specifier applies to an argument with type pointer to \fBsize_t\fP
 or the corresponding signed integer type.
-.TP
+.TP 7
 \fBt\fP
 Specifies that a following \fBd\fP , \fBi\fP , \fBo\fP , \fBu\fP ,
 \fBx\fP , \fBX\fP , or \fBn\fP
 conversion specifier applies to an argument with type pointer to \fBptrdiff_t\fP
 or the corresponding \fBunsigned\fP type.
-.TP
+.TP 7
 \fBL\fP
 Specifies that a following \fBa\fP , \fBA\fP , \fBe\fP , \fBE\fP ,
 \fBf\fP , \fBF\fP , \fBg\fP , or
@@ -225,28 +213,28 @@ If a length modifier appears with any conversion specifier other than
 as specified above, the behavior is undefined.
 .LP
 The following conversion specifier wide characters are valid:
-.TP
+.TP 7
 \fBd\fP
 Matches an optionally signed decimal integer, whose format is the
 same as expected for the subject sequence of \fIwcstol\fP() with the
 value 10 for the \fIbase\fP argument. In the absence of a size modifier,
 the application shall ensure that the corresponding argument is a
 pointer to \fBint\fP.
-.TP
+.TP 7
 \fBi\fP
 Matches an optionally signed integer, whose format is the same as
 expected for the subject sequence of \fIwcstol\fP() with 0 for the
 \fIbase\fP argument. In the absence of a size modifier, the
 application shall ensure that the corresponding argument is a pointer
 to \fBint\fP.
-.TP
+.TP 7
 \fBo\fP
 Matches an optionally signed octal integer, whose format is the same
 as expected for the subject sequence of \fIwcstoul\fP() with the value
 8 for the \fIbase\fP argument. In the absence of a size modifier,
 the application shall ensure that the corresponding argument is a
 pointer to \fBunsigned\fP.
-.TP
+.TP 7
 \fBu\fP
 Matches an optionally signed decimal integer, whose format is the
 same as expected for the subject sequence of \fIwcstoul\fP() with
@@ -254,7 +242,7 @@ the value 10 for the \fIbase\fP argument. In the absence of a size
 modifier,
 the application shall ensure that the corresponding argument is a
 pointer to \fBunsigned\fP.
-.TP
+.TP 7
 \fBx\fP
 Matches an optionally signed hexadecimal integer, whose format is
 the same as expected for the subject sequence of \fIwcstoul\fP() with
@@ -262,8 +250,8 @@ the value 16 for the \fIbase\fP argument. In the absence of a size
 modifier,
 the application shall ensure that the corresponding argument is a
 pointer to \fBunsigned\fP.
-.TP
-\fBa\fP,\0\fBe\fP,\0\fBf\fP,\0\fBg\fP
+.TP 7
+\fBa\fP,\ \fBe\fP,\ \fBf\fP,\ \fBg\fP
 .sp
 Matches an optionally signed floating-point number, infinity, or NaN
 whose format is the same as expected for the subject sequence
@@ -274,9 +262,9 @@ corresponding argument is a pointer to \fBfloat\fP.
 If the \fIfwprintf\fP() family of functions generates character string
 representations
 for infinity and NaN (a symbolic entity encoded in floating-point
-format) to support IEEE\0Std\0754-1985, the
+format) to support IEEE\ Std\ 754-1985, the
 \fIfwscanf\fP() family of functions shall recognize them as input.
-.TP
+.TP 7
 \fBs\fP
 Matches a sequence of non white-space wide characters. If no \fBl\fP
 (ell) qualifier is present, characters from the input
@@ -292,7 +280,7 @@ Otherwise, the application shall ensure that the corresponding argument
 is a pointer to an array of \fBwchar_t\fP large enough
 to accept the sequence and the terminating null wide character, which
 shall be added automatically.
-.TP
+.TP 7
 \fB[\fP
 Matches a non-empty sequence of wide characters from a set of expected
 wide characters (the \fIscanset\fP). If no \fBl\fP
@@ -328,7 +316,7 @@ If a \fB'-'\fP is in the scanlist and is not the first wide
 character, nor the second where the first wide character is a \fB'^'\fP
 , nor the last wide character, the behavior is
 implementation-defined.
-.TP
+.TP 7
 \fBc\fP
 Matches a sequence of wide characters of exactly the number specified
 by the field width (1 if no field width is present in the
@@ -351,7 +339,7 @@ wide character is added.
 Otherwise, the application shall ensure that the corresponding argument
 is a pointer to an array of \fBwchar_t\fP large enough
 to accept the sequence. No null wide character is added.
-.TP
+.TP 7
 \fBp\fP
 Matches an implementation-defined set of sequences, which shall be
 the same as the set of sequences that is produced by the
@@ -363,7 +351,7 @@ item is implementation-defined. If the input item is a value converted
 earlier during the same program execution, the pointer that
 results shall compare equal to that value; otherwise, the behavior
 of the \fB%p\fP conversion is undefined.
-.TP
+.TP 7
 \fBn\fP
 No input is consumed. The application shall ensure that the corresponding
 argument is a pointer to the integer into which is to
@@ -375,13 +363,13 @@ function. No argument shall be converted, but one shall be consumed.
 If the conversion specification includes an
 assignment-suppressing wide character or a field width, the behavior
 is undefined.
-.TP
+.TP 7
 \fBC\fP
 Equivalent to \fBlc\fP . 
-.TP
+.TP 7
 \fBS\fP
 Equivalent to \fBls\fP . 
-.TP
+.TP 7
 \fB%\fP
 Matches a single \fB'%'\fP wide character; no conversion or assignment
 shall occur. The complete conversion specification
@@ -431,7 +419,7 @@ of successfully matched and assigned input items; this
 number can be zero in the event of an early matching failure. If the
 input ends before the first matching failure or conversion,
 EOF shall be returned. If a read error occurs, the error indicator
-for the stream is set, EOF shall be returned,   \0and
+for the stream is set, EOF shall be returned,   \ and
 \fIerrno\fP shall be set to indicate the error. 
 .SH ERRORS
 .LP
@@ -439,10 +427,10 @@ For the conditions under which the \fIfwscanf\fP() functions shall
 fail and may fail, refer to \fIfgetwc\fP() .
 .LP
 In addition, \fIfwscanf\fP() may fail if:
-.TP
+.TP 7
 .B EILSEQ
 Input byte sequence does not form a valid character. 
-.TP
+.TP 7
 .B EINVAL
 There are insufficient arguments. 
 .sp
@@ -515,7 +503,7 @@ None.
 \fIgetwc\fP() , \fIfwprintf\fP() , \fIsetlocale\fP() , \fIwcstod\fP()
 , \fIwcstol\fP() ,
 \fIwcstoul\fP() , \fIwcrtomb\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 7, Locale, \fI<langinfo.h>\fP, \fI<stdio.h>\fP,
+IEEE\ Std\ 1003.1-2001, Chapter 7, Locale, \fI<langinfo.h>\fP, \fI<stdio.h>\fP,
 \fI<wchar.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

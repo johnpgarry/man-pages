@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "qmsg" P 2003 POSIX
+.TH "QMSG" P 2003 POSIX
 .\" qmsg 
 .SH NAME
-qmsg - send message to batch jobs
+qmsg \- send message to batch jobs
 .SH SYNOPSIS
 .LP
 \fBqmsg\fP \fB[\fP\fB-E\fP\fB][\fP\fB-O\fP\fB]\fP \fImessage_string
@@ -41,17 +41,17 @@ job that corresponds to each successfully processed batch \fIjob_identifier\fP.
 .SH OPTIONS
 .LP
 The \fIqmsg\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported by the implementation:
-.TP
+.TP 7
 \fB-E\fP
 Specify that the message is written to the standard error of each
 batch job. 
 .LP
 The \fIqmsg\fP utility shall write the message into the standard error
 of the batch job.
-.TP
+.TP 7
 \fB-O\fP
 Specify that the message is written to the standard output of each
 batch job. 
@@ -80,7 +80,7 @@ to one or more output files of the batch job followed by a
 ensure that the string is quoted. The
 \fImessage_string\fP shall be encoded in the portable character set
 (see the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 6.1, Portable Character Set).
+IEEE\ Std\ 1003.1-2001, Section 6.1, Portable Character Set).
 .LP
 All remaining operands are batch \fIjob_identifier\fPs that conform
 to the syntax for a batch \fIjob_identifier\fP (see \fIBatch Job Identifier\fP
@@ -95,29 +95,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIqmsg\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fILOGNAME\fP
 Determine the login name of the user.
 .sp
@@ -139,10 +139,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -177,7 +177,7 @@ The options of the \fIqmsg\fP utility provide users with the means
 of placing the message in the output stream of their choice.
 The default output stream for the message-if the user does not designate
 an output stream-is implementation-defined, since many
-implementations will provide, as an extension to this volume of IEEE\0Std\01003.1-2001,
+implementations will provide, as an extension to this volume of IEEE\ Std\ 1003.1-2001,
 a log file that shows the history
 of utility execution.
 .LP
@@ -195,7 +195,7 @@ Historically, the \fIqmsg\fP utility is an existing practice in the
 offerings of one or more implementors of an NQS-derived
 batch system. The utility has been found to be useful enough that
 it deserves to be included in this volume of
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .SH FUTURE DIRECTIONS
 .LP
 None.

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "setregid" P 2003 POSIX
+.TH "SETREGID" P 2003 POSIX
 .\" setregid 
 .SH NAME
-setregid - set real and effective group IDs
+setregid \- set real and effective group IDs
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -41,10 +41,10 @@ neither of the group IDs are changed.
 .SH ERRORS
 .LP
 The \fIsetregid\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIrgid\fP or \fIegid\fP argument is invalid or out-of-range.
-.TP
+.TP 7
 .B EPERM
 The process does not have appropriate privileges and a change other
 than changing the real group ID to the saved set-group-ID,
@@ -73,7 +73,7 @@ None.
 , \fIgetuid\fP() ,
 \fIsetegid\fP() , \fIseteuid\fP() , \fIsetgid\fP() , \fIsetreuid\fP()
 , \fIsetuid\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

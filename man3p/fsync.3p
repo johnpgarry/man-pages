@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fsync" P 2003 POSIX
+.TH "FSYNC" P 2003 POSIX
 .\" fsync 
 .SH NAME
-fsync - synchronize changes to a file
+fsync \- synchronize changes to a file
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -35,17 +35,17 @@ are not guaranteed to have been completed.
 .SH ERRORS
 .LP
 The \fIfsync\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid descriptor.
-.TP
+.TP 7
 .B EINTR
 The \fIfsync\fP() function was interrupted by a signal.
-.TP
+.TP 7
 .B EINVAL
 The \fIfildes\fP argument does not refer to a file on which this operation
 is possible.
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while reading from or writing to the file system.
 .sp
@@ -107,7 +107,7 @@ issue.
 None.
 .SH SEE ALSO
 .LP
-\fIsync\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIsync\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

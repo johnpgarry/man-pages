@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pathchk" P 2003 POSIX
+.TH "PATHCHK" P 2003 POSIX
 .\" pathchk 
 .SH NAME
-pathchk - check pathnames
+pathchk \- check pathnames
 .SH SYNOPSIS
 .LP
 \fBpathchk\fP \fB[\fP\fB-p\fP\fB]\fP \fIpathname\fP\fB...\fP
@@ -18,28 +18,22 @@ By default, the \fIpathchk\fP utility shall check each component of
 each \fIpathname\fP operand based on the underlying file
 system. A diagnostic shall be written for each \fIpathname\fP operand
 that:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Is longer than {PATH_MAX} bytes (see \fBPathname Variable Values\fP
 in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 13, Headers, \fI<limits.h>\fP)
-.in -5
-.in +5
+IEEE\ Std\ 1003.1-2001, Chapter 13, Headers, \fI<limits.h>\fP)
 .LP
+.IP " *" 3
 Contains any component longer than {NAME_MAX} bytes in its containing
 directory
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Contains any component in a directory that is not searchable
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Contains any character in any component that is not valid in its containing
 directory
-.in -5
-.RE
+.LP
 .LP
 The format of the diagnostic message is not specified, but shall indicate
 the error detected and the corresponding
@@ -53,35 +47,32 @@ above.
 .SH OPTIONS
 .LP
 The \fIpathchk\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following option shall be supported:
-.TP
+.TP 7
 \fB-p\fP
 Instead of performing checks based on the underlying file system,
 write a diagnostic for each \fIpathname\fP operand that: 
 .RS
-.in +5
-.LP
+.IP " *" 3
 Is longer than {_POSIX_PATH_MAX} bytes (see \fBMinimum Values\fP in
 the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 13, Headers, \fI<limits.h>\fP)
-.in -5
-.in +5
+IEEE\ Std\ 1003.1-2001, Chapter 13, Headers, \fI<limits.h>\fP)
 .LP
+.IP " *" 3
 Contains any component longer than {_POSIX_NAME_MAX} bytes
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Contains any character in any component that is not in the portable
 filename character set
-.in -5
+.LP
 .RE
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIpathname\fP
 A pathname to be checked.
 .sp
@@ -95,29 +86,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIpathchk\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -140,10 +131,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All \fIpathname\fP operands passed all of the checks.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -166,7 +157,7 @@ pathname component truncation.
 The \fInoclobber\fP option in the shell (see the \fIset\fP special
 built-in) can be used to
 atomically create a file. As with all file creation semantics in the
-System Interfaces volume of IEEE\0Std\01003.1-2001, it
+System Interfaces volume of IEEE\ Std\ 1003.1-2001, it
 guarantees atomic creation, but still depends on applications to agree
 on conventions and cooperate on the use of files after they
 have been created.
@@ -192,7 +183,7 @@ fi
 .LP
 To verify that all files in the current directory hierarchy could
 be moved to any system conforming to the System Interfaces
-volume of IEEE\0Std\01003.1-2001 that also supports the \fIpax\fP
+volume of IEEE\ Std\ 1003.1-2001 that also supports the \fIpax\fP
 utility:
 .sp
 .RS
@@ -238,21 +229,18 @@ PROCESSING < "$path" > "$path.out"
 .RE
 .LP
 The following assumptions are made in this example:
-.in +5
-.LP
+.IP " 1." 4
 \fBPROCESSING\fP represents the code that is used by the application
 to use \fB$path\fP once it is verified that
 \fB$path.out\fP works as intended.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The state of the \fInoclobber\fP option is unknown when this code
 is invoked and should be set on exit to the state it was in
 when this code was invoked. (The \fBreset\fP variable is used in this
 example to restore the initial state.)
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Note the usage of:
 .sp
 .RS
@@ -262,25 +250,21 @@ Note the usage of:
 \fP
 .fi
 .RE
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 The \fIpathchk\fP command has already verified, at this point, that
 \fB$path.out\fP is not truncated.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 With the \fInoclobber\fP option set, the shell verifies that \fB$path.out\fP
 does not already exist before invoking \fIrm\fP.
-.in -5
-.in +5
 .LP
+.IP " c." 4
 If the shell succeeded in creating \fB$path.out\fP, \fIrm\fP removes
 it so that the
 application can create the file again in the \fBPROCESSING\fP step.
-.in -5
-.in +5
 .LP
+.IP " d." 4
 If the \fBPROCESSING\fP step wants the file to exist already when
 it is invoked, the:
 .sp
@@ -304,33 +288,29 @@ should be replaced with:
 .LP
 which verifies that the file did not already exist, but leaves \fB$path.out\fP
 in place for use by \fBPROCESSING\fP.
-.in -5
-.in -5
+.LP
+.RE
+.LP
 .SH RATIONALE
 .LP
-The \fIpathchk\fP utility was new for the ISO\0POSIX-2:1993 standard.
+The \fIpathchk\fP utility was new for the ISO\ POSIX-2:1993 standard.
 It, along with the \fIset\fP \fB-C\fP( \fInoclobber\fP) option added
 to the shell, replaces the
 \fImktemp\fP, \fIvalidfnam\fP, and \fIcreate\fP utilities that appeared
 in early proposals. All of these utilities were attempts
 to solve several common problems:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Verify the validity (for several different definitions of "valid")
 of a pathname supplied by a user, generated by an
 application, or imported from an external source.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Atomically create a file.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Perform various string handling functions to generate a temporary
 filename.
-.in -5
-.RE
+.LP
 .LP
 The \fIcreate\fP utility, included in an early proposal, provided
 checking and atomic creation in a single invocation of the
@@ -340,7 +320,7 @@ provides a way of creating a lock for process synchronization; since
 it provides an atomic \fIcreate\fP, there is no race between
 a test for existence and the following creation if it did not exist.
 .LP
-Having a function like \fItmpnam\fP() in the ISO\0C standard is important
+Having a function like \fItmpnam\fP() in the ISO\ C standard is important
 in many
 high-level languages. The shell programming language, however, has
 built-in string manipulation facilities, making it very easy to

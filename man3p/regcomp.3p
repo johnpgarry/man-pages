@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "regcomp" P 2003 POSIX
+.TH "REGCOMP" P 2003 POSIX
 .\" regcomp 
 .SH NAME
-regcomp, regerror, regexec, regfree - regular expression matching
+regcomp, regerror, regexec, regfree \- regular expression matching
 .SH SYNOPSIS
 .LP
 \fB#include <regex.h>
@@ -11,17 +11,17 @@ regcomp, regerror, regexec, regfree - regular expression matching
 int regcomp(regex_t *restrict\fP \fIpreg\fP\fB, const char *restrict\fP
 \fIpattern\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fIcflags\fP\fB);
+\ \ \ \ \ \  int\fP \fIcflags\fP\fB);
 .br
 size_t regerror(int\fP \fIerrcode\fP\fB, const regex_t *restrict\fP
 \fIpreg\fP\fB,
 .br
-\0\0\0\0\0\0 char *restrict\fP \fIerrbuf\fP\fB, size_t\fP \fIerrbuf_size\fP\fB);
+\ \ \ \ \ \  char *restrict\fP \fIerrbuf\fP\fB, size_t\fP \fIerrbuf_size\fP\fB);
 .br
 int regexec(const regex_t *restrict\fP \fIpreg\fP\fB, const char *restrict\fP
 \fIstring\fP\fB,
 .br
-\0\0\0\0\0\0 size_t\fP \fInmatch\fP\fB, regmatch_t\fP \fIpmatch\fP\fB[restrict],
+\ \ \ \ \ \  size_t\fP \fInmatch\fP\fB, regmatch_t\fP \fIpmatch\fP\fB[restrict],
 int\fP
 \fIeflags\fP\fB);
 .br
@@ -32,25 +32,37 @@ void regfree(regex_t *\fP\fIpreg\fP\fB);
 .LP
 These functions interpret \fIbasic\fP and \fIextended\fP regular expressions
 as described in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 9, Regular Expressions.
+IEEE\ Std\ 1003.1-2001, Chapter 9, Regular Expressions.
 .LP
 The \fBregex_t\fP structure is defined in \fI<regex.h>\fP and contains
 at least
 the following member:
 .TS C
-center;l l l l l l l l l l l.
-\fBMember Type\fP 	 \fBMember Name\fP 	 \fBDescription\fP 	
-size_t 	 re_nsub 	 Number of parenthesized subexpressions. 	
+center; l2 l2 l.
+\fBMember Type\fP	\fBMember Name\fP	\fBDescription\fP
+size_t	re_nsub	Number of parenthesized subexpressions.
 .TE
 .LP
 The \fBregmatch_t\fP structure is defined in \fI<regex.h>\fP and contains
 at
 least the following members:
 .TS C
-center;l l l l l l l l l l l.
-\fBMember Type\fP 	 \fBMember Name\fP 	 \fBDescription\fP 	
-\fBregoff_t\fP 	 \fIrm_so\fP 	 Byte offset from start of \fIstring\fP to start of substring. 	
-\fBregoff_t\fP 	 \fIrm_eo\fP 	 Byte offset from start of \fIstring\fP of the first character after the end of substring. 	
+center; l1 l1 lw(40).
+\fBMember Type\fP	\fBMember Name\fP	T{
+.na
+\fBDescription\fP
+.ad
+T}
+\fBregoff_t\fP	\fIrm_so\fP	T{
+.na
+Byte offset from start of \fIstring\fP to start of substring.
+.ad
+T}
+\fBregoff_t\fP	\fIrm_eo\fP	T{
+.na
+Byte offset from start of \fIstring\fP of the first character after the end of substring.
+.ad
+T}
 .TE
 .LP
 The \fIregcomp\fP() function shall compile the regular expression
@@ -59,17 +71,17 @@ argument and place the results in the structure pointed to by \fIpreg\fP.
 The \fIcflags\fP argument is the bitwise-inclusive OR
 of zero or more of the following flags, which are defined in the \fI<regex.h>\fP
 header:
-.TP
+.TP 7
 REG_EXTENDED
 Use Extended Regular Expressions.
-.TP
+.TP 7
 REG_ICASE
-Ignore case in match. (See the Base Definitions volume of IEEE\0Std\01003.1-2001,
+Ignore case in match. (See the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Chapter 9, Regular Expressions.)
-.TP
+.TP 7
 REG_NOSUB
 Report only success/fail in \fIregexec\fP().
-.TP
+.TP 7
 REG_NEWLINE
 Change the handling of <newline>s, as described in the text.
 .sp
@@ -92,13 +104,13 @@ otherwise, it shall return non-zero indicating either no match or
 an error. The \fIeflags\fP argument is the bitwise-inclusive OR
 of zero or more of the following flags, which are defined in the \fI<regex.h>\fP
 header:
-.TP
+.TP 7
 REG_NOTBOL
 The first character of the string pointed to by \fIstring\fP is not
 the beginning of the line. Therefore, the circumflex
 character ( \fB'^'\fP ), when taken as a special character, shall
 not match the beginning of \fIstring\fP.
-.TP
+.TP 7
 REG_NOTEOL
 The last character of the string pointed to by \fIstring\fP is not
 the end of the line. Therefore, the dollar sign (
@@ -133,15 +145,13 @@ might not match any substring even though the pattern as a
 whole did match. The following rules shall be used to determine which
 substrings to report in \fIpmatch\fP when matching regular
 expressions:
-.in +5
-.LP
+.IP " 1." 4
 If subexpression \fIi\fP in a regular expression is not contained
 within another subexpression, and it participated in the
 match several times, then the byte offsets in \fIpmatch\fP[ \fIi\fP]
 shall delimit the last such match.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If subexpression \fIi\fP is not contained within another subexpression,
 and it did not participate in an otherwise successful
 match, the byte offsets in \fIpmatch\fP[ \fIi\fP] shall be -1. A subexpression
@@ -156,9 +166,8 @@ or:
 \fB'|'\fP is used in an extended regular expression to select this
 subexpression or another, and the other
 subexpression matched.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If subexpression \fIi\fP is contained within another subexpression
 \fIj\fP, and \fIi\fP is not contained within any other
 subexpression that is contained within \fIj\fP, and a match of subexpression
@@ -168,20 +177,18 @@ then the match or non-match of subexpression \fIi\fP reported in \fIpmatch\fP[
 above, but within the substring reported in \fIpmatch\fP[ \fIj\fP]
 rather than the whole string. The offsets in \fIpmatch\fP[
 \fIi\fP] are still relative to the start of \fIstring\fP.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If subexpression \fIi\fP is contained in subexpression \fIj\fP, and
 the byte offsets in \fIpmatch\fP[ \fIj\fP] are -1, then
 the pointers in \fIpmatch\fP[ \fIi\fP] shall also be -1.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 If subexpression \fIi\fP matched a zero-length string, then both byte
 offsets in \fIpmatch\fP[ \fIi\fP] shall be the byte
 offset of the character or null terminator immediately following the
 zero-length string.
-.in -5
+.LP
 .LP
 If, when \fIregexec\fP() is called, the locale is different from when
 the regular expression was compiled, the result is
@@ -191,73 +198,70 @@ If REG_NEWLINE is not set in \fIcflags\fP, then a <newline> in \fIpattern\fP
 or \fIstring\fP shall be treated as an
 ordinary character. If REG_NEWLINE is set, then <newline> shall be
 treated as an ordinary character except as follows:
-.in +5
-.LP
+.IP " 1." 4
 A <newline> in \fIstring\fP shall not be matched by a period outside
 a bracket expression or by any form of a
-non-matching list (see the Base Definitions volume of IEEE\0Std\01003.1-2001,
+non-matching list (see the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Chapter
 9, Regular Expressions).
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 A circumflex ( \fB'^'\fP ) in \fIpattern\fP, when used to specify
 expression anchoring (see the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 9.3.8, BRE Expression Anchoring),
+IEEE\ Std\ 1003.1-2001, Section 9.3.8, BRE Expression Anchoring),
 shall match the zero-length string immediately after a <newline> in
 \fIstring\fP, regardless of the setting of
 REG_NOTBOL.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 A dollar sign ( \fB'$'\fP ) in \fIpattern\fP, when used to specify
 expression anchoring, shall match the zero-length string
 immediately before a <newline> in \fIstring\fP, regardless of the
 setting of REG_NOTEOL.
-.in -5
+.LP
 .LP
 The \fIregfree\fP() function frees any memory allocated by \fIregcomp\fP()
 associated with \fIpreg\fP.
 .LP
 The following constants are defined as error return values:
-.TP
+.TP 7
 REG_NOMATCH
 \fIregexec\fP() failed to match.
-.TP
+.TP 7
 REG_BADPAT
 Invalid regular expression.
-.TP
+.TP 7
 REG_ECOLLATE
 Invalid collating element referenced.
-.TP
+.TP 7
 REG_ECTYPE
 Invalid character class type referenced.
-.TP
+.TP 7
 REG_EESCAPE
 Trailing \fB'\\'\fP in pattern.
-.TP
+.TP 7
 REG_ESUBREG
 Number in \fB"\\digit"\fP invalid or in error.
-.TP
+.TP 7
 REG_EBRACK
 \fB"[]"\fP imbalance.
-.TP
+.TP 7
 REG_EPAREN
 \fB"\\(\\)"\fP or \fB"()"\fP imbalance.
-.TP
+.TP 7
 REG_EBRACE
 \fB"\\{\\}"\fP imbalance.
-.TP
+.TP 7
 REG_BADBR
 Content of \fB"\\{\\}"\fP invalid: not a number, number too large,
 more than two numbers, first larger than second.
-.TP
+.TP 7
 REG_ERANGE
 Invalid endpoint in range expression.
-.TP
+.TP 7
 REG_ESPACE
 Out of memory.
-.TP
+.TP 7
 REG_BADRPT
 \fB'?'\fP , \fB'*'\fP , or \fB'+'\fP not preceded by valid regular
 expression.
@@ -400,7 +404,7 @@ to allocate a
 larger buffer if it finds that this is too small.
 .LP
 To match a pattern as described in the Shell and Utilities volume
-of IEEE\0Std\01003.1-2001, Section 2.13, Pattern Matching Notation,
+of IEEE\ Std\ 1003.1-2001, Section 2.13, Pattern Matching Notation,
 use the \fIfnmatch\fP() function.
 .SH RATIONALE
 .LP
@@ -452,7 +456,7 @@ The type \fBregoff_t\fP is used for the elements of \fIpmatch\fP[]
 to ensure that the application can represent either the
 largest possible array in memory (important for an application conforming
 to the Shell and Utilities volume of
-IEEE\0Std\01003.1-2001) or the largest possible file (important for
+IEEE\ Std\ 1003.1-2001) or the largest possible file (important for
 an application using the extension where a file is
 searched in chunks).
 .LP
@@ -462,7 +466,7 @@ matched RE. While such a routine would be useful to some applications,
 its utility would be much more limited than the matching
 function described here. Both RE parsing and substitution are possible
 to implement without support other than that required by the
-ISO\0C standard, but matching is much more complex than substituting.
+ISO\ C standard, but matching is much more complex than substituting.
 The only difficult part of substitution, given the
 information supplied by \fIregexec\fP(), is finding the next character
 in a string when there can be multi-byte characters. That
@@ -490,7 +494,7 @@ However, keeping REG_NOSUB allows an implementation to use a different
 \fIregcomp\fP() that no subexpressions need be reported. The implementation
 is only required to fill in \fIpmatch\fP if
 \fInmatch\fP is not zero and if REG_NOSUB is not specified. Note that
-the \fBsize_t\fP type, as defined in the ISO\0C
+the \fBsize_t\fP type, as defined in the ISO\ C
 standard, is unsigned, so the description of \fIregexec\fP() does
 not need to address negative values of \fInmatch\fP.
 .LP
@@ -520,7 +524,7 @@ error message to present to the user.
 The \fIregerror\fP() function uses a scheme similar to \fIconfstr\fP()
 to deal with
 the problem of allocating memory to hold the generated string. The
-scheme used by \fIstrerror\fP() in the ISO\0C standard was considered
+scheme used by \fIstrerror\fP() in the ISO\ C standard was considered
 unacceptable since it creates
 difficulties for multi-threaded applications.
 .LP
@@ -534,16 +538,16 @@ also ignore \fIpreg\fP.
 .LP
 A REG_FILENAME flag was considered, but omitted. This flag caused
 \fIregexec\fP() to match patterns as described in the Shell
-and Utilities volume of IEEE\0Std\01003.1-2001, Section 2.13, Pattern
+and Utilities volume of IEEE\ Std\ 1003.1-2001, Section 2.13, Pattern
 Matching Notation instead of REs. This service is now provided by
 the \fIfnmatch\fP()
 function.
 .LP
-Notice that there is a difference in philosophy between the ISO\0POSIX-2:1993
-standard and IEEE\0Std\01003.1-2001 in
-how to handle a "bad" regular expression. The ISO\0POSIX-2:1993 standard
+Notice that there is a difference in philosophy between the ISO\ POSIX-2:1993
+standard and IEEE\ Std\ 1003.1-2001 in
+how to handle a "bad" regular expression. The ISO\ POSIX-2:1993 standard
 says that many bad constructs "produce undefined
-results", or that "the interpretation is undefined". IEEE\0Std\01003.1-2001,
+results", or that "the interpretation is undefined". IEEE\ Std\ 1003.1-2001,
 however, says that the interpretation of
 such REs is unspecified. The term "undefined" means that the action
 by the application is an error, of similar severity to
@@ -553,7 +557,7 @@ The \fIregcomp\fP() and \fIregexec\fP() functions are required to
 accept any null-terminated string as the \fIpattern\fP
 argument. If the meaning of the string is "undefined", the behavior
 of the function is "unspecified".
-IEEE\0Std\01003.1-2001 does not specify how the functions will interpret
+IEEE\ Std\ 1003.1-2001 does not specify how the functions will interpret
 the pattern; they might return error codes, or
 they might do pattern matching in some completely unexpected way,
 but they should not do something like abort the process.
@@ -563,8 +567,8 @@ None.
 .SH SEE ALSO
 .LP
 \fIfnmatch\fP() , \fIglob\fP() , Shell and Utilities volume of
-IEEE\0Std\01003.1-2001, Section 2.13, Pattern Matching Notation, Base
-Definitions volume of IEEE\0Std\01003.1-2001, Chapter 9, Regular Expressions,
+IEEE\ Std\ 1003.1-2001, Section 2.13, Pattern Matching Notation, Base
+Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 9, Regular Expressions,
 \fI<regex.h>\fP, \fI<sys/types.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "wcsrtombs" P 2003 POSIX
+.TH "WCSRTOMBS" P 2003 POSIX
 .\" wcsrtombs 
 .SH NAME
-wcsrtombs - convert a wide-character string to a character string
+wcsrtombs \- convert a wide-character string to a character string
 (restartable)
 .SH SYNOPSIS
 .LP
@@ -12,16 +12,10 @@ wcsrtombs - convert a wide-character string to a character string
 size_t wcsrtombs(char *restrict\fP \fIdst\fP\fB, const wchar_t **restrict\fP
 \fIsrc\fP\fB,
 .br
-\0\0\0\0\0\0 size_t\fP \fIlen\fP\fB, mbstate_t *restrict\fP \fIps\fP\fB);
+\ \ \ \ \ \  size_t\fP \fIlen\fP\fB, mbstate_t *restrict\fP \fIps\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIwcsrtombs\fP() function shall convert a sequence of wide characters
 from the array indirectly pointed to by \fIsrc\fP
@@ -32,18 +26,14 @@ be stored into the array pointed to by \fIdst\fP. Conversion
 continues up to and including a terminating null wide character, which
 shall also be stored. Conversion shall stop earlier in the
 following cases:
-.RS
-.in +5
-.LP
+.IP " *" 3
 When a code is reached that does not correspond to a valid character
-.in -5
-.in +5
 .LP
+.IP " *" 3
 When the next character would exceed the limit of \fIlen\fP total
 bytes to be stored in the array pointed to by \fIdst\fP (and
 \fIdst\fP is not a null pointer)
-.in -5
-.RE
+.LP
 .LP
 Each conversion shall take place as if by a call to the \fIwcrtomb\fP()
 function.
@@ -62,7 +52,7 @@ initialized at program start-up to the initial conversion state. Otherwise,
 the \fBmbstate_t\fP object pointed to by \fIps\fP
 shall be used to completely describe the current conversion state
 of the associated character sequence. The implementation shall
-behave as if no function defined in this volume of IEEE\0Std\01003.1-2001
+behave as if no function defined in this volume of IEEE\ Std\ 1003.1-2001
 calls \fIwcsrtombs\fP().
 .LP
 If
@@ -84,10 +74,10 @@ the terminating null (if any).
 .SH ERRORS
 .LP
 The \fIwcsrtombs\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 \fIps\fP points to an object that contains an invalid conversion state.
-.TP
+.TP 7
 .B EILSEQ
 A wide-character code does not correspond to a valid character.
 .sp
@@ -108,7 +98,7 @@ None.
 .SH SEE ALSO
 .LP
 \fImbsinit\fP() , \fIwcrtomb\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<wchar.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<wchar.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

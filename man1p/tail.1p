@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tail" P 2003 POSIX
+.TH "TAIL" P 2003 POSIX
 .\" tail 
 .SH NAME
-tail - copy the last part of a file
+tail \- copy the last part of a file
 .SH SYNOPSIS
 .LP
 \fBtail\fP \fB[\fP\fB-f\fP\fB][\fP \fB-c\fP \fInumber\fP\fB| -n\fP
@@ -24,25 +24,25 @@ any, shall be no smaller than {LINE_MAX}*10 bytes.
 .SH OPTIONS
 .LP
 The \fItail\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
-\fB-c\0\fP \fInumber\fP
+.TP 7
+\fB-c\ \fP \fInumber\fP
 The application shall ensure that the \fInumber\fP option-argument
 is a decimal integer whose sign affects the location in the
 file, measured in bytes, to begin the copying: 
 .TS C
-center;l l l l l l l l.
-\fBSign\fP 	 \fBCopying Starts\fP 	
-+ 	 Relative to the beginning of the file. 	
-- 	 Relative to the end of the file. 	
-\fInone\fP 	 Relative to the end of the file. 	
+center; l l.
+\fBSign\fP	\fBCopying Starts\fP
++	Relative to the beginning of the file.
+-	Relative to the end of the file.
+\fInone\fP	Relative to the end of the file.
 .TE
 .LP
 The origin for counting shall be 1; that is, \fB-c\fP +1 represents
 the first byte of the file, \fB-c\fP -1 the last.
-.TP
+.TP 7
 \fB-f\fP
 If the input file is a regular file or if the \fIfile\fP operand specifies
 a FIFO, do not terminate after the last line of the
@@ -52,8 +52,8 @@ operand is specified and standard input is a pipe, the \fB-f\fP option
 shall be ignored. If the input file is not a FIFO, pipe, or
 regular file, it is unspecified whether or not the \fB-f\fP option
 shall be ignored.
-.TP
-\fB-n\0\fP \fInumber\fP
+.TP 7
+\fB-n\ \fP \fInumber\fP
 This option shall be equivalent to \fB-c\fP \fInumber\fP, except the
 starting location in the file shall be measured in lines
 instead of bytes. The origin for counting shall be 1; that is, \fB-n\fP
@@ -66,7 +66,7 @@ assumed.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of an input file. If no \fIfile\fP operands are specified,
 the standard input shall be used.
@@ -84,29 +84,29 @@ file.
 .LP
 The following environment variables shall affect the execution of
 \fItail\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -130,10 +130,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -151,8 +151,8 @@ output that does not start on a character boundary.
 Although the input file to \fItail\fP can be any type, the results
 might not be what would be expected on some character
 special device files or on file types not described by the System
-Interfaces volume of IEEE\0Std\01003.1-2001. Since this
-volume of IEEE\0Std\01003.1-2001 does not specify the block size used
+Interfaces volume of IEEE\ Std\ 1003.1-2001. Since this
+volume of IEEE\ Std\ 1003.1-2001 does not specify the block size used
 when doing input, \fItail\fP need not read all of
 the data from devices that only perform block transfers.
 .SH EXAMPLES
@@ -190,7 +190,7 @@ This version of \fItail\fP was created to allow conformance to the
 Utility Syntax Guidelines. The historical \fB-b\fP option
 was omitted because of the general non-portability of block-sized
 units of text. The \fB-c\fP option historically meant
-"characters", but this volume of IEEE\0Std\01003.1-2001 indicates
+"characters", but this volume of IEEE\ Std\ 1003.1-2001 indicates
 that it means "bytes". This was selected to allow
 reasonable implementations when multi-byte characters are possible;
 it was not named \fB-b\fP to avoid confusion with the
@@ -217,9 +217,9 @@ taken from standard input, but it did not ignore the \fB-f\fP flag
 if a FIFO was named as the \fIfile\fP operand. Since the
 \fB-f\fP option is not useful on pipes and all historical implementations
 ignore \fB-f\fP if no \fIfile\fP operand is specified
-and standard input is a pipe, this volume of IEEE\0Std\01003.1-2001
+and standard input is a pipe, this volume of IEEE\ Std\ 1003.1-2001
 requires this behavior. However, since the \fB-f\fP
-option is useful on a FIFO, this volume of IEEE\0Std\01003.1-2001
+option is useful on a FIFO, this volume of IEEE\ Std\ 1003.1-2001
 also requires that if standard input is a FIFO or a FIFO
 is named, the \fB-f\fP option shall not be ignored. Although historical
 behavior does not ignore the \fB-f\fP option for other

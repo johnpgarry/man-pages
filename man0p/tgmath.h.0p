@@ -2,17 +2,11 @@
 .TH "<tgmath.h>" P 2003 POSIX
 .\" <tgmath.h> 
 .SH NAME
-tgmath.h - type-generic macros
+tgmath.h \- type-generic macros
 .SH SYNOPSIS
 .LP
 \fB#include <tgmath.h>\fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fI<tgmath.h>\fP header shall include the headers \fI<math.h>\fP
 and \fI<complex.h>\fP and shall define several type-generic macros.
@@ -30,23 +24,18 @@ for the generic parameters.
 .LP
 Use of the macro invokes a function whose generic parameters have
 the corresponding real type determined as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 First, if any argument for generic parameters has type \fBlong double\fP,
 the type determined is \fBlong double\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Otherwise, if any argument for generic parameters has type \fBdouble\fP
 or is of integer type, the type determined is
 \fBdouble\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Otherwise, the type determined is \fBfloat\fP.
-.in -5
-.RE
+.LP
 .LP
 For each unsuffixed function in the \fI<math.h>\fP header for which
 there is a
@@ -57,26 +46,26 @@ has the same name as the function in the \fI<math.h>\fP header. The
 corresponding type-generic macro for \fIfabs\fP() and \fIcabs\fP()
 is \fIfabs\fP().
 .TS C
-center;l l l l l l l l l l l.
-\fB<math.h>\fP 	 \fB<complex.h>\fP 	 \fBType-Generic\fP 	
-\fBFunction\fP 	 \fBFunction\fP 	 \fBMacro\fP 	
-\fIacos\fP() 	 \fIcacos\fP() 	 \fIacos\fP() 	
-\fIasin\fP() 	 \fIcasin\fP() 	 \fIasin\fP() 	
-\fIatan\fP() 	 \fIcatan\fP() 	 \fIatan\fP() 	
-\fIacosh\fP() 	 \fIcacosh\fP() 	 \fIacosh\fP() 	
-\fIasinh\fP() 	 \fIcasinh\fP() 	 \fIasinh\fP() 	
-\fIatanh\fP() 	 \fIcatanh\fP() 	 \fIatanh\fP() 	
-\fIcos\fP() 	 \fIccos\fP() 	 \fIcos\fP() 	
-\fIsin\fP() 	 \fIcsin\fP() 	 \fIsin\fP() 	
-\fItan\fP() 	 \fIctan\fP() 	 \fItan\fP() 	
-\fIcosh\fP() 	 \fIccosh\fP() 	 \fIcosh\fP() 	
-\fIsinh\fP() 	 \fIcsinh\fP() 	 \fIsinh\fP() 	
-\fItanh\fP() 	 \fIctanh\fP() 	 \fItanh\fP() 	
-\fIexp\fP() 	 \fIcexp\fP() 	 \fIexp\fP() 	
-\fIlog\fP() 	 \fIclog\fP() 	 \fIlog\fP() 	
-\fIpow\fP() 	 \fIcpow\fP() 	 \fIpow\fP() 	
-\fIsqrt\fP() 	 \fIcsqrt\fP() 	 \fIsqrt\fP() 	
-\fIfabs\fP() 	 \fIcabs\fP() 	 \fIfabs\fP() 	
+center; l l l.
+\fB<math.h>\fP	\fB<complex.h>\fP	\fBType-Generic\fP
+\fBFunction\fP	\fBFunction\fP	\fBMacro\fP
+\fIacos\fP()	\fIcacos\fP()	\fIacos\fP()
+\fIasin\fP()	\fIcasin\fP()	\fIasin\fP()
+\fIatan\fP()	\fIcatan\fP()	\fIatan\fP()
+\fIacosh\fP()	\fIcacosh\fP()	\fIacosh\fP()
+\fIasinh\fP()	\fIcasinh\fP()	\fIasinh\fP()
+\fIatanh\fP()	\fIcatanh\fP()	\fIatanh\fP()
+\fIcos\fP()	\fIccos\fP()	\fIcos\fP()
+\fIsin\fP()	\fIcsin\fP()	\fIsin\fP()
+\fItan\fP()	\fIctan\fP()	\fItan\fP()
+\fIcosh\fP()	\fIccosh\fP()	\fIcosh\fP()
+\fIsinh\fP()	\fIcsinh\fP()	\fIsinh\fP()
+\fItanh\fP()	\fIctanh\fP()	\fItanh\fP()
+\fIexp\fP()	\fIcexp\fP()	\fIexp\fP()
+\fIlog\fP()	\fIclog\fP()	\fIlog\fP()
+\fIpow\fP()	\fIcpow\fP()	\fIpow\fP()
+\fIsqrt\fP()	\fIcsqrt\fP()	\fIsqrt\fP()
+\fIfabs\fP()	\fIcabs\fP()	\fIfabs\fP()
 .TE
 .LP
 If at least one argument for a generic parameter is complex, then
@@ -90,8 +79,9 @@ corresponding
 type-generic macro has the same name as the function. These type-generic
 macros are:
 .TS C
-center;l l l l l l l l l l l.
-.sp
+center; lw(19) lw(19) lw(19) lw(19).
+T{
+.br
 \fIatan2\fP()
 .br
 \fIcbrt\fP()
@@ -112,7 +102,8 @@ center;l l l l l l l l l l l.
 .br
 \fIfloor\fP()
 .br
-\0 	 
+\ 
+T}	T{
 .br
 \fIfma\fP()
 .br
@@ -134,7 +125,8 @@ center;l l l l l l l l l l l.
 .br
 \fIllrint\fP()
 .br
-\0 	 
+\ 
+T}	T{
 .br
 \fIllround\fP()
 .br
@@ -156,7 +148,8 @@ center;l l l l l l l l l l l.
 .br
 \fInexttoward\fP()
 .br
-\0 	 
+\ 
+T}	T{
 .br
 \fIremainder\fP()
 .br
@@ -174,7 +167,8 @@ center;l l l l l l l l l l l.
 .br
 \fItrunc\fP()
 .br
-\0 	
+\ 
+T}
 .TE
 .LP
 If all arguments for generic parameters are real, then use of the
@@ -225,29 +219,29 @@ long double complex ldc;
 functions invoked by use of type-generic macros are shown in the following
 table:
 .TS C
-center;l l l l l l l l l l l.
-\fBMacro\fP 	 \fBUse Invokes\fP 	
-\fIexp\fP(\fIn\fP) 	 \fIexp\fP(\fIn\fP), the function 	
-\fIacosh\fP(\fIf\fP) 	 \fIacoshf\fP(\fIf\fP) 	
-\fIsin\fP(\fId\fP) 	 \fIsin\fP(\fId\fP), the function 	
-\fIatan\fP(\fIld\fP) 	 \fIatanl\fP(\fIld\fP) 	
-\fIlog\fP(\fIfc\fP) 	 \fIclogf\fP(\fIfc\fP) 	
-\fIsqrt\fP(\fIdc\fP) 	 \fIcsqrt\fP(\fIdc\fP) 	
-\fIpow\fP(\fIldc,f\fP) 	 \fIcpowl\fP(\fIldc, f\fP) 	
-\fIremainder\fP(\fIn,n\fP) 	 \fIremainder\fP(\fIn, n\fP), the function 	
-\fInextafter\fP(\fId,f\fP) 	 \fInextafter\fP(\fId, f\fP), the function 	
-\fInexttoward\fP(\fIf,ld\fP) 	 \fInexttowardf\fP(\fIf, ld\fP) 	
-\fIcopysign\fP(\fIn,ld\fP) 	 \fIcopysignl\fP(\fIn, ld\fP) 	
-\fIceil\fP(\fIfc\fP) 	 Undefined behavior 	
-\fIrint\fP(\fIdc\fP) 	 Undefined behavior 	
-\fIfmax\fP(\fIldc,ld\fP) 	 Undefined behavior 	
-\fIcarg\fP(\fIn\fP) 	 \fIcarg\fP(\fIn\fP), the function 	
-\fIcproj\fP(\fIf\fP) 	 \fIcprojf\fP(\fIf\fP) 	
-\fIcreal\fP(\fId\fP) 	 \fIcreal\fP(\fId\fP), the function 	
-\fIcimag\fP(\fIld\fP) 	 \fIcimagl\fP(\fIld\fP) 	
-\fIcabs\fP(\fIfc\fP) 	 \fIcabsf\fP(\fIfc\fP) 	
-\fIcarg\fP(\fIdc\fP) 	 \fIcarg\fP(\fIdc\fP), the function 	
-\fIcproj\fP(\fIldc\fP) 	 \fIcprojl\fP(\fIldc\fP) 	
+center; l2 l.
+\fBMacro\fP	\fBUse Invokes\fP
+\fIexp\fP(\fIn\fP)	\fIexp\fP(\fIn\fP), the function
+\fIacosh\fP(\fIf\fP)	\fIacoshf\fP(\fIf\fP)
+\fIsin\fP(\fId\fP)	\fIsin\fP(\fId\fP), the function
+\fIatan\fP(\fIld\fP)	\fIatanl\fP(\fIld\fP)
+\fIlog\fP(\fIfc\fP)	\fIclogf\fP(\fIfc\fP)
+\fIsqrt\fP(\fIdc\fP)	\fIcsqrt\fP(\fIdc\fP)
+\fIpow\fP(\fIldc,f\fP)	\fIcpowl\fP(\fIldc, f\fP)
+\fIremainder\fP(\fIn,n\fP)	\fIremainder\fP(\fIn, n\fP), the function
+\fInextafter\fP(\fId,f\fP)	\fInextafter\fP(\fId, f\fP), the function
+\fInexttoward\fP(\fIf,ld\fP)	\fInexttowardf\fP(\fIf, ld\fP)
+\fIcopysign\fP(\fIn,ld\fP)	\fIcopysignl\fP(\fIn, ld\fP)
+\fIceil\fP(\fIfc\fP)	Undefined behavior
+\fIrint\fP(\fIdc\fP)	Undefined behavior
+\fIfmax\fP(\fIldc,ld\fP)	Undefined behavior
+\fIcarg\fP(\fIn\fP)	\fIcarg\fP(\fIn\fP), the function
+\fIcproj\fP(\fIf\fP)	\fIcprojf\fP(\fIf\fP)
+\fIcreal\fP(\fId\fP)	\fIcreal\fP(\fId\fP), the function
+\fIcimag\fP(\fIld\fP)	\fIcimagl\fP(\fIld\fP)
+\fIcabs\fP(\fIfc\fP)	\fIcabsf\fP(\fIfc\fP)
+\fIcarg\fP(\fIdc\fP)	\fIcarg\fP(\fIdc\fP), the function
+\fIcproj\fP(\fIldc\fP)	\fIcprojl\fP(\fIldc\fP)
 .TE
 .SH RATIONALE
 .LP
@@ -291,10 +285,10 @@ was seen to make it safe without complicating the type
 resolution.
 .LP
 The implementation might, as an extension, endow appropriate ones
-of the macros that IEEE\0Std\01003.1-2001 specifies
+of the macros that IEEE\ Std\ 1003.1-2001 specifies
 only for real arguments with the ability to invoke the complex functions.
 .LP
-IEEE\0Std\01003.1-2001 does not prescribe any particular implementation
+IEEE\ Std\ 1003.1-2001 does not prescribe any particular implementation
 mechanism for generic macros. It could be
 implemented simply with built-in macros. The generic macro for \fIsqrt\fP(),
 for example,
@@ -315,7 +309,7 @@ C++ overloaded math functions.
 The great majority of existing C programs are expected to be unaffected
 when the \fI<tgmath.h>\fP header is included
 instead of the \fI<math.h>\fP or \fI<complex.h>\fP headers. Generic
-macros are similar to the ISO/IEC\09899:1999
+macros are similar to the ISO/IEC\ 9899:1999
 standard library masking macros, though the semantic types of return
 values differ.
 .LP
@@ -327,10 +321,10 @@ names; for example, \fIremainder\fP() for \fIremquo\fP(). However,
 these facilities would have complicated the specification; and their
 natural consistent use, such as for a floating \fIabs\fP() or a two-argument
 \fIatan\fP(), would have introduced further inconsistencies with the
-ISO/IEC\09899:1999 standard
+ISO/IEC\ 9899:1999 standard
 for insufficient benefit.
 .LP
-The ISO\0C standard in no way limits the implementation's options
+The ISO\ C standard in no way limits the implementation's options
 for efficiency, including inlining library functions.
 .SH FUTURE DIRECTIONS
 .LP
@@ -338,7 +332,7 @@ None.
 .SH SEE ALSO
 .LP
 \fI<math.h>\fP , \fI<complex.h>\fP , the System Interfaces
-volume of IEEE\0Std\01003.1-2001, \fIcabs\fP(), \fIfabs\fP(), \fImodf\fP()
+volume of IEEE\ Std\ 1003.1-2001, \fIcabs\fP(), \fIfabs\fP(), \fImodf\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

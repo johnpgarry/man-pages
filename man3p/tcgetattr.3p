@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tcgetattr" P 2003 POSIX
+.TH "TCGETATTR" P 2003 POSIX
 .\" tcgetattr 
 .SH NAME
-tcgetattr - get the parameters associated with the terminal
+tcgetattr \- get the parameters associated with the terminal
 .SH SYNOPSIS
 .LP
 \fB#include <termios.h>
@@ -39,10 +39,10 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fItcgetattr\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B ENOTTY
 The file associated with \fIfildes\fP is not a terminal.
 .sp
@@ -95,7 +95,7 @@ values.
 None.
 .SH SEE ALSO
 .LP
-\fItcsetattr\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fItcsetattr\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Chapter 11, General Terminal Interface, \fI<termios.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

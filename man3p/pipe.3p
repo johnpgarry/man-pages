@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pipe" P 2003 POSIX
+.TH "PIPE" P 2003 POSIX
 .\" pipe 
 .SH NAME
-pipe - create an interprocess channel
+pipe \- create an interprocess channel
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -43,11 +43,11 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fIpipe\fP() function shall fail if:
-.TP
+.TP 7
 .B EMFILE
 More than {OPEN_MAX} minus two file descriptors are already in use
 by this process.
-.TP
+.TP 7
 .B ENFILE
 The number of simultaneously open files in the system would exceed
 a system-imposed limit.
@@ -71,7 +71,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfcntl\fP() , \fIread\fP() , \fIwrite\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<fcntl.h>\fP,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<fcntl.h>\fP,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

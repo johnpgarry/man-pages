@@ -2,7 +2,7 @@
 .TH "<netinet/tcp.h>" P 2003 POSIX
 .\" <netinet/tcp.h> 
 .SH NAME
-netinet/tcp.h - definitions for the Internet Transmission Control
+netinet/tcp.h \- definitions for the Internet Transmission Control
 Protocol (TCP)
 .SH SYNOPSIS
 .LP
@@ -12,7 +12,7 @@ Protocol (TCP)
 The \fI<netinet/tcp.h>\fP header shall define the following macro
 for use as a socket option at the IPPROTO_TCP
 level:
-.TP
+.TP 7
 TCP_NODELAY
 Avoid coalescing of small segments.
 .sp
@@ -34,7 +34,7 @@ None.
 .SH SEE ALSO
 .LP
 \fI<sys/socket.h>\fP , the System Interfaces volume of
-IEEE\0Std\01003.1-2001, \fIgetsockopt\fP(), \fIsetsockopt\fP()
+IEEE\ Std\ 1003.1-2001, \fIgetsockopt\fP(), \fIsetsockopt\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

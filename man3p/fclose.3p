@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fclose" P 2003 POSIX
+.TH "FCLOSE" P 2003 POSIX
 .\" fclose 
 .SH NAME
-fclose - close a stream
+fclose \- close a stream
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -12,12 +12,6 @@ int fclose(FILE *\fP\fIstream\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIfclose\fP() function shall cause the stream pointed to by \fIstream\fP
 to be flushed and the associated file to be
@@ -43,46 +37,46 @@ in undefined behavior.
 .SH RETURN VALUE
 .LP
 Upon successful completion, \fIfclose\fP() shall return 0; otherwise,
-it shall return EOF   \0and set
+it shall return EOF   \ and set
 \fIerrno\fP to indicate the error. 
 .SH ERRORS
 .LP
 The \fIfclose\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The O_NONBLOCK flag is set for the file descriptor underlying \fIstream\fP
 and the process would be delayed in the write
 operation. 
-.TP
+.TP 7
 .B EBADF
 The file descriptor underlying stream is not valid. 
-.TP
+.TP 7
 .B EFBIG
 An
 attempt was made to write a file that exceeds the maximum file size.
-.TP
+.TP 7
 .B EFBIG
 An attempt was made to write a file that exceeds the process' file
 size limit. 
-.TP
+.TP 7
 .B EFBIG
 The file is a regular file and an attempt was made to write at or
 beyond the offset maximum associated with the corresponding
 stream. 
-.TP
+.TP 7
 .B EINTR
 The \fIfclose\fP() function was interrupted by a signal. 
-.TP
+.TP 7
 .B EIO
 The process is a member of a background process group attempting to
 write to its controlling terminal, TOSTOP is set, the process
 is neither ignoring nor blocking SIGTTOU, and the process group of
 the process is orphaned. This error may also be returned under
 implementation-defined conditions. 
-.TP
+.TP 7
 .B ENOSPC
 There was no free space remaining on the device containing the file.
-.TP
+.TP 7
 .B EPIPE
 An
 attempt is made to write to a pipe or FIFO that is not open for reading
@@ -91,7 +85,7 @@ thread.
 .sp
 .LP
 The \fIfclose\fP() function may fail if:
-.TP
+.TP 7
 .B ENXIO
 A
 request was made of a nonexistent device, or the request was outside
@@ -115,7 +109,7 @@ None.
 .LP
 \fIclose\fP() , \fIfopen\fP() , \fIgetrlimit\fP() , \fIulimit\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<stdio.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stdio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

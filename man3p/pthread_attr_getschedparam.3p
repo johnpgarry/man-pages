@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_attr_getschedparam" P 2003 POSIX
+.TH "PTHREAD_ATTR_GETSCHEDPARAM" P 2003 POSIX
 .\" pthread_attr_getschedparam 
 .SH NAME
-pthread_attr_getschedparam, pthread_attr_setschedparam - get and set
+pthread_attr_getschedparam, pthread_attr_setschedparam \- get and set
 the schedparam attribute
 .SH SYNOPSIS
 .LP
@@ -11,11 +11,11 @@ the schedparam attribute
 .sp
 int pthread_attr_getschedparam(const pthread_attr_t *restrict\fP \fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 struct sched_param *restrict\fP \fIparam\fP\fB);
+\ \ \ \ \ \  struct sched_param *restrict\fP \fIparam\fP\fB);
 .br
 int pthread_attr_setschedparam(pthread_attr_t *restrict\fP \fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 const struct sched_param *restrict\fP \fIparam\fP\fB);
+\ \ \ \ \ \  const struct sched_param *restrict\fP \fIparam\fP\fB);
 \fP
 \fB
 .br
@@ -48,10 +48,10 @@ otherwise, an error number shall be returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_attr_setschedparam\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIparam\fP is not valid.
-.TP
+.TP 7
 .B ENOTSUP
 An attempt was made to set the attribute to an unsupported value.
 .sp
@@ -78,7 +78,7 @@ None.
 .LP
 \fIpthread_attr_destroy\fP() , \fIpthread_attr_getscope\fP() , \fIpthread_attr_getinheritsched\fP()
 , \fIpthread_attr_getschedpolicy\fP() , \fIpthread_create\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP,
 \fI<sched.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

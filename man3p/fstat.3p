@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fstat" P 2003 POSIX
+.TH "FSTAT" P 2003 POSIX
 .\" fstat 
 .SH NAME
-fstat - get file status
+fstat \- get file status
 .SH SYNOPSIS
 .LP
 \fB#include <sys/stat.h>
@@ -41,7 +41,7 @@ The structure members \fIst_mode\fP, \fIst_ino\fP, \fIst_dev\fP, \fIst_uid\fP,
 \fIst_gid\fP, \fIst_atime\fP,
 \fIst_ctime\fP, and \fIst_mtime\fP shall have meaningful values for
 all other file types defined in this volume of
-IEEE\0Std\01003.1-2001. The value of the member \fIst_nlink\fP shall
+IEEE\ Std\ 1003.1-2001. The value of the member \fIst_nlink\fP shall
 be set to the number of links to the file.
 .LP
 An implementation that provides additional or alternative file access
@@ -50,7 +50,7 @@ conditions, cause \fIfstat\fP() to fail.
 .LP
 The \fIfstat\fP() function shall update any time-related fields as
 described in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 4.7, File Times Update, before writing
+IEEE\ Std\ 1003.1-2001, Section 4.7, File Times Update, before writing
 into the \fBstat\fP structure.
 .SH RETURN VALUE
 .LP
@@ -59,13 +59,13 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fIfstat\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while reading from the file system.
-.TP
+.TP 7
 .B EOVERFLOW
 The file size in bytes or the number of blocks allocated to the file
 or the file serial number cannot be represented correctly
@@ -73,7 +73,7 @@ in the structure pointed to by \fIbuf\fP.
 .sp
 .LP
 The \fIfstat\fP() function may fail if:
-.TP
+.TP 7
 .B EOVERFLOW
 One of the values is too large to store into the structure pointed
 to by the \fIbuf\fP argument.
@@ -117,7 +117,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIlstat\fP() , \fIstat\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/stat.h>\fP, \fI<sys/types.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/stat.h>\fP, \fI<sys/types.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

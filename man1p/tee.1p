@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tee" P 2003 POSIX
+.TH "TEE" P 2003 POSIX
 .\" tee 
 .SH NAME
-tee - duplicate standard input
+tee \- duplicate standard input
 .SH SYNOPSIS
 .LP
 \fBtee\fP \fB[\fP\fB-ai\fP\fB][\fP\fIfile\fP\fB...\fP\fB]\fP
@@ -18,20 +18,20 @@ Read, Write, and Creation\fP .
 .SH OPTIONS
 .LP
 The \fItee\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-a\fP
 Append the output to the files.
-.TP
+.TP 7
 \fB-i\fP
 Ignore the SIGINT signal.
 .sp
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of an output file. Processing of at least 13 \fIfile\fP
 operands shall be supported.
@@ -46,29 +46,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fItee\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -93,10 +93,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 The standard input was successfully copied to all output files.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -130,7 +130,7 @@ Save an unsorted intermediate form of the data in a pipeline:
 .SH RATIONALE
 .LP
 The buffering requirement means that \fItee\fP is not allowed to use
-ISO\0C standard fully buffered or line-buffered
+ISO\ C standard fully buffered or line-buffered
 writes. It does not mean that \fItee\fP has to do 1-byte reads followed
 by 1-byte writes.
 .LP
@@ -148,12 +148,12 @@ and accept a single \fB'-'\fP as an alternative to
 .LP
 Historical implementations ignore write errors. This is explicitly
 not permitted by this volume of
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .LP
 Some historical implementations use O_APPEND when providing append
 mode; others use the \fIlseek\fP() function to seek to the end-of-file
 after opening the file without O_APPEND. This
-volume of IEEE\0Std\01003.1-2001 requires functionality equivalent
+volume of IEEE\ Std\ 1003.1-2001 requires functionality equivalent
 to using O_APPEND; see \fIFile Read, Write, and Creation\fP .
 .SH FUTURE DIRECTIONS
 .LP
@@ -161,7 +161,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIIntroduction\fP , \fIcat\fP , the System Interfaces volume of
-IEEE\0Std\01003.1-2001, \fIlseek\fP()
+IEEE\ Std\ 1003.1-2001, \fIlseek\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

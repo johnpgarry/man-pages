@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fdatasync" P 2003 POSIX
+.TH "FDATASYNC" P 2003 POSIX
 .\" fdatasync 
 .SH NAME
-fdatasync - synchronize the data of a file (\fBREALTIME\fP)
+fdatasync \- synchronize the data of a file (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -32,11 +32,11 @@ have been completed.
 .SH ERRORS
 .LP
 The \fIfdatasync\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor open for
 writing.
-.TP
+.TP 7
 .B EINVAL
 This implementation does not support synchronized I/O for this file.
 .sp
@@ -60,7 +60,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIaio_fsync\fP() , \fIfcntl\fP() , \fIfsync\fP() , \fIopen\fP() ,
-\fIread\fP() , \fIwrite\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIread\fP() , \fIwrite\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

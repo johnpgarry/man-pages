@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fgetwc" P 2003 POSIX
+.TH "FGETWC" P 2003 POSIX
 .\" fgetwc 
 .SH NAME
-fgetwc - get a wide-character code from a stream
+fgetwc \- get a wide-character code from a stream
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -14,12 +14,6 @@ wint_t fgetwc(FILE *\fP\fIstream\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIfgetwc\fP() function shall obtain the next character (if present)
 from the input stream pointed to by \fIstream\fP,
@@ -46,7 +40,7 @@ input stream pointed to by \fIstream\fP converted to a type \fBwint_t\fP.
 If the stream is at end-of-file, the end-of-file
 indicator for the stream shall be set and \fIfgetwc\fP() shall return
 WEOF. If a read error occurs, the error indicator for the
-stream shall be set, \fIfgetwc\fP() shall return WEOF,   \0and shall
+stream shall be set, \fIfgetwc\fP() shall return WEOF,   \ and shall
 set \fIerrno\fP to indicate the error.  If an encoding error occurs,
 the error indicator for the stream shall be
 set, \fIfgetwc\fP() shall return WEOF, and shall set \fIerrno\fP to
@@ -54,23 +48,23 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIfgetwc\fP() function shall fail if data needs to be read and:
-.TP
+.TP 7
 .B EAGAIN
 The O_NONBLOCK flag is set for the file descriptor underlying \fIstream\fP
 and the process would be delayed in the \fIfgetwc\fP()
 operation. 
-.TP
+.TP 7
 .B EBADF
 The file descriptor underlying \fIstream\fP is not a valid file descriptor
 open for reading. 
-.TP
+.TP 7
 .B EILSEQ
 The data obtained from the input stream does not form a valid character.
-.TP
+.TP 7
 .B EINTR
 The read operation was terminated due to the receipt of a signal,
 and no data was transferred. 
-.TP
+.TP 7
 .B EIO
 A
 physical I/O error has occurred, or the process is in a background
@@ -78,7 +72,7 @@ process group attempting to read from its controlling terminal,
 and either the process is ignoring or blocking the SIGTTIN signal
 or the process group is orphaned. This error may also be
 generated for implementation-defined reasons. 
-.TP
+.TP 7
 .B EOVERFLOW
 The file is a regular file and an attempt was made to read at or beyond
 the offset maximum associated with the corresponding
@@ -86,10 +80,10 @@ stream.
 .sp
 .LP
 The \fIfgetwc\fP() function may fail if:
-.TP
+.TP 7
 .B ENOMEM
 Insufficient storage space is available. 
-.TP
+.TP 7
 .B ENXIO
 A
 request was made of a nonexistent device, or the request was outside
@@ -114,7 +108,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfeof\fP() , \fIferror\fP() , \fIfopen\fP() ,
-the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<stdio.h>\fP,
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<stdio.h>\fP,
 \fI<wchar.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

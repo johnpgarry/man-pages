@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "logb" P 2003 POSIX
+.TH "LOGB" P 2003 POSIX
 .\" logb 
 .SH NAME
-logb, logbf, logbl - radix-independent exponent
+logb, logbf, logbl \- radix-independent exponent
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -16,12 +16,6 @@ long double logbl(long double\fP \fIx\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 These functions shall compute the exponent of \fIx\fP, which is the
 integral part of log\fI_r\fP
@@ -63,8 +57,8 @@ If \fIx\fP is \(+-Inf, +Inf shall be returned.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
-Pole\0Error
+.TP 7
+Pole\ Error
 The value of \fIx\fP is \(+-0. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -93,7 +87,7 @@ None.
 .LP
 \fIfeclearexcept\fP() , \fIfetestexcept\fP() , \fIilogb\fP() , \fIscalb\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 4.18, Treatment of Error Conditions
+IEEE\ Std\ 1003.1-2001, Section 4.18, Treatment of Error Conditions
 for
 Mathematical Functions, \fI<float.h>\fP, \fI<math.h>\fP
 .SH COPYRIGHT

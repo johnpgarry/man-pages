@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "getsid" P 2003 POSIX
+.TH "GETSID" P 2003 POSIX
 .\" getsid 
 .SH NAME
-getsid - get the process group ID of a session leader
+getsid \- get the process group ID of a session leader
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -27,13 +27,13 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIgetsid\fP() function shall fail if:
-.TP
+.TP 7
 .B EPERM
 The process specified by \fIpid\fP is not in the same session as the
 calling process, and the implementation does not allow
 access to the process group ID of the session leader of that process
 from the calling process.
-.TP
+.TP 7
 .B ESRCH
 There is no process with a process ID equal to \fIpid\fP.
 .sp
@@ -54,7 +54,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIexec\fP() , \fIfork\fP() , \fIgetpid\fP() , \fIgetpgid\fP() , \fIsetpgid\fP()
-, \fIsetsid\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIsetsid\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

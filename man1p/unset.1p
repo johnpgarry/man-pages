@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "unset" P 2003 POSIX
+.TH "UNSET" P 2003 POSIX
 .\" unset 
 .SH NAME
-unset - unset values and attributes of variables and functions
+unset \- unset values and attributes of variables and functions
 .SH SYNOPSIS
 .LP
 \fBunset\fP \fB[\fP\fB-fv\fP\fB]\fP \fIname\fP \fB...\fP
@@ -26,7 +26,7 @@ not be considered an error and does not cause the shell to
 abort.
 .LP
 The \fIunset\fP special built-in shall support the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+volume of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 Note that:
 .sp
@@ -73,10 +73,10 @@ None.
 .LP
 None.
 .SH EXIT STATUS
-.TP
-\00
+.TP 7
+\ 0
 All \fIname\fP operands were successfully unset.
-.TP
+.TP 7
 >0
 At least one \fIname\fP could not be unset.
 .sp

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "setvbuf" P 2003 POSIX
+.TH "SETVBUF" P 2003 POSIX
 .\" setvbuf 
 .SH NAME
-setvbuf - assign buffering to a stream
+setvbuf \- assign buffering to a stream
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -11,36 +11,25 @@ setvbuf - assign buffering to a stream
 int setvbuf(FILE *restrict\fP \fIstream\fP\fB, char *restrict\fP \fIbuf\fP\fB,
 int\fP \fItype\fP\fB,
 .br
-\0\0\0\0\0\0 size_t\fP \fIsize\fP\fB);
+\ \ \ \ \ \  size_t\fP \fIsize\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIsetvbuf\fP() function may be used after the stream pointed
 to by \fIstream\fP is associated with an open file but
 before any other operation (other than an unsuccessful call to \fIsetvbuf\fP())
 is performed on the stream. The argument
 \fItype\fP determines how \fIstream\fP shall be buffered, as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 {_IOFBF} shall cause input/output to be fully buffered.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 {_IOLBF} shall cause input/output to be line buffered.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 {_IONBF} shall cause input/output to be unbuffered.
-.in -5
-.RE
+.LP
 .LP
 If \fIbuf\fP is not a null pointer, the array it points to may be
 used instead of a buffer allocated by \fIsetvbuf\fP() and
@@ -54,12 +43,12 @@ For information about streams, see \fIStandard I/O Streams\fP .
 .LP
 Upon successful completion, \fIsetvbuf\fP() shall return 0. Otherwise,
 it shall return a non-zero value if an invalid value is
-given for \fItype\fP or if the request cannot be honored,   \0and
+given for \fItype\fP or if the request cannot be honored,   \ and
 may set \fIerrno\fP to indicate the error. 
 .SH ERRORS
 .LP
 The \fIsetvbuf\fP() function may fail if:
-.TP
+.TP 7
 .B EBADF
 The file descriptor underlying \fIstream\fP is not valid. 
 .sp
@@ -89,7 +78,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIStandard I/O Streams\fP , \fIfopen\fP() , \fIsetbuf\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<stdio.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<stdio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_spawnattr_destroy" P 2003 POSIX
+.TH "POSIX_SPAWNATTR_DESTROY" P 2003 POSIX
 .\" posix_spawnattr_destroy 
 .SH NAME
-posix_spawnattr_destroy, posix_spawnattr_init - destroy and initialize
+posix_spawnattr_destroy, posix_spawnattr_init \- destroy and initialize
 spawn attributes object (\fBADVANCED
 REALTIME\fP)
 .SH SYNOPSIS
@@ -35,13 +35,13 @@ specifying an already initialized \fIattr\fP attributes object.
 A spawn attributes object is of type \fBposix_spawnattr_t\fP (defined
 in \fI<spawn.h>\fP) and is used to specify the inheritance of process
 attributes across a spawn
-operation. IEEE\0Std\01003.1-2001 does not define comparison or assignment
+operation. IEEE\ Std\ 1003.1-2001 does not define comparison or assignment
 operators for the type
 \fBposix_spawnattr_t\fP.
 .LP
 Each implementation shall document the individual attributes it uses
 and their default values unless these values are defined by
-IEEE\0Std\01003.1-2001. Attributes not defined by IEEE\0Std\01003.1-2001,
+IEEE\ Std\ 1003.1-2001. Attributes not defined by IEEE\ Std\ 1003.1-2001,
 their default values, and the names of
 the associated functions to get and set those attribute values are
 implementation-defined.
@@ -61,13 +61,13 @@ error number shall be returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIposix_spawnattr_init\fP() function shall fail if:
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory exists to initialize the spawn attributes object.
 .sp
 .LP
 The \fIposix_spawnattr_destroy\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by attr is invalid.
 .sp
@@ -82,7 +82,7 @@ These functions are part of the Spawn option and need not be provided
 on all implementations.
 .SH RATIONALE
 .LP
-The original spawn interface proposed in IEEE\0Std\01003.1-2001 defined
+The original spawn interface proposed in IEEE\ Std\ 1003.1-2001 defined
 the attributes that specify the inheritance of
 process attributes across a spawn operation as a structure. In order
 to be able to separate optional individual attributes under
@@ -108,7 +108,7 @@ None.
 , \fIposix_spawnattr_setsigdefault\fP() , \fIposix_spawnattr_setflags\fP()
 , \fIposix_spawnattr_setpgroup\fP() , \fIposix_spawnattr_setsigmask\fP()
 , \fIposix_spawnattr_setschedpolicy\fP() , \fIposix_spawnattr_setschedparam\fP()
-, \fIposix_spawnp\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIposix_spawnp\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<spawn.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

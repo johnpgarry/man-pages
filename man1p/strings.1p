@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "strings" P 2003 POSIX
+.TH "STRINGS" P 2003 POSIX
 .\" strings 
 .SH NAME
-strings - find printable strings in files
+strings \- find printable strings in files
 .SH SYNOPSIS
 .LP
 \fBstrings\fP \fB[\fP\fB-a\fP\fB][\fP\fB-t\fP \fIformat\fP\fB][\fP\fB-n\fP
@@ -18,38 +18,44 @@ see \fIlocaledef\fP.
 .SH OPTIONS
 .LP
 The \fIstrings\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-a\fP
 Scan files in their entirety. If \fB-a\fP is not specified, it is
 implementation-defined what portion of each file is scanned
 for strings.
-.TP
-\fB-n\0\fP \fInumber\fP
+.TP 7
+\fB-n\ \fP \fInumber\fP
 Specify the minimum string length, where the \fInumber\fP argument
 is a positive decimal integer. The default shall be 4.
-.TP
-\fB-t\0\fP \fIformat\fP
+.TP 7
+\fB-t\ \fP \fIformat\fP
 Write each string preceded by its byte offset from the start of the
 file. The format shall be dependent on the single character
 used as the \fIformat\fP option-argument: 
-.TP
+.TP 7
 \fBd\fP
+.RS
 The offset shall be written in decimal.
-.TP
+.RE
+.TP 7
 \fBo\fP
+.RS
 The offset shall be written in octal.
-.TP
+.RE
+.TP 7
 \fBx\fP
+.RS
 The offset shall be written in hexadecimal.
+.RE
 .sp
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a regular file to be used as input. If no \fIfile\fP
 operand is specified, the \fIstrings\fP utility shall read
@@ -66,30 +72,30 @@ shall be regular files of any format.
 .LP
 The following environment variables shall affect the execution of
 \fIstrings\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files) and
 to identify printable strings.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -112,7 +118,7 @@ shall be:
 .fi
 .RE
 .LP
-With the \fB-t\0o\fP option, the format of the output shall be:
+With the \fB-t\ o\fP option, the format of the output shall be:
 .sp
 .RS
 .nf
@@ -122,7 +128,7 @@ With the \fB-t\0o\fP option, the format of the output shall be:
 .fi
 .RE
 .LP
-With the \fB-t\0x\fP option, the format of the output shall be:
+With the \fB-t\ x\fP option, the format of the output shall be:
 .sp
 .RS
 .nf
@@ -132,7 +138,7 @@ With the \fB-t\0x\fP option, the format of the output shall be:
 .fi
 .RE
 .LP
-With the \fB-t\0d\fP option, the format of the output shall be:
+With the \fB-t\ d\fP option, the format of the output shall be:
 .sp
 .RS
 .nf
@@ -153,10 +159,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -193,9 +199,9 @@ the \fB-t\fP option was added. It was originally named \fB-O\fP to
 mean "offset", but was changed to \fB-t\fP to be consistent
 with \fIod\fP.
 .LP
-The ISO\0C standard function \fIisprint\fP() is restricted to a domain
+The ISO\ C standard function \fIisprint\fP() is restricted to a domain
 of
-\fBunsigned char\fP. This volume of IEEE\0Std\01003.1-2001 requires
+\fBunsigned char\fP. This volume of IEEE\ Std\ 1003.1-2001 requires
 implementations to write strings as defined by the
 current locale.
 .SH FUTURE DIRECTIONS

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fchdir" P 2003 POSIX
+.TH "FCHDIR" P 2003 POSIX
 .\" fchdir 
 .SH NAME
-fchdir - change working directory
+fchdir \- change working directory
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -31,22 +31,22 @@ error. On failure the current working directory shall remain unchanged.
 .SH ERRORS
 .LP
 The \fIfchdir\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied for the directory referenced by \fIfildes\fP.
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not an open file descriptor.
-.TP
+.TP 7
 .B ENOTDIR
 The open file descriptor \fIfildes\fP does not refer to a directory.
 .sp
 .LP
 The \fIfchdir\fP() may fail if:
-.TP
+.TP 7
 .B EINTR
 A signal was caught during the execution of \fIfchdir\fP().
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while reading from or writing to the file system.
 .sp
@@ -66,7 +66,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIchdir\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIchdir\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

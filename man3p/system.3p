@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "system" P 2003 POSIX
+.TH "SYSTEM" P 2003 POSIX
 .\" system 
 .SH NAME
-system - issue a command
+system \- issue a command
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -12,12 +12,6 @@ int system(const char *\fP\fIcommand\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 If \fIcommand\fP is a null pointer, the \fIsystem\fP() function shall
 determine whether the host environment has a command
@@ -86,7 +80,7 @@ The
 \fIfork\fP() . 
 .LP
 In addition, \fIsystem\fP() may fail if:
-.TP
+.TP 7
 .B ECHILD
 The status of the child process created by \fIsystem\fP() is no longer
 available. 
@@ -155,13 +149,13 @@ of the user that could cause execution of commands not
 anticipated by the calling program.
 .LP
 There are three levels of specification for the \fIsystem\fP() function.
-The ISO\0C standard gives the most basic. It
+The ISO\ C standard gives the most basic. It
 requires that the function exists, and defines a way for an application
 to query whether a command language interpreter exists. It
 says nothing about the command language or the environment in which
 the command is interpreted.
 .LP
-IEEE\0Std\01003.1-2001 places additional restrictions on \fIsystem\fP().
+IEEE\ Std\ 1003.1-2001 places additional restrictions on \fIsystem\fP().
 It requires that if there is a command
 language interpreter, the environment must be as specified by \fIfork\fP()
 and \fIexec\fP. This ensures, for example, that close-on- \fIexec\fP
@@ -171,20 +165,20 @@ is different. It also specifies the return value from
 some information about the command's completion
 status.
 .LP
-Finally, IEEE\0Std\01003.1-2001 requires the command to be interpreted
+Finally, IEEE\ Std\ 1003.1-2001 requires the command to be interpreted
 as in the shell command language defined in the
-Shell and Utilities volume of IEEE\0Std\01003.1-2001.
+Shell and Utilities volume of IEEE\ Std\ 1003.1-2001.
 .LP
 Note that, \fIsystem\fP(NULL) is required to return non-zero, indicating
 that there is a command language interpreter. At first
-glance, this would seem to conflict with the ISO\0C standard which
+glance, this would seem to conflict with the ISO\ C standard which
 allows \fIsystem\fP(NULL) to return zero. There is no
 conflict, however. A system must have a command language interpreter,
 and is non-conforming if none is present. It is therefore
 permissible for the \fIsystem\fP() function on such a system to implement
-the behavior specified by the ISO\0C standard as
+the behavior specified by the ISO\ C standard as
 long as it is understood that the implementation does not conform
-to IEEE\0Std\01003.1-2001 if \fIsystem\fP(NULL) returns
+to IEEE\ Std\ 1003.1-2001 if \fIsystem\fP(NULL) returns
 zero.
 .LP
 It was explicitly decided that when \fIcommand\fP is NULL, \fIsystem\fP()
@@ -208,30 +202,28 @@ with \fIerrno\fP set
 to [EINTR], \fIsystem\fP() must reissue the \fIwaitpid\fP(). This
 change was made for two
 reasons:
-.in +5
-.LP
+.IP " 1." 4
 There is no way for an application to clean up if \fIsystem\fP() returns
 [EINTR], short of calling \fIwait\fP(), and that could have the undesirable
 effect of returning the status of children other
 than the one started by \fIsystem\fP().
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 While it might require a change in some historical implementations,
 those implementations already have to be changed because
 they use \fIwait\fP() instead of \fIwaitpid\fP().
-.in -5
+.LP
 .LP
 Note that if the application is catching SIGCHLD signals, it will
 receive such a signal before a successful \fIsystem\fP() call
 returns.
 .LP
-To conform to IEEE\0Std\01003.1-2001, \fIsystem\fP() must use \fIwaitpid\fP(),
+To conform to IEEE\ Std\ 1003.1-2001, \fIsystem\fP() must use \fIwaitpid\fP(),
 or some similar function, instead of \fIwait\fP().
 .LP
 The following code sample illustrates how \fIsystem\fP() might be
 implemented on an implementation conforming to
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .sp
 .RS
 .nf
@@ -295,11 +287,11 @@ command lines to be processed using \fIsystem\fP(), to specify a different
 command interpreter. Such an implementation is
 discouraged. If the alternate command interpreter did not follow the
 command line syntax specified in the Shell and Utilities
-volume of IEEE\0Std\01003.1-2001, then changing \fISHELL\fP would
+volume of IEEE\ Std\ 1003.1-2001, then changing \fISHELL\fP would
 render \fIsystem\fP() non-conforming. This would affect
 applications that expected the specified behavior from \fIsystem\fP(),
 and since the Shell and Utilities volume of
-IEEE\0Std\01003.1-2001 does not mention that \fISHELL\fP affects \fIsystem\fP(),
+IEEE\ Std\ 1003.1-2001 does not mention that \fISHELL\fP affects \fIsystem\fP(),
 the application would not know that it
 needed to unset \fISHELL .\fP
 .SH FUTURE DIRECTIONS
@@ -308,9 +300,9 @@ None.
 .SH SEE ALSO
 .LP
 \fIexec\fP() , \fIpipe\fP() , \fIwaitpid\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<limits.h>\fP, \fI<signal.h>\fP,
+volume of IEEE\ Std\ 1003.1-2001, \fI<limits.h>\fP, \fI<signal.h>\fP,
 \fI<stdlib.h>\fP, \fI<sys/wait.h>\fP, the
-Shell and Utilities volume of IEEE\0Std\01003.1-2001, \fIsh\fP
+Shell and Utilities volume of IEEE\ Std\ 1003.1-2001, \fIsh\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

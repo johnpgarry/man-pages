@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "lockf" P 2003 POSIX
+.TH "LOCKF" P 2003 POSIX
 .\" lockf 
 .SH NAME
-lockf - record locking on files
+lockf \- record locking on files
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -32,12 +32,12 @@ The \fIfunction\fP argument is a control value which specifies the
 action to be taken. The permissible values for
 \fIfunction\fP are defined in \fI<unistd.h>\fP as follows:
 .TS C
-center;l l l l l l l l l l l.
-\fBFunction\fP 	 \fBDescription\fP 	
-F_ULOCK 	 Unlock locked sections. 	
-F_LOCK 	 Lock a section for exclusive use. 	
-F_TLOCK 	 Test and lock a section for exclusive use. 	
-F_TEST 	 Test a section for locks by other processes. 	
+center; l2 l.
+\fBFunction\fP	\fBDescription\fP
+F_ULOCK	Unlock locked sections.
+F_LOCK	Lock a section for exclusive use.
+F_TLOCK	Test and lock a section for exclusive use.
+F_TEST	Test a section for locks by other processes.
 .TE
 .LP
 F_TEST shall detect if a lock by another process is present on the
@@ -116,28 +116,28 @@ and existing locks shall not be changed.
 .SH ERRORS
 .LP
 The \fIlockf\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid open file descriptor; or
 \fIfunction\fP is F_LOCK or F_TLOCK and \fIfildes\fP is
 not a valid file descriptor open for writing.
-.TP
+.TP 7
 .B EACCES] or [EAGAIN
 .sp
 The \fIfunction\fP argument is F_TLOCK or F_TEST and the section is
 already locked by another process.
-.TP
+.TP 7
 .B EDEADLK
 The \fIfunction\fP argument is F_LOCK and a deadlock is detected.
-.TP
+.TP 7
 .B EINTR
 A signal was caught during execution of the function.
-.TP
+.TP 7
 .B EINVAL
 The \fIfunction\fP argument is not one of F_LOCK, F_TLOCK, F_TEST,
 or F_ULOCK; or \fIsize\fP plus the current file offset is
 less than 0.
-.TP
+.TP 7
 .B EOVERFLOW
 The offset of the first, or if \fIsize\fP is not 0 then the last,
 byte in the requested section cannot be represented
@@ -145,17 +145,17 @@ correctly in an object of type \fBoff_t\fP.
 .sp
 .LP
 The \fIlockf\fP() function may fail if:
-.TP
+.TP 7
 .B EAGAIN
 The \fIfunction\fP argument is F_LOCK or F_TLOCK and the file is mapped
 with \fImmap\fP().
-.TP
+.TP 7
 .B EDEADLK] or [ENOLCK
 .sp
 The \fIfunction\fP argument is F_LOCK, F_TLOCK, or F_ULOCK, and the
 request would cause the number of locks to exceed a
 system-imposed limit.
-.TP
+.TP 7
 .B EOPNOTSUPP] or [EINVAL
 .sp
 The implementation does not support the locking of files of the type
@@ -211,7 +211,7 @@ None.
 .LP
 \fIalarm\fP() , \fIchmod\fP() , \fIclose\fP() , \fIcreat\fP() , \fIfcntl\fP()
 , \fIfopen\fP() , \fImmap\fP() , \fIopen\fP() , \fIread\fP() , \fIwrite\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

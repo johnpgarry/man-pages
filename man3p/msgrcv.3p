@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "msgrcv" P 2003 POSIX
+.TH "MSGRCV" P 2003 POSIX
 .\" msgrcv 
 .SH NAME
-msgrcv - XSI message receive operation
+msgrcv \- XSI message receive operation
 .SH SYNOPSIS
 .LP
 \fB#include <sys/msg.h>
@@ -12,14 +12,14 @@ ssize_t msgrcv(int\fP \fImsqid\fP\fB, void *\fP\fImsgp\fP\fB, size_t\fP
 \fImsgsz\fP\fB, long\fP
 \fImsgtyp\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fImsgflg\fP\fB); \fP
+\ \ \ \ \ \  int\fP \fImsgflg\fP\fB); \fP
 \fB
 .br
 \fP
 .SH DESCRIPTION
 .LP
 The \fImsgrcv\fP() function operates on XSI message queues (see the
-Base Definitions volume of IEEE\0Std\01003.1-2001,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 3.224, Message Queue). It is unspecified whether this function
 interoperates with the realtime interprocess communication facilities
 defined in \fIRealtime\fP .
@@ -63,76 +63,59 @@ is implementation-defined.
 .LP
 The argument \fImsgtyp\fP specifies the type of message requested
 as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If \fImsgtyp\fP is 0, the first message on the queue shall be received.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fImsgtyp\fP is greater than 0, the first message of type \fImsgtyp\fP
 shall be received.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fImsgtyp\fP is less than 0, the first message of the lowest type
 that is less than or equal to the absolute value of
 \fImsgtyp\fP shall be received.
-.in -5
-.RE
+.LP
 .LP
 The argument \fImsgflg\fP specifies the action to be taken if a message
 of the desired type is not on the queue. These are as
 follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If (\fImsgflg\fP & IPC_NOWAIT) is non-zero, the calling thread shall
 return immediately with a return value of -1 and
 \fIerrno\fP set to [ENOMSG].
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If (\fImsgflg\fP & IPC_NOWAIT) is 0, the calling thread shall suspend
 execution until one of the following occurs:
 .RS
-.in +5
-.LP
+.IP " *" 3
 A message of the desired type is placed on the queue.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The message queue identifier \fImsqid\fP is removed from the system;
 when this occurs, \fIerrno\fP shall be set equal to
 [EIDRM] and -1 shall be returned.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The calling thread receives a signal that is to be caught; in this
 case a message is not received and the calling thread resumes
 execution in the manner prescribed in \fIsigaction\fP() .
-.in -5
+.LP
 .RE
-.in -5
-.RE
+.LP
 .LP
 Upon successful completion, the following actions are taken with respect
 to the data structure associated with \fImsqid\fP:
-.RS
-.in +5
-.LP
+.IP " *" 3
 \fBmsg_qnum\fP shall be decremented by 1.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 \fBmsg_lrpid\fP shall be set equal to the process ID of the calling
 process.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 \fBmsg_rtime\fP shall be set equal to the current time.
-.in -5
-.RE
+.LP
 .SH RETURN VALUE
 .LP
 Upon successful completion, \fImsgrcv\fP() shall return a value equal
@@ -143,25 +126,25 @@ set to indicate the error.
 .SH ERRORS
 .LP
 The \fImsgrcv\fP() function shall fail if:
-.TP
+.TP 7
 .B E2BIG
 The value of \fImtext\fP is greater than \fImsgsz\fP and (\fImsgflg\fP
 & MSG_NOERROR) is 0.
-.TP
+.TP 7
 .B EACCES
 Operation permission is denied to the calling process; see \fIXSI
 Interprocess
 Communication\fP .
-.TP
+.TP 7
 .B EIDRM
 The message queue identifier \fImsqid\fP is removed from the system.
-.TP
+.TP 7
 .B EINTR
 The \fImsgrcv\fP() function was interrupted by a signal.
-.TP
+.TP 7
 .B EINVAL
 \fImsqid\fP is not a valid message queue identifier.
-.TP
+.TP 7
 .B ENOMSG
 The queue does not contain a message of the desired type and (\fImsgflg\fP
 & IPC_NOWAIT) is non-zero.
@@ -218,7 +201,7 @@ None.
 , \fImq_send\fP() , \fImq_setattr\fP() , \fImq_unlink\fP() , \fImsgctl\fP()
 , \fImsgget\fP() ,
 \fImsgsnd\fP() , \fIsigaction\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/msg.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/msg.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

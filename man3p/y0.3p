@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "y0" P 2003 POSIX
+.TH "Y0" P 2003 POSIX
 .\" y0 
 .SH NAME
-y0, y1, yn - Bessel functions of the second kind
+y0, y1, yn \- Bessel functions of the second kind
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -49,8 +49,8 @@ be returned and a range error may occur.
 .SH ERRORS
 .LP
 These functions may fail if:
-.TP
-Domain\0Error
+.TP 7
+Domain\ Error
 The value of \fIx\fP is negative. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -58,8 +58,8 @@ then \fIerrno\fP shall be set to [EDOM]. If the
 integer expression (math_errhandling & MATH_ERREXCEPT) is non-zero,
 then the invalid floating-point exception shall be
 raised.
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The value of \fIx\fP is 0.0, or the correct result would cause overflow.
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -67,8 +67,8 @@ then \fIerrno\fP shall be set to [ERANGE]. If the
 integer expression (math_errhandling & MATH_ERREXCEPT) is non-zero,
 then the overflow floating-point exception shall be
 raised.
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The value of \fIx\fP is too large in magnitude, or the correct result
 would cause underflow. 
 .LP
@@ -98,7 +98,7 @@ None.
 .LP
 \fIfeclearexcept\fP() , \fIfetestexcept\fP() , \fIisnan\fP() , \fIj0\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 4.18, Treatment of Error Conditions
+IEEE\ Std\ 1003.1-2001, Section 4.18, Treatment of Error Conditions
 for
 Mathematical Functions, \fI<math.h>\fP
 .SH COPYRIGHT

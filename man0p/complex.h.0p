@@ -2,35 +2,29 @@
 .TH "<complex.h>" P 2003 POSIX
 .\" <complex.h> 
 .SH NAME
-complex.h - complex arithmetic
+complex.h \- complex arithmetic
 .SH SYNOPSIS
 .LP
 \fB#include <complex.h>\fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fI<complex.h>\fP header shall define the following macros:
-.TP
+.TP 7
 complex
 Expands to \fB_Complex\fP.
-.TP
+.TP 7
 _Complex_I
 Expands to a constant expression of type \fBconst float _Complex\fP,
 with the value of the imaginary unit (that is, a number
 \fIi\fP such that \fIi\fP**2=-1).
-.TP
+.TP 7
 imaginary
 Expands to \fB_Imaginary\fP.
-.TP
+.TP 7
 _Imaginary_I
 Expands to a constant expression of type \fBconst float _Imaginary\fP
 with the value of the imaginary unit.
-.TP
+.TP 7
 I
 Expands to either _Imaginary_I or _Complex_I. If _Imaginary_I is not
 defined, I expands to _Complex_I.
@@ -166,15 +160,17 @@ The following function names and the same names suffixed with \fIf\fP
 or \fIl\fP are reserved for future use, and may be added
 to the declarations in the \fI<complex.h>\fP header.
 .TS C
-center;l l l l l l l l l l l.
-.sp
+center; lw(26) lw(26) lw(26).
+T{
+.br
 \fIcerf\fP()
 .br
 \fIcerfc\fP()
 .br
 \fIcexp2\fP()
 .br
-\0 	 
+\ 
+T}	T{
 .br
 \fIcexpm1\fP()
 .br
@@ -182,7 +178,8 @@ center;l l l l l l l l l l l.
 .br
 \fIclog1p\fP()
 .br
-\0 	 
+\ 
+T}	T{
 .br
 \fIclog2\fP()
 .br
@@ -190,11 +187,12 @@ center;l l l l l l l l l l l.
 .br
 \fIctgamma\fP()
 .br
-\0 	
+\ 
+T}
 .TE
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIcabs\fP(),
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIcabs\fP(),
 \fIcacos\fP(), \fIcacosh\fP(), \fIcarg\fP(), \fIcasin\fP(), \fIcasinh\fP(),
 \fIcatan\fP(), \fIcatanh\fP(), \fIccos\fP(), \fIccosh\fP(), \fIcexp\fP(),
 \fIcimag\fP(), \fIclog\fP(), \fIconj\fP(), \fIcpow\fP(), \fIcproj\fP(),

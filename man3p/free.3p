@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "free" P 2003 POSIX
+.TH "FREE" P 2003 POSIX
 .\" free 
 .SH NAME
-free - free allocated memory
+free \- free allocated memory
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -13,21 +13,13 @@ void free(void *\fP\fIptr\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fIfree\fP() function shall cause the space pointed to by \fIptr\fP
 to be deallocated; that is, made available for further
 allocation. If \fIptr\fP is a null pointer, no action shall occur.
 Otherwise, if the argument does not match a pointer earlier
 returned by the \fIcalloc\fP(), \fImalloc\fP(),
-\fIposix_memalign\fP(),  \fIrealloc\fP(), or  <img
-src="../images/opt-start.gif" alt="[Option Start]" border="0"> \fIstrdup\fP()
-function, or if the space has been deallocated by a call to \fIfree\fP()
-or
+\fIposix_memalign\fP(),  \fIrealloc\fP(), or   \fIstrdup\fP()  function,
+or if the space has been deallocated by a call to \fIfree\fP() or
 \fIrealloc\fP(), the behavior is undefined.
 .LP
 Any use of a pointer that refers to freed space results in undefined
@@ -56,7 +48,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIcalloc\fP() , \fImalloc\fP() , \fIrealloc\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

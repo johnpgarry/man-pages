@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fork" P 2003 POSIX
+.TH "FORK" P 2003 POSIX
 .\" fork 
 .SH NAME
-fork - create a new process
+fork \- create a new process
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -16,81 +16,65 @@ pid_t fork(void);
 The \fIfork\fP() function shall create a new process. The new process
 (child process) shall be an exact copy of the calling
 process (parent process) except as detailed below:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The child process shall have a unique process ID.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The child process ID also shall not match any active process group
 ID.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The child process shall have a different parent process ID, which
 shall be the process ID of the calling process.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The child process shall have its own copy of the parent's file descriptors.
 Each of the child's file descriptors shall refer to
 the same open file description with the corresponding file descriptor
 of the parent.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The child process shall have its own copy of the parent's open directory
 streams. Each open directory stream in the child
 process may share directory stream positioning with the corresponding
 directory stream of the parent.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The child process shall have its own copy of the parent's message
 catalog descriptors. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The child process' values of \fItms_utime\fP, \fItms_stime\fP, \fItms_cutime\fP,
 and \fItms_cstime\fP shall be set to 0.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The time left until an alarm clock signal shall be reset to zero,
 and the alarm, if any, shall be canceled; see \fIalarm\fP() .
-.in -5
-.in +5
 .LP
+.IP " *" 3
 All \fIsemadj\fP values shall be cleared. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 File locks set by the parent process shall not be inherited by the
 child process.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The set of signals pending for the child process shall be initialized
 to the empty set.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Interval timers shall be reset in the child process. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Any semaphores that are open in the parent process shall also be open
 in the child process. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The
 child process shall not inherit any address space memory locks established
 by the parent process via calls to \fImlockall\fP() or \fImlock\fP().
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Memory mappings created in the parent shall be retained in the child
 process. MAP_PRIVATE mappings inherited from the parent shall
 also be MAP_PRIVATE mappings in the child, and any modifications to
@@ -100,54 +84,47 @@ data in MAP_PRIVATE mappings made by the parent after
 \fIfork\fP() returns shall be visible only to the parent. Modifications
 to the data in MAP_PRIVATE mappings made by the child
 shall be visible only to the child. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 For
 the SCHED_FIFO and SCHED_RR scheduling policies, the child process
 shall inherit the policy and priority settings of the parent
 process during a \fIfork\fP() function. For other scheduling policies,
 the policy and priority settings on \fIfork\fP() are
 implementation-defined. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Per-process timers created by the parent shall not be inherited by
 the child process. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The child process shall have its own copy of the message queue descriptors
 of the parent. Each of the message descriptors of the
 child shall refer to the same open message queue description as the
 corresponding message descriptor of the parent. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 No asynchronous input or asynchronous output operations shall be inherited
 by the child process. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A process shall be created with a single thread. If a multi-threaded
 process calls \fIfork\fP(), the new process shall contain
 a replica of the calling thread and its entire address space, possibly
 including the states of mutexes and other resources.
 Consequently, to avoid errors, the child process may only execute
 async-signal-safe operations until such time as one of the \fIexec\fP
-functions is called.  <img
-src="../images/opt-start.gif" alt="[Option Start]" border="0"> \0Fork
-handlers may be established by means of the \fIpthread_atfork\fP()
-function in order to maintain application invariants across
+functions is called.   \ Fork handlers may be established by means
+of the \fIpthread_atfork\fP() function in order to maintain application
+invariants across
 \fIfork\fP() calls. 
 .LP
 When the application calls \fIfork\fP() from a signal handler and
 any of the fork handlers registered by \fIpthread_atfork\fP() calls
 a function that is not asynch-signal-safe, the behavior is
 undefined.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the Trace option and the Trace Inherit option are both supported:
 .LP
 If the calling process was being traced in a trace stream that had
@@ -158,40 +135,34 @@ to trace event type identifiers. If the trace stream in which the
 calling process was being traced had its inheritance policy set
 to POSIX_TRACE_CLOSE_FOR_CHILD, the child process shall not be traced
 into that trace stream. The inheritance policy is set by a
-call to the \fIposix_trace_attr_setinherited\fP() function. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
-.in -5
-.in +5
+call to the \fIposix_trace_attr_setinherited\fP() function. 
 .LP
+.IP " *" 3
 If the Trace option is supported, but the Trace Inherit option is
 not supported:
 .LP
 The child process shall not be traced into any of the trace streams
 of its parent process. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the Trace option is supported, the child process of a trace controller
 process shall not control the trace streams controlled by
 its parent process. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The initial value of the CPU-time clock of the child process shall
 be set to zero. 
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The initial value of the CPU-time clock of the single thread of the
 child process shall be set to zero. 
-.in -5
-.RE
 .LP
-All other process characteristics defined by IEEE\0Std\01003.1-2001
+.LP
+All other process characteristics defined by IEEE\ Std\ 1003.1-2001
 shall be the same in the parent and child processes.
-The inheritance of process characteristics not defined by IEEE\0Std\01003.1-2001
+The inheritance of process characteristics not defined by IEEE\ Std\ 1003.1-2001
 is unspecified by
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .LP
 After \fIfork\fP(), both the parent and the child processes shall
 be capable of executing independently before either one
@@ -207,7 +178,7 @@ and \fIerrno\fP shall be set to indicate the error.
 .SH ERRORS
 .LP
 The \fIfork\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The system lacked the necessary resources to create another process,
 or the system-imposed limit on the total number of
@@ -216,7 +187,7 @@ would be exceeded.
 .sp
 .LP
 The \fIfork\fP() function may fail if:
-.TP
+.TP 7
 .B ENOMEM
 Insufficient storage space is available.
 .sp
@@ -235,10 +206,10 @@ sent to a process group (for example, an interactive SIGINT)
 just prior to or during execution of \fIfork\fP() is delivered to
 the parent following the \fIfork\fP() but not to the child
 because the \fIfork\fP() code clears the child's set of pending signals.
-This volume of IEEE\0Std\01003.1-2001 does not
+This volume of IEEE\ Std\ 1003.1-2001 does not
 require, or even permit, this behavior. However, it is pragmatic to
 expect that problems of this nature may continue to exist in
-implementations that appear to conform to this volume of IEEE\0Std\01003.1-2001
+implementations that appear to conform to this volume of IEEE\ Std\ 1003.1-2001
 and pass available verification suites.
 This behavior is only a consequence of the implementation failing
 to make the interval between signal generation and delivery
@@ -280,17 +251,17 @@ the SVID specifies it and it should be reserved for the
 error condition specified there. The condition is not applicable on
 many implementations.
 .LP
-IEEE\0Std\01003.1-1988 neglected to require concurrent execution of
+IEEE\ Std\ 1003.1-1988 neglected to require concurrent execution of
 the parent and child of \fIfork\fP(). A system that
 single-threads processes was clearly not intended and is considered
 an unacceptable "toy implementation" of this volume of
-IEEE\0Std\01003.1-2001. The only objection anticipated to the phrase
+IEEE\ Std\ 1003.1-2001. The only objection anticipated to the phrase
 "executing independently" is testability, but this
 assertion should be testable. Such tests require that both the parent
 and child can block on a detectable action of the other, such
 as a write to a pipe or a signal. An interactive exchange of such
 actions should be possible for the system to conform to the
-intent of this volume of IEEE\0Std\01003.1-2001.
+intent of this volume of IEEE\ Std\ 1003.1-2001.
 .LP
 The [EAGAIN] error exists to warn applications that such a condition
 might occur. Whether it occurs or not is not in any
@@ -374,7 +345,7 @@ None.
 , \fIposix_trace_trid_eventid_open\fP() , \fIpthread_atfork\fP() ,
 \fIsemop\fP() , \fIsignal\fP() , \fItimes\fP() , the Base Definitions
 volume of
-IEEE\0Std\01003.1-2001, \fI<sys/types.h>\fP, \fI<unistd.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/types.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

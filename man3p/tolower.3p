@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tolower" P 2003 POSIX
+.TH "TOLOWER" P 2003 POSIX
 .\" tolower 
 .SH NAME
-tolower - transliterate uppercase characters to lowercase
+tolower \- transliterate uppercase characters to lowercase
 .SH SYNOPSIS
 .LP
 \fB#include <ctype.h>
@@ -13,18 +13,12 @@ int tolower(int\fP \fIc\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fItolower\fP() function has as a domain a type \fBint\fP, the
 value of which is representable as an \fBunsigned char\fP
 or the value of EOF. If the argument has any other value, the behavior
 is undefined. If the argument of \fItolower\fP() represents
 an uppercase letter, and there exists a corresponding lowercase letter
-\0(as defined by character type information in the program
+\ (as defined by character type information in the program
 locale category \fILC_CTYPE ),\fP  the result shall be the
 corresponding lowercase letter. All other arguments in the domain
 are returned unchanged.
@@ -52,7 +46,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIsetlocale\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIsetlocale\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Chapter 7, Locale, \fI<ctype.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

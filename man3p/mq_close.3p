@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mq_close" P 2003 POSIX
+.TH "MQ_CLOSE" P 2003 POSIX
 .\" mq_close 
 .SH NAME
-mq_close - close a message queue (\fBREALTIME\fP)
+mq_close \- close a message queue (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <mqueue.h>
@@ -33,7 +33,7 @@ value of -1 and set \fIerrno\fP to indicate the error.
 .SH ERRORS
 .LP
 The \fImq_close\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fImqdes\fP argument is not a valid message queue descriptor.
 .sp
@@ -55,7 +55,7 @@ None.
 .LP
 \fImq_open\fP() , \fImq_unlink\fP() , \fImsgctl\fP() , \fImsgget\fP()
 , \fImsgrcv\fP() , \fImsgsnd\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<mqueue.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<mqueue.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "ungetwc" P 2003 POSIX
+.TH "UNGETWC" P 2003 POSIX
 .\" ungetwc 
 .SH NAME
-ungetwc - push wide-character code back into the input stream
+ungetwc \- push wide-character code back into the input stream
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -14,12 +14,6 @@ wint_t ungetwc(wint_t\fP \fIwc\fP\fB, FILE *\fP\fIstream\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIungetwc\fP() function shall push the character corresponding
 to the wide-character code specified by \fIwc\fP back onto
@@ -56,7 +50,7 @@ Otherwise, it shall return WEOF.
 .SH ERRORS
 .LP
 The \fIungetwc\fP() function may fail if:
-.TP
+.TP 7
 .B EILSEQ
 An
 invalid character sequence is detected, or a wide-character code does
@@ -80,7 +74,7 @@ None.
 .LP
 \fIfseek\fP() , \fIfsetpos\fP() , \fIread\fP() ,
 \fIrewind\fP() , \fIsetbuf\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<stdio.h>\fP, \fI<wchar.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stdio.h>\fP, \fI<wchar.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

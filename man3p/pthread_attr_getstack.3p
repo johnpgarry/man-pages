@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_attr_getstack" P 2003 POSIX
+.TH "PTHREAD_ATTR_GETSTACK" P 2003 POSIX
 .\" pthread_attr_getstack 
 .SH NAME
-pthread_attr_getstack, pthread_attr_setstack - get and set stack attributes
+pthread_attr_getstack, pthread_attr_setstack \- get and set stack attributes
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -10,12 +10,12 @@ pthread_attr_getstack, pthread_attr_setstack - get and set stack attributes
 .sp
 \fBint pthread_attr_getstack(const pthread_attr_t *restrict\fP \fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 void **restrict\fP \fIstackaddr\fP\fB, size_t *restrict\fP
+\ \ \ \ \ \  void **restrict\fP \fIstackaddr\fP\fB, size_t *restrict\fP
 \fIstacksize\fP\fB);
 .br
 int pthread_attr_setstack(pthread_attr_t *\fP\fIattr\fP\fB, void *\fP\fIstackaddr\fP\fB,
 .br
-\0\0\0\0\0\0 size_t\fP \fIstacksize\fP\fB); \fP
+\ \ \ \ \ \  size_t\fP \fIstacksize\fP\fB); \fP
 .sp
 \fP
 \fB
@@ -50,19 +50,19 @@ successful.
 .SH ERRORS
 .LP
 The \fIpthread_attr_setstack\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIstacksize\fP is less than {PTHREAD_STACK_MIN} or exceeds
 an implementation-defined limit.
 .sp
 .LP
 The \fIpthread_attr_setstack\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIstackaddr\fP does not have proper alignment to be
 used as a stack, or if ( \fIstackaddr\fP +
 \fIstacksize\fP) lacks proper alignment.
-.TP
+.TP 7
 .B EACCES
 The stack page(s) described by \fIstackaddr\fP and \fIstacksize\fP
 are not both readable and writable by the thread.
@@ -99,7 +99,7 @@ None.
 .LP
 \fIpthread_attr_init\fP() , \fIpthread_attr_setdetachstate\fP() ,
 \fIpthread_attr_setstacksize\fP() , \fIpthread_create\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<limits.h>\fP,
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<limits.h>\fP,
 \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

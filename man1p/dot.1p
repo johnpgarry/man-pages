@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "dot" P 2003 POSIX
+.TH "DOT" P 2003 POSIX
 .\" dot 
 .SH NAME
-dot - execute commands in the current environment
+dot \- execute commands in the current environment
 .SH SYNOPSIS
 .LP
 \fB\&.\fP \fIfile\fP
@@ -76,7 +76,7 @@ echo $foo $bar
 .LP
 Some older implementations searched the current directory for the
 \fIfile\fP, even if the value of \fIPATH\fP disallowed it.
-This behavior was omitted from this volume of IEEE\0Std\01003.1-2001
+This behavior was omitted from this volume of IEEE\ Std\ 1003.1-2001
 due to concerns about introducing the susceptibility
 to trojan horses that the user might be trying to avoid by leaving
 \fBdot\fP out of \fIPATH .\fP

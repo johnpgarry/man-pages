@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mq_getattr" P 2003 POSIX
+.TH "MQ_GETATTR" P 2003 POSIX
 .\" mq_getattr 
 .SH NAME
-mq_getattr - get message queue attributes (\fBREALTIME\fP)
+mq_getattr \- get message queue attributes (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <mqueue.h>
@@ -37,7 +37,7 @@ set at message queue creation: \fImq_maxmsg\fP,
 Upon return, the following members within the \fBmq_attr\fP structure
 referenced by the \fImqstat\fP argument shall be set to
 the current state of the message queue:
-.TP
+.TP 7
 \fImq_curmsgs\fP
 The number of messages currently on the queue.
 .sp
@@ -49,7 +49,7 @@ return zero. Otherwise, the function shall return -1 and set
 .SH ERRORS
 .LP
 The \fImq_getattr\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fImqdes\fP argument is not a valid message queue descriptor.
 .sp
@@ -71,7 +71,7 @@ None.
 .LP
 \fImq_open\fP() , \fImq_send\fP() , \fImq_setattr\fP() , \fImq_timedsend\fP()
 , \fImsgctl\fP() , \fImsgget\fP() , \fImsgrcv\fP() , \fImsgsnd\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<mqueue.h>\fP
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<mqueue.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

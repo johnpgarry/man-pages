@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_attr_getstacksize" P 2003 POSIX
+.TH "PTHREAD_ATTR_GETSTACKSIZE" P 2003 POSIX
 .\" pthread_attr_getstacksize 
 .SH NAME
-pthread_attr_getstacksize, pthread_attr_setstacksize - get and set
+pthread_attr_getstacksize, pthread_attr_setstacksize \- get and set
 the stacksize attribute
 .SH SYNOPSIS
 .LP
@@ -11,7 +11,7 @@ the stacksize attribute
 .sp
 int pthread_attr_getstacksize(const pthread_attr_t *restrict\fP \fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 size_t *restrict\fP \fIstacksize\fP\fB);
+\ \ \ \ \ \  size_t *restrict\fP \fIstacksize\fP\fB);
 .br
 int pthread_attr_setstacksize(pthread_attr_t *\fP\fIattr\fP\fB, size_t\fP
 \fIstacksize\fP\fB); \fP
@@ -38,7 +38,7 @@ successful.
 .SH ERRORS
 .LP
 The \fIpthread_attr_setstacksize\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIstacksize\fP is less than {PTHREAD_STACK_MIN} or exceeds
 a system-imposed limit.
@@ -63,7 +63,7 @@ None.
 .LP
 \fIpthread_attr_destroy\fP() , \fIpthread_attr_getstackaddr\fP() ,
 \fIpthread_attr_getdetachstate\fP() , \fIpthread_create\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<limits.h>\fP,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<limits.h>\fP,
 \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

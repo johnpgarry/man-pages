@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "basename" P 2003 POSIX
+.TH "BASENAME" P 2003 POSIX
 .\" basename 
 .SH NAME
-basename - return non-directory portion of a pathname
+basename \- return non-directory portion of a pathname
 .SH SYNOPSIS
 .LP
 \fBbasename\fP \fIstring\fP \fB[\fP\fIsuffix\fP\fB]\fP
@@ -10,49 +10,43 @@ basename - return non-directory portion of a pathname
 .LP
 The \fIstring\fP operand shall be treated as a pathname, as defined
 in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 3.266, Pathname. The string
+IEEE\ Std\ 1003.1-2001, Section 3.266, Pathname. The string
 \fIstring\fP shall be converted to the filename corresponding to the
 last pathname component in \fIstring\fP and then the suffix
 string \fIsuffix\fP, if present, shall be removed. This shall be done
 by performing actions equivalent to the following steps in
 order:
-.in +5
-.LP
+.IP " 1." 4
 If \fIstring\fP is a null string, it is unspecified whether the resulting
 string is \fB'.'\fP or a null string. In either
 case, skip steps 2 through 6.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If \fIstring\fP is \fB"//"\fP , it is implementation-defined whether
 steps 3 to 6 are skipped or processed.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If \fIstring\fP consists entirely of slash characters, \fIstring\fP
 shall be set to a single slash character. In this case,
 skip steps 4 to 6.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If there are any trailing slash characters in \fIstring\fP, they shall
 be removed.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 If there are any slash characters remaining in \fIstring\fP, the prefix
 of \fIstring\fP up to and including the last slash
 character in \fIstring\fP shall be removed.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 If the \fIsuffix\fP operand is present, is not identical to the characters
 remaining in \fIstring\fP, and is identical to a
 suffix of the characters remaining in \fIstring\fP, the suffix \fIsuffix\fP
 shall be removed from \fIstring\fP. Otherwise,
 \fIstring\fP is not modified by this step. It shall not be considered
 an error if \fIsuffix\fP is not found in \fIstring\fP.
-.in -5
+.LP
 .LP
 The resulting string shall be written to standard output.
 .SH OPTIONS
@@ -61,10 +55,10 @@ None.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIstring\fP
 A string.
-.TP
+.TP 7
 \fIsuffix\fP
 A string.
 .sp
@@ -78,29 +72,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIbasename\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -132,10 +126,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -224,7 +218,7 @@ slashes.
 .LP
 Since the definition of \fIpathname\fP specifies implementation-defined
 behavior for pathnames starting with two slash
-characters, this volume of IEEE\0Std\01003.1-2001 specifies similar
+characters, this volume of IEEE\ Std\ 1003.1-2001 specifies similar
 implementation-defined behavior for the \fIbasename\fP
 and \fIdirname\fP utilities.
 .SH FUTURE DIRECTIONS

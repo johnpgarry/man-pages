@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "msync" P 2003 POSIX
+.TH "MSYNC" P 2003 POSIX
 .\" msync 
 .SH NAME
-msync - synchronize memory with physical storage
+msync \- synchronize memory with physical storage
 .SH SYNOPSIS
 .LP
 \fB#include <sys/mman.h>
@@ -34,7 +34,7 @@ When the \fImsync\fP() function is called on MAP_PRIVATE mappings,
 any modified data shall not be written to the underlying object
 and shall not cause such data to be made visible to other processes.
 It is unspecified whether data in MAP_PRIVATE mappings has any
-permanent storage locations.   \0The effect of \fImsync\fP() on a
+permanent storage locations.   \ The effect of \fImsync\fP() on a
 shared memory object or a typed memory object is unspecified.
 The behavior of this function is unspecified if the mapping was not
 established by a call to \fImmap\fP().
@@ -43,11 +43,11 @@ The \fIflags\fP argument is constructed from the bitwise-inclusive
 OR of one or more of the following flags defined in the \fI<sys/mman.h>\fP
 header:
 .TS C
-center;l l l l l l l l l l l.
-\fBSymbolic Constant\fP 	 \fBDescription\fP 	
-MS_ASYNC 	 Perform asynchronous writes. 	
-MS_SYNC 	 Perform synchronous writes. 	
-MS_INVALIDATE 	 Invalidate cached data. 	
+center; l2 l.
+\fBSymbolic Constant\fP	\fBDescription\fP
+MS_ASYNC	Perform asynchronous writes.
+MS_SYNC	Perform synchronous writes.
+MS_INVALIDATE	Invalidate cached data.
 .TE
 .LP
 When MS_ASYNC is specified, \fImsync\fP() shall return immediately
@@ -75,18 +75,18 @@ error.
 .SH ERRORS
 .LP
 The \fImsync\fP() function shall fail if:
-.TP
+.TP 7
 .B EBUSY
 Some or all of the addresses in the range starting at \fIaddr\fP and
 continuing for \fIlen\fP bytes are locked, and
 MS_INVALIDATE is specified.
-.TP
+.TP 7
 .B EINVAL
 The value of \fIflags\fP is invalid.
-.TP
+.TP 7
 .B EINVAL
 The value of \fIaddr\fP is not a multiple of the page size {PAGESIZE}.
-.TP
+.TP 7
 .B ENOMEM
 The addresses in the range starting at \fIaddr\fP and continuing for
 \fIlen\fP bytes are outside the range allowed for the
@@ -126,7 +126,7 @@ None.
 .SH SEE ALSO
 .LP
 \fImmap\fP() , \fIsysconf\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/mman.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

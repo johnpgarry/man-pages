@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "lio_listio" P 2003 POSIX
+.TH "LIO_LISTIO" P 2003 POSIX
 .\" lio_listio 
 .SH NAME
-lio_listio - list directed I/O (\fBREALTIME\fP)
+lio_listio \- list directed I/O (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <aio.h>
@@ -11,7 +11,7 @@ lio_listio - list directed I/O (\fBREALTIME\fP)
 int lio_listio(int\fP \fImode\fP\fB, struct aiocb *restrict const\fP
 \fIlist\fP\fB[restrict],
 .br
-\0\0\0\0\0\0 int\fP \fInent\fP\fB, struct sigevent *restrict\fP \fIsig\fP\fB);
+\ \ \ \ \ \  int\fP \fInent\fP\fB, struct sigevent *restrict\fP \fIsig\fP\fB);
 \fP
 \fB
 .br
@@ -110,20 +110,20 @@ function.
 .SH ERRORS
 .LP
 The \fIlio_listio\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The resources necessary to queue all the I/O requests were not available.
 The application may check the error status for each
 \fBaiocb\fP to determine the individual request(s) that failed.
-.TP
+.TP 7
 .B EAGAIN
 The number of entries indicated by \fInent\fP would cause the system-wide
 limit {AIO_MAX} to be exceeded.
-.TP
+.TP 7
 .B EINVAL
 The \fImode\fP argument is not a proper value, or the value of \fInent\fP
 was greater than {AIO_LISTIO_MAX}.
-.TP
+.TP 7
 .B EINTR
 A signal was delivered while waiting for all I/O requests to complete
 during an LIO_WAIT operation. Note that, since each I/O
@@ -133,7 +133,7 @@ completion of one (or more) of the very I/O operations being awaited.
 Outstanding I/O requests are not canceled, and the
 application shall examine each list element to determine whether the
 request was initiated, canceled, or completed.
-.TP
+.TP 7
 .B EIO
 One or more of the individual I/O operations failed. The application
 may check the error status for each \fBaiocb\fP structure
@@ -153,24 +153,24 @@ function being performed. In this event, the error status for each
 The error codes that can be set are the same as would be set by a
 \fIread\fP() or \fIwrite\fP() function, with the following additional
 error codes possible:
-.TP
+.TP 7
 .B EAGAIN
 The requested I/O operation was not queued due to resource limitations.
-.TP
+.TP 7
 .B ECANCELED
 The requested I/O was canceled before the I/O completed due to an
 explicit \fIaio_cancel\fP() request.
-.TP
+.TP 7
 .B EFBIG
 The \fIaiocbp\fP->\fIaio_lio_opcode\fP is LIO_WRITE, the file is a
 regular file, \fIaiocbp\fP->\fIaio_nbytes\fP is
 greater than 0, and the \fIaiocbp\fP->\fIaio_offset\fP is greater
 than or equal to the offset maximum in the open file
 description associated with \fIaiocbp\fP->\fIaio_fildes\fP.
-.TP
+.TP 7
 .B EINPROGRESS
 The requested I/O is in progress.
-.TP
+.TP 7
 .B EOVERFLOW
 The \fIaiocbp\fP->\fIaio_lio_opcode\fP is LIO_READ, the file is a
 regular file, \fIaiocbp\fP->\fIaio_nbytes\fP is
@@ -212,7 +212,7 @@ None.
 , \fIaio_cancel\fP() , \fIclose\fP() , \fIexec\fP() , \fIexit\fP()
 , \fIfork\fP() , \fIlseek\fP() , \fIread\fP() , the Base Definitions
 volume of
-IEEE\0Std\01003.1-2001, \fI<aio.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<aio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

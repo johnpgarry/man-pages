@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "getopts" P 2003 POSIX
+.TH "GETOPTS" P 2003 POSIX
 .\" getopts 
 .SH NAME
-getopts - parse utility options
+getopts \- parse utility options
 .SH SYNOPSIS
 .LP
 \fBgetopts\fP \fIoptstring name\fP \fB[\fP\fIarg\fP\fB...\fP\fB]\fP
@@ -11,7 +11,7 @@ getopts - parse utility options
 The \fIgetopts\fP utility shall retrieve options and option-arguments
 from a list of parameters. It shall support the Utility
 Syntax Guidelines 3 to 10, inclusive, described in the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+volume of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 Each time it is invoked, the \fIgetopts\fP utility shall place the
 value of the next option in the shell variable specified by
@@ -38,16 +38,13 @@ arguments were presented to the invoking application, but shall not
 be an error in \fIgetopts\fP processing.
 .LP
 If an option-argument is missing:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If the first character of \fIoptstring\fP is a colon, the shell variable
 specified by \fIname\fP shall be set to the colon
 character and the shell variable \fIOPTARG\fP shall be set to the
 option character found.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Otherwise, the shell variable specified by \fIname\fP shall be set
 to the question-mark character, the shell variable
 \fIOPTARG\fP shall be unset, and a diagnostic message shall be written
@@ -56,8 +53,7 @@ an error detected in the way arguments were presented to the invoking
 application, but shall not be an error in \fIgetopts\fP
 processing; a diagnostic message shall be written as stated, but the
 exit status shall be zero.
-.in -5
-.RE
+.LP
 .LP
 When the end of options is encountered, the \fIgetopts\fP utility
 shall exit with a return value greater than zero; the shell
@@ -93,7 +89,7 @@ None.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIoptstring\fP
 A string containing the option characters recognized by the utility
 invoking \fIgetopts\fP. If a character is followed by a
@@ -105,7 +101,7 @@ following an option character requiring arguments as an argument whether
 or not this is done. An explicit null option-argument need
 not be recognized if it is not supplied as a separate argument when
 \fIgetopts\fP is invoked. (See also the \fIgetopt\fP() function defined
-in the System Interfaces volume of IEEE\0Std\01003.1-2001.)
+in the System Interfaces volume of IEEE\ Std\ 1003.1-2001.)
 The characters question-mark and colon shall not be used as option
 characters by an application. The use of other option characters
 that are not alphanumeric produces unspecified results. If the option-argument
@@ -115,7 +111,7 @@ option character and the \fB'-'\fP . The first character
 in \fIoptstring\fP determines how \fIgetopts\fP behaves if an option
 character is not known or an option-argument is
 missing.
-.TP
+.TP 7
 \fIname\fP
 The name of a shell variable that shall be set by the \fIgetopts\fP
 utility to the option character that was found.
@@ -134,33 +130,33 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIgetopts\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fIOPTIND\fP
 This variable shall be used by the \fIgetopts\fP utility as the index
 of the next argument to be processed.
@@ -177,9 +173,7 @@ Whenever an error is detected and the first character in the \fIoptstring\fP
 operand is not a colon ( \fB':'\fP ), a
 diagnostic message shall be written to standard error with the following
 information in an unspecified format:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The invoking program name shall be identified in the message. The
 invoking program name shall be the value of the shell special
 parameter 0 (see \fISpecial Parameters\fP ) at the time the \fIgetopts\fP
@@ -195,20 +189,17 @@ invoked. A name equivalent to:
 .RE
 .LP
 may be used.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If an option is found that was not specified in \fIoptstring\fP, this
 error is identified and the invalid option character
 shall be identified in the message.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If an option requiring an option-argument is found, but an option-argument
 is not found, this error shall be identified and the
 invalid option character shall be identified in the message.
-.in -5
-.RE
+.LP
 .SH OUTPUT FILES
 .LP
 None.
@@ -218,10 +209,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 An option, specified or unspecified by \fIoptstring\fP, was found.
-.TP
+.TP 7
 >0
 The end of options was encountered or an error occurred.
 .sp
@@ -345,7 +336,7 @@ None.
 .SH SEE ALSO
 .LP
 \fISpecial Parameters\fP , the System Interfaces volume of
-IEEE\0Std\01003.1-2001, \fIgetopt\fP()
+IEEE\ Std\ 1003.1-2001, \fIgetopt\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

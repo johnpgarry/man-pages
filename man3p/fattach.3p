@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fattach" P 2003 POSIX
+.TH "FATTACH" P 2003 POSIX
 .\" fattach 
 .SH NAME
-fattach - attach a STREAMS-based file descriptor to a file in the
+fattach \- attach a STREAMS-based file descriptor to a file in the
 file system name space (\fBSTREAMS\fP)
 .SH SYNOPSIS
 .LP
@@ -51,34 +51,34 @@ the error.
 .SH ERRORS
 .LP
 The \fIfattach\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied for a component of the path prefix, or
 the process is the owner of \fIpath\fP but does not have
 write permissions on the file named by \fIpath\fP.
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid open file descriptor.
-.TP
+.TP 7
 .B EBUSY
 The file named by \fIpath\fP is currently a mount point or has a STREAMS
 file attached to it.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The size of \fIpath\fP exceeds {PATH_MAX} or a component of \fIpath\fP
 is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing file or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix is not a directory.
-.TP
+.TP 7
 .B EPERM
 The effective user ID of the process is not the owner of the file
 named by \fIpath\fP and the process does not have
@@ -86,18 +86,18 @@ appropriate privilege.
 .sp
 .LP
 The \fIfattach\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIfildes\fP argument does not refer to a STREAMS file.
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 Pathname resolution of a symbolic link produced an intermediate result
 whose length exceeds {PATH_MAX}.
-.TP
+.TP 7
 .B EXDEV
 A link to a file on another file system was attempted.
 .sp
@@ -153,7 +153,7 @@ None.
 .LP
 \fIfdetach\fP() , \fIisastream\fP() , the Base Definitions volume
 of
-IEEE\0Std\01003.1-2001, \fI<stropts.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stropts.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

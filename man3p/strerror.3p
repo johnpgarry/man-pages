@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "strerror" P 2003 POSIX
+.TH "STRERROR" P 2003 POSIX
 .\" strerror 
 .SH NAME
-strerror, strerror_r - get error message string
+strerror, strerror_r \- get error message string
 .SH SYNOPSIS
 .LP
 \fB#include <string.h>
@@ -21,10 +21,10 @@ size_t\fP
 .SH DESCRIPTION
 .LP
 For \fIstrerror\fP():   The functionality described on this reference
-page is aligned with the ISO\0C standard. Any
-conflict between the requirements described here and the ISO\0C standard
+page is aligned with the ISO\ C standard. Any
+conflict between the requirements described here and the ISO\ C standard
 is unintentional. This volume of
-IEEE\0Std\01003.1-2001 defers to the ISO\0C standard. 
+IEEE\ Std\ 1003.1-2001 defers to the ISO\ C standard. 
 .LP
 The \fIstrerror\fP() function shall map the error number in \fIerrnum\fP
 to a locale-dependent error message string and shall
@@ -34,7 +34,7 @@ of type \fBint\fP to a message.
 .LP
 The string pointed to shall not be modified by the application, but
 may be overwritten by a subsequent call to \fIstrerror\fP()
-\0or \fIperror\fP(). 
+\ or \fIperror\fP(). 
 .LP
 The
 contents of the error message strings returned by \fIstrerror\fP()
@@ -42,7 +42,7 @@ should be determined by the setting of the \fILC_MESSAGES\fP
 category in the current locale. 
 .LP
 The implementation shall behave as if no function defined in this
-volume of IEEE\0Std\01003.1-2001 calls
+volume of IEEE\ Std\ 1003.1-2001 calls
 \fIstrerror\fP().
 .LP
 The
@@ -72,13 +72,13 @@ an error number shall be returned to indicate the error.
 .SH ERRORS
 .LP
 These functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIerrnum\fP is not a valid error number.
 .sp
 .LP
 The \fIstrerror_r\fP() function may fail if:
-.TP
+.TP 7
 .B ERANGE
 Insufficient storage was supplied via \fIstrerrbuf\fP and \fIbuflen\fP
 to contain the generated message string. 
@@ -99,7 +99,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIperror\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIperror\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<string.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

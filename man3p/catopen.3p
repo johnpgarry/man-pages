@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "catopen" P 2003 POSIX
+.TH "CATOPEN" P 2003 POSIX
 .\" catopen 
 .SH NAME
-catopen - open a message catalog
+catopen \- open a message catalog
 .SH SYNOPSIS
 .LP
 \fB#include <nl_types.h>
@@ -22,7 +22,7 @@ contains a \fB'/'\fP , then \fIname\fP specifies a
 complete name for the message catalog. Otherwise, the environment
 variable \fINLSPATH\fP is used with \fIname\fP substituted for
 the \fB%N\fP conversion specification (see the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Chapter 8, Environment Variables). If \fINLSPATH\fP
+of IEEE\ Std\ 1003.1-2001, Chapter 8, Environment Variables). If \fINLSPATH\fP
 exists in the environment when the process
 starts, then if the process has appropriate privileges, the behavior
 of \fIcatopen\fP() is undefined. If \fINLSPATH\fP does not
@@ -47,7 +47,7 @@ variable is used to locate the catalog without
 regard to the \fILC_MESSAGES\fP category. If the \fIoflag\fP argument
 is NL_CAT_LOCALE, the \fILC_MESSAGES\fP category is used
 to locate the message catalog (see the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables).
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables).
 .SH RETURN VALUE
 .LP
 Upon successful completion, \fIcatopen\fP() shall return a message
@@ -58,33 +58,33 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIcatopen\fP() function may fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied for the component of the path prefix of
 the message catalog or read permission is denied for the
 message catalog.
-.TP
+.TP 7
 .B EMFILE
 {OPEN_MAX} file descriptors are currently open in the calling process.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of a pathname of the message catalog exceeds {PATH_MAX}
 or a pathname component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENAMETOOLONG
 Pathname resolution of a symbolic link produced an intermediate result
 whose length exceeds {PATH_MAX}.
-.TP
+.TP 7
 .B ENFILE
 Too many files are currently open in the system.
-.TP
+.TP 7
 .B ENOENT
 The message catalog does not exist or the \fIname\fP argument points
 to an empty string.
-.TP
+.TP 7
 .B ENOMEM
 Insufficient storage space is available.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix of the message catalog is not a directory.
 .sp
@@ -117,8 +117,8 @@ None.
 .SH SEE ALSO
 .LP
 \fIcatclose\fP() , \fIcatgets\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<fcntl.h>\fP, \fI<nl_types.h>\fP, the Shell
-and Utilities volume of IEEE\0Std\01003.1-2001
+IEEE\ Std\ 1003.1-2001, \fI<fcntl.h>\fP, \fI<nl_types.h>\fP, the Shell
+and Utilities volume of IEEE\ Std\ 1003.1-2001
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

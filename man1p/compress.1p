@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "compress" P 2003 POSIX
+.TH "COMPRESS" P 2003 POSIX
 .\" compress 
 .SH NAME
-compress - compress data
+compress \- compress data
 .SH SYNOPSIS
 .LP
 \fBcompress\fP \fB[\fP\fB-fv\fP\fB][\fP\fB-b\fP \fIbits\fP\fB][\fP\fIfile\fP
@@ -17,7 +17,7 @@ compress\fP \fB[\fP\fB-cfv\fP\fB][\fP\fB-b\fP \fIbits\fP\fB][\fP\fIfile\fP\fB]\f
 .LP
 The \fIcompress\fP utility shall attempt to reduce the size of the
 named files by using adaptive Lempel-Ziv coding algorithm.
-.TP
+.TP 7
 \fBNote:\fP
 Lempel-Ziv is US Patent 4464650, issued to William Eastman, Abraham
 Lempel, Jacob Ziv, Martin Cohn on August 7th, 1984, and
@@ -41,11 +41,11 @@ output.
 .SH OPTIONS
 .LP
 The \fIcompress\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
-\fB-b\0\fP \fIbits\fP
+.TP 7
+\fB-b\ \fP \fIbits\fP
 Specify the maximum number of bits to use in a code. For a conforming
 application, the \fIbits\fP argument shall be: 
 .sp
@@ -59,11 +59,11 @@ application, the \fIbits\fP argument shall be:
 .LP
 The implementation may allow \fIbits\fP values of greater than 14.
 The default is 14, 15, or 16.
-.TP
+.TP 7
 \fB-c\fP
 Cause \fIcompress\fP to write to the standard output; the input file
 is not changed, and no \fB.Z\fP files are created.
-.TP
+.TP 7
 \fB-f\fP
 Force compression of \fIfile\fP, even if it does not actually reduce
 the size of the file, or if the corresponding \fIfile\fP
@@ -71,14 +71,14 @@ the size of the file, or if the corresponding \fIfile\fP
 and the process is not running in the background, the user is
 prompted as to whether an existing \fIfile\fP \fB.Z\fP file should
 be overwritten.
-.TP
+.TP 7
 \fB-v\fP
 Write the percentage reduction of each file to standard error.
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file to be compressed.
 .sp
@@ -95,29 +95,29 @@ data to be compressed.
 .LP
 The following environment variables shall affect the execution of
 \fIcompress\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -140,25 +140,25 @@ The output files shall contain the compressed output. The format of
 compressed files is unspecified and interchange of such
 files between implementations (including access via unspecified file
 sharing mechanisms) is not required by
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .SH EXTENDED DESCRIPTION
 .LP
 None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
-\01
+.TP 7
+\ 1
 An error occurred.
-.TP
-\02
+.TP 7
+\ 2
 One or more files were not compressed because they would have increased
 in size (and the \fB-f\fP option was not
 specified).
-.TP
+.TP 7
 >2
 An error occurred.
 .sp

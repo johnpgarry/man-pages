@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mbstowcs" P 2003 POSIX
+.TH "MBSTOWCS" P 2003 POSIX
 .\" mbstowcs 
 .SH NAME
-mbstowcs - convert a character string to a wide-character string
+mbstowcs \- convert a character string to a wide-character string
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -11,16 +11,10 @@ mbstowcs - convert a character string to a wide-character string
 size_t mbstowcs(wchar_t *restrict\fP \fIpwcs\fP\fB, const char *restrict\fP
 \fIs\fP\fB,
 .br
-\0\0\0\0\0\0 size_t\fP \fIn\fP\fB);
+\ \ \ \ \ \  size_t\fP \fIn\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fImbstowcs\fP() function shall convert a sequence of characters
 that begins in the initial shift state from the array
@@ -37,25 +31,25 @@ to by \fIpwcs\fP. If copying takes place between objects
 that overlap, the behavior is undefined.
 .LP
 The behavior of this function shall be affected by the \fILC_CTYPE\fP
-category of the current locale.   \0If
+category of the current locale.   \ If
 \fIpwcs\fP is a null pointer, \fImbstowcs\fP() shall return the length
 required to convert the entire array regardless of the
 value of \fIn\fP, but no values are stored. 
 .SH RETURN VALUE
 .LP
 If an invalid character is encountered, \fImbstowcs\fP() shall return
-(\fBsize_t\fP)-1   \0and may set
+(\fBsize_t\fP)-1   \ and may set
 \fIerrno\fP to indicate the error. 
 .LP
 Otherwise, \fImbstowcs\fP() shall return the number of the array elements
-modified   \0(or required
+modified   \ (or required
 if \fIpwcs\fP is null),  not including a terminating 0 code, if
 any. The array shall not be zero-terminated if the value returned
 is \fIn\fP.
 .SH ERRORS
 .LP
 The \fImbstowcs\fP() function may fail if:
-.TP
+.TP 7
 .B EILSEQ
 Invalid byte sequence is detected. 
 .sp
@@ -76,7 +70,7 @@ None.
 .SH SEE ALSO
 .LP
 \fImblen\fP() , \fImbtowc\fP() , \fIwctomb\fP()
-, \fIwcstombs\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIwcstombs\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

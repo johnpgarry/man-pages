@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "readv" P 2003 POSIX
+.TH "READV" P 2003 POSIX
 .\" readv 
 .SH NAME
-readv - read a vector
+readv \- read a vector
 .SH SYNOPSIS
 .LP
 \fB#include <sys/uio.h>
@@ -38,14 +38,14 @@ Refer to \fIread\fP() .
 Refer to \fIread\fP() .
 .LP
 In addition, the \fIreadv\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The sum of the \fIiov_len\fP values in the \fIiov\fP array overflowed
 an \fBssize_t\fP.
 .sp
 .LP
 The \fIreadv\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIiovcnt\fP argument was less than or equal to 0, or greater
 than {IOV_MAX}.
@@ -102,7 +102,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIread\fP() , \fIwritev\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/uio.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/uio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -2,20 +2,20 @@
 .TH "<limits.h>" P 2003 POSIX
 .\" <limits.h> 
 .SH NAME
-limits.h - implementation-defined constants
+limits.h \- implementation-defined constants
 .SH SYNOPSIS
 .LP
 \fB#include <limits.h>\fP
 .SH DESCRIPTION
 .LP
 Some of the functionality described on this reference page extends
-the ISO\0C standard. Applications shall define
+the ISO\ C standard. Applications shall define
 the appropriate feature test macro (see the System Interfaces volume
-of IEEE\0Std\01003.1-2001, Section 2.2, The Compilation Environment)
+of IEEE\ Std\ 1003.1-2001, Section 2.2, The Compilation Environment)
 to enable the visibility of these symbols in this
 header. 
 .LP
-Many of the symbols listed here are not defined by the ISO/IEC\09899:1999
+Many of the symbols listed here are not defined by the ISO/IEC\ 9899:1999
 standard. Such symbols are not shown as CX shaded.
 .LP
 The \fI<limits.h>\fP header shall define various symbolic names. Different
@@ -39,16 +39,12 @@ implementation, by using the symbolic names listed below. It should
 be noted, however, that many of the listed limits are not
 invariant, and at runtime, the value of the limit may differ from
 those given in this header, for the following reasons:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The limit is pathname-dependent.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The limit differs between the compile and runtime machines.
-.in -5
-.RE
+.LP
 .LP
 For these reasons, an application may use the \fIfpathconf\fP(), \fIpathconf\fP(),
 and \fIsysconf\fP() functions to
@@ -74,202 +70,202 @@ space on a specific instance of a specific implementation.
 The actual value supported by a specific instance shall be provided
 by the \fIsysconf\fP()
 function.
-.TP
+.TP 7
 {AIO_LISTIO_MAX}
 .sp
 Maximum number of I/O operations in a single list I/O call supported
 by the implementation.
 .br
 Minimum Acceptable Value: {_POSIX_AIO_LISTIO_MAX} 
-.TP
+.TP 7
 {AIO_MAX}
 .sp
 Maximum number of outstanding asynchronous I/O operations supported
 by the implementation.
 .br
 Minimum Acceptable Value: {_POSIX_AIO_MAX} 
-.TP
+.TP 7
 {AIO_PRIO_DELTA_MAX}
 .sp
 The maximum amount by which a process can decrease its asynchronous
 I/O priority level from its own scheduling priority.
 .br
 Minimum Acceptable Value: 0 
-.TP
+.TP 7
 {ARG_MAX}
 Maximum length of argument to the \fIexec\fP functions including environment
 data.
 .br
 Minimum Acceptable Value: {_POSIX_ARG_MAX}
-.TP
+.TP 7
 {ATEXIT_MAX}
 .sp
 Maximum number of functions that may be registered with \fIatexit\fP().
 .br
 Minimum Acceptable Value: 32 
-.TP
+.TP 7
 {CHILD_MAX}
 Maximum number of simultaneous processes per real user ID.
 .br
 Minimum Acceptable Value: {_POSIX_CHILD_MAX}
-.TP
+.TP 7
 {DELAYTIMER_MAX}
 .sp
 Maximum number of timer expiration overruns.
 .br
 Minimum Acceptable Value: {_POSIX_DELAYTIMER_MAX} 
-.TP
+.TP 7
 {HOST_NAME_MAX}
 Maximum length of a host name (not including the terminating null)
 as returned from the \fIgethostname\fP() function.
 .br
 Minimum Acceptable Value: {_POSIX_HOST_NAME_MAX}
-.TP
+.TP 7
 {IOV_MAX}
 .sp
 Maximum number of \fBiovec\fP structures that one process has available
 for use with \fIreadv\fP() or \fIwritev\fP().
 .br
 Minimum Acceptable Value: {_XOPEN_IOV_MAX} 
-.TP
+.TP 7
 {LOGIN_NAME_MAX}
 Maximum length of a login name.
 .br
 Minimum Acceptable Value: {_POSIX_LOGIN_NAME_MAX}
-.TP
+.TP 7
 {MQ_OPEN_MAX}
 .sp
 The maximum number of open message queue descriptors a process may
 hold.
 .br
 Minimum Acceptable Value: {_POSIX_MQ_OPEN_MAX} 
-.TP
+.TP 7
 {MQ_PRIO_MAX}
 .sp
 The maximum number of message priorities supported by the implementation.
 .br
 Minimum Acceptable Value: {_POSIX_MQ_PRIO_MAX} 
-.TP
+.TP 7
 {OPEN_MAX}
 Maximum number of files that one process can have open at any one
 time.
 .br
 Minimum Acceptable Value: {_POSIX_OPEN_MAX}
-.TP
+.TP 7
 {PAGESIZE}
 Size in bytes of a page.
 .br
 Minimum Acceptable Value: 1
-.TP
+.TP 7
 {PAGE_SIZE}
 .sp
 Equivalent to {PAGESIZE}. If either {PAGESIZE} or {PAGE_SIZE} is defined,
 the other is defined with the same value. 
-.TP
+.TP 7
 {PTHREAD_DESTRUCTOR_ITERATIONS}
 .sp
 Maximum number of attempts made to destroy a thread's thread-specific
 data values on thread exit.
 .br
 Minimum Acceptable Value: {_POSIX_THREAD_DESTRUCTOR_ITERATIONS} 
-.TP
+.TP 7
 {PTHREAD_KEYS_MAX}
 .sp
 Maximum number of data keys that can be created by a process.
 .br
 Minimum Acceptable Value: {_POSIX_THREAD_KEYS_MAX} 
-.TP
+.TP 7
 {PTHREAD_STACK_MIN}
 .sp
 Minimum size in bytes of thread stack storage.
 .br
 Minimum Acceptable Value: 0 
-.TP
+.TP 7
 {PTHREAD_THREADS_MAX}
 .sp
 Maximum number of threads that can be created per process.
 .br
 Minimum Acceptable Value: {_POSIX_THREAD_THREADS_MAX} 
-.TP
+.TP 7
 {RE_DUP_MAX}
 The number of repeated occurrences of a BRE permitted by the \fIregexec\fP()
 and \fIregcomp\fP() functions when using the interval notation {\\(\fIm\fP,\fIn\fP\\};
 see \fIBREs Matching Multiple Characters\fP .
 .br
 Minimum Acceptable Value: {_POSIX2_RE_DUP_MAX}
-.TP
+.TP 7
 {RTSIG_MAX}
 .sp
 Maximum number of realtime signals reserved for application use in
 this implementation.
 .br
 Minimum Acceptable Value: {_POSIX_RTSIG_MAX} 
-.TP
+.TP 7
 {SEM_NSEMS_MAX}
 .sp
 Maximum number of semaphores that a process may have.
 .br
 Minimum Acceptable Value: {_POSIX_SEM_NSEMS_MAX} 
-.TP
+.TP 7
 {SEM_VALUE_MAX}
 .sp
 The maximum value a semaphore may have.
 .br
 Minimum Acceptable Value: {_POSIX_SEM_VALUE_MAX} 
-.TP
+.TP 7
 {SIGQUEUE_MAX}
 .sp
 Maximum number of queued signals that a process may send and have
 pending at the receiver(s) at any time.
 .br
 Minimum Acceptable Value: {_POSIX_SIGQUEUE_MAX} 
-.TP
+.TP 7
 {SS_REPL_MAX}
 .sp
 The maximum number of replenishment operations that may be simultaneously
 pending for a particular sporadic server scheduler.
 .br
 Minimum Acceptable Value: {_POSIX_SS_REPL_MAX} 
-.TP
+.TP 7
 {STREAM_MAX}
 The number of streams that one process can have open at one time.
 If defined, it has the same value as {FOPEN_MAX} (see \fI<stdio.h>\fP
 ).
 .br
 Minimum Acceptable Value: {_POSIX_STREAM_MAX}
-.TP
+.TP 7
 {SYMLOOP_MAX}
 Maximum number of symbolic links that can be reliably traversed in
 the resolution of a pathname in the absence of a loop.
 .br
 Minimum Acceptable Value: {_POSIX_SYMLOOP_MAX}
-.TP
+.TP 7
 {TIMER_MAX}
 .sp
 Maximum number of timers per process supported by the implementation.
 .br
 Minimum Acceptable Value: {_POSIX_TIMER_MAX} 
-.TP
+.TP 7
 {TRACE_EVENT_NAME_MAX}
 .sp
 Maximum length of the trace event name.
 .br
 Minimum Acceptable Value: {_POSIX_TRACE_EVENT_NAME_MAX} 
-.TP
+.TP 7
 {TRACE_NAME_MAX}
 .sp
 Maximum length of the trace generation version string or of the trace
 stream name.
 .br
 Minimum Acceptable Value: {_POSIX_TRACE_NAME_MAX} 
-.TP
+.TP 7
 {TRACE_SYS_MAX}
 .sp
 Maximum number of trace streams that may simultaneously exist in the
 system.
 .br
 Minimum Acceptable Value: {_POSIX_TRACE_SYS_MAX} 
-.TP
+.TP 7
 {TRACE_USER_EVENT_MAX}
 .sp
 Maximum number of user trace event type identifiers that may simultaneously
@@ -277,19 +273,19 @@ exist in a traced process, including the predefined
 user trace event POSIX_TRACE_UNNAMED_USER_EVENT.
 .br
 Minimum Acceptable Value: {_POSIX_TRACE_USER_EVENT_MAX} 
-.TP
+.TP 7
 {TTY_NAME_MAX}
 Maximum length of terminal device name.
 .br
 Minimum Acceptable Value: {_POSIX_TTY_NAME_MAX}
-.TP
+.TP 7
 {TZNAME_MAX}
 Maximum number of bytes supported for the name of a timezone (not
 of the \fITZ\fP variable).
 .br
 Minimum Acceptable Value: {_POSIX_TZNAME_MAX}
 .sp
-.TP
+.TP 7
 \fBNote:\fP
 The length given by {TZNAME_MAX} does not include the quoting characters
 mentioned in \fIOther Environment Variables\fP .
@@ -306,38 +302,38 @@ corresponding value is equal to or greater than the stated minimum,
 but where the value can vary depending on the file to which it
 is applied. The actual value supported for a specific pathname shall
 be provided by the \fIpathconf\fP() function.
-.TP
+.TP 7
 {FILESIZEBITS}
 Minimum number of bits needed to represent, as a signed integer value,
 the maximum size of a regular file allowed in the specified
 directory.
 .br
 Minimum Acceptable Value: 32
-.TP
+.TP 7
 {LINK_MAX}
 Maximum number of links to a single file.
 .br
 Minimum Acceptable Value: {_POSIX_LINK_MAX}
-.TP
+.TP 7
 {MAX_CANON}
 Maximum number of bytes in a terminal canonical input line.
 .br
 Minimum Acceptable Value: {_POSIX_MAX_CANON}
-.TP
+.TP 7
 {MAX_INPUT}
 Minimum number of bytes for which space is available in a terminal
 input queue; therefore, the maximum number of bytes a conforming
 application may require to be typed as input before reading them.
 .br
 Minimum Acceptable Value: {_POSIX_MAX_INPUT}
-.TP
+.TP 7
 {NAME_MAX}
 Maximum number of bytes in a filename (not including terminating null).
 .br
 Minimum Acceptable Value: {_POSIX_NAME_MAX}
 .br
 Minimum Acceptable Value: {_XOPEN_NAME_MAX} 
-.TP
+.TP 7
 {PATH_MAX}
 Maximum number of bytes in a pathname, including the terminating null
 character.
@@ -345,45 +341,45 @@ character.
 Minimum Acceptable Value: {_POSIX_PATH_MAX}
 .br
 Minimum Acceptable Value: {_XOPEN_PATH_MAX} 
-.TP
+.TP 7
 {PIPE_BUF}
 Maximum number of bytes that is guaranteed to be atomic when writing
 to a pipe.
 .br
 Minimum Acceptable Value: {_POSIX_PIPE_BUF}
-.TP
+.TP 7
 {POSIX_ALLOC_SIZE_MIN}
 .sp
 Minimum number of bytes of storage actually allocated for any portion
 of a file.
 .br
 Minimum Acceptable Value: Not specified. 
-.TP
+.TP 7
 {POSIX_REC_INCR_XFER_SIZE}
 .sp
 Recommended increment for file transfer sizes between the {POSIX_REC_MIN_XFER_SIZE}
 and {POSIX_REC_MAX_XFER_SIZE} values.
 .br
 Minimum Acceptable Value: Not specified. 
-.TP
+.TP 7
 {POSIX_REC_MAX_XFER_SIZE}
 .sp
 Maximum recommended file transfer size.
 .br
 Minimum Acceptable Value: Not specified. 
-.TP
+.TP 7
 {POSIX_REC_MIN_XFER_SIZE}
 .sp
 Minimum recommended file transfer size.
 .br
 Minimum Acceptable Value: Not specified. 
-.TP
+.TP 7
 {POSIX_REC_XFER_ALIGN}
 .sp
 Recommended file transfer buffer alignment.
 .br
 Minimum Acceptable Value: Not specified. 
-.TP
+.TP 7
 {SYMLINK_MAX}
 Maximum number of bytes in a symbolic link.
 .br
@@ -399,46 +395,46 @@ run under that implementation. A specific instance of a specific implementation
 may increase the value relative to that supplied by
 \fI<limits.h>\fP for that implementation. The actual value supported
 by a specific instance shall be provided by the \fIsysconf\fP() function.
-.TP
+.TP 7
 {BC_BASE_MAX}
 Maximum \fIobase\fP values allowed by the \fIbc\fP utility.
 .br
 Minimum Acceptable Value: {_POSIX2_BC_BASE_MAX}
-.TP
+.TP 7
 {BC_DIM_MAX}
 Maximum number of elements permitted in an array by the \fIbc\fP utility.
 .br
 Minimum Acceptable Value: {_POSIX2_BC_DIM_MAX}
-.TP
+.TP 7
 {BC_SCALE_MAX}
 Maximum \fIscale\fP value allowed by the \fIbc\fP utility.
 .br
 Minimum Acceptable Value: {_POSIX2_BC_SCALE_MAX}
-.TP
+.TP 7
 {BC_STRING_MAX}
 Maximum length of a string constant accepted by the \fIbc\fP utility.
 .br
 Minimum Acceptable Value: {_POSIX2_BC_STRING_MAX}
-.TP
+.TP 7
 {CHARCLASS_NAME_MAX}
 Maximum number of bytes in a character class name.
 .br
 Minimum Acceptable Value: {_POSIX2_CHARCLASS_NAME_MAX}
-.TP
+.TP 7
 {COLL_WEIGHTS_MAX}
 Maximum number of weights that can be assigned to an entry of the
 \fILC_COLLATE\fP \fBorder\fP keyword in the locale definition
 file; see \fILocale\fP .
 .br
 Minimum Acceptable Value: {_POSIX2_COLL_WEIGHTS_MAX}
-.TP
+.TP 7
 {EXPR_NEST_MAX}
 Maximum number of expressions that can be nested within parentheses
 by the \fIexpr\fP
 utility.
 .br
 Minimum Acceptable Value: {_POSIX2_EXPR_NEST_MAX}
-.TP
+.TP 7
 {LINE_MAX}
 Unless otherwise noted, the maximum length, in bytes, of a utility's
 input line (either standard input or another file), when the
@@ -446,12 +442,12 @@ utility is described as processing text files. The length includes
 room for the trailing <newline>.
 .br
 Minimum Acceptable Value: {_POSIX2_LINE_MAX}
-.TP
+.TP 7
 {NGROUPS_MAX}
 Maximum number of simultaneous supplementary group IDs per process.
 .br
 Minimum Acceptable Value: {_POSIX_NGROUPS_MAX}
-.TP
+.TP 7
 {RE_DUP_MAX}
 Maximum number of repeated occurrences of a regular expression permitted
 when using the interval notation \\{\fIm\fP,\fIn\fP\\};
@@ -468,7 +464,7 @@ supporting the Timers option. A conforming
 implementation shall provide values no larger than these values. A
 conforming application must not require a smaller value for
 correct operation. 
-.TP
+.TP 7
 {_POSIX_CLOCKRES_MIN}
 .sp
 The resolution of the CLOCK_REALTIME clock, in nanoseconds.
@@ -485,212 +481,212 @@ The symbolic constants in the following list shall be defined in \fI<limits.h>\f
 with the values shown. These are
 symbolic names for the most restrictive value for certain features
 on an implementation conforming to this volume of
-IEEE\0Std\01003.1-2001. Related symbolic constants are defined elsewhere
-in this volume of IEEE\0Std\01003.1-2001
+IEEE\ Std\ 1003.1-2001. Related symbolic constants are defined elsewhere
+in this volume of IEEE\ Std\ 1003.1-2001
 which reflect the actual implementation and which need not be as restrictive.
 A conforming implementation shall provide values at
 least this large. A strictly conforming application must not require
 a larger value for correct operation.
-.TP
+.TP 7
 {_POSIX_AIO_LISTIO_MAX}
 .sp
 The number of I/O operations that can be specified in a list I/O call.
 .br
 Value: 2 
-.TP
+.TP 7
 {_POSIX_AIO_MAX}
 .sp
 The number of outstanding asynchronous I/O operations.
 .br
 Value: 1 
-.TP
+.TP 7
 {_POSIX_ARG_MAX}
 Maximum length of argument to the \fIexec\fP functions including environment
 data.
 .br
 Value: 4 096
-.TP
+.TP 7
 {_POSIX_CHILD_MAX}
 Maximum number of simultaneous processes per real user ID.
 .br
 Value: 25
-.TP
+.TP 7
 {_POSIX_DELAYTIMER_MAX}
 .sp
 The number of timer expiration overruns.
 .br
 Value: 32 
-.TP
+.TP 7
 {_POSIX_HOST_NAME_MAX}
 Maximum length of a host name (not including the terminating null)
 as returned from the \fIgethostname\fP() function.
 .br
 Value: 255
-.TP
+.TP 7
 {_POSIX_LINK_MAX}
 Maximum number of links to a single file.
 .br
 Value: 8
-.TP
+.TP 7
 {_POSIX_LOGIN_NAME_MAX}
 The size of the storage required for a login name, in bytes, including
 the terminating null.
 .br
 Value: 9
-.TP
+.TP 7
 {_POSIX_MAX_CANON}
 Maximum number of bytes in a terminal canonical input queue.
 .br
 Value: 255
-.TP
+.TP 7
 {_POSIX_MAX_INPUT}
 Maximum number of bytes allowed in a terminal input queue.
 .br
 Value: 255
-.TP
+.TP 7
 {_POSIX_MQ_OPEN_MAX}
 .sp
 The number of message queues that can be open for a single process.
 .br
 Value: 8 
-.TP
+.TP 7
 {_POSIX_MQ_PRIO_MAX}
 .sp
 The maximum number of message priorities supported by the implementation.
 .br
 Value: 32 
-.TP
+.TP 7
 {_POSIX_NAME_MAX}
 Maximum number of bytes in a filename (not including terminating null).
 .br
 Value: 14
-.TP
+.TP 7
 {_POSIX_NGROUPS_MAX}
 Maximum number of simultaneous supplementary group IDs per process.
 .br
 Value: 8
-.TP
+.TP 7
 {_POSIX_OPEN_MAX}
 Maximum number of files that one process can have open at any one
 time.
 .br
 Value: 20
-.TP
+.TP 7
 {_POSIX_PATH_MAX}
 Maximum number of bytes in a pathname.
 .br
 Value: 256
-.TP
+.TP 7
 {_POSIX_PIPE_BUF}
 Maximum number of bytes that is guaranteed to be atomic when writing
 to a pipe.
 .br
 Value: 512
-.TP
+.TP 7
 {_POSIX_RE_DUP_MAX}
 The number of repeated occurrences of a BRE permitted by the \fIregexec\fP()
 and \fIregcomp\fP() functions when using the interval notation {\\(\fIm\fP,\fIn\fP\\};
 see \fIBREs Matching Multiple Characters\fP .
 .br
 Value: 255
-.TP
+.TP 7
 {_POSIX_RTSIG_MAX}
 .sp
 The number of realtime signal numbers reserved for application use.
 .br
 Value: 8 
-.TP
+.TP 7
 {_POSIX_SEM_NSEMS_MAX}
 .sp
 The number of semaphores that a process may have.
 .br
 Value: 256 
-.TP
+.TP 7
 {_POSIX_SEM_VALUE_MAX}
 .sp
 The maximum value a semaphore may have.
 .br
 Value: 32 767 
-.TP
+.TP 7
 {_POSIX_SIGQUEUE_MAX}
 .sp
 The number of queued signals that a process may send and have pending
 at the receiver(s) at any time.
 .br
 Value: 32 
-.TP
+.TP 7
 {_POSIX_SSIZE_MAX}
 The value that can be stored in an object of type \fBssize_t\fP.
 .br
 Value: 32 767
-.TP
+.TP 7
 {_POSIX_STREAM_MAX}
 The number of streams that one process can have open at one time.
 .br
 Value: 8
-.TP
+.TP 7
 {_POSIX_SS_REPL_MAX}
 .sp
 The number of replenishment operations that may be simultaneously
 pending for a particular sporadic server scheduler.
 .br
 Value: 4 
-.TP
+.TP 7
 {_POSIX_SYMLINK_MAX}
 The number of bytes in a symbolic link.
 .br
 Value: 255
-.TP
+.TP 7
 {_POSIX_SYMLOOP_MAX}
 The number of symbolic links that can be traversed in the resolution
 of a pathname in the absence of a loop.
 .br
 Value: 8
-.TP
+.TP 7
 {_POSIX_THREAD_DESTRUCTOR_ITERATIONS}
 .sp
 The number of attempts made to destroy a thread's thread-specific
 data values on thread exit.
 .br
 Value: 4 
-.TP
+.TP 7
 {_POSIX_THREAD_KEYS_MAX}
 .sp
 The number of data keys per process.
 .br
 Value: 128 
-.TP
+.TP 7
 {_POSIX_THREAD_THREADS_MAX}
 .sp
 The number of threads per process.
 .br
 Value: 64 
-.TP
+.TP 7
 {_POSIX_TIMER_MAX}
 .sp
 The per-process number of timers.
 .br
 Value: 32 
-.TP
+.TP 7
 {_POSIX_TRACE_EVENT_NAME_MAX}
 .sp
 The length in bytes of a trace event name.
 .br
 Value: 30 
-.TP
+.TP 7
 {_POSIX_TRACE_NAME_MAX}
 .sp
 The length in bytes of a trace generation version string or a trace
 stream name.
 .br
 Value: 8 
-.TP
+.TP 7
 {_POSIX_TRACE_SYS_MAX}
 .sp
 The number of trace streams that may simultaneously exist in the system.
 .br
 Value: 8 
-.TP
+.TP 7
 {_POSIX_TRACE_USER_EVENT_MAX}
 .sp
 The number of user trace event type identifiers that may simultaneously
@@ -698,63 +694,65 @@ exist in a traced process, including the predefined user
 trace event POSIX_TRACE_UNNAMED_USER_EVENT.
 .br
 Value: 32 
-.TP
+.TP 7
 {_POSIX_TTY_NAME_MAX}
 The size of the storage required for a terminal device name, in bytes,
 including the terminating null.
 .br
 Value: 9
-.TP
+.TP 7
 {_POSIX_TZNAME_MAX}
 Maximum number of bytes supported for the name of a timezone (not
 of the \fITZ\fP variable).
 .br
 Value: 6  
-.TP
+.TP 7
 \fBNote:\fP
+.RS
 The length given by {_POSIX_TZNAME_MAX} does not include the quoting
 characters mentioned in \fIOther Environment Variables\fP .
+.RE
 .sp
-.TP
+.TP 7
 {_POSIX2_BC_BASE_MAX}
 Maximum \fIobase\fP values allowed by the \fIbc\fP utility.
 .br
 Value: 99
-.TP
+.TP 7
 {_POSIX2_BC_DIM_MAX}
 Maximum number of elements permitted in an array by the \fIbc\fP utility.
 .br
 Value: 2 048
-.TP
+.TP 7
 {_POSIX2_BC_SCALE_MAX}
 Maximum \fIscale\fP value allowed by the \fIbc\fP utility.
 .br
 Value: 99
-.TP
+.TP 7
 {_POSIX2_BC_STRING_MAX}
 Maximum length of a string constant accepted by the \fIbc\fP utility.
 .br
 Value: 1 000
-.TP
+.TP 7
 {_POSIX2_CHARCLASS_NAME_MAX}
 Maximum number of bytes in a character class name.
 .br
 Value: 14
-.TP
+.TP 7
 {_POSIX2_COLL_WEIGHTS_MAX}
 Maximum number of weights that can be assigned to an entry of the
 \fILC_COLLATE\fP \fBorder\fP keyword in the locale definition
 file; see \fILocale\fP .
 .br
 Value: 2
-.TP
+.TP 7
 {_POSIX2_EXPR_NEST_MAX}
 Maximum number of expressions that can be nested within parentheses
 by the \fIexpr\fP
 utility.
 .br
 Value: 32
-.TP
+.TP 7
 {_POSIX2_LINE_MAX}
 Unless otherwise noted, the maximum length, in bytes, of a utility's
 input line (either standard input or another file), when the
@@ -762,28 +760,28 @@ utility is described as processing text files. The length includes
 room for the trailing <newline>.
 .br
 Value: 2 048
-.TP
+.TP 7
 {_POSIX2_RE_DUP_MAX
 Maximum number of repeated occurrences of a regular expression permitted
 when using the interval notation \\{\fIm\fP,\fIn\fP\\};
 see \fIRegular Expressions\fP .
 .br
 Value: 255
-.TP
+.TP 7
 {_XOPEN_IOV_MAX}
 .sp
 Maximum number of \fBiovec\fP structures that one process has available
 for use with \fIreadv\fP() or \fIwritev\fP().
 .br
 Value: 16 
-.TP
+.TP 7
 {_XOPEN_NAME_MAX}
 .sp
 Maximum number of bytes in a filename (not including the terminating
 null).
 .br
 Value: 255 
-.TP
+.TP 7
 {_XOPEN_PATH_MAX}
 .sp
 Maximum number of bytes in a pathname.
@@ -805,118 +803,118 @@ is the same as that of {SCHAR_MIN} and the value of {CHAR_MAX} is
 the same as that of {SCHAR_MAX}. Otherwise, the value of
 {CHAR_MIN} is 0 and the value of {CHAR_MAX} is the same as that of
 {UCHAR_MAX}.
-.TP
+.TP 7
 {CHAR_BIT}
 Number of bits in a type \fBchar\fP.
 .br
 Value:
 8 
-.TP
+.TP 7
 {CHAR_MAX}
 Maximum value of type \fBchar\fP.
 .br
 Value: {UCHAR_MAX} or {SCHAR_MAX}
-.TP
+.TP 7
 {CHAR_MIN}
 Minimum value of type \fBchar\fP.
 .br
 Value: {SCHAR_MIN} or 0
-.TP
+.TP 7
 {INT_MAX}
 Maximum value of an \fBint\fP.
 .br
 Minimum Acceptable Value: 2 147 483 647
-.TP
+.TP 7
 {LONG_BIT}
 .sp
 Number of bits in a \fBlong\fP.
 .br
 Minimum Acceptable Value: 32 
-.TP
+.TP 7
 {LONG_MAX}
 Maximum value of a \fBlong\fP.
 .br
 Minimum Acceptable Value: +2 147 483 647
-.TP
+.TP 7
 {MB_LEN_MAX}
 Maximum number of bytes in a character, for any supported locale.
 .br
 Minimum Acceptable Value: 1
-.TP
+.TP 7
 {SCHAR_MAX}
 Maximum value of type \fBsigned char\fP.
 .br
 Value:
 +127 
-.TP
+.TP 7
 {SHRT_MAX}
 Maximum value of type \fBshort\fP.
 .br
 Minimum Acceptable Value: +32 767
-.TP
+.TP 7
 {SSIZE_MAX}
 Maximum value of an object of type \fBssize_t\fP.
 .br
 Minimum Acceptable Value: {_POSIX_SSIZE_MAX}
-.TP
+.TP 7
 {UCHAR_MAX}
 Maximum value of type \fBunsigned char\fP.
 .br
 Value:
 255 
-.TP
+.TP 7
 {UINT_MAX}
 Maximum value of type \fBunsigned\fP.
 .br
 Minimum Acceptable Value: 4 294 967 295
-.TP
+.TP 7
 {ULONG_MAX}
 Maximum value of type \fBunsigned long\fP.
 .br
 Minimum Acceptable Value: 4 294 967 295
-.TP
+.TP 7
 {USHRT_MAX}
 Maximum value for a type \fBunsigned short\fP.
 .br
 Minimum Acceptable Value: 65 535
-.TP
+.TP 7
 {WORD_BIT}
 .sp
 Number of bits in a word or type \fBint\fP.
 .br
 Minimum Acceptable Value: 16 
-.TP
+.TP 7
 {INT_MIN}
 Minimum value of type \fBint\fP.
 .br
 Maximum Acceptable Value: -2 147 483 647
-.TP
+.TP 7
 {LONG_MIN}
 Minimum value of type \fBlong\fP.
 .br
 Maximum Acceptable Value: -2 147 483 647
-.TP
+.TP 7
 {SCHAR_MIN}
 Minimum value of type \fBsigned char\fP.
 .br
 Value:
 -128 
-.TP
+.TP 7
 {SHRT_MIN}
 Minimum value of type \fBshort\fP.
 .br
 Maximum Acceptable Value: -32 767
-.TP
+.TP 7
 {LLONG_MIN}
 Minimum value of type \fBlong long\fP.
 .br
 Maximum Acceptable Value: -9223372036854775807
-.TP
+.TP 7
 {LLONG_MAX}
 Maximum value of type \fBlong long\fP.
 .br
 Minimum Acceptable Value: +9223372036854775807
-.TP
+.TP 7
 {ULLONG_MAX}
 Maximum value of type \fBunsigned long long\fP.
 .br
@@ -926,51 +924,51 @@ Minimum Acceptable Value: 18446744073709551615
 .LP
 The following constants shall be defined on all implementations in
 \fI<limits.h>\fP: 
-.TP
+.TP 7
 {CHARCLASS_NAME_MAX}
 .sp
 Maximum number of bytes in a character class name.
 .br
 Minimum Acceptable Value: 14 
-.TP
+.TP 7
 {NL_ARGMAX}
 .sp
 Maximum value of \fIdigit\fP in calls to the \fIprintf\fP() and \fIscanf\fP()
 functions.
 .br
 Minimum Acceptable Value: 9 
-.TP
+.TP 7
 {NL_LANGMAX}
 .sp
 Maximum number of bytes in a \fILANG\fP name.
 .br
 Minimum Acceptable Value: 14 
-.TP
+.TP 7
 {NL_MSGMAX}
 .sp
 Maximum message number.
 .br
 Minimum Acceptable Value: 32 767 
-.TP
+.TP 7
 {NL_NMAX}
 .sp
 Maximum number of bytes in an N-to-1 collation mapping.
 .br
 Minimum Acceptable Value: No guaranteed value across all conforming
 implementations. 
-.TP
+.TP 7
 {NL_SETMAX}
 .sp
 Maximum set number.
 .br
 Minimum Acceptable Value: 255 
-.TP
+.TP 7
 {NL_TEXTMAX}
 .sp
 Maximum number of bytes in a message string.
 .br
 Minimum Acceptable Value: {_POSIX2_LINE_MAX} 
-.TP
+.TP 7
 {NZERO}
 .sp
 Default process priority.
@@ -988,33 +986,28 @@ A request was made to reduce the value of {_POSIX_LINK_MAX} from the
 value of 8 specified for it in the POSIX.1-1990 standard to
 2. The standard developers decided to deny this request for several
 reasons:
-.RS
-.in +5
-.LP
+.IP " *" 3
 They wanted to avoid making any changes to the standard that could
 break conforming applications, and the requested change could
 have that effect.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The use of multiple hard links to a file cannot always be replaced
 with use of symbolic links. Symbolic links are semantically
 different from hard links in that they associate a pathname with another
 pathname rather than a pathname with a file. This has
 implications for access control, file permanence, and transparency.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The original standard developers had considered the issue of allowing
 for implementations that did not in general support hard
 links, and decided that this would reduce consensus on the standard.
-.in -5
-.RE
+.LP
 .LP
 Systems that support historical versions of the development option
-of the ISO\0POSIX-2 standard retain the name
+of the ISO\ POSIX-2 standard retain the name
 {_POSIX2_RE_DUP_MAX} as an alias for {_POSIX_RE_DUP_MAX}.
-.TP
+.TP 7
 {PATH_MAX}
 IEEE PASC Interpretation 1003.1 #15 addressed the inconsistency in
 the standard with the definition of pathname and the description
@@ -1023,7 +1016,7 @@ or {PATH_MAX}+1 bytes. The inconsistency has been removed
 by correction to the {PATH_MAX} definition to include the null character.
 With this change, applications that previously allocated
 {PATH_MAX} bytes will continue to succeed.
-.TP
+.TP 7
 {SYMLINK_MAX}
 This symbol refers to space for data that is stored in the file system,
 as opposed to {PATH_MAX} which is the length of a name that
@@ -1037,7 +1030,7 @@ to be as large as {PATH_MAX}.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIfpathconf\fP(),
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIfpathconf\fP(),
 \fIpathconf\fP(), \fIsysconf\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

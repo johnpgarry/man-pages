@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "confstr" P 2003 POSIX
+.TH "CONFSTR" P 2003 POSIX
 .\" confstr 
 .SH NAME
-confstr - get configurable variables
+confstr \- get configurable variables
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -113,7 +113,7 @@ stored in \fIbuf\fP after a call to:
 .LP
 can be used as a value of the \fIPATH\fP environment variable that
 accesses all of the standard utilities of
-IEEE\0Std\01003.1-2001, if the return value is less than or equal
+IEEE\ Std\ 1003.1-2001, if the return value is less than or equal
 to \fIsizeof\fP( \fIbuf\fP).
 .SH RETURN VALUE
 .LP
@@ -132,7 +132,7 @@ unchanged.
 .SH ERRORS
 .LP
 The \fIconfstr\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIname\fP argument is invalid.
 .sp
@@ -152,7 +152,7 @@ The original need for this function was to provide a way of finding
 the configuration-defined default value for the environment
 variable \fIPATH .\fP Since \fIPATH\fP can be modified by the user
 to include directories that could contain utilities replacing
-the standard utilities in the Shell and Utilities volume of IEEE\0Std\01003.1-2001,
+the standard utilities in the Shell and Utilities volume of IEEE\ Std\ 1003.1-2001,
 applications need a way to determine
 the system-supplied \fIPATH\fP environment variable value that contains
 the correct search path for the standard utilities.
@@ -192,7 +192,7 @@ The \fIconfstr\fP() function with a \fIname\fP argument of _CS_PATH
 returns a string that can be used as a \fIPATH\fP
 environment variable setting that will reference the standard shell
 and utilities as described in the Shell and Utilities volume of
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .LP
 The \fIconfstr\fP() function copies the returned string into a buffer
 supplied by the application instead of returning a
@@ -205,9 +205,9 @@ None.
 .SH SEE ALSO
 .LP
 \fIpathconf\fP() , \fIsysconf\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP, the Shell and Utilities
+IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP, the Shell and Utilities
 volume of
-IEEE\0Std\01003.1-2001, \fIc99\fP
+IEEE\ Std\ 1003.1-2001, \fIc99\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

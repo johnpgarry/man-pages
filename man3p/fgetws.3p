@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fgetws" P 2003 POSIX
+.TH "FGETWS" P 2003 POSIX
 .\" fgetws 
 .SH NAME
-fgetws - get a wide-character string from a stream
+fgetws \- get a wide-character string from a stream
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -12,16 +12,10 @@ fgetws - get a wide-character string from a stream
 .sp
 wchar_t *fgetws(wchar_t *restrict\fP \fIws\fP\fB, int\fP \fIn\fP\fB,
 .br
-\0\0\0\0\0\0 FILE *restrict\fP \fIstream\fP\fB);
+\ \ \ \ \ \  FILE *restrict\fP \fIstream\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIfgetws\fP() function shall read characters from the \fIstream\fP,
 convert these to the corresponding wide-character
@@ -49,9 +43,7 @@ If the stream is at end-of-file, the end-of-file indicator
 for the stream shall be set and \fIfgetws\fP() shall return a null
 pointer. If a read error occurs, the error indicator for the
 stream shall be set, \fIfgetws\fP() shall return a null pointer, 
-<img
-src="../images/opt-start.gif" alt="[Option Start]" border="0"> \0and
-shall set \fIerrno\fP to indicate the error. 
+\ and shall set \fIerrno\fP to indicate the error. 
 .SH ERRORS
 .LP
 Refer to \fIfgetwc\fP() .
@@ -72,7 +64,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfopen\fP() , \fIfread\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<stdio.h>\fP, \fI<wchar.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stdio.h>\fP, \fI<wchar.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "uname" P 2003 POSIX
+.TH "UNAME" P 2003 POSIX
 .\" uname 
 .SH NAME
-uname - return system name
+uname \- return system name
 .SH SYNOPSIS
 .LP
 \fBuname\fP \fB[\fP\fB-snrvma\fP\fB]\fP
@@ -13,34 +13,34 @@ name to standard output. When options are specified,
 symbols representing one or more system characteristics shall be written
 to the standard output. The format and contents of the
 symbols are implementation-defined. On systems conforming to the System
-Interfaces volume of IEEE\0Std\01003.1-2001, the
+Interfaces volume of IEEE\ Std\ 1003.1-2001, the
 symbols written shall be those supported by the \fIuname\fP() function
 as defined in the
-System Interfaces volume of IEEE\0Std\01003.1-2001.
+System Interfaces volume of IEEE\ Std\ 1003.1-2001.
 .SH OPTIONS
 .LP
 The \fIuname\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-a\fP
 Behave as though all of the options \fB-mnrsv\fP were specified.
-.TP
+.TP 7
 \fB-m\fP
 Write the name of the hardware type on which the system is running
 to standard output.
-.TP
+.TP 7
 \fB-n\fP
 Write the name of this node within an implementation-defined communications
 network.
-.TP
+.TP 7
 \fB-r\fP
 Write the current release level of the operating system implementation.
-.TP
+.TP 7
 \fB-s\fP
 Write the name of the implementation of the operating system.
-.TP
+.TP 7
 \fB-v\fP
 Write the current version level of this release of the operating system
 implementation.
@@ -62,29 +62,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIuname\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -137,10 +137,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 The requested information was successfully written.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -178,7 +178,7 @@ format of the symbols is implementation-defined. The
 POSIX.1 working group could not achieve consensus on defining these
 formats in the underlying \fIuname\fP() function, and there was no
 expectation that this volume of
-IEEE\0Std\01003.1-2001 would be any more successful. Some applications
+IEEE\ Std\ 1003.1-2001 would be any more successful. Some applications
 may still find this historical utility of value. For
 example, the symbols could be used for system log entries or for comparison
 with operator or user input.
@@ -187,7 +187,7 @@ with operator or user input.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIuname\fP()
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIuname\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

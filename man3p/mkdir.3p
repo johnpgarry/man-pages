@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mkdir" P 2003 POSIX
+.TH "MKDIR" P 2003 POSIX
 .\" mkdir 
 .SH NAME
-mkdir - make a directory
+mkdir \- make a directory
 .SH SYNOPSIS
 .LP
 \fB#include <sys/stat.h>
@@ -50,49 +50,49 @@ Upon successful completion, \fImkdir\fP() shall return 0. Otherwise,
 .SH ERRORS
 .LP
 The \fImkdir\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied on a component of the path prefix, or
 write permission is denied on the parent directory of the
 directory to be created.
-.TP
+.TP 7
 .B EEXIST
 The named file exists.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B EMLINK
 The link count of the parent directory would exceed {LINK_MAX}.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIpath\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of the path prefix specified by \fIpath\fP does not name
 an existing directory or \fIpath\fP is an empty
 string.
-.TP
+.TP 7
 .B ENOSPC
 The file system does not contain enough space to hold the contents
 of the new directory or to extend the parent directory of
 the new directory.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix is not a directory.
-.TP
+.TP 7
 .B EROFS
 The parent directory resides on a read-only file system.
 .sp
 .LP
 The \fImkdir\fP() function may fail if:
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 As a result of encountering a symbolic link in resolution of the \fIpath\fP
 argument, the length of the substituted pathname
@@ -147,7 +147,7 @@ set the desired group ID.
 None.
 .SH SEE ALSO
 .LP
-\fIumask\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIumask\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<sys/stat.h>\fP, \fI<sys/types.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

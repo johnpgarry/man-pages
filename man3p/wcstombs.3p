@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "wcstombs" P 2003 POSIX
+.TH "WCSTOMBS" P 2003 POSIX
 .\" wcstombs 
 .SH NAME
-wcstombs - convert a wide-character string to a character string
+wcstombs \- convert a wide-character string to a character string
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -11,16 +11,10 @@ wcstombs - convert a wide-character string to a character string
 size_t wcstombs(char *restrict\fP \fIs\fP\fB, const wchar_t *restrict\fP
 \fIpwcs\fP\fB,
 .br
-\0\0\0\0\0\0 size_t\fP \fIn\fP\fB);
+\ \ \ \ \ \  size_t\fP \fIn\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIwcstombs\fP() function shall convert the sequence of wide-character
 codes that are in the array pointed to by
@@ -37,7 +31,7 @@ category of the current locale.
 .LP
 No more than \fIn\fP bytes shall be modified in the array pointed
 to by \fIs\fP. If copying takes place between objects that
-overlap, the behavior is undefined.   \0If \fIs\fP is a null pointer,
+overlap, the behavior is undefined.   \ If \fIs\fP is a null pointer,
 \fIwcstombs\fP() shall return the length required to convert
 the entire array regardless of the value of \fIn\fP, but no values
 are stored.
@@ -57,7 +51,7 @@ shall not be null-terminated if the value returned is
 .SH ERRORS
 .LP
 The \fIwcstombs\fP() function may fail if:
-.TP
+.TP 7
 .B EILSEQ
 A
 wide-character code does not correspond to a valid character. 
@@ -80,7 +74,7 @@ None.
 .LP
 \fImblen\fP() , \fImbtowc\fP() , \fImbstowcs\fP() , \fIwctomb\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

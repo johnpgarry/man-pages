@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "clock_getcpuclockid" P 2003 POSIX
+.TH "CLOCK_GETCPUCLOCKID" P 2003 POSIX
 .\" clock_getcpuclockid 
 .SH NAME
-clock_getcpuclockid - access a process CPU-time clock (\fBADVANCED
+clock_getcpuclockid \- access a process CPU-time clock (\fBADVANCED
 REALTIME\fP)
 .SH SYNOPSIS
 .LP
@@ -37,14 +37,14 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIclock_getcpuclockid\fP() function shall fail if:
-.TP
+.TP 7
 .B EPERM
 The requesting process does not have permission to access the CPU-time
 clock for the process.
 .sp
 .LP
 The \fIclock_getcpuclockid\fP() function may fail if:
-.TP
+.TP 7
 .B ESRCH
 No process can be found corresponding to the process specified by
 \fIpid\fP.
@@ -68,7 +68,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIclock_getres\fP() , \fItimer_create\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<time.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

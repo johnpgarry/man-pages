@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "localtime" P 2003 POSIX
+.TH "LOCALTIME" P 2003 POSIX
 .\" localtime 
 .SH NAME
-localtime, localtime_r - convert a time value to a broken-down local
+localtime, localtime_r \- convert a time value to a broken-down local
 time
 .SH SYNOPSIS
 .LP
@@ -15,22 +15,22 @@ struct tm *localtime(const time_t *\fP\fItimer\fP\fB);
 .LP
 \fBstruct tm *localtime_r(const time_t *restrict\fP \fItimer\fP\fB,
 .br
-\0\0\0\0\0\0 struct tm *restrict\fP \fIresult\fP\fB); \fP
+\ \ \ \ \ \  struct tm *restrict\fP \fIresult\fP\fB); \fP
 \fB
 .br
 \fP
 .SH DESCRIPTION
 .LP
 For \fIlocaltime\fP():   The functionality described on this reference
-page is aligned with the ISO\0C standard. Any
-conflict between the requirements described here and the ISO\0C standard
+page is aligned with the ISO\ C standard. Any
+conflict between the requirements described here and the ISO\ C standard
 is unintentional. This volume of
-IEEE\0Std\01003.1-2001 defers to the ISO\0C standard. 
+IEEE\ Std\ 1003.1-2001 defers to the ISO\ C standard. 
 .LP
 The \fIlocaltime\fP() function shall convert the time in seconds since
 the Epoch pointed to by \fItimer\fP into a broken-down
 time, expressed as a local time. The function corrects for the timezone
-and any seasonal time adjustments.   \0Local timezone
+and any seasonal time adjustments.   \ Local timezone
 information is used as though \fIlocaltime\fP() calls \fItzset\fP().
 .LP
 The relationship between a time in seconds since the Epoch used as
@@ -38,7 +38,7 @@ an argument to \fIlocaltime\fP() and the \fBtm\fP structure
 (defined in the \fI<time.h>\fP header) is that the result shall be
 as specified in the
 expression given in the definition of seconds since the Epoch (see
-the Base Definitions volume of IEEE\0Std\01003.1-2001,
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 4.14, Seconds Since the Epoch) corrected for timezone and
 any seasonal
 time adjustments, where the names in the structure and in the expression
@@ -70,16 +70,14 @@ set \fItzname\fP.
 Upon successful completion, the \fIlocaltime\fP() function shall return
 a pointer to the broken-down time structure. If an
 error is detected, \fIlocaltime\fP() shall return a null pointer 
-<img
-src="../images/opt-start.gif" alt="[Option Start]" border="0"> \0and
-set \fIerrno\fP to indicate the error. 
+\ and set \fIerrno\fP to indicate the error. 
 .LP
 Upon successful completion, \fIlocaltime_r\fP() shall return a pointer
 to the structure pointed to by the argument \fIresult\fP.
 .SH ERRORS
 .LP
 The \fIlocaltime\fP() function shall fail if:
-.TP
+.TP 7
 .B EOVERFLOW
 The result cannot be represented. 
 .sp
@@ -189,7 +187,7 @@ None.
 , \fIdifftime\fP() , \fIgetdate\fP() , \fIgmtime\fP() , \fImktime\fP()
 , \fIstrftime\fP() , \fIstrptime\fP() , \fItime\fP() , \fIutime\fP()
 , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<time.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

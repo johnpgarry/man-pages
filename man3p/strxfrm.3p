@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "strxfrm" P 2003 POSIX
+.TH "STRXFRM" P 2003 POSIX
 .\" strxfrm 
 .SH NAME
-strxfrm - string transformation
+strxfrm \- string transformation
 .SH SYNOPSIS
 .LP
 \fB#include <string.h>
@@ -13,12 +13,6 @@ size_t strxfrm(char *restrict\fP \fIs1\fP\fB, const char *restrict\fP
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIstrxfrm\fP() function shall transform the string pointed to
 by \fIs2\fP and place the resulting string into the array
@@ -53,7 +47,7 @@ reserved to indicate an error.
 .SH ERRORS
 .LP
 The \fIstrxfrm\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The string pointed to by the \fIs2\fP argument contains characters
 outside the domain of the collating sequence. 
@@ -82,7 +76,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIstrcmp\fP() , \fIstrcoll\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<string.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<string.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

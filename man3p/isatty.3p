@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "isatty" P 2003 POSIX
+.TH "ISATTY" P 2003 POSIX
 .\" isatty 
 .SH NAME
-isatty - test for a terminal device
+isatty \- test for a terminal device
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -24,10 +24,10 @@ set \fIerrno\fP to indicate the error.
 .SH ERRORS
 .LP
 The \fIisatty\fP() function may fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid open file descriptor.
-.TP
+.TP 7
 .B ENOTTY
 The \fIfildes\fP argument is not associated with a terminal.
 .sp
@@ -50,7 +50,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+The Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_setschedprio" P 2003 POSIX
+.TH "PTHREAD_SETSCHEDPRIO" P 2003 POSIX
 .\" pthread_setschedprio 
 .SH NAME
-pthread_setschedprio - dynamic thread scheduling parameters access
+pthread_setschedprio \- dynamic thread scheduling parameters access
 (\fBREALTIME THREADS\fP)
 .SH SYNOPSIS
 .LP
@@ -32,22 +32,22 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_setschedprio\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIprio\fP is invalid for the scheduling policy of the
 specified thread.
-.TP
+.TP 7
 .B ENOTSUP
 An attempt was made to set the priority to an unsupported value.
-.TP
+.TP 7
 .B EPERM
 The caller does not have the appropriate permission to set the scheduling
 policy of the specified thread.
-.TP
+.TP 7
 .B EPERM
 The implementation does not allow the application to modify the priority
 to the value specified.
-.TP
+.TP 7
 .B ESRCH
 The value specified by \fIthread\fP does not refer to an existing
 thread.
@@ -89,7 +89,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIScheduling Policies\fP , \fIpthread_getschedparam\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

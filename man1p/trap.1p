@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "trap" P 2003 POSIX
+.TH "TRAP" P 2003 POSIX
 .\" trap 
 .SH NAME
-trap - trap signals
+trap \- trap signals
 .SH SYNOPSIS
 .LP
 \fBtrap\fP \fB[\fP\fIaction condition\fP \fB...\fP\fB]\fP
@@ -22,7 +22,7 @@ The condition can be EXIT, 0 (equivalent to EXIT), or a signal specified
 using a symbolic name, without the SIG prefix, as
 listed in the tables of signal names in the \fI<signal.h>\fP header
 defined in the
-Base Definitions volume of IEEE\0Std\01003.1-2001, Chapter 13, Headers;
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 13, Headers;
 for example, HUP, INT, QUIT, TERM. Implementations may permit names
 with the SIG prefix or ignore case in signal names as an
 extension. Setting a trap for SIGKILL or SIGSTOP produces undefined
@@ -81,19 +81,19 @@ eval "$save_traps"
 XSI-conformant systems also allow numeric signal numbers for the conditions
 corresponding to the following signal names: 
 .TS C
-center;l l l l l l l l.
-\fBSignal Number\fP 	 \fBSignal Name\fP 	
-1 	 SIGHUP  	
-2 	 SIGINT  	
-3 	 SIGQUIT  	
-6 	 SIGABRT  	
-9 	 SIGKILL  	
-14 	 SIGALRM  	
-15 	 SIGTERM  	
+center; l l.
+\fBSignal Number\fP	\fBSignal Name\fP
+1	SIGHUP
+2	SIGINT
+3	SIGQUIT
+6	SIGABRT
+9	SIGKILL
+14	SIGALRM
+15	SIGTERM
 .TE
 .LP
 The \fItrap\fP special built-in shall conform to the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+volume of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .SH OPTIONS
 .LP
 None.
@@ -126,10 +126,10 @@ None.
 None.
 .SH EXIT STATUS
 .LP
-If the trap name   \0or number  is invalid, a non-zero
+If the trap name   \ or number  is invalid, a non-zero
 exit status shall be returned; otherwise, zero shall be returned.
 For both interactive and non-interactive shells, invalid signal
-names   \0or numbers  shall not be considered a syntax error and do
+names   \ or numbers  shall not be considered a syntax error and do
 not cause the shell to abort.
 .SH CONSEQUENCES OF ERRORS
 .LP
@@ -188,7 +188,7 @@ Implementations may permit lowercase signal names as an extension.
 Implementations may also accept the names with the SIG
 prefix; no known historical shell does so. The \fItrap\fP and \fIkill\fP
 utilities in this
-volume of IEEE\0Std\01003.1-2001 are now consistent in their omission
+volume of IEEE\ Std\ 1003.1-2001 are now consistent in their omission
 of the SIG prefix for signal names. Some \fIkill\fP implementations
 do not allow the prefix, and \fIkill\fP \fB-l\fP lists the signals
 without prefixes.

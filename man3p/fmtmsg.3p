@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fmtmsg" P 2003 POSIX
+.TH "FMTMSG" P 2003 POSIX
 .\" fmtmsg 
 .SH NAME
-fmtmsg - display a message in the specified format on standard error
+fmtmsg \- display a message in the specified format on standard error
 and/or a system console
 .SH SYNOPSIS
 .LP
@@ -12,7 +12,7 @@ and/or a system console
 int fmtmsg(long\fP \fIclassification\fP\fB, const char *\fP\fIlabel\fP\fB,
 int\fP \fIseverity\fP\fB,
 .br
-\0\0\0\0\0\0 const char *\fP\fItext\fP\fB, const char *\fP\fIaction\fP\fB,
+\ \ \ \ \ \  const char *\fP\fItext\fP\fB, const char *\fP\fIaction\fP\fB,
 const char
 *\fP\fItag\fP\fB); \fP
 \fB
@@ -31,7 +31,7 @@ A formatted message consists of up to five components as defined below.
 The component \fIclassification\fP is not part of a
 message displayed to the user, but defines the source of the message
 and directs the display of the formatted message.
-.TP
+.TP 7
 \fIclassification\fP
 Contains the sum of identifying values constructed from the constants
 defined below. Any one identifier from a subclass may be
@@ -41,76 +41,94 @@ be used together, with the exception of identifiers from the display
 subclass. (Both display subclass identifiers may be used so
 that messages can be displayed to both standard error and the system
 console.) 
-.TP
+.TP 7
 \fBMajor Classifications\fP
+.RS
 .sp
 Identifies the source of the condition. Identifiers are: MM_HARD (hardware),
 MM_SOFT (software), and MM_FIRM (firmware).
-.TP
+.RE
+.TP 7
 \fBMessage Source Subclassifications\fP
+.RS
 .sp
 Identifies the type of software in which the problem is detected.
 Identifiers are: MM_APPL (application), MM_UTIL (utility), and
 MM_OPSYS (operating system).
-.TP
+.RE
+.TP 7
 \fBDisplay Subclassifications\fP
+.RS
 .sp
 Indicates where the message is to be displayed. Identifiers are: MM_PRINT
 to display the message on the standard error stream,
 MM_CONSOLE to display the message on the system console. One or both
 identifiers may be used.
-.TP
+.RE
+.TP 7
 \fBStatus Subclassifications\fP
+.RS
 .sp
 Indicates whether the application can recover from the condition.
 Identifiers are: MM_RECOVER (recoverable) and MM_NRECOV
 (non-recoverable).
+.RE
 .sp
 .LP
 An additional identifier, MM_NULLMC, indicates that no classification
 component is supplied for the message.
-.TP
+.TP 7
 \fIlabel\fP
 Identifies the source of the message. The format is two fields separated
 by a colon. The first field is up to 10 bytes, the
 second is up to 14 bytes.
-.TP
+.TP 7
 \fIseverity\fP
 Indicates the seriousness of the condition. Identifiers for the levels
 of \fIseverity\fP are: 
-.TP
+.TP 7
 MM_HALT
+.RS
 Indicates that the application has encountered a severe fault and
 is halting. Produces the string \fB"HALT"\fP .
-.TP
+.RE
+.TP 7
 MM_ERROR
+.RS
 Indicates that the application has detected a fault. Produces the
 string \fB"ERROR"\fP .
-.TP
+.RE
+.TP 7
 MM_WARNING
+.RS
 Indicates a condition that is out of the ordinary, that might be a
 problem, and should be watched. Produces the string
 \fB"WARNING"\fP .
-.TP
+.RE
+.TP 7
 MM_INFO
+.RS
 Provides information about a condition that is not in error. Produces
 the string \fB"INFO"\fP .
-.TP
+.RE
+.TP 7
 MM_NOSEV
+.RS
 Indicates that no severity level is supplied for the message.
+.RE
 .sp
-.TP
+.TP 7
 \fItext\fP
 Describes the error condition that produced the message. The character
 string is not limited to a specific size. If the
 character string is empty, then the text produced is unspecified.
-.TP
+.TP 7
 \fIaction\fP
 Describes the first step to be taken in the error-recovery process.
 The \fIfmtmsg\fP() function precedes the action string
 with the prefix: \fB"TO FIX:"\fP . The \fIaction\fP string is not
 limited to a specific size.
-.TP
+.TP 7
 \fItag\fP
 An identifier that references on-line documentation for the message.
 Suggested usage is that \fItag\fP includes the
@@ -140,17 +158,17 @@ included in console messages.
 .SH RETURN VALUE
 .LP
 The \fIfmtmsg\fP() function shall return one of the following values:
-.TP
+.TP 7
 MM_OK
 The function succeeded.
-.TP
+.TP 7
 MM_NOTOK
 The function failed completely.
-.TP
+.TP 7
 MM_NOMSG
 The function was unable to generate a message on standard error, but
 otherwise succeeded.
-.TP
+.TP 7
 MM_NOCON
 The function was unable to generate a console message, but otherwise
 succeeded.
@@ -161,8 +179,7 @@ None.
 .LP
 \fIThe following sections are informative.\fP
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 The following example of \fIfmtmsg\fP():
 .sp
 .RS
@@ -184,9 +201,8 @@ TO FIX: refer to cat in user's reference manual XSI:cat:001
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 When the environment variable \fIMSGVERB\fP is set as follows:
 .sp
 .RS
@@ -207,7 +223,7 @@ TO FIX: refer to cat in user's reference manual
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH APPLICATION USAGE
 .LP
 One or more message components may be systematically omitted from
@@ -221,7 +237,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIprintf\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIprintf\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<fmtmsg.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

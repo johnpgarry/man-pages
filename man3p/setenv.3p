@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "setenv" P 2003 POSIX
+.TH "SETENV" P 2003 POSIX
 .\" setenv 
 .SH NAME
-setenv - add or change environment variable
+setenv \- add or change environment variable
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -48,12 +48,12 @@ the environment shall be unchanged.
 .SH ERRORS
 .LP
 The \fIsetenv\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIname\fP argument is a null pointer, points to an empty string,
 or points to a string containing an \fB'='\fP
 character.
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory was available to add a variable or its value to
 the environment.
@@ -75,7 +75,7 @@ variable \fIenviron\fP. In particular, if the optional
 and thus may point to an obsolete copy of the environment (as
 may any other copy of \fIenviron\fP). However, other than the aforementioned
 restriction, the developers of
-IEEE\0Std\01003.1-2001 intended that the traditional method of walking
+IEEE\ Std\ 1003.1-2001 intended that the traditional method of walking
 through the environment by way of the \fIenviron\fP
 pointer must be supported.
 .LP
@@ -106,7 +106,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIexec\fP() , \fIgetenv\fP() , \fIunsetenv\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP, \fI<sys/types.h>\fP,
+volume of IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP, \fI<sys/types.h>\fP,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

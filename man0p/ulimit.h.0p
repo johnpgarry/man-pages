@@ -2,7 +2,7 @@
 .TH "<ulimit.h>" P 2003 POSIX
 .\" <ulimit.h> 
 .SH NAME
-ulimit.h - ulimit commands
+ulimit.h \- ulimit commands
 .SH SYNOPSIS
 .LP
 \fB#include <ulimit.h> \fP
@@ -12,10 +12,10 @@ The \fI<ulimit.h>\fP header shall define the symbolic constants used
 by the \fIulimit\fP() function.
 .LP
 Symbolic constants:
-.TP
+.TP 7
 UL_GETFSIZE
 Get maximum file size.
-.TP
+.TP 7
 UL_SETFSIZE
 Set maximum file size.
 .sp
@@ -43,7 +43,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIulimit\fP()
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIulimit\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

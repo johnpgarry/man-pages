@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cfsetospeed" P 2003 POSIX
+.TH "CFSETOSPEED" P 2003 POSIX
 .\" cfsetospeed 
 .SH NAME
-cfsetospeed - set output baud rate
+cfsetospeed \- set output baud rate
 .SH SYNOPSIS
 .LP
 \fB#include <termios.h>
@@ -31,10 +31,10 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIcfsetospeed\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIspeed\fP value is not a valid baud rate.
-.TP
+.TP 7
 .B EINVAL
 The value of \fIspeed\fP is outside the range of possible speed values
 as specified in \fI<termios.h>\fP.
@@ -57,7 +57,7 @@ None.
 .LP
 \fIcfgetispeed\fP() , \fIcfgetospeed\fP() , \fIcfsetispeed\fP() ,
 \fItcsetattr\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 11, General Terminal Interface, \fI<termios.h>\fP
+IEEE\ Std\ 1003.1-2001, Chapter 11, General Terminal Interface, \fI<termios.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "nl" P 2003 POSIX
+.TH "NL" P 2003 POSIX
 .\" nl 
 .SH NAME
-nl - line numbering filter
+nl \- line numbering filter
 .SH SYNOPSIS
 .LP
 \fBnl\fP \fB[\fP\fB-p\fP\fB][\fP\fB-b\fP \fItype\fP\fB][\fP\fB-d\fP
@@ -10,7 +10,7 @@ nl - line numbering filter
 \fIincr\fP\fB][\fP\fB-l\fP
 \fInum\fP\fB][\fP\fB-n\fP \fIformat\fP\fB]
 .br
-\fP \fB\0\0\0\0\0\0\fP \fB[\fP\fB-s\fP \fIsep\fP\fB][\fP\fB-v\fP
+\fP \fB\ \ \ \ \ \ \fP \fB[\fP\fB-s\fP \fIsep\fP\fB][\fP\fB-v\fP
 \fIstartnum\fP\fB][\fP\fB-w\fP \fIwidth\fP\fB][\fP\fIfile\fP\fB]\fP\fB\fP
 .SH DESCRIPTION
 .LP
@@ -32,11 +32,11 @@ The starts of logical page sections shall be signaled by input lines
 containing nothing but the following delimiter
 characters:
 .TS C
-center;l l l l l l l l.
-\fBLine\fP 	 \fBStart of\fP 	
-\\:\\:\\: 	 Header 	
-\\:\\: 	 Body 	
-\\: 	 Footer 	
+center; l l.
+\fBLine\fP	\fBStart of\fP
+\\:\\:\\:	Header
+\\:\\:	Body
+\\:	Footer
 .TE
 .LP
 Unless otherwise specified, \fInl\fP shall assume the text being read
@@ -44,87 +44,95 @@ is in a single logical page body.
 .SH OPTIONS
 .LP
 The \fInl\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 Only one file can be named.
 .LP
 The following options shall be supported:
-.TP
-\fB-b\0\fP \fItype\fP
+.TP 7
+\fB-b\ \fP \fItype\fP
 Specify which logical page body lines shall be numbered. Recognized
 \fItypes\fP and their meaning are: 
-.TP
+.TP 7
 \fBa\fP
+.RS
 Number all lines.
-.TP
+.RE
+.TP 7
 \fBt\fP
+.RS
 Number only non-empty lines.
-.TP
+.RE
+.TP 7
 \fBn\fP
+.RS
 No line numbering.
-.TP
+.RE
+.TP 7
 \fBp\fP\fIstring\fP
+.RS
 Number only lines that contain the basic regular expression specified
 in \fIstring\fP.
+.RE
 .sp
 .LP
 The default \fItype\fP for logical page body shall be \fBt\fP (text
 lines numbered).
-.TP
-\fB-d\0\fP \fIdelim\fP
+.TP 7
+\fB-d\ \fP \fIdelim\fP
 Specify the delimiter characters that indicate the start of a logical
 page section. These can be changed from the default
 characters \fB"\\:"\fP to two user-specified characters. If only one
 character is entered, the second character shall remain the
 default character \fB':'\fP .
-.TP
-\fB-f\0\fP \fItype\fP
+.TP 7
+\fB-f\ \fP \fItype\fP
 Specify the same as \fBb\fP \fItype\fP except for footer. The default
 for logical page footer shall be \fBn\fP (no lines
 numbered).
-.TP
-\fB-h\0\fP \fItype\fP
+.TP 7
+\fB-h\ \fP \fItype\fP
 Specify the same as \fBb\fP \fItype\fP except for header. The default
 \fItype\fP for logical page header shall be \fBn\fP
 (no lines numbered).
-.TP
-\fB-i\0\fP \fIincr\fP
+.TP 7
+\fB-i\ \fP \fIincr\fP
 Specify the increment value used to number logical page lines. The
 default shall be 1.
-.TP
-\fB-l\0\fP \fInum\fP
+.TP 7
+\fB-l\ \fP \fInum\fP
 Specify the number of blank lines to be considered as one. For example,
-\fB-l\02\fP results in only the second adjacent
-blank line being numbered (if the appropriate \fB-h\0a\fP, \fB-b\0a\fP,
-or \fB-f\0a\fP option is set). The default
+\fB-l\ 2\fP results in only the second adjacent
+blank line being numbered (if the appropriate \fB-h\ a\fP, \fB-b\ a\fP,
+or \fB-f\ a\fP option is set). The default
 shall be 1.
-.TP
-\fB-n\0\fP \fIformat\fP
+.TP 7
+\fB-n\ \fP \fIformat\fP
 Specify the line numbering format. Recognized values are: \fBln\fP,
 left justified, leading zeros suppressed; \fBrn\fP, right
 justified, leading zeros suppressed; \fBrz\fP, right justified, leading
 zeros kept. The default \fIformat\fP shall be \fBrn\fP
 (right justified).
-.TP
+.TP 7
 \fB-p\fP
 Specify that numbering should not be restarted at logical page delimiters.
-.TP
-\fB-s\0\fP \fIsep\fP
+.TP 7
+\fB-s\ \fP \fIsep\fP
 Specify the characters used in separating the line number and the
 corresponding text line. The default \fIsep\fP shall be a
 <tab>.
-.TP
-\fB-v\0\fP \fIstartnum\fP
+.TP 7
+\fB-v\ \fP \fIstartnum\fP
 Specify the initial value used to number logical page lines. The default
 shall be 1.
-.TP
-\fB-w\0\fP \fIwidth\fP
+.TP 7
+\fB-w\ \fP \fIwidth\fP
 Specify the number of characters to be used for the line number. The
 default \fIwidth\fP shall be 6.
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a text file to be line-numbered.
 .sp
@@ -139,39 +147,39 @@ The input file named by the \fIfile\fP operand is a text file.
 .LP
 The following environment variables shall affect the execution of
 \fInl\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements within regular
 expressions.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files), the
 behavior of character classes within regular expressions, and
 for deciding which characters are in character class \fBgraph\fP (for
-the \fB-b\0t\fP, \fB-f\0t\fP, and \fB-h\0t\fP
+the \fB-b\ t\fP, \fB-f\ t\fP, and \fB-h\ t\fP
 options).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -191,17 +199,17 @@ The standard output shall be a text file in the following format:
 .fi
 .RE
 .LP
-where <\fIline\0number\fP> is one of the following numeric formats:
-.TP
+where <\fIline\ number\fP> is one of the following numeric formats:
+.TP 7
 \fB%6d\fP
 When the \fBrn\fP format is used (the default; see \fB-n\fP).
-.TP
+.TP 7
 \fB%06d\fP
 When the \fBrz\fP format is used.
-.TP
+.TP 7
 \fB%-6d\fP
 When the \fBln\fP format is used.
-.TP
+.TP 7
 <empty>
 When line numbers are suppressed for a portion of the page; the <\fIseparator\fP>
 is also suppressed.
@@ -221,10 +229,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp

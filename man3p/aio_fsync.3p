@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "aio_fsync" P 2003 POSIX
+.TH "AIO_FSYNC" P 2003 POSIX
 .\" aio_fsync 
 .SH NAME
-aio_fsync - asynchronous file synchronization (\fBREALTIME\fP)
+aio_fsync \- asynchronous file synchronization (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <aio.h>
@@ -72,19 +72,19 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIaio_fsync\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The requested asynchronous operation was not queued due to temporary
 resource limitations.
-.TP
+.TP 7
 .B EBADF
 The \fIaio_fildes\fP member of the \fBaiocb\fP structure referenced
 by the \fIaiocbp\fP argument is not a valid file
 descriptor open for writing.
-.TP
+.TP 7
 .B EINVAL
 This implementation does not support synchronized I/O for this file.
-.TP
+.TP 7
 .B EINVAL
 A value of \fIop\fP other than O_DSYNC or O_SYNC was specified.
 .sp
@@ -114,7 +114,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfcntl\fP() , \fIfdatasync\fP() , \fIfsync\fP() , \fIopen\fP() ,
-\fIread\fP() , \fIwrite\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIread\fP() , \fIwrite\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<aio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

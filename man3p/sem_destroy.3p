@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sem_destroy" P 2003 POSIX
+.TH "SEM_DESTROY" P 2003 POSIX
 .\" sem_destroy 
 .SH NAME
-sem_destroy - destroy an unnamed semaphore (\fBREALTIME\fP)
+sem_destroy \- destroy an unnamed semaphore (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <semaphore.h>
@@ -33,13 +33,13 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIsem_destroy\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIsem\fP argument is not a valid semaphore.
 .sp
 .LP
 The \fIsem_destroy\fP() function may fail if:
-.TP
+.TP 7
 .B EBUSY
 There are currently processes blocked on the semaphore.
 .sp
@@ -63,7 +63,7 @@ None.
 \fIsemctl\fP() , \fIsemget\fP() , \fIsemop\fP()
 , \fIsem_init\fP() , \fIsem_open\fP() , the Base Definitions volume
 of
-IEEE\0Std\01003.1-2001, \fI<semaphore.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<semaphore.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

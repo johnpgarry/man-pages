@@ -2,7 +2,7 @@
 .TH "<nl_types.h>" P 2003 POSIX
 .\" <nl_types.h> 
 .SH NAME
-nl_types.h - data types
+nl_types.h \- data types
 .SH SYNOPSIS
 .LP
 \fB#include <nl_types.h> \fP
@@ -10,12 +10,12 @@ nl_types.h - data types
 .LP
 The \fI<nl_types.h>\fP header shall contain definitions of at least
 the following types:
-.TP
+.TP 7
 \fBnl_catd\fP
 Used by the message catalog functions \fIcatopen\fP(), \fIcatgets\fP(),
 and \fIcatclose\fP() to identify a
 catalog descriptor.
-.TP
+.TP 7
 \fBnl_item\fP
 Used by \fInl_langinfo\fP() to identify items of \fIlanginfo\fP data.
 Values of
@@ -24,7 +24,7 @@ objects of type \fBnl_item\fP are defined in \fI<langinfo.h>\fP .
 .LP
 The \fI<nl_types.h>\fP header shall contain definitions of at least
 the following constants:
-.TP
+.TP 7
 NL_SETD
 Used by \fIgencat\fP when no $\fIset\fP directive is specified in
 a message text source file; see the Internationalization
@@ -32,7 +32,7 @@ Guide. This constant can be passed as the value of \fIset_id\fP on
 subsequent calls to \fIcatgets\fP() (that is, to retrieve messages
 from the default message set). The value of NL_SETD
 is implementation-defined.
-.TP
+.TP 7
 NL_CAT_LOCALE
 Value that must be passed as the \fIoflag\fP argument to \fIcatopen\fP()
 to ensure
@@ -66,10 +66,10 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fI<langinfo.h>\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+\fI<langinfo.h>\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIcatclose\fP(), \fIcatgets\fP(), \fIcatopen\fP(), \fInl_langinfo\fP(),
 the Shell and
-Utilities volume of IEEE\0Std\01003.1-2001, \fIgencat\fP
+Utilities volume of IEEE\ Std\ 1003.1-2001, \fIgencat\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

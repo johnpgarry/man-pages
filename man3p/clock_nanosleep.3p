@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "clock_nanosleep" P 2003 POSIX
+.TH "CLOCK_NANOSLEEP" P 2003 POSIX
 .\" clock_nanosleep 
 .SH NAME
-clock_nanosleep - high resolution sleep with specifiable clock (\fBADVANCED
+clock_nanosleep \- high resolution sleep with specifiable clock (\fBADVANCED
 REALTIME\fP)
 .SH SYNOPSIS
 .LP
@@ -11,9 +11,8 @@ REALTIME\fP)
 .sp
 int clock_nanosleep(clockid_t\fP \fIclock_id\fP\fB, int\fP \fIflags\fP\fB,
 .br
-\0\0\0\0\0\0 const struct timespec *\fP\fIrqtp\fP\fB, struct timespec
-*\fP\fIrmtp\fP\fB); <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">\fP
+\ \ \ \ \ \  const struct timespec *\fP\fIrqtp\fP\fB, struct timespec
+*\fP\fIrmtp\fP\fB); \fP
 \fB
 .br
 \fP
@@ -81,10 +80,10 @@ error value.
 .SH ERRORS
 .LP
 The \fIclock_nanosleep\fP() function shall fail if:
-.TP
+.TP 7
 .B EINTR
 The \fIclock_nanosleep\fP() function was interrupted by a signal.
-.TP
+.TP 7
 .B EINVAL
 The \fIrqtp\fP argument specified a nanosecond value less than zero
 or greater than or equal to 1000 million; or the
@@ -93,7 +92,7 @@ is outside the range for the clock specified by
 \fIclock_id\fP; or the \fIclock_id\fP argument does not specify a
 known clock, or specifies the CPU-time clock of the calling
 thread.
-.TP
+.TP 7
 .B ENOTSUP
 The \fIclock_id\fP argument specifies a clock for which \fIclock_nanosleep\fP()
 is not supported, such as a CPU-time
@@ -147,7 +146,7 @@ Although it is possible to implement periodic processes using the
 timers interface, this implementation would require the use of
 signals, and the reservation of some signal numbers. In this regard,
 the reasons for including an absolute version of the
-\fIclock_nanosleep\fP() function in IEEE\0Std\01003.1-2001 are the
+\fIclock_nanosleep\fP() function in IEEE\ Std\ 1003.1-2001 are the
 same as for the inclusion of the relative \fInanosleep\fP().
 .LP
 It is also possible to implement precise periodic processes using
@@ -177,7 +176,7 @@ None.
 .LP
 \fIclock_getres\fP() , \fInanosleep\fP() , \fIpthread_cond_timedwait\fP()
 , \fIsleep\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<time.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -2,7 +2,7 @@
 .TH "<libgen.h>" P 2003 POSIX
 .\" <libgen.h> 
 .SH NAME
-libgen.h - definitions for pattern matching functions
+libgen.h \- definitions for pattern matching functions
 .SH SYNOPSIS
 .LP
 \fB#include <libgen.h> \fP
@@ -32,7 +32,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIbasename\fP(),
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIbasename\fP(),
 \fIdirname\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

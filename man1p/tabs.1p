@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tabs" P 2003 POSIX
+.TH "TABS" P 2003 POSIX
 .\" tabs 
 .SH NAME
-tabs - set terminal tabs
+tabs \- set terminal tabs
 .SH SYNOPSIS
 .LP
 \fBtabs\fP \fB[\fP \fB-\fP\fIn\fP\fB| -a| -a2| -c| -c2| -c3| -f| -p|
@@ -20,7 +20,7 @@ tabs\fP \fB[\fP\fB-T\fP \fItype\fP\fB][\fP \fB+\fP\fB[\fP\fIn\fP\fB]]\fP
 .LP
 The \fItabs\fP utility shall display a series of characters that first
 clears the hardware terminal tab settings and then
-initializes the tab stops at the specified positions   \0and optionally
+initializes the tab stops at the specified positions   \ and optionally
 adjusts the margin. 
 .LP
 The phrase "tab-stop position \fIN\fP" shall be taken to mean that,
@@ -37,67 +37,67 @@ error and \fItabs\fP shall exit with a status greater than zero.
 .SH OPTIONS
 .LP
 The \fItabs\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
-\0except for
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
+\ except for
 various extensions: the options \fB-a2\fP, \fB-c2\fP, and \fB-c3\fP
 are multi-character. 
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-\fP\fIn\fP
 Specify repetitive tab stops separated by a uniform number of column
 positions, \fIn\fP, where \fIn\fP is a single-digit
 decimal number. The default usage of \fItabs\fP with no arguments
 shall be equivalent to \fBtabs\fP-8. When \fB-0\fP is used,
 the tab stops shall be cleared and no new ones set.
-.TP
+.TP 7
 \fB-a\fP
 1,10,16,36,72
 .br
 Assembler, applicable to some mainframes. 
-.TP
+.TP 7
 \fB-a2\fP
 1,10,16,40,72
 .br
 Assembler, applicable to some mainframes. 
-.TP
+.TP 7
 \fB-c\fP
 1,8,12,16,20,55
 .br
 COBOL, normal format. 
-.TP
+.TP 7
 \fB-c2\fP
 1,6,10,14,49
 .br
 COBOL, compact format (columns 1 to 6 omitted). 
-.TP
+.TP 7
 \fB-c3\fP
 1,6,10,14,18,22,26,30,34,38,42,46,50,54,58,62,67
 .br
 COBOL compact format (columns 1 to 6 omitted), with more tabs than
 \fB-c2\fP. 
-.TP
+.TP 7
 \fB-f\fP
 1,7,11,15,19,23
 .br
 FORTRAN 
-.TP
+.TP 7
 \fB-p\fP
 1,5,9,13,17,21,25,29,33,37,41,45,49,53,57,61
 .br
 PL/1 
-.TP
+.TP 7
 \fB-s\fP
 1,10,55
 .br
 SNOBOL 
-.TP
+.TP 7
 \fB-u\fP
 1,12,20,44
 .br
 Assembler, applicable to some mainframes. 
-.TP
-\fB-T\0\fP \fItype\fP
+.TP 7
+\fB-T\ \fP \fItype\fP
 Indicate the type of terminal. If this option is not supplied and
 the \fITERM\fP variable is unset or null, an unspecified
 default terminal type shall be used. The setting of \fItype\fP shall
@@ -106,7 +106,7 @@ take precedence over the value in \fITERM .\fP
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIn1\fP\fB[\fP,\fIn2\fP,...\fB]\fP
 A single command line argument that consists of tab-stop values separated
 using either commas or <blank>s. The
@@ -126,33 +126,33 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fItabs\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fITERM\fP
 Determine the terminal type. If this variable is unset or null, and
 if the \fB-T\fP option is not specified, an unspecified
@@ -179,10 +179,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -219,7 +219,7 @@ version of
 \fItabs\fP supports the capability of setting arbitrary tab stops.
 .LP
 The System V \fItabs\fP interface is very complex; the version in
-this volume of IEEE\0Std\01003.1-2001 has a reduced
+this volume of IEEE\ Std\ 1003.1-2001 has a reduced
 feature list, but many of the features omitted were restored as XSI
 extensions even though the supported languages and coding
 styles are primarily historical.
@@ -228,14 +228,11 @@ There was considerable sentiment for specifying only a means of resetting
 the tabs back to a known state-presumably the
 "standard" of tabs every eight positions. The following features were
 omitted:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Setting tab stops via the first line in a file, using -- \fIfile\fP.
 Since even the SVID has no complete explanation of this
 feature, it is doubtful that it is in widespread use.
-.in -5
-.RE
+.LP
 .LP
 In an early proposal, a \fB-t\fP \fItablist\fP option was added for
 consistency with \fIexpand\fP; this was later removed when inconsistencies

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "uux" P 2003 POSIX
+.TH "UUX" P 2003 POSIX
 .\" uux 
 .SH NAME
-uux - remote command execution
+uux \- remote command execution
 .SH SYNOPSIS
 .LP
 \fBuux\fP \fB[\fP\fB-np\fP\fB]\fP \fIcommand-string\fP\fB
@@ -24,9 +24,7 @@ pipeline shall be executed on the system of the first command.
 .LP
 The following restrictions are applicable to the shell pipeline processed
 by \fIuux\fP:
-.RS
-.in +5
-.LP
+.IP " *" 3
 In gathering files from different systems, pathname expansion shall
 not be performed by \fIuux\fP. Thus, a request such as:
 .sp
@@ -40,26 +38,22 @@ not be performed by \fIuux\fP. Thus, a request such as:
 .LP
 would attempt to copy the file named literally \fB*.c\fP to the local
 system.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The redirection operators \fB">>"\fP , \fB"<<"\fP , \fB">|"\fP , and
 \fB">&"\fP shall not be
 accepted. Any use of these redirection operators shall cause this
 utility to write an error message describing the problem and exit
 with a non-zero exit status.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The reserved word \fB!\fP cannot be used at the head of the pipeline
 to modify the exit status. (See the \fIcommand-string\fP
 operand description below.)
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Alias substitution shall not be performed.
-.in -5
-.RE
+.LP
 .LP
 A filename can be specified as for \fIuucp\fP; it can be an absolute
 pathname, a pathname
@@ -88,7 +82,7 @@ option.
 .LP
 Typical implementations of this utility require a communications line
 configured to use the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 11, General Terminal Interface, but
+IEEE\ Std\ 1003.1-2001, Chapter 11, General Terminal Interface, but
 other
 communications means may be used. On systems where there are no available
 communications means (either temporarily or permanently),
@@ -100,31 +94,31 @@ in all circumstances. For example, transmission data
 may be restricted to 7 bits by the underlying network, 8-bit data
 and filenames need not be portable to non-internationalized
 systems, and so on. Under these circumstances, it is recommended that
-only characters defined in the ISO/IEC\0646:1991 standard
+only characters defined in the ISO/IEC\ 646:1991 standard
 International Reference Version (equivalent to ASCII) 7-bit range
 of characters be used and that only characters defined in the
 portable filename character set be used for naming files.
 .SH OPTIONS
 .LP
 The \fIuux\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-p\fP
 Make the standard input to \fIuux\fP the standard input to the \fIcommand-string\fP.
-.TP
+.TP 7
 \fB-j\fP
 Write the job identification string to standard output. This job identification
 can be used by \fIuustat\fP to obtain the status or terminate a job.
-.TP
+.TP 7
 \fB-n\fP
 Do not notify the user if the command fails.
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIcommand-string\fP
 .sp
 A string made up of one or more arguments that are similar to normal
@@ -144,29 +138,29 @@ Input files shall be selected according to the contents of \fIcommand-string\fP.
 .LP
 The following environment variables shall affect the execution of
 \fIuux\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -203,10 +197,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -236,8 +230,7 @@ another. Also be aware that certain types of expression (that is,
 equivalence classes, character classes, and collating symbols)
 need not be supported on non-internationalized systems. 
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 The following command gets \fBfile1\fP from system \fBa\fP and \fBfile2\fP
 from system \fBb\fP, executes \fIdiff\fP on the local system, and
 puts the results in \fBfile.diff\fP in the local \fIPUBDIR\fP
@@ -251,9 +244,8 @@ local system.)
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The following command fails because \fIuux\fP places all files copied
 to a system in the same working directory. Although the
 files \fBxyz\fP are from two different systems, their filenames are
@@ -266,9 +258,8 @@ the same and conflict.
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The following command succeeds (assuming \fIdiff\fP is permitted on
 system \fBa\fP)
 because the file local to system \fBa\fP is not copied to the working
@@ -282,7 +273,7 @@ system \fBc\fP.
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 None.

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "expm1" P 2003 POSIX
+.TH "EXPM1" P 2003 POSIX
 .\" expm1 
 .SH NAME
-expm1, expm1f, expm1l - compute exponential functions
+expm1, expm1f, expm1l \- compute exponential functions
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -17,13 +17,7 @@ long double expm1l(long double\fP \fIx\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
-These functions shall compute \fIe\fP-1.0.
+These functions shall compute \fIe**x\fP-1.0.
 .LP
 An application wishing to check for error situations should set \fIerrno\fP
 to zero and call
@@ -54,8 +48,8 @@ be returned.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The result overflows. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -66,8 +60,8 @@ raised.
 .sp
 .LP
 These functions may fail if:
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The value of \fIx\fP is subnormal. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -88,7 +82,7 @@ for small values of \fIx\fP.
 .LP
 The \fIexpm1\fP() and \fIlog1p\fP() functions are useful for financial
 calculations of
-((1+\fIx\fP)-1)/\fIx\fP, namely:
+((1+\fIx\fP)**\fIn\fP-1)/\fIx\fP, namely:
 .sp
 .RS
 .nf
@@ -101,7 +95,7 @@ when \fIx\fP is very small (for example, when calculating small daily
 interest rates). These functions also simplify writing
 accurate inverse hyperbolic functions.
 .LP
-For IEEE\0Std\0754-1985 \fBdouble\fP, 709.8 < \fIx\fP implies \fIexpm1\fP(
+For IEEE\ Std\ 754-1985 \fBdouble\fP, 709.8 < \fIx\fP implies \fIexpm1\fP(
 \fIx\fP) has overflowed.
 .LP
 On error, the expressions (math_errhandling & MATH_ERRNO) and (math_errhandling
@@ -117,7 +111,7 @@ None.
 .LP
 \fIexp\fP() , \fIfeclearexcept\fP() , \fIfetestexcept\fP() , \fIilogb\fP()
 , \fIlog1p\fP() ,
-the Base Definitions volume of IEEE\0Std\01003.1-2001, Section 4.18,
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, Section 4.18,
 Treatment of Error Conditions for Mathematical Functions, \fI<math.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

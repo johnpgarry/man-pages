@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "iconv_open" P 2003 POSIX
+.TH "ICONV_OPEN" P 2003 POSIX
 .\" iconv_open 
 .SH NAME
-iconv_open - codeset conversion allocation function
+iconv_open \- codeset conversion allocation function
 .SH SYNOPSIS
 .LP
 \fB#include <iconv.h>
@@ -40,16 +40,16 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIiconv_open\fP() function may fail if:
-.TP
+.TP 7
 .B EMFILE
 {OPEN_MAX} file descriptors are currently open in the calling process.
-.TP
+.TP 7
 .B ENFILE
 Too many files are currently open in the system.
-.TP
+.TP 7
 .B ENOMEM
 Insufficient storage space is available.
-.TP
+.TP 7
 .B EINVAL
 The conversion specified by \fIfromcode\fP and \fItocode\fP is not
 supported by the implementation.
@@ -82,7 +82,7 @@ None.
 .LP
 \fIiconv\fP() , \fIiconv_close\fP() , the Base Definitions volume
 of
-IEEE\0Std\01003.1-2001, \fI<fcntl.h>\fP, \fI<iconv.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<fcntl.h>\fP, \fI<iconv.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

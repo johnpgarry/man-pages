@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "ex" P 2003 POSIX
+.TH "EX" P 2003 POSIX
 .\" ex 
 .SH NAME
-ex - text editor
+ex \- text editor
 .SH SYNOPSIS
 .LP
 \fBex\fP \fB[\fP\fB-rR\fP\fB][\fP\fB-s | -v\fP\fB][\fP\fB-c\fP
@@ -30,22 +30,22 @@ this condition shall not produce an error message such as "not an
 editor command" or report a syntax error. The implementation
 may either accept the commands and produce results on the screen that
 are the result of an unsuccessful attempt to meet the
-requirements of this volume of IEEE\0Std\01003.1-2001 or report an
+requirements of this volume of IEEE\ Std\ 1003.1-2001 or report an
 error describing the terminal-related deficiency.
 .SH OPTIONS
 .LP
 The \fIex\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
-\fB-c\0\fP \fIcommand\fP
+.TP 7
+\fB-c\ \fP \fIcommand\fP
 Specify an initial command to be executed in the first edit buffer
 loaded from an existing file (see the EXTENDED DESCRIPTION
 section). Implementations may support more than a single \fB-c\fP
 option. In such implementations, the specified commands shall be
 executed in the order specified on the command line.
-.TP
+.TP 7
 \fB-r\fP
 Recover the named files (see the EXTENDED DESCRIPTION section). Recovery
 information for a file shall be saved during an editor
@@ -65,38 +65,34 @@ specified, all other options, the \fIEXINIT\fP variable,
 and any \fB.exrc\fP files shall be ignored; a list of all recoverable
 files available to the invoking user shall be written, and
 the editor shall exit normally without further action.
-.TP
+.TP 7
 \fB-R\fP
 Set \fBreadonly\fP edit option.
-.TP
+.TP 7
 \fB-s\fP
 Prepare \fIex\fP for batch use by taking the following actions: 
 .RS
-.in +5
-.LP
+.IP " *" 3
 Suppress writing prompts and informational (but not diagnostic) messages.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Ignore the value of \fITERM\fP and any implementation default terminal
 type and assume the terminal is a type incapable of
 supporting open or visual modes; see the \fBvisual\fP command and
 the description of \fIvi\fP .
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Suppress the use of the \fIEXINIT\fP environment variable and the
 reading of any \fB.exrc\fP file; see the EXTENDED
 DESCRIPTION section.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Suppress autoindentation, ignoring the value of the \fBautoindent\fP
 edit option.
-.in -5
+.LP
 .RE
-.TP
-\fB-t\0\fP \fItagstring\fP
+.TP 7
+\fB-t\ \fP \fItagstring\fP
 Edit the file containing the specified \fItagstring\fP; see \fIctags\fP
 \&. The tags feature
 represented by \fB-t\fP \fItagstring\fP and the \fBtag\fP command
@@ -105,17 +101,17 @@ provides a conforming implementation of \fIctags\fP; otherwise, the
 use of \fB-t\fP
 produces undefined results. On any system, it shall be an error to
 specify more than a single \fB-t\fP option.
-.TP
+.TP 7
 \fB-v\fP
 Begin in visual mode (see \fIvi\fP ).
-.TP
-\fB-w\0\fP \fIsize\fP
+.TP 7
+\fB-w\ \fP \fIsize\fP
 Set the value of the \fIwindow\fP editor option to \fIsize\fP.
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file to be edited.
 .sp
@@ -152,40 +148,40 @@ editor command.
 .LP
 The following environment variables shall affect the execution of
 \fIex\fP:
-.TP
+.TP 7
 \fICOLUMNS\fP
 Override the system-selected horizontal screen size. See the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Chapter 8, Environment
+Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 8, Environment
 Variables for valid values and results when it is unset or null.
-.TP
+.TP 7
 \fIEXINIT\fP
 Determine a list of \fIex\fP commands that are executed on editor
 start-up. See the EXTENDED DESCRIPTION section for more
 details of the initialization phase.
-.TP
+.TP 7
 \fIHOME\fP
 Determine a pathname of a directory that shall be searched for an
 editor start-up file named \fB.exrc\fP; see the EXTENDED
 DESCRIPTION section.
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements within regular
 expressions.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
@@ -194,35 +190,35 @@ behavior of character classes within regular expressions, the
 classification of characters as uppercase or lowercase letters, the
 case conversion of letters, and the detection of word
 boundaries.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fILINES\fP
 Override the system-selected vertical screen size, used as the number
 of lines in a screenful and the vertical screen size in
-visual mode. See the Base Definitions volume of IEEE\0Std\01003.1-2001,
+visual mode. See the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Chapter 8,
 Environment Variables for valid values and results when it is unset
 or null.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fIPATH\fP
 Determine the search path for the shell command specified in the \fIex\fP
 editor commands \fB!\fP, \fBshell\fP, \fBread\fP,
 and \fBwrite\fP, and the open and visual mode command \fB!\fP; see
 the description of command search and execution in \fICommand Search
 and Execution\fP .
-.TP
+.TP 7
 \fISHELL\fP
 Determine the preferred command line interpreter for use as the default
 value of the \fBshell\fP edit option.
-.TP
+.TP 7
 \fITERM\fP
 Determine the name of the terminal type. If this variable is unset
 or null, an unspecified default terminal type shall be
@@ -232,8 +228,8 @@ used.
 .LP
 The following term is used in this and following sections to specify
 command and asynchronous event actions:
-.TP
-\fIcomplete\0write\fP
+.TP 7
+\fIcomplete\ write\fP
 .sp
 A complete write is a write of the entire contents of the edit buffer
 to a file of a type other than a terminal device, or the
@@ -244,7 +240,7 @@ shall not be considered a complete write.
 .sp
 .LP
 The following actions shall be taken upon receipt of signals:
-.TP
+.TP 7
 SIGINT
 If the standard input is not a terminal device, \fIex\fP shall not
 write the file or return to command or text input mode, and
@@ -255,14 +251,13 @@ Otherwise, if executing an open or visual text input mode command,
 its receipt of the <ESC> character.
 .LP
 Otherwise:
-.in +5
-.LP
+.RS
+.IP " 1." 4
 If executing an \fIex\fP text input mode command, all input lines
 that have been completely entered shall be resolved into the
 edit buffer, and any partially entered line shall be discarded.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If there is a currently executing command, it shall be aborted and
 a message displayed. Unless otherwise specified by the
 \fIex\fP or \fIvi\fP command descriptions, it is unspecified whether
@@ -272,19 +267,18 @@ by the executing command, in the buffer.
 .LP
 If the currently executing command was a motion command, its associated
 command shall be discarded.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If in open or visual command mode, the terminal shall be alerted.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The editor shall then return to command mode.
-.in -5
-.TP
+.LP
+.RE
+.TP 7
 SIGCONT
 The screen shall be refreshed if in open or visual mode.
-.TP
+.TP 7
 SIGHUP
 If the edit buffer has been modified since the last complete write,
 \fIex\fP shall attempt to save the edit buffer so that it
@@ -292,7 +286,7 @@ can be recovered later using the \fB-r\fP option or the \fIex\fP \fBrecover\fP
 command. The editor shall not write the file or
 return to command or text input mode, and shall terminate with a non-zero
 exit status.
-.TP
+.TP 7
 SIGTERM
 Refer to SIGHUP.
 .sp
@@ -331,81 +325,77 @@ of a line.
 .LP
 The following symbols are used in this and following sections to specify
 locations in the edit buffer:
-.TP
-\fIalternate\0and\0current\0pathnames\fP
+.TP 7
+\fIalternate\ and\ current\ pathnames\fP
 .sp
 Two pathnames, named \fIcurrent\fP and \fIalternate\fP, are maintained
 by the editor. Any \fIex\fP commands that take filenames
 as arguments shall set them as follows: 
-.in +5
-.LP
+.RS
+.IP " 1." 4
 If a \fIfile\fP argument is specified to the \fIex\fP \fBedit\fP,
 \fBex\fP, or \fBrecover\fP commands, or if an \fIex\fP
 \fBtag\fP command replaces the contents of the edit buffer.
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If the command replaces the contents of the edit buffer, the current
 pathname shall be set to the \fIfile\fP argument or the
 file indicated by the tag, and the alternate pathname shall be set
 to the previous value of the current pathname.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Otherwise, the alternate pathname shall be set to the \fIfile\fP argument.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 2." 4
 If a \fIfile\fP argument is specified to the \fIex\fP \fBnext\fP command:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If the command replaces the contents of the edit buffer, the current
 pathname shall be set to the first \fIfile\fP argument,
 and the alternate pathname shall be set to the previous value of the
 current pathname.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 3." 4
 If a \fIfile\fP argument is specified to the \fIex\fP \fBfile\fP command,
 the current pathname shall be set to the
 \fIfile\fP argument, and the alternate pathname shall be set to the
 previous value of the current pathname.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If a \fIfile\fP argument is specified to the \fIex\fP \fBread\fP and
 \fBwrite\fP commands (that is, when reading or writing
 a file, and not to the program named by the \fBshell\fP edit option),
 or a \fIfile\fP argument is specified to the \fIex\fP
 \fBxit\fP command:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If the current pathname has no value, the current pathname shall be
 set to the \fIfile\fP argument.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Otherwise, the alternate pathname shall be set to the \fIfile\fP argument.
-.in -5
-.in -5
+.LP
+.RE
+.LP
+.RE
 .LP
 If the alternate pathname is set to the previous value of the current
 pathname when the current pathname had no previous value,
 then the alternate pathname shall have no value as a result.
-.TP
-\fIcurrent\0line\fP
+.TP 7
+\fIcurrent\ line\fP
 .sp
 The line of the edit buffer referenced by the cursor. Each command
 description specifies the current line after the command has
 been executed, as the \fIcurrent line value\fP. When the edit buffer
 contains no lines, the current line shall be zero; see Addressing
 in ex .
-.TP
-\fIcurrent\0column\fP
+.TP 7
+\fIcurrent\ column\fP
 .sp
 The current display line column occupied by the cursor. (The columns
 shall be numbered beginning at 1.) Each command description
@@ -416,8 +406,8 @@ The actual display line column upon which the cursor rests
 may be different from the current column; see the cursor positioning
 discussion in \fICommand
 Descriptions in vi\fP .
-.TP
-\fIset\0to\0non-<blank>\fP
+.TP 7
+\fIset\ to\ non-<blank>\fP
 .sp
 A description for a current column value, meaning that the current
 column shall be set to the last display line column on which is
@@ -446,78 +436,70 @@ asynchronous event.
 During initialization (before the first file is copied into the edit
 buffer or any user commands from the terminal are
 processed) the following shall occur:
-.in +5
-.LP
+.IP " 1." 4
 If the environment variable \fIEXINIT\fP is set, the editor shall
 execute the \fIex\fP commands contained in that
 variable.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the \fIEXINIT\fP variable is not set, and all of the following
 are true:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 The \fIHOME\fP environment variable is not null and not empty.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 The file \fB.exrc\fP in the directory referred to by the \fIHOME\fP
 environment variable:
-.in +5
-.LP
+.RS
+.IP " 1." 4
 Exists
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Is owned by the same user ID as the real user ID of the process or
 the process has appropriate privileges
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Is not writable by anyone other than the owner
-.in -5
-.in -5
+.LP
+.RE
+.LP
+.RE
 .LP
 the editor shall execute the \fIex\fP commands contained in that file.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If and only if all of the following are true:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 The current directory is not referred to by the \fIHOME\fP environment
 variable.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 A command in the \fIEXINIT\fP environment variable or a command in
 the \fB.exrc\fP file in the directory referred to by the
 \fIHOME\fP environment variable sets the editor option \fBexrc\fP.
-.in -5
-.in +5
 .LP
+.IP " c." 4
 The \fB.exrc\fP file in the current directory:
-.in +5
-.LP
+.RS
+.IP " 1." 4
 Exists
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Is owned by the same user ID as the real user ID of the process, or
 by one of a set of implementation-defined user IDs
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Is not writable by anyone other than the owner
-.in -5
-.in -5
+.LP
+.RE
+.LP
+.RE
 .LP
 the editor shall attempt to execute the \fIex\fP commands contained
 in that file.
-.in -5
+.LP
 .LP
 Lines in any \fB.exrc\fP file that are blank lines shall be ignored.
 If any \fB.exrc\fP file exists, but is not read for
@@ -526,23 +508,20 @@ ownership or permission reasons, it shall be an error.
 After the \fIEXINIT\fP variable and any \fB.exrc\fP files are processed,
 the first file specified by the user shall be edited,
 as follows:
-.in +5
-.LP
+.IP " 1." 4
 If the user specified the \fB-t\fP option, the effect shall be as
 if the \fIex\fP \fBtag\fP command was entered with the
 specified argument, with the exception that if tag processing does
 not result in a file to edit, the effect shall be as described
 in step 3. below.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, if the user specified any command line \fIfile\fP arguments,
 the effect shall be as if the \fIex\fP \fBedit\fP
 command was entered with the first of those arguments as its \fIfile\fP
 argument.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Otherwise, the effect shall be as if the \fIex\fP \fBedit\fP command
 was entered with a nonexistent filename as its
 \fIfile\fP argument. It is unspecified whether this action shall set
@@ -550,7 +529,7 @@ the current pathname. In an implementation where this action
 does not set the current pathname, any editor command using the current
 pathname shall fail until an editor command sets the
 current pathname.
-.in -5
+.LP
 .LP
 If the \fB-r\fP option was specified, the first time a file in the
 initial argument list or a file specified by the \fB-t\fP
@@ -604,21 +583,17 @@ line. In each command description, the effect of the command on
 the current line number and the current column is described.
 .LP
 Addresses are constructed as follows:
-.in +5
-.LP
+.IP " 1." 4
 The character \fB'.'\fP (period) shall address the current line.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The character \fB'$'\fP shall address the last line of the edit buffer.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The positive decimal number \fIn\fP shall address the \fIn\fPth line
 of the edit buffer.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The address \fB"'x"\fP refers to the line marked with the mark name
 character \fB'x'\fP , which shall be a lowercase
 letter from the portable character set or one of the characters \fB'`'\fP
@@ -626,9 +601,8 @@ or \fB'"\fP . It shall be an error if the line
 that was marked is not currently present in the edit buffer or the
 mark has not been set. Lines can be marked with the \fIex\fP
 \fBmark\fP or \fBk\fP commands, or the \fIvi\fP \fBm\fP command.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 A regular expression enclosed by slashes ( \fB'/'\fP ) shall address
 the first line found by searching forwards from the line
 following the current line toward the end of the edit buffer and stopping
@@ -645,9 +619,8 @@ of the edit buffer and continue up to and including the current line,
 so that the entire edit buffer is searched. Within the
 regular expression, the sequence \fB"\\/"\fP shall represent a literal
 slash instead of the regular expression delimiter.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 A regular expression enclosed in question marks ( \fB'?'\fP ) shall
 address the first line found by searching backwards from
 the line preceding the current line toward the beginning of the edit
@@ -664,31 +637,28 @@ the end of the edit buffer and continue up to and including the current
 line, so that the entire edit buffer is searched. Within
 the regular expression, the sequence \fB"\\?"\fP shall represent a
 literal question mark instead of the RE delimiter.
-.in -5
-.in +5
 .LP
+.IP " 7." 4
 A plus sign ( \fB'+'\fP ) or a minus sign ( \fB'-'\fP ) followed by
 a decimal number shall address the current line plus
 or minus the number. A \fB'+'\fP or \fB'-'\fP not followed by a decimal
 number shall address the current line plus or minus
 1.
-.in -5
+.LP
 .LP
 Addresses can be followed by zero or more address offsets, optionally
 <blank>-separated. Address offsets are constructed
 as follows:
-.in +5
-.LP
+.IP " 1." 4
 A \fB'+'\fP or \fB'-'\fP immediately followed by a decimal number
 shall add (subtract) the indicated number of lines to
 (from) the address. A \fB'+'\fP or \fB'-'\fP not followed by a decimal
 number shall add (subtract) 1 to (from) the
 address.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 A decimal number shall add the indicated number of lines to the address.
-.in -5
+.LP
 .LP
 It shall not be an error for an intermediate address value to be less
 than zero or greater than the last line in the edit
@@ -722,7 +692,7 @@ address offsets shall be discarded.
 .LP
 The following symbol is used in this and following sections to describe
 parsing behavior:
-.TP
+.TP 7
 \fIescape\fP
 If a character is referred to as "backslash-escaped" or " <control>-V-escaped,"
 it shall mean that the character
@@ -737,56 +707,47 @@ Command-line parsing shall be done in the following steps. For each
 step, characters already evaluated shall be ignored; that
 is, the phrase "leading character" refers to the next character that
 has not yet been evaluated.
-.in +5
-.LP
+.IP " 1." 4
 Leading colon characters shall be skipped.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Leading <blank>s shall be skipped.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the leading character is a double-quote character, the characters
 up to and including the next non-backslash-escaped
 <newline> shall be discarded, and any subsequent characters shall
 be parsed as a separate command.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Leading characters that can be interpreted as addresses shall be evaluated;
 see Addressing in ex
 \&.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Leading <blank>s shall be skipped.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 If the next character is a vertical-line character or a <newline>:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If the next character is a <newline>:
-.in +5
-.LP
+.RS
+.IP " 1." 4
 If \fIex\fP is in open or visual mode, the current line shall be set
 to the last address specified, if any.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, if the last command was terminated by a vertical-line character,
 no action shall be taken; for example, the command
 \fB"||<newline>"\fP shall execute two implied commands, not three.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Otherwise, step 6.b. shall apply.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " b." 4
 Otherwise, the implied command shall be the \fBprint\fP command. The
 last \fB#\fP, \fBp\fP, and \fBl\fP flags specified to
 any \fIex\fP command shall be remembered and shall apply to this implied
@@ -802,23 +763,21 @@ line shall be incremented by 1 before the command is executed. If
 incrementing the current line would result in an address past the
 last line in the edit buffer, the command shall fail, and the increment
 shall not happen.
-.in -5
-.in +5
 .LP
+.IP " c." 4
 The <newline> or vertical-line character shall be discarded and any
 subsequent characters shall be parsed as a separate
 command.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 7." 4
 The command name shall be comprised of the next character (if the
 character is not alphabetic), or the next character and any
 subsequent alphabetic characters (if the character is alphabetic),
 with the following exceptions:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 Commands that consist of any prefix of the characters in the command
 name \fBdelete\fP, followed immediately by any of the
 characters \fB'l'\fP , \fB'p'\fP , \fB'+'\fP , \fB'-'\fP , or \fB'#'\fP
@@ -828,46 +787,43 @@ not part of the prefix of the \fBdelete\fP command. The
 maximum number of characters shall be matched to the command name
 \fBdelete\fP; for example, \fB"del"\fP shall not be treated
 as \fB"de"\fP followed by the flag \fBl\fP.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Commands that consist of the character \fB'k'\fP , followed by a character
 that can be used as the name of a mark, shall be
 equivalent to the mark command followed by a <blank>, followed by
 the character that followed the \fB'k'\fP .
-.in -5
-.in +5
 .LP
+.IP " c." 4
 Commands that consist of the character \fB's'\fP , followed by characters
 that could be interpreted as valid options to the
 \fBs\fP command, shall be the equivalent of the \fBs\fP command, without
 any pattern or replacement values, followed by a
 <blank>, followed by the characters after the \fB's'\fP .
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 8." 4
 The command name shall be matched against the possible command names,
 and a command name that contains a prefix matching the
 characters specified by the user shall be the executed command. In
 the case of commands where the characters specified by the user
 could be ambiguous, the executed command shall be as follows:
 .TS C
-center;l l l l l l l l.
-\fBa\fP 	 \fBappend\fP 	 n 	 \fBnext\fP 	 \fBt\fP 	 t 	 \fB\0\fP 	 \fB\0\fP 	
-\fBc\fP 	 \fBchange\fP 	 p 	 \fBprint\fP 	 \fBu\fP 	 undo 	 \fB\0\fP 	 \fB\0\fP 	
-\fBch\fP 	 \fBchange\fP 	 pr 	 \fBprint\fP 	 \fBun\fP 	 undo 	 \fB\0\fP 	 \fB\0\fP 	
-\fBe\fP 	 \fBedit\fP 	 r 	 \fBread\fP 	 \fBv\fP 	 v 	 \fB\0\fP 	 \fB\0\fP 	
-\fBm\fP 	 \fBmove\fP 	 re 	 \fBread\fP 	 \fBw\fP 	 write 	 \fB\0\fP 	 \fB\0\fP 	
-\fBma\fP 	 \fBmark\fP 	 s 	 \fBs\fP 	 \fB\0\fP 	 \0 	 \fB\0\fP 	 \fB\0\fP 	
+center; l l l l l l l l.
+\fBa\fP	\fBappend\fP	n	\fBnext\fP	\fBt\fP	t	\fB\ \fP	\fB\ \fP
+\fBc\fP	\fBchange\fP	p	\fBprint\fP	\fBu\fP	undo	\fB\ \fP	\fB\ \fP
+\fBch\fP	\fBchange\fP	pr	\fBprint\fP	\fBun\fP	undo	\fB\ \fP	\fB\ \fP
+\fBe\fP	\fBedit\fP	r	\fBread\fP	\fBv\fP	v	\fB\ \fP	\fB\ \fP
+\fBm\fP	\fBmove\fP	re	\fBread\fP	\fBw\fP	write	\fB\ \fP	\fB\ \fP
+\fBma\fP	\fBmark\fP	s	\fBs\fP	\fB\ \fP	\ 	\fB\ \fP	\fB\ \fP
 .TE
 .LP
 Implementation extensions with names causing similar ambiguities shall
 not be checked for a match until all possible matches for
-commands specified by IEEE\0Std\01003.1-2001 have been checked.
-.in -5
-.in +5
+commands specified by IEEE\ Std\ 1003.1-2001 have been checked.
 .LP
+.IP " 9." 4
 If the command is a \fB!\fP command, or if the command is a \fBread\fP
 command followed by zero or more <blank>s and a
 \fB!\fP, or if the command is a \fBwrite\fP command followed by one
@@ -875,119 +831,105 @@ or more <blank>s and a \fB!\fP, the rest of the
 command shall include all characters up to a non-backslash-escaped
 <newline>. The <newline> shall be discarded and any
 subsequent characters shall be parsed as a separate \fIex\fP command.
-.in -5
-.in +5
 .LP
+.IP "10." 4
 Otherwise, if the command is an \fBedit\fP, \fBex\fP, or \fBnext\fP
 command, or a \fBvisual\fP command while in open or
 visual mode, the next part of the command shall be parsed as follows:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 Any \fB'!'\fP character immediately following the command shall be
 skipped and be part of the command.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Any leading <blank>s shall be skipped and be part of the command.
-.in -5
-.in +5
 .LP
+.IP " c." 4
 If the next character is a \fB'+'\fP , characters up to the first
 non-backslash-escaped <newline> or
 non-backslash-escaped <blank> shall be skipped and be part of the
 command.
-.in -5
-.in +5
 .LP
+.IP " d." 4
 The rest of the command shall be determined by the steps specified
 in paragraph 12.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP "11." 4
 Otherwise, if the command is a \fBglobal\fP, \fBopen\fP, \fBs\fP,
 or \fBv\fP command, the next part of the command shall be
 parsed as follows:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 Any leading <blank>s shall be skipped and be part of the command.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 If the next character is not an alphanumeric, double-quote, <newline>,
 backslash, or vertical-line character:
-.in +5
-.LP
+.RS
+.IP " 1." 4
 The next character shall be used as a command delimiter.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the command is a \fBglobal\fP, \fBopen\fP, or \fBv\fP command,
 characters up to the first non-backslash-escaped
 <newline>, or first non-backslash-escaped delimiter character, shall
 be skipped and be part of the command.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the command is an \fBs\fP command, characters up to the first non-backslash-escaped
 <newline>, or second
 non-backslash-escaped delimiter character, shall be skipped and be
 part of the command.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " c." 4
 If the command is a \fBglobal\fP or \fBv\fP command, characters up
 to the first non-backslash-escaped <newline> shall be
 skipped and be part of the command.
-.in -5
-.in +5
 .LP
+.IP " d." 4
 Otherwise, the rest of the command shall be determined by the steps
 specified in paragraph 12.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP "12." 4
 Otherwise:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If the command was a \fBmap\fP, \fBunmap\fP, \fBabbreviate\fP, or
 \fBunabbreviate\fP command, characters up to the first
 non- <control>-V-escaped <newline>, vertical-line, or double-quote
 character shall be skipped and be part of the
 command.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Otherwise, characters up to the first non-backslash-escaped <newline>,
 vertical-line, or double-quote character shall be
 skipped and be part of the command.
-.in -5
-.in +5
 .LP
+.IP " c." 4
 If the command was an \fBappend\fP, \fBchange\fP, or \fBinsert\fP
 command, and the step 12.b. ended at a vertical-line
 character, any subsequent characters, up to the next non-backslash-escaped
 <newline> shall be used as input text to the
 command.
-.in -5
-.in +5
 .LP
+.IP " d." 4
 If the command was ended by a double-quote character, all subsequent
 characters, up to the next non-backslash-escaped
 <newline>, shall be discarded.
-.in -5
-.in +5
 .LP
+.IP " e." 4
 The terminating <newline> or vertical-line character shall be discarded
 and any subsequent characters shall be parsed as a
 separate \fIex\fP command.
-.in -5
-.in -5
+.LP
+.RE
+.LP
 .LP
 Command arguments shall be parsed as described by the Synopsis and
 Description of each individual \fIex\fP command. This
@@ -1042,47 +984,40 @@ commands.
 .LP
 If an error occurs during the parsing or execution of an \fIex\fP
 command:
-.RS
-.in +5
-.LP
+.IP " *" 3
 An informational message to this effect shall be written. Execution
 of the \fIex\fP command shall stop, and the cursor (for
 example, the current line and column) shall not be further modified.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the \fIex\fP command resulted from a map expansion, all characters
 from that map expansion shall be discarded, except as
 otherwise specified by the \fBmap\fP command.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Otherwise, if the \fIex\fP command resulted from the processing of
 an \fIEXINIT\fP environment variable, a \fB.exrc\fP file,
 a \fB:source\fP command, a \fB-c\fP option, or a \fB+\fP \fIcommand\fP
 specified to an \fIex\fP \fBedit\fP, \fBex\fP,
 \fBnext\fP, or \fBvisual\fP command, no further commands from the
 source of the commands shall be executed.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Otherwise, if the \fIex\fP command resulted from the execution of
 a buffer or a \fBglobal\fP or \fBv\fP command, no further
 commands caused by the execution of the buffer or the \fBglobal\fP
 or \fBv\fP command shall be executed.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Otherwise, if the \fIex\fP command was not terminated by a <newline>,
 all characters up to and including the next
 non-backslash-escaped <newline> shall be discarded.
-.in -5
-.RE
+.LP
 .SS Input Editing in ex
 .LP
 The following symbol is used in this and the following sections to
 specify command actions:
-.TP
+.TP 7
 \fIword\fP
 In the POSIX locale, a word consists of a maximal sequence of letters,
 digits, and underscores, delimited at both ends by
@@ -1093,36 +1028,33 @@ or end of a line or the edit buffer.
 When accepting input characters from the user, in either \fIex\fP
 command mode or \fIex\fP text input mode, \fIex\fP shall
 enable canonical mode input processing, as defined in the System Interfaces
-volume of IEEE\0Std\01003.1-2001.
+volume of IEEE\ Std\ 1003.1-2001.
 .LP
 If in \fIex\fP text input mode:
-.in +5
-.LP
+.IP " 1." 4
 If the \fBnumber\fP edit option is set, \fIex\fP shall prompt for
 input using the line number that would be assigned to the
 line if it is entered, in the format specified for the \fIex\fP \fBnumber\fP
 command.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the \fBautoindent\fP edit option is set, \fIex\fP shall prompt
 for input using \fBautoindent\fP characters, as described
 by the \fBautoindent\fP edit option. \fBautoindent\fP characters shall
 follow the line number, if any.
-.in -5
+.LP
 .LP
 If in \fIex\fP command mode:
-.in +5
-.LP
+.IP " 1." 4
 If the \fBprompt\fP edit option is set, input shall be prompted for
 using a single \fB':'\fP character; otherwise, there
 shall be no prompt.
-.in -5
+.LP
 .LP
 The input characters in the following sections shall have the following
 effects on the input line.
 .SS Scroll
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1174,7 +1106,7 @@ discarded.
 .LP
 Otherwise, the \fIeof\fP character shall have no special meaning.
 .SS <newline>
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1205,7 +1137,7 @@ of \fBautoindent\fP characters shall be added as a prefix to the line
 as described by the \fIex\fP \fBautoindent\fP edit
 option.
 .SS <backslash>
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1224,7 +1156,7 @@ shall be retained and evaluated when the command line is
 parsed, or retained and included when the input text becomes part
 of the edit buffer.
 .SS <control>-V
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1246,7 +1178,7 @@ If the "literal next" functionality is performed by the underlying
 system, it is implementation-defined whether a character
 other than <control>-V performs this function.
 .SS <control>-W
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1269,7 +1201,7 @@ performs this function.
 The following symbols are used in this section to represent command
 modifiers. Some of these modifiers can be omitted, in which
 case the specified defaults shall be used.
-.TP
+.TP 7
 \fI1addr\fP
 A single line address, given in any of the forms described in Addressing
 in ex ; the default
@@ -1282,7 +1214,7 @@ If the edit buffer is empty, and the address is specified with a command
 other than \fB=\fP, \fBappend\fP, \fBinsert\fP,
 \fBopen\fP, \fBput\fP, \fBread\fP, or \fBvisual\fP, or the address
 is not zero, it shall be an error.
-.TP
+.TP 7
 \fI2addr\fP
 Two addresses specifying an inclusive range of lines. If no addresses
 are specified, the default for \fI2addr\fP shall be the
@@ -1298,7 +1230,7 @@ If the edit buffer is empty, and the two addresses are specified with
 a command other than the \fB!\fP, \fBwrite\fP,
 \fBwq\fP, or \fBxit\fP commands, or either address is not zero, it
 shall be an error.
-.TP
+.TP 7
 \fIcount\fP
 A positive decimal number. If \fIcount\fP is specified, it shall be
 equivalent to specifying an additional address to the
@@ -1310,7 +1242,7 @@ plus \fIcount\fP-1.
 If this would result in an address greater than the last line of the
 edit buffer, it shall be corrected to equal the last line
 of the edit buffer.
-.TP
+.TP 7
 \fIflags\fP
 One or more of the characters \fB'+'\fP , \fB'-'\fP , \fB'#'\fP ,
 \fB'p'\fP , or \fB'l'\fP (ell). The flag
@@ -1320,20 +1252,20 @@ The characters \fB'#'\fP , \fB'p'\fP , and
 by the \fBprint\fP command with the specified \fIflags\fP. 
 .LP
 The lines to be written are as follows:
-.in +5
-.LP
+.RS
+.IP " 1." 4
 All edit buffer lines written during the execution of the \fIex\fP
 \fB&\fP, \fB~\fP, \fBlist\fP, \fBnumber\fP,
 \fBopen\fP, \fBprint\fP, \fBs\fP, \fBvisual\fP, and \fBz\fP commands
 shall be written as specified by \fIflags\fP.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 After the completion of an \fIex\fP command with a flag as an argument,
 the current line shall be written as specified by
 \fIflags\fP, unless the current line was the last line written by
 the command.
-.in -5
+.LP
+.RE
 .LP
 The characters \fB'+'\fP and \fB'-'\fP cause the value of the current
 line after the execution of the \fIex\fP command to
@@ -1342,7 +1274,7 @@ be adjusted by the offset address as described in Addressing in ex
 before the current line is written as described in 2. above.
 .LP
 The default for \fIflags\fP shall be none.
-.TP
+.TP 7
 \fIbuffer\fP
 One of a number of named areas for holding text. The named buffers
 are specified by the alphanumeric characters of the POSIX
@@ -1394,7 +1326,7 @@ individually how buffers of different modes are handled. Each
 open or visual mode command that uses buffers for any purpose specifies
 individually the mode of the text stored into the buffer
 and how buffers of different modes are handled.
-.TP
+.TP 7
 \fIfile\fP
 Command text used to derive a pathname. The default shall be the current
 pathname, as defined previously, in which case, if no
@@ -1414,7 +1346,7 @@ program named by the shell edit option; the first shall be \fB-c\fP,
 and the second shall be the string \fB"echo"\fP and the
 command text as a single argument. The standard output and standard
 error of that command shall replace the command text.
-.TP
+.TP 7
 \fB!\fP
 A character that can be appended to the command name to modify its
 operation, as detailed in the individual command
@@ -1422,8 +1354,8 @@ descriptions. With the exception of the \fIex\fP \fBread\fP, \fBwrite\fP,
 and \fB!\fP commands, the \fB'!'\fP character
 shall only act as a modifier if there are no <blank>s between it and
 the command name.
-.TP
-\fIremembered\0search\0direction\fP
+.TP 7
+\fIremembered\ search\ direction\fP
 .sp
 The \fIvi\fP commands \fBN\fP and \fBn\fP begin searching in a forwards
 or backwards
@@ -1434,7 +1366,7 @@ which is initially unset, and is set by the \fIex\fP
 \fB?\fP commands.
 .sp
 .SS Abbreviate
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1466,28 +1398,25 @@ during this command. If it is found, the effect shall be as if \fIrhs\fP
 was entered instead of \fIlhs\fP.
 .LP
 The set of characters that are checked is defined as follows:
-.in +5
-.LP
+.IP " 1." 4
 If there are no characters inserted before the word and non-word or
 <ESC> characters that triggered the check, the set of
 characters shall consist of the word character.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the character inserted before the word and non-word or <ESC> characters
 that triggered the check is a word character,
 the set of characters shall consist of the characters inserted immediately
 before the triggering characters that are word
 characters, plus the triggering word character.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the character inserted before the word and non-word or <ESC> characters
 that triggered the check is not a word
 character, the set of characters shall consist of the characters that
 were inserted before the triggering characters that are
 neither <blank>s nor word characters, plus the triggering word character.
-.in -5
+.LP
 .LP
 It is unspecified whether the \fIlhs\fP argument entered for the \fIex\fP
 \fBabbreviate\fP and \fBunabbreviate\fP commands
@@ -1499,7 +1428,7 @@ replacement had not occurred.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Append
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1526,7 +1455,7 @@ is empty.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Arguments
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1545,7 +1474,7 @@ characters.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Change
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1572,7 +1501,7 @@ first address, or to zero if the edit buffer is empty.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Change Directory
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1601,7 +1530,7 @@ error.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Copy
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1621,7 +1550,7 @@ beginning of the edit buffer.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Delete
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1644,7 +1573,7 @@ the end of the edit buffer, or to zero if the edit buffer is empty.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Edit
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1713,7 +1642,7 @@ Otherwise:
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS File
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1744,7 +1673,7 @@ information.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Global
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1785,15 +1714,13 @@ on a single line using a vertical line to delimit
 them, or one per line, by escaping each <newline> with a backslash.
 .LP
 If no commands are specified:
-.in +5
-.LP
+.IP " 1." 4
 If in \fIex\fP command mode, it shall be as if the \fBprint\fP command
 were specified.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, no command shall be executed.
-.in -5
+.LP
 .LP
 For the \fBappend\fP, \fBchange\fP, and \fBinsert\fP commands, the
 input text shall be included as part of the command, and
@@ -1827,7 +1754,7 @@ commands.
 otherwise, as specified for the individual
 \fIex\fP commands.
 .SS Insert
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1854,7 +1781,7 @@ specified line, or zero if the edit buffer is empty.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Join
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1902,36 +1829,31 @@ independent of the current locale.
 Otherwise, in the POSIX locale, set the current line to the first
 of the specified lines, and then, for each subsequent line,
 proceed as follows:
-.in +5
-.LP
+.IP " 1." 4
 Discard leading <space>s from the line to be joined.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the line to be joined is now empty, delete it, and skip steps 3
 through 5.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the current line ends in a <blank>, or the first character of the
 line to be joined is a \fB')'\fP character, join
 the lines without further modification.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If the last character of the current line is a \fB'.'\fP , join the
 lines with two <space>s between them.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Otherwise, join the lines with a single <space> between them.
-.in -5
+.LP
 .LP
 \fICurrent line\fP: Set to the first line specified.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS List
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1953,7 +1875,7 @@ This command shall be equivalent to the \fIex\fP command:
 .LP
 See Print .
 .SS Map
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -1965,19 +1887,16 @@ See Print .
 .sp
 .LP
 If \fIlhs\fP and \fIrhs\fP are not specified:
-.in +5
-.LP
+.IP " 1." 4
 If \fB'!'\fP is specified, write the current list of text input mode
 maps.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, write the current list of command mode maps.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Do nothing more.
-.in -5
+.LP
 .LP
 Implementations may restrict the set of characters accepted in \fIlhs\fP
 or \fIrhs\fP, except that printable characters and
@@ -2053,7 +1972,7 @@ as if it occurred immediately.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Mark
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2089,45 +2008,37 @@ edit buffer shall be an error.
 The marks \fB`\fP and \fB'\fP shall be set as described previously,
 immediately before the following events occur in the
 editor:
-.in +5
-.LP
+.IP " 1." 4
 The use of \fB'$'\fP as an \fIex\fP address
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The use of a positive decimal number as an \fIex\fP address
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The use of a search command as an \fIex\fP address
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The use of a mark reference as an \fIex\fP address
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 The use of the following open and visual mode commands: <control>-],
 \fB%\fP, \fB(\fP, \fB)\fP, \fB[\fP, \fB]\fP,
 \fB{\fP, \fB}\fP
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 The use of the following open and visual mode commands: \fB'\fP, \fBG\fP,
 \fBH\fP, \fBL\fP, \fBM\fP, \fBz\fP if the
 current line will change as a result of the command
-.in -5
-.in +5
 .LP
+.IP " 7." 4
 The use of the open and visual mode commands: \fB/\fP, \fB?\fP, \fBN\fP,
 \fB`\fP, \fBn\fP if the current line or column
 will change as a result of the command
-.in -5
-.in +5
 .LP
+.IP " 8." 4
 The use of the \fIex\fP mode commands: \fBz\fP, \fBundo\fP, \fBglobal\fP,
 \fBv\fP
-.in -5
+.LP
 .LP
 For rules 1., 2., 3., and 4., the \fB`\fP and \fB'\fP marks shall
 not be set if the \fIex\fP command is parsed as specified
@@ -2159,7 +2070,7 @@ and \fB'\fP marks shall be set as described previously.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Move
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2180,7 +2091,7 @@ moved.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Next
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2197,32 +2108,27 @@ shall be an error, unless the file is successfully written as specified
 by the \fBautowrite\fP option.
 .LP
 If one or more files is specified:
-.in +5
-.LP
+.IP " 1." 4
 Set the argument list to the specified filenames.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Set the current argument list reference to be the first entry in the
 argument list.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Set the current pathname to the first filename specified.
-.in -5
+.LP
 .LP
 Otherwise:
-.in +5
-.LP
+.IP " 1." 4
 It shall be an error if there are no more filenames in the argument
 list after the filename currently referenced.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Set the current pathname and the current argument list reference to
 the filename after the filename currently referenced in the
 argument list.
-.in -5
+.LP
 .LP
 Replace the contents of the edit buffer with the contents of the file
 named by the current pathname. If for any reason the
@@ -2243,7 +2149,7 @@ been set.
 .LP
 \fICurrent column\fP: Set as described for the \fBedit\fP command.
 .SS Number
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2266,7 +2172,7 @@ These commands shall be equivalent to the \fIex\fP command:
 .LP
 See Print .
 .SS Open
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2296,7 +2202,7 @@ vertical line, double quote, or <newline>.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Preserve
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2321,7 +2227,7 @@ the mail message.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Print
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2347,35 +2253,32 @@ following format:
 .RS
 .nf
 
-\fB"%6d", <\fP\fIline number\fP\fB>
+\fB"%6d  ", <\fP\fIline number\fP\fB>
 \fP
 .fi
 .RE
 .LP
 If the \fBl\fP flag is specified or the \fBlist\fP edit option is
 set:
-.in +5
-.LP
-The characters listed in the Base Definitions volume of IEEE\0Std\01003.1-2001,
+.IP " 1." 4
+The characters listed in the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Table 5-1, Escape Sequences and
 Associated Actions shall be written as the corresponding escape sequence.
-.in -5
-.in +5
 .LP
-Non-printable characters not in the Base Definitions volume of IEEE\0Std\01003.1-2001,
+.IP " 2." 4
+Non-printable characters not in the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Table 5-1, Escape Sequences and
 Associated Actions shall be written as one three-digit octal number
 (with a preceding backslash) for each byte in the character
 (most significant byte first). If the size of a byte on the system
 is greater than 9 bits, the format used for non-printable
 characters is implementation-defined.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The end of each line shall be marked with a \fB'$'\fP , and literal
 \fB'$'\fP characters within the line shall be written
 with a preceding backslash.
-.in -5
+.LP
 .LP
 Long lines shall be folded; the length at which folding occurs is
 unspecified, but should be appropriate for the output
@@ -2391,7 +2294,7 @@ it shall not be discarded.
 \fICurrent column\fP: Unchanged if the current line is unchanged;
 otherwise, set to non- <blank>.
 .SS Put
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2412,7 +2315,7 @@ buffer, regardless of the mode of the buffer.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Quit
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2424,22 +2327,20 @@ buffer, regardless of the mode of the buffer.
 .sp
 .LP
 If no \fB'!'\fP is appended to the command name:
-.in +5
-.LP
+.IP " 1." 4
 If the edit buffer has been modified since the last complete write,
 it shall be an error.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If there are filenames in the argument list after the filename currently
 referenced, and the last command was not a \fBquit\fP,
 \fBwq\fP, \fBxit\fP, or \fBZZ\fP (see \fIExit\fP ) command, it shall
 be an error.
-.in -5
+.LP
 .LP
 Otherwise, terminate the editing session.
 .SS Read
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2492,7 +2393,7 @@ entered into the edit buffer.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Recover
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2529,7 +2430,7 @@ been modified.
 .LP
 \fICurrent column\fP: Set as described for the \fBedit\fP command.
 .SS Rewind
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2562,7 +2463,7 @@ edit options.
 .LP
 \fICurrent column\fP: Set as described for the \fBedit\fP command.
 .SS Set
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2598,7 +2499,7 @@ See Edit Options in ex for details about specific options.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Shell
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2617,7 +2518,7 @@ resumed when the program exits.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Source
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2635,7 +2536,7 @@ that are blank lines shall be ignored.
 .LP
 \fICurrent column\fP: As specified for the individual \fIex\fP commands.
 .SS Substitute
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2743,7 +2644,7 @@ or, unchanged if no substitution occurred.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Suspend
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2766,7 +2667,7 @@ The current \fBsusp\fP character (see \fIstty\fP ) shall be equivalent
 to the \fBsuspend\fP
 command.
 .SS Tag
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2822,7 +2723,7 @@ in the edit buffer, or if the tags file contained a pattern and that
 pattern was found, set to non- <blank>. Otherwise, set
 as specified for the \fBedit\fP command.
 .SS Unabbreviate
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2841,7 +2742,7 @@ an error. Otherwise, delete \fIlhs\fP from the list of abbreviations.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Undo
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2866,27 +2767,23 @@ shall also be restored unless it was reset subsequent to
 the deletion of the lines.
 .LP
 \fICurrent line\fP:
-.in +5
-.LP
+.IP " 1." 4
 If lines are added or changed in the file, set to the first line added
 or changed.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Set to the line before the first line deleted, if it exists.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Set to 1 if the edit buffer is not empty.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Set to zero.
-.in -5
+.LP
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Unmap
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2911,7 +2808,7 @@ the list of command mode map definitions.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Version
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2929,7 +2826,7 @@ format of the message is unspecified.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Visual
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -2958,16 +2855,16 @@ before being used by the type character.
 Enter visual mode. If \fItype\fP is not specified, it shall be as
 if a \fItype\fP of \fB'+'\fP was specified. The
 \fItype\fP shall cause the following effects:
-.TP
+.TP 7
 \fB+\fP
 Place the beginning of the specified line at the top of the display.
-.TP
+.TP 7
 \fB-\fP
 Place the end of the specified line at the bottom of the display.
-.TP
+.TP 7
 \fB\&.\fP
 Place the beginning of the specified line in the middle of the display.
-.TP
+.TP 7
 \fB^\fP
 If the specified line is less than or equal to the value of the \fBwindow\fP
 edit option, set the line to 1; otherwise,
@@ -2981,7 +2878,7 @@ of the \fBwindow\fP edit option number of lines.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Write
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3005,44 +2902,38 @@ attempted.
 If the command name is not followed by one or more <blank>s, or \fIfile\fP
 is not preceded by a \fB'!'\fP character,
 the \fBwrite\fP shall be to a file.
-.in +5
-.LP
+.IP " 1." 4
 If the \fB>>\fP argument is specified, and the file already exists,
 the lines shall be appended to the file instead of
 replacing its contents. If the \fB>>\fP argument is specified, and
 the file does not already exist, it is unspecified
 whether the write shall proceed as if the \fB>>\fP argument had not
 been specified or if the write shall fail.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the \fBreadonly\fP edit option is set (see readonly ), the \fBwrite\fP
 shall fail.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If \fIfile\fP is specified, and is not the current pathname, and the
 file exists, the \fBwrite\fP shall fail.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If \fIfile\fP is not specified, the current pathname shall be used.
 If there is no current pathname, the \fBwrite\fP command
 shall fail.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 If the current pathname is used, and the current pathname has been
 changed by the \fBfile\fP or \fBread\fP commands, and the
 file exists, the \fBwrite\fP shall fail. If the \fBwrite\fP is successful,
 subsequent \fBwrite\fPs shall not fail for this
 reason (unless the current pathname is changed again).
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 If the whole edit buffer is not being written, and the file to be
 written exists, the \fBwrite\fP shall fail.
-.in -5
+.LP
 .LP
 For rules 1., 2., 4., and 5., the \fBwrite\fP can be forced by appending
 the character \fB'!'\fP to the command name.
@@ -3082,7 +2973,7 @@ character.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Write and Exit
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3105,7 +2996,7 @@ or if a \fB'!'\fP is appended to the command name, to
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Yank
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3123,7 +3014,7 @@ unnamed buffer), which shall become a line-mode buffer.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Adjust Window
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3158,7 +3049,7 @@ shall be written.
 .LP
 The \fItype\fP argument shall change the lines to be written. The
 possible values of \fItype\fP are as follows:
-.TP
+.TP 7
 \fB-\fP
 The specified line shall be decremented by the following value: 
 .sp
@@ -3174,7 +3065,7 @@ If the calculation would result in a number less than 1, it shall
 be an error. Write lines from the edit buffer, starting at the
 new value of line, until \fIcount\fP lines or the last line in the
 edit buffer has been written.
-.TP
+.TP 7
 \fB+\fP
 The specified line shall be incremented by the following value: 
 .sp
@@ -3191,16 +3082,15 @@ line in the edit buffer, it shall be an error. Write lines
 from the edit buffer, starting at the new value of line, until \fIcount\fP
 lines or the last line in the edit buffer has been
 written.
-.TP
+.TP 7
 \fB=\fP,\fB.\fP
 If more than a single \fB'.'\fP or \fB'='\fP is specified, it shall
 be an error. The following steps shall be taken: 
-.in +5
-.LP
+.RS
+.IP " 1." 4
 If \fIcount\fP is zero, nothing shall be written.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Write as many of the \fIN\fP lines before the current line in the
 edit buffer as exist. If \fIcount\fP or \fB'!'\fP was
 specified, \fIN\fP shall be:
@@ -3224,29 +3114,26 @@ Otherwise, \fIN\fP shall be:
 .RE
 .LP
 If \fIN\fP is a number less than 3, no lines shall be written.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If \fB'='\fP was specified as the type character, write a line consisting
 of the smaller of the number of columns in the
 display divided by two, or 40 \fB'-'\fP characters.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Write the current line.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Repeat step 3.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 Write as many of the \fIN\fP lines after the current line in the edit
 buffer as exist. \fIN\fP shall be defined as in step 2.
 If \fIN\fP is a number less than 3, no lines shall be written. If
 \fIcount\fP is less than 3, no lines shall be written.
-.in -5
-.TP
+.LP
+.RE
+.TP 7
 \fB^\fP
 The specified line shall be decremented by the following value: 
 .sp
@@ -3269,7 +3156,7 @@ is \fB=\fP, in which case, set to the specified line.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Escape
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3321,33 +3208,28 @@ If lines are specified, this command shall be affected by the
 \fBautoprint\fP edit option.
 .LP
 \fICurrent line\fP:
-.in +5
-.LP
+.IP " 1." 4
 If no lines are specified, unchanged.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, set to the last line read in, if any lines are read in.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Otherwise, set to the line before the first line of the lines specified,
 if that line exists.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Otherwise, set to the first line of the edit buffer if the edit buffer
 is not empty.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Otherwise, set to zero.
-.in -5
+.LP
 .LP
 \fICurrent column\fP: If no lines are specified, unchanged. Otherwise,
 set to non- <blank>.
 .SS Shift Left
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3373,7 +3255,7 @@ This command shall be affected by the \fBautoprint\fP edit option.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Shift Right
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3400,7 +3282,7 @@ This command shall be affected by the \fBautoprint\fP edit option.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS <control>-D
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3421,7 +3303,7 @@ is the last line of the edit buffer it shall be an error.
 .LP
 \fICurrent column\fP: Set to non- <blank>.
 .SS Write Line Number
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3440,7 +3322,7 @@ line.
 .LP
 \fICurrent column\fP: Unchanged.
 .SS Execute
-.TP
+.TP 7
 \fISynopsis\fP:
 .sp
 .RS
@@ -3478,7 +3360,7 @@ command shall be processed.
 .LP
 The \fIex\fP utility shall support regular expressions that are a
 superset of the basic regular expressions described in the
-Base Definitions volume of IEEE\0Std\01003.1-2001, Section 9.3, Basic
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, Section 9.3, Basic
 Regular Expressions. A null regular expression ( \fB"//"\fP ) shall
 be equivalent to the last regular expression
 encountered.
@@ -3489,15 +3371,15 @@ command), to specify portions of a line to be substituted.
 .LP
 The following constructs can be used to enhance the basic regular
 expressions:
-.TP
+.TP 7
 \fB\\<\fP
 Match the beginning of a \fIword\fP. (See the definition of \fIword\fP
 at the beginning of Command
 Descriptions in ex .)
-.TP
+.TP 7
 \fB\\>\fP
 Match the end of a \fIword\fP.
-.TP
+.TP 7
 \fB~\fP
 Match the replacement part of the last \fBsubstitute\fP command. The
 tilde ( \fB'~'\fP ) character can be escaped in a
@@ -3569,61 +3451,54 @@ If \fBautoindent\fP is set, each line in input mode shall be indented
 (using first as many <tab>s as possible, as
 determined by the editor option \fBtabstop\fP, and then using <space>s)
 to align with another line, as follows:
-.in +5
-.LP
+.IP " 1." 4
 If in open or visual mode and the text input is part of a line-oriented
 command (see the EXTENDED DESCRIPTION in \fIvi\fP ), align to the
 first column.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, if in open or visual mode, indentation for each line shall
 be set as follows:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If a line was previously inserted as part of this command, it shall
 be set to the indentation of the last inserted line by
 default, or as otherwise specified for the <control>-D character in
 \fIInput Mode Commands
 in vi\fP .
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Otherwise, it shall be set to the indentation of the previous current
 line, if any; otherwise, to the first column.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 3." 4
 For the \fIex\fP \fBa\fP, \fBi\fP, and \fBc\fP commands, indentation
 for each line shall be set as follows:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If a line was previously inserted as part of this command, it shall
 be set to the indentation of the last inserted line by
 default, or as otherwise specified for the \fIeof\fP character in
 Scroll .
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Otherwise, if the command is the \fIex\fP \fBa\fP command, it shall
 be set to the line appended after, if any; otherwise to
 the first column.
-.in -5
-.in +5
 .LP
+.IP " c." 4
 Otherwise, if the command is the \fIex\fP \fBi\fP command, it shall
 be set to the line inserted before, if any; otherwise to
 the first column.
-.in -5
-.in +5
 .LP
+.IP " d." 4
 Otherwise, if the command is the \fIex\fP \fBc\fP command, it shall
 be set to the indentation of the line replaced.
-.in -5
-.in -5
+.LP
+.RE
+.LP
 .SS autoprint, ap
 .LP
 [Default \fIset\fP]
@@ -3633,35 +3508,29 @@ each \fIex\fP command that modifies the contents of the
 current edit buffer, and after each \fBtag\fP command for which the
 tag search pattern was found or tag line number was valid,
 unless:
-.in +5
-.LP
+.IP " 1." 4
 The command was executed while in open or visual mode.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The command was executed as part of a \fBglobal\fP or \fBv\fP command
 or \fB@\fP buffer execution.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The command was the form of the \fBread\fP command that reads a file
 into the edit buffer.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The command was the \fBappend\fP, \fBchange\fP, or \fBinsert\fP command.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 The command was not terminated by a <newline>.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 The current line shall be written by a flag specified to the command;
 for example, \fBdelete #\fP shall write the current line
 as specified for the flag modifier to the \fBdelete\fP command, and
 not as specified by the \fBautoprint\fP edit option.
-.in -5
+.LP
 .SS autowrite, aw
 .LP
 [Default \fIunset\fP]
@@ -3810,26 +3679,22 @@ If the \fBreadonly\fP edit option is set, read-only mode shall be
 enabled (see Write ). The
 \fBreadonly\fP edit option shall be initialized to set if either of
 the following conditions are true:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The command-line option -R was specified.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Performing actions equivalent to the \fIaccess\fP() function called
 with the following
 arguments indicates that the file lacks write permission:
-.in +5
-.LP
+.RS
+.IP " 1." 4
 The current pathname is used as the \fIpath\fP argument.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The constant \fBW_OK\fP is used as the \fIamode\fP argument.
-.in -5
-.in -5
+.LP
 .RE
+.LP
 .LP
 The \fBreadonly\fP edit option may be initialized to set for other,
 implementation-defined reasons. The \fBreadonly\fP edit
@@ -3866,9 +3731,7 @@ buffer will cause an informational message to be written to the user.
 The following conditions shall cause an informational
 message. The message shall contain the number of lines added, copied,
 deleted, or modified, but is otherwise unspecified.
-.RS
-.in +5
-.LP
+.IP " *" 3
 An \fIex\fP or \fIvi\fP editor command, other than \fBopen\fP, \fBundo\fP,
 or
 \fBvisual\fP, that modifies at least the value of the \fBreport\fP
@@ -3876,9 +3739,8 @@ edit option number of lines, and which is not part of an
 \fIex\fP \fBglobal\fP or \fBv\fP command, or \fIex\fP or \fIvi\fP
 buffer execution, shall
 cause an informational message to be written.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 An \fIex\fP \fByank\fP or \fIvi\fP \fBy\fP or \fBY\fP command, that
 copies at least the
 value of the \fBreport\fP edit option plus 1 number of lines, and
@@ -3886,9 +3748,8 @@ which is not part of an \fIex\fP \fBglobal\fP or \fBv\fP
 command, or \fIex\fP or \fIvi\fP buffer execution, shall cause an
 informational message to be
 written.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 An \fIex\fP \fBglobal\fP, \fBv\fP, \fBopen\fP, \fBundo\fP, or \fBvisual\fP
 command or \fIex\fP or \fIvi\fP buffer execution, that adds or deletes
 a total of at least the value of the \fBreport\fP edit
@@ -3898,8 +3759,7 @@ cause an informational message to be written. (For example, if 3 lines
 were added and 8 lines deleted during an \fIex\fP \fBvisual\fP command,
 5 would be the number compared against the \fBreport\fP
 edit option after the command completed.)
-.in -5
-.RE
+.LP
 .SS scroll, scr
 .LP
 [Default (number of lines in the display -1)/2]
@@ -4053,8 +3913,7 @@ During open and visual text input modes, for each character for which
 any part of the character is displayed in a column that is
 less than \fBwrapmargin\fP columns from the ending margin of the display
 line, the editor shall behave as follows:
-.in +5
-.LP
+.IP " 1." 4
 If the character triggering this event is a <blank>, it, and all immediately
 preceding <blank>s on the current line
 entered during the execution of the current text input command, shall
@@ -4062,15 +3921,14 @@ be discarded, and the editor shall behave as if the user had
 entered a single <newline> instead. In addition, if the next user-entered
 character is a <space>, it shall be discarded
 as well.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Otherwise, if there are one or more <blank>s on the current line immediately
 preceding the last group of inserted non-
 <blank>s which was entered during the execution of the current text
 input command, the <blank>s shall be replaced as if
 the user had entered a single <newline> instead.
-.in -5
+.LP
 .LP
 If the \fBautoindent\fP edit option is set, and the events described
 in 1. or 2. are performed, any <blank>s at or after
@@ -4078,7 +3936,7 @@ the cursor in the current line shall be discarded.
 .LP
 The ending margin shall be determined by the system or overridden
 by the user, as described for \fICOLUMNS\fP in the
-ENVIRONMENT VARIABLES section and the Base Definitions volume of IEEE\0Std\01003.1-2001,
+ENVIRONMENT VARIABLES section and the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Chapter 8, Environment Variables.
 .SS wrapscan, ws
 .LP
@@ -4099,10 +3957,10 @@ as described in editor option \fBautowrite\fP.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -4149,10 +4007,10 @@ The \fIex\fP/ \fIvi\fP specification is based on the historical practice
 found in the 4 BSD
 and System V implementations of \fIex\fP and \fIvi\fP. A freely redistributable
 implementation
-of \fIex\fP/ \fIvi\fP, which is tracking IEEE\0Std\01003.1-2001 fairly
+of \fIex\fP/ \fIvi\fP, which is tracking IEEE\ Std\ 1003.1-2001 fairly
 closely, and
 demonstrates the intended changes between historical implementations
-and IEEE\0Std\01003.1-2001, may be obtained by
+and IEEE\ Std\ 1003.1-2001, may be obtained by
 anonymous FTP from:
 .sp
 .RS
@@ -4183,11 +4041,11 @@ the \fB-e\fP option of \fIsed\fP. Historically, all such commands
 (see \fBedit\fP and \fBnext\fP as well) were executed
 from the last line of the edit buffer. This meant, for example, that
 \fB"+/pattern"\fP would fail unless the \fBwrapscan\fP
-option was set. IEEE\0Std\01003.1-2001 requires conformance to historical
+option was set. IEEE\ Std\ 1003.1-2001 requires conformance to historical
 practice. Historically, some implementations
 restricted the \fIex\fP commands that could be listed as part of the
 command line arguments. For consistency,
-IEEE\0Std\01003.1-2001 does not permit these restrictions.
+IEEE\ Std\ 1003.1-2001 does not permit these restrictions.
 .LP
 In historical implementations of the editor, the \fB-R\fP option (and
 the \fBreadonly\fP edit option) only prevented
@@ -4195,7 +4053,7 @@ overwriting of files; appending to files was still permitted, mapping
 loosely into the \fIcsh\fP \fBnoclobber\fP variable. Some
 implementations, however, have not followed this semantic, and \fBreadonly\fP
 does not permit appending either.
-IEEE\0Std\01003.1-2001 follows the latter practice, believing that
+IEEE\ Std\ 1003.1-2001 follows the latter practice, believing that
 it is a more obvious and intuitive meaning of
 \fBreadonly\fP.
 .LP
@@ -4207,7 +4065,7 @@ named "dumb".
 .LP
 The \fB-t\fP option was required because the \fIctags\fP utility appears
 in
-IEEE\0Std\01003.1-2001 and the option is available in all historical
+IEEE\ Std\ 1003.1-2001 and the option is available in all historical
 implementations of \fIex\fP.
 .LP
 Historically, the \fIex\fP and \fIvi\fP utilities accepted a \fB-x\fP
@@ -4284,20 +4142,20 @@ files to back edit buffers unnamed by the user.
 .LP
 Historically, SIGQUIT was ignored by \fIex\fP, but was the equivalent
 of the \fBQ\fP command in visual mode; that is, it
-exited visual mode and entered \fIex\fP mode. IEEE\0Std\01003.1-2001
+exited visual mode and entered \fIex\fP mode. IEEE\ Std\ 1003.1-2001
 permits, but does not require, this behavior.
 Historically, SIGINT was often used by \fIvi\fP users to terminate
 text input mode (
 <control>-C is often easier to enter than <ESC>). Some implementations
 of \fIvi\fP
-alerted the terminal on this event, and some did not. IEEE\0Std\01003.1-2001
+alerted the terminal on this event, and some did not. IEEE\ Std\ 1003.1-2001
 requires that SIGINT behave identically to
 <ESC>, and that the terminal not be alerted.
 .LP
 Historically, suspending the \fIex\fP editor during text input mode
 was similar to SIGINT, as completed lines were retained,
 but any partial line discarded, and the editor returned to command
-mode. IEEE\0Std\01003.1-2001 is silent on this issue;
+mode. IEEE\ Std\ 1003.1-2001 is silent on this issue;
 implementations are encouraged to follow historical practice, where
 possible.
 .LP
@@ -4312,7 +4170,7 @@ terminal state if SIGTSTP was delivered to the process group in the
 default manner. The second was that most implementations of the
 UNIX \fIcurses\fP package are not reentrant, and the receipt of SIGTSTP
 at the wrong time will cause them to crash.
-IEEE\0Std\01003.1-2001 is silent on this issue; implementations are
+IEEE\ Std\ 1003.1-2001 is silent on this issue; implementations are
 encouraged to treat suspension as an asynchronous event
 if possible.
 .LP
@@ -4320,7 +4178,7 @@ Historically, modifications to the edit buffer made before SIGINT
 interrupted an operation were retained; that is, anywhere from
 zero to all of the lines to be modified might have been modified by
 the time the SIGINT arrived. These changes were not discarded
-by the arrival of SIGINT. IEEE\0Std\01003.1-2001 permits this behavior,
+by the arrival of SIGINT. IEEE\ Std\ 1003.1-2001 permits this behavior,
 noting that the \fBundo\fP command is required to
 be able to undo these partially completed commands.
 .LP
@@ -4342,24 +4200,21 @@ If an \fIex\fP command (other than \fBcd\fP, \fBchdir\fP, or \fBsource\fP)
 has a filename argument, one or both of the
 alternate and current pathnames will be set. Informally, they are
 set as follows:
-.in +5
-.LP
+.IP " 1." 4
 If the \fIex\fP command is one that replaces the contents of the edit
 buffer, and it succeeds, the current pathname will be set
 to the filename argument (the first filename argument in the case
 of the \fBnext\fP command) and the alternate pathname will be
 set to the previous current pathname, if there was one.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 In the case of the file read/write forms of the \fBread\fP and \fBwrite\fP
 commands, if there is no current pathname, the
 current pathname will be set to the filename argument.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Otherwise, the alternate pathname will be set to the filename argument.
-.in -5
+.LP
 .LP
 For example, \fB:edit foo\fP and \fB:recover foo\fP, when successful,
 set the current pathname, and, if there was a previous
@@ -4371,7 +4226,7 @@ some reason, the alternate pathname would be set. The
 their \fIfile\fP argument, unless the current pathname is not
 set, in which case they set the current pathname to their \fIfile\fP
 arguments. The alternate pathname was not historically set by
-the \fB:source\fP command. IEEE\0Std\01003.1-2001 requires conformance
+the \fB:source\fP command. IEEE\ Std\ 1003.1-2001 requires conformance
 to historical practice. Implementations adding
 commands that take filenames as arguments are encouraged to set the
 alternate pathname as described here.
@@ -4379,7 +4234,7 @@ alternate pathname as described here.
 Historically, \fIex\fP and \fIvi\fP read the \fB.exrc\fP file in the
 \fI$HOME\fP
 directory twice, if the editor was executed in the \fI$HOME\fP directory.
-IEEE\0Std\01003.1-2001 prohibits this
+IEEE\ Std\ 1003.1-2001 prohibits this
 behavior.
 .LP
 Historically, the 4 BSD \fIex\fP and \fIvi\fP read the \fI$HOME\fP
@@ -4388,7 +4243,7 @@ files if they were owned by the real ID of the user, or the \fBsourceany\fP
 option was set, regardless of other considerations.
 This was a security problem because it is possible to put normal UNIX
 system commands inside a \fB.exrc\fP file.
-IEEE\0Std\01003.1-2001 does not specify the \fBsourceany\fP option,
+IEEE\ Std\ 1003.1-2001 does not specify the \fBsourceany\fP option,
 and historical implementations are encouraged to
 delete it.
 .LP
@@ -4408,16 +4263,16 @@ permitted users to give away files, so there is no possible ownership
 or writeability test to ensure that the file is safe. This is
 still a security problem on systems where users can give away files,
 but there is nothing additional that
-IEEE\0Std\01003.1-2001 can do. The implementation-defined exception
+IEEE\ Std\ 1003.1-2001 can do. The implementation-defined exception
 is intended to permit groups to have local \fB.exrc\fP
 files that are shared by users, by creating pseudo-users to own the
 shared files.
 .LP
-IEEE\0Std\01003.1-2001 does not mention system-wide \fIex\fP and \fIvi\fP
+IEEE\ Std\ 1003.1-2001 does not mention system-wide \fIex\fP and \fIvi\fP
 start-up
 files. While they exist in several implementations of \fIex\fP and
 \fIvi\fP, they are not
-present in any implementations considered historical practice by IEEE\0Std\01003.1-2001.
+present in any implementations considered historical practice by IEEE\ Std\ 1003.1-2001.
 Implementations that have such
 files should use them only if they are owned by the real user ID or
 an appropriate user (for example, root on UNIX systems) and if
@@ -4429,7 +4284,7 @@ Historically, any \fIex\fP command could be entered in the \fIEXINIT\fP
 variable or the \fB.exrc\fP file, although ones
 requiring that the edit buffer already contain lines of text generally
 caused historical implementations of the editor to drop
-\fBcore\fP. IEEE\0Std\01003.1-2001 requires that any \fIex\fP command
+\fBcore\fP. IEEE\ Std\ 1003.1-2001 requires that any \fIex\fP command
 be permitted in the \fIEXINIT\fP variable and
 \fB\&.exrc\fP files, for simplicity of specification and consistency,
 although many of them will obviously fail under many
@@ -4449,7 +4304,7 @@ Historically, the \fB-t\fP option behaved as if the tag search were
 a \fB+\fP \fIcommand\fP; that is, it was executed from
 the last line of the file specified by the tag. This resulted in the
 search failing if the pattern was a forward search pattern and
-the \fBwrapscan\fP edit option was not set. IEEE\0Std\01003.1-2001
+the \fBwrapscan\fP edit option was not set. IEEE\ Std\ 1003.1-2001
 does not permit this behavior, requiring that the
 search for the tag pattern be performed on the entire file, and, if
 not found, that the current line be set to a more reasonable
@@ -4457,20 +4312,20 @@ location in the file.
 .LP
 Historically, the empty edit buffer presented for editing when a file
 was not specified by the user was unnamed. This is
-permitted by IEEE\0Std\01003.1-2001; however, implementations are
+permitted by IEEE\ Std\ 1003.1-2001; however, implementations are
 encouraged to provide users a temporary filename for this
 buffer because it permits them the use of \fIex\fP commands that use
 the current pathname during temporary edit sessions.
 .LP
 Historically, the file specified using the \fB-t\fP option was not
 part of the current argument list. This practice is
-permitted by IEEE\0Std\01003.1-2001; however, implementations are
+permitted by IEEE\ Std\ 1003.1-2001; however, implementations are
 encouraged to include its name in the current argument
 list for consistency.
 .LP
 Historically, the \fB-c\fP command was generally not executed until
 a file that already exists was edited.
-IEEE\0Std\01003.1-2001 requires conformance to this historical practice.
+IEEE\ Std\ 1003.1-2001 requires conformance to this historical practice.
 Commands that could cause the \fB-c\fP command to
 be executed include the \fIex\fP commands \fBedit\fP, \fBnext\fP,
 \fBrecover\fP, \fBrewind\fP, and \fBtag\fP, and the \fIvi\fP commands
@@ -4481,7 +4336,7 @@ that it did cause the \fB-c\fP command to be executed if: the editor
 was in \fIex\fP mode, the edit buffer had no current
 pathname, the edit buffer was empty, and no read commands had yet
 been attempted. For consistency and simplicity of specification,
-IEEE\0Std\01003.1-2001 does not permit this behavior.
+IEEE\ Std\ 1003.1-2001 does not permit this behavior.
 .LP
 Historically, the \fB-r\fP option was the same as a normal edit session
 if there was no recovery information available for the
@@ -4502,7 +4357,7 @@ was attempted for each file named. In addition, some
 historical implementations ignored \fB-r\fP if \fB-t\fP was specified
 or did not support command line \fIfile\fP arguments with
 the \fB-t\fP option. For consistency and simplicity of specification,
-IEEE\0Std\01003.1-2001 disallows these special
+IEEE\ Std\ 1003.1-2001 disallows these special
 cases, and requires that recovery be attempted the first time each
 file is edited.
 .LP
@@ -4513,7 +4368,7 @@ or if an \fIex\fP command was executed first (for
 example, \fIvi\fP +10 \fIfile\fP), \fIvi\fP was entered
 without the marks being initialized. Because the standard developers
 believed the marks to be generally useful, and for consistency
-and simplicity of specification, IEEE\0Std\01003.1-2001 requires that
+and simplicity of specification, IEEE\ Std\ 1003.1-2001 requires that
 they always be initialized if in open or visual mode,
 or if in \fIex\fP mode and the edit buffer is not empty. Not initializing
 it in \fIex\fP mode if the edit buffer is empty is
@@ -4526,38 +4381,38 @@ Historically, \fIex\fP and \fIvi\fP accepted the additional addressing
 forms \fB'\\/'\fP
 and \fB'\\?'\fP . They were equivalent to \fB"//"\fP and \fB"??"\fP
 , respectively. They are not required by
-IEEE\0Std\01003.1-2001, mostly because nobody can remember whether
+IEEE\ Std\ 1003.1-2001, mostly because nobody can remember whether
 they ever did anything different historically.
 .LP
 Historically, \fIex\fP and \fIvi\fP permitted an address of zero for
 several commands, and
 permitted the \fB%\fP address in empty files for others. For consistency,
-IEEE\0Std\01003.1-2001 requires support for the
+IEEE\ Std\ 1003.1-2001 requires support for the
 former in the few commands where it makes sense, and disallows it
-otherwise. In addition, because IEEE\0Std\01003.1-2001
+otherwise. In addition, because IEEE\ Std\ 1003.1-2001
 requires that \fB%\fP be logically equivalent to \fB"1,$"\fP , it
 is also supported where it makes sense and disallowed
 otherwise.
 .LP
 Historically, the \fB%\fP address could not be followed by further
 addresses. For consistency and simplicity of specification,
-IEEE\0Std\01003.1-2001 requires that additional addresses be supported.
+IEEE\ Std\ 1003.1-2001 requires that additional addresses be supported.
 .LP
 All of the following are valid \fIaddresses\fP:
-.TP
+.TP 7
 \fB+++\fP
 Three lines after the current line.
-.TP
+.TP 7
 \fB/\fP\fIre\fP\fB/-\fP
 One line before the next occurrence of \fIre\fP.
-.TP
+.TP 7
 \fB-2\fP
 Two lines before the current line.
-.TP
-\fB3\0----\02\fP
+.TP 7
+\fB3\ ----\ 2\fP
 Line one (note intermediate negative address).
-.TP
-\fB1\02\03\fP
+.TP 7
+\fB1\ 2\ 3\fP
 Line six.
 .sp
 .LP
@@ -4574,10 +4429,10 @@ origin for the \fB/foo/\fP command depends on this.
 .LP
 Historically, values could be added to addresses by including them
 after one or more <blank>s; for example,
-\fB3\0-\05p\fP wrote the seventh line of the file, and \fB/foo/\05\fP
+\fB3\ -\ 5p\fP wrote the seventh line of the file, and \fB/foo/\ 5\fP
 was the same as \fB/foo/+5\fP. However, only
-absolute values could be added; for example, \fB5\0/foo/\fP was an
-error. IEEE\0Std\01003.1-2001 requires conformance
+absolute values could be added; for example, \fB5\ /foo/\fP was an
+error. IEEE\ Std\ 1003.1-2001 requires conformance
 to historical practice. Address offsets are separately specified from
 addresses because they could historically be provided to
 visual mode search commands.
@@ -4585,18 +4440,18 @@ visual mode search commands.
 Historically, any missing addresses defaulted to the current line.
 This was true for leading and trailing comma-delimited
 addresses, and for trailing semicolon-delimited addresses. For consistency,
-IEEE\0Std\01003.1-2001 requires it for leading
+IEEE\ Std\ 1003.1-2001 requires it for leading
 semicolon addresses as well.
 .LP
 Historically, \fIex\fP and \fIvi\fP accepted the \fB'^'\fP character
 as both an address
 and as a flag offset for commands. In both cases it was identical
-to the \fB'-'\fP character. IEEE\0Std\01003.1-2001
+to the \fB'-'\fP character. IEEE\ Std\ 1003.1-2001
 does not require or prohibit this behavior.
 .LP
 Historically, the enhancements to basic regular expressions could
 be used in addressing; for example, \fB'~'\fP ,
-\fB'\\<'\fP , and \fB'\\>'\fP . IEEE\0Std\01003.1-2001 requires conformance
+\fB'\\<'\fP , and \fB'\\>'\fP . IEEE\ Std\ 1003.1-2001 requires conformance
 to historical practice; that is, that
 regular expression usage be consistent, and that regular expression
 enhancements be supported wherever regular expressions are
@@ -4604,35 +4459,32 @@ used.
 .SS Command Line Parsing in ex
 .LP
 Historical \fIex\fP command parsing was even more complex than that
-described here. IEEE\0Std\01003.1-2001 requires the
+described here. IEEE\ Std\ 1003.1-2001 requires the
 subset of the command parsing that the standard developers believed
 was documented and that users could reasonably be expected to
 use in a portable fashion, and that was historically consistent between
 implementations. (The discarded functionality is obscure,
 at best.) Historical implementations will require changes in order
-to comply with IEEE\0Std\01003.1-2001; however, users
+to comply with IEEE\ Std\ 1003.1-2001; however, users
 are not expected to notice any of these changes. Most of the complexity
 in \fIex\fP parsing is to handle three special termination
 cases:
-.in +5
-.LP
+.IP " 1." 4
 The \fB!\fP, \fBglobal\fP, \fBv\fP, and the filter versions of the
 \fBread\fP and \fBwrite\fP commands are delimited by
 <newline>s (they can contain vertical-line characters that are usually
 shell pipes).
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The \fBex\fP, \fBedit\fP, \fBnext\fP, and \fBvisual\fP in open and
 visual mode commands all take \fIex\fP commands,
 optionally containing vertical-line characters, as their first arguments.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The \fBs\fP command takes a regular expression as its first argument,
 and uses the delimiting characters to delimit the
 command.
-.in -5
+.LP
 .LP
 Historically, vertical-line characters in the \fB+\fP \fIcommand\fP
 argument of the \fBex\fP, \fBedit\fP, \fBnext\fP,
@@ -4659,7 +4511,7 @@ Historically, empty or <blank> filled lines in \fB.exrc\fP files and
 \fBsource\fPd files (as well as \fIEXINIT\fP
 variables and \fIex\fP command scripts) were treated as default commands;
 that is, \fBprint\fP commands.
-IEEE\0Std\01003.1-2001 specifically requires that they be ignored
+IEEE\ Std\ 1003.1-2001 specifically requires that they be ignored
 when encountered in \fB.exrc\fP and \fBsource\fPd files
 to eliminate a common source of new user error.
 .LP
@@ -4671,7 +4523,7 @@ lines 2, 3, and 5 of the file. In addition, the command \fB|\fP would
 only display the line after the next line, instead of the
 next two lines. The former worked more logically when executed from
 \fIvi\fP mode, and
-displayed lines 2, 3, and 4. IEEE\0Std\01003.1-2001 requires the \fIvi\fP
+displayed lines 2, 3, and 4. IEEE\ Std\ 1003.1-2001 requires the \fIvi\fP
 behavior;
 that is, a single default command and line number increment for each
 command separator, and trailing <newline>s after
@@ -4679,38 +4531,38 @@ vertical-line separators are discarded.
 .LP
 Historically, \fIex\fP permitted a single extra colon as a leading
 command character; for example, \fB:g/pattern/:p\fP was a
-valid command. IEEE\0Std\01003.1-2001 generalizes this to require
+valid command. IEEE\ Std\ 1003.1-2001 generalizes this to require
 that any number of leading colon characters be
 stripped.
 .LP
 Historically, any prefix of the \fBdelete\fP command could be followed
 without intervening <blank>s by a flag character
-because in the command \fBd\0p\fP, \fIp\fP is interpreted as the buffer
-\fIp\fP. IEEE\0Std\01003.1-2001 requires
+because in the command \fBd\ p\fP, \fIp\fP is interpreted as the buffer
+\fIp\fP. IEEE\ Std\ 1003.1-2001 requires
 conformance to historical practice.
 .LP
 Historically, the \fBk\fP command could be followed by the mark name
 without intervening <blank>s.
-IEEE\0Std\01003.1-2001 requires conformance to historical practice.
+IEEE\ Std\ 1003.1-2001 requires conformance to historical practice.
 .LP
 Historically, the \fBs\fP command could be immediately followed by
 flag and option characters; for example,
 \fBs/e/E/|s|sgc3p\fP was a valid command. However, flag characters
 could not stand alone; for example, the commands \fBsp\fP and
-\fBs\0l\fP would fail, while the command \fBsgp\fP and \fBs\0gl\fP
+\fBs\ l\fP would fail, while the command \fBsgp\fP and \fBs\ gl\fP
 would succeed. (Obviously, the \fB'#'\fP flag
 character was used as a delimiter character if it followed the command.)
 Another issue was that option characters had to precede
 flag characters even when the command was fully specified; for example,
 the command \fBs/e/E/pg\fP would fail, while the command
-\fBs/e/E/gp\fP would succeed. IEEE\0Std\01003.1-2001 requires conformance
+\fBs/e/E/gp\fP would succeed. IEEE\ Std\ 1003.1-2001 requires conformance
 to historical practice.
 .LP
 Historically, the first command name that had a prefix matching the
 input from the user was the executed command; for example,
 \fBve\fP, \fBver\fP, and \fBvers\fP all executed the \fBversion\fP
 command. Commands were in a specific order, however, so that
-\fBa\fP matched \fBappend\fP, not \fBabbreviate\fP. IEEE\0Std\01003.1-2001
+\fBa\fP matched \fBappend\fP, not \fBabbreviate\fP. IEEE\ Std\ 1003.1-2001
 requires conformance to historical practice.
 The restriction on command search order for implementations with extensions
 is to avoid the addition of commands such that the
@@ -4722,7 +4574,7 @@ handle multiple
 or exited visual mode or the editor. Because
 implementations of \fIvi\fP exist that do not exhibit this failure
 mode,
-IEEE\0Std\01003.1-2001 does not permit it.
+IEEE\ Std\ 1003.1-2001 does not permit it.
 .LP
 The requirement that alphabetic command names consist of all following
 alphabetic characters up to the next non-alphabetic
@@ -4738,7 +4590,7 @@ commands ( <control>-D, \fIeof\fP,
 the next lines without scrolling the
 terminal; that is, immediately below any previously displayed lines.
 This provided a cleaner presentation of the lines in the file
-for the user. IEEE\0Std\01003.1-2001 does not require this behavior
+for the user. IEEE\ Std\ 1003.1-2001 does not require this behavior
 because it may be impossible in some situations;
 however, implementations are strongly encouraged to provide this semantic
 if possible.
@@ -4756,7 +4608,7 @@ file; for example:
 .RE
 .LP
 was a valid command, and the substitution was attempted in the newly
-edited file. IEEE\0Std\01003.1-2001 requires
+edited file. IEEE\ Std\ 1003.1-2001 requires
 conformance to historical practice. The following commands are examples
 that exercise the \fIex\fP parser:
 .sp
@@ -4775,7 +4627,7 @@ avoid \fIex\fP \fBglobal\fP, \fBv\fP, \fB@\fP, or
 \fB*\fP commands changing edit buffers during execution of their associated
 commands. Because this would almost invariably result
 in catastrophic failure of the editor, and implementations exist that
-do exhibit these problems, IEEE\0Std\01003.1-2001
+do exhibit these problems, IEEE\ Std\ 1003.1-2001
 requires that changing the edit buffer during a \fBglobal\fP or \fBv\fP
 command, or during a \fB@\fP or \fB*\fP command for
 which there will be more than a single execution, be an error. Implementations
@@ -4783,27 +4635,27 @@ supporting multiple edit buffers simultaneously are
 strongly encouraged to apply the same semantics to switching between
 buffers as well.
 .LP
-The \fIex\fP command quoting required by IEEE\0Std\01003.1-2001 is
+The \fIex\fP command quoting required by IEEE\ Std\ 1003.1-2001 is
 a superset of the quoting in historical
 implementations of the editor. For example, it was not historically
 possible to escape a <blank> in a filename; for example,
-\fB:edit\0foo\\\\\\\0bar\fP would report that too many filenames had
+\fB:edit\ foo\\\\\\\ bar\fP would report that too many filenames had
 been entered for the edit command, and there was no
 method of escaping a <blank> in the first argument of an \fBedit\fP,
 \fBex\fP, \fBnext\fP, or \fBvisual\fP command at
-all. IEEE\0Std\01003.1-2001 extends historical practice, requiring
+all. IEEE\ Std\ 1003.1-2001 extends historical practice, requiring
 that quoting behavior be made consistent across all
 \fIex\fP commands, except for the \fBmap\fP, \fBunmap\fP, \fBabbreviate\fP,
 and \fBunabbreviate\fP commands, which
 historically used <control>-V instead of backslashes for quoting.
-For those four commands, IEEE\0Std\01003.1-2001
+For those four commands, IEEE\ Std\ 1003.1-2001
 requires conformance to historical practice.
 .LP
 Backslash quoting in \fIex\fP is non-intuitive. Backslash escapes
 are ignored unless they escape a special character; for
 example, when performing \fIfile\fP argument expansion, the string
 \fB"\\\\%"\fP is equivalent to \fB'\\%'\fP , not
-\fB"\\<\fP\fIcurrent\0pathname\fP\fB>"\fP. This can be confusing for
+\fB"\\<\fP\fIcurrent\ pathname\fP\fB>"\fP. This can be confusing for
 users because backslash is usually one of the
 characters that causes shell expansion to be performed, and therefore
 shell quoting rules must be taken into consideration.
@@ -4820,14 +4672,14 @@ quoting. In the four commands where
 <control>-V quoting applies ( \fBabbreviate\fP, \fBunabbreviate\fP,
 \fBmap\fP, and \fBunmap\fP), any character may be
 escaped by a <control>-V whether it would have a special meaning or
-not. IEEE\0Std\01003.1-2001 requires conformance
+not. IEEE\ Std\ 1003.1-2001 requires conformance
 to historical practice.
 .LP
 Historical implementations of the editor did not require delimiters
 within character classes to be escaped; for example, the
 command \fB:s/[/]//\fP on the string \fB"xxx/yyy"\fP would delete
 the \fB'/'\fP from the string.
-IEEE\0Std\01003.1-2001 disallows this historical practice for consistency
+IEEE\ Std\ 1003.1-2001 disallows this historical practice for consistency
 and because it places a large burden on
 implementations by requiring that knowledge of regular expressions
 be built into the editor parser.
@@ -4855,20 +4707,20 @@ was true in not only the command line, but also
 would succeed, although it was sometimes difficult to get the <control>-V
 and the inserted <newline> passed to the
 \fIex\fP parser. For consistency and simplicity of specification,
-IEEE\0Std\01003.1-2001 requires that it be possible to
+IEEE\ Std\ 1003.1-2001 requires that it be possible to
 escape <newline>s in \fIex\fP commands at all times, using backslashes
 for most \fIex\fP commands, and using
 <control>-V characters for the \fBmap\fP and \fBabbreviation\fP commands.
 For example, the command \fBprint\fP
 <newline> \fBlist\fP is required to be parsed as the single command
 \fBprint\fP <newline> \fBlist\fP. While this
-differs from historical practice, IEEE\0Std\01003.1-2001 developers
+differs from historical practice, IEEE\ Std\ 1003.1-2001 developers
 believed it unlikely that any script or user depended
 on the historical behavior.
 .LP
 Historically, an error in a command specified using the \fB-c\fP option
 did not cause the rest of the \fB-c\fP commands to be
-discarded. IEEE\0Std\01003.1-2001 disallows this for consistency with
+discarded. IEEE\ Std\ 1003.1-2001 disallows this for consistency with
 mapped keys, the \fB@\fP, \fBglobal\fP,
 \fBsource\fP, and \fBv\fP commands, the \fIEXINIT\fP environment variable,
 and the \fB.exrc\fP files.
@@ -4878,11 +4730,11 @@ One of the common uses of the historical \fIex\fP editor is over slow
 network connections. Editors that run in canonical mode
 can require far less traffic to and from, and far less processing
 on, the host machine, as well as more easily supporting
-block-mode terminals. For these reasons, IEEE\0Std\01003.1-2001 requires
+block-mode terminals. For these reasons, IEEE\ Std\ 1003.1-2001 requires
 that \fIex\fP be implemented using canonical mode
 input processing, as was done historically.
 .LP
-IEEE\0Std\01003.1-2001 does not require the historical 4 BSD input
+IEEE\ Std\ 1003.1-2001 does not require the historical 4 BSD input
 editing characters "word erase" or "literal
 next". For this reason, it is unspecified how they are handled by
 \fIex\fP, although they must have the required effect.
@@ -4898,24 +4750,24 @@ Historically, when the \fIeof\fP character was used to decrement the
 \fBautoindent\fP level, the cursor moved to display the
 new end of the \fBautoindent\fP characters, but did not move the cursor
 to a new line, nor did it erase the <control>-D
-character from the line. IEEE\0Std\01003.1-2001 does not specify that
+character from the line. IEEE\ Std\ 1003.1-2001 does not specify that
 the cursor remain on the same line or that the rest
 of the line is erased; however, implementations are strongly encouraged
 to provide the best possible user interface; that is, the
 cursor should remain on the same line, and any <control>-D character
 on the line should be erased.
 .LP
-IEEE\0Std\01003.1-2001 does not require the historical 4 BSD input
+IEEE\ Std\ 1003.1-2001 does not require the historical 4 BSD input
 editing character "reprint", traditionally
 <control>-R, which redisplayed the current input from the user. For
 this reason, and because the functionality cannot be
-implemented after the line has been terminated by the user, IEEE\0Std\01003.1-2001
+implemented after the line has been terminated by the user, IEEE\ Std\ 1003.1-2001
 makes no requirements about this
 functionality. Implementations are strongly urged to make this historical
 functionality available, if possible.
 .LP
 Historically, <control>-Q did not perform a literal next function
-in \fIex\fP, as it did in \fIvi\fP. IEEE\0Std\01003.1-2001 requires
+in \fIex\fP, as it did in \fIvi\fP. IEEE\ Std\ 1003.1-2001 requires
 conformance to historical practice to avoid breaking
 historical \fIex\fP scripts and \fB.exrc\fP files.
 .SS eof
@@ -4940,7 +4792,7 @@ default address(es) were 0), or permitted explicit addresses of 0
 (for example, 0 was a valid address, or 0,0 was a valid range).
 Addresses of 0, or command execution in an empty file, make sense
 only for commands that add new text to the edit buffer or write
-commands (because users may wish to write empty files). IEEE\0Std\01003.1-2001
+commands (because users may wish to write empty files). IEEE\ Std\ 1003.1-2001
 requires this behavior for such commands and
 disallows it otherwise, for consistency and simplicity of specification.
 .LP
@@ -4948,13 +4800,13 @@ A count to an \fIex\fP command has been historically corrected to
 be no greater than the last line in a file; for example, in a
 five-line file, the command \fB1,6print\fP would fail, but the command
 \fB1print300\fP would succeed.
-IEEE\0Std\01003.1-2001 requires conformance to historical practice.
+IEEE\ Std\ 1003.1-2001 requires conformance to historical practice.
 .LP
 Historically, the use of flags in \fIex\fP commands could be obscure.
 General historical practice was as described by
-IEEE\0Std\01003.1-2001, but there were some special cases. For instance,
+IEEE\ Std\ 1003.1-2001, but there were some special cases. For instance,
 the \fBlist\fP, \fBnumber\fP, and \fBprint\fP
-commands ignored trailing address offsets; for example, \fB3p\0+++#\fP
+commands ignored trailing address offsets; for example, \fB3p\ +++#\fP
 would display line 3, and 3 would be the current line
 after the execution of the command. The \fBopen\fP and \fBvisual\fP
 commands ignored both the trailing offsets and the trailing
@@ -4963,17 +4815,17 @@ interacted badly with the \fBlist\fP edit option, and
 setting and then unsetting it during the open/visual session would
 cause \fIvi\fP to stop
 displaying lines in the specified format. For consistency and simplicity
-of specification, IEEE\0Std\01003.1-2001 does not
+of specification, IEEE\ Std\ 1003.1-2001 does not
 permit any of these exceptions to the general rule.
 .LP
-IEEE\0Std\01003.1-2001 uses the word \fIcopy\fP in several places
+IEEE\ Std\ 1003.1-2001 uses the word \fIcopy\fP in several places
 when discussing buffers. This is not intended to
 imply implementation.
 .LP
 Historically, \fIex\fP users could not specify numeric buffers because
 of the ambiguity this would cause; for example, in the
-command \fB3\0delete\02\fP, it is unclear whether 2 is a buffer name
-or a \fIcount\fP. IEEE\0Std\01003.1-2001
+command \fB3\ delete\ 2\fP, it is unclear whether 2 is a buffer name
+or a \fIcount\fP. IEEE\ Std\ 1003.1-2001
 requires conformance to historical practice by default, but does not
 preclude extensions.
 .LP
@@ -4981,7 +4833,7 @@ Historically, the contents of the unnamed buffer were frequently discarded
 after commands that did not explicitly affect it; for
 example, when using the \fBedit\fP command to switch files. For consistency
 and simplicity of specification,
-IEEE\0Std\01003.1-2001 does not permit this behavior.
+IEEE\ Std\ 1003.1-2001 does not permit this behavior.
 .LP
 The \fIex\fP utility did not historically have access to the numeric
 buffers, and, furthermore, deleting lines in \fIex\fP did
@@ -4989,11 +4841,11 @@ not modify their contents. For example, if, after doing a delete in
 \fIvi\fP, the user switched
 to \fIex\fP, did another delete, and then switched back to \fIvi\fP,
 the contents of the
-numeric buffers would not have changed. IEEE\0Std\01003.1-2001 requires
+numeric buffers would not have changed. IEEE\ Std\ 1003.1-2001 requires
 conformance to historical practice. Numeric buffers
 are described in the \fIex\fP utility in order to confine the description
 of buffers to a single location in
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .LP
 The metacharacters that trigger shell expansion in \fIfile\fP arguments
 match historical practice, as does the method for doing
@@ -5003,10 +4855,10 @@ provide a \fBshellmeta\fP string edit option.
 .LP
 Historically, \fIex\fP commands executed from \fIvi\fP refreshed the
 screen when it did not
-strictly need to do so; for example, \fB:!date\0>\0/dev/null\fP does
+strictly need to do so; for example, \fB:!date\ >\ /dev/null\fP does
 not require a screen refresh because the output of
 the UNIX \fIdate\fP command requires only a single line of the screen.
-IEEE\0Std\01003.1-2001 requires that the screen be refreshed if it
+IEEE\ Std\ 1003.1-2001 requires that the screen be refreshed if it
 has been overwritten, but makes no requirements as to
 how an implementation should make that determination. Implementations
 may prompt and refresh the screen regardless.
@@ -5016,7 +4868,7 @@ Historical practice was that characters that were entered as part
 of an abbreviation replacement were subject to \fBmap\fP
 expansions, the \fBshowmatch\fP edit option, further abbreviation
 expansions, and so on; that is, they were logically pushed onto
-the terminal input queue, and were not a simple replacement. IEEE\0Std\01003.1-2001
+the terminal input queue, and were not a simple replacement. IEEE\ Std\ 1003.1-2001
 requires conformance to historical
 practice. Historical practice was that whenever a non-word character
 (that had not been escaped by a <control>-V) was entered
@@ -5035,7 +4887,7 @@ word to non-word characters (or \fIvice versa\fP) other than between
 the last and next-to-last characters in the \fIlhs\fP, and
 there can be no <blank>s in the \fIlhs\fP. In addition, because of
 the historical quoting rules, it was impossible to enter
-a literal <control>-V in the \fIlhs\fP. IEEE\0Std\01003.1-2001 requires
+a literal <control>-V in the \fIlhs\fP. IEEE\ Std\ 1003.1-2001 requires
 conformance to historical practice.
 Historical implementations did not inform users when abbreviations
 that could never be used were entered; implementations are
@@ -5070,7 +4922,7 @@ abbreviation expansion, including the arguments to the \fBabbrev\fP
 (and more interestingly) the \fBunabbrev\fP command. Because
 there are implementations that do not do abbreviation expansion for
 the first argument to those commands, this is permitted, but
-not required, by IEEE\0Std\01003.1-2001. However, the following sequence:
+not required, by IEEE\ Std\ 1003.1-2001. However, the following sequence:
 .sp
 .RS
 .nf
@@ -5096,12 +4948,12 @@ string \fB"bar"\fP in historical \fIex\fP/ \fIvi\fP, and the sequence:
 .LP
 deleted the abbreviation \fB"foo1"\fP , not \fB"foo2"\fP . These behaviors
 are not permitted by
-IEEE\0Std\01003.1-2001 because they clearly violate the expectations
+IEEE\ Std\ 1003.1-2001 because they clearly violate the expectations
 of the user.
 .LP
 It was historical practice that <control>-V, not backslash, characters
 be interpreted as escaping subsequent characters in
-the \fBabbreviate\fP command. IEEE\0Std\01003.1-2001 requires conformance
+the \fBabbreviate\fP command. IEEE\ Std\ 1003.1-2001 requires conformance
 to historical practice; however, it should be
 noted that an abbreviation containing a <blank> will never work.
 .SS Append
@@ -5136,23 +4988,23 @@ and the text on the \fIex\fP command line would be appended along
 with the text inserted after it. There was an historical bug,
 however, that the user had to enter two terminating lines (the \fB'.'\fP
 lines) to terminate text input mode in this case.
-IEEE\0Std\01003.1-2001 requires conformance to historical practice,
+IEEE\ Std\ 1003.1-2001 requires conformance to historical practice,
 but disallows the historical need for multiple
 terminating lines.
 .SS Change
 .LP
 See the RATIONALE for the \fBappend\fP command. Historical practice
 for cursor positioning after the change command when no
-text is input, is as described in IEEE\0Std\01003.1-2001. However,
+text is input, is as described in IEEE\ Std\ 1003.1-2001. However,
 one System V implementation is known to have been
 modified such that the cursor is positioned on the first address specified,
 and not on the line before the first address.
-IEEE\0Std\01003.1-2001 disallows this modification for consistency.
+IEEE\ Std\ 1003.1-2001 disallows this modification for consistency.
 .LP
 Historically, the \fBchange\fP command did not support buffer arguments,
 although some implementations allow the specification
 of an optional buffer. This behavior is neither required nor disallowed
-by IEEE\0Std\01003.1-2001.
+by IEEE\ Std\ 1003.1-2001.
 .SS Change Directory
 .LP
 A common extension in \fIex\fP implementations is to use the elements
@@ -5162,31 +5014,31 @@ that do not have \fB'.'\fP or \fB".."\fP as their first
 component. Elements in the \fBcdpath\fP edit option are colon-separated.
 The initial value of the \fBcdpath\fP edit option is the
 value of the shell \fICDPATH\fP environment variable. This feature
-was not included in IEEE\0Std\01003.1-2001 because it
+was not included in IEEE\ Std\ 1003.1-2001 because it
 does not exist in any of the implementations considered historical
 practice.
 .SS Copy
 .LP
 Historical implementations of \fIex\fP permitted copies to lines inside
 of the specified range; for example, \fB:2,5copy3\fP
-was a valid command. IEEE\0Std\01003.1-2001 requires conformance to
+was a valid command. IEEE\ Std\ 1003.1-2001 requires conformance to
 historical practice.
 .SS Delete
 .LP
-IEEE\0Std\01003.1-2001 requires support for the historical parsing
+IEEE\ Std\ 1003.1-2001 requires support for the historical parsing
 of a \fBdelete\fP command followed by flags, without
 any intervening <blank>s. For example:
-.TP
+.TP 7
 \fB1dp\fP
 Deletes the first line and prints the line that was second.
-.TP
+.TP 7
 \fB1delep\fP
 As for \fB1dp\fP.
-.TP
+.TP 7
 \fB1d\fP
 Deletes the first line, saving it in buffer \fIp\fP.
-.TP
-\fB1d\0p1l\fP
+.TP 7
+\fB1d\ p1l\fP
 (Pee-one-ell.) Deletes the first line, saving it in buffer \fIp\fP,
 and listing the line that was second.
 .sp
@@ -5196,31 +5048,31 @@ Historically, any \fIex\fP command could be entered as a \fB+\fP \fIcommand\fP
 argument to the \fBedit\fP command, although
 some (for example, \fBinsert\fP and \fBappend\fP) were known to confuse
 historical implementations. For consistency and
-simplicity of specification, IEEE\0Std\01003.1-2001 requires that
+simplicity of specification, IEEE\ Std\ 1003.1-2001 requires that
 any command be supported as an argument to the
 \fBedit\fP command.
 .LP
 Historically, the command argument was executed with the current line
 set to the last line of the file, regardless of whether
-the \fBedit\fP command was executed from visual mode or not. IEEE\0Std\01003.1-2001
+the \fBedit\fP command was executed from visual mode or not. IEEE\ Std\ 1003.1-2001
 requires conformance to historical
 practice.
 .LP
 Historically, the \fB+\fP \fIcommand\fP specified to the \fBedit\fP
 and \fBnext\fP commands was delimited by the first
-<blank>, and there was no way to quote them. For consistency, IEEE\0Std\01003.1-2001
+<blank>, and there was no way to quote them. For consistency, IEEE\ Std\ 1003.1-2001
 requires that the usual
 \fIex\fP backslash quoting be provided.
 .LP
 Historically, specifying the \fB+\fP \fIcommand\fP argument to the
 edit command required a filename to be specified as well;
-for example, \fB:edit\0+100\fP would always fail. For consistency
+for example, \fB:edit\ +100\fP would always fail. For consistency
 and simplicity of specification,
-IEEE\0Std\01003.1-2001 does not permit this usage to fail for that
+IEEE\ Std\ 1003.1-2001 does not permit this usage to fail for that
 reason.
 .LP
 Historically, only the cursor position of the last file edited was
-remembered by the editor. IEEE\0Std\01003.1-2001
+remembered by the editor. IEEE\ Std\ 1003.1-2001
 requires that this be supported; however, implementations are permitted
 to remember and restore the cursor position for any file
 previously edited.
@@ -5231,7 +5083,7 @@ a current line and number of lines in the edit buffer
 of 0 when the file was empty, while the \fIvi\fP <control>-G command
 displayed a current
 line and number of lines in the edit buffer of 1 in the same situation.
-IEEE\0Std\01003.1-2001 does not permit this
+IEEE\ Std\ 1003.1-2001 does not permit this
 discrepancy, instead requiring that a message be displayed indicating
 that the file is empty.
 .SS Global
@@ -5250,7 +5102,7 @@ See the RATIONALE for the \fBappend\fP command.
 .LP
 Historically, \fBinsert\fP could not be used with an address of zero;
 that is, not when the edit buffer was empty.
-IEEE\0Std\01003.1-2001 requires that this command behave consistently
+IEEE\ Std\ 1003.1-2001 requires that this command behave consistently
 with the \fBappend\fP command.
 .SS Join
 .LP
@@ -5262,7 +5114,7 @@ is required, in French only a single space, and so on.
 .LP
 The historical output of the \fBlist\fP command was potentially ambiguous.
 The standard developers believed correcting this to
-be more important than adhering to historical practice, and IEEE\0Std\01003.1-2001
+be more important than adhering to historical practice, and IEEE\ Std\ 1003.1-2001
 requires unambiguous output.
 .SS Map
 .LP
@@ -5270,28 +5122,28 @@ Historically, command mode maps only applied to command names; for
 example, if the character \fB'x'\fP was mapped to
 \fB'y'\fP , the command \fBfx\fP searched for the \fB'x'\fP character,
 not the \fB'y'\fP character.
-IEEE\0Std\01003.1-2001 requires this behavior. Historically, entering
+IEEE\ Std\ 1003.1-2001 requires this behavior. Historically, entering
 <control>-V as the first character of a \fIvi\fP command was an error.
 Several implementations have extended the semantics of \fIvi\fP such
 that <control>-V means that the subsequent command character is not
 mapped. This is
-permitted, but not required, by IEEE\0Std\01003.1-2001. Regardless,
+permitted, but not required, by IEEE\ Std\ 1003.1-2001. Regardless,
 using <control>-V to escape the second or later
 character in a sequence of characters that might match a \fBmap\fP
 command, or any character in text input mode, is historical
-practice, and stops the entered keys from matching a map. IEEE\0Std\01003.1-2001
+practice, and stops the entered keys from matching a map. IEEE\ Std\ 1003.1-2001
 requires conformance to historical
 practice.
 .LP
 Historical implementations permitted digits to be used as a \fBmap\fP
 command \fIlhs\fP, but then ignored the map.
-IEEE\0Std\01003.1-2001 requires that the mapped digits not be ignored.
+IEEE\ Std\ 1003.1-2001 requires that the mapped digits not be ignored.
 .LP
 The historical implementation of the \fBmap\fP command did not permit
 \fBmap\fP commands that were more than a single
 character in length if the first character was printable. This behavior
 is permitted, but not required, by
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .LP
 Historically, mapped characters were remapped unless the \fBremap\fP
 edit option was not set, or the prefix of the mapped
@@ -5308,14 +5160,14 @@ characters matched the mapping characters; for example, in the \fBmap\fP:
 the characters \fB"ab"\fP were used as is and were not remapped, but
 the characters \fB"cd"\fP were mapped if appropriate.
 This can cause infinite loops in the \fIvi\fP mapping mechanisms.
-IEEE\0Std\01003.1-2001 requires conformance to historical practice,
+IEEE\ Std\ 1003.1-2001 requires conformance to historical practice,
 and that such loops be interruptible.
 .LP
 Text input maps had the same problems with expanding the \fIlhs\fP
 for the \fIex\fP \fBmap!\fP and \fBunmap!\fP command as
 did the \fIex\fP \fBabbreviate\fP and \fBunabbreviate\fP commands.
 See the RATIONALE for the \fIex\fP \fBabbreviate\fP
-command. IEEE\0Std\01003.1-2001 requires similar modification of some
+command. IEEE\ Std\ 1003.1-2001 requires similar modification of some
 historical practice for the \fBmap\fP and
 \fBunmap\fP commands, as described for the \fBabbreviate\fP and \fBunabbreviate\fP
 commands.
@@ -5350,7 +5202,7 @@ the characters \fB"ab"\fP would cause the editor to pause, waiting
 for the completing \fB'c'\fP character, and the
 characters might never be mapped to \fB"short"\fP . For consistency
 and simplicity of specification,
-IEEE\0Std\01003.1-2001 requires that the shortest match be used at
+IEEE\ Std\ 1003.1-2001 requires that the shortest match be used at
 all times.
 .LP
 The length of time the editor spends waiting for the characters to
@@ -5376,10 +5228,10 @@ and \fB'`\fP and the \fIvi\fP commands \fB"\fP, \fB``\fP, \fB`'\fP,
 and \fB'`\fP all
 referred to the same mark. In addition, the previous context marks
 were not set if the command, with which the address setting the
-mark was associated, failed. IEEE\0Std\01003.1-2001 requires conformance
+mark was associated, failed. IEEE\ Std\ 1003.1-2001 requires conformance
 to historical practice. Historically, if marked
 lines were deleted, the mark was also deleted, but would reappear
-if the change was undone. IEEE\0Std\01003.1-2001 requires
+if the change was undone. IEEE\ Std\ 1003.1-2001 requires
 conformance to historical practice.
 .LP
 The description of the special events that set the \fB`\fP and \fB'\fP
@@ -5392,7 +5244,7 @@ Historically, any \fIex\fP command could be entered as a \fB+\fP \fIcommand\fP
 argument to the \fBnext\fP command, although
 some (for example, \fBinsert\fP and \fBappend\fP) were known to confuse
 historical implementations.
-IEEE\0Std\01003.1-2001 requires that any command be permitted and
+IEEE\ Std\ 1003.1-2001 requires that any command be permitted and
 that it behave as specified. The \fBnext\fP command can
 accept more than one file, so usage such as:
 .sp
@@ -5410,26 +5262,26 @@ filename.
 .LP
 Historically, the \fBnext\fP command behaved differently from the
 \fB:rewind\fP command in that it ignored the force flag if
-the \fBautowrite\fP flag was set. For consistency, IEEE\0Std\01003.1-2001
+the \fBautowrite\fP flag was set. For consistency, IEEE\ Std\ 1003.1-2001
 does not permit this behavior.
 .LP
 Historically, the \fBnext\fP command positioned the cursor as if the
 file had never been edited before, regardless.
-IEEE\0Std\01003.1-2001 does not permit this behavior, for consistency
+IEEE\ Std\ 1003.1-2001 does not permit this behavior, for consistency
 with the \fBedit\fP command.
 .LP
 Implementations wanting to provide a counterpart to the \fBnext\fP
 command that edited the previous file have used the command
-\fBprev[ious],\fP which takes no \fIfile\fP argument. IEEE\0Std\01003.1-2001
+\fBprev[ious],\fP which takes no \fIfile\fP argument. IEEE\ Std\ 1003.1-2001
 does not require this command.
 .SS Open
 .LP
 Historically, the \fBopen\fP command would fail if the \fBopen\fP
-edit option was not set. IEEE\0Std\01003.1-2001 does
+edit option was not set. IEEE\ Std\ 1003.1-2001 does
 not mention the \fBopen\fP edit option and does not require this behavior.
 Some historical implementations do not permit entering
 open mode from open or visual mode, only from \fIex\fP mode. For consistency,
-IEEE\0Std\01003.1-2001 does not permit this
+IEEE\ Std\ 1003.1-2001 does not permit this
 behavior.
 .LP
 Historically, entering open mode from the command line (that is, \fIvi\fP
@@ -5437,23 +5289,23 @@ Historically, entering open mode from the command line (that is, \fIvi\fP
 resulted in anomalous behaviors; for example, the \fIex\fP file and
 \fIset\fP
 commands, and the \fIvi\fP command <control>-G did not work. For consistency,
-IEEE\0Std\01003.1-2001 does not permit this behavior.
+IEEE\ Std\ 1003.1-2001 does not permit this behavior.
 .LP
 Historically, the \fBopen\fP command only permitted \fB'/'\fP characters
 to be used as the search pattern delimiter. For
-consistency, IEEE\0Std\01003.1-2001 requires that the search delimiters
+consistency, IEEE\ Std\ 1003.1-2001 requires that the search delimiters
 used by the \fBs\fP, \fBglobal\fP, and \fBv\fP
 commands be accepted as well.
 .SS Preserve
 .LP
 The \fBpreserve\fP command does not historically cause the file to
 be considered unmodified for the purposes of future commands
-that may exit the editor. IEEE\0Std\01003.1-2001 requires conformance
+that may exit the editor. IEEE\ Std\ 1003.1-2001 requires conformance
 to historical practice.
 .LP
 Historical documentation stated that mail was not sent to the user
 when preserve was executed; however, historical
-implementations did send mail in this case. IEEE\0Std\01003.1-2001
+implementations did send mail in this case. IEEE\ Std\ 1003.1-2001
 requires conformance to the historical
 implementations.
 .SS Print
@@ -5463,21 +5315,18 @@ a special case because the standard developers did not want
 to require \fIex\fP to support NUL characters. Historically, characters
 were displayed using the ARPA standard mappings, which are
 as follows:
-.in +5
-.LP
+.IP " 1." 4
 Printable characters are left alone.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Control characters less than \\177 are represented as \fB'^'\fP followed
 by the character offset from the \fB'@'\fP
 character in the ASCII map; for example, \\007 is represented as \fB'^G'\fP
 \&.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 \\177 is represented as \fB'^'\fP followed by \fB'?'\fP .
-.in -5
+.LP
 .LP
 The display of characters having their eighth bit set was less standard.
 Existing implementations use hex (0x00), octal (\\000),
@@ -5489,7 +5338,7 @@ the \fB-v\fP option of 4 BSD and 4 BSD-derived versions of the \fIcat\fP
 utility since
 1980.
 .LP
-No specific display format is required by IEEE\0Std\01003.1-2001.
+No specific display format is required by IEEE\ Std\ 1003.1-2001.
 .LP
 Explicit dependence on the ASCII character set has been avoided where
 possible, hence the use of the phrase an
@@ -5503,7 +5352,7 @@ Historically, all \fIex\fP commands beginning with the letter \fB'p'\fP
 could be entered using capitalized versions of the
 commands; for example, \fBP[rint]\fP, \fBPre[serve]\fP, and \fBPu[t]\fP
 were all valid command names.
-IEEE\0Std\01003.1-2001 permits, but does not require, this historical
+IEEE\ Std\ 1003.1-2001 permits, but does not require, this historical
 practice because capital forms of the commands are
 used by some implementations for other purposes.
 .SS Put
@@ -5520,7 +5369,7 @@ addition, using the \fBQ\fP command to switch into \fIex\fP mode,
 and then doing a \fBput\fP often resulted in errors as well,
 such as appending text that was unrelated to the (supposed) contents
 of the buffer. For consistency and simplicity of
-specification, IEEE\0Std\01003.1-2001 does not permit these behaviors.
+specification, IEEE\ Std\ 1003.1-2001 does not permit these behaviors.
 All \fIex\fP \fBput\fP commands are required to
 operate in line mode, and the contents of the buffers are not altered
 by changing the mode of the editor.
@@ -5529,19 +5378,19 @@ by changing the mode of the editor.
 Historically, an \fIex\fP \fBread\fP command executed from open or
 visual mode, executed in an empty file, left an empty line
 as the first line of the file. For consistency and simplicity of specification,
-IEEE\0Std\01003.1-2001 does not permit this
+IEEE\ Std\ 1003.1-2001 does not permit this
 behavior. Historically, a \fBread\fP in open or visual mode from a
 program left the cursor at the last line read in, not the
-first. For consistency, IEEE\0Std\01003.1-2001 does not permit this
+first. For consistency, IEEE\ Std\ 1003.1-2001 does not permit this
 behavior.
 .LP
 Historical implementations of \fIex\fP were unable to undo \fBread\fP
 commands that read from the output of a program. For
-consistency, IEEE\0Std\01003.1-2001 does not permit this behavior.
+consistency, IEEE\ Std\ 1003.1-2001 does not permit this behavior.
 .LP
 Historically, the \fIex\fP and \fIvi\fP message after a successful
 \fBread\fP or
-\fBwrite\fP command specified "characters", not "bytes". IEEE\0Std\01003.1-2001
+\fBwrite\fP command specified "characters", not "bytes". IEEE\ Std\ 1003.1-2001
 requires that the number of bytes be
 displayed, not the number of characters, because it may be difficult
 in multi-byte implementations to determine the number of
@@ -5552,22 +5401,22 @@ Historically, reads were not permitted on files other than type regular,
 except that FIFO files could be read (probably only
 because they did not exist when \fIex\fP and \fIvi\fP were originally
 written). Because the
-historical \fIex\fP evaluated \fBread!\fP and \fBread\0!\fP equivalently,
+historical \fIex\fP evaluated \fBread!\fP and \fBread\ !\fP equivalently,
 there can be no optional way to force the read.
-IEEE\0Std\01003.1-2001 permits, but does not require, this behavior.
+IEEE\ Std\ 1003.1-2001 permits, but does not require, this behavior.
 .SS Recover
 .LP
 Some historical implementations of the editor permitted users to recover
 the edit buffer contents from a previous edit session,
 and then exit without saving those contents (or explicitly discarding
-them). The intent of IEEE\0Std\01003.1-2001 in
+them). The intent of IEEE\ Std\ 1003.1-2001 in
 requiring that the edit buffer be treated as already modified is to
 prevent this user error.
 .SS Rewind
 .LP
 Historical implementations supported the \fBrewind\fP command when
 the user was editing the first file in the list; that is,
-the file that the \fBrewind\fP command would edit. IEEE\0Std\01003.1-2001
+the file that the \fBrewind\fP command would edit. IEEE\ Std\ 1003.1-2001
 requires conformance to historical practice.
 .SS Substitute
 .LP
@@ -5575,10 +5424,10 @@ Historically, \fIex\fP accepted an \fBr\fP option to the \fBs\fP command.
 The effect of the \fBr\fP option was to use the
 last regular expression used in any command as the pattern, the same
 as the \fB~\fP command. The \fBr\fP option is not
-required by IEEE\0Std\01003.1-2001. Historically, the \fBc\fP and
+required by IEEE\ Std\ 1003.1-2001. Historically, the \fBc\fP and
 \fBg\fP options were toggled; for example, the command
 \fB:s/abc/def/\fP was the same as \fBs/abc/def/ccccgggg\fP. For simplicity
-of specification, IEEE\0Std\01003.1-2001 does
+of specification, IEEE\ Std\ 1003.1-2001 does
 not permit this behavior.
 .LP
 The tilde command is often used to replace the last search RE. For
@@ -5617,7 +5466,7 @@ s/abc
 .fi
 .RE
 .LP
-IEEE\0Std\01003.1-2001 requires conformance to this historical practice.
+IEEE\ Std\ 1003.1-2001 requires conformance to this historical practice.
 .LP
 The \fBs\fP command presumes that the \fB'^'\fP character only occupies
 a single column in the display. Much of the
@@ -5632,13 +5481,13 @@ pattern followed by a substitution would leave the column position
 unchanged, while a 0 command followed by a substitution would
 change the column position to the first non- <blank>. For consistency
 and simplicity of specification,
-IEEE\0Std\01003.1-2001 requires that the final column position always
+IEEE\ Std\ 1003.1-2001 requires that the final column position always
 be set to the first non- <blank>.
 .SS Set
 .LP
 Historical implementations redisplayed all of the options for each
 occurrence of the \fBall\fP keyword.
-IEEE\0Std\01003.1-2001 permits, but does not require, this behavior.
+IEEE\ Std\ 1003.1-2001 permits, but does not require, this behavior.
 .SS Tag
 .LP
 No requirement is made as to where \fIex\fP and \fIvi\fP shall look
@@ -5653,7 +5502,7 @@ extensions such as multiple entries in a tags file for a tag.
 .LP
 Because users often specify many different tags files, some of which
 need not be relevant or exist at any particular time,
-IEEE\0Std\01003.1-2001 requires that error messages about problem
+IEEE\ Std\ 1003.1-2001 requires that error messages about problem
 tags files be displayed only if the requested tag is not
 found, and then, only once for each time that the \fBtag\fP edit option
 is changed.
@@ -5664,14 +5513,14 @@ same as the current file (as defined by the current pathname). Historically,
 the file would be reloaded if the filename had
 changed, as well as if the filename was different from the current
 pathname. For consistency and simplicity of specification,
-IEEE\0Std\01003.1-2001 does not permit this behavior, requiring that
+IEEE\ Std\ 1003.1-2001 does not permit this behavior, requiring that
 the name be the only factor in the decision.
 .LP
 Historically, \fIvi\fP only searched for tags in the current file
 from the current cursor to
 the end of the file, and therefore, if the \fBwrapscan\fP option was
 not set, tags occurring before the current cursor were not
-found. IEEE\0Std\01003.1-2001 considers this a bug, and implementations
+found. IEEE\ Std\ 1003.1-2001 considers this a bug, and implementations
 are required to search for the first occurrence in
 the file, regardless.
 .SS Undo
@@ -5686,7 +5535,7 @@ the historical \fIvi\fP, sometimes attempting to restore the original
 cursor position ( \fBglobal\fP, \fBundo\fP,
 and \fBv\fP commands), and sometimes, in the presence of maps, placing
 the cursor on the last line added or changed instead of the
-first. IEEE\0Std\01003.1-2001 requires a simplified behavior for consistency
+first. IEEE\ Std\ 1003.1-2001 requires a simplified behavior for consistency
 and simplicity of specification.
 .SS Version
 .LP
@@ -5698,7 +5547,7 @@ reasonably intelligent.
 .LP
 Historically, the \fIex\fP and \fIvi\fP message after a successful
 \fBread\fP or
-\fBwrite\fP command specified "characters", not "bytes". IEEE\0Std\01003.1-2001
+\fBwrite\fP command specified "characters", not "bytes". IEEE\ Std\ 1003.1-2001
 requires that the number of bytes be
 displayed, not the number of characters because it may be difficult
 in multi-byte implementations to determine the number of
@@ -5711,21 +5560,21 @@ modification times.
 .LP
 Historically, attempting to append to a nonexistent file caused an
 error. It has been left unspecified in
-IEEE\0Std\01003.1-2001 to permit implementations to let the \fBwrite\fP
+IEEE\ Std\ 1003.1-2001 to permit implementations to let the \fBwrite\fP
 succeed, so that the append semantics are similar
 to those of the historical \fIcsh\fP.
 .LP
 Historical \fIvi\fP permitted empty edit buffers to be written. However,
 since the way \fIvi\fP got around dealing with "empty" files was to
 always have a line in the edit buffer, no
-matter what, it wrote them as files of a single, empty line. IEEE\0Std\01003.1-2001
+matter what, it wrote them as files of a single, empty line. IEEE\ Std\ 1003.1-2001
 does not permit this behavior.
 .LP
 Historically, \fIex\fP restored standard output and standard error
 to their values as of when \fIex\fP was invoked, before
 writes to programs were performed. This could disturb the terminal
 configuration as well as be a security issue for some terminals.
-IEEE\0Std\01003.1-2001 does not permit this, requiring that the program
+IEEE\ Std\ 1003.1-2001 does not permit this, requiring that the program
 output be captured and displayed as if by the
 \fIex\fP \fBprint\fP command.
 .SS Adjust Window
@@ -5734,29 +5583,29 @@ Historically, the line count was set to the value of the \fBscroll\fP
 option if the type character was end-of-file. This
 feature was broken on most historical implementations long ago, however,
 and is not documented anywhere. For this reason,
-IEEE\0Std\01003.1-2001 is resolutely silent.
+IEEE\ Std\ 1003.1-2001 is resolutely silent.
 .LP
-Historically, the \fBz\fP command was <blank>-sensitive and \fBz\0+\fP
-and \fBz\0-\fP did different things than
+Historically, the \fBz\fP command was <blank>-sensitive and \fBz\ +\fP
+and \fBz\ -\fP did different things than
 \fBz+\fP and \fBz-\fP because the type could not be distinguished
-from a flag. (The commands \fBz\0.\fP and \fBz\0=\fP
-were historically invalid.) IEEE\0Std\01003.1-2001 requires conformance
+from a flag. (The commands \fBz\ .\fP and \fBz\ =\fP
+were historically invalid.) IEEE\ Std\ 1003.1-2001 requires conformance
 to this historical practice.
 .LP
 Historically, the \fBz\fP command was further <blank>-sensitive in
 that the \fIcount\fP could not be
-<blank>-delimited; for example, the commands \fBz=\05\fP and \fBz-\05\fP
+<blank>-delimited; for example, the commands \fBz=\ 5\fP and \fBz-\ 5\fP
 were also invalid. Because the
 \fIcount\fP is not ambiguous with respect to either the type character
 or the flags, this is not permitted by
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .SS Escape
 .LP
 Historically, \fIex\fP filter commands only read the standard output
 of the commands, letting standard error appear on the
 terminal as usual. The \fIvi\fP utility, however, read both standard
 output and standard error.
-IEEE\0Std\01003.1-2001 requires the latter behavior for both \fIex\fP
+IEEE\ Std\ 1003.1-2001 requires the latter behavior for both \fIex\fP
 and \fIvi\fP,
 for consistency.
 .SS Shift Left and Shift Right
@@ -5765,46 +5614,46 @@ Historically, it was possible to add shift characters to increase
 the effect of the command; for example, \fB<<<\fP
 outdented (or \fB>>>\fP indented) the lines 3 levels of indentation
 instead of the default 1.
-IEEE\0Std\01003.1-2001 requires conformance to historical practice.
+IEEE\ Std\ 1003.1-2001 requires conformance to historical practice.
 .SS <control>-D
 .LP
 Historically, the <control>-D command erased the prompt, providing
 the user with an unbroken presentation of lines from
-the edit buffer. This is not required by IEEE\0Std\01003.1-2001; implementations
+the edit buffer. This is not required by IEEE\ Std\ 1003.1-2001; implementations
 are encouraged to provide it if possible.
 Historically, the <control>-D command took, and then ignored, a \fIcount\fP.
-IEEE\0Std\01003.1-2001 does not permit
+IEEE\ Std\ 1003.1-2001 does not permit
 this behavior.
 .SS Write Line Number
 .LP
 Historically, the \fIex\fP \fB=\fP command, when executed in \fIex\fP
 mode in an empty edit buffer, reported 0, and from open
 or visual mode, reported 1. For consistency and simplicity of specification,
-IEEE\0Std\01003.1-2001 does not permit this
+IEEE\ Std\ 1003.1-2001 does not permit this
 behavior.
 .SS Execute
 .LP
 Historically, \fIex\fP did not correctly handle the inclusion of text
 input commands (that is, \fBappend\fP, \fBinsert\fP,
-and \fBchange\fP) in executed buffers. IEEE\0Std\01003.1-2001 does
+and \fBchange\fP) in executed buffers. IEEE\ Std\ 1003.1-2001 does
 not permit this exclusion for consistency.
 .LP
 Historically, the logical contents of the buffer being executed did
 not change if the buffer itself were modified by the
 commands being executed; that is, buffer execution did not support
-self-modifying code. IEEE\0Std\01003.1-2001 requires
+self-modifying code. IEEE\ Std\ 1003.1-2001 requires
 conformance to historical practice.
 .LP
 Historically, the \fB@\fP command took a range of lines, and the \fB@\fP
 buffer was executed once per line, with the current
-line ( \fB'.'\fP ) set to each specified line. IEEE\0Std\01003.1-2001
+line ( \fB'.'\fP ) set to each specified line. IEEE\ Std\ 1003.1-2001
 requires conformance to historical practice.
 .LP
 Some historical implementations did not notice if errors occurred
 during buffer execution. This, coupled with the ability to
 specify a range of lines for the \fIex\fP \fB@\fP command, makes it
 trivial to cause them to drop \fBcore\fP.
-IEEE\0Std\01003.1-2001 requires that implementations stop buffer execution
+IEEE\ Std\ 1003.1-2001 requires that implementations stop buffer execution
 if any error occurs, if the specified line
 doesn't exist, or if the contents of the edit buffer itself are replaced
 (for example, the buffer executes the \fIex\fP
@@ -5817,77 +5666,77 @@ entering a \fB'~'\fP in the regular expression-were not further expanded
 by the regular expression engine. So, if the
 characters contained the string \fB"a.,"\fP they would match \fB'a'\fP
 followed by \fB".,"\fP and not \fB'a'\fP
-followed by any character. IEEE\0Std\01003.1-2001 requires conformance
+followed by any character. IEEE\ Std\ 1003.1-2001 requires conformance
 to historical practice.
 .SS Edit Options in ex
 .LP
 The following paragraphs describe the historical behavior of some
 edit options that were not, for whatever reason, included in
-IEEE\0Std\01003.1-2001. Implementations are strongly encouraged to
+IEEE\ Std\ 1003.1-2001. Implementations are strongly encouraged to
 only use these names if the functionality described here
 is fully supported.
-.TP
+.TP 7
 \fBextended\fP
 The \fBextended\fP edit option has been used in some implementations
 of \fIvi\fP to
 provide extended regular expressions instead of basic regular expressions
 This option was omitted from
-IEEE\0Std\01003.1-2001 because it is not widespread historical practice.
-.TP
+IEEE\ Std\ 1003.1-2001 because it is not widespread historical practice.
+.TP 7
 \fBflash\fP
 The \fBflash\fP edit option historically caused the screen to flash
 instead of beeping on error. This option was omitted from
-IEEE\0Std\01003.1-2001 because it is not found in some historical
+IEEE\ Std\ 1003.1-2001 because it is not found in some historical
 implementations.
-.TP
+.TP 7
 \fBhardtabs\fP
 The \fBhardtabs\fP edit option historically defined the number of
 columns between hardware tab settings. This option was
-omitted from IEEE\0Std\01003.1-2001 because it was believed to no
+omitted from IEEE\ Std\ 1003.1-2001 because it was believed to no
 longer be generally useful.
-.TP
+.TP 7
 \fBmodeline\fP
 The \fBmodeline\fP (sometimes named \fBmodelines\fP) edit option historically
 caused \fIex\fP or \fIvi\fP to read the five first and last lines
 of the file for editor commands. This option is a
 security problem, and vendors are strongly encouraged to delete it
 from historical implementations.
-.TP
+.TP 7
 \fBopen\fP
 The \fBopen\fP edit option historically disallowed the \fIex\fP \fBopen\fP
 and \fBvisual\fP commands. This edit option was
-omitted because these commands are required by IEEE\0Std\01003.1-2001.
-.TP
+omitted because these commands are required by IEEE\ Std\ 1003.1-2001.
+.TP 7
 \fBoptimize\fP
 The \fBoptimize\fP edit option historically expedited text throughput
 by setting the terminal to not do automatic
 <carriage-return>s when printing more than one logical line of output.
 This option was omitted from
-IEEE\0Std\01003.1-2001 because it was intended for terminals without
+IEEE\ Std\ 1003.1-2001 because it was intended for terminals without
 addressable cursors, which are rarely, if ever, still
 used.
-.TP
+.TP 7
 \fBruler\fP
 The \fBruler\fP edit option has been used in some implementations
 of \fIvi\fP to present a
 current row/column ruler for the user. This option was omitted from
-IEEE\0Std\01003.1-2001 because it is not widespread
+IEEE\ Std\ 1003.1-2001 because it is not widespread
 historical practice.
-.TP
+.TP 7
 \fBsourceany\fP
 The \fBsourceany\fP edit option historically caused \fIex\fP or \fIvi\fP
 to source
 start-up files that were owned by users other than the user running
 the editor. This option is a security problem, and vendors are
 strongly encouraged to remove it from their implementations.
-.TP
+.TP 7
 \fBtimeout\fP
 The \fBtimeout\fP edit option historically enabled the (now standard)
 feature of only waiting for a short period before
 returning keys that could be part of a macro. This feature was omitted
-from IEEE\0Std\01003.1-2001 because its behavior is
+from IEEE\ Std\ 1003.1-2001 because its behavior is
 now standard, it is not widely useful, and it was rarely documented.
-.TP
+.TP 7
 \fBverbose\fP
 The \fBverbose\fP edit option has been used in some implementations
 of \fIvi\fP to cause
@@ -5898,17 +5747,17 @@ screen. (The historical \fIvi\fP only alerted the terminal and presented
 no message for such errors. The historical editor
 option \fBterse\fP did not select when to present error messages,
 it only made existing error messages more or less verbose.) This
-option was omitted from IEEE\0Std\01003.1-2001 because it is not widespread
+option was omitted from IEEE\ Std\ 1003.1-2001 because it is not widespread
 historical practice; however, implementors are
 encouraged to use it if they wish to provide error messages for naive
 users.
-.TP
+.TP 7
 \fBwraplen\fP
 The \fBwraplen\fP edit option has been used in some implementations
 of \fIvi\fP to specify
 an automatic margin measured from the left margin instead of from
 the right margin. This is useful when multiple screen sizes are
-being used to edit a single file. This option was omitted from IEEE\0Std\01003.1-2001
+being used to edit a single file. This option was omitted from IEEE\ Std\ 1003.1-2001
 because it is not widespread
 historical practice; however, implementors are encouraged to use it
 if they add this functionality.
@@ -5917,7 +5766,7 @@ if they add this functionality.
 .LP
 Historically, the command \fB0a\fP did not do any autoindentation,
 regardless of the current indentation of line 1.
-IEEE\0Std\01003.1-2001 requires that any indentation present in line
+IEEE\ Std\ 1003.1-2001 requires that any indentation present in line
 1 be used.
 .SS autoprint, ap
 .LP
@@ -5927,7 +5776,7 @@ buffer. Exceptions were the \fBread\fP command (when reading from
 a file, but not from a filter), the \fBappend\fP,
 \fBchange\fP, \fBinsert\fP, \fBglobal\fP, and \fBv\fP commands, all
 of which were not affected by \fBautoprint\fP, and the
-\fBtag\fP command, which was affected by \fBautoprint\fP. IEEE\0Std\01003.1-2001
+\fBtag\fP command, which was affected by \fBautoprint\fP. IEEE\ Std\ 1003.1-2001
 requires conformance to historical
 practice.
 .LP
@@ -5935,12 +5784,12 @@ Historically, the \fBautoprint\fP option only applied to the last
 of multiple commands entered using vertical-bar delimiters;
 for example, \fBdelete\fP <newline> was affected by \fBautoprint\fP,
 but \fBdelete|version\fP <newline> was not.
-IEEE\0Std\01003.1-2001 requires conformance to historical practice.
+IEEE\ Std\ 1003.1-2001 requires conformance to historical practice.
 .SS autowrite, aw
 .LP
 Appending the \fB'!'\fP character to the \fIex\fP \fBnext\fP command
 to avoid performing an automatic write was not
-supported in historical implementations. IEEE\0Std\01003.1-2001 requires
+supported in historical implementations. IEEE\ Std\ 1003.1-2001 requires
 that the behavior match the other \fIex\fP
 commands for consistency.
 .SS ignorecase, ic
@@ -5949,23 +5798,19 @@ Historical implementations of case-insensitive matching (the \fBignorecase\fP
 edit option) lead to counterintuitive situations
 when uppercase characters were used in range expressions. Historically,
 the process was as follows:
-.in +5
-.LP
+.IP " 1." 4
 Take a line of text from the edit buffer.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Convert uppercase to lowercase in text line.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Convert uppercase to lowercase in regular expressions, except in character
 class specifications.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Match regular expressions against text.
-.in -5
+.LP
 .LP
 This would mean that, with \fBignorecase\fP in effect, the text:
 .sp
@@ -5998,17 +5843,17 @@ but not by:
 .RE
 .LP
 For consistency with other commands implementing regular expressions,
-IEEE\0Std\01003.1-2001 does not permit this
+IEEE\ Std\ 1003.1-2001 does not permit this
 behavior.
 .SS paragraphs, para
 .LP
-The ISO\0POSIX-2:1993 standard made the default \fBparagraphs\fP and
+The ISO\ POSIX-2:1993 standard made the default \fBparagraphs\fP and
 \fBsections\fP edit options implementation-defined,
 arguing they were historically oriented to the UNIX system \fItroff\fP
 text formatter, and a "portable user" could use the
 \fB{\fP, \fB}\fP, \fB[[\fP, \fB]]\fP, \fB(\fP, and \fB)\fP commands
 in open or visual mode and have the cursor stop in
-unexpected places. IEEE\0Std\01003.1-2001 specifies their values in
+unexpected places. IEEE\ Std\ 1003.1-2001 specifies their values in
 the POSIX locale because the unusual grouping (they
 only work when grouped into two characters at a time) means that they
 cannot be used for general-purpose movement, regardless.
@@ -6027,7 +5872,7 @@ implementations did not notice that the user had set the \fBreadonly\fP
 edit option in cases where the file was already marked
 read-only for some reason, and would therefore reinitialize the \fBreadonly\fP
 edit option the next time the contents of the edit
-buffer were replaced. This behavior is disallowed by IEEE\0Std\01003.1-2001.
+buffer were replaced. This behavior is disallowed by IEEE\ Std\ 1003.1-2001.
 .SS report
 .LP
 The requirement that lines copied to a buffer interact differently
@@ -6041,7 +5886,7 @@ The requirement that the \fIex\fP \fBglobal\fP, \fBv\fP, \fBopen\fP,
 based on the total number of lines added or deleted during the command
 execution, and that commands executed by the \fBglobal\fP
 and \fBv\fP commands not present reports, is historical practice.
-IEEE\0Std\01003.1-2001 extends historical practice by
+IEEE\ Std\ 1003.1-2001 extends historical practice by
 requiring that buffer execution be treated similarly. The reasons
 for this are two-fold. Historically, only the report by the last
 command executed from the buffer would be seen by the user, as each
@@ -6075,15 +5920,15 @@ The latter display has sometimes been part of the
 option was not available in the 4 BSD historical implementation
 of \fIvi\fP, but was viewed as generally useful, particularly to novice
 users, and is required
-by IEEE\0Std\01003.1-2001.
+by IEEE\ Std\ 1003.1-2001.
 .LP
 The \fBsmd\fP shorthand for the \fBshowmode\fP option was not present
 in all historical implementations of the editor.
-IEEE\0Std\01003.1-2001 requires it, for consistency.
+IEEE\ Std\ 1003.1-2001 requires it, for consistency.
 .LP
 Not all historical implementations of the editor displayed a mode
 string for command mode, differentiating command mode from
-text input mode by the absence of a mode string. IEEE\0Std\01003.1-2001
+text input mode by the absence of a mode string. IEEE\ Std\ 1003.1-2001
 permits this behavior for consistency with
 historical practice, but implementations are encouraged to provide
 a display string for both modes.
@@ -6101,7 +5946,7 @@ overwritten. In both cases, ending text input mode would cause the
 screen to be refreshed to match the actual contents of the edit
 buffer. Finally, terminals that were sufficiently intelligent caused
 the editor to ignore the \fBslowopen\fP option.
-IEEE\0Std\01003.1-2001 permits most historical behavior, extending
+IEEE\ Std\ 1003.1-2001 permits most historical behavior, extending
 historical practice to require \fBslowopen\fP behaviors
 if the edit option is set by the user.
 .SS tags
@@ -6116,14 +5961,14 @@ value should probably at least include the file
 Historical implementations of \fIex\fP and \fIvi\fP ignored changes
 to the \fBterm\fP edit
 option after the initial terminal information was loaded. This is
-permitted by IEEE\0Std\01003.1-2001; however,
+permitted by IEEE\ Std\ 1003.1-2001; however,
 implementations are encouraged to permit the user to modify their
 terminal type at any time.
 .SS terse
 .LP
 Historically, the \fBterse\fP edit option optionally provided a shorter,
 less descriptive error message, for some error
-messages. This is permitted, but not required, by IEEE\0Std\01003.1-2001.
+messages. This is permitted, but not required, by IEEE\ Std\ 1003.1-2001.
 Historically, most common visual mode errors (for
 example, trying to move the cursor past the end of a line) did not
 result in an error message, but simply alerted the terminal.
@@ -6134,8 +5979,7 @@ not \fBterse\fP.
 .LP
 In historical implementations, the default for the \fBwindow\fP edit
 option was based on the baud rate as follows:
-.in +5
-.LP
+.IP " 1." 4
 If the baud rate was less than 1200, the \fBedit\fP option \fBw300\fP
 set the window value; for example, the line:
 .sp
@@ -6148,20 +5992,18 @@ set the window value; for example, the line:
 .RE
 .LP
 would set the window option to 12 if the baud rate was less than 1200.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the baud rate was equal to 1200, the \fBedit\fP option \fBw1200\fP
 set the window value.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the baud rate was greater than 1200, the \fBedit\fP option \fBw9600\fP
 set the window value.
-.in -5
+.LP
 .LP
 The \fBw300\fP, \fBw1200\fP, and \fBw9600\fP options do not appear
-in IEEE\0Std\01003.1-2001 because of their
+in IEEE\ Std\ 1003.1-2001 because of their
 dependence on specific baud rates.
 .LP
 In historical implementations, the size of the window displayed by
@@ -6171,7 +6013,7 @@ was set by the \fIex\fP command \fBvisual 10\fP, but it
 did not change the value of the \fBwindow\fP edit option. However,
 changing the value of the \fBwindow\fP edit option did change
 the number of lines that were displayed when the screen was repainted.
-IEEE\0Std\01003.1-2001 does not permit this behavior
+IEEE\ Std\ 1003.1-2001 does not permit this behavior
 in the interests of consistency and simplicity of specification, and
 requires that all commands that change the number of lines
 that are displayed do it by setting the value of the \fBwindow\fP
@@ -6180,9 +6022,9 @@ edit option.
 .LP
 Historically, the \fBwrapmargin\fP option did not affect maps inserting
 characters that also had associated \fIcount\fPs; for
-example \fB:map\0K\05aABC\0DEF\fP. Unfortunately, there are widely
+example \fB:map\ K\ 5aABC\ DEF\fP. Unfortunately, there are widely
 used maps that depend on this behavior. For
-consistency and simplicity of specification, IEEE\0Std\01003.1-2001
+consistency and simplicity of specification, IEEE\ Std\ 1003.1-2001
 does not permit this behavior.
 .LP
 Historically, \fBwrapmargin\fP was calculated using the column display
@@ -6193,7 +6035,7 @@ edit option was set, where \fB'^'\fP and
 the \fBwrapmargin\fP based on a value of 2 for each
 <tab>. The \fBnumber\fP edit option similarly changed the effective
 length of the line as well.
-IEEE\0Std\01003.1-2001 requires conformance to historical practice.
+IEEE\ Std\ 1003.1-2001 requires conformance to historical practice.
 .SH FUTURE DIRECTIONS
 .LP
 None.
@@ -6201,7 +6043,7 @@ None.
 .LP
 \fICommand Search and Execution\fP , \fIctags\fP , \fIed\fP , \fIsed\fP
 , \fIsh\fP , \fIstty\fP , \fIvi\fP , the System Interfaces volume
-of IEEE\0Std\01003.1-2001, \fIaccess\fP()
+of IEEE\ Std\ 1003.1-2001, \fIaccess\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

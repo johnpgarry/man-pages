@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "getpriority" P 2003 POSIX
+.TH "GETPRIORITY" P 2003 POSIX
 .\" getpriority 
 .SH NAME
-getpriority, setpriority - get and set the nice value
+getpriority, setpriority \- get and set the nice value
 .SH SYNOPSIS
 .LP
 \fB#include <sys/resource.h>
@@ -79,11 +79,11 @@ indicate the error.
 .LP
 The \fIgetpriority\fP() and \fIsetpriority\fP() functions shall fail
 if:
-.TP
+.TP 7
 .B ESRCH
 No process could be located using the \fIwhich\fP and \fIwho\fP argument
 values specified.
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIwhich\fP argument was not recognized, or the value
 of the \fIwho\fP argument is not a valid process ID,
@@ -91,12 +91,12 @@ process group ID, or user ID.
 .sp
 .LP
 In addition, \fIsetpriority\fP() may fail if:
-.TP
+.TP 7
 .B EPERM
 A process was located, but neither the real nor effective user ID
 of the executing process match the effective user ID of the
 process whose nice value is being changed.
-.TP
+.TP 7
 .B EACCES
 A request was made to change the nice value to a lower numeric value
 and the current process does not have appropriate
@@ -162,7 +162,7 @@ None.
 .SH SEE ALSO
 .LP
 \fInice\fP() , \fIsched_get_priority_max\fP() , \fIsched_setscheduler\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/resource.h>\fP
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/resource.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "continue" P 2003 POSIX
+.TH "CONTINUE" P 2003 POSIX
 .\" continue 
 .SH NAME
-continue - continue for, while, or until loop
+continue \- continue for, while, or until loop
 .SH SYNOPSIS
 .LP
 \fBcontinue\fP \fB[\fP\fIn\fP\fB]\fP
@@ -50,10 +50,10 @@ None.
 .LP
 None.
 .SH EXIT STATUS
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 The \fIn\fP value was not an unsigned decimal integer greater than
 or equal to 1.

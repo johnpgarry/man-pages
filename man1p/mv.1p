@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mv" P 2003 POSIX
+.TH "MV" P 2003 POSIX
 .\" mv 
 .SH NAME
-mv - move files
+mv \- move files
 .SH SYNOPSIS
 .LP
 \fBmv\fP \fB[\fP\fB-fi\fP\fB]\fP \fIsource_file target_file\fP\fB
@@ -31,73 +31,66 @@ names an existing directory.
 .LP
 If any operand specifies an existing file of a type not specified
 by the System Interfaces volume of
-IEEE\0Std\01003.1-2001, the behavior is implementation-defined.
+IEEE\ Std\ 1003.1-2001, the behavior is implementation-defined.
 .LP
 For each \fIsource_file\fP the following steps shall be taken:
-.in +5
-.LP
+.IP " 1." 4
 If the destination path exists, the \fB-f\fP option is not specified,
 and either of the following conditions is true:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 The permissions of the destination path do not permit writing and
 the standard input is a terminal.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 The \fB-i\fP option is specified.
-.in -5
+.LP
+.RE
 .LP
 the \fImv\fP utility shall write a prompt to standard error and read
 a line from standard input. If the response is not
 affirmative, \fImv\fP shall do nothing more with the current \fIsource_file\fP
 and go on to any remaining
 \fIsource_file\fPs.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The \fImv\fP utility shall perform actions equivalent to the \fIrename\fP()
 function
-defined in the System Interfaces volume of IEEE\0Std\01003.1-2001,
+defined in the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 called with the following arguments:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 The \fIsource_file\fP operand is used as the \fIold\fP argument.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 The destination path is used as the \fInew\fP argument.
-.in -5
+.LP
+.RE
 .LP
 If this succeeds, \fImv\fP shall do nothing more with the current
 \fIsource_file\fP and go on to any remaining
 \fIsource_file\fPs. If this fails for any reasons other than those
 described for the \fIerrno\fP [EXDEV] in the System Interfaces
-volume of IEEE\0Std\01003.1-2001, \fImv\fP shall write a diagnostic
+volume of IEEE\ Std\ 1003.1-2001, \fImv\fP shall write a diagnostic
 message to standard error, do nothing more with the
 current \fIsource_file\fP, and go on to any remaining \fIsource_file\fPs.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the destination path exists, and it is a file of type directory
 and \fIsource_file\fP is not a file of type directory, or it
 is a file not of type directory and \fIsource_file\fP is a file of
 type directory, \fImv\fP shall write a diagnostic message to
 standard error, do nothing more with the current \fIsource_file\fP,
 and go on to any remaining \fIsource_file\fPs.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If the destination path exists, \fImv\fP shall attempt to remove it.
 If this fails for any reason, \fImv\fP shall write a
 diagnostic message to standard error, do nothing more with the current
 \fIsource_file\fP, and go on to any remaining
 \fIsource_file\fPs.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 The file hierarchy rooted in \fIsource_file\fP shall be duplicated
 as a file hierarchy rooted in the destination path. If
 \fIsource_file\fP or any of the files below it in the hierarchy are
@@ -106,18 +99,15 @@ including their contents, rather than any files to which they refer.
 The following characteristics of each file in the file
 hierarchy shall be duplicated:
 .RS
-.in +5
-.LP
+.IP " *" 3
 The time of last data modification and time of last access
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The user ID and group ID
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The file mode
-.in -5
+.LP
 .RE
 .LP
 If the user ID, group ID, or file mode of a regular file cannot be
@@ -137,26 +127,25 @@ If the duplication of the file characteristics fails for any reason,
 \fImv\fP shall write a diagnostic message to standard
 error, but this failure shall not cause \fImv\fP to modify its exit
 status.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 The file hierarchy rooted in \fIsource_file\fP shall be removed. If
 this fails for any reason, \fImv\fP shall write a
 diagnostic message to the standard error, do nothing more with the
 current \fIsource_file\fP, and go on to any remaining
 \fIsource_file\fPs.
-.in -5
+.LP
 .SH OPTIONS
 .LP
 The \fImv\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-f\fP
 Do not prompt for confirmation if the destination path exists. Any
 previous occurrence of the \fB-i\fP option is ignored.
-.TP
+.TP 7
 \fB-i\fP
 Prompt for confirmation if the destination path exists. Any previous
 occurrence of the \fB-f\fP option is ignored.
@@ -168,13 +157,13 @@ determine the behavior of \fImv\fP.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIsource_file\fP
 A pathname of a file or directory to be moved.
-.TP
+.TP 7
 \fItarget_file\fP
 A new pathname for the file or directory being moved.
-.TP
+.TP 7
 \fItarget_dir\fP
 A pathname of an existing directory into which to move the input files.
 .sp
@@ -191,26 +180,26 @@ of any file type.
 .LP
 The following environment variables shall affect the execution of
 \fImv\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements used in the extended
 regular expression defined for the \fByesexpr\fP locale keyword in
 the \fILC_MESSAGES\fP category.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
@@ -218,12 +207,12 @@ opposed to multi-byte characters in arguments and input files), the
 behavior of character classes used in the extended regular
 expression defined for the \fByesexpr\fP locale keyword in the \fILC_MESSAGES\fP
 category.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale for the processing of affirmative responses that
 should be used to affect the format and contents of
 diagnostic messages written to standard error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -250,10 +239,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All input files were moved successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -279,7 +268,7 @@ behavior.
 .LP
 If the current directory contains only files \fBa\fP (of any type
 defined by the System Interfaces volume of
-IEEE\0Std\01003.1-2001), \fBb\fP (also of any type), and a directory
+IEEE\ Std\ 1003.1-2001), \fBb\fP (also of any type), and a directory
 \fBc\fP:
 .sp
 .RS
@@ -303,7 +292,7 @@ current text returns to historical practice. It should be noted that
 this is consistent
 with the \fIrename\fP() function defined in the System Interfaces
 volume of
-IEEE\0Std\01003.1-2001, which does not require write permission on
+IEEE\ Std\ 1003.1-2001, which does not require write permission on
 the target.
 .LP
 For absolute clarity, paragraph (1), describing the behavior of \fImv\fP
@@ -336,7 +325,7 @@ same file system.
 Some historical versions of \fImv\fP have been able to move directories,
 but not to a different file system. The standard
 developers considered that this was an annoying inconsistency, so
-this volume of IEEE\0Std\01003.1-2001 requires
+this volume of IEEE\ Std\ 1003.1-2001 requires
 directories to be able to be moved even across file systems. There
 is no \fB-R\fP option to confirm that moving a directory is
 actually intended, since such an option was not required for moving
@@ -374,7 +363,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIcp\fP , \fIln\fP , the System Interfaces volume of
-IEEE\0Std\01003.1-2001, \fIrename\fP()
+IEEE\ Std\ 1003.1-2001, \fIrename\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "ps" P 2003 POSIX
+.TH "PS" P 2003 POSIX
 .\" ps 
 .SH NAME
-ps - report process status
+ps \- report process status
 .SH SYNOPSIS
 .LP
 \fBps\fP \fB[\fP\fB-aA\fP\fB][\fP\fB-defl\fP\fB][\fP\fB-G\fP
@@ -29,82 +29,82 @@ terminal as the invoker.
 .SH OPTIONS
 .LP
 The \fIps\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-a\fP
 Write information for all processes associated with terminals. Implementations
 may omit session leaders from this list.
-.TP
+.TP 7
 \fB-A\fP
 Write information for all processes.
-.TP
+.TP 7
 \fB-d\fP
 Write information for all processes, except session leaders. 
-.TP
+.TP 7
 \fB-e\fP
 Write information for all processes.  (Equivalent to
 \fB-A\fP.)
-.TP
+.TP 7
 \fB-f\fP
 Generate a \fBfull\fP listing. (See the STDOUT section for the contents
 of a \fBfull\fP listing.) 
-.TP
-\fB-g\0\fP \fIgrouplist\fP
+.TP 7
+\fB-g\ \fP \fIgrouplist\fP
 Write information for processes whose session leaders are given in
 \fIgrouplist\fP. The application shall ensure that the
 \fIgrouplist\fP is a single argument in the form of a <blank> or comma-separated
 list. 
-.TP
-\fB-G\0\fP \fIgrouplist\fP
+.TP 7
+\fB-G\ \fP \fIgrouplist\fP
 Write information for processes whose real group ID numbers are given
 in \fIgrouplist\fP. The application shall ensure that
 the \fIgrouplist\fP is a single argument in the form of a <blank>
 or comma-separated list.
-.TP
+.TP 7
 \fB-l\fP
 Generate a \fBlong\fP listing. (See STDOUT for the contents of a \fBlong\fP
 listing.) 
-.TP
-\fB-n\0\fP \fInamelist\fP
+.TP 7
+\fB-n\ \fP \fInamelist\fP
 Specify the name of an alternative system \fInamelist\fP file in place
 of the default. The name of the default file and the format
 of a \fInamelist\fP file are unspecified. 
-.TP
-\fB-o\0\fP \fIformat\fP
+.TP 7
+\fB-o\ \fP \fIformat\fP
 Write information according to the format specification given in \fIformat\fP.
 This is fully described in the STDOUT section.
 Multiple \fB-o\fP options can be specified; the format specification
 shall be interpreted as the <space>-separated
 concatenation of all the \fIformat\fP option-arguments.
-.TP
-\fB-p\0\fP \fIproclist\fP
+.TP 7
+\fB-p\ \fP \fIproclist\fP
 Write information for processes whose process ID numbers are given
 in \fIproclist\fP. The application shall ensure that the
 \fIproclist\fP is a single argument in the form of a <blank> or comma-separated
 list.
-.TP
-\fB-t\0\fP \fItermlist\fP
+.TP 7
+\fB-t\ \fP \fItermlist\fP
 Write information for processes associated with terminals given in
 \fItermlist\fP. The application shall ensure that the
 \fItermlist\fP is a single argument in the form of a <blank> or comma-separated
 list. Terminal identifiers shall be given in
-an implementation-defined format.   \0On XSI-conformant systems, they
+an implementation-defined format.   \ On XSI-conformant systems, they
 shall be given in one of two forms: the device's filename
 (for example, \fBtty04\fP) or, if the device's filename starts with
 \fBtty\fP, just the identifier following the characters
 \fBtty\fP (for example, \fB"04"\fP ). 
-.TP
-\fB-u\0\fP \fIuserlist\fP
+.TP 7
+\fB-u\ \fP \fIuserlist\fP
 Write information for processes whose user ID numbers or login names
 are given in \fIuserlist\fP. The application shall ensure
 that the \fIuserlist\fP is a single argument in the form of a <blank>
 or comma-separated list. In the listing, the numerical
 user ID shall be written unless the \fB-f\fP option is used, in which
 case the login name shall be written. 
-.TP
-\fB-U\0\fP \fIuserlist\fP
+.TP 7
+\fB-U\ \fP \fIuserlist\fP
 Write information for processes whose real user ID numbers or login
 names are given in \fIuserlist\fP. The application shall
 ensure that the \fIuserlist\fP is a single argument in the form of
@@ -129,42 +129,42 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIps\fP:
-.TP
+.TP 7
 \fICOLUMNS\fP
 Override the system-selected horizontal display line size, used to
 determine the number of text columns to display. See the
-Base Definitions volume of IEEE\0Std\01003.1-2001, Chapter 8, Environment
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 8, Environment
 Variables for valid values and results when it is unset or null.
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fILC_TIME\fP
 Determine the format and contents of the date and time strings displayed.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone used to calculate date and time strings displayed.
 If \fITZ\fP is unset or null, an unspecified default
@@ -188,22 +188,82 @@ that shall cause the corresponding heading to appear;
 options determine only what information is provided for a
 process; they do not determine which processes are listed.
 .TS C
-center;l l l l l l l l.
-\fBF\fP 	 (l) 	 Flags (octal and additive) associated with the process. 	
-\fBS\fP 	 (l) 	 The state of the process. 	
-\fBUID\fP 	 (f,l) 	 The user ID number of the process owner; the login name is printed under the \fB-f\fP option. 	
-\fBPID\fP 	 (all) 	 The process ID of the process; it is possible to kill a process if this datum is known. 	
-\fBPPID\fP 	 (f,l) 	 The process ID of the parent process. 	
-\fBC\fP 	 (f,l) 	 Processor utilization for scheduling. 	
-\fBPRI\fP 	 (l) 	 The priority of the process; higher numbers mean lower priority. 	
-\fBNI\fP 	 (l) 	 Nice value; used in priority computation. 	
-\fBADDR\fP 	 (l) 	 The address of the process. 	
-\fBSZ\fP 	 (l) 	 The size in blocks of the core image of the process. 	
-\fBWCHAN\fP 	 (l) 	 The event for which the process is waiting or sleeping; if blank, the process is running. 	
-\fBSTIME\fP 	 (f) 	 Starting time of the process. 	
-\fBTTY\fP 	 (all) 	 The controlling terminal for the process. 	
-\fBTIME\fP 	 (all) 	 The cumulative execution time for the process. 	
-\fBCMD\fP 	 (all) 	 The command name; the full command name and its arguments are written under the \fB-f\fP option. 	
+center; l l lw(40).
+\fBF\fP	(l)	T{
+.na
+Flags (octal and additive) associated with the process.
+.ad
+T}
+\fBS\fP	(l)	T{
+.na
+The state of the process.
+.ad
+T}
+\fBUID\fP	(f,l)	T{
+.na
+The user ID number of the process owner; the login name is printed under the \fB-f\fP option.
+.ad
+T}
+\fBPID\fP	(all)	T{
+.na
+The process ID of the process; it is possible to kill a process if this datum is known.
+.ad
+T}
+\fBPPID\fP	(f,l)	T{
+.na
+The process ID of the parent process.
+.ad
+T}
+\fBC\fP	(f,l)	T{
+.na
+Processor utilization for scheduling.
+.ad
+T}
+\fBPRI\fP	(l)	T{
+.na
+The priority of the process; higher numbers mean lower priority.
+.ad
+T}
+\fBNI\fP	(l)	T{
+.na
+Nice value; used in priority computation.
+.ad
+T}
+\fBADDR\fP	(l)	T{
+.na
+The address of the process.
+.ad
+T}
+\fBSZ\fP	(l)	T{
+.na
+The size in blocks of the core image of the process.
+.ad
+T}
+\fBWCHAN\fP	(l)	T{
+.na
+The event for which the process is waiting or sleeping; if blank, the process is running.
+.ad
+T}
+\fBSTIME\fP	(f)	T{
+.na
+Starting time of the process.
+.ad
+T}
+\fBTTY\fP	(all)	T{
+.na
+The controlling terminal for the process.
+.ad
+T}
+\fBTIME\fP	(all)	T{
+.na
+The cumulative execution time for the process.
+.ad
+T}
+\fBCMD\fP	(all)	T{
+.na
+The command name; the full command name and its arguments are written under the \fB-f\fP option.
+.ad
+T}
 .TE
 .LP
 A process that has exited and has a parent, but has not yet been waited
@@ -233,50 +293,50 @@ the default header text. If all header text fields are null,
 no header line shall be written.
 .LP
 The following names are recognized in the POSIX locale:
-.TP
+.TP 7
 \fBruser\fP
 The real user ID of the process. This shall be the textual user ID,
 if it can be obtained and the field width permits, or a
 decimal representation otherwise.
-.TP
+.TP 7
 \fBuser\fP
 The effective user ID of the process. This shall be the textual user
 ID, if it can be obtained and the field width permits, or
 a decimal representation otherwise.
-.TP
+.TP 7
 \fBrgroup\fP
 The real group ID of the process. This shall be the textual group
 ID, if it can be obtained and the field width permits, or a
 decimal representation otherwise.
-.TP
+.TP 7
 \fBgroup\fP
 The effective group ID of the process. This shall be the textual group
 ID, if it can be obtained and the field width permits,
 or a decimal representation otherwise.
-.TP
+.TP 7
 \fBpid\fP
 The decimal value of the process ID.
-.TP
+.TP 7
 \fBppid\fP
 The decimal value of the parent process ID.
-.TP
+.TP 7
 \fBpgid\fP
 The decimal value of the process group ID.
-.TP
+.TP 7
 \fBpcpu\fP
 The ratio of CPU time used recently to CPU time available in the same
 period, expressed as a percentage. The meaning of
 "recently" in this context is unspecified. The CPU time available
 is determined in an unspecified manner.
-.TP
+.TP 7
 \fBvsz\fP
 The size of the process in (virtual) memory in 1024 byte units as
 a decimal integer.
-.TP
+.TP 7
 \fBnice\fP
 The decimal value of the nice value of the process; see \fInice\fP()
 \&.
-.TP
+.TP 7
 \fBetime\fP
 In the POSIX locale, the elapsed time since the process was started,
 in the form: 
@@ -293,7 +353,7 @@ of hours, \fImm\fP the number of minutes, and
 \fIss\fP the number of seconds. The \fIdd\fP field shall be a decimal
 integer. The \fIhh\fP, \fImm\fP, and \fIss\fP fields
 shall be two-digit decimal integers padded on the left with zeros.
-.TP
+.TP 7
 \fBtime\fP
 In the POSIX locale, the cumulative CPU time of the process in the
 form: 
@@ -307,15 +367,15 @@ form:
 .LP
 The \fIdd\fP, \fIhh\fP, \fImm\fP, and \fIss\fP fields shall be as
 described in the \fBetime\fP specifier.
-.TP
+.TP 7
 \fBtty\fP
 The name of the controlling terminal of the process (if any) in the
 same format used by the \fIwho\fP utility.
-.TP
+.TP 7
 \fBcomm\fP
 The name of the command being executed ( \fIargv\fP[0] value) as a
 string.
-.TP
+.TP 7
 \fBargs\fP
 The command with all its arguments as a string. The implementation
 may truncate this value to the field width; it is
@@ -341,18 +401,20 @@ the default header and indicating whether the field may contain
 The following table specifies the default header to be used in the
 POSIX locale corresponding to each format specifier.
 .br
+.sp
+.ce 1
 \fBTable: Variable Names and Default Headers in \fIps\fP\fP
 .TS C
-center;l l l l l l l l.
-\fBFormat Specifier\fP 	 \fBDefault Header\fP 	 \fBFormat Specifier\fP 	 \fBDefault Header\fP 	
-\fBargs\fP 	 \fBCOMMAND\fP 	 \fBppid\fP 	 \fBPPID\fP 	
-\fBcomm\fP 	 \fBCOMMAND\fP 	 \fBrgroup\fP 	 \fBRGROUP\fP 	
-\fBetime\fP 	 \fBELAPSED\fP 	 \fBruser\fP 	 \fBRUSER\fP 	
-\fBgroup\fP 	 \fBGROUP\fP 	 \fBtime\fP 	 \fBTIME\fP 	
-\fBnice\fP 	 \fBNI\fP 	 \fBtty\fP 	 \fBTT\fP 	
-\fBpcpu\fP 	 \fB%CPU\fP 	 \fBuser\fP 	 \fBUSER\fP 	
-\fBpgid\fP 	 \fBPGID\fP 	 \fBvsz\fP 	 \fBVSZ\fP 	
-\fBpid\fP 	 \fBPID\fP 	 \fB\0\fP 	 \fB\0\fP 	
+center; l1 l1 l1 l.
+\fBFormat Specifier\fP	\fBDefault Header\fP	\fBFormat Specifier\fP	\fBDefault Header\fP
+\fBargs\fP	\fBCOMMAND\fP	\fBppid\fP	\fBPPID\fP
+\fBcomm\fP	\fBCOMMAND\fP	\fBrgroup\fP	\fBRGROUP\fP
+\fBetime\fP	\fBELAPSED\fP	\fBruser\fP	\fBRUSER\fP
+\fBgroup\fP	\fBGROUP\fP	\fBtime\fP	\fBTIME\fP
+\fBnice\fP	\fBNI\fP	\fBtty\fP	\fBTT\fP
+\fBpcpu\fP	\fB%CPU\fP	\fBuser\fP	\fBUSER\fP
+\fBpgid\fP	\fBPGID\fP	\fBvsz\fP	\fBVSZ\fP
+\fBpid\fP	\fBPID\fP	\fB\ \fP	\fB\ \fP
 .TE
 .SH STDERR
 .LP
@@ -366,10 +428,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -459,7 +521,7 @@ The major change is the addition of the format specification capability.
 The motivation for this invention is to provide a
 mechanism for users to access a wider range of system information,
 if the system permits it, in a portable manner. The fields
-chosen to appear in this volume of IEEE\0Std\01003.1-2001 were arrived
+chosen to appear in this volume of IEEE\ Std\ 1003.1-2001 were arrived
 at after considering what concepts were likely to be
 both reasonably useful to the "average" user and had a reasonable
 chance of being implemented on a wide range of systems. Again
@@ -490,7 +552,7 @@ the SVID omits session leaders, but BSD does not.
 .LP
 In an early proposal, format specifiers appeared for priority and
 start time. The former was not defined adequately in this
-volume of IEEE\0Std\01003.1-2001 and was removed in deference to the
+volume of IEEE\ Std\ 1003.1-2001 and was removed in deference to the
 defined nice value; the latter because elapsed time
 was considered to be more useful.
 .LP

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "timer_create" P 2003 POSIX
+.TH "TIMER_CREATE" P 2003 POSIX
 .\" timer_create 
 .SH NAME
-timer_create - create a per-process timer (\fBREALTIME\fP)
+timer_create \- create a per-process timer (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -13,7 +13,7 @@ timer_create - create a per-process timer (\fBREALTIME\fP)
 int timer_create(clockid_t\fP \fIclockid\fP\fB, struct sigevent *restrict\fP
 \fIevp\fP\fB,
 .br
-\0\0\0\0\0\0 timer_t *restrict\fP \fItimerid\fP\fB); \fP
+\ \ \ \ \ \  timer_t *restrict\fP \fItimerid\fP\fB); \fP
 \fB
 .br
 \fP
@@ -43,7 +43,7 @@ value of the timer ID.
 .LP
 Each implementation shall define a set of clocks that can be used
 as timing bases for per-process timers. All implementations
-shall support a \fIclock_id\fP of CLOCK_REALTIME.   \0If the Monotonic
+shall support a \fIclock_id\fP of CLOCK_REALTIME.   \ If the Monotonic
 Clock option is supported, implementations shall
 support a \fIclock_id\fP of CLOCK_MONOTONIC. 
 .LP
@@ -74,24 +74,23 @@ is undefined if an error occurs.
 .SH ERRORS
 .LP
 The \fItimer_create\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The system lacks sufficient signal queuing resources to honor the
 request.
-.TP
+.TP 7
 .B EAGAIN
 The calling process has already created all of the timers it is allowed
 by this implementation.
-.TP
+.TP 7
 .B EINVAL
 The specified clock ID is not defined.
-.TP
+.TP 7
 .B ENOTSUP
 The implementation does not support the creation of a timer attached
 to the CPU-time clock that is specified by
 \fIclock_id\fP and associated with a process or thread different from
-the process or thread invoking \fItimer_create\fP(). <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+the process or thread invoking \fItimer_create\fP(). 
 .sp
 .LP
 \fIThe following sections are informative.\fP
@@ -185,7 +184,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIclock_getres\fP() , \fItimer_delete\fP() , \fItimer_getoverrun\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<time.h>\fP
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

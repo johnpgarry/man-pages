@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "semget" P 2003 POSIX
+.TH "SEMGET" P 2003 POSIX
 .\" semget 
 .SH NAME
-semget - get set of XSI semaphores
+semget \- get set of XSI semaphores
 .SH SYNOPSIS
 .LP
 \fB#include <sys/sem.h>
@@ -16,7 +16,7 @@ int semget(key_t\fP \fIkey\fP\fB, int\fP \fInsems\fP\fB, int\fP \fIsemflg\fP\fB)
 .SH DESCRIPTION
 .LP
 The \fIsemget\fP() function operates on XSI semaphores (see the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Section 4.15, Semaphore).
+Definitions volume of IEEE\ Std\ 1003.1-2001, Section 4.15, Semaphore).
 It is unspecified whether this function interoperates
 with the realtime interprocess communication facilities defined in
 \fIRealtime\fP .
@@ -28,51 +28,40 @@ A semaphore identifier with its associated \fBsemid_ds\fP data structure
 and its associated set of \fInsems\fP semaphores (see
 \fI<sys/sem.h>\fP) is created for \fIkey\fP if one of the following
 is true:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The argument \fIkey\fP is equal to IPC_PRIVATE.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The argument \fIkey\fP does not already have a semaphore identifier
 associated with it and (\fIsemflg\fP &IPC_CREAT) is
 non-zero.
-.in -5
-.RE
+.LP
 .LP
 Upon creation, the \fBsemid_ds\fP data structure associated with the
 new semaphore identifier is initialized as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 In the operation permissions structure \fIsem_perm.cuid\fP, \fIsem_perm.uid\fP,
 \fIsem_perm.cgid\fP, and \fIsem_perm.gid\fP
 shall be set equal to the effective user ID and effective group ID,
 respectively, of the calling process.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The low-order 9 bits of \fIsem_perm.mode\fP shall be set equal to
 the low-order 9 bits of \fIsemflg\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The variable \fIsem_nsems\fP shall be set equal to the value of \fInsems\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The variable \fIsem_otime\fP shall be set equal to 0 and \fIsem_ctime\fP
 shall be set equal to the current time.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The data structure associated with each semaphore in the set shall
 not be initialized. The \fIsemctl\fP() function with the command SETVAL
 or SETALL can be used to initialize each
 semaphore.
-.in -5
-.RE
+.LP
 .SH RETURN VALUE
 .LP
 Upon successful completion, \fIsemget\fP() shall return a non-negative
@@ -81,28 +70,28 @@ shall return -1 and set \fIerrno\fP to indicate the error.
 .SH ERRORS
 .LP
 The \fIsemget\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 A semaphore identifier exists for \fIkey\fP, but operation permission
 as specified by the low-order 9 bits of \fIsemflg\fP
 would not be granted; see \fIXSI Interprocess Communication\fP .
-.TP
+.TP 7
 .B EEXIST
 A semaphore identifier exists for the argument \fIkey\fP but ((\fIsemflg\fP
 &IPC_CREAT) &&(\fIsemflg\fP
 &IPC_EXCL)) is non-zero.
-.TP
+.TP 7
 .B EINVAL
 The value of \fInsems\fP is either less than or equal to 0 or greater
 than the system-imposed limit, or a semaphore identifier
 exists for the argument \fIkey\fP, but the number of semaphores in
 the set associated with it is less than \fInsems\fP and
 \fInsems\fP is not equal to 0.
-.TP
+.TP 7
 .B ENOENT
 A semaphore identifier does not exist for the argument \fIkey\fP and
 (\fIsemflg\fP &IPC_CREAT) is equal to 0.
-.TP
+.TP 7
 .B ENOSPC
 A semaphore identifier is to be created but the system-imposed limit
 on the maximum number of allowed semaphores system-wide
@@ -209,7 +198,7 @@ None.
 \fIXSI Interprocess Communication\fP , \fIRealtime\fP , \fIsemctl\fP()
 , \fIsemop\fP() , \fIsem_close\fP() , \fIsem_destroy\fP() , \fIsem_getvalue\fP()
 , \fIsem_init\fP() , \fIsem_open\fP() , \fIsem_post\fP() , \fIsem_unlink\fP()
-, \fIsem_wait\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIsem_wait\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<sys/sem.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

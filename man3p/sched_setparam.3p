@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sched_setparam" P 2003 POSIX
+.TH "SCHED_SETPARAM" P 2003 POSIX
 .\" sched_setparam 
 .SH NAME
-sched_setparam - set scheduling parameters (\fBREALTIME\fP)
+sched_setparam \- set scheduling parameters (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <sched.h>
@@ -87,27 +87,23 @@ members are implementation-defined; this case includes the SCHED_OTHER
 policy. 
 .LP
 If the current scheduling policy for the process specified by \fIpid\fP
-is not SCHED_FIFO, SCHED_RR,   \0or
-SCHED_SPORADIC,  \0the result is implementation-defined; this
+is not SCHED_FIFO, SCHED_RR,   \ or
+SCHED_SPORADIC,  \ the result is implementation-defined; this
 case includes the SCHED_OTHER policy.
 .LP
 The effect of this function on individual threads is dependent on
 the scheduling contention scope of the threads:
-.RS
-.in +5
-.LP
+.IP " *" 3
 For threads with system scheduling contention scope, these functions
 shall have no effect on their scheduling.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 For threads with process scheduling contention scope, the threads'
 scheduling parameters shall not be affected. However, the
 scheduling of these threads with respect to threads in other processes
 may be dependent on the scheduling parameters of their
 process, which are governed using these functions.
-.in -5
-.RE
+.LP
 .LP
 If an implementation supports a two-level scheduling model in which
 library threads are multiplexed on top of several
@@ -137,17 +133,17 @@ value of -1 and set \fIerrno\fP to indicate the error.
 .SH ERRORS
 .LP
 The \fIsched_setparam\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 One or more of the requested scheduling parameters is outside the
 range defined for the scheduling policy of the specified
 \fIpid\fP.
-.TP
+.TP 7
 .B EPERM
 The requesting process does not have permission to set the scheduling
 parameters for the specified process, or does not have
 the appropriate privilege to invoke \fIsched_setparam\fP().
-.TP
+.TP 7
 .B ESRCH
 No process can be found corresponding to that specified by \fIpid\fP.
 .sp
@@ -168,7 +164,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIsched_getparam\fP() , \fIsched_getscheduler\fP() ,
-\fIsched_setscheduler\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIsched_setscheduler\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<sched.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

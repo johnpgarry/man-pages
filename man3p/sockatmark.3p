@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sockatmark" P 2003 POSIX
+.TH "SOCKATMARK" P 2003 POSIX
 .\" sockatmark 
 .SH NAME
-sockatmark - determine whether a socket is at the out-of-band mark
+sockatmark \- determine whether a socket is at the out-of-band mark
 .SH SYNOPSIS
 .LP
 \fB#include <sys/socket.h>
@@ -15,7 +15,7 @@ int sockatmark(int\fP \fIs\fP\fB);
 .LP
 The \fIsockatmark\fP() function shall determine whether the socket
 specified by the descriptor \fIs\fP is at the out-of-band
-data mark (see the System Interfaces volume of IEEE\0Std\01003.1-2001,
+data mark (see the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 Section 2.10.12, Socket Out-of-Band State). If the protocol for the
 socket
 supports out-of-band data by marking the stream with an out-of-band
@@ -36,10 +36,10 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIsockatmark\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIs\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B ENOTTY
 The \fIs\fP argument does not specify a descriptor for a socket.
 .sp
@@ -104,7 +104,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpselect\fP() , \fIrecv\fP() , \fIrecvmsg\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<sys/socket.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<sys/socket.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "touch" P 2003 POSIX
+.TH "TOUCH" P 2003 POSIX
 .\" touch 
 .SH NAME
-touch - change file access and modification times
+touch \- change file access and modification times
 .SH SYNOPSIS
 .LP
 \fBtouch\fP \fB[\fP\fB-acm\fP\fB][\fP \fB-r\fP \fIref_file\fP\fB|
@@ -14,7 +14,7 @@ The \fItouch\fP utility shall change the modification times, access
 times, or both of files. The modification time shall be
 equivalent to the value of the \fIst_mtime\fP member of the \fBstat\fP
 structure for a file, as described in the System
-Interfaces volume of IEEE\0Std\01003.1-2001; the access time shall
+Interfaces volume of IEEE\ Std\ 1003.1-2001; the access time shall
 be equivalent to the value of \fIst_atime\fP.
 .LP
 The time used can be specified by the \fB-t\fP \fItime\fP option-argument,
@@ -24,58 +24,55 @@ referenced by the \fB-r\fP \fIref_file\fP option-argument, or the
 sections. If none of these are specified, \fItouch\fP shall use the
 current time (the value returned by the equivalent of the \fItime\fP()
 function defined in the System Interfaces volume of
-IEEE\0Std\01003.1-2001).
+IEEE\ Std\ 1003.1-2001).
 .LP
 For each \fIfile\fP operand, \fItouch\fP shall perform actions equivalent
 to the following functions defined in the System
-Interfaces volume of IEEE\0Std\01003.1-2001:
-.in +5
-.LP
+Interfaces volume of IEEE\ Std\ 1003.1-2001:
+.IP " 1." 4
 If \fIfile\fP does not exist, a \fIcreat\fP() function call is made
 with the \fIfile\fP
 operand used as the \fIpath\fP argument and the value of the bitwise-inclusive
 OR of S_IRUSR, S_IWUSR, S_IRGRP, S_IWGRP, S_IROTH,
 and S_IWOTH used as the \fImode\fP argument.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The \fIutime\fP() function is called with the following arguments:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 The \fIfile\fP operand is used as the \fIpath\fP argument.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 The \fButimbuf\fP structure members \fIactime\fP and \fImodtime\fP
 are determined as described in the OPTIONS section.
-.in -5
-.in -5
+.LP
+.RE
+.LP
 .SH OPTIONS
 .LP
 The \fItouch\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-a\fP
 Change the access time of \fIfile\fP. Do not change the modification
 time unless \fB-m\fP is also specified.
-.TP
+.TP 7
 \fB-c\fP
 Do not create a specified \fIfile\fP if it does not exist. Do not
 write any diagnostic messages concerning this
 condition.
-.TP
+.TP 7
 \fB-m\fP
 Change the modification time of \fIfile\fP. Do not change the access
 time unless \fB-a\fP is also specified.
-.TP
-\fB-r\0\fP \fIref_file\fP
+.TP 7
+\fB-r\ \fP \fIref_file\fP
 Use the corresponding time of the file named by the pathname \fIref_file\fP
 instead of the current time.
-.TP
-\fB-t\0\fP \fItime\fP
+.TP 7
+\fB-t\ \fP \fItime\fP
 Use the specified \fItime\fP instead of the current time. The option-argument
 shall be a decimal number of the form: 
 .sp
@@ -87,44 +84,60 @@ shall be a decimal number of the form:
 .RE
 .LP
 where each two digits represents the following:
-.TP
+.TP 7
 \fIMM\fP
+.RS
 The month of the year [01,12].
-.TP
+.RE
+.TP 7
 \fIDD\fP
+.RS
 The day of the month [01,31].
-.TP
+.RE
+.TP 7
 \fIhh\fP
+.RS
 The hour of the day [00,23].
-.TP
+.RE
+.TP 7
 \fImm\fP
+.RS
 The minute of the hour [00,59].
-.TP
+.RE
+.TP 7
 \fICC\fP
+.RS
 The first two digits of the year (the century).
-.TP
+.RE
+.TP 7
 \fIYY\fP
+.RS
 The second two digits of the year.
-.TP
+.RE
+.TP 7
 \fISS\fP
+.RS
 The second of the minute [00,60].
+.RE
 .sp
 .LP
 Both \fICC\fP and \fIYY\fP shall be optional. If neither is given,
 the current year shall be assumed. If \fIYY\fP is
 specified, but \fICC\fP is not, \fICC\fP shall be derived as follows:
 .TS C
-center;l l l l l l l l.
-\fBIf \fIYY\fP is:\fP 	 \fB\fICC\fP becomes:\fP 	
-[69,99] 	 19 	
-[00,68] 	 20 	
+center; l l.
+\fBIf \fIYY\fP is:\fP	\fB\fICC\fP becomes:\fP
+[69,99]	19
+[00,68]	20
 .TE
-.TP
+.TP 7
 \fBNote:\fP
-It is expected that in a future version of IEEE\0Std\01003.1-2001
+.RS
+It is expected that in a future version of IEEE\ Std\ 1003.1-2001
 the default century inferred from a 2-digit year will
 change. (This would apply to all commands accepting a 2-digit year
 as input.)
+.RE
 .sp
 .LP
 The resulting time shall be affected by the value of the \fITZ\fP
@@ -151,7 +164,7 @@ options were specified.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file whose times shall be modified.
 .sp
@@ -165,33 +178,33 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fItouch\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone to be used for interpreting the \fItime\fP
 option-argument. If \fITZ\fP is unset or null, an
@@ -215,10 +228,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 The utility executed successfully and all requested changes were made.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -231,9 +244,9 @@ Default.
 .LP
 The interpretation of time is taken to be \fIseconds since the Epoch\fP
 (see the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 4.14, Seconds Since the Epoch). It
+IEEE\ Std\ 1003.1-2001, Section 4.14, Seconds Since the Epoch). It
 should be noted that implementations conforming to the System Interfaces
-volume of IEEE\0Std\01003.1-2001 do not take leap
+volume of IEEE\ Std\ 1003.1-2001 do not take leap
 seconds into account when computing seconds since the Epoch. When
 \fISS\fP=60 is used, the resulting time always refers to 1 plus
 \fIseconds since the Epoch\fP for a time when \fISS\fP=59.
@@ -276,33 +289,31 @@ None.
 .LP
 The functionality of \fItouch\fP is described almost entirely through
 references to functions in the System Interfaces volume
-of IEEE\0Std\01003.1-2001. In this way, there is no duplication of
+of IEEE\ Std\ 1003.1-2001. In this way, there is no duplication of
 effort required for describing such side effects as the
 relationship of user IDs to the user database, permissions, and so
 on.
 .LP
 There are some significant differences between the \fItouch\fP utility
-in this volume of IEEE\0Std\01003.1-2001 and
+in this volume of IEEE\ Std\ 1003.1-2001 and
 those in System V and BSD systems. They are upwards-compatible for
 historical applications from both implementations:
-.in +5
-.LP
+.IP " 1." 4
 In System V, an ambiguity exists when a pathname that is a decimal
 number leads the operands; it is treated as a time value. In
 BSD, no \fItime\fP value is allowed; files may only be \fItouch\fPed
 to the current time. The \fB-t\fP \fItime\fP construct
 solves these problems for future conforming applications (note that
 the \fB-t\fP option is not historical practice).
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The inclusion of the century digits, \fICC\fP, is also new. Note that
 a ten-digit \fItime\fP value is treated as if \fIYY\fP,
 and not \fICC\fP, were specified. The caveat about the range of dates
 following the Epoch was included as recognition that some
 implementations are not able to represent dates beyond 18 January
 2038 because they use \fBsigned int\fP as a time holder.
-.in -5
+.LP
 .LP
 The \fB-r\fP option was added because several comments requested this
 capability. This option was named \fB-f\fP in an early
@@ -311,16 +322,16 @@ BSD version of \fItouch\fP with a different meaning.
 .LP
 At least one historical implementation of \fItouch\fP incremented
 the exit code if \fB-c\fP was specified and the file did not
-exist. This volume of IEEE\0Std\01003.1-2001 requires exit status
+exist. This volume of IEEE\ Std\ 1003.1-2001 requires exit status
 zero if no errors occur.
 .SH FUTURE DIRECTIONS
 .LP
 Applications should use the \fB-r\fP or \fB-t\fP options.
 .SH SEE ALSO
 .LP
-\fIdate\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+\fIdate\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIcreat\fP(), \fItime\fP(), \fIutime\fP(), the Base Definitions volume
-of IEEE\0Std\01003.1-2001, \fI<sys/stat.h>\fP
+of IEEE\ Std\ 1003.1-2001, \fI<sys/stat.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

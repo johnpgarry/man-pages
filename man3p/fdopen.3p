@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fdopen" P 2003 POSIX
+.TH "FDOPEN" P 2003 POSIX
 .\" fdopen 
 .SH NAME
-fdopen - associate a stream with a file descriptor
+fdopen \- associate a stream with a file descriptor
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -19,23 +19,23 @@ The \fIfdopen\fP() function shall associate a stream with a file descriptor.
 .LP
 The \fImode\fP argument is a character string having one of the following
 values:
-.TP
-\fIr\fP\0or\0\fIrb\fP
+.TP 7
+\fIr\fP\ or\ \fIrb\fP
 Open a file for reading.
-.TP
-\fIw\fP\0or\0\fIwb\fP
+.TP 7
+\fIw\fP\ or\ \fIwb\fP
 Open a file for writing.
-.TP
-\fIa\fP\0or\0\fIab\fP
+.TP 7
+\fIa\fP\ or\ \fIab\fP
 Open a file for writing at end-of-file.
-.TP
-\fIr\fP+\0or\0\fIrb\fP+\0or\0\fIr\fP+\fIb\fP
+.TP 7
+\fIr\fP+\ or\ \fIrb\fP+\ or\ \fIr\fP+\fIb\fP
 Open a file for update (reading and writing).
-.TP
-\fIw\fP+\0or\0\fIwb\fP+\0or\0\fIw\fP+\fIb\fP
+.TP 7
+\fIw\fP+\ or\ \fIwb\fP+\ or\ \fIw\fP+\fIb\fP
 Open a file for update (reading and writing).
-.TP
-\fIa\fP+\0or\0\fIab\fP+\0or\0\fIa\fP+\fIb\fP
+.TP 7
+\fIa\fP+\ or\ \fIab\fP+\ or\ \fIa\fP+\fIb\fP
 Open a file for update (reading and writing) at end-of-file.
 .sp
 .LP
@@ -74,19 +74,19 @@ to a stream; otherwise, a null pointer shall be returned and
 .SH ERRORS
 .LP
 The \fIfdopen\fP() function may fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B EINVAL
 The \fImode\fP argument is not a valid mode.
-.TP
+.TP 7
 .B EMFILE
 {FOPEN_MAX} streams are currently open in the calling process.
-.TP
+.TP 7
 .B EMFILE
 {STREAM_MAX} streams are currently open in the calling process.
-.TP
+.TP 7
 .B ENOMEM
 Insufficient space to allocate a buffer.
 .sp
@@ -112,10 +112,10 @@ differ.
 With \fIfdopen\fP(), open for write (\fIw\fP or \fIw+\fP) does not
 truncate, and append (\fIa\fP or \fIa+\fP) cannot create
 for writing. The \fImode\fP argument formats that include \fIa b\fP
-are allowed for consistency with the ISO\0C standard
+are allowed for consistency with the ISO\ C standard
 function \fIfopen\fP(). The \fIb\fP has no effect on the resulting
 stream. Although not
-explicitly required by this volume of IEEE\0Std\01003.1-2001, a good
+explicitly required by this volume of IEEE\ Std\ 1003.1-2001, a good
 implementation of append (\fIa\fP) mode would cause
 the O_APPEND flag to be set.
 .SH FUTURE DIRECTIONS
@@ -125,7 +125,7 @@ None.
 .LP
 \fIInteraction of File Descriptors and Standard I/O Streams\fP , \fIfclose\fP()
 , \fIfopen\fP() , \fIopen\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<stdio.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<stdio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "vfscanf" P 2003 POSIX
+.TH "VFSCANF" P 2003 POSIX
 .\" vfscanf 
 .SH NAME
-vfscanf, vscanf, vsscanf - format input of a stdarg argument list
+vfscanf, vscanf, vsscanf \- format input of a stdarg argument list
 .SH SYNOPSIS
 .LP
 \fB#include <stdarg.h>
@@ -13,23 +13,17 @@ vfscanf, vscanf, vsscanf - format input of a stdarg argument list
 int vfscanf(FILE *restrict\fP \fIstream\fP\fB, const char *restrict\fP
 \fIformat\fP\fB,
 .br
-\0\0\0\0\0\0 va_list\fP \fIarg\fP\fB);
+\ \ \ \ \ \  va_list\fP \fIarg\fP\fB);
 .br
 int vscanf(const char *restrict\fP \fIformat\fP\fB, va_list\fP \fIarg\fP\fB);
 .br
 int vsscanf(const char *restrict\fP \fIs\fP\fB, const char *restrict\fP
 \fIformat\fP\fB,
 .br
-\0\0\0\0\0\0 va_list\fP \fIarg\fP\fB);
+\ \ \ \ \ \  va_list\fP \fIarg\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIvscanf\fP(), \fIvfscanf\fP(), and \fIvsscanf\fP() functions
 shall be equivalent to the \fIscanf\fP(), \fIfscanf\fP(), and \fIsscanf\fP()
@@ -63,7 +57,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIfscanf\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIfscanf\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<stdarg.h>\fP, \fI<stdio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_fadvise" P 2003 POSIX
+.TH "POSIX_FADVISE" P 2003 POSIX
 .\" posix_fadvise 
 .SH NAME
-posix_fadvise - file advisory information (\fBADVANCED REALTIME\fP)
+posix_fadvise \- file advisory information (\fBADVANCED REALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <fcntl.h>
@@ -30,33 +30,33 @@ other operations.
 .LP
 The advice to be applied to the data is specified by the \fIadvice\fP
 parameter and may be one of the following values:
-.TP
+.TP 7
 POSIX_FADV_NORMAL
 .sp
 Specifies that the application has no advice to give on its behavior
 with respect to the specified data. It is the default
 characteristic if no advice is given for an open file.
-.TP
+.TP 7
 POSIX_FADV_SEQUENTIAL
 .sp
 Specifies that the application expects to access the specified data
 sequentially from lower offsets to higher offsets.
-.TP
+.TP 7
 POSIX_FADV_RANDOM
 .sp
 Specifies that the application expects to access the specified data
 in a random order.
-.TP
+.TP 7
 POSIX_FADV_WILLNEED
 .sp
 Specifies that the application expects to access the specified data
 in the near future.
-.TP
+.TP 7
 POSIX_FADV_DONTNEED
 .sp
 Specifies that the application expects that it will not access the
 specified data in the near future.
-.TP
+.TP 7
 POSIX_FADV_NOREUSE
 .sp
 Specifies that the application expects to access the specified data
@@ -72,13 +72,13 @@ the error.
 .SH ERRORS
 .LP
 The \fIposix_fadvise\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfd\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B EINVAL
 The value of \fIadvice\fP is invalid.
-.TP
+.TP 7
 .B ESPIPE
 The \fIfd\fP argument is associated with a pipe or FIFO.
 .sp
@@ -100,7 +100,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIposix_madvise\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIposix_madvise\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<fcntl.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

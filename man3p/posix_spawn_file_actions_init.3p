@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_spawn_file_actions_destroy" P 2003 POSIX
+.TH "POSIX_SPAWN_FILE_ACTIONS_DESTROY" P 2003 POSIX
 .\" posix_spawn_file_actions_destroy 
 .SH NAME
-posix_spawn_file_actions_destroy, posix_spawn_file_actions_init -
+posix_spawn_file_actions_destroy, posix_spawn_file_actions_init \-
 destroy and initialize spawn file actions object
 (\fBADVANCED REALTIME\fP)
 .SH SYNOPSIS
@@ -12,11 +12,11 @@ destroy and initialize spawn file actions object
 .sp
 int posix_spawn_file_actions_destroy(posix_spawn_file_actions_t *
 .br
-\0\0\0\0\0\0\fP \fIfile_actions\fP\fB);
+\ \ \ \ \ \ \fP \fIfile_actions\fP\fB);
 .br
 int posix_spawn_file_actions_init(posix_spawn_file_actions_t *
 .br
-\0\0\0\0\0\0\fP \fIfile_actions\fP\fB); \fP
+\ \ \ \ \ \ \fP \fIfile_actions\fP\fB); \fP
 \fB
 .br
 \fP
@@ -49,13 +49,13 @@ error.
 .SH ERRORS
 .LP
 The \fIposix_spawn_file_actions_init\fP() function shall fail if:
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory exists to initialize the spawn file actions object.
 .sp
 .LP
 The \fIposix_spawn_file_actions_destroy\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIfile_actions\fP is invalid.
 .sp
@@ -78,7 +78,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIposix_spawn\fP() , \fIposix_spawnp\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<spawn.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<spawn.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

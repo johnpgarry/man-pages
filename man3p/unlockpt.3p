@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "unlockpt" P 2003 POSIX
+.TH "UNLOCKPT" P 2003 POSIX
 .\" unlockpt 
 .SH NAME
-unlockpt - unlock a pseudo-terminal master/slave pair
+unlockpt \- unlock a pseudo-terminal master/slave pair
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -29,10 +29,10 @@ error.
 .SH ERRORS
 .LP
 The \fIunlockpt\fP() function may fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a file descriptor open for writing.
-.TP
+.TP 7
 .B EINVAL
 The \fIfildes\fP argument is not associated with a master pseudo-terminal
 device.
@@ -54,7 +54,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIgrantpt\fP() , \fIopen\fP() , \fIptsname\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

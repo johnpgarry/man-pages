@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sem_timedwait" P 2003 POSIX
+.TH "SEM_TIMEDWAIT" P 2003 POSIX
 .\" sem_timedwait 
 .SH NAME
-sem_timedwait - lock a semaphore (\fBADVANCED REALTIME\fP)
+sem_timedwait \- lock a semaphore (\fBADVANCED REALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <semaphore.h>
@@ -12,7 +12,7 @@ sem_timedwait - lock a semaphore (\fBADVANCED REALTIME\fP)
 .sp
 int sem_timedwait(sem_t *restrict\fP \fIsem\fP\fB,
 .br
-\0\0\0\0\0\0 const struct timespec *restrict\fP \fIabs_timeout\fP\fB);
+\ \ \ \ \ \  const struct timespec *restrict\fP \fIabs_timeout\fP\fB);
 \fP
 \fB
 .br
@@ -55,24 +55,24 @@ the error.
 .SH ERRORS
 .LP
 The \fIsem_timedwait\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIsem\fP argument does not refer to a valid semaphore.
-.TP
+.TP 7
 .B EINVAL
 The process or thread would have blocked, and the \fIabs_timeout\fP
 parameter specified a nanoseconds field value less than
 zero or greater than or equal to 1000 million.
-.TP
+.TP 7
 .B ETIMEDOUT
 The semaphore could not be locked before the specified timeout expired.
 .sp
 .LP
 The \fIsem_timedwait\fP() function may fail if:
-.TP
+.TP 7
 .B EDEADLK
 A deadlock condition was detected.
-.TP
+.TP 7
 .B EINTR
 A signal interrupted this function.
 .sp
@@ -85,7 +85,7 @@ None.
 .LP
 Applications using these functions may be subject to priority inversion,
 as discussed in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 3.285, Priority Inversion.
+IEEE\ Std\ 1003.1-2001, Section 3.285, Priority Inversion.
 .LP
 The \fIsem_timedwait\fP() function is part of the Semaphores and Timeouts
 options and need not be provided on all
@@ -101,7 +101,7 @@ None.
 \fIsem_post\fP() , \fIsem_trywait\fP() , \fIsem_wait\fP() , \fIsemctl\fP()
 , \fIsemget\fP() , \fIsemop\fP() , \fItime\fP() , the Base Definitions
 volume of
-IEEE\0Std\01003.1-2001, \fI<semaphore.h>\fP, \fI<time.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<semaphore.h>\fP, \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

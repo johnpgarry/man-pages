@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "shmdt" P 2003 POSIX
+.TH "SHMDT" P 2003 POSIX
 .\" shmdt 
 .SH NAME
-shmdt - XSI shared memory detach operation
+shmdt \- XSI shared memory detach operation
 .SH SYNOPSIS
 .LP
 \fB#include <sys/shm.h>
@@ -15,7 +15,7 @@ int shmdt(const void *\fP\fIshmaddr\fP\fB); \fP
 .SH DESCRIPTION
 .LP
 The \fIshmdt\fP() function operates on XSI shared memory (see the
-Base Definitions volume of IEEE\0Std\01003.1-2001, Section 3.340,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, Section 3.340,
 Shared Memory Object). It is unspecified whether this function
 interoperates with the realtime interprocess communication facilities
 defined in \fIRealtime\fP .
@@ -36,7 +36,7 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIshmdt\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIshmaddr\fP is not the data segment start address of
 a shared memory segment.
@@ -66,7 +66,7 @@ None.
 ,
 \fIexit\fP() , \fIfork\fP() , \fIshmat\fP() , \fIshmctl\fP() , \fIshmget\fP()
 , \fIshm_open\fP() , \fIshm_unlink\fP() , the Base Definitions volume
-of IEEE\0Std\01003.1-2001, \fI<sys/shm.h>\fP
+of IEEE\ Std\ 1003.1-2001, \fI<sys/shm.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "id" P 2003 POSIX
+.TH "ID" P 2003 POSIX
 .\" id 
 .SH NAME
-id - return user identity
+id \- return user identity
 .SH SYNOPSIS
 .LP
 \fBid\fP \fB[\fP\fIuser\fP\fB]\fP\fB
@@ -25,7 +25,7 @@ group names of the invoking process to standard output. If the effective
 and real IDs do not match, both shall be written. If
 multiple groups are supported by the underlying system (see the description
 of {NGROUPS_MAX} in the System Interfaces volume of
-IEEE\0Std\01003.1-2001), the supplementary group affiliations of the
+IEEE\ Std\ 1003.1-2001), the supplementary group affiliations of the
 invoking process shall also be written.
 .LP
 If a \fIuser\fP operand is provided and the process has the appropriate
@@ -38,28 +38,28 @@ described in the preceding paragraph.
 .SH OPTIONS
 .LP
 The \fIid\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-G\fP
 Output all different group IDs (effective, real, and supplementary)
 only, using the format \fB"%u\\n"\fP . If there is more
 than one distinct group affiliation, output each such affiliation,
-using the format \fB"\0%u"\fP , before the
+using the format \fB"\ %u"\fP , before the
 <newline> is output.
-.TP
+.TP 7
 \fB-g\fP
 Output only the effective group ID, using the format \fB"%u\\n"\fP
 \&.
-.TP
+.TP 7
 \fB-n\fP
 Output the name in the format \fB"%s"\fP instead of the numeric ID
 using the format \fB"%u"\fP .
-.TP
+.TP 7
 \fB-r\fP
 Output the real ID instead of the effective ID.
-.TP
+.TP 7
 \fB-u\fP
 Output only the effective user ID, using the format \fB"%u\\n"\fP
 \&.
@@ -67,7 +67,7 @@ Output only the effective user ID, using the format \fB"%u\\n"\fP
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIuser\fP
 The login name for which information is to be written.
 .sp
@@ -81,29 +81,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIid\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -237,10 +237,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -309,7 +309,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfold\fP , \fIlogname\fP , \fIwho\fP , the System
-Interfaces volume of IEEE\0Std\01003.1-2001, \fIgetgid\fP(), \fIgetgroups\fP(),
+Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIgetgid\fP(), \fIgetgroups\fP(),
 \fIgetuid\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

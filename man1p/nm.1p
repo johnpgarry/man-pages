@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "nm" P 2003 POSIX
+.TH "NM" P 2003 POSIX
 .\" nm 
 .SH NAME
-nm - write the name list of an object file (\fBDEVELOPMENT\fP)
+nm \- write the name list of an object file (\fBDEVELOPMENT\fP)
 .SH SYNOPSIS
 .LP
 \fBnm\fP \fB[\fP\fB-APv\fP\fB][\fP\fB-efox\fP\fB][\fP \fB-g| -u\fP\fB][\fP\fB-t\fP
@@ -21,62 +21,68 @@ valid input file, the \fInm\fP utility shall report that fact,
 but not consider it an error condition.
 .LP
 The default base used when numeric values are written is unspecified.
-\0On XSI-conformant systems, it shall be decimal. 
+\ On XSI-conformant systems, it shall be decimal. 
 .SH OPTIONS
 .LP
 The \fInm\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-A\fP
 Write the full pathname or library name of an object on each line.
-.TP
+.TP 7
 \fB-e\fP
 Write only external (global) and static symbol information. 
-.TP
+.TP 7
 \fB-f\fP
 Produce full output. Write redundant symbols ( \fB.text\fP, \fB.data\fP,
 and \fB.bss\fP), normally suppressed. 
-.TP
+.TP 7
 \fB-g\fP
 Write only external (global) symbol information.
-.TP
+.TP 7
 \fB-o\fP
-Write numeric values in octal (equivalent to \fB-t\0o\fP). 
-.TP
+Write numeric values in octal (equivalent to \fB-t\ o\fP). 
+.TP 7
 \fB-P\fP
 Write information in a portable output format, as specified in the
 STDOUT section.
-.TP
-\fB-t\0\fP \fIformat\fP
+.TP 7
+\fB-t\ \fP \fIformat\fP
 Write each numeric value in the specified format. The format shall
 be dependent on the single character used as the
 \fIformat\fP option-argument: 
-.TP
+.TP 7
 \fBd\fP
-The offset is written in decimal   \0(default). 
-.TP
+.RS
+The offset is written in decimal   \ (default). 
+.RE
+.TP 7
 \fBo\fP
+.RS
 The offset is written in octal.
-.TP
+.RE
+.TP 7
 \fBx\fP
+.RS
 The offset is written in hexadecimal.
+.RE
 .sp
-.TP
+.TP 7
 \fB-u\fP
 Write only undefined symbols.
-.TP
+.TP 7
 \fB-v\fP
 Sort output by value instead of alphabetically.
-.TP
+.TP 7
 \fB-x\fP
-Write numeric values in hexadecimal (equivalent to \fB-t\0x\fP). 
+Write numeric values in hexadecimal (equivalent to \fB-t\ x\fP). 
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of an object file, executable file, or object-file library.
 .sp
@@ -93,34 +99,34 @@ implementation-defined object library formats for the input file.
 .LP
 The following environment variables shall affect the execution of
 \fInm\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for character collation information for the symbol-name
 and symbol-value collation sequences.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -135,66 +141,77 @@ file or for each member of an archive, the \fInm\fP
 utility shall write the following information to standard output.
 By default, the format is unspecified, but the output shall be
 sorted alphabetically by symbol name:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Library or object name, if \fB-A\fP is specified
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Symbol name
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Symbol type, which shall either be one of the following single characters
 or an implementation-defined type represented by a
 single character:
-.TP
+.TP 7
 \fBA\fP
+.RS
 Global absolute symbol.
-.TP
-\fBa\fP
-Local absolute symbol.
-.TP
-\fBB\fP
-Global "bss" (that is, uninitialized data space) symbol.
-.TP
-\fBb\fP
-Local bss symbol.
-.TP
-\fBD\fP
-Global data symbol.
-.TP
-\fBd\fP
-Local data symbol.
-.TP
-\fBT\fP
-Global text symbol.
-.TP
-\fBt\fP
-Local text symbol.
-.TP
-\fBU\fP
-Undefined symbol.
-.sp
-.in -5
-.in +5
-.LP
-Value of the symbol
-.in -5
-.in +5
-.LP
-The size associated with the symbol, if applicable
-.in -5
 .RE
+.TP 7
+\fBa\fP
+.RS
+Local absolute symbol.
+.RE
+.TP 7
+\fBB\fP
+.RS
+Global "bss" (that is, uninitialized data space) symbol.
+.RE
+.TP 7
+\fBb\fP
+.RS
+Local bss symbol.
+.RE
+.TP 7
+\fBD\fP
+.RS
+Global data symbol.
+.RE
+.TP 7
+\fBd\fP
+.RS
+Local data symbol.
+.RE
+.TP 7
+\fBT\fP
+.RS
+Global text symbol.
+.RE
+.TP 7
+\fBt\fP
+.RS
+Local text symbol.
+.RE
+.TP 7
+\fBU\fP
+.RS
+Undefined symbol.
+.RE
+.sp
+.LP
+.IP " *" 3
+Value of the symbol
+.LP
+.IP " *" 3
+The size associated with the symbol, if applicable
+.LP
 .LP
 This information may be supplemented by additional information specific
 to the implementation.
 .LP
 If the \fB-P\fP option is specified, the previous information shall
 be displayed using the following portable format. The three
-versions differ depending on whether \fB-t\0d\fP, \fB-t\0o\fP, or
-\fB-t\0x\fP was specified, respectively:
+versions differ depending on whether \fB-t\ d\fP, \fB-t\ o\fP, or
+\fB-t\ x\fP was specified, respectively:
 .sp
 .RS
 .nf
@@ -212,15 +229,12 @@ versions differ depending on whether \fB-t\0d\fP, \fB-t\0o\fP, or
 \fP
 .fi
 .RE
-where <\fIlibrary/object\0name\fP> shall be formatted as follows:
-.RS
-.in +5
-.LP
-If \fB-A\fP is not specified, <\fIlibrary/object\0name\fP> shall be
+where <\fIlibrary/object\ name\fP> shall be formatted as follows:
+.IP " *" 3
+If \fB-A\fP is not specified, <\fIlibrary/object\ name\fP> shall be
 an empty string.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fB-A\fP is specified and the corresponding \fIfile\fP operand
 does not name a library:
 .sp
@@ -231,12 +245,11 @@ does not name a library:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fB-A\fP is specified and the corresponding \fIfile\fP operand
 names a library. In this case,
-<\fIobject\0file\fP> shall name the object file in the library containing
+<\fIobject\ file\fP> shall name the object file in the library containing
 the symbol being described:
 .sp
 .RS
@@ -246,17 +259,14 @@ the symbol being described:
 \fP
 .fi
 .RE
-.in -5
-.RE
+.LP
 .LP
 If \fB-A\fP is not specified, then if more than one \fIfile\fP operand
 is specified or if only one \fIfile\fP operand is
 specified and it names a library, \fInm\fP shall write a line identifying
 the object containing the following symbols before the
 lines containing those symbols, in the form:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If the corresponding \fIfile\fP operand does not name a library:
 .sp
 .RS
@@ -266,11 +276,10 @@ If the corresponding \fIfile\fP operand does not name a library:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the corresponding \fIfile\fP operand names a library; in this case,
-<\fIobject\0file\fP> shall be the name of the
+<\fIobject\ file\fP> shall be the name of the
 file in the library containing the following symbols:
 .sp
 .RS
@@ -280,11 +289,10 @@ file in the library containing the following symbols:
 \fP
 .fi
 .RE
-.in -5
-.RE
+.LP
 .LP
 If \fB-P\fP is specified, but \fB-t\fP is not, the format shall be
-as if \fB-t\0x\fP had been specified.
+as if \fB-t\ x\fP had been specified.
 .SH STDERR
 .LP
 The standard error shall be used only for diagnostic messages.
@@ -297,10 +305,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp

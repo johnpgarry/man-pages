@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "readlink" P 2003 POSIX
+.TH "READLINK" P 2003 POSIX
 .\" readlink 
 .SH NAME
-readlink - read the contents of a symbolic link
+readlink \- read the contents of a symbolic link
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -11,7 +11,7 @@ readlink - read the contents of a symbolic link
 ssize_t readlink(const char *restrict\fP \fIpath\fP\fB, char *restrict\fP
 \fIbuf\fP\fB,
 .br
-\0\0\0\0\0\0 size_t\fP \fIbufsize\fP\fB);
+\ \ \ \ \ \  size_t\fP \fIbufsize\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
@@ -35,42 +35,42 @@ the error.
 .SH ERRORS
 .LP
 The \fIreadlink\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied for a component of the path prefix of
 \fIpath\fP.
-.TP
+.TP 7
 .B EINVAL
 The \fIpath\fP argument names a file that is not a symbolic link.
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while reading from the file system.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIpath\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing file or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix is not a directory.
 .sp
 .LP
 The \fIreadlink\fP() function may fail if:
-.TP
+.TP 7
 .B EACCES
 Read permission is denied for the directory.
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 As a result of encountering a symbolic link in resolution of the \fIpath\fP
 argument, the length of the substituted pathname
@@ -104,11 +104,11 @@ Conforming applications should not assume that the returned contents
 of the symbolic link are null-terminated.
 .SH RATIONALE
 .LP
-Since IEEE\0Std\01003.1-2001 does not require any association of file
+Since IEEE\ Std\ 1003.1-2001 does not require any association of file
 times with symbolic links, there is no requirement
 that file times be updated by \fIreadlink\fP(). The type associated
 with \fIbufsiz\fP is a \fBsize_t\fP in order to be
-consistent with both the ISO\0C standard and the definition of \fIread\fP().
+consistent with both the ISO\ C standard and the definition of \fIread\fP().
 The behavior
 specified for \fIreadlink\fP() when \fIbufsiz\fP is zero represents
 historical practice. For this case, the standard developers
@@ -125,7 +125,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIlstat\fP() , \fIstat\fP() , \fIsymlink\fP() ,
-the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

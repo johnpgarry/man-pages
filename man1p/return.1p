@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "return" P 2003 POSIX
+.TH "RETURN" P 2003 POSIX
 .\" return 
 .SH NAME
-return - return from a function
+return \- return from a function
 .SH SYNOPSIS
 .LP
 \fBreturn\fP \fB[\fP\fIn\fP\fB]\fP

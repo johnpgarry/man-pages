@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cxref" P 2003 POSIX
+.TH "CXREF" P 2003 POSIX
 .\" cxref 
 .SH NAME
-cxref - generate a C-language program cross-reference table (\fBDEVELOPMENT\fP)
+cxref \- generate a C-language program cross-reference table (\fBDEVELOPMENT\fP)
 .SH SYNOPSIS
 .LP
 \fBcxref\fP \fB[\fP\fB-cs\fP\fB][\fP\fB-o\fP \fIfile\fP\fB][\fP\fB-w\fP
@@ -10,7 +10,7 @@ cxref - generate a C-language program cross-reference table (\fBDEVELOPMENT\fP)
 [\fP\fB-D\fP \fIname\fP\fB[\fP\fB=\fP\fIdef\fP\fB]]\fP\fB...\fP\fB[\fP\fB-I\fP
 \fIdir\fP\fB]\fP\fB...
 .br
-\0\0\0\0\0\0\fP \fB[\fP\fB-U\fP \fIname\fP\fB]\fP\fB...\fP \fIfile\fP
+\ \ \ \ \ \ \fP \fB[\fP\fB-U\fP \fIname\fP\fB]\fP\fB...\fP \fIfile\fP
 \fB\&... \fP
 .SH DESCRIPTION
 .LP
@@ -24,39 +24,39 @@ shall contain an asterisk before the declaring reference.
 .SH OPTIONS
 .LP
 The \fIcxref\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
 except that the order of the \fB-D\fP,
 \fB-I\fP, and \fB-U\fP options (which are identical to their interpretation
 by \fIc99\fP) is
 significant. The following options shall be supported:
-.TP
+.TP 7
 \fB-c\fP
 Write a combined cross-reference of all input files.
-.TP
+.TP 7
 \fB-s\fP
 Operate silently; do not print input filenames.
-.TP
-\fB-o\0\fP \fIfile\fP
+.TP 7
+\fB-o\ \fP \fIfile\fP
 Direct output to named \fIfile\fP.
-.TP
-\fB-w\0\fP \fInum\fP
+.TP 7
+\fB-w\ \fP \fInum\fP
 Format output no wider than \fInum\fP (decimal) columns. This option
 defaults to 80 if \fInum\fP is not specified or is less
 than 51.
-.TP
+.TP 7
 \fB-D\fP
 Equivalent to \fIc99\fP.
-.TP
+.TP 7
 \fB-I\fP
 Equivalent to \fIc99\fP.
-.TP
+.TP 7
 \fB-U\fP
 Equivalent to \fIc99\fP.
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a C-language source file.
 .sp
@@ -70,33 +70,33 @@ The input files are C-language source files.
 .LP
 The following environment variables shall affect the execution of
 \fIcxref\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the ordering of the output.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -112,28 +112,23 @@ output file.
 .LP
 The format of standard output is unspecified, except that the following
 information shall be included:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If the \fB-c\fP option is not specified, each portion of the listing
 shall start with the name of the input file on a separate
 line.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The name line shall be followed by a sorted list of symbols, each
 with its associated location pathname, the name of the
 function in which it appears (if it is not a function name itself),
 and line number references.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Each line number may be preceded by an asterisk ( \fB'*'\fP ) flag,
 meaning that this is the declaring reference. Other
 single-character flags, with implementation-defined meanings, may
 be included.
-.in -5
-.RE
+.LP
 .SH STDERR
 .LP
 The standard error shall be used only for diagnostic messages.
@@ -147,10 +142,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp

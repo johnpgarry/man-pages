@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "setegid" P 2003 POSIX
+.TH "SETEGID" P 2003 POSIX
 .\" setegid 
 .SH NAME
-setegid - set the effective group ID
+setegid \- set the effective group ID
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -28,11 +28,11 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fIsetegid\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIgid\fP argument is invalid and is not supported
 by the implementation.
-.TP
+.TP 7
 .B EPERM
 The process does not have appropriate privileges and \fIgid\fP does
 not match the real group ID or the saved
@@ -58,7 +58,7 @@ None.
 , \fIgetuid\fP() ,
 \fIseteuid\fP() , \fIsetgid\fP() , \fIsetregid\fP() , \fIsetreuid\fP()
 , \fIsetuid\fP() ,
-the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/types.h>\fP,
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/types.h>\fP,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

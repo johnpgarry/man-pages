@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "lseek" P 2003 POSIX
+.TH "LSEEK" P 2003 POSIX
 .\" lseek 
 .SH NAME
-lseek - move the read/write file offset
+lseek \- move the read/write file offset
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -17,23 +17,18 @@ off_t lseek(int\fP \fIfildes\fP\fB, off_t\fP \fIoffset\fP\fB, int\fP
 The \fIlseek\fP() function shall set the file offset for the open
 file description associated with the file descriptor
 \fIfildes,\fP as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If \fIwhence\fP is SEEK_SET, the file offset shall be set to \fIoffset\fP
 bytes.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIwhence\fP is SEEK_CUR, the file offset shall be set to its current
 location plus \fIoffset\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIwhence\fP is SEEK_END, the file offset shall be set to the size
 of the file plus \fIoffset\fP.
-.in -5
-.RE
+.LP
 .LP
 The symbolic constants SEEK_SET, SEEK_CUR, and SEEK_END are defined
 in \fI<unistd.h>\fP.
@@ -66,19 +61,19 @@ unchanged.
 .SH ERRORS
 .LP
 The \fIlseek\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not an open file descriptor.
-.TP
+.TP 7
 .B EINVAL
 The \fIwhence\fP argument is not a proper value, or the resulting
 file offset would be negative for a regular file, block
 special file, or directory.
-.TP
+.TP 7
 .B EOVERFLOW
 The resulting file offset would be a value which cannot be represented
 correctly in an object of type \fBoff_t\fP.
-.TP
+.TP 7
 .B ESPIPE
 The \fIfildes\fP argument is associated with a pipe, FIFO, or socket.
 .sp
@@ -92,15 +87,15 @@ None.
 None.
 .SH RATIONALE
 .LP
-The ISO\0C standard includes the functions \fIfgetpos\fP() and \fIfsetpos\fP(),
+The ISO\ C standard includes the functions \fIfgetpos\fP() and \fIfsetpos\fP(),
 which work on very large files by use of a special positioning type.
 .LP
 Although \fIlseek\fP() may position the file offset beyond the end
 of the file, this function does not itself extend the size
-of the file. While the only function in IEEE\0Std\01003.1-2001 that
+of the file. While the only function in IEEE\ Std\ 1003.1-2001 that
 may directly extend the size of the file is \fIwrite\fP(), \fItruncate\fP(),
 and \fIftruncate\fP(), several functions originally derived from the
-ISO\0C standard, such as \fIfwrite\fP(), \fIfprintf\fP(), and so on,
+ISO\ C standard, such as \fIfwrite\fP(), \fIfprintf\fP(), and so on,
 may do so
 (by causing calls on \fIwrite\fP()).
 .LP
@@ -124,7 +119,7 @@ special file, or directory.
 None.
 .SH SEE ALSO
 .LP
-\fIopen\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIopen\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<sys/types.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

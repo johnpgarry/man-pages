@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "nohup" P 2003 POSIX
+.TH "NOHUP" P 2003 POSIX
 .\" nohup 
 .SH NAME
-nohup - invoke a utility immune to hangups
+nohup \- invoke a utility immune to hangups
 .SH SYNOPSIS
 .LP
 \fBnohup\fP \fIutility\fP \fB[\fP\fIargument\fP\fB...\fP\fB]\fP
@@ -32,12 +32,12 @@ None.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIutility\fP
 The name of a utility that is to be invoked. If the \fIutility\fP
 operand names any of the special built-in utilities in \fISpecial
 Built-In Utilities\fP , the results are undefined.
-.TP
+.TP 7
 \fIargument\fP
 Any string to be supplied as an argument when invoking the utility
 named by the \fIutility\fP operand.
@@ -52,43 +52,43 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fInohup\fP:
-.TP
+.TP 7
 \fIHOME\fP
 Determine the pathname of the user's home directory: if the output
 file \fBnohup.out\fP cannot be created in the current
 directory, the \fInohup\fP utility shall use the directory named by
 \fIHOME\fP to create the file.
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fIPATH\fP
 Determine the search path that is used to locate the utility to be
 invoked. See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 8, Environment Variables.
+IEEE\ Std\ 1003.1-2001, Chapter 8, Environment Variables.
 .sp
 .SH ASYNCHRONOUS EVENTS
 .LP
@@ -118,11 +118,11 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
+.TP 7
 126
 The utility specified by \fIutility\fP was found but could not be
 invoked.
-.TP
+.TP 7
 127
 An error occurred in the \fInohup\fP utility or the utility specified
 by \fIutility\fP could not be found.
@@ -179,7 +179,7 @@ cannot be used, it fails instead of trying to use
 .LP
 The \fIcsh\fP utility has a built-in version of \fInohup\fP that acts
 differently from the \fInohup\fP defined in this volume
-of IEEE\0Std\01003.1-2001.
+of IEEE\ Std\ 1003.1-2001.
 .LP
 The term \fIutility\fP is used, rather than \fIcommand\fP, to highlight
 the fact that shell compound commands, pipelines,
@@ -195,14 +195,14 @@ Some historical implementations ignore SIGQUIT in addition to SIGHUP;
 others ignore SIGTERM. An early proposal allowed, but did
 not require, SIGQUIT to be ignored. Several reviewers objected that
 \fInohup\fP should only modify the handling of SIGHUP as
-required by this volume of IEEE\0Std\01003.1-2001.
+required by this volume of IEEE\ Std\ 1003.1-2001.
 .SH FUTURE DIRECTIONS
 .LP
 None.
 .SH SEE ALSO
 .LP
 \fIShell Command Language\fP , \fIsh\fP , the System Interfaces
-volume of IEEE\0Std\01003.1-2001, \fIsignal\fP()
+volume of IEEE\ Std\ 1003.1-2001, \fIsignal\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

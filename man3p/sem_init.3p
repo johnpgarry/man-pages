@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sem_init" P 2003 POSIX
+.TH "SEM_INIT" P 2003 POSIX
 .\" sem_init 
 .SH NAME
-sem_init - initialize an unnamed semaphore (\fBREALTIME\fP)
+sem_init \- initialize an unnamed semaphore (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <semaphore.h>
@@ -52,15 +52,15 @@ return -1 and set \fIerrno\fP to indicate the error.
 .SH ERRORS
 .LP
 The \fIsem_init\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIvalue\fP argument exceeds {SEM_VALUE_MAX}.
-.TP
+.TP 7
 .B ENOSPC
 A resource required to initialize the semaphore has been exhausted,
 or the limit on semaphores ( {SEM_NSEMS_MAX}) has been
 reached.
-.TP
+.TP 7
 .B EPERM
 The process lacks the appropriate privileges to initialize the semaphore.
 .sp
@@ -75,7 +75,7 @@ The \fIsem_init\fP() function is part of the Semaphores option and
 need not be available on all implementations.
 .SH RATIONALE
 .LP
-Although this volume of IEEE\0Std\01003.1-2001 fails to specify a
+Although this volume of IEEE\ Std\ 1003.1-2001 fails to specify a
 successful return value, it is likely that a later
 version may require the implementation to return a value of zero if
 the call to \fIsem_init\fP() is successful.
@@ -85,7 +85,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIsem_destroy\fP() , \fIsem_post\fP() , \fIsem_timedwait\fP() , \fIsem_trywait\fP()
-, \fIsem_wait\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIsem_wait\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<semaphore.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

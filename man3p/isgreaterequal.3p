@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "isgreaterequal" P 2003 POSIX
+.TH "ISGREATEREQUAL" P 2003 POSIX
 .\" isgreaterequal 
 .SH NAME
-isgreaterequal - test if x is greater than or equal to y
+isgreaterequal \- test if x is greater than or equal to y
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -13,24 +13,18 @@ int isgreaterequal(real-floating\fP \fIx\fP\fB, real-floating\fP \fIy\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fIisgreaterequal\fP() macro shall determine whether its first
 argument is greater than or equal to its second argument.
 The value of \fIisgreaterequal\fP( \fIx\fP, \fIy\fP) shall be equal
-to (\fIx\fP)\0>=\0(\fIy\fP); however, unlike
-(\fIx\fP)\0>=\0(\fIy\fP), \fIisgreaterequal\fP( \fIx\fP, \fIy\fP)
+to (\fIx\fP)\ >=\ (\fIy\fP); however, unlike
+(\fIx\fP)\ >=\ (\fIy\fP), \fIisgreaterequal\fP( \fIx\fP, \fIy\fP)
 shall not raise the invalid floating-point
 exception when \fIx\fP and \fIy\fP are unordered.
 .SH RETURN VALUE
 .LP
 Upon successful completion, the \fIisgreaterequal\fP() macro shall
 return the value of
-(\fIx\fP)\0>=\0(\fIy\fP).
+(\fIx\fP)\ >=\ (\fIy\fP).
 .LP
 If \fIx\fP or \fIy\fP is NaN, 0 shall be returned.
 .SH ERRORS
@@ -64,7 +58,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIisgreater\fP() , \fIisless\fP() , \fIislessequal\fP() , \fIislessgreater\fP()
-, \fIisunordered\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001
+, \fIisunordered\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001
 \fI<math.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

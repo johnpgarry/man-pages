@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "setuid" P 2003 POSIX
+.TH "SETUID" P 2003 POSIX
 .\" setuid 
 .SH NAME
-setuid - set user ID
+setuid \- set user ID
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -33,11 +33,11 @@ be returned and \fIerrno\fP set to indicate the error.
 The \fIsetuid\fP() function shall fail, return -1, and set \fIerrno\fP
 to the corresponding value if one or more of the
 following are true:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIuid\fP argument is invalid and not supported by
 the implementation.
-.TP
+.TP 7
 .B EPERM
 The process does not have appropriate privileges and \fIuid\fP does
 not match the real user ID or the saved set-user-ID.
@@ -82,14 +82,14 @@ implementations that supported it. When the caller did not have the
 appropriate privilege, the function set only the effective user
 ID, subject to permission checks. The former use is generally needed
 for utilities like \fIlogin\fP and \fIsu\fP, which are not
-conforming applications and thus outside the scope of IEEE\0Std\01003.1-2001.
+conforming applications and thus outside the scope of IEEE\ Std\ 1003.1-2001.
 These utilities wish to change the user ID
 irrevocably to a new value, generally that of an unprivileged user.
 The latter use is needed for conforming applications that are
 installed with the set-user-ID bit and need to perform operations
 using the real user ID.
 .LP
-IEEE\0Std\01003.1-2001 augments the latter functionality with a mandatory
+IEEE\ Std\ 1003.1-2001 augments the latter functionality with a mandatory
 feature named _POSIX_SAVED_IDS. This feature
 permits a set-user-ID application to switch its effective user ID
 back and forth between the values of its \fIexec\fP-time real user
@@ -101,16 +101,16 @@ when it happened to be executed with the
 did not even have a means to tell whether it had this
 privilege. Since the saved set-user-ID feature is quite desirable
 for applications, as evidenced by the fact that NIST required it
-in FIPS 151-2, it has been mandated by IEEE\0Std\01003.1-2001. However,
+in FIPS 151-2, it has been mandated by IEEE\ Std\ 1003.1-2001. However,
 there are implementors who have been reluctant to
 support it given the limitation described above.
 .LP
 The 4.3BSD system handles the problem by supporting separate functions:
 \fIsetuid\fP() (which always sets both the real and
-effective user IDs, like \fIsetuid\fP() in IEEE\0Std\01003.1-2001
+effective user IDs, like \fIsetuid\fP() in IEEE\ Std\ 1003.1-2001
 for privileged users), and \fIseteuid\fP() (which always sets just
 the effective user ID, like \fIsetuid\fP() in
-IEEE\0Std\01003.1-2001 for non-privileged users). This separation
+IEEE\ Std\ 1003.1-2001 for non-privileged users). This separation
 of functionality into distinct functions seems desirable.
 4.3BSD does not support the saved set-user-ID feature. It supports
 similar functionality of switching the effective user ID back
@@ -123,21 +123,17 @@ includes saved effective IDs and uses them for \fIseteuid\fP() and
 and \fIsetregid\fP() functions will be deprecated or removed.
 .LP
 The solution here is:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Require that all implementations support the functionality of the
 saved set-user-ID, which is set by the \fIexec\fP functions and by
 privileged calls to \fIsetuid\fP().
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Add the \fIseteuid\fP() and \fIsetegid\fP()
 functions as portable alternatives to \fIsetuid\fP() and \fIsetgid\fP()
 for non-privileged
 and privileged processes.
-.in -5
-.RE
+.LP
 .LP
 Historical systems have provided two mechanisms for a set-user-ID
 process to change its effective user ID to be the same as its
@@ -146,7 +142,7 @@ user ID: the use of the \fIsetuid\fP() function in the
 presence of a saved set-user-ID, or the use of the BSD \fIsetreuid\fP()
 function, which
 was able to swap the real and effective user IDs. The changes included
-in IEEE\0Std\01003.1-2001 provide a new mechanism
+in IEEE\ Std\ 1003.1-2001 provide a new mechanism
 using \fIseteuid\fP() in conjunction with a saved set-user-ID. Thus,
 all implementations
 with the new \fIseteuid\fP() mechanism will have a saved set-user-ID
@@ -189,7 +185,7 @@ None.
 , \fIgetuid\fP() ,
 \fIsetegid\fP() , \fIseteuid\fP() , \fIsetgid\fP() , \fIsetregid\fP()
 , \fIsetreuid\fP() ,
-the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/types.h>\fP,
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/types.h>\fP,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

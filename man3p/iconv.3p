@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "iconv" P 2003 POSIX
+.TH "ICONV" P 2003 POSIX
 .\" iconv 
 .SH NAME
-iconv - codeset conversion function
+iconv \- codeset conversion function
 .SH SYNOPSIS
 .LP
 \fB#include <iconv.h>
@@ -10,10 +10,10 @@ iconv - codeset conversion function
 .sp
 size_t iconv(iconv_t\fP \fIcd\fP\fB, char **restrict\fP \fIinbuf\fP\fB,
 .br
-\0\0\0\0\0\0 size_t *restrict\fP \fIinbytesleft\fP\fB, char **restrict\fP
+\ \ \ \ \ \  size_t *restrict\fP \fIinbytesleft\fP\fB, char **restrict\fP
 \fIoutbuf\fP\fB,
 .br
-\0\0\0\0\0\0 size_t *restrict\fP \fIoutbytesleft\fP\fB); \fP
+\ \ \ \ \ \  size_t *restrict\fP \fIoutbytesleft\fP\fB); \fP
 \fB
 .br
 \fP
@@ -86,21 +86,21 @@ error.
 .SH ERRORS
 .LP
 The \fIiconv\fP() function shall fail if:
-.TP
+.TP 7
 .B EILSEQ
 Input conversion stopped due to an input byte that does not belong
 to the input codeset.
-.TP
+.TP 7
 .B E2BIG
 Input conversion stopped due to lack of space in the output buffer.
-.TP
+.TP 7
 .B EINVAL
 Input conversion stopped due to an incomplete character or shift sequence
 at the end of the input buffer.
 .sp
 .LP
 The \fIiconv\fP() function may fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIcd\fP argument is not a valid open conversion descriptor.
 .sp
@@ -116,7 +116,7 @@ contains the conversion input data. The \fIoutbuf\fP
 argument indirectly points to the memory area which is to contain
 the result of the conversion. The objects indirectly pointed to
 by \fIinbuf\fP and \fIoutbuf\fP are not restricted to containing data
-that is directly representable in the ISO\0C standard
+that is directly representable in the ISO\ C standard
 language \fBchar\fP data type. The type of \fIinbuf\fP and \fIoutbuf\fP,
 \fBchar **\fP, does not imply that the objects pointed
 to are interpreted as null-terminated C strings or arrays of characters.
@@ -154,7 +154,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIiconv_open\fP() , \fIiconv_close\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<iconv.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<iconv.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

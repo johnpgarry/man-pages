@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cp" P 2003 POSIX
+.TH "CP" P 2003 POSIX
 .\" cp 
 .SH NAME
-cp - copy files
+cp \- copy files
 .SH SYNOPSIS
 .LP
 \fBcp\fP \fB[\fP\fB-fip\fP\fB]\fP \fIsource_file target_file\fP\fB
@@ -33,7 +33,7 @@ the \fB-R\fP or \fB-r\fP options are not specified and the
 first synopsis form is not applicable. It shall be an error if any
 \fIsource_file\fP is a file of type directory, if \fItarget\fP
 does not exist, or if \fItarget\fP is a file of a type defined by
-the System Interfaces volume of IEEE\0Std\01003.1-2001,
+the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 but is not a file of type directory. The \fIcp\fP utility shall copy
 the contents of each \fIsource_file\fP (or, if
 \fIsource_file\fP is a file of type symbolic link, the contents of
@@ -46,29 +46,25 @@ where the \fB-R\fP or \fB-r\fP options are specified.
 The \fIcp\fP utility shall copy each file in the file hierarchy rooted
 in each \fIsource_file\fP to a destination path named as
 follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If \fItarget\fP exists and is a file of type directory, the name of
 the corresponding destination path for each file in the
 file hierarchy shall be the concatenation of \fItarget\fP, a slash
 character, and the pathname of the file relative to the
 directory containing \fIsource_file\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fItarget\fP does not exist and two operands are specified, the
 name of the corresponding destination path for
 \fIsource_file\fP shall be \fItarget\fP; the name of the corresponding
 destination path for all other files in the file hierarchy
 shall be the concatenation of \fItarget\fP, a slash character, and
 the pathname of the file relative to \fIsource_file\fP.
-.in -5
-.RE
+.LP
 .LP
 It shall be an error if \fItarget\fP does not exist and more than
 two operands are specified, or if \fItarget\fP exists and is
-a file of a type defined by the System Interfaces volume of IEEE\0Std\01003.1-2001,
+a file of a type defined by the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 but is not a file of type
 directory.
 .LP
@@ -78,93 +74,77 @@ file named by the destination path. The term
 specified as an operand or a file in a file hierarchy rooted in
 a \fIsource_file\fP operand. If \fIsource_file\fP is a file of type
 symbolic link:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If neither the \fB-R\fP nor \fB-r\fP options were specified, \fIcp\fP
 shall take actions based on the type and contents of
 the file referenced by the symbolic link, and not by the symbolic
 link itself.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the \fB-R\fP option was specified:
 .RS
-.in +5
-.LP
+.IP " *" 3
 If none of the options \fB-H\fP, \fB-L\fP, nor \fB-P\fP were specified,
 it is unspecified which of \fB-H\fP, \fB-L\fP, or
 \fB-P\fP will be used as a default.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the \fB-H\fP option was specified, \fIcp\fP shall take actions
 based on the type and contents of the file referenced by any
 symbolic link specified as a \fIsource_file\fP operand.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the \fB-L\fP option was specified, \fIcp\fP shall take actions
 based on the type and contents of the file referenced by any
 symbolic link specified as a \fIsource_file\fP operand or any symbolic
 links encountered during traversal of a file hierarchy.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the \fB-P\fP option was specified, \fIcp\fP shall copy any symbolic
 link specified as a \fIsource_file\fP operand and any
 symbolic links encountered during traversal of a file hierarchy, and
 shall not follow any symbolic links.
-.in -5
-.RE
-.in -5
-.in +5
 .LP
-If the \fB-r\fP option was specified, the behavior is implementation-defined.
-.in -5
 .RE
+.LP
+.IP " *" 3
+If the \fB-r\fP option was specified, the behavior is implementation-defined.
+.LP
 .LP
 For each \fIsource_file\fP, the following steps shall be taken:
-.in +5
-.LP
+.IP " 1." 4
 If \fIsource_file\fP references the same file as \fIdest_file\fP,
 \fIcp\fP may write a diagnostic message to standard error;
 it shall do nothing more with \fIsource_file\fP and shall go on to
 any remaining files.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If \fIsource_file\fP is of type directory, the following steps shall
 be taken:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If neither the \fB-R\fP or \fB-r\fP options were specified, \fIcp\fP
 shall write a diagnostic message to standard error, do
 nothing more with \fIsource_file\fP, and go on to any remaining files.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 If \fIsource_file\fP was not specified as an operand and \fIsource_file\fP
 is dot or dot-dot, \fIcp\fP shall do nothing more
 with \fIsource_file\fP and go on to any remaining files.
-.in -5
-.in +5
 .LP
+.IP " c." 4
 If \fIdest_file\fP exists and it is a file type not specified by the
 System Interfaces volume of
-IEEE\0Std\01003.1-2001, the behavior is implementation-defined.
-.in -5
-.in +5
+IEEE\ Std\ 1003.1-2001, the behavior is implementation-defined.
 .LP
+.IP " d." 4
 If \fIdest_file\fP exists and it is not of type directory, \fIcp\fP
 shall write a diagnostic message to standard error, do
 nothing more with \fIsource_file\fP or any files below \fIsource_file\fP
 in the file hierarchy, and go on to any remaining
 files.
-.in -5
-.in +5
 .LP
+.IP " e." 4
 If the directory \fIdest_file\fP does not exist, it shall be created
 with file permission bits set to the same value as those
 of \fIsource_file\fP, modified by the file creation mask of the user
@@ -174,117 +154,102 @@ be created, \fIcp\fP shall write a diagnostic message to
 standard error, do nothing more with \fIsource_file\fP, and go on
 to any remaining files. It is unspecified if \fIcp\fP attempts
 to copy files in the file hierarchy rooted in \fIsource_file\fP.
-.in -5
-.in +5
 .LP
+.IP " f." 4
 The files in the directory \fIsource_file\fP shall be copied to the
 directory \fIdest_file\fP, taking the four steps (1 to 4)
 listed here with the files as \fIsource_file\fPs.
-.in -5
-.in +5
 .LP
+.IP " g." 4
 If \fIdest_file\fP was created, its file permission bits shall be
 changed (if necessary) to be the same as those of
 \fIsource_file\fP, modified by the file creation mask of the user
 if the \fB-p\fP option was not specified.
-.in -5
-.in +5
 .LP
+.IP " h." 4
 The \fIcp\fP utility shall do nothing more with \fIsource_file\fP
 and go on to any remaining files.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 3." 4
 If \fIsource_file\fP is of type regular file, the following steps
 shall be taken:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If \fIdest_file\fP exists, the following steps shall be taken:
-<ol type="i">
-.in +5
-.LP
+.RS
+.IP "i. " 5
 If the \fB-i\fP option is in effect, the \fIcp\fP utility shall write
 a prompt to the standard error and read a line from the
 standard input. If the response is not affirmative, \fIcp\fP shall
 do nothing more with \fIsource_file\fP and go on to any
 remaining files.
-.in -5
-.in +5
 .LP
+.IP "ii." 5
 A file descriptor for \fIdest_file\fP shall be obtained by performing
 actions equivalent to the \fIopen\fP() function defined in the System
-Interfaces volume of IEEE\0Std\01003.1-2001
+Interfaces volume of IEEE\ Std\ 1003.1-2001
 called using \fIdest_file\fP as the \fIpath\fP argument, and the bitwise-inclusive
 OR of O_WRONLY and O_TRUNC as the \fIoflag\fP
 argument.
-.in -5
-.in +5
 .LP
+.IP "iii." 5
 If the attempt to obtain a file descriptor fails and the \fB-f\fP
 option is in effect, \fIcp\fP shall attempt to remove the
 file by performing actions equivalent to the \fIunlink\fP() function
 defined in the System
-Interfaces volume of IEEE\0Std\01003.1-2001 called using \fIdest_file\fP
+Interfaces volume of IEEE\ Std\ 1003.1-2001 called using \fIdest_file\fP
 as the \fIpath\fP argument. If this attempt
 succeeds, \fIcp\fP shall continue with step 3b.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " b." 4
 If \fIdest_file\fP does not exist, a file descriptor shall be obtained
 by performing actions equivalent to the \fIopen\fP() function defined
-in the System Interfaces volume of IEEE\0Std\01003.1-2001
+in the System Interfaces volume of IEEE\ Std\ 1003.1-2001
 called using \fIdest_file\fP as the \fIpath\fP argument, and the bitwise-inclusive
 OR of O_WRONLY and O_CREAT as the \fIoflag\fP
 argument. The file permission bits of \fIsource_file\fP shall be the
 \fImode\fP argument.
-.in -5
-.in +5
 .LP
+.IP " c." 4
 If the attempt to obtain a file descriptor fails, \fIcp\fP shall write
 a diagnostic message to standard error, do nothing more
 with \fIsource_file\fP, and go on to any remaining files.
-.in -5
-.in +5
 .LP
+.IP " d." 4
 The contents of \fIsource_file\fP shall be written to the file descriptor.
 Any write errors shall cause \fIcp\fP to write a
 diagnostic message to standard error and continue to step 3e.
-.in -5
-.in +5
 .LP
+.IP " e." 4
 The file descriptor shall be closed.
-.in -5
-.in +5
 .LP
+.IP " f." 4
 The \fIcp\fP utility shall do nothing more with \fIsource_file\fP.
 If a write error occurred in step 3d, it is unspecified if
 \fIcp\fP continues with any remaining files. If no write error occurred
 in step 3d, \fIcp\fP shall go on to any remaining
 files.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 4." 4
 Otherwise, the following steps shall be taken:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If the \fB-r\fP option was specified, the behavior is implementation-defined.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 If the \fB-R\fP option was specified, the following steps shall be
 taken:
-<ol type="i">
-.in +5
-.LP
+.RS
+.IP "i. " 5
 The \fIdest_file\fP shall be created with the same file type as \fIsource_file\fP.
-.in -5
-.in +5
 .LP
+.IP "ii." 5
 If \fIsource_file\fP is a file of type FIFO, the file permission bits
 shall be the same as those of \fIsource_file,\fP
 modified by the file creation mask of the user if the \fB-p\fP option
@@ -294,9 +259,8 @@ group ID of \fIdest_file\fP are implementation-defined.
 If this creation fails for any reason, \fIcp\fP shall write a diagnostic
 message to standard error, do nothing more with
 \fIsource_file\fP, and go on to any remaining files.
-.in -5
-.in +5
 .LP
+.IP "iii." 5
 If \fIsource_file\fP is a file of type symbolic link, the pathname
 contained in \fIdest_file\fP shall be the same as the
 pathname contained in \fIsource_file\fP.
@@ -304,69 +268,70 @@ pathname contained in \fIsource_file\fP.
 If this fails for any reason, \fIcp\fP shall write a diagnostic message
 to standard error, do nothing more with
 \fIsource_file\fP, and go on to any remaining files.
-.in -5
-.in -5
-.in -5
+.LP
+.RE
+.LP
+.RE
+.LP
 .LP
 If the implementation provides additional or alternate access control
 mechanisms (see the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 4.4, File Access Permissions), their
+IEEE\ Std\ 1003.1-2001, Section 4.4, File Access Permissions), their
 effect on copies of files is implementation-defined.
 .SH OPTIONS
 .LP
 The \fIcp\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-f\fP
 If a file descriptor for a destination file cannot be obtained, as
 described in step 3.a.ii., attempt to unlink the destination
 file and proceed.
-.TP
+.TP 7
 \fB-H\fP
 Take actions based on the type and contents of the file referenced
 by any symbolic link specified as a \fIsource_file\fP
 operand.
-.TP
+.TP 7
 \fB-i\fP
 Write a prompt to standard error before copying to any existing destination
 file. If the response from the standard input is
 affirmative, the copy shall be attempted; otherwise, it shall not.
-.TP
+.TP 7
 \fB-L\fP
 Take actions based on the type and contents of the file referenced
 by any symbolic link specified as a \fIsource_file\fP
 operand or any symbolic links encountered during traversal of a file
 hierarchy.
-.TP
+.TP 7
 \fB-P\fP
 Take actions on any symbolic link specified as a \fIsource_file\fP
 operand or any symbolic link encountered during traversal
 of a file hierarchy.
-.TP
+.TP 7
 \fB-p\fP
 Duplicate the following characteristics of each source file in the
 corresponding destination file: 
-.in +5
-.LP
+.RS
+.IP " 1." 4
 The time of last data modification and time of last access. If this
 duplication fails for any reason, \fIcp\fP shall write a
 diagnostic message to standard error.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The user ID and group ID. If this duplication fails for any reason,
 it is unspecified whether \fIcp\fP writes a diagnostic
 message to standard error.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The file permission bits and the S_ISUID and S_ISGID bits. Other,
 implementation-defined, bits may be duplicated as well. If
 this duplication fails for any reason, \fIcp\fP shall write a diagnostic
 message to standard error.
-.in -5
+.LP
+.RE
 .LP
 If the user ID or the group ID cannot be duplicated, the file permission
 bits S_ISUID and S_ISGID shall be cleared. If these
@@ -377,10 +342,10 @@ diagnostic message to standard error.
 The order in which the preceding characteristics are duplicated is
 unspecified. The \fIdest_file\fP shall not be deleted if
 these characteristics cannot be preserved.
-.TP
+.TP 7
 \fB-R\fP
 Copy file hierarchies.
-.TP
+.TP 7
 \fB-r\fP
 Copy file hierarchies. The treatment of special files is implementation-defined.
 .sp
@@ -391,14 +356,14 @@ The last option specified shall determine the behavior of the utility.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIsource_file\fP
 A pathname of a file to be copied.
-.TP
+.TP 7
 \fItarget_file\fP
 A pathname of an existing or nonexistent file, used for the output
 when a single file is copied.
-.TP
+.TP 7
 \fItarget\fP
 A pathname of a directory to contain the copied files.
 .sp
@@ -414,26 +379,26 @@ The input files specified as operands may be of any file type.
 .LP
 The following environment variables shall affect the execution of
 \fIcp\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements used in the extended
 regular expression defined for the \fByesexpr\fP locale keyword in
 the \fILC_MESSAGES\fP category.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
@@ -441,12 +406,12 @@ opposed to multi-byte characters in arguments and input files) and
 the behavior of character classes used in the extended regular
 expression defined for the \fByesexpr\fP locale keyword in the \fILC_MESSAGES\fP
 category.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale for the processing of affirmative responses that
 should be used to affect the format and contents of
 diagnostic messages written to standard error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -473,10 +438,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All files were copied successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -499,12 +464,12 @@ in the presence of special file types; for example, character
 devices, FIFOs, and sockets. The \fB-R\fP option is intended to recreate
 the file hierarchy and the \fB-r\fP option supports
 historical practice. It was anticipated that a future version of this
-volume of IEEE\0Std\01003.1-2001 would deprecate the
+volume of IEEE\ Std\ 1003.1-2001 would deprecate the
 \fB-r\fP option, and for that reason, there has been no attempt to
 fix its behavior with respect to FIFOs or other file types
 where copying the file is clearly wrong. However, some implementations
 support \fB-r\fP with the same abilities as the \fB-R\fP
-defined in this volume of IEEE\0Std\01003.1-2001. To accommodate them
+defined in this volume of IEEE\ Std\ 1003.1-2001. To accommodate them
 as well as systems that do not, the differences
 between \fB-r\fP and \fB-R\fP are implementation-defined. Implementations
 may make them identical. The \fB-r\fP option is marked
@@ -542,11 +507,11 @@ the behavior specified.
 .LP
 The \fB-p\fP option is historical practice on BSD systems, duplicating
 the time of last data modification and time of last
-access. This volume of IEEE\0Std\01003.1-2001 extends it to preserve
+access. This volume of IEEE\ Std\ 1003.1-2001 extends it to preserve
 the user and group IDs, as well as the file
 permissions. This requirement has obvious problems in that the directories
 are almost certainly modified after being copied. This
-volume of IEEE\0Std\01003.1-2001 requires that the modification times
+volume of IEEE\ Std\ 1003.1-2001 requires that the modification times
 be preserved. The statement that the order in which
 the characteristics are duplicated is unspecified is to permit implementations
 to provide the maximum amount of security for the
@@ -568,7 +533,7 @@ This functionality is used heavily in historical applications, and
 its loss would significantly decrease consensus. The \fB-R\fP
 option was added as a close synonym to the \fB-r\fP option, selected
 for consistency with all other options in this volume of
-IEEE\0Std\01003.1-2001 that do recursive directory descent.
+IEEE\ Std\ 1003.1-2001 that do recursive directory descent.
 .LP
 When a failure occurs during the copying of a file hierarchy, \fIcp\fP
 is required to attempt to copy files that are on the
@@ -628,7 +593,7 @@ to itself; however, implementations are strongly
 encouraged to do so. Historical implementations have detected the
 attempt in most cases.
 .LP
-There are two methods of copying subtrees in this volume of IEEE\0Std\01003.1-2001.
+There are two methods of copying subtrees in this volume of IEEE\ Std\ 1003.1-2001.
 The other method is described as
 part of the \fIpax\fP utility (see \fIpax\fP ). Both methods are
 historical practice. The \fIcp\fP utility provides a simpler, more
@@ -645,10 +610,10 @@ identical.
 .LP
 The wording allowing \fIcp\fP to copy a directory to implementation-defined
 file types not specified by the System Interfaces
-volume of IEEE\0Std\01003.1-2001 is provided so that implementations
+volume of IEEE\ Std\ 1003.1-2001 is provided so that implementations
 supporting symbolic links are not required to prohibit
 copying directories to symbolic links. Other extensions to the System
-Interfaces volume of IEEE\0Std\01003.1-2001 file
+Interfaces volume of IEEE\ Std\ 1003.1-2001 file
 types may need to use this loophole as well.
 .SH FUTURE DIRECTIONS
 .LP
@@ -656,7 +621,7 @@ The \fB-r\fP option may be removed; use \fB-R\fP instead.
 .SH SEE ALSO
 .LP
 \fImv\fP , \fIfind\fP , \fIln\fP , \fIpax\fP , the System Interfaces
-volume of IEEE\0Std\01003.1-2001, \fIopen\fP(), \fIunlink\fP()
+volume of IEEE\ Std\ 1003.1-2001, \fIopen\fP(), \fIunlink\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

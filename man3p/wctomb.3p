@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "wctomb" P 2003 POSIX
+.TH "WCTOMB" P 2003 POSIX
 .\" wctomb 
 .SH NAME
-wctomb - convert a wide-character code to a character
+wctomb \- convert a wide-character code to a character
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -12,12 +12,6 @@ int wctomb(char *\fP\fIs\fP\fB, wchar_t\fP \fIwchar\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIwctomb\fP() function shall determine the number of bytes needed
 to represent the character corresponding to the
@@ -48,7 +42,7 @@ is not required to be reentrant is not required to be
 thread-safe. 
 .LP
 The implementation shall behave as if no function defined in this
-volume of IEEE\0Std\01003.1-2001 calls
+volume of IEEE\ Std\ 1003.1-2001 calls
 \fIwctomb\fP().
 .SH RETURN VALUE
 .LP
@@ -83,7 +77,7 @@ None.
 .LP
 \fImblen\fP() , \fImbtowc\fP() , \fImbstowcs\fP() , \fIwcstombs\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

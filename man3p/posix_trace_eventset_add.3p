@@ -1,10 +1,10 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_trace_eventset_add" P 2003 POSIX
+.TH "POSIX_TRACE_EVENTSET_ADD" P 2003 POSIX
 .\" posix_trace_eventset_add 
 .SH NAME
 posix_trace_eventset_add, posix_trace_eventset_del, posix_trace_eventset_empty,
 posix_trace_eventset_fill,
-posix_trace_eventset_ismember - manipulate trace event type sets (\fBTRACING\fP)
+posix_trace_eventset_ismember \- manipulate trace event type sets (\fBTRACING\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <trace.h>
@@ -12,11 +12,11 @@ posix_trace_eventset_ismember - manipulate trace event type sets (\fBTRACING\fP)
 .sp
 int posix_trace_eventset_add(trace_event_id_t\fP \fIevent_id\fP\fB,
 .br
-\0\0\0\0\0\0 trace_event_set_t *\fP\fIset\fP\fB);
+\ \ \ \ \ \  trace_event_set_t *\fP\fIset\fP\fB);
 .br
 int posix_trace_eventset_del(trace_event_id_t\fP \fIevent_id\fP\fB,
 .br
-\0\0\0\0\0\0 trace_event_set_t *\fP\fIset\fP\fB);
+\ \ \ \ \ \  trace_event_set_t *\fP\fIset\fP\fB);
 .br
 int posix_trace_eventset_empty(trace_event_set_t *\fP\fIset\fP\fB);
 .br
@@ -25,7 +25,7 @@ int\fP \fIwhat\fP\fB);
 .br
 int posix_trace_eventset_ismember(trace_event_id_t\fP \fIevent_id\fP\fB,
 .br
-\0\0\0\0\0\0 const trace_event_set_t *restrict\fP \fIset\fP\fB, int
+\ \ \ \ \ \  const trace_event_set_t *restrict\fP \fIset\fP\fB, int
 *restrict\fP
 \fIismember\fP\fB); \fP
 \fB
@@ -56,18 +56,18 @@ such that the set of trace event types defined by the argument \fIwhat\fP
 shall be included in the set. The value of the argument
 \fIwhat\fP shall consist of one of the following values, as defined
 in the \fI<trace.h>\fP header:
-.TP
+.TP 7
 POSIX_TRACE_WOPID_EVENTS
 .sp
 All the process-independent implementation-defined system trace event
 types are included in the set.
-.TP
+.TP 7
 POSIX_TRACE_SYSTEM_EVENTS
 .sp
 All the implementation-defined system trace event types are included
 in the set, as are those defined in
-IEEE\0Std\01003.1-2001.
-.TP
+IEEE\ Std\ 1003.1-2001.
+.TP 7
 POSIX_TRACE_ALL_EVENTS
 .sp
 All trace event types defined, both system and user, are included
@@ -97,7 +97,7 @@ number.
 .SH ERRORS
 .LP
 These functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of one of the arguments is invalid.
 .sp
@@ -119,7 +119,7 @@ None.
 .LP
 \fIposix_trace_set_filter\fP() , \fIposix_trace_trid_eventid_open\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<trace.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<trace.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

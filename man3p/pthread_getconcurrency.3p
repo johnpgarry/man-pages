@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_getconcurrency" P 2003 POSIX
+.TH "PTHREAD_GETCONCURRENCY" P 2003 POSIX
 .\" pthread_getconcurrency 
 .SH NAME
-pthread_getconcurrency, pthread_setconcurrency - get and set the level
+pthread_getconcurrency, pthread_setconcurrency \- get and set the level
 of concurrency
 .SH SYNOPSIS
 .LP
@@ -67,10 +67,10 @@ function has never been called,
 .SH ERRORS
 .LP
 The \fIpthread_setconcurrency\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fInew_level\fP is negative.
-.TP
+.TP 7
 .B EAGAIN
 The value specific by \fInew_level\fP would cause a system resource
 to be exceeded.
@@ -97,7 +97,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+The Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

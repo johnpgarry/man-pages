@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "hash" P 2003 POSIX
+.TH "HASH" P 2003 POSIX
 .\" hash 
 .SH NAME
-hash - remember or report utility locations
+hash \- remember or report utility locations
 .SH SYNOPSIS
 .LP
 \fBhash\fP \fB[\fP\fIutility\fP\fB...\fP\fB]\fP\fB
@@ -27,17 +27,17 @@ by \fIhash\fP.
 .SH OPTIONS
 .LP
 The \fIhash\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following option shall be supported:
-.TP
+.TP 7
 \fB-r\fP
 Forget all previously remembered utility locations.
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIutility\fP
 The name of a utility to be searched for and added to the list of
 remembered locations. If \fIutility\fP contains one or more
@@ -53,36 +53,36 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIhash\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
-.TP
+.TP 7
 \fIPATH\fP
 Determine the location of \fIutility\fP, as described in the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Chapter 8, Environment
+Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 8, Environment
 Variables.
 .sp
 .SH ASYNCHRONOUS EVENTS
@@ -109,10 +109,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -141,7 +141,7 @@ it does not affect the command search process of the caller's environment.
 .LP
 The \fIhash\fP utility may be implemented as an alias-for example,
 \fIalias\fP
-\fB-t\0-\fP, in which case utilities found through normal command
+\fB-t\ -\fP, in which case utilities found through normal command
 search are not listed by the \fIhash\fP command.
 .LP
 The effects of \fIhash\fP \fB-r\fP can also be achieved portably by

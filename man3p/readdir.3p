@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "readdir" P 2003 POSIX
+.TH "READDIR" P 2003 POSIX
 .\" readdir 
 .SH NAME
-readdir, readdir_r - read a directory
+readdir, readdir_r \- read a directory
 .SH SYNOPSIS
 .LP
 \fB#include <dirent.h>
@@ -15,7 +15,7 @@ struct dirent *readdir(DIR *\fP\fIdirp\fP\fB);
 \fBint readdir_r(DIR *restrict\fP \fIdirp\fP\fB, struct dirent *restrict\fP
 \fIentry\fP\fB,
 .br
-\0\0\0\0\0\0 struct dirent **restrict\fP \fIresult\fP\fB); \fP
+\ \ \ \ \ \  struct dirent **restrict\fP \fIresult\fP\fB); \fP
 \fB
 .br
 \fP
@@ -60,7 +60,7 @@ is actually read.
 After a call to \fIfork\fP(), either the parent or child (but not
 both) may continue
 processing the directory stream using \fIreaddir\fP(), \fIrewinddir\fP(),
-\0or \fIseekdir\fP().  If both the
+\ or \fIseekdir\fP().  If both the
 parent and child processes use these functions, the result is undefined.
 .LP
 If the entry names a symbolic link, the value of the \fId_ino\fP member
@@ -117,23 +117,23 @@ error.
 .SH ERRORS
 .LP
 The \fIreaddir\fP() function shall fail if:
-.TP
+.TP 7
 .B EOVERFLOW
 One of the values in the structure to be returned cannot be represented
 correctly.
 .sp
 .LP
 The \fIreaddir\fP() function may fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIdirp\fP argument does not refer to an open directory stream.
-.TP
+.TP 7
 .B ENOENT
 The current position of the directory stream is invalid.
 .sp
 .LP
 The \fIreaddir_r\fP() function may fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIdirp\fP argument does not refer to an open directory stream.
 .sp
@@ -267,7 +267,7 @@ None.
 .LP
 \fIclosedir\fP() , \fIlstat\fP() , \fIopendir\fP() , \fIrewinddir\fP()
 , \fIsymlink\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<dirent.h>\fP,
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<dirent.h>\fP,
 \fI<sys/types.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "shift" P 2003 POSIX
+.TH "SHIFT" P 2003 POSIX
 .\" shift 
 .SH NAME
-shift - shift positional parameters
+shift \- shift positional parameters
 .SH SYNOPSIS
 .LP
 \fBshift\fP \fB[\fP\fIn\fP\fB]\fP

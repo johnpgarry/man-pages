@@ -1,16 +1,14 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "df" P 2003 POSIX
+.TH "DF" P 2003 POSIX
 .\" df 
 .SH NAME
-df - report free disk space
+df \- report free disk space
 .SH SYNOPSIS
 .LP
-\fBdf\fP \fB[\fP\fB-k\fP\fB][\fP\fB-P|-t\fP\fB][\fP\fIfile\fP\fB...\fP\fB]\fP\fB<img
-src="../images/opt-end.gif" alt="[Option End]" border="0">\fP
+\fBdf\fP \fB[\fP\fB-k\fP\fB][\fP\fB-P|-t\fP\fB][\fP\fIfile\fP\fB...\fP\fB]\fP\fB\fP
 .SH DESCRIPTION
 .LP
-The \fIdf\fP utility shall write the amount of available space  <img
-src="../images/opt-start.gif" alt="[Option Start]" border="0"> \0and
+The \fIdf\fP utility shall write the amount of available space   \ and
 file slots  for file systems on which the invoking user has appropriate
 read access. File systems shall be specified
 by the \fIfile\fP operands; when none are specified, information shall
@@ -19,34 +17,34 @@ output from \fIdf\fP is unspecified, but all space figures are reported
 in 512-byte units, unless the \fB-k\fP option is
 specified. This output shall contain at least the file system names,
 amount of available space on each of these file systems,
-\0and the number of free file slots, or \fIinodes\fP, available; when
+\ and the number of free file slots, or \fIinodes\fP, available; when
 \fB-t\fP is specified, the output shall contain the
 total allocated space as well. 
 .SH OPTIONS
 .LP
 The \fIdf\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-k\fP
 Use 1024-byte units, instead of the default 512-byte units, when writing
 space figures.
-.TP
+.TP 7
 \fB-P\fP
 Produce output in the format described in the STDOUT section.
-.TP
+.TP 7
 \fB-t\fP
 Include total allocated-space figures in the output. 
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file within the hierarchy of the desired file system.
 If a file other than a FIFO, a regular file, a directory,
-\0or a special file representing the device containing the file system
+\ or a special file representing the device containing the file system
 (for example, \fB/dev/dsk/0s1\fP)  is specified, the results are unspecified.
 Otherwise, \fIdf\fP shall write
 the amount of free space in the file system containing the specified
@@ -62,29 +60,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIdf\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -139,31 +137,31 @@ be formatted as follows:
 In the following list, all quantities expressed in 512-byte units
 (1024-byte when \fB-k\fP is specified) shall be rounded up to
 the next higher unit. The fields are:
-.TP
-<\fIfile\0system\0name\fP>
+.TP 7
+<\fIfile\ system\ name\fP>
 .sp
 The name of the file system, in an implementation-defined format.
-.TP
-<\fItotal\0space\fP>
+.TP 7
+<\fItotal\ space\fP>
 The total size of the file system in 512-byte units. The exact meaning
 of this figure is implementation-defined, but should
-include <\fIspace\0used\fP>, <\fIspace\0free\fP>, plus any space reserved
+include <\fIspace\ used\fP>, <\fIspace\ free\fP>, plus any space reserved
 by the system not normally
 available to a user.
-.TP
-<\fIspace\0used\fP>
+.TP 7
+<\fIspace\ used\fP>
 The total amount of space allocated to existing files in the file
 system, in 512-byte units.
-.TP
-<\fIspace\0free\fP>
+.TP 7
+<\fIspace\ free\fP>
 The total amount of space available within the file system for the
 creation of new files by unprivileged users, in 512-byte
 units. When this figure is less than or equal to zero, it shall not
 be possible to create any new files on the file system without
 first deleting others, unless the process has appropriate privileges.
 The figure written may be less than zero.
-.TP
-<\fIpercentage\0used\fP>
+.TP 7
+<\fIpercentage\ used\fP>
 .sp
 The percentage of the normally available space that is currently allocated
 to all files on the file system. This shall be
@@ -178,12 +176,12 @@ calculated using the fraction:
 .RE
 .LP
 expressed as a percentage. This percentage may be greater than 100
-if <\fIspace\0free\fP> is less than zero. The
+if <\fIspace\ free\fP> is less than zero. The
 percentage value shall be expressed as a positive integer, with any
 fractional result causing it to be rounded to the next highest
 integer.
-.TP
-<\fIfile\0system\0root\fP>
+.TP 7
+<\fIfile\ system\ root\fP>
 .sp
 The directory below which the file system hierarchy appears.
 .sp
@@ -201,10 +199,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -222,8 +220,7 @@ system is mounted.
 On large file systems, the calculation specified for percentage used
 can create huge rounding errors.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 The following example writes portable information about the \fB/usr\fP
 file system:
 .sp
@@ -234,9 +231,8 @@ file system:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Assuming that \fB/usr/src\fP is part of the \fB/usr\fP file system,
 the following produces the same output as the previous
 example:
@@ -248,7 +244,7 @@ example:
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 The behavior of \fIdf\fP with the \fB-P\fP option is the default action
@@ -264,7 +260,7 @@ provide information in a portable format.
 .LP
 The use of 512-byte units is historical practice and maintains compatibility
 with \fIls\fP
-and other utilities in this volume of IEEE\0Std\01003.1-2001. This
+and other utilities in this volume of IEEE\ Std\ 1003.1-2001. This
 does not mandate that the file system itself be based on
 512-byte blocks. The \fB-k\fP option was added as a compromise measure.
 It was agreed by the standard developers that 512 bytes

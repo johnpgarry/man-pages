@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sigaltstack" P 2003 POSIX
+.TH "SIGALTSTACK" P 2003 POSIX
 .\" sigaltstack 
 .SH NAME
-sigaltstack - set and get signal alternate stack context
+sigaltstack \- set and get signal alternate stack context
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -43,13 +43,13 @@ The \fIss_sp\fP and \fIss_size\fP members
 specify the address and size of that stack. The \fIss_flags\fP member
 specifies the stack's state, and may contain one of the
 following values:
-.TP
+.TP 7
 SS_ONSTACK
 The process is currently executing on the alternate signal stack.
 Attempts to modify the alternate signal stack while the
 process is executing on it fail. This flag shall not be modified by
 processes.
-.TP
+.TP 7
 SS_DISABLE
 The alternate signal stack is currently disabled.
 .sp
@@ -82,15 +82,15 @@ the error.
 .SH ERRORS
 .LP
 The \fIsigaltstack\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIss\fP argument is not a null pointer, and the \fIss_flags\fP
 member pointed to by \fIss\fP contains flags other than
 SS_DISABLE.
-.TP
+.TP 7
 .B ENOMEM
 The size of the alternate stack area is less than MINSIGSTKSZ.
-.TP
+.TP 7
 .B EPERM
 An attempt was made to modify an active stack.
 .sp
@@ -131,7 +131,7 @@ None.
 .SH SEE ALSO
 .LP
 \fISignal Concepts\fP , \fIsigaction\fP() , \fIsigsetjmp\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<signal.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

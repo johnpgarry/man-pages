@@ -1,10 +1,10 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "drand48" P 2003 POSIX
+.TH "DRAND48" P 2003 POSIX
 .\" drand48 
 .SH NAME
 drand48, erand48, jrand48, lcong48, lrand48, mrand48, nrand48, seed48,
-srand48 - generate uniformly distributed
-pseudo-random numbers
+srand48 \- generate uniformly distributed
+pseudo\-random numbers
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -42,11 +42,11 @@ uniformly distributed over the interval [0.0,1.0).
 .LP
 The \fIlrand48\fP() and \fInrand48\fP() functions shall return non-negative,
 long integers, uniformly distributed over the
-interval [0,2).
+interval [0,2**31).
 .LP
 The \fImrand48\fP() and \fIjrand48\fP() functions shall return signed
 long integers uniformly distributed over the interval
-[-2,2).
+[-2**31,2**31).
 .LP
 The \fIsrand48\fP(), \fIseed48\fP(), and \fIlcong48\fP() functions
 are initialization entry points, one of which should be
@@ -62,7 +62,7 @@ first.
 All the routines work by generating a sequence of 48-bit integer values,
 X_i , according to the linear congruential
 formula:
-X_n+1 = (aX_n + c)_mod m\0\0\0n>= 0
+X_n+1 = (aX_n + c)_mod m\ \ \ n>= 0
 .LP
 The parameter \fIm\fP = 2**48; hence 48-bit integer arithmetic is
 performed. Unless \fIlcong48\fP() is invoked, the multiplier
@@ -153,7 +153,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIrand\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIrand\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "nanosleep" P 2003 POSIX
+.TH "NANOSLEEP" P 2003 POSIX
 .\" nanosleep 
 .SH NAME
-nanosleep - high resolution sleep (\fBREALTIME\fP)
+nanosleep \- high resolution sleep (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <time.h>
@@ -47,10 +47,10 @@ If \fInanosleep\fP() fails, it shall return a value of -1 and set
 .SH ERRORS
 .LP
 The \fInanosleep\fP() function shall fail if:
-.TP
+.TP 7
 .B EINTR
 The \fInanosleep\fP() function was interrupted by a signal.
-.TP
+.TP 7
 .B EINVAL
 The \fIrqtp\fP argument specified a nanosecond value less than zero
 or greater than or equal to 1000 million.
@@ -80,7 +80,7 @@ it is possible to write a function with similar functionality to \fIsleep\fP()
 using the
 remainder of the \fItimer_*\fP() functions, such a function requires
 the use of signals
-and the reservation of some signal number. This volume of IEEE\0Std\01003.1-2001
+and the reservation of some signal number. This volume of IEEE\ Std\ 1003.1-2001
 requires that \fInanosleep\fP() be
 non-intrusive of the signals function.
 .LP
@@ -94,7 +94,7 @@ argument structure pointer, \fIrmtp\fP, instead of as the return value.
 None.
 .SH SEE ALSO
 .LP
-\fIsleep\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIsleep\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

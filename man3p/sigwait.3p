@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sigwait" P 2003 POSIX
+.TH "SIGWAIT" P 2003 POSIX
 .\" sigwait 
 .SH NAME
-sigwait - wait for queued signals
+sigwait \- wait for queued signals
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -21,7 +21,7 @@ pending signals, and return that signal number in the location referenced
 by \fIsig\fP. If prior to the call to \fIsigwait\fP()
 there are multiple pending instances of a single signal number, it
 is implementation-defined whether upon successful return there
-are any remaining pending signals for that signal number.   \0If the
+are any remaining pending signals for that signal number.   \ If the
 implementation supports queued signals and there are
 multiple signals queued for the signal number selected, the first
 such queued signal shall cause a return from \fIsigwait\fP() and
@@ -42,8 +42,7 @@ unspecified.
 Should any of the multiple pending signals in the range SIGRTMIN to
 SIGRTMAX be selected, it shall be the lowest numbered one. The
 selection order between realtime and non-realtime signals, or between
-multiple pending non-realtime signals, is unspecified. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+multiple pending non-realtime signals, is unspecified. 
 .SH RETURN VALUE
 .LP
 Upon successful completion, \fIsigwait\fP() shall store the signal
@@ -53,7 +52,7 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIsigwait\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIset\fP argument contains an invalid or unsupported signal number.
 .sp
@@ -68,7 +67,7 @@ None.
 .SH RATIONALE
 .LP
 To provide a convenient way for a thread to wait for a signal, this
-volume of IEEE\0Std\01003.1-2001 provides the
+volume of IEEE\ Std\ 1003.1-2001 provides the
 \fIsigwait\fP() function. For most cases where a thread has to wait
 for a signal, the \fIsigwait\fP() function should be quite
 convenient, efficient, and adequate.
@@ -94,7 +93,7 @@ None.
 Signals\fP , \fIpause\fP() , \fIpthread_sigmask\fP() , \fIsigaction\fP()
 , \fIsigpending\fP() , \fIsigsuspend\fP() , \fIsigwaitinfo\fP() ,
 the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<signal.h>\fP, \fI<time.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP, \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

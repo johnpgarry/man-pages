@@ -2,7 +2,7 @@
 .TH "<aio.h>" P 2003 POSIX
 .\" <aio.h> 
 .SH NAME
-aio.h - asynchronous input and output (\fBREALTIME\fP)
+aio.h \- asynchronous input and output (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <aio.h> \fP
@@ -26,40 +26,40 @@ int             aio_lio_opcode\fP Operation to be performed. \fB
 .RE
 .LP
 This header shall also include the following constants:
-.TP
+.TP 7
 AIO_ALLDONE
 A return value indicating that none of the requested operations could
 be canceled since they are already complete.
-.TP
+.TP 7
 AIO_CANCELED
 A return value indicating that all requested operations have been
 canceled.
-.TP
+.TP 7
 AIO_NOTCANCELED
 .sp
 A return value indicating that some of the requested operations could
 not be canceled since they are in progress.
-.TP
+.TP 7
 LIO_NOP
 A \fIlio_listio\fP() element operation option indicating that no transfer
 is
 requested.
-.TP
+.TP 7
 LIO_NOWAIT
 A \fIlio_listio\fP() synchronization operation indicating that the
 calling thread
 is to continue execution while the \fIlio_listio\fP() operation is
 being performed, and
 no notification is given when the operation is complete.
-.TP
+.TP 7
 LIO_READ
 A \fIlio_listio\fP() element operation option requesting a read.
-.TP
+.TP 7
 LIO_WAIT
 A \fIlio_listio\fP() synchronization operation indicating that the
 calling thread
 is to suspend until the \fIlio_listio\fP() operation is complete.
-.TP
+.TP 7
 LIO_WRITE
 A \fIlio_listio\fP() element operation option requesting a write.
 .sp
@@ -102,7 +102,7 @@ None.
 .LP
 \fI<fcntl.h>\fP , \fI<signal.h>\fP , \fI<sys/types.h>\fP , \fI<time.h>\fP
 , the System Interfaces volume
-of IEEE\0Std\01003.1-2001, \fIfsync\fP(), \fIlseek\fP(), \fIread\fP(),
+of IEEE\ Std\ 1003.1-2001, \fIfsync\fP(), \fIlseek\fP(), \fIread\fP(),
 \fIwrite\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sem_unlink" P 2003 POSIX
+.TH "SEM_UNLINK" P 2003 POSIX
 .\" sem_unlink 
 .SH NAME
-sem_unlink - remove a named semaphore (\fBREALTIME\fP)
+sem_unlink \- remove a named semaphore (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <semaphore.h>
@@ -35,14 +35,14 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIsem_unlink\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Permission is denied to unlink the named semaphore.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIname\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 The named semaphore does not exist.
 .sp
@@ -66,7 +66,7 @@ None.
 \fIsemctl\fP() , \fIsemget\fP() , \fIsemop\fP()
 , \fIsem_close\fP() , \fIsem_open\fP() , the Base Definitions volume
 of
-IEEE\0Std\01003.1-2001, \fI<semaphore.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<semaphore.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

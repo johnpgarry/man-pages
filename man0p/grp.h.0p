@@ -2,7 +2,7 @@
 .TH "<grp.h>" P 2003 POSIX
 .\" <grp.h> 
 .SH NAME
-grp.h - group structure
+grp.h \- group structure
 .SH SYNOPSIS
 .LP
 \fB#include <grp.h>\fP
@@ -60,7 +60,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fI<sys/types.h>\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+\fI<sys/types.h>\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIendgrent\fP(), \fIgetgrgid\fP(), \fIgetgrnam\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mq_send" P 2003 POSIX
+.TH "MQ_SEND" P 2003 POSIX
 .\" mq_send 
 .SH NAME
-mq_send, mq_timedsend - send a message to a message queue (\fBREALTIME\fP)
+mq_send, mq_timedsend \- send a message to a message queue (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <mqueue.h>
@@ -11,7 +11,7 @@ mq_send, mq_timedsend - send a message to a message queue (\fBREALTIME\fP)
 int mq_send(mqd_t\fP \fImqdes\fP\fB, const char *\fP\fImsg_ptr\fP\fB,
 size_t\fP \fImsg_len\fP\fB,
 .br
-\0\0\0\0\0\0 unsigned\fP \fImsg_prio\fP\fB); \fP
+\ \ \ \ \ \  unsigned\fP \fImsg_prio\fP\fB); \fP
 \fB
 .br
 .sp
@@ -26,9 +26,8 @@ size_t\fP \fImsg_len\fP\fB,
 int mq_timedsend(mqd_t\fP \fImqdes\fP\fB, const char *\fP\fImsg_ptr\fP\fB,
 size_t\fP \fImsg_len\fP\fB,
 .br
-\0\0\0\0\0\0 unsigned\fP \fImsg_prio\fP\fB, const struct timespec
-*\fP\fIabs_timeout\fP\fB); <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">\fP
+\ \ \ \ \ \  unsigned\fP \fImsg_prio\fP\fB, const struct timespec
+*\fP\fIabs_timeout\fP\fB); \fP
 \fB
 .br
 \fP
@@ -93,43 +92,42 @@ the \fI<time.h>\fP header.
 Under no circumstance shall the operation fail with a timeout if there
 is sufficient room in the queue to add the message
 immediately. The validity of the \fIabs_timeout\fP parameter need
-not be checked when there is sufficient room in the queue. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+not be checked when there is sufficient room in the queue. 
 .SH RETURN VALUE
 .LP
-Upon successful completion, the \fImq_send\fP()   \0and \fImq_timedsend\fP()
+Upon successful completion, the \fImq_send\fP()   \ and \fImq_timedsend\fP()
 functions shall return a value of zero. Otherwise, no message shall
 be enqueued, the functions shall
 return -1, and \fIerrno\fP shall be set to indicate the error.
 .SH ERRORS
 .LP
-The \fImq_send\fP()   \0and \fImq_timedsend\fP() 
+The \fImq_send\fP()   \ and \fImq_timedsend\fP() 
 functions shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The O_NONBLOCK flag is set in the message queue description associated
 with \fImqdes\fP, and the specified message queue is
 full.
-.TP
+.TP 7
 .B EBADF
 The \fImqdes\fP argument is not a valid message queue descriptor open
 for writing.
-.TP
+.TP 7
 .B EINTR
-A signal interrupted the call to \fImq_send\fP()   \0or \fImq_timedsend\fP().
-.TP
+A signal interrupted the call to \fImq_send\fP()   \ or \fImq_timedsend\fP().
+.TP 7
 .B EINVAL
 The value of \fImsg_prio\fP was outside the valid range.
-.TP
+.TP 7
 .B EINVAL
 The process or thread would have blocked, and the \fIabs_timeout\fP
 parameter specified a nanoseconds field value less than zero
 or greater than or equal to 1000 million. 
-.TP
+.TP 7
 .B EMSGSIZE
 The specified message length, \fImsg_len\fP, exceeds the message size
 attribute of the message queue.
-.TP
+.TP 7
 .B ETIMEDOUT
 The O_NONBLOCK flag was not set when the message queue was opened,
 but the timeout expired before the message could be added to the
@@ -154,7 +152,7 @@ None.
 .SH SEE ALSO
 .LP
 \fImq_open\fP() , \fImq_receive\fP() , \fImq_setattr\fP() , \fImq_timedreceive\fP()
-, \fItime\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fItime\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<mqueue.h>\fP, \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

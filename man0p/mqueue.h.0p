@@ -2,7 +2,7 @@
 .TH "<mqueue.h>" P 2003 POSIX
 .\" <mqueue.h> 
 .SH NAME
-mqueue.h - message queues (\fBREALTIME\fP)
+mqueue.h \- message queues (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <mqueue.h> \fP
@@ -73,7 +73,7 @@ None.
 .LP
 \fI<fcntl.h>\fP , \fI<signal.h>\fP , \fI<sys/types.h>\fP , \fI<time.h>\fP
 , the System Interfaces volume
-of IEEE\0Std\01003.1-2001, \fImq_close\fP(), \fImq_getattr\fP(), \fImq_notify\fP(),
+of IEEE\ Std\ 1003.1-2001, \fImq_close\fP(), \fImq_getattr\fP(), \fImq_notify\fP(),
 \fImq_open\fP(), \fImq_receive\fP(), \fImq_send\fP(), \fImq_setattr\fP(),
 \fImq_timedreceive\fP(), \fImq_timedsend\fP(), \fImq_unlink\fP()
 .SH COPYRIGHT

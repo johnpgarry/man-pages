@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_trace_event" P 2003 POSIX
+.TH "POSIX_TRACE_EVENT" P 2003 POSIX
 .\" posix_trace_event 
 .SH NAME
-posix_trace_event, posix_trace_eventid_open - trace functions for
+posix_trace_event, posix_trace_eventid_open \- trace functions for
 instrumenting application code
 (\fBTRACING\fP)
 .SH SYNOPSIS
@@ -14,11 +14,11 @@ instrumenting application code
 .sp
 void posix_trace_event(trace_event_id_t\fP \fIevent_id\fP\fB,
 .br
-\0\0\0\0\0\0 const void *restrict\fP\fIdata_ptr\fP\fB, size_t\fP \fIdata_len\fP\fB);
+\ \ \ \ \ \  const void *restrict\fP\fIdata_ptr\fP\fB, size_t\fP \fIdata_len\fP\fB);
 .br
 int posix_trace_eventid_open(const char *restrict\fP \fIevent_name\fP\fB,
 .br
-\0\0\0\0\0\0 trace_event_id_t *restrict\fP \fIevent_id\fP\fB); \fP
+\ \ \ \ \ \  trace_event_id_t *restrict\fP \fIevent_id\fP\fB); \fP
 \fB
 .br
 \fP
@@ -76,7 +76,7 @@ has been reached, the pre-defined
 POSIX_TRACE_UNNAMED_USEREVENT ( \fITrace Option: User Trace Event\fP
 ) user trace event
 shall be returned. 
-.TP
+.TP 7
 \fBNote:\fP
 The above procedure, together with the fact that multiple processes
 can only be traced into the same trace stream by
@@ -100,7 +100,7 @@ in the object pointed to by \fIevent_id\fP, if successful.
 .SH ERRORS
 .LP
 The \fIposix_trace_eventid_open\fP() function shall fail if:
-.TP
+.TP 7
 .B ENAMETOOLONG
 The size of the name pointed to by the \fIevent_name\fP argument was
 longer than the implementation-defined value
@@ -125,7 +125,7 @@ None.
 \fITrace Option: User Trace Event\fP , \fIposix_trace_start\fP() ,
 \fIposix_trace_trid_eventid_open\fP() , the Base Definitions volume
 of
-IEEE\0Std\01003.1-2001, \fI<sys/types.h>\fP, \fI<trace.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/types.h>\fP, \fI<trace.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "casin" P 2003 POSIX
+.TH "CASIN" P 2003 POSIX
 .\" casin 
 .SH NAME
-casin, casinf, casinl - complex arc sine functions
+casin, casinf, casinl \- complex arc sine functions
 .SH SYNOPSIS
 .LP
 \fB#include <complex.h>
@@ -17,20 +17,14 @@ long double complex casinl(long double complex\fP \fIz\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 These functions shall compute the complex arc sine of \fIz\fP, with
-branch cuts outside the interval [-1,\0+1] along the
+branch cuts outside the interval [-1,\ +1] along the
 real axis.
 .SH RETURN VALUE
 .LP
 These functions shall return the complex arc sine value, in the range
 of a strip mathematically unbounded along the imaginary
-axis and in the interval [-/2,\0+/2] along the
+axis and in the interval [-pi/2,\ +pi/2] along the
 real axis.
 .SH ERRORS
 .LP
@@ -51,7 +45,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIcsin\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIcsin\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<complex.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

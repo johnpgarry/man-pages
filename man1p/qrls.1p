@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "qrls" P 2003 POSIX
+.TH "QRLS" P 2003 POSIX
 .\" qrls 
 .SH NAME
-qrls - release batch jobs
+qrls \- release batch jobs
 .SH SYNOPSIS
 .LP
 \fBqrls\fP \fB[\fP\fB-h\fP \fIhold_list\fP\fB]\fP \fIjob_identifier\fP
@@ -39,17 +39,17 @@ processed batch \fIjob_identifier\fP.
 .SH OPTIONS
 .LP
 The \fIqrls\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following option shall be supported by the implementation:
-.TP
-\fB-h\0\fP \fIhold_list\fP
+.TP 7
+\fB-h\ \fP \fIhold_list\fP
 Define the types of holds to be removed from the batch job. 
 .LP
 The \fIqrls\fP \fB-h\fP option shall accept a value for the \fIhold_list\fP
 option-argument that is a string of alphanumeric
 characters in the portable character set (see the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Section 6.1, Portable Character
+volume of IEEE\ Std\ 1003.1-2001, Section 6.1, Portable Character
 Set).
 .LP
 The \fIqrls\fP utility shall accept a value for the \fIhold_list\fP
@@ -61,15 +61,21 @@ For each unique character in the \fIhold_list\fP option-argument,
 the \fIqrls\fP utility shall add a value to the
 \fIHold_Types\fP attribute of the batch job as follows, each representing
 a different hold type:
-.TP
+.TP 7
 \fBu\fP
+.RS
 USER
-.TP
+.RE
+.TP 7
 \fBs\fP
+.RS
 SYSTEM
-.TP
+.RE
+.TP 7
 \fBo\fP
+.RS
 OPERATOR
+.RE
 .sp
 .LP
 If any of these characters are duplicated in the \fIhold_list\fP option-argument,
@@ -77,9 +83,11 @@ the duplicates shall be ignored.
 .LP
 An existing \fIHold_Types\fP attribute can be cleared by the following
 hold type:
-.TP
+.TP 7
 \fBn\fP
+.RS
 NO_HOLD
+.RE
 .sp
 .LP
 The \fIqrls\fP utility shall consider it an error if any hold type
@@ -116,29 +124,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIqrls\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fILOGNAME\fP
 Determine the login name of the user.
 .sp
@@ -160,10 +168,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -208,7 +216,7 @@ tools and libraries to build this option if required.
 .LP
 The \fIqrls\fP utility is a new utility \fIvis-a-vis\fP existing practice;
 it has been defined in this volume of
-IEEE\0Std\01003.1-2001 as the natural complement to the \fIqhold\fP
+IEEE\ Std\ 1003.1-2001 as the natural complement to the \fIqhold\fP
 utility.
 .SH FUTURE DIRECTIONS
 .LP

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mknod" P 2003 POSIX
+.TH "MKNOD" P 2003 POSIX
 .\" mknod 
 .SH NAME
-mknod - make a directory, a special file, or a regular file
+mknod \- make a directory, a special file, or a regular file
 .SH SYNOPSIS
 .LP
 \fB#include <sys/stat.h>
@@ -22,13 +22,13 @@ The file type for \fIpath\fP is OR'ed into the \fImode\fP argument,
 and the application shall select one of the following
 symbolic constants:
 .TS C
-center;l l l l l l l l l l l.
-\fBName\fP 	 \fBDescription\fP 	
-S_IFIFO 	 FIFO-special 	
-S_IFCHR 	 Character-special (non-portable) 	
-S_IFDIR 	 Directory (non-portable) 	
-S_IFBLK 	 Block-special (non-portable) 	
-S_IFREG 	 Regular (non-portable) 	
+center; l l.
+\fBName\fP	\fBDescription\fP
+S_IFIFO	FIFO-special
+S_IFCHR	Character-special (non-portable)
+S_IFDIR	Directory (non-portable)
+S_IFBLK	Block-special (non-portable)
+S_IFREG	Regular (non-portable)
 .TE
 .LP
 The only portable use of \fImknod\fP() is to create a FIFO-special
@@ -39,23 +39,23 @@ The permissions for the new file are OR'ed into the \fImode\fP argument,
 and may be selected from any combination of the
 following symbolic constants:
 .TS C
-center;l l l l l l l l l l l.
-\fBName\fP 	 \fBDescription\fP 	
-S_ISUID 	 Set user ID on execution. 	
-S_ISGID 	 Set group ID on execution. 	
-S_IRWXU 	 Read, write, or execute (search) by owner. 	
-S_IRUSR 	 Read by owner. 	
-S_IWUSR 	 Write by owner. 	
-S_IXUSR 	 Execute (search) by owner. 	
-S_IRWXG 	 Read, write, or execute (search) by group. 	
-S_IRGRP 	 Read by group. 	
-S_IWGRP 	 Write by group. 	
-S_IXGRP 	 Execute (search) by group. 	
-S_IRWXO 	 Read, write, or execute (search) by others. 	
-S_IROTH 	 Read by others. 	
-S_IWOTH 	 Write by others. 	
-S_IXOTH 	 Execute (search) by others. 	
-S_ISVTX 	 On directories, restricted deletion flag. 	
+center; l2 l.
+\fBName\fP	\fBDescription\fP
+S_ISUID	Set user ID on execution.
+S_ISGID	Set group ID on execution.
+S_IRWXU	Read, write, or execute (search) by owner.
+S_IRUSR	Read by owner.
+S_IWUSR	Write by owner.
+S_IXUSR	Execute (search) by owner.
+S_IRWXG	Read, write, or execute (search) by group.
+S_IRGRP	Read by group.
+S_IWGRP	Write by group.
+S_IXGRP	Execute (search) by group.
+S_IRWXO	Read, write, or execute (search) by others.
+S_IROTH	Read by others.
+S_IWOTH	Write by others.
+S_IXOTH	Execute (search) by others.
+S_ISVTX	On directories, restricted deletion flag.
 .TE
 .LP
 The user ID of the file shall be initialized to the effective user
@@ -90,55 +90,55 @@ it shall return -1, the new file shall not be created, and
 .SH ERRORS
 .LP
 The \fImknod\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 A component of the path prefix denies search permission, or write
 permission is denied on the parent directory.
-.TP
+.TP 7
 .B EEXIST
 The named file exists.
-.TP
+.TP 7
 .B EINVAL
 An invalid argument exists.
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while accessing the file system.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of a pathname exceeds {PATH_MAX} or a pathname component
 is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of the path prefix specified by \fIpath\fP does not name
 an existing directory or \fIpath\fP is an empty
 string.
-.TP
+.TP 7
 .B ENOSPC
 The directory that would contain the new file cannot be extended or
 the file system is out of file allocation resources.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix is not a directory.
-.TP
+.TP 7
 .B EPERM
 The invoking process does not have appropriate privileges and the
 file type is not FIFO-special.
-.TP
+.TP 7
 .B EROFS
 The directory in which the file is to be created is located on a read-only
 file system.
 .sp
 .LP
 The \fImknod\fP() function may fail if:
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 Pathname resolution of a symbolic link produced an intermediate result
 whose length exceeds {PATH_MAX}.
@@ -194,7 +194,7 @@ None.
 \fIchmod\fP() , \fIcreat\fP() , \fIexec\fP() , \fImkdir\fP() , \fImkfifo\fP()
 ,
 \fIopen\fP() , \fIstat\fP() , \fIumask\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/stat.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/stat.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

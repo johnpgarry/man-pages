@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "truncate" P 2003 POSIX
+.TH "TRUNCATE" P 2003 POSIX
 .\" truncate 
 .SH NAME
-truncate - truncate a file to a specified length
+truncate \- truncate a file to a specified length
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -44,51 +44,51 @@ the error.
 .SH ERRORS
 .LP
 The \fItruncate\fP() function shall fail if:
-.TP
+.TP 7
 .B EINTR
 A signal was caught during execution.
-.TP
+.TP 7
 .B EINVAL
 The \fIlength\fP argument was less than 0.
-.TP
+.TP 7
 .B EFBIG] or [EINVAL
 The \fIlength\fP argument was greater than the maximum file size.
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while reading from or writing to a file system.
-.TP
+.TP 7
 .B EACCES
 A component of the path prefix denies search permission, or write
 permission is denied on the file.
-.TP
+.TP 7
 .B EISDIR
 The named file is a directory.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIpath\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing file or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix of \fIpath\fP is not a directory.
-.TP
+.TP 7
 .B EROFS
 The named file resides on a read-only file system.
 .sp
 .LP
 The \fItruncate\fP() function may fail if:
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 Pathname resolution of a symbolic link produced an intermediate result
 whose length exceeds {PATH_MAX}.
@@ -109,7 +109,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIopen\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIopen\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

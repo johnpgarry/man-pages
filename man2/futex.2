@@ -62,7 +62,7 @@ the count showed that there were waiters, once the futex value has been set
 to 1 (indicating that it is available).
 .TP
 \fBFUTEX_FD\fR
-To support a asynchronous wakeups, this operation associates a file descriptor
+To support asynchronous wakeups, this operation associates a file descriptor
 with a futex.
 If another process executes a FUTEX_WAKE, the process will receive the signal
 number that was passed in \fIval\fR. The calling process must close the

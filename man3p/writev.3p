@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "writev" P 2003 POSIX
+.TH "WRITEV" P 2003 POSIX
 .\" writev 
 .SH NAME
-writev - write a vector
+writev \- write a vector
 .SH SYNOPSIS
 .LP
 \fB#include <sys/uio.h>
@@ -47,14 +47,14 @@ shall be set to indicate an error.
 Refer to \fIwrite\fP() .
 .LP
 In addition, the \fIwritev\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The sum of the \fIiov_len\fP values in the \fIiov\fP array would overflow
 an \fBssize_t\fP.
 .sp
 .LP
 The \fIwritev\fP() function may fail and set \fIerrno\fP to:
-.TP
+.TP 7
 .B EINVAL
 The \fIiovcnt\fP argument was less than or equal to 0, or greater
 than {IOV_MAX}.
@@ -111,7 +111,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIreadv\fP() , \fIwrite\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<limits.h>\fP, \fI<sys/uio.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<limits.h>\fP, \fI<sys/uio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

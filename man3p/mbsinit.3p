@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mbsinit" P 2003 POSIX
+.TH "MBSINIT" P 2003 POSIX
 .\" mbsinit 
 .SH NAME
-mbsinit - determine conversion object status
+mbsinit \- determine conversion object status
 .SH SYNOPSIS
 .LP
 \fB#include <wchar.h>
@@ -12,12 +12,6 @@ int mbsinit(const mbstate_t *\fP\fIps\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 If \fIps\fP is not a null pointer, the \fImbsinit\fP() function shall
 determine whether the object pointed to by \fIps\fP
@@ -65,7 +59,7 @@ None.
 .SH SEE ALSO
 .LP
 \fImbrlen\fP() , \fImbrtowc\fP() , \fIwcrtomb\fP() , \fImbsrtowcs\fP()
-, \fIwcsrtombs\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIwcsrtombs\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<wchar.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

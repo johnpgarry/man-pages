@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cut" P 2003 POSIX
+.TH "CUT" P 2003 POSIX
 .\" cut 
 .SH NAME
-cut - cut out selected fields of each line of a file
+cut \- cut out selected fields of each line of a file
 .SH SYNOPSIS
 .LP
 \fBcut -b\fP \fIlist\fP \fB[\fP\fB-n\fP\fB] [\fP\fIfile\fP \fB...\fP\fB]\fP\fB
@@ -24,7 +24,7 @@ them, and write them to standard output.
 .SH OPTIONS
 .LP
 The \fIcut\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The application shall ensure that the option-argument \fIlist\fP (see
 options \fB-b\fP, \fB-c\fP, and \fB-f\fP below) is a
@@ -43,22 +43,22 @@ If an element appears in the selection list more than once, it
 shall be written exactly once.
 .LP
 The following options shall be supported:
-.TP
-\fB-b\0\fP \fIlist\fP
+.TP 7
+\fB-b\ \fP \fIlist\fP
 Cut based on a \fIlist\fP of bytes. Each selected byte shall be output
 unless the \fB-n\fP option is also specified. It shall
 not be an error to select bytes not present in the input line.
-.TP
-\fB-c\0\fP \fIlist\fP
+.TP 7
+\fB-c\ \fP \fIlist\fP
 Cut based on a \fIlist\fP of characters. Each selected character shall
 be output. It shall not be an error to select
 characters not present in the input line.
-.TP
-\fB-d\0\fP \fIdelim\fP
+.TP 7
+\fB-d\ \fP \fIdelim\fP
 Set the field delimiter to the character \fIdelim\fP. The default
 is the <tab>.
-.TP
-\fB-f\0\fP \fIlist\fP
+.TP 7
+\fB-f\ \fP \fIlist\fP
 Cut based on a \fIlist\fP of fields, assumed to be separated in the
 file by a delimiter character (see \fB-d\fP). Each
 selected field shall be output. Output fields shall be separated by
@@ -66,14 +66,13 @@ a single occurrence of the field delimiter character. Lines
 with no field delimiters shall be passed through intact, unless \fB-s\fP
 is specified. It shall not be an error to select fields
 not present in the input line.
-.TP
+.TP 7
 \fB-n\fP
 Do not split characters. When specified with the \fB-b\fP option,
 each element in \fIlist\fP of the form \fIlow\fP-
 \fIhigh\fP (hyphen-separated numbers) shall be modified as follows:
 .RS
-.in +5
-.LP
+.IP " *" 3
 If the byte selected by \fIlow\fP is not the first byte of a character,
 \fIlow\fP shall be decremented to select the first
 byte of the character originally selected by \fIlow\fP. If the byte
@@ -84,7 +83,7 @@ prior to the character originally selected by
 range element has \fIhigh\fP equal to zero or \fIlow\fP
 greater than \fIhigh\fP, the list element shall be dropped from \fIlist\fP
 for that input line without causing an error.
-.in -5
+.LP
 .RE
 .LP
 Each element in \fIlist\fP of the form \fIlow\fP- shall be treated
@@ -94,7 +93,7 @@ in \fIlist\fP of the form - \fIhigh\fP shall be treated
 as above with \fIlow\fP set to 1. Each element in \fIlist\fP of the
 form \fInum\fP (a single number) shall be treated as above
 with \fIlow\fP set to \fInum\fP and \fIhigh\fP set to \fInum\fP.
-.TP
+.TP 7
 \fB-s\fP
 Suppress lines with no delimiter characters, when used with the \fB-f\fP
 option. Unless specified, lines with no delimiters
@@ -103,7 +102,7 @@ shall be passed through untouched.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of an input file. If no \fIfile\fP operands are specified,
 or if a \fIfile\fP operand is \fB'-'\fP , the
@@ -122,29 +121,29 @@ be unlimited.
 .LP
 The following environment variables shall affect the execution of
 \fIcut\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -182,10 +181,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All input files were output successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -221,17 +220,17 @@ in \fBfile1\fP or \fBfile2\fP. (There is, however, a
 .SH EXAMPLES
 .LP
 Examples of the option qualifier list:
-.TP
+.TP 7
 1,4,7
 Select the first, fourth, and seventh bytes, characters, or fields
 and field delimiters.
-.TP
+.TP 7
 1-3,8
 Equivalent to 1,2,3,8.
-.TP
+.TP 7
 -5,10
 Equivalent to 1,2,3,4,5,10.
-.TP
+.TP 7
 3-
 Equivalent to third to last, inclusive.
 .sp
@@ -261,7 +260,7 @@ of the form:
 .fi
 .RE
 .LP
-Most utilities in this volume of IEEE\0Std\01003.1-2001 work on text
+Most utilities in this volume of IEEE\ Std\ 1003.1-2001 work on text
 files. The \fIcut\fP utility can be used to turn
 files with arbitrary line lengths into a set of text files containing
 the same data. The \fIpaste\fP utility can be used to create (or recreate)
@@ -304,7 +303,7 @@ Unlike other utilities, some historical implementations of \fIcut\fP
 exit after not finding an input file, rather than
 continuing to process the remaining \fIfile\fP operands. This behavior
 is prohibited by this volume of
-IEEE\0Std\01003.1-2001, where only the exit status is affected by
+IEEE\ Std\ 1003.1-2001, where only the exit status is affected by
 this problem.
 .LP
 The behavior of \fIcut\fP when provided with either mutually-exclusive
@@ -333,7 +332,7 @@ order of the data. For example:
 yields \fB"abdefg"\fP .
 .LP
 A proposal to enhance \fIcut\fP with the following option:
-.TP
+.TP 7
 \fB-o\fP
 Preserve the selected field order. When this option is specified,
 each byte, character, or field (or ranges of such) shall be
@@ -343,7 +342,7 @@ characters, or fields.
 .sp
 .LP
 was rejected because this type of enhancement is outside the scope
-of the IEEE\0P1003.2b draft standard.
+of the IEEE\ P1003.2b draft standard.
 .SH FUTURE DIRECTIONS
 .LP
 None.

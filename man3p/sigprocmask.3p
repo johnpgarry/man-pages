@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_sigmask" P 2003 POSIX
+.TH "PTHREAD_SIGMASK" P 2003 POSIX
 .\" pthread_sigmask 
 .SH NAME
-pthread_sigmask, sigprocmask - examine and change blocked signals
+pthread_sigmask, sigprocmask \- examine and change blocked signals
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -13,14 +13,14 @@ pthread_sigmask, sigprocmask - examine and change blocked signals
 \fBint pthread_sigmask(int\fP \fIhow\fP\fB, const sigset_t *restrict\fP
 \fIset\fP\fB,
 .br
-\0\0\0\0\0\0 sigset_t *restrict\fP \fIoset\fP\fB);
+\ \ \ \ \ \  sigset_t *restrict\fP \fIoset\fP\fB);
 .br
 \fP
 .LP
 \fBint sigprocmask(int\fP \fIhow\fP\fB, const sigset_t *restrict\fP
 \fIset\fP\fB,
 .br
-\0\0\0\0\0\0 sigset_t *restrict\fP \fIoset\fP\fB); \fP
+\ \ \ \ \ \  sigset_t *restrict\fP \fIoset\fP\fB); \fP
 \fB
 .br
 \fP
@@ -43,14 +43,14 @@ set.
 The argument \fIhow\fP indicates the way in which the set is changed,
 and the application shall ensure it consists of one of
 the following values:
-.TP
+.TP 7
 SIG_BLOCK
 The resulting set shall be the union of the current set and the signal
 set pointed to by \fIset\fP.
-.TP
+.TP 7
 SIG_SETMASK
 The resulting set shall be the signal set pointed to by \fIset\fP.
-.TP
+.TP 7
 SIG_UNBLOCK
 The resulting set shall be the intersection of the current set and
 the complement of the signal set pointed to by
@@ -86,8 +86,7 @@ process.
 .SH RETURN VALUE
 .LP
 Upon successful completion \fIpthread_sigmask\fP() shall return 0;
-otherwise, it shall return the corresponding error number. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+otherwise, it shall return the corresponding error number. 
 .LP
 Upon successful completion, \fIsigprocmask\fP() shall return 0; otherwise,
 -1 shall be returned, \fIerrno\fP shall be set to
@@ -96,7 +95,7 @@ indicate the error, and the process' signal mask shall be unchanged.
 .LP
 The \fIpthread_sigmask\fP()  and \fIsigprocmask\fP() functions
 shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIhow\fP argument is not equal to one of the defined
 values.
@@ -132,7 +131,7 @@ None.
 \fIsigaction\fP() , \fIsigaddset\fP() , \fIsigdelset\fP() , \fIsigemptyset\fP()
 , \fIsigfillset\fP() , \fIsigismember\fP() , \fIsigpending\fP() ,
 \fIsigqueue\fP() , \fIsigsuspend\fP() , the Base Definitions volume
-of IEEE\0Std\01003.1-2001, \fI<signal.h>\fP
+of IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

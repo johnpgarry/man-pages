@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "kill" P 2003 POSIX
+.TH "KILL" P 2003 POSIX
 .\" kill 
 .SH NAME
-kill - send a signal to a process or a group of processes
+kill \- send a signal to a process or a group of processes
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -74,15 +74,15 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fIkill\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIsig\fP argument is an invalid or unsupported signal
 number.
-.TP
+.TP 7
 .B EPERM
 The process does not have permission to send the signal to any receiving
 process.
-.TP
+.TP 7
 .B ESRCH
 No process or process group can be found corresponding to that specified
 by \fIpid\fP.
@@ -99,7 +99,7 @@ None.
 .LP
 The semantics for permission checking for \fIkill\fP() differed between
 System V and most other implementations, such as
-Version 7 or 4.3 BSD. The semantics chosen for this volume of IEEE\0Std\01003.1-2001
+Version 7 or 4.3 BSD. The semantics chosen for this volume of IEEE\ Std\ 1003.1-2001
 agree with System V. Specifically, a
 set-user-ID process cannot protect itself against signals (or at least
 not against SIGKILL) unless it changes its real user ID.
@@ -113,7 +113,7 @@ function when the absolute value of \fIpid\fP is greater
 than some maximum, or otherwise special, value. Negative values are
 a flag to \fIkill\fP(). Since most implementations return
 [ESRCH] in this case, this behavior is not included in this volume
-of IEEE\0Std\01003.1-2001, although a conforming
+of IEEE\ Std\ 1003.1-2001, although a conforming
 implementation could provide such an extension.
 .LP
 The implementation-defined processes to which a signal cannot be sent
@@ -126,7 +126,7 @@ that signal is not blocked, that signal would be delivered before
 \fIkill\fP() and be guaranteed that the call never return. However,
 historical implementations that provide only the \fIsignal\fP() function
 make only the weaker guarantee in this volume of
-IEEE\0Std\01003.1-2001, because they only deliver one signal each
+IEEE\ Std\ 1003.1-2001, because they only deliver one signal each
 time a process enters the kernel. Modifications to such
 implementations to support the \fIsigaction\fP() function generally
 require entry to the
@@ -136,7 +136,7 @@ satisfying the stronger requirement, at least when \fIsigaction\fP()
 is used, but not
 necessarily when \fIsignal\fP() is used. The developers of this volume
 of
-IEEE\0Std\01003.1-2001 considered making the stronger requirement
+IEEE\ Std\ 1003.1-2001 considered making the stronger requirement
 except when \fIsignal\fP() is used, but felt this would be unnecessarily
 complex. Implementors are encouraged
 to meet the stronger requirement whenever possible. In practice, the
@@ -173,7 +173,7 @@ Existing implementations vary on the result of a \fIkill\fP() with
 process that has not been waited for by its parent). Some indicate
 success on such a call (subject to permission checking), while
 others give an error of [ESRCH]. Since the definition of process lifetime
-in this volume of IEEE\0Std\01003.1-2001 covers
+in this volume of IEEE\ Std\ 1003.1-2001 covers
 inactive processes, the [ESRCH] error as described is inappropriate
 in this case. In particular, this means that an application
 cannot have a parent process check for termination of a particular
@@ -193,7 +193,7 @@ None.
 \fIgetpid\fP() , \fIraise\fP() , \fIsetsid\fP()
 , \fIsigaction\fP() , \fIsigqueue\fP() , the Base Definitions volume
 of
-IEEE\0Std\01003.1-2001, \fI<signal.h>\fP, \fI<sys/types.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP, \fI<sys/types.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

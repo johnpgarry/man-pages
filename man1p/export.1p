@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "export" P 2003 POSIX
+.TH "EXPORT" P 2003 POSIX
 .\" export 
 .SH NAME
-export - set the export attribute for variables
+export \- set the export attribute for variables
 .SH SYNOPSIS
 .LP
 \fBexport name\fP\fB[\fP\fB=\fP\fIword\fP\fB]\fP\fB...
@@ -20,7 +20,7 @@ the name of a variable is followed by = \fIword\fP, then the
 value of that variable shall be set to \fIword\fP.
 .LP
 The \fIexport\fP special built-in shall support the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+volume of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 When \fB-p\fP is specified, \fIexport\fP shall write to the standard
 output the names and values of all exported variables, in
@@ -49,17 +49,15 @@ if \fIname\fP is unset.
 The shell shall format the output, including the proper use of quoting,
 so that it is suitable for reinput to the shell as
 commands that achieve the same exporting results, except:
-.in +5
-.LP
+.IP " 1." 4
 Read-only variables with values cannot be reset.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Variables that were unset at the time they were output need not be
 reset to the unset state if a value is assigned to the
 variable between the time the state was saved and the time at which
 the saved output is reinput to the shell.
-.in -5
+.LP
 .LP
 When no arguments are given, the results are unspecified.
 .SH OPTIONS

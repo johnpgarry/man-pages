@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "setsid" P 2003 POSIX
+.TH "SETSID" P 2003 POSIX
 .\" setsid 
 .SH NAME
-setsid - create session and set process group ID
+setsid \- create session and set process group ID
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -30,7 +30,7 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIsetsid\fP() function shall fail if:
-.TP
+.TP 7
 .B EPERM
 The calling process is already a process group leader, or the process
 group ID of a process other than the calling process
@@ -54,7 +54,7 @@ group may be part of a login session.
 .LP
 Job control allows multiple process groups within a login session.
 In order to limit job control actions so that they can only
-affect processes in the same login session, this volume of IEEE\0Std\01003.1-2001
+affect processes in the same login session, this volume of IEEE\ Std\ 1003.1-2001
 adds the concept of a session that is
 created via \fIsetsid\fP(). The \fIsetsid\fP() function also creates
 the initial process group contained in the session.
@@ -74,7 +74,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIgetsid\fP() , \fIsetpgid\fP() , \fIsetpgrp\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<sys/types.h>\fP, \fI<unistd.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<sys/types.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

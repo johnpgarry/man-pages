@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "lgamma" P 2003 POSIX
+.TH "LGAMMA" P 2003 POSIX
 .\" lgamma 
 .SH NAME
-lgamma, lgammaf, lgammal - log gamma function
+lgamma, lgammaf, lgammal \- log gamma function
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -22,20 +22,14 @@ long double lgammal(long double\fP \fIx\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 These functions shall compute 
 .sp
 .sp
-The argument \fIx\fP need not be a non-positive integer ( is defined
-over the reals,
+The argument \fIx\fP need not be a non-positive integer (Gamma(x)
+is defined over the reals,
 except the non-positive integers).
 .LP
-The sign of  is returned in the external integer \fIsigngam\fP. 
+The sign of Gamma(x) is returned in the external integer \fIsigngam\fP.
 .LP
 These functions need not be reentrant. A function that is not required
 to be reentrant is not required to be thread-safe. 
@@ -70,8 +64,8 @@ If \fIx\fP is \(+-Inf, +Inf shall be returned.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
-Pole\0Error
+.TP 7
+Pole\ Error
 The \fIx\fP argument is a negative integer or zero. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -79,8 +73,8 @@ then \fIerrno\fP shall be set to [ERANGE]. If the
 integer expression (math_errhandling & MATH_ERREXCEPT) is non-zero,
 then the divide-by-zero floating-point exception shall be
 raised.
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The result overflows. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -109,7 +103,7 @@ None.
 .LP
 \fIexp\fP() , \fIfeclearexcept\fP() , \fIfetestexcept\fP() , \fIisnan\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 4.18, Treatment of Error Conditions
+IEEE\ Std\ 1003.1-2001, Section 4.18, Treatment of Error Conditions
 for
 Mathematical Functions, \fI<math.h>\fP
 .SH COPYRIGHT

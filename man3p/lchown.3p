@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "lchown" P 2003 POSIX
+.TH "LCHOWN" P 2003 POSIX
 .\" lchown 
 .SH NAME
-lchown - change the owner and group of a symbolic link
+lchown \- change the owner and group of a symbolic link
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -30,53 +30,53 @@ error.
 .SH ERRORS
 .LP
 The \fIlchown\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied on a component of the path prefix of \fIpath\fP.
-.TP
+.TP 7
 .B EINVAL
 The owner or group ID is not a value supported by the implementation.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of a pathname exceeds {PATH_MAX} or a pathname component
 is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing file or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix of \fIpath\fP is not a directory.
-.TP
+.TP 7
 .B EOPNOTSUPP
 The \fIpath\fP argument names a symbolic link and the implementation
 does not support setting the owner or group of a symbolic
 link.
-.TP
+.TP 7
 .B EPERM
 The effective user ID does not match the owner of the file and the
 process does not have appropriate privileges.
-.TP
+.TP 7
 .B EROFS
 The file resides on a read-only file system.
 .sp
 .LP
 The \fIlchown\fP() function may fail if:
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while reading or writing to the file system.
-.TP
+.TP 7
 .B EINTR
 A signal was caught during execution of the function.
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 Pathname resolution of a symbolic link produced an intermediate result
 whose length exceeds {PATH_MAX}.
@@ -127,7 +127,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIchown\fP() , \fIsymlink\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

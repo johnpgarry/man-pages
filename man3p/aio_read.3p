@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "aio_read" P 2003 POSIX
+.TH "AIO_READ" P 2003 POSIX
 .\" aio_read 
 .SH NAME
-aio_read - asynchronous read from a file (\fBREALTIME\fP)
+aio_read \- asynchronous read from a file (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <aio.h>
@@ -53,8 +53,7 @@ undefined results.
 If synchronized I/O is enabled on the file associated with \fIaiocbp\fP->\fIaio_fildes\fP,
 the behavior of this function shall
 be according to the definitions of synchronized I/O data integrity
-completion and synchronized I/O file integrity completion. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+completion and synchronized I/O file integrity completion. 
 .LP
 For any system action that changes the process memory space while
 an asynchronous I/O is outstanding to the address range being
@@ -72,7 +71,7 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIaio_read\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The requested asynchronous I/O operation was not queued due to system
 resource limitations.
@@ -86,11 +85,11 @@ the corresponding value. If any of the conditions below are detected
 asynchronously, the return status of the asynchronous
 operation is set to -1, and the error status of the asynchronous operation
 is set to the corresponding value.
-.TP
+.TP 7
 .B EBADF
 The \fIaiocbp\fP->\fIaio_fildes\fP argument is not a valid file descriptor
 open for reading.
-.TP
+.TP 7
 .B EINVAL
 The file offset value implied by \fIaiocbp\fP->\fIaio_offset\fP would
 be invalid, \fIaiocbp\fP->\fIaio_reqprio\fP is
@@ -107,22 +106,22 @@ is set to one
 of the error statuses normally set by the \fIread\fP() function call,
 or one of the following
 values:
-.TP
+.TP 7
 .B EBADF
 The \fIaiocbp\fP->\fIaio_fildes\fP argument is not a valid file descriptor
 open for reading.
-.TP
+.TP 7
 .B ECANCELED
 The requested I/O was canceled before the I/O completed due to an
 explicit \fIaio_cancel\fP() request.
-.TP
+.TP 7
 .B EINVAL
 The file offset value implied by \fIaiocbp\fP->\fIaio_offset\fP would
 be invalid.
 .sp
 .LP
 The following condition may be detected synchronously or asynchronously:
-.TP
+.TP 7
 .B EOVERFLOW
 The file is a regular file, \fIaiobcp\fP->\fIaio_nbytes\fP is greater
 than 0, and the starting offset in
@@ -152,7 +151,7 @@ None.
 , \fIaio_write\fP() , \fIclose\fP() , \fIexec\fP() , \fIexit\fP()
 , \fIfork\fP() , \fIlseek\fP() , \fIread\fP() , the Base Definitions
 volume of
-IEEE\0Std\01003.1-2001, \fI<aio.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<aio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

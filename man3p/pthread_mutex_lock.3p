@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_mutex_lock" P 2003 POSIX
+.TH "PTHREAD_MUTEX_LOCK" P 2003 POSIX
 .\" pthread_mutex_lock 
 .SH NAME
-pthread_mutex_lock, pthread_mutex_trylock, pthread_mutex_unlock -
+pthread_mutex_lock, pthread_mutex_trylock, pthread_mutex_unlock \-
 lock and unlock a mutex
 .SH SYNOPSIS
 .LP
@@ -65,7 +65,7 @@ incremented by one and the \fIpthread_mutex_trylock\fP() function
 shall immediately return success.
 .LP
 The \fIpthread_mutex_unlock\fP() function shall release the mutex
-object referenced by \fImutex\fP.   \0The manner
+object referenced by \fImutex\fP.   \ The manner
 in which a mutex is released is dependent upon the mutex's type attribute.
 If there are threads blocked on the mutex object referenced by \fImutex\fP
 when \fIpthread_mutex_unlock\fP() is
@@ -92,7 +92,7 @@ acquired. Otherwise, an error number is returned to indicate the error.
 .LP
 The \fIpthread_mutex_lock\fP() and \fIpthread_mutex_trylock\fP() functions
 shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fImutex\fP was created with the protocol attribute having the
 value PTHREAD_PRIO_PROTECT and the calling thread's
@@ -100,31 +100,31 @@ priority is higher than the mutex's current priority ceiling.
 .sp
 .LP
 The \fIpthread_mutex_trylock\fP() function shall fail if:
-.TP
+.TP 7
 .B EBUSY
 The \fImutex\fP could not be acquired because it was already locked.
 .sp
 .LP
 The \fIpthread_mutex_lock\fP(), \fIpthread_mutex_trylock\fP(), and
 \fIpthread_mutex_unlock\fP() functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fImutex\fP does not refer to an initialized
 mutex object.
-.TP
+.TP 7
 .B EAGAIN
 The mutex could not be acquired because the maximum number of recursive
 locks for \fImutex\fP has been exceeded. 
 .sp
 .LP
 The \fIpthread_mutex_lock\fP() function may fail if:
-.TP
+.TP 7
 .B EDEADLK
 The current thread already owns the mutex.
 .sp
 .LP
 The \fIpthread_mutex_unlock\fP() function may fail if:
-.TP
+.TP 7
 .B EPERM
 The current thread does not own the mutex.
 .sp
@@ -176,7 +176,7 @@ None.
 .LP
 \fIpthread_mutex_destroy\fP() , \fIpthread_mutex_timedlock\fP() ,
 the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

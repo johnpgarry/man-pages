@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_mutex_getprioceiling" P 2003 POSIX
+.TH "PTHREAD_MUTEX_GETPRIOCEILING" P 2003 POSIX
 .\" pthread_mutex_getprioceiling 
 .SH NAME
-pthread_mutex_getprioceiling, pthread_mutex_setprioceiling - get and
+pthread_mutex_getprioceiling, pthread_mutex_setprioceiling \- get and
 set the priority ceiling of a mutex (\fBREALTIME
 THREADS\fP)
 .SH SYNOPSIS
@@ -13,11 +13,11 @@ THREADS\fP)
 int pthread_mutex_getprioceiling(const pthread_mutex_t *restrict\fP
 \fImutex\fP\fB,
 .br
-\0\0\0\0\0\0 int *restrict\fP \fIprioceiling\fP\fB);
+\ \ \ \ \ \  int *restrict\fP \fIprioceiling\fP\fB);
 .br
 int pthread_mutex_setprioceiling(pthread_mutex_t *restrict\fP \fImutex\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fIprioceiling\fP\fB, int *restrict\fP \fIold_ceiling\fP\fB);
+\ \ \ \ \ \  int\fP \fIprioceiling\fP\fB, int *restrict\fP \fIold_ceiling\fP\fB);
 \fP
 \fB
 .br
@@ -46,14 +46,14 @@ otherwise, an error number shall be returned to indicate the error.
 .LP
 The \fIpthread_mutex_getprioceiling\fP() and \fIpthread_mutex_setprioceiling\fP()
 functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The priority requested by \fIprioceiling\fP is out of range.
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fImutex\fP does not refer to a currently existing
 mutex.
-.TP
+.TP 7
 .B EPERM
 The caller does not have the privilege to perform the operation.
 .sp
@@ -77,7 +77,7 @@ None.
 .LP
 \fIpthread_mutex_destroy\fP() , \fIpthread_mutex_lock\fP() , \fIpthread_mutex_timedlock\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

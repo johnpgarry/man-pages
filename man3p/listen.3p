@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "listen" P 2003 POSIX
+.TH "LISTEN" P 2003 POSIX
 .\" listen 
 .SH NAME
-listen - listen for socket connections and limit the queue of incoming
+listen \- listen for socket connections and limit the queue of incoming
 connections
 .SH SYNOPSIS
 .LP
@@ -54,33 +54,33 @@ the error.
 .SH ERRORS
 .LP
 The \fIlisten\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIsocket\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B EDESTADDRREQ
 .sp
 The socket is not bound to a local address, and the protocol does
 not support listening on an unbound socket.
-.TP
+.TP 7
 .B EINVAL
 The \fIsocket\fP is already connected.
-.TP
+.TP 7
 .B ENOTSOCK
 The \fIsocket\fP argument does not refer to a socket.
-.TP
+.TP 7
 .B EOPNOTSUPP
 The socket protocol does not support \fIlisten\fP().
 .sp
 .LP
 The \fIlisten\fP() function may fail if:
-.TP
+.TP 7
 .B EACCES
 The calling process does not have the appropriate privileges.
-.TP
+.TP 7
 .B EINVAL
 The \fIsocket\fP has been shut down.
-.TP
+.TP 7
 .B ENOBUFS
 Insufficient resources are available in the system to complete the
 call.
@@ -102,7 +102,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIaccept\fP() , \fIconnect\fP() , \fIsocket\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<sys/socket.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<sys/socket.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_exit" P 2003 POSIX
+.TH "PTHREAD_EXIT" P 2003 POSIX
 .\" pthread_exit 
 .SH NAME
-pthread_exit - thread termination
+pthread_exit \- thread termination
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -72,7 +72,7 @@ function analogous to \fIexit\fP().
 Regardless of the method of thread termination, any cancellation cleanup
 handlers that have been pushed and not yet popped are
 executed, and the destructors for any existing thread-specific data
-are executed. This volume of IEEE\0Std\01003.1-2001
+are executed. This volume of IEEE\ Std\ 1003.1-2001
 requires that cancellation cleanup handlers be popped and called in
 order. After all cancellation cleanup handlers have been
 executed, thread-specific data destructors are called, in an unspecified
@@ -91,7 +91,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIexit\fP() , \fIpthread_create\fP() , \fIpthread_join\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

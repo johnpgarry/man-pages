@@ -1,15 +1,15 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "c99" P 2003 POSIX
+.TH "C99" P 2003 POSIX
 .\" c99 
 .SH NAME
-c99 - compile standard C programs
+c99 \- compile standard C programs
 .SH SYNOPSIS
 .LP
 \fBc99\fP \fB[\fP\fB-c\fP\fB][\fP\fB-D\fP
 \fIname\fP\fB[\fP\fB=\fP\fIvalue\fP\fB]]\fP\fB...\fP\fB[\fP\fB-E\fP\fB][\fP\fB-g\fP\fB][\fP\fB-I\fP
 \fIdirectory\fP\fB]\fP \fB...\fP \fB[\fP\fB-L\fP \fIdirectory\fP\fB]\fP\fB
 .br
-\0\0\0\0\0\0 ...\fP \fB[\fP\fB-o\fP
+\ \ \ \ \ \  ...\fP \fB[\fP\fB-o\fP
 \fIoutfile\fP\fB][\fP\fB-O\fP\fIoptlevel\fP\fB][\fP\fB-s\fP\fB][\fP\fB-U\fP
 \fIname\fP\fB]\fP\fB...\fP
 \fIoperand\fP \fB... \fP
@@ -17,7 +17,7 @@ c99 - compile standard C programs
 .LP
 The \fIc99\fP utility is an interface to the standard C compilation
 system; it shall accept source code conforming to the
-ISO\0C standard. The system conceptually consists of a compiler and
+ISO\ C standard. The system conceptually consists of a compiler and
 link editor. The files referenced by \fIoperand\fPs shall
 be compiled and linked to produce an executable file. (It is unspecified
 whether the linking occurs entirely within the operation
@@ -62,52 +62,47 @@ cleared.
 .SH OPTIONS
 .LP
 The \fIc99\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
 except that:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The \fB-l\fP \fIlibrary\fP operands have the format of options, but
 their position within a list of operands affects the order
 in which libraries are searched.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The order of specifying the \fB-I\fP and \fB-L\fP options is significant.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Conforming applications shall specify each option separately; that
 is, grouping option letters (for example, \fB-cO\fP) need
 not be recognized by all implementations.
-.in -5
-.RE
+.LP
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-c\fP
 Suppress the link-edit phase of the compilation, and do not remove
 any object files that are produced.
-.TP
+.TP 7
 \fB-g\fP
 Produce symbolic information in the object or executable files; the
 nature of this information is unspecified, and may be
 modified by implementation-defined interactions with other options.
-.TP
+.TP 7
 \fB-s\fP
 Produce object or executable files, or both, from which symbolic and
 other information not required for proper execution using
-the \fIexec\fP family defined in the System Interfaces volume of IEEE\0Std\01003.1-2001
+the \fIexec\fP family defined in the System Interfaces volume of IEEE\ Std\ 1003.1-2001
 has been removed (stripped). If
 both \fB-g\fP and \fB-s\fP options are present, the action taken is
 unspecified.
-.TP
-\fB-o\0\fP \fIoutfile\fP
+.TP 7
+\fB-o\ \fP \fIoutfile\fP
 Use the pathname \fIoutfile\fP, instead of the default \fBa.out\fP,
 for the executable file produced. If the \fB-o\fP option
 is present with \fB-c\fP or \fB-E\fP, the result is unspecified.
-.TP
-\fB-D\0\fP \fIname\fP\fB[=\fP\fIvalue\fP\fB]\fP
+.TP 7
+\fB-D\ \fP \fIname\fP\fB[=\fP\fIvalue\fP\fB]\fP
 .sp
 Define \fIname\fP as if by a C-language \fB#define\fP directive. If
 no = \fIvalue\fP is given, a value of 1 shall be used. The
@@ -118,13 +113,13 @@ of the options. Additional implementation-defined
 \fIname\fPs may be provided by the compiler. Implementations shall
 support at least 2048 bytes of \fB-D\fP definitions and 256
 \fInames\fP.
-.TP
+.TP 7
 \fB-E\fP
 Copy C-language source files to standard output, expanding all preprocessor
 directives; no compilation shall be performed. If
 any operand is not a text file, the effects are unspecified.
-.TP
-\fB-I\0\fP \fIdirectory\fP
+.TP 7
+\fB-I\ \fP \fIdirectory\fP
 Change the algorithm for searching for headers whose names are not
 absolute pathnames to look in the directory named by the
 \fIdirectory\fP pathname before looking in the usual places. Thus,
@@ -138,8 +133,8 @@ and then in the usual places. Directories named in \fB-I\fP
 options shall be searched in the order specified. Implementations
 shall support at least ten instances of this option in a single
 \fIc99\fP command invocation.
-.TP
-\fB-L\0\fP \fIdirectory\fP
+.TP 7
+\fB-L\ \fP \fIdirectory\fP
 Change the algorithm of searching for the libraries named in the \fB-l\fP
 objects to look in the directory named by the
 \fIdirectory\fP pathname before looking in the usual places. Directories
@@ -149,8 +144,8 @@ this option in a single \fIc99\fP command invocation. If a
 directory specified by a \fB-L\fP option contains files named \fBlibc.a\fP,
 \fBlibm.a\fP, \fBlibl.a\fP, or \fBliby.a\fP, the
 results are unspecified.
-.TP
-\fB-O\0\fP \fIoptlevel\fP
+.TP 7
+\fB-O\ \fP \fIoptlevel\fP
 Specify the level of code optimization. If the \fIoptlevel\fP option-argument
 is the digit \fB'0'\fP , all special code
 optimizations shall be disabled. If it is the digit \fB'1'\fP , the
@@ -160,8 +155,8 @@ is unspecified. It is unspecified whether code generated in the
 presence of the \fB-O\fP 0 option is the same as that generated when
 \fB-O\fP is omitted. Other \fIoptlevel\fP values may be
 supported.
-.TP
-\fB-U\0\fP \fIname\fP
+.TP 7
+\fB-U\ \fP \fIname\fP
 Remove any initial definition of \fIname\fP.
 .sp
 .LP
@@ -173,19 +168,19 @@ An \fIoperand\fP is either in the form of a pathname or the form \fB-l\fP
 \fIlibrary\fP. The application shall ensure that at
 least one operand of the pathname form is specified. The following
 operands shall be supported:
-.TP
+.TP 7
 \fIfile.\fP\fBc\fP
 A C-language source file to be compiled and optionally linked. The
 application shall ensure that the operand is of this form if
 the \fB-c\fP option is used.
-.TP
+.TP 7
 \fIfile.\fP\fBa\fP
 A library of object files typically produced by the \fIar\fP utility,
 and passed directly
 to the link editor. Implementations may recognize implementation-defined
 suffixes other than \fB.a\fP as denoting object file
 libraries.
-.TP
+.TP 7
 \fIfile.\fP\fBo\fP
 An object file produced by \fIc99\fP \fB-c\fP and passed directly
 to the link editor. Implementations may recognize
@@ -194,8 +189,8 @@ files.
 .sp
 .LP
 The processing of other files is implementation-defined.
-.TP
-\fI-l\0library\fP
+.TP 7
+\fI-l\ library\fP
 (The letter ell.) Search the library named: 
 .sp
 .RS
@@ -228,36 +223,36 @@ formats. Additional input file formats are implementation-defined.
 .LP
 The following environment variables shall affect the execution of
 \fIc99\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fITMPDIR\fP
 Provide a pathname that should override the default directory for
-temporary files, if any.   \0On
+temporary files, if any.   \ On
 XSI-conforming systems, provide a pathname that shall override the
 default directory for temporary files, if any. 
 .sp
@@ -319,10 +314,10 @@ formats.
 .LP
 The \fIc99\fP utility shall recognize the following \fB-l\fP operands
 for standard libraries:
-.TP
-\fB-l\0c\fP
+.TP 7
+\fB-l\ c\fP
 This operand shall make visible all functions referenced in the System
-Interfaces volume of IEEE\0Std\01003.1-2001,
+Interfaces volume of IEEE\ Std\ 1003.1-2001,
 with the possible exception of those functions listed as residing
 in \fI<aio.h>\fP, \fI<arpa/inet.h>\fP, \fI<complex.h>\fP, \fI<fenv.h>\fP,
 \fI<math.h>\fP, \fI<mqueue.h>\fP, \fI<netdb.h>\fP, \fI<netinet/in.h>\fP,
@@ -334,52 +329,52 @@ in \fI<sys/mman.h>\fP, functions marked as ADV in \fI<fcntl.h>\fP,
 and functions marked as CS, CPT, and TMR in \fI<time.h>\fP. This operand
 shall not be required to be present to cause a search of this
 library.
-.TP
-\fB-l\0l\fP
+.TP 7
+\fB-l\ l\fP
 This operand shall make visible all functions required by the C-language
-output of \fIlex\fP that are not made available through the \fB-l\0c\fP
+output of \fIlex\fP that are not made available through the \fB-l\ c\fP
 operand.
-.TP
-\fB-l\0pthread\fP
+.TP 7
+\fB-l\ pthread\fP
 This operand shall make visible all functions referenced in \fI<pthread.h>\fP
 and \fIpthread_kill\fP() and \fIpthread_sigmask\fP() referenced in
 \fI<signal.h>\fP. An implementation may search this library in the
 absence of this
 operand.
-.TP
-\fB-l\0m\fP
+.TP 7
+\fB-l\ m\fP
 This operand shall make visible all functions referenced in \fI<math.h>\fP,
 \fI<complex.h>\fP, and \fI<fenv.h>\fP. An
 implementation may search this library in the absence of this operand.
-.TP
-\fB-l\0rt\fP
+.TP 7
+\fB-l\ rt\fP
 This operand shall make visible all functions referenced in \fI<aio.h>\fP,
 \fI<mqueue.h>\fP, \fI<sched.h>\fP, \fI<semaphore.h>\fP, and \fI<spawn.h>\fP,
 functions marked as extensions other than as part of the MF or MPR
 extensions in \fI<sys/mman.h>\fP, functions marked as ADV in \fI<fcntl.h>\fP,
 and functions marked as CS, CPT, and TMR in \fI<time.h>\fP. An implementation
 may search this library in the absence of this operand.
-.TP
-\fB-l\0trace\fP
+.TP 7
+\fB-l\ trace\fP
 This operand shall make visible all functions referenced in \fI<trace.h>\fP.
 An
 implementation may search this library in the absence of this operand.
-.TP
-\fB-l\0xnet\fP
+.TP 7
+\fB-l\ xnet\fP
 This operand makes visible all functions referenced in \fI<arpa/inet.h>\fP,
 \fI<netdb.h>\fP, \fI<netinet/in.h>\fP, and \fI<sys/socket.h>\fP. An
 implementation may search this library in the absence of this
 operand.
-.TP
-\fB-l\0y\fP
+.TP 7
+\fB-l\ y\fP
 This operand shall make visible all functions required by the C-language
-output of \fIyacc\fP that are not made available through the \fB-l\0c\fP
+output of \fIyacc\fP that are not made available through the \fB-l\ c\fP
 operand.
 .sp
 .LP
 In the absence of options that inhibit invocation of the link editor,
 such as \fB-c\fP or \fB-E\fP, the \fIc99\fP utility
-shall cause the equivalent of a \fB-l\0c\fP operand to be passed to
+shall cause the equivalent of a \fB-l\ c\fP operand to be passed to
 the link editor as the last \fB-l\fP operand, causing it
 to be searched after all other object files and libraries are loaded.
 .LP
@@ -408,15 +403,17 @@ than one of the following programming environments. Applications can
 use \fIsysconf\fP()
 or \fIgetconf\fP to determine which programming environments are supported.
 .br
+.sp
+.ce 1
 \fBTable: Programming Environments: Type Sizes\fP
 .TS C
-center;l l l l l l l l.
-\fBProgramming Environment\fP 	 \fBBits in\fP 	 \fBBits in\fP 	 \fBBits in\fP 	 \fBBits in\fP 	
-\fB\fIgetconf\fP Name\fP 	 \fBint\fP 	 \fBlong\fP 	 \fBpointer\fP 	 \fBoff_t\fP 	
-_POSIX_V6_ILP32_OFF32 	 32 	 32 	 32 	 32 	
-_POSIX_V6_ILP32_OFFBIG 	 32 	 32 	 32 	 >=64 	
-_POSIX_V6_LP64_OFF64 	 32 	 64 	 64 	 64 	
-_POSIX_V6_LPBIG_OFFBIG 	 >=32 	 >=64 	 >=64 	 >=64 	
+center; l2 l2 l2 l2 l.
+\fBProgramming Environment\fP	\fBBits in\fP	\fBBits in\fP	\fBBits in\fP	\fBBits in\fP
+\fB\fIgetconf\fP Name\fP	\fBint\fP	\fBlong\fP	\fBpointer\fP	\fBoff_t\fP
+_POSIX_V6_ILP32_OFF32	32	32	32	32
+_POSIX_V6_ILP32_OFFBIG	32	32	32	>=64
+_POSIX_V6_LP64_OFF64	32	64	64	64
+_POSIX_V6_LPBIG_OFFBIG	>=32	>=64	>=64	>=64
 .TE
 .LP
 All implementations shall support one or more environments where the
@@ -439,18 +436,18 @@ shall be output on separate lines. Any of these names can
 then be used in a subsequent \fIgetconf\fP command to obtain the flags
 specific to that
 environment with the following suffixes added as appropriate:
-.TP
+.TP 7
 _CFLAGS
 To get the C compiler flags.
-.TP
+.TP 7
 _LDFLAGS
 To get the linker/loader flags.
-.TP
+.TP 7
 _LIBS
 To get the libraries.
 .sp
 .LP
-This requirement may be removed in a future version of IEEE\0Std\01003.1.
+This requirement may be removed in a future version of IEEE\ Std\ 1003.1.
 .LP
 When this utility processes a file containing a function called \fImain\fP(),
 it shall be defined with a return type equivalent
@@ -480,31 +477,33 @@ shall also be aware that binary data placed in shared memory or in
 files might not be recognized by applications built for other
 programming models.
 .br
+.sp
+.ce 1
 \fBTable: Programming Environments: \fIc99\fP and \fIcc\fP Arguments\fP
 .TS C
-center;l l l l l l l l.
-\fBProgramming Environment\fP 	 \fB\0\fP 	 \fB\fIc99\fP and \fIcc\fP Arguments\fP 	
-\fB\fIgetconf\fP Name\fP 	 \fBUse\fP 	 \fB\fIgetconf\fP Name\fP 	
-_POSIX_V6_ILP32_OFF32 	 C Compiler Flags 	 POSIX_V6_ILP32_OFF32_CFLAGS 	
-\0 	 Linker/Loader Flags 	 POSIX_V6_ILP32_OFF32_LDFLAGS 	
-\0 	 Libraries 	 POSIX_V6_ILP32_OFF32_LIBS 	
-_POSIX_V6_ILP32_OFFBIG 	 C Compiler Flags 	 POSIX_V6_ILP32_OFFBIG_CFLAGS 	
-\0 	 Linker/Loader Flags 	 POSIX_V6_ILP32_OFFBIG_LDFLAGS 	
-\0 	 Libraries 	 POSIX_V6_ILP32_OFFBIG_LIBS 	
-_POSIX_V6_LP64_OFF64 	 C Compiler Flags 	 POSIX_V6_LP64_OFF64_CFLAGS 	
-\0 	 Linker/Loader Flags 	 POSIX_V6_LP64_OFF64_LDFLAGS 	
-\0 	 Libraries 	 POSIX_V6_LP64_OFF64_LIBS 	
-_POSIX_V6_LPBIG_OFFBIG 	 C Compiler Flags 	 POSIX_V6_LPBIG_OFFBIG_CFLAGS 	
-\0 	 Linker/Loader Flags 	 POSIX_V6_LPBIG_OFFBIG_LDFLAGS 	
-\0 	 Libraries 	 POSIX_V6_LPBIG_OFFBIG_LIBS 	
+center; l1 l1 l.
+\fBProgramming Environment\fP	\fB\ \fP	\fB\fIc99\fP and \fIcc\fP Arguments\fP
+\fB\fIgetconf\fP Name\fP	\fBUse\fP	\fB\fIgetconf\fP Name\fP
+_POSIX_V6_ILP32_OFF32	C Compiler Flags	POSIX_V6_ILP32_OFF32_CFLAGS
+\ 	Linker/Loader Flags	POSIX_V6_ILP32_OFF32_LDFLAGS
+\ 	Libraries	POSIX_V6_ILP32_OFF32_LIBS
+_POSIX_V6_ILP32_OFFBIG	C Compiler Flags	POSIX_V6_ILP32_OFFBIG_CFLAGS
+\ 	Linker/Loader Flags	POSIX_V6_ILP32_OFFBIG_LDFLAGS
+\ 	Libraries	POSIX_V6_ILP32_OFFBIG_LIBS
+_POSIX_V6_LP64_OFF64	C Compiler Flags	POSIX_V6_LP64_OFF64_CFLAGS
+\ 	Linker/Loader Flags	POSIX_V6_LP64_OFF64_LDFLAGS
+\ 	Libraries	POSIX_V6_LP64_OFF64_LIBS
+_POSIX_V6_LPBIG_OFFBIG	C Compiler Flags	POSIX_V6_LPBIG_OFFBIG_CFLAGS
+\ 	Linker/Loader Flags	POSIX_V6_LPBIG_OFFBIG_LDFLAGS
+\ 	Libraries	POSIX_V6_LPBIG_OFFBIG_LIBS
 .TE
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful compilation or link edit.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -529,7 +528,7 @@ necessary to run the \fIc99\fP utility in a directory in which a file
 can be created.
 .LP
 On systems providing POSIX Conformance (see the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Chapter 2, Conformance), \fIc99\fP is required
+of IEEE\ Std\ 1003.1-2001, Chapter 2, Conformance), \fIc99\fP is required
 only with the C-Language Development
 option; XSI-conformant systems always provide \fIc99\fP.
 .LP
@@ -548,7 +547,7 @@ supply all \fB-L\fP options before any of the \fB-l\fP options.
 .LP
 There is the possible implication that if a user supplies versions
 of the standard functions (before they would be encountered
-by an implicit \fB-l\0c\fP or explicit \fB-l\0m\fP), that those versions
+by an implicit \fB-l\ c\fP or explicit \fB-l\ m\fP), that those versions
 would be used in place of the standard versions.
 There are various reasons this might not be true (functions defined
 as macros, manipulations for clean name space, and so on), so
@@ -557,14 +556,13 @@ within the \fB-L\fP directories is explicitly stated to
 produce unspecified behavior.
 .LP
 All of the functions specified in the System Interfaces volume of
-IEEE\0Std\01003.1-2001 may be made visible by
+IEEE\ Std\ 1003.1-2001 may be made visible by
 implementations when the Standard C Library is searched. Conforming
 applications must explicitly request searching the other
 standard libraries when functions made visible by those libraries
 are used.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 The following usage example compiles \fBfoo.c\fP and creates the executable
 file \fBfoo\fP:
 .sp
@@ -609,9 +607,8 @@ may also create and leave \fBfoo.o\fP:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The following example shows how an application using threads interfaces
 can test for support of and use a programming
 environment supporting 32-bit \fBint\fP, \fBlong\fP, and \fBpointer\fP
@@ -633,9 +630,8 @@ fi
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The following examples clarify the use and interactions of \fB-L\fP
 options and \fB-l\fP operands.
 .LP
@@ -653,7 +649,7 @@ link in the desired way is:
 .fi
 .RE
 .LP
-In this case the \fB-l\0Q\fP operand need only precede the first \fB-l\0p\fP
+In this case the \fB-l\ Q\fP operand need only precede the first \fB-l\ p\fP
 operand, since both \fBlibQ.a\fP and
 \fBlibp.a\fP reside in the same directory.
 .LP
@@ -674,9 +670,8 @@ In this example, the linker searches the \fB-L\fP options in the order
 specified, and finds \fB/a/a/a/libp.a\fP before
 \fB/a/b/c/libp.a\fP when resolving references for \fBb.c\fP. The order
 of the \fB-l\fP operands is still important, however.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The following example shows how an application can use a programming
 environment where the widths of the following types:
 \fBblksize_t\fP, \fBcc_t\fP, \fBmode_t\fP, \fBnfds_t\fP, \fBpid_t\fP,
@@ -716,16 +711,16 @@ $(getconf ${CENV}_LIBS)
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 The \fIc99\fP utility is based on the \fIc89\fP utility originally
-introduced in the ISO\0POSIX-2:1993 standard.
+introduced in the ISO\ POSIX-2:1993 standard.
 .LP
 Some of the changes from \fIc89\fP include the modification to the
 contents of the Standard Libraries section to account for
 new headers and options; for example, \fI<spawn.h>\fP added to the
-\fB-l\0rt\fP
+\fB-l\ rt\fP
 operand, and the \fB-l\fP trace operand added for the Tracing functions.
 .SH FUTURE DIRECTIONS
 .LP
@@ -735,9 +730,9 @@ None.
 \fIFile Read, Write, and Creation\fP , \fIar\fP , \fIgetconf\fP ,
 \fImake\fP , \fInm\fP , \fIstrip\fP , \fIumask\fP() , the System Interfaces
 volume of
-IEEE\0Std\01003.1-2001, \fIexec\fP, \fIsysconf\fP(), the Base Definitions
+IEEE\ Std\ 1003.1-2001, \fIexec\fP, \fIsysconf\fP(), the Base Definitions
 volume
-of IEEE\0Std\01003.1-2001, Chapter 13, Headers
+of IEEE\ Std\ 1003.1-2001, Chapter 13, Headers
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

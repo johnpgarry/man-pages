@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "grantpt" P 2003 POSIX
+.TH "GRANTPT" P 2003 POSIX
 .\" grantpt 
 .SH NAME
-grantpt - grant access to the slave pseudo-terminal device
+grantpt \- grant access to the slave pseudo-terminal device
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -34,14 +34,14 @@ error.
 .SH ERRORS
 .LP
 The \fIgrantpt\fP() function may fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid open file descriptor.
-.TP
+.TP 7
 .B EINVAL
 The \fIfildes\fP argument is not associated with a master pseudo-terminal
 device.
-.TP
+.TP 7
 .B EACCES
 The corresponding slave pseudo-terminal device could not be accessed.
 .sp
@@ -62,7 +62,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIopen\fP() , \fIptsname\fP() , \fIunlockpt\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

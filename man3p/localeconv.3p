@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "localeconv" P 2003 POSIX
+.TH "LOCALECONV" P 2003 POSIX
 .\" localeconv 
 .SH NAME
-localeconv - return locale-specific information
+localeconv \- return locale-specific information
 .SH SYNOPSIS
 .LP
 \fB#include <locale.h>
@@ -12,12 +12,6 @@ struct lconv *localeconv(void);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIlocaleconv\fP() function shall set the components of an object
 with the type \fBstruct lconv\fP with the values
@@ -33,135 +27,135 @@ to indicate that the value is not available in the
 current locale.
 .LP
 The members include the following:
-.TP
-\fBchar\0*decimal_point\fP
+.TP 7
+\fBchar\ *decimal_point\fP
 .sp
 The radix character used to format non-monetary quantities.
-.TP
-\fBchar\0*thousands_sep\fP
+.TP 7
+\fBchar\ *thousands_sep\fP
 .sp
 The character used to separate groups of digits before the decimal-point
 character in formatted non-monetary quantities.
-.TP
-\fBchar\0*grouping\fP
+.TP 7
+\fBchar\ *grouping\fP
 .sp
 A string whose elements taken as one-byte integer values indicate
 the size of each group of digits in formatted non-monetary
 quantities.
-.TP
-\fBchar\0*int_curr_symbol\fP
+.TP 7
+\fBchar\ *int_curr_symbol\fP
 .sp
 The international currency symbol applicable to the current locale.
 The first three characters contain the alphabetic international
-currency symbol in accordance with those specified in the ISO\04217:1995
+currency symbol in accordance with those specified in the ISO\ 4217:1995
 standard. The fourth character (immediately preceding
 the null byte) is the character used to separate the international
 currency symbol from the monetary quantity.
-.TP
-\fBchar\0*currency_symbol\fP
+.TP 7
+\fBchar\ *currency_symbol\fP
 .sp
 The local currency symbol applicable to the current locale.
-.TP
-\fBchar\0*mon_decimal_point\fP
+.TP 7
+\fBchar\ *mon_decimal_point\fP
 .sp
 The radix character used to format monetary quantities.
-.TP
-\fBchar\0*mon_thousands_sep\fP
+.TP 7
+\fBchar\ *mon_thousands_sep\fP
 .sp
 The separator for groups of digits before the decimal-point in formatted
 monetary quantities.
-.TP
-\fBchar\0*mon_grouping\fP
+.TP 7
+\fBchar\ *mon_grouping\fP
 .sp
 A string whose elements taken as one-byte integer values indicate
 the size of each group of digits in formatted monetary
 quantities.
-.TP
-\fBchar\0*positive_sign\fP
+.TP 7
+\fBchar\ *positive_sign\fP
 .sp
 The string used to indicate a non-negative valued formatted monetary
 quantity.
-.TP
-\fBchar\0*negative_sign\fP
+.TP 7
+\fBchar\ *negative_sign\fP
 .sp
 The string used to indicate a negative valued formatted monetary quantity.
-.TP
-\fBchar\0int_frac_digits\fP
+.TP 7
+\fBchar\ int_frac_digits\fP
 .sp
 The number of fractional digits (those after the decimal-point) to
 be displayed in an internationally formatted monetary
 quantity.
-.TP
-\fBchar\0frac_digits\fP
+.TP 7
+\fBchar\ frac_digits\fP
 .sp
 The number of fractional digits (those after the decimal-point) to
 be displayed in a formatted monetary quantity.
-.TP
-\fBchar\0p_cs_precedes\fP
+.TP 7
+\fBchar\ p_cs_precedes\fP
 .sp
 Set to 1 if the \fBcurrency_symbol\fP precedes the value for a non-negative
 formatted monetary quantity. Set to 0 if the symbol
 succeeds the value.
-.TP
-\fBchar\0p_sep_by_space\fP
+.TP 7
+\fBchar\ p_sep_by_space\fP
 .sp
 Set to a value indicating the separation of the \fBcurrency_symbol\fP,
 the sign string, and the value for a non-negative formatted
 monetary quantity.
-.TP
-\fBchar\0n_cs_precedes\fP
+.TP 7
+\fBchar\ n_cs_precedes\fP
 .sp
 Set to 1 if the \fBcurrency_symbol\fP precedes the value for a negative
 formatted monetary quantity. Set to 0 if the symbol
 succeeds the value.
-.TP
-\fBchar\0n_sep_by_space\fP
+.TP 7
+\fBchar\ n_sep_by_space\fP
 .sp
 Set to a value indicating the separation of the \fBcurrency_symbol\fP,
 the sign string, and the value for a negative formatted
 monetary quantity.
-.TP
-\fBchar\0p_sign_posn\fP
+.TP 7
+\fBchar\ p_sign_posn\fP
 .sp
 Set to a value indicating the positioning of the \fBpositive_sign\fP
 for a non-negative formatted monetary quantity.
-.TP
-\fBchar\0n_sign_posn\fP
+.TP 7
+\fBchar\ n_sign_posn\fP
 .sp
 Set to a value indicating the positioning of the \fBnegative_sign\fP
 for a negative formatted monetary quantity.
-.TP
-\fBchar\0int_p_cs_precedes\fP
+.TP 7
+\fBchar\ int_p_cs_precedes\fP
 .sp
 Set to 1 or 0 if the \fBint_curr_symbol\fP respectively precedes or
 succeeds the value for a non-negative internationally
 formatted monetary quantity.
-.TP
-\fBchar\0int_n_cs_precedes\fP
+.TP 7
+\fBchar\ int_n_cs_precedes\fP
 .sp
 Set to 1 or 0 if the \fBint_curr_symbol\fP respectively precedes or
 succeeds the value for a negative internationally formatted
 monetary quantity.
-.TP
-\fBchar\0int_p_sep_by_space\fP
+.TP 7
+\fBchar\ int_p_sep_by_space\fP
 .sp
 Set to a value indicating the separation of the \fBint_curr_symbol\fP,
 the sign string, and the value for a non-negative
 internationally formatted monetary quantity.
-.TP
-\fBchar\0int_n_sep_by_space\fP
+.TP 7
+\fBchar\ int_n_sep_by_space\fP
 .sp
 Set to a value indicating the separation of the \fBint_curr_symbol\fP,
 the sign string, and the value for a negative
 internationally formatted monetary quantity.
-.TP
-\fBchar\0int_p_sign_posn\fP
+.TP 7
+\fBchar\ int_p_sign_posn\fP
 .sp
 Set to a value indicating the positioning of the \fBpositive_sign\fP
 for a non-negative internationally formatted monetary
 quantity.
-.TP
-\fBchar\0int_n_sign_posn\fP
+.TP 7
+\fBchar\ int_n_sign_posn\fP
 .sp
 Set to a value indicating the positioning of the \fBnegative_sign\fP
 for a negative internationally formatted monetary
@@ -170,14 +164,14 @@ quantity.
 .LP
 The elements of \fBgrouping\fP and \fBmon_grouping\fP are interpreted
 according to the following:
-.TP
+.TP 7
 {CHAR_MAX}
 No further grouping is to be performed.
-.TP
+.TP 7
 0
 The previous element is to be repeatedly used for the remainder of
 the digits.
-.TP
+.TP 7
 \fIother\fP
 The integer value is the number of digits that comprise the current
 group. The next element is examined to determine the size
@@ -187,15 +181,15 @@ of the next group of digits before the current group.
 The values of \fBp_sep_by_space\fP, \fBn_sep_by_space\fP, \fBint_p_sep_by_space\fP,
 and \fBint_n_sep_by_space\fP are
 interpreted according to the following:
-.TP
+.TP 7
 0
 No space separates the currency symbol and value.
-.TP
+.TP 7
 1
 If the currency symbol and sign string are adjacent, a space separates
 them from the value; otherwise, a space separates the
 currency symbol from the value.
-.TP
+.TP 7
 2
 If the currency symbol and sign string are adjacent, a space separates
 them; otherwise, a space separates the sign string from
@@ -209,29 +203,29 @@ space.
 The values of \fBp_sign_posn\fP, \fBn_sign_posn\fP, \fBint_p_sign_posn\fP,
 and \fBint_n_sign_posn\fP are interpreted
 according to the following:
-.TP
+.TP 7
 0
 Parentheses surround the quantity and \fBcurrency_symbol\fP or \fBint_curr_symbol\fP.
-.TP
+.TP 7
 1
 The sign string precedes the quantity and \fBcurrency_symbol\fP or
 \fBint_curr_symbol\fP.
-.TP
+.TP 7
 2
 The sign string succeeds the quantity and \fBcurrency_symbol\fP or
 \fBint_curr_symbol\fP.
-.TP
+.TP 7
 3
 The sign string immediately precedes the \fBcurrency_symbol\fP or
 \fBint_curr_symbol\fP.
-.TP
+.TP 7
 4
 The sign string immediately succeeds the \fBcurrency_symbol\fP or
 \fBint_curr_symbol\fP.
 .sp
 .LP
 The implementation shall behave as if no function in this volume of
-IEEE\0Std\01003.1-2001 calls
+IEEE\ Std\ 1003.1-2001 calls
 \fIlocaleconv\fP().
 .LP
 The
@@ -259,41 +253,41 @@ None.
 The following table illustrates the rules which may be used by four
 countries to format monetary quantities.
 .TS C
-center;l l l l l l l l l l l.
-\fBCountry\fP 	 \fBPositive Format\fP 	 \fBNegative Format\fP 	 \fBInternational Format\fP 	
-Italy 	 L.1.230 	 -L.1.230 	 ITL.1.230 	
-Netherlands 	 F 1.234,56 	 F -1.234,56 	 NLG 1.234,56 	
-Norway 	 kr1.234,56 	 kr1.234,56- 	 NOK 1.234,56 	
-Switzerland 	 SFrs.1,234.56 	 SFrs.1,234.56C 	 CHF 1,234.56 	
+center; l1 l1 l1 l.
+\fBCountry\fP	\fBPositive Format\fP	\fBNegative Format\fP	\fBInternational Format\fP
+Italy	L.1.230	-L.1.230	ITL.1.230
+Netherlands	F 1.234,56	F -1.234,56	NLG 1.234,56
+Norway	kr1.234,56	kr1.234,56-	NOK 1.234,56
+Switzerland	SFrs.1,234.56	SFrs.1,234.56C	CHF 1,234.56
 .TE
 .LP
 For these four countries, the respective values for the monetary members
 of the structure returned by \fIlocaleconv\fP()
 are:
 .TS C
-center;l l l l l l l l l l l.
-\fB\0\fP 	 \fBItaly\fP 	 \fBNetherlands\fP 	 \fBNorway\fP 	 \fBSwitzerland\fP 	
-\fBint_curr_symbol\fP 	 "ITL." 	 "NLG " 	 "NOK " 	 "CHF " 	
-\fBcurrency_symbol\fP 	 "L." 	 "F" 	 "kr" 	 "SFrs." 	
-\fBmon_decimal_point\fP 	 "" 	 "," 	 "," 	 "." 	
-\fBmon_thousands_sep\fP 	 "." 	 "." 	 "." 	 "," 	
-\fBmon_grouping\fP 	 "\\3" 	 "\\3" 	 "\\3" 	 "\\3" 	
-\fBpositive_sign\fP 	 "" 	 "" 	 "" 	 "" 	
-\fBnegative_sign\fP 	 "-" 	 "-" 	 "-" 	 "C" 	
-\fBint_frac_digits\fP 	 0 	 2 	 2 	 2 	
-\fBfrac_digits\fP 	 0 	 2 	 2 	 2 	
-\fBp_cs_precedes\fP 	 1 	 1 	 1 	 1 	
-\fBp_sep_by_space\fP 	 0 	 1 	 0 	 0 	
-\fBn_cs_precedes\fP 	 1 	 1 	 1 	 1 	
-\fBn_sep_by_space\fP 	 0 	 1 	 0 	 0 	
-\fBp_sign_posn\fP 	 1 	 1 	 1 	 1 	
-\fBn_sign_posn\fP 	 1 	 4 	 2 	 2 	
-\fBint_p_cs_precedes\fP 	 1 	 1 	 1 	 1 	
-\fBint_n_cs_precedes\fP 	 1 	 1 	 1 	 1 	
-\fBint_p_sep_by_space\fP 	 0 	 0 	 0 	 0 	
-\fBint_n_sep_by_space\fP 	 0 	 0 	 0 	 0 	
-\fBint_p_sign_posn\fP 	 1 	 1 	 1 	 1 	
-\fBint_n_sign_posn\fP 	 1 	 4 	 4 	 2 	
+center; l2 l2 l2 l2 l.
+\fB\ \fP	\fBItaly\fP	\fBNetherlands\fP	\fBNorway\fP	\fBSwitzerland\fP
+\fBint_curr_symbol\fP	"ITL."	"NLG "	"NOK "	"CHF "
+\fBcurrency_symbol\fP	"L."	"F"	"kr"	"SFrs."
+\fBmon_decimal_point\fP	""	","	","	"."
+\fBmon_thousands_sep\fP	"."	"."	"."	","
+\fBmon_grouping\fP	"\\3"	"\\3"	"\\3"	"\\3"
+\fBpositive_sign\fP	""	""	""	""
+\fBnegative_sign\fP	"-"	"-"	"-"	"C"
+\fBint_frac_digits\fP	0	2	2	2
+\fBfrac_digits\fP	0	2	2	2
+\fBp_cs_precedes\fP	1	1	1	1
+\fBp_sep_by_space\fP	0	1	0	0
+\fBn_cs_precedes\fP	1	1	1	1
+\fBn_sep_by_space\fP	0	1	0	0
+\fBp_sign_posn\fP	1	1	1	1
+\fBn_sign_posn\fP	1	4	2	2
+\fBint_p_cs_precedes\fP	1	1	1	1
+\fBint_n_cs_precedes\fP	1	1	1	1
+\fBint_p_sep_by_space\fP	0	0	0	0
+\fBint_n_sep_by_space\fP	0	0	0	0
+\fBint_p_sign_posn\fP	1	1	1	1
+\fBint_n_sign_posn\fP	1	4	4	2
 .TE
 .SH RATIONALE
 .LP
@@ -309,7 +303,7 @@ None.
 , \fIstrcoll\fP() , \fIstrcpy\fP() , \fIstrftime\fP() , \fIstrlen\fP()
 , \fIstrpbrk\fP() , \fIstrspn\fP() , \fIstrtok\fP() , \fIstrxfrm\fP()
 , \fIstrtod\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<langinfo.h>\fP,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<langinfo.h>\fP,
 \fI<locale.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

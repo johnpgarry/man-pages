@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_openpt" P 2003 POSIX
+.TH "POSIX_OPENPT" P 2003 POSIX
 .\" posix_openpt 
 .SH NAME
-posix_openpt - open a pseudo-terminal device
+posix_openpt \- open a pseudo-terminal device
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -27,10 +27,10 @@ shall be set according to the value of
 .LP
 Values for \fIoflag\fP are constructed by a bitwise-inclusive OR of
 flags from the following list, defined in \fI<fcntl.h>\fP:
-.TP
+.TP 7
 O_RDWR
 Open for reading and writing.
-.TP
+.TP 7
 O_NOCTTY
 If set \fIposix_openpt\fP() shall not cause the terminal device to
 become the controlling terminal for the process.
@@ -47,22 +47,22 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIposix_openpt\fP() function shall fail if:
-.TP
+.TP 7
 .B EMFILE
 {OPEN_MAX} file descriptors are currently open in the calling process.
-.TP
+.TP 7
 .B ENFILE
 The maximum allowable number of files is currently open in the system.
 .sp
 .LP
 The \fIposix_openpt\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of \fIoflag\fP is not valid.
-.TP
+.TP 7
 .B EAGAIN
 Out of pseudo-terminal resources.
-.TP
+.TP 7
 .B ENOSR
 Out of STREAMS resources. 
 .sp
@@ -138,7 +138,7 @@ None.
 .LP
 \fIgrantpt\fP() , \fIopen\fP() , \fIptsname\fP() , \fIunlockpt\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<fcntl.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<fcntl.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

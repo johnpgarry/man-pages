@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "setpgid" P 2003 POSIX
+.TH "SETPGID" P 2003 POSIX
 .\" setpgid 
 .SH NAME
-setpgid - set process group ID for job control
+setpgid \- set process group ID for job control
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -30,31 +30,31 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIsetpgid\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 The value of the \fIpid\fP argument matches the process ID of a child
 process of the calling process and the child process has
 successfully executed one of the \fIexec\fP functions.
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIpgid\fP argument is less than 0, or is not a value
 supported by the implementation.
-.TP
+.TP 7
 .B EPERM
 The process indicated by the \fIpid\fP argument is a session leader.
-.TP
+.TP 7
 .B EPERM
 The value of the \fIpid\fP argument matches the process ID of a child
 process of the calling process and the child process is
 not in the same session as the calling process.
-.TP
+.TP 7
 .B EPERM
 The value of the \fIpgid\fP argument is valid but does not match the
 process ID of the process indicated by the \fIpid\fP
 argument and there is no process with a process group ID that matches
 the value of the \fIpgid\fP argument in the same session as
 the calling process.
-.TP
+.TP 7
 .B ESRCH
 The value of the \fIpid\fP argument does not match the process ID
 of the calling process or of a child process of the calling
@@ -89,17 +89,15 @@ When a job control shell spawns a new job, the processes in the job
 must be placed into a new process group via
 \fIsetpgid\fP(). There are two timing constraints involved in this
 action:
-.in +5
-.LP
+.IP " 1." 4
 The new process must be placed in the new process group before the
 appropriate program is launched via one of the \fIexec\fP functions.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The new process must be placed in the new process group before the
 shell can correctly send signals to the new process
 group.
-.in -5
+.LP
 .LP
 To address these constraints, the following actions are performed.
 The new processes call \fIsetpgid\fP() to alter their own
@@ -141,7 +139,7 @@ None.
 .LP
 \fIexec\fP() , \fIgetpgrp\fP() , \fIsetsid\fP() , \fItcsetpgrp\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/types.h>\fP, \fI<unistd.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/types.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -2,7 +2,7 @@
 .TH "<utmpx.h>" P 2003 POSIX
 .\" <utmpx.h> 
 .SH NAME
-utmpx.h - user accounting database definitions
+utmpx.h \- user accounting database definitions
 .SH SYNOPSIS
 .LP
 \fB#include <utmpx.h> \fP
@@ -36,28 +36,28 @@ symbols from \fI<sys/time.h>\fP.
 The following symbolic constants shall be defined as possible values
 for the \fIut_type\fP member of the \fButmpx\fP
 structure:
-.TP
+.TP 7
 EMPTY
 No valid user accounting information.
-.TP
+.TP 7
 BOOT_TIME
 Identifies time of system boot.
-.TP
+.TP 7
 OLD_TIME
 Identifies time when system clock changed.
-.TP
+.TP 7
 NEW_TIME
 Identifies time after system clock changed.
-.TP
+.TP 7
 USER_PROCESS
 Identifies a process.
-.TP
+.TP 7
 INIT_PROCESS
 Identifies a process spawned by the init process.
-.TP
+.TP 7
 LOGIN_PROCESS
 Identifies the session leader of a logged-in user.
-.TP
+.TP 7
 DEAD_PROCESS
 Identifies a session leader who has exited.
 .sp
@@ -91,7 +91,7 @@ None.
 .SH SEE ALSO
 .LP
 \fI<sys/time.h>\fP , \fI<sys/types.h>\fP , the System
-Interfaces volume of IEEE\0Std\01003.1-2001, \fIendutxent\fP()
+Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIendutxent\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

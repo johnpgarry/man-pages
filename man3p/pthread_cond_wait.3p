@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_cond_timedwait" P 2003 POSIX
+.TH "PTHREAD_COND_TIMEDWAIT" P 2003 POSIX
 .\" pthread_cond_timedwait 
 .SH NAME
-pthread_cond_timedwait, pthread_cond_wait - wait on a condition
+pthread_cond_timedwait, pthread_cond_wait \- wait on a condition
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -10,13 +10,13 @@ pthread_cond_timedwait, pthread_cond_wait - wait on a condition
 .sp
 int pthread_cond_timedwait(pthread_cond_t *restrict\fP \fIcond\fP\fB,
 .br
-\0\0\0\0\0\0 pthread_mutex_t *restrict\fP \fImutex\fP\fB,
+\ \ \ \ \ \  pthread_mutex_t *restrict\fP \fImutex\fP\fB,
 .br
-\0\0\0\0\0\0 const struct timespec *restrict\fP \fIabstime\fP\fB);
+\ \ \ \ \ \  const struct timespec *restrict\fP \fIabstime\fP\fB);
 .br
 int pthread_cond_wait(pthread_cond_t *restrict\fP \fIcond\fP\fB,
 .br
-\0\0\0\0\0\0 pthread_mutex_t *restrict\fP \fImutex\fP\fB); \fP
+\ \ \ \ \ \  pthread_mutex_t *restrict\fP \fImutex\fP\fB); \fP
 \fB
 .br
 \fP
@@ -110,7 +110,7 @@ error.
 .SH ERRORS
 .LP
 The \fIpthread_cond_timedwait\fP() function shall fail if:
-.TP
+.TP 7
 .B ETIMEDOUT
 The time specified by \fIabstime\fP to \fIpthread_cond_timedwait\fP()
 has passed.
@@ -118,16 +118,16 @@ has passed.
 .LP
 The \fIpthread_cond_timedwait\fP() and \fIpthread_cond_wait\fP() functions
 may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIcond\fP, \fImutex\fP, or \fIabstime\fP is
 invalid.
-.TP
+.TP 7
 .B EINVAL
 Different mutexes were supplied for concurrent \fIpthread_cond_timedwait\fP()
 or \fIpthread_cond_wait\fP() operations on the
 same condition variable.
-.TP
+.TP 7
 .B EPERM
 The mutex was not owned by the current thread at the time of the call.
 .sp
@@ -321,7 +321,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_cond_signal\fP() , \fIpthread_cond_broadcast\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

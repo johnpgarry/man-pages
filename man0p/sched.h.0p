@@ -2,7 +2,7 @@
 .TH "<sched.h>" P 2003 POSIX
 .\" <sched.h> 
 .SH NAME
-sched.h - execution scheduling (\fBREALTIME\fP)
+sched.h \- execution scheduling (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <sched.h> \fP
@@ -49,16 +49,16 @@ priority ranges of other policies.
 Four scheduling policies are defined; others may be defined by the
 implementation. The four standard policies are indicated by
 the values of the following symbolic constants:
-.TP
+.TP 7
 SCHED_FIFO
 First in-first out (FIFO) scheduling policy.
-.TP
+.TP 7
 SCHED_RR
 Round robin scheduling policy.
-.TP
+.TP 7
 SCHED_SPORADIC
 Sporadic server scheduling policy. 
-.TP
+.TP 7
 SCHED_OTHER
 Another scheduling policy.
 .sp

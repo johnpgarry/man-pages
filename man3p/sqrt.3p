@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sqrt" P 2003 POSIX
+.TH "SQRT" P 2003 POSIX
 .\" sqrt 
 .SH NAME
-sqrt, sqrtf, sqrtl - square root function
+sqrt, sqrtf, sqrtl \- square root function
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -17,13 +17,8 @@ long double sqrtl(long double\fP \fIx\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 These functions shall compute the square root of their argument \fIx\fP,
+sqrt(x).
 .LP
 An application wishing to check for error situations should set \fIerrno\fP
 to zero and call
@@ -37,7 +32,7 @@ Upon successful completion, these functions shall return the square
 root of \fIx\fP.
 .LP
 For finite values of \fIx\fP < -0, a domain error shall occur, and
-\0either a NaN (if supported), or  \0an implementation-defined value
+\ either a NaN (if supported), or  \ an implementation-defined value
 shall be returned.
 .LP
 If
@@ -51,9 +46,9 @@ returned.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
-Domain\0Error
-The finite value of \fIx\fP is < -0,   \0or \fIx\fP is -Inf.  
+.TP 7
+Domain\ Error
+The finite value of \fIx\fP is < -0,   \ or \fIx\fP is -Inf.  
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
 then \fIerrno\fP shall be set to [EDOM]. If the
@@ -92,7 +87,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfeclearexcept\fP() , \fIfetestexcept\fP() , \fIisnan\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, Section 4.18, Treatment
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, Section 4.18, Treatment
 of Error Conditions for Mathematical Functions, \fI<math.h>\fP, \fI<stdio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

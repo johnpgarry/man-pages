@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mkdir" P 2003 POSIX
+.TH "MKDIR" P 2003 POSIX
 .\" mkdir 
 .SH NAME
-mkdir - make directories
+mkdir \- make directories
 .SH SYNOPSIS
 .LP
 \fBmkdir\fP \fB[\fP\fB-p\fP\fB][\fP\fB-m\fP \fImode\fP\fB]\fP \fIdir\fP\fB...\fP
@@ -13,27 +13,25 @@ the operands, in the order specified.
 .LP
 For each \fIdir\fP operand, the \fImkdir\fP utility shall perform
 actions equivalent to the \fImkdir\fP() function defined in the System
-Interfaces volume of IEEE\0Std\01003.1-2001,
+Interfaces volume of IEEE\ Std\ 1003.1-2001,
 called with the following arguments:
-.in +5
-.LP
+.IP " 1." 4
 The \fIdir\fP operand is used as the \fIpath\fP argument.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The value of the bitwise-inclusive OR of S_IRWXU, S_IRWXG, and S_IRWXO
 is used as the \fImode\fP argument. (If the \fB-m\fP
 option is specified, the \fImode\fP option-argument overrides this
 default.)
-.in -5
+.LP
 .SH OPTIONS
 .LP
 The \fImkdir\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
-\fB-m\0\fP \fImode\fP
+.TP 7
+\fB-m\ \fP \fImode\fP
 Set the file permission bits of the newly-created directory to the
 specified \fImode\fP value. The \fImode\fP option-argument
 shall be the same as the \fImode\fP operand defined for the \fIchmod\fP
@@ -43,7 +41,7 @@ utility. In the
 initial mode of \fIa\fP= \fIrwx\fP; \fB'+'\fP shall add permissions
 to the default mode, \fB'-'\fP shall delete permissions
 from the default mode.
-.TP
+.TP 7
 \fB-p\fP
 Create any missing intermediate pathname components. 
 .LP
@@ -68,7 +66,7 @@ without error.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIdir\fP
 A pathname of a directory to be created.
 .sp
@@ -82,29 +80,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fImkdir\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -127,12 +125,12 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All the specified directories were created successfully or the \fB-p\fP
 option was specified and all the specified directories
 now exist.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -171,7 +169,7 @@ directory exists.
 .LP
 The functionality of \fImkdir\fP is described substantially through
 a reference to the \fImkdir\fP() function in the System Interfaces
-volume of IEEE\0Std\01003.1-2001. For
+volume of IEEE\ Std\ 1003.1-2001. For
 example, by default, the mode of the directory is affected by the
 file mode creation mask in accordance with the specified behavior
 of the \fImkdir\fP() function. In this way, there is less duplication
@@ -183,7 +181,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIchmod\fP() , \fIrm\fP , \fIrmdir\fP() , \fIumask\fP() , the System
-Interfaces volume of IEEE\0Std\01003.1-2001, \fImkdir\fP()
+Interfaces volume of IEEE\ Std\ 1003.1-2001, \fImkdir\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

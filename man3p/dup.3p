@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "dup" P 2003 POSIX
+.TH "DUP" P 2003 POSIX
 .\" dup 
 .SH NAME
-dup, dup2 - duplicate an open file descriptor
+dup, dup2 \- duplicate an open file descriptor
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -59,30 +59,24 @@ fid = fcntl(\fP\fIfildes\fP\fB, F_DUPFD,\fP \fIfildes2\fP\fB);
 .RE
 .LP
 except for the following:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If \fIfildes2\fP is less than 0 or greater than or equal to {OPEN_MAX},
 \fIdup2\fP() shall return -1 with \fIerrno\fP set to
 [EBADF].
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIfildes\fP is a valid file descriptor and is equal to \fIfildes2\fP,
 \fIdup2\fP() shall return \fIfildes2\fP without
 closing it.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIfildes\fP is not a valid file descriptor, \fIdup2\fP() shall
 return -1 and shall not close \fIfildes2\fP.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The value returned shall be equal to the value of \fIfildes2\fP upon
 successful completion, or -1 upon failure.
-.in -5
-.RE
+.LP
 .SH RETURN VALUE
 .LP
 Upon successful completion a non-negative integer, namely the file
@@ -91,22 +85,22 @@ returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fIdup\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid open file descriptor.
-.TP
+.TP 7
 .B EMFILE
 The number of file descriptors in use by this process would exceed
 {OPEN_MAX}.
 .sp
 .LP
 The \fIdup2\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid open file descriptor or the
 argument \fIfildes2\fP is negative or greater than or
 equal to {OPEN_MAX}.
-.TP
+.TP 7
 .B EINTR
 The \fIdup2\fP() function was interrupted by a signal.
 .sp
@@ -154,13 +148,13 @@ None.
 .LP
 The \fIdup\fP() and \fIdup2\fP() functions are redundant. Their services
 are also provided by the \fIfcntl\fP() function. They have been included
-in this volume of IEEE\0Std\01003.1-2001
+in this volume of IEEE\ Std\ 1003.1-2001
 primarily for historical reasons, since many existing applications
 use them.
 .LP
 While the brief code segment shown is very similar in behavior to
 \fIdup2\fP(), a conforming implementation based on other
-functions defined in this volume of IEEE\0Std\01003.1-2001 is significantly
+functions defined in this volume of IEEE\ Std\ 1003.1-2001 is significantly
 more complex. Least obvious is the possible
 effect of a signal-catching function that could be invoked between
 steps and allocate or deallocate file descriptors. This could be
@@ -187,7 +181,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIclose\fP() , \fIfcntl\fP() , \fIopen\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_mutexattr_destroy" P 2003 POSIX
+.TH "PTHREAD_MUTEXATTR_DESTROY" P 2003 POSIX
 .\" pthread_mutexattr_destroy 
 .SH NAME
-pthread_mutexattr_destroy, pthread_mutexattr_init - destroy and initialize
+pthread_mutexattr_destroy, pthread_mutexattr_init \- destroy and initialize
 the mutex attributes object
 .SH SYNOPSIS
 .LP
@@ -46,13 +46,13 @@ an error number shall be returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_mutexattr_destroy\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIattr\fP is invalid.
 .sp
 .LP
 The \fIpthread_mutexattr_init\fP() function shall fail if:
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory exists to initialize the mutex attributes object.
 .sp
@@ -71,10 +71,10 @@ None.
 See \fIpthread_attr_init\fP() for a general explanation of attributes.
 Attributes objects
 allow implementations to experiment with useful extensions and permit
-extension of this volume of IEEE\0Std\01003.1-2001
+extension of this volume of IEEE\ Std\ 1003.1-2001
 without changing the existing functions. Thus, they provide for future
 extensibility of this volume of
-IEEE\0Std\01003.1-2001 and reduce the temptation to standardize prematurely
+IEEE\ Std\ 1003.1-2001 and reduce the temptation to standardize prematurely
 on semantics that are not yet widely
 implemented or understood.
 .LP
@@ -86,7 +86,7 @@ allow for multiple re-locking by the current owner; metered mutexes
 would transparently keep records of queue length, wait time,
 and so on.) Since there is not yet wide agreement on the usefulness
 of these resulting from shared implementation and usage
-experience, they are not yet specified in this volume of IEEE\0Std\01003.1-2001.
+experience, they are not yet specified in this volume of IEEE\ Std\ 1003.1-2001.
 Mutex attributes objects, however, make it
 possible to test out these concepts for possible standardization at
 a later time.
@@ -115,7 +115,7 @@ can be used so that whatever mutex attributes are considered
 "most frequently used" can be processed most efficiently.
 .SS Process Shared Memory and Synchronization
 .LP
-The existence of memory mapping functions in this volume of IEEE\0Std\01003.1-2001
+The existence of memory mapping functions in this volume of IEEE\ Std\ 1003.1-2001
 leads to the possibility that an
 application may allocate the synchronization objects from this section
 in memory that is accessed by multiple processes (and
@@ -327,7 +327,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_cond_destroy\fP() , \fIpthread_create\fP() , \fIpthread_mutex_destroy\fP()
-, pthread_mutexattr_destroy , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, pthread_mutexattr_destroy , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cd" P 2003 POSIX
+.TH "CD" P 2003 POSIX
 .\" cd 
 .SH NAME
-cd - change the working directory
+cd \- change the working directory
 .SH SYNOPSIS
 .LP
 \fBcd\fP \fB[\fP\fB-L | -P\fP\fB] [\fP\fIdirectory\fP\fB]\fP\fB
@@ -20,32 +20,27 @@ following steps, the symbol \fBcurpath\fP represents an intermediate
 value used to simplify the description of the algorithm used
 by \fIcd\fP. There is no requirement that \fBcurpath\fP be made visible
 to the application.)
-.in +5
-.LP
+.IP " 1." 4
 If no \fIdirectory\fP operand is given and the \fIHOME\fP environment
 variable is empty or undefined, the default behavior is
 implementation-defined and no further steps shall be taken.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If no \fIdirectory\fP operand is given and the \fIHOME\fP environment
 variable is set to a non-empty value, the \fIcd\fP
 utility shall behave as if the directory named in the \fIHOME\fP environment
 variable was specified as the \fIdirectory\fP
 operand.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the \fIdirectory\fP operand begins with a slash character, set
 \fBcurpath\fP to the operand and proceed to step 7.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If the first component of the \fIdirectory\fP operand is dot or dot-dot,
 proceed to step 6.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Starting with the first pathname in the colon-separated pathnames
 of \fICDPATH\fP (see the ENVIRONMENT VARIABLES section) if
 the pathname is non-null, test if the concatenation of that pathname,
@@ -56,15 +51,13 @@ either case, if the resulting string names an existing directory,
 set \fBcurpath\fP to that string and proceed to step 7.
 Otherwise, repeat this step with the next pathname in \fICDPATH\fP
 until all pathnames have been tested.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 Set \fBcurpath\fP to the string formed by the concatenation of the
 value of \fIPWD ,\fP a slash character, and the
 operand.
-.in -5
-.in +5
 .LP
+.IP " 7." 4
 If the \fB-P\fP option is in effect, the \fIcd\fP utility shall perform
 actions equivalent to the \fIchdir\fP() function, called with \fBcurpath\fP
 as the \fIpath\fP argument. If these actions
@@ -80,38 +73,34 @@ utility shall display an appropriate error message
 and not alter the \fIPWD\fP environment variable. Whether the actions
 equivalent to \fIchdir\fP() succeed or fail, no further steps shall
 be taken.
-.in -5
-.in +5
 .LP
+.IP " 8." 4
 The \fBcurpath\fP value shall then be converted to canonical form
 as follows, considering each component from beginning to end,
 in sequence:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 Dot components and any slashes that separate them from the next component
 shall be deleted.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 For each dot-dot component, if there is a preceding component and
 it is neither root nor dot-dot, the preceding component, all
 slashes separating the preceding component from dot-dot, dot-dot and
 all slashes separating dot-dot from the following component
 shall be deleted.
-.in -5
-.in +5
 .LP
+.IP " c." 4
 An implementation may further simplify \fBcurpath\fP by removing any
 trailing slash characters that are not also leading
 slashes, replacing multiple non-leading consecutive slashes with a
 single slash, and replacing three or more leading slashes with a
 single slash. If, as a result of this canonicalization, the \fBcurpath\fP
 variable is null, no further steps shall be taken.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 9." 4
 The \fIcd\fP utility shall then perform actions equivalent to the
 \fIchdir\fP() function
 called with \fBcurpath\fP as the \fIpath\fP argument. If these actions
@@ -119,7 +108,7 @@ failed for any reason, the \fIcd\fP utility shall display
 an appropriate error message and no further steps shall be taken.
 The \fIPWD\fP environment variable shall be set to
 \fBcurpath\fP.
-.in -5
+.LP
 .LP
 If, during the execution of the above steps, the \fIPWD\fP environment
 variable is changed, the \fIOLDPWD\fP environment
@@ -129,15 +118,15 @@ to the call to \fIcd\fP).
 .SH OPTIONS
 .LP
 The \fIcd\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported by the implementation:
-.TP
+.TP 7
 \fB-L\fP
 Handle the operand dot-dot logically; symbolic link components shall
 not be resolved before dot-dot components are processed
 (see steps 8. and 9. in the DESCRIPTION).
-.TP
+.TP 7
 \fB-P\fP
 Handle the operand dot-dot physically; symbolic link components shall
 be resolved before dot-dot components are processed (see
@@ -151,14 +140,14 @@ dot-dot logically; see the DESCRIPTION.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIdirectory\fP
 An absolute or relative pathname of the directory that shall become
 the new working directory. The interpretation of a relative
 pathname by \fIcd\fP depends on the \fB-L\fP option and the \fICDPATH\fP
 and \fIPWD\fP environment variables. If
 \fIdirectory\fP is an empty string, the results are unspecified.
-.TP
+.TP 7
 -
 When a hyphen is used as the operand, this shall be equivalent to
 the command: 
@@ -184,7 +173,7 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIcd\fP:
-.TP
+.TP 7
 \fICDPATH\fP
 A colon-separated list of pathnames that refer to directories. The
 \fIcd\fP utility shall use this list in its attempt to
@@ -192,40 +181,40 @@ change the directory, as described in the DESCRIPTION. An empty string
 in place of a directory pathname represents the current
 directory. If \fICDPATH\fP is not set, it shall be treated as if it
 were an empty string.
-.TP
+.TP 7
 \fIHOME\fP
 The name of the directory, used when no \fIdirectory\fP operand is
 specified.
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fIOLDPWD\fP
 A pathname of the previous working directory, used by \fIcd\fP \fB-\fP.
-.TP
+.TP 7
 \fIPWD\fP
 This variable shall be set as specified in the DESCRIPTION. If an
 application sets or unsets the value of \fIPWD ,\fP the
@@ -261,10 +250,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 The directory was successfully changed.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -348,7 +337,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIShell Execution Environment\fP , \fIpwd\fP , the System
-Interfaces volume of IEEE\0Std\01003.1-2001, \fIchdir\fP()
+Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIchdir\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_trace_get_filter" P 2003 POSIX
+.TH "POSIX_TRACE_GET_FILTER" P 2003 POSIX
 .\" posix_trace_get_filter 
 .SH NAME
-posix_trace_get_filter, posix_trace_set_filter - retrieve and set
+posix_trace_get_filter, posix_trace_set_filter \- retrieve and set
 the filter of an initialized trace stream
 (\fBTRACING\fP)
 .SH SYNOPSIS
@@ -15,7 +15,7 @@ int posix_trace_get_filter(trace_id_t\fP \fItrid\fP\fB, trace_event_set_t
 .br
 int posix_trace_set_filter(trace_id_t\fP \fItrid\fP\fB,
 .br
-\0\0\0\0\0\0 const trace_event_set_t *\fP\fIset\fP\fB, int\fP \fIhow\fP\fB);
+\ \ \ \ \ \  const trace_event_set_t *\fP\fIset\fP\fB, int\fP \fIhow\fP\fB);
 \fP
 \fB
 .br
@@ -49,18 +49,18 @@ be changed.
 The value of the argument \fIhow\fP indicates the manner in which
 the set is to be changed and shall have one of the following
 values, as defined in the \fI<trace.h>\fP header:
-.TP
+.TP 7
 POSIX_TRACE_SET_EVENTSET
 .sp
 The resulting set of trace event types to be filtered shall be the
 trace event type set pointed to by the argument \fIset\fP.
-.TP
+.TP 7
 POSIX_TRACE_ADD_EVENTSET
 .sp
 The resulting set of trace event types to be filtered shall be the
 union of the current set and the trace event type set pointed to
 by the argument \fIset\fP.
-.TP
+.TP 7
 POSIX_TRACE_SUB_EVENTSET
 .sp
 The resulting set of trace event types to be filtered shall be all
@@ -79,12 +79,12 @@ trace event types in \fIset\fP, if successful.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fItrid\fP argument does not correspond to an active
 trace stream or the value of the argument pointed to by
 \fIset\fP is invalid.
-.TP
+.TP 7
 .B EINTR
 The operation was interrupted by a signal.
 .sp
@@ -108,7 +108,7 @@ None.
 \fITrace, Trace Log, and Trace Event Filter Options: System Trace
 Events\fP , \fIposix_trace_eventset_add\fP() , the Base Definitions
 volume of
-IEEE\0Std\01003.1-2001, \fI<trace.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<trace.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

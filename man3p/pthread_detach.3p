@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_detach" P 2003 POSIX
+.TH "PTHREAD_DETACH" P 2003 POSIX
 .\" pthread_detach 
 .SH NAME
-pthread_detach - detach a thread
+pthread_detach \- detach a thread
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -28,11 +28,11 @@ error.
 .SH ERRORS
 .LP
 The \fIpthread_detach\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The implementation has detected that the value specified by \fIthread\fP
 does not refer to a joinable thread.
-.TP
+.TP 7
 .B ESRCH
 No thread could be found corresponding to that specified by the given
 thread ID.
@@ -59,8 +59,7 @@ It has been suggested that a "detach" function is not necessary; the
 \fIdetachstate\fP thread creation attribute is
 sufficient, since a thread need never be dynamically detached. However,
 need arises in at least two cases:
-.in +5
-.LP
+.IP " 1." 4
 In a cancellation handler for a \fIpthread_join\fP() it is nearly
 essential to
 have a \fIpthread_detach\fP() function in order to detach the thread
@@ -72,18 +71,17 @@ the cancellation processing for an unbounded period and introduce
 a new call to \fIpthread_join\fP(), which might itself need a cancellation
 handler. A dynamic detach is
 nearly essential in this case.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 In order to detach the "initial thread" (as may be desirable in processes
 that set up server threads).
-.in -5
+.LP
 .SH FUTURE DIRECTIONS
 .LP
 None.
 .SH SEE ALSO
 .LP
-\fIpthread_join\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIpthread_join\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

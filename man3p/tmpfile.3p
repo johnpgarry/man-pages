@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tmpfile" P 2003 POSIX
+.TH "TMPFILE" P 2003 POSIX
 .\" tmpfile 
 .SH NAME
-tmpfile - create a temporary file
+tmpfile \- create a temporary file
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -12,12 +12,6 @@ FILE *tmpfile(void);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fItmpfile\fP() function shall create a temporary file and open
 a corresponding stream. The file shall be automatically
@@ -36,36 +30,36 @@ be opened.
 .LP
 Upon successful completion, \fItmpfile\fP() shall return a pointer
 to the stream of the file that is created. Otherwise, it
-shall return a null pointer   \0and set \fIerrno\fP to indicate the
+shall return a null pointer   \ and set \fIerrno\fP to indicate the
 error. 
 .SH ERRORS
 .LP
 The \fItmpfile\fP() function shall fail if:
-.TP
+.TP 7
 .B EINTR
 A
 signal was caught during \fItmpfile\fP(). 
-.TP
+.TP 7
 .B EMFILE
 {OPEN_MAX} file descriptors are currently open in the calling process.
-.TP
+.TP 7
 .B ENFILE
 The maximum allowable number of files is currently open in the system.
-.TP
+.TP 7
 .B ENOSPC
 The directory or file system which would contain the new file cannot
 be expanded. 
-.TP
+.TP 7
 .B EOVERFLOW
 The file is a regular file and the size of the file cannot be represented
 correctly in an object of type \fBoff_t\fP. 
 .sp
 .LP
 The \fItmpfile\fP() function may fail if:
-.TP
+.TP 7
 .B EMFILE
 {FOPEN_MAX} streams are currently open in the calling process. 
-.TP
+.TP 7
 .B ENOMEM
 Insufficient storage space is available. 
 .sp
@@ -106,7 +100,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfopen\fP() , \fItmpnam\fP() , \fIunlink\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<stdio.h>\fP
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<stdio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "strtod" P 2003 POSIX
+.TH "STRTOD" P 2003 POSIX
 .\" strtod 
 .SH NAME
-strtod, strtof, strtold - convert a string to a double-precision number
+strtod, strtof, strtold \- convert a string to a double-precision number
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -20,55 +20,41 @@ long double strtold(const char *restrict\fP \fInptr\fP\fB, char **restrict\fP
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 These functions shall convert the initial portion of the string pointed
 to by \fInptr\fP to \fBdouble\fP, \fBfloat\fP, and
 \fBlong double\fP representation, respectively. First, they decompose
 the input string into three parts:
-.in +5
-.LP
+.IP " 1." 4
 An initial, possibly empty, sequence of white-space characters (as
 specified by \fIisspace\fP())
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 A subject sequence interpreted as a floating-point constant or representing
 infinity or NaN
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 A final string of one or more unrecognized characters, including the
 terminating null byte of the input string
-.in -5
+.LP
 .LP
 Then they shall attempt to convert the subject sequence to a floating-point
 number, and return the result.
 .LP
 The expected form of the subject sequence is an optional plus or minus
 sign, then one of the following:
-.RS
-.in +5
-.LP
+.IP " *" 3
 A non-empty sequence of decimal digits optionally containing a radix
 character, then an optional exponent part
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A 0x or 0X, then a non-empty sequence of hexadecimal digits optionally
 containing a radix character, then an optional binary
 exponent part
-.in -5
-.in +5
 .LP
+.IP " *" 3
 One of INF or INFINITY, ignoring case
-.in -5
-.in +5
 .LP
+.IP " *" 3
 One of NAN or NAN(\fIn-char-sequence_opt\fP), ignoring case in the
 NAN part, where:
 .sp
@@ -83,8 +69,7 @@ NAN part, where:
 \fP
 .fi
 .RE
-.in -5
-.RE
+.LP
 .LP
 The subject sequence is defined as the longest initial subsequence
 of the input string, starting with the first non-white-space
@@ -124,7 +109,7 @@ radix character is defined in the program's locale (category \fILC_NUMERIC
 radix character is not defined, the radix character shall default
 to a period ( \fB'.'\fP ). 
 .LP
-In other than the C   \0or POSIX  locales, other
+In other than the C   \ or POSIX  locales, other
 implementation-defined subject sequences may be accepted.
 .LP
 If the subject sequence is empty or does not have the expected form,
@@ -158,13 +143,13 @@ number in the return type shall be returned and \fIerrno\fP set to
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
+.TP 7
 .B ERANGE
-The value to be returned would cause overflow   \0or underflow. 
+The value to be returned would cause overflow   \ or underflow. 
 .sp
 .LP
 These functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 No
 conversion could be performed. 
@@ -197,9 +182,9 @@ rounding direction, with the extra stipulation that the error
 with respect to \fID\fP should have a correct sign for the current
 rounding direction.
 .LP
-The changes to \fIstrtod\fP() introduced by the ISO/IEC\09899:1999
+The changes to \fIstrtod\fP() introduced by the ISO/IEC\ 9899:1999
 standard can alter the behavior of well-formed
-applications complying with the ISO/IEC\09899:1990 standard and thus
+applications complying with the ISO/IEC\ 9899:1990 standard and thus
 earlier versions of the base documents. One such example
 would be:
 .sp
@@ -241,7 +226,7 @@ If the function is called with:
 .fi
 .RE
 .LP
-an ISO/IEC\09899:1990 standard-compliant library will result in the
+an ISO/IEC\ 9899:1990 standard-compliant library will result in the
 function printing:
 .sp
 .RS
@@ -252,7 +237,7 @@ function printing:
 .fi
 .RE
 .LP
-With the ISO/IEC\09899:1999 standard, the result is:
+With the ISO/IEC\ 9899:1999 standard, the result is:
 .sp
 .RS
 .nf
@@ -275,7 +260,7 @@ None.
 .LP
 \fIisspace\fP() , \fIlocaleconv\fP() , \fIscanf\fP() , \fIsetlocale\fP()
 , \fIstrtol\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, Chapter 7, Locale,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 7, Locale,
 \fI<float.h>\fP, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

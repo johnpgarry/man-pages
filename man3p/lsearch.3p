@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "lsearch" P 2003 POSIX
+.TH "LSEARCH" P 2003 POSIX
 .\" lsearch 
 .SH NAME
-lsearch, lfind - linear search and update
+lsearch, lfind \- linear search and update
 .SH SYNOPSIS
 .LP
 \fB#include <search.h>
@@ -12,12 +12,12 @@ void *lsearch(const void *\fP\fIkey\fP\fB, void *\fP\fIbase\fP\fB,
 size_t *\fP\fInelp\fP\fB, size_t\fP
 \fIwidth\fP\fB,
 .br
-\0\0\0\0\0\0 int (*\fP\fIcompar\fP\fB)(const void *, const void *));
+\ \ \ \ \ \  int (*\fP\fIcompar\fP\fB)(const void *, const void *));
 .br
 void *lfind(const void *\fP\fIkey\fP\fB, const void *\fP\fIbase\fP\fB,
 size_t *\fP\fInelp\fP\fB,
 .br
-\0\0\0\0\0\0 size_t width, int (*\fP\fIcompar\fP\fB)(const void *,
+\ \ \ \ \ \  size_t width, int (*\fP\fIcompar\fP\fB)(const void *,
 const void *)); \fP
 \fB
 .br
@@ -128,7 +128,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIhcreate\fP() , \fItsearch\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<search.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<search.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -2,7 +2,7 @@
 .TH "<stdarg.h>" P 2003 POSIX
 .\" <stdarg.h> 
 .SH NAME
-stdarg.h - handle variable argument list
+stdarg.h \- handle variable argument list
 .SH SYNOPSIS
 .LP
 \fB#include <stdarg.h>
@@ -18,12 +18,6 @@ void va_end(va_list\fP \fIap\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fI<stdarg.h>\fP header shall contain a set of macros which allows
 portable functions that accept variable argument
@@ -71,23 +65,18 @@ specified type can be obtained simply by postfixing a
 is not compatible with the type of the actual next
 argument (as promoted according to the default argument promotions),
 the behavior is undefined, except for the following cases:
-.RS
-.in +5
-.LP
+.IP " *" 3
 One type is a signed integer type, the other type is the corresponding
 unsigned integer type, and the value is representable in
 both types.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 One type is a pointer to \fBvoid\fP and the other is a pointer to
 a character type.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Both types are pointers. 
-.in -5
-.RE
+.LP
 .LP
 Different types can be mixed, but it is up to the routine to know
 what type of argument is expected.
@@ -158,7 +147,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIexec\fP,
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIexec\fP,
 \fIprintf\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

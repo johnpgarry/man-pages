@@ -2,29 +2,23 @@
 .TH "<stdbool.h>" P 2003 POSIX
 .\" <stdbool.h> 
 .SH NAME
-stdbool.h - boolean type and values
+stdbool.h \- boolean type and values
 .SH SYNOPSIS
 .LP
 \fB#include <stdbool.h>\fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fI<stdbool.h>\fP header shall define the following macros:
-.TP
+.TP 7
 bool
 Expands to \fB_Bool\fP.
-.TP
+.TP 7
 true
 Expands to the integer constant 1.
-.TP
+.TP 7
 false
 Expands to the integer constant 0.
-.TP
+.TP 7
 __bool_true_false_are_defined
 .sp
 Expands to the integer constant 1.

@@ -1,9 +1,9 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_trace_eventid_equal" P 2003 POSIX
+.TH "POSIX_TRACE_EVENTID_EQUAL" P 2003 POSIX
 .\" posix_trace_eventid_equal 
 .SH NAME
 posix_trace_eventid_equal, posix_trace_eventid_get_name, posix_trace_trid_eventid_open
-- manipulate the trace event
+\- manipulate the trace event
 type identifier (\fBTRACING\fP)
 .SH SYNOPSIS
 .LP
@@ -13,19 +13,19 @@ type identifier (\fBTRACING\fP)
 int posix_trace_eventid_equal(trace_id_t\fP \fItrid\fP\fB, trace_event_id_t\fP
 \fIevent1\fP\fB,
 .br
-\0\0\0\0\0\0 trace_event_id_t\fP \fIevent2\fP\fB);
+\ \ \ \ \ \  trace_event_id_t\fP \fIevent2\fP\fB);
 .br
 int posix_trace_eventid_get_name(trace_id_t\fP \fItrid\fP\fB,
 .br
-\0\0\0\0\0\0 trace_event_id_t\fP \fIevent\fP\fB, char *\fP\fIevent_name\fP\fB);
+\ \ \ \ \ \  trace_event_id_t\fP \fIevent\fP\fB, char *\fP\fIevent_name\fP\fB);
 .br
 \fP
 .LP
 \fBint posix_trace_trid_eventid_open(trace_id_t\fP \fItrid\fP\fB,
 .br
-\0\0\0\0\0\0 const char *restrict\fP \fIevent_name\fP\fB,
+\ \ \ \ \ \  const char *restrict\fP \fIevent_name\fP\fB,
 .br
-\0\0\0\0\0\0 trace_event_id_t *restrict\fP \fIevent\fP\fB); \fP
+\ \ \ \ \ \  trace_event_id_t *restrict\fP \fIevent\fP\fB); \fP
 \fB
 .br
 \fP
@@ -115,13 +115,13 @@ event type identifier value in the object pointed to by
 .LP
 The \fIposix_trace_eventid_get_name\fP() and   \fIposix_trace_trid_eventid_open\fP()
 functions shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fItrid\fP argument was not a valid trace stream identifier.
 .sp
 .LP
 The \fIposix_trace_trid_eventid_open\fP() function shall fail if:
-.TP
+.TP 7
 .B ENAMETOOLONG
 .sp
 The size of the name pointed to by the \fIevent_name\fP argument was
@@ -130,7 +130,7 @@ longer than the implementation-defined value
 .sp
 .LP
 The \fIposix_trace_eventid_get_name\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The trace event type identifier \fIevent\fP was not associated with
 any name.
@@ -153,7 +153,7 @@ None.
 .LP
 \fITrace Option: User Trace Event\fP , \fIposix_trace_event\fP() ,
 \fIposix_trace_getnext_event\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<trace.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<trace.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

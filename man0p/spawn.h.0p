@@ -2,7 +2,7 @@
 .TH "<spawn.h>" P 2003 POSIX
 .\" <spawn.h> 
 .SH NAME
-spawn.h - spawn (\fBADVANCED REALTIME\fP)
+spawn.h \- spawn (\fBADVANCED REALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <spawn.h> \fP
@@ -105,7 +105,7 @@ None.
 .LP
 \fI<sched.h>\fP , \fI<semaphore.h>\fP , \fI<signal.h>\fP , \fI<sys/types.h>\fP
 , the System Interfaces
-volume of IEEE\0Std\01003.1-2001, \fIposix_spawnattr_destroy\fP(),
+volume of IEEE\ Std\ 1003.1-2001, \fIposix_spawnattr_destroy\fP(),
 \fIposix_spawnattr_getsigdefault\fP(), \fIposix_spawnattr_getflags\fP(),
 \fIposix_spawnattr_getpgroup\fP(), \fIposix_spawnattr_getschedparam\fP(),
 \fIposix_spawnattr_getschedpolicy\fP(), \fIposix_spawnattr_getsigmask\fP(),

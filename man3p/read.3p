@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "read" P 2003 POSIX
+.TH "READ" P 2003 POSIX
 .\" read 
 .SH NAME
-pread, read - read from a file
+pread, read \- read from a file
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -52,47 +52,37 @@ If the value of \fInbyte\fP is greater than {SSIZE_MAX}, the result
 is implementation-defined.
 .LP
 When attempting to read from an empty pipe or FIFO:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If no process has the pipe open for writing, \fIread\fP() shall return
 0 to indicate end-of-file.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If some process has the pipe open for writing and O_NONBLOCK is set,
 \fIread\fP() shall return -1 and set \fIerrno\fP to
 [EAGAIN].
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If some process has the pipe open for writing and O_NONBLOCK is clear,
 \fIread\fP() shall block the calling thread until some
 data is written or the pipe is closed by all processes that had the
 pipe open for writing.
-.in -5
-.RE
+.LP
 .LP
 When attempting to read a file (other than a pipe or FIFO) that supports
 non-blocking reads and has no data currently
 available:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If O_NONBLOCK is set, \fIread\fP() shall return -1 and set \fIerrno\fP
 to [EAGAIN].
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If O_NONBLOCK is clear, \fIread\fP() shall block the calling thread
 until some data becomes available.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The use of the O_NONBLOCK flag has no effect if there is some data
 available.
-.in -5
-.RE
+.LP
 .LP
 The \fIread\fP() function reads data previously written to a file.
 If any portion of a regular file prior to the end-of-file
@@ -213,7 +203,7 @@ An attempt to perform a \fIpread\fP() on a file that is
 incapable of seeking shall result in an error. 
 .SH RETURN VALUE
 .LP
-Upon successful completion, \fIread\fP()   \0and \fIpread\fP()  shall
+Upon successful completion, \fIread\fP()   \ and \fIpread\fP()  shall
 return a non-negative integer indicating the number of bytes actually
 read. Otherwise, the
 functions shall return -1 and set \fIerrno\fP to indicate the error.
@@ -221,39 +211,39 @@ functions shall return -1 and set \fIerrno\fP to indicate the error.
 .LP
 The \fIread\fP() and   \fIpread\fP()  functions shall fail
 if:
-.TP
+.TP 7
 .B EAGAIN
 The O_NONBLOCK flag is set for the file descriptor and the process
 would be delayed.
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor open for
 reading.
-.TP
+.TP 7
 .B EBADMSG
 The file is a STREAM file that is set to control-normal mode and the
 message waiting to be read includes a control part. 
-.TP
+.TP 7
 .B EINTR
 The read operation was terminated due to the receipt of a signal,
 and no data was transferred.
-.TP
+.TP 7
 .B EINVAL
 The STREAM or multiplexer referenced by \fIfildes\fP is linked (directly
 or indirectly) downstream from a multiplexer. 
-.TP
+.TP 7
 .B EIO
 The process is a member of a background process attempting to read
 from its controlling terminal, the process is ignoring or
 blocking the SIGTTIN signal, or the process group is orphaned. This
 error may also be generated for implementation-defined
 reasons.
-.TP
+.TP 7
 .B EISDIR
 The \fIfildes\fP argument refers to a directory and the implementation
 does not allow the directory to be read using \fIread\fP()
 or \fIpread\fP(). The \fIreaddir\fP() function should be used instead.
-.TP
+.TP 7
 .B EOVERFLOW
 The file is a regular file, \fInbyte\fP is greater than 0, the starting
 position is before the end-of-file, and the starting
@@ -263,36 +253,36 @@ in the open file description associated with
 .sp
 .LP
 The \fIread\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN] or [EWOULDBLOCK
 .sp
 The file descriptor is for a socket, is marked O_NONBLOCK, and no
 data is waiting to be received.
-.TP
+.TP 7
 .B ECONNRESET
 A read was attempted on a socket and the connection was forcibly closed
 by its peer.
-.TP
+.TP 7
 .B ENOTCONN
 A read was attempted on a socket that is not connected.
-.TP
+.TP 7
 .B ETIMEDOUT
 A read was attempted on a socket and a transmission timeout occurred.
 .sp
 .LP
 The \fIread\fP() and   \fIpread\fP()  functions may fail
 if:
-.TP
+.TP 7
 .B EIO
 A physical I/O error has occurred.
-.TP
+.TP 7
 .B ENOBUFS
 Insufficient resources were available in the system to perform the
 operation.
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory was available to fulfill the request.
-.TP
+.TP 7
 .B ENXIO
 A request was made of a nonexistent device, or the request was outside
 the capabilities of the device.
@@ -300,17 +290,17 @@ the capabilities of the device.
 .LP
 The \fIpread\fP() function shall fail, and the file pointer shall
 remain unchanged, if:
-.TP
+.TP 7
 .B EINVAL
 The \fIoffset\fP argument is invalid. The value is negative. 
-.TP
+.TP 7
 .B EOVERFLOW
 The file is a regular file and an attempt was made to read at or beyond
 the offset maximum associated with the file. 
-.TP
+.TP 7
 .B ENXIO
 A request was outside the capabilities of the device. 
-.TP
+.TP 7
 .B ESPIPE
 \fIfildes\fP is associated with a pipe or FIFO. 
 .sp
@@ -345,7 +335,7 @@ bytes_read = read(fd, buf, nbytes);
 None.
 .SH RATIONALE
 .LP
-This volume of IEEE\0Std\01003.1-2001 does not specify the value of
+This volume of IEEE\ Std\ 1003.1-2001 does not specify the value of
 the file offset after an error is returned; there
 are too many cases. For programming errors, such as [EBADF], the concept
 is meaningless since no file is involved. For errors that
@@ -365,14 +355,14 @@ for \fIread\fP() requests of zero bytes.
 The use of I/O with large byte counts has always presented problems.
 Ideas such as \fIlread\fP() and \fIlwrite\fP() (using and
 returning \fBlong\fPs) were considered at one time. The current solution
-is to use abstract types on the ISO\0C standard
+is to use abstract types on the ISO\ C standard
 function to \fIread\fP() and \fIwrite\fP(). The abstract types can
 be declared so that
 existing functions work, but can also be declared so that larger types
 can be represented in future implementations. It is presumed
 that whatever constraints limit the maximum range of \fBsize_t\fP
 also limit portable I/O requests to the same range. This volume
-of IEEE\0Std\01003.1-2001 also limits the range further by requiring
+of IEEE\ Std\ 1003.1-2001 also limits the range further by requiring
 that the byte count be limited so that a signed return
 value remains meaningful. Since the return type is also a (signed)
 abstract type, the byte count can be defined by the
@@ -384,12 +374,12 @@ pipes and FIFOs there could be no guarantee of atomicity of reads
 of {PIPE_BUF} or any other size that would be an aid to
 applications portability.
 .LP
-This volume of IEEE\0Std\01003.1-2001 requires that no action be taken
+This volume of IEEE\ Std\ 1003.1-2001 requires that no action be taken
 for \fIread\fP() or \fIwrite\fP() when \fInbyte\fP is zero. This is
 not intended to take precedence over detection of
 errors (such as invalid buffer pointers or file descriptors). This
 is consistent with the rest of this volume of
-IEEE\0Std\01003.1-2001, but the phrasing here could be misread to
+IEEE\ Std\ 1003.1-2001, but the phrasing here could be misread to
 require detection of the zero case before any other
 errors. A value of zero is to be considered a correct value, for which
 the semantics are a no-op.
@@ -410,9 +400,9 @@ order to handle networked transfers among heterogeneous file system
 and base hardware types. Such a facility may be required for
 support by the OSI presentation of layer services. However, it was
 determined that this should correspond with similar C-language
-facilities, and that is beyond the scope of this volume of IEEE\0Std\01003.1-2001.
+facilities, and that is beyond the scope of this volume of IEEE\ Std\ 1003.1-2001.
 The concept was suggested to the
-developers of the ISO\0C standard for their consideration as a possible
+developers of the ISO\ C standard for their consideration as a possible
 area for future work.
 .LP
 In 4.3 BSD, a \fIread\fP() or \fIwrite\fP() that is interrupted by
@@ -433,13 +423,13 @@ primarily by hardware and reliability issues.
 .LP
 There are no references to actions taken following an "unrecoverable
 error". It is considered beyond the scope of this volume
-of IEEE\0Std\01003.1-2001 to describe what happens in the case of
+of IEEE\ Std\ 1003.1-2001 to describe what happens in the case of
 hardware errors.
 .LP
-Previous versions of IEEE\0Std\01003.1-2001 allowed two very different
+Previous versions of IEEE\ Std\ 1003.1-2001 allowed two very different
 behaviors with regard to the handling of
 interrupts. In order to minimize the resulting confusion, it was decided
-that IEEE\0Std\01003.1-2001 should support only
+that IEEE\ Std\ 1003.1-2001 should support only
 one of these behaviors. Historical practice on AT&T-derived systems
 was to have \fIread\fP() and \fIwrite\fP() return -1 and set \fIerrno\fP
 to [EINTR] when interrupted after some, but not all, of
@@ -451,9 +441,9 @@ transferred before the interrupt. If -1 is returned when any data
 is transferred, it is difficult to recover from the error on a
 seekable device and impossible on a non-seekable device. Most new
 implementations support this behavior. The behavior required by
-IEEE\0Std\01003.1-2001 is to return the number of bytes transferred.
+IEEE\ Std\ 1003.1-2001 is to return the number of bytes transferred.
 .LP
-IEEE\0Std\01003.1-2001 does not specify when an implementation that
+IEEE\ Std\ 1003.1-2001 does not specify when an implementation that
 buffers \fIread\fP()ss actually moves the data into
 the user-supplied buffer, so an implementation may chose to do this
 at the latest possible moment. Therefore, an interrupt arriving
@@ -472,7 +462,7 @@ None.
 .LP
 \fIfcntl\fP() , \fIioctl\fP() , \fIlseek\fP() , \fIopen\fP() , \fIpipe\fP()
 , \fIreadv\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Chapter 11, General
+Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 11, General
 Terminal
 Interface, \fI<stropts.h>\fP, \fI<sys/uio.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT

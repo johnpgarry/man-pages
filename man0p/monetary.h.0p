@@ -2,17 +2,17 @@
 .TH "<monetary.h>" P 2003 POSIX
 .\" <monetary.h> 
 .SH NAME
-monetary.h - monetary types
+monetary.h \- monetary types
 .SH SYNOPSIS
 .LP
 \fB#include <monetary.h> \fP
 .SH DESCRIPTION
 .LP
 The \fI<monetary.h>\fP header shall define the following types:
-.TP
+.TP 7
 \fBsize_t\fP
 As described in \fI<stddef.h>\fP .
-.TP
+.TP 7
 \fBssize_t\fP
 As described in \fI<sys/types.h>\fP .
 .sp
@@ -40,7 +40,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIstrfmon\fP()
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIstrfmon\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

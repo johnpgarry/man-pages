@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_spawn" P 2003 POSIX
+.TH "POSIX_SPAWN" P 2003 POSIX
 .\" posix_spawn 
 .SH NAME
-posix_spawn, posix_spawnp - spawn a process (\fBADVANCED REALTIME\fP)
+posix_spawn, posix_spawnp \- spawn a process (\fBADVANCED REALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <spawn.h>
@@ -11,21 +11,21 @@ posix_spawn, posix_spawnp - spawn a process (\fBADVANCED REALTIME\fP)
 int posix_spawn(pid_t *restrict\fP \fIpid\fP\fB, const char *restrict\fP
 \fIpath\fP\fB,
 .br
-\0\0\0\0\0\0 const posix_spawn_file_actions_t *\fP\fIfile_actions\fP\fB,
+\ \ \ \ \ \  const posix_spawn_file_actions_t *\fP\fIfile_actions\fP\fB,
 .br
-\0\0\0\0\0\0 const posix_spawnattr_t *restrict\fP \fIattrp\fP\fB,
+\ \ \ \ \ \  const posix_spawnattr_t *restrict\fP \fIattrp\fP\fB,
 .br
-\0\0\0\0\0\0 char *const\fP \fIargv\fP\fB[restrict], char *const\fP
+\ \ \ \ \ \  char *const\fP \fIargv\fP\fB[restrict], char *const\fP
 \fIenvp\fP\fB[restrict]);
 .br
 int posix_spawnp(pid_t *restrict\fP \fIpid\fP\fB, const char *restrict\fP
 \fIfile\fP\fB,
 .br
-\0\0\0\0\0\0 const posix_spawn_file_actions_t *\fP\fIfile_actions\fP\fB,
+\ \ \ \ \ \  const posix_spawn_file_actions_t *\fP\fIfile_actions\fP\fB,
 .br
-\0\0\0\0\0\0 const posix_spawnattr_t *restrict\fP \fIattrp\fP\fB,
+\ \ \ \ \ \  const posix_spawnattr_t *restrict\fP \fIattrp\fP\fB,
 .br
-\0\0\0\0\0\0 char *const\fP \fIargv\fP\fB[restrict], char * const\fP
+\ \ \ \ \ \  char *const\fP \fIargv\fP\fB[restrict], char * const\fP
 \fIenvp\fP\fB[restrict]);
 \fP
 \fB
@@ -80,7 +80,7 @@ a null pointer.
 The number of bytes available for the child process' combined argument
 and environment lists is {ARG_MAX}. The implementation
 shall specify in the system documentation (see the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Chapter 2, Conformance) whether
+volume of IEEE\ Std\ 1003.1-2001, Chapter 2, Conformance) whether
 any list overhead, such as length words, null terminators,
 pointers, or alignment bytes, is included in this total.
 .LP
@@ -94,7 +94,7 @@ file. If the \fIfile\fP parameter contains a slash character, the
 process image file. Otherwise, the path prefix for this file shall
 be obtained by a search of the directories passed as the
 environment variable \fIPATH\fP (see the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 8, Environment Variables). If this
+IEEE\ Std\ 1003.1-2001, Chapter 8, Environment Variables). If this
 environment variable is not defined, the results of
 the search are implementation-defined.
 .LP
@@ -113,31 +113,27 @@ process as modified by the spawn file actions object pointed to by
 open file descriptor after the spawn file actions have been processed.
 The effective order of processing the spawn file actions
 shall be:
-.in +5
-.LP
+.IP " 1." 4
 The set of open file descriptors for the child process shall initially
 be the same set as is open for the calling process. All
 attributes of the corresponding open file descriptions, including
 file locks (see \fIfcntl\fP() ), shall
 remain unchanged.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The signal mask, signal default actions, and the effective user and
 group IDs for the child process shall be changed as
 specified in the attributes object referenced by \fIattrp\fP.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The file actions specified by the spawn file actions object shall
 be performed in the order in which they were added to the
 spawn file actions object.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Any file descriptor that has its FD_CLOEXEC flag set (see \fIfcntl\fP()
 ) shall be closed.
-.in -5
+.LP
 .LP
 The \fBposix_spawnattr_t\fP spawn attributes object type is defined
 in \fI<spawn.h>\fP. It shall contain at least the attributes defined
@@ -240,8 +236,7 @@ the new process
 image.
 .LP
 It is implementation-defined whether the fork handlers are run when
-\fIposix_spawn\fP() or \fIposix_spawnp\fP() is called. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+\fIposix_spawn\fP() or \fIposix_spawnp\fP() is called. 
 .SH RETURN VALUE
 .LP
 Upon successful completion, \fIposix_spawn\fP() and \fIposix_spawnp\fP()
@@ -258,7 +253,7 @@ the caller.
 .LP
 The \fIposix_spawn\fP() and \fIposix_spawnp\fP() functions may fail
 if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIfile_actions\fP or \fIattrp\fP is invalid.
 .sp
@@ -330,23 +325,18 @@ perceived difficulties with \fIfork\fP(): the \fIfork\fP() function
 is difficult or impossible to implement without swapping or dynamic
 address
 translation.
-.RS
-.in +5
-.LP
+.IP " *" 3
 Swapping is generally too slow for a realtime environment.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Dynamic address translation is not available everywhere that POSIX
 might be useful.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Processes are too useful to simply option out of POSIX whenever it
 must run without address translation or other MMU
 services.
-.in -5
-.RE
+.LP
 .LP
 Thus, POSIX needs process creation and file execution primitives that
 can be efficiently implemented without address translation
@@ -442,41 +432,31 @@ on many operating systems that are not UNIX systems.
 .LP
 The requirements for \fIposix_spawn\fP() and \fIposix_spawnp\fP()
 are:
-.RS
-.in +5
-.LP
+.IP " *" 3
 They must be implementable without an MMU or unusual hardware.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 They must be compatible with existing POSIX standards.
-.in -5
-.RE
+.LP
 .LP
 Additional goals are:
-.RS
-.in +5
-.LP
+.IP " *" 3
 They should be efficiently implementable.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 They should be able to replace at least 50% of typical executions
 of \fIfork\fP().
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A system with \fIposix_spawn\fP() and \fIposix_spawnp\fP() and without
 \fIfork\fP()
 should be useful, at least for realtime applications.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 A system with \fIfork\fP() and the \fIexec\fP family
 should be able to implement \fIposix_spawn\fP() and \fIposix_spawnp\fP()
 as library routines.
-.in -5
-.RE
+.LP
 .SS Two-Syntax
 .LP
 POSIX \fIexec\fP has several calling sequences with approximately
@@ -562,7 +542,7 @@ operating systems with only one process.
 .LP
 A library implementation of \fIposix_spawn\fP() or \fIposix_spawnp\fP()
 may not be able to detect all possible errors before
-it forks the child process. IEEE\0Std\01003.1-2001 provides for an
+it forks the child process. IEEE\ Std\ 1003.1-2001 provides for an
 error indication returned from a child process which
 could not successfully complete the spawn operation via a special
 exit status which may be detected using the status value returned
@@ -589,7 +569,7 @@ dependent on kernel modifications to \fIwaitpid\fP() to be able to
 embed special information in \fIstat_val\fP to indicate a
 spawn failure.
 .LP
-The 8 bits of child process exit status that are guaranteed by IEEE\0Std\01003.1-2001
+The 8 bits of child process exit status that are guaranteed by IEEE\ Std\ 1003.1-2001
 to be accessible to the waiting
 parent process are insufficient to disambiguate a spawn error from
 any other kind of error that may be returned by an arbitrary
@@ -638,7 +618,7 @@ None.
 , \fIsched_setparam\fP() , \fIsched_setscheduler\fP() , \fIsetpgid\fP()
 , \fIsetuid\fP() , \fIstat\fP() , \fItimes\fP() , \fIwait\fP() , the
 Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<spawn.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<spawn.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

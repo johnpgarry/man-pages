@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sccs" P 2003 POSIX
+.TH "SCCS" P 2003 POSIX
 .\" sccs 
 .SH NAME
-sccs - front end for the SCCS subsystem (\fBDEVELOPMENT\fP)
+sccs \- front end for the SCCS subsystem (\fBDEVELOPMENT\fP)
 .SH SYNOPSIS
 .LP
 \fBsccs\fP \fB[\fP\fB-r\fP\fB][\fP\fB-d\fP \fIpath\fP\fB][\fP\fB-p\fP
@@ -20,14 +20,14 @@ default, each of the \fIoperands\fP shall be modified by prefixing
 it with the string \fB"SCCS/s."\fP .
 .LP
 The \fIcommand\fP can be the name of one of the SCCS utilities in
-this volume of IEEE\0Std\01003.1-2001 ( \fIadmin\fP, \fIdelta\fP,
+this volume of IEEE\ Std\ 1003.1-2001 ( \fIadmin\fP, \fIdelta\fP,
 \fIget\fP, \fIprs\fP, \fIrmdel\fP, \fIsact\fP, \fIunget\fP, \fIval\fP,
 or \fIwhat\fP) or one of the pseudo-utilities listed in the EXTENDED
 DESCRIPTION section.
 .SH OPTIONS
 .LP
 The \fIsccs\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
 except that \fIoptions\fP operands are
 actually options to be passed to the utility named by \fIcommand\fP.
 When the portion of the command:
@@ -47,14 +47,14 @@ sections.
 .LP
 The following options shall be supported preceding the \fIcommand\fP
 operand:
-.TP
-\fB-d\0\fP \fIpath\fP
+.TP 7
+\fB-d\ \fP \fIpath\fP
 A pathname of a directory to be used as a root directory for the SCCS
 files. The default shall be the current directory. The
 \fB-d\fP option shall take precedence over the \fIPROJECTDIR\fP variable.
 See \fB-p\fP.
-.TP
-\fB-p\0\fP \fIpath\fP
+.TP 7
+\fB-p\ \fP \fIpath\fP
 A pathname of a directory in which the SCCS files are located. The
 default shall be the \fBSCCS\fP directory. 
 .LP
@@ -100,7 +100,7 @@ which is used as:
 \fP
 .fi
 .RE
-.TP
+.TP 7
 \fB-r\fP
 Invoke \fIcommand\fP with the real user ID of the process, not any
 effective user ID that the \fIsccs\fP utility is set to.
@@ -113,14 +113,14 @@ as the real user.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIcommand\fP
 An SCCS utility name or the name of one of the pseudo-utilities listed
 in the EXTENDED DESCRIPTION section.
-.TP
+.TP 7
 \fIoptions\fP
 An option or option-argument to be passed to \fIcommand\fP.
-.TP
+.TP 7
 \fIoperands\fP
 An operand to be passed to \fIcommand\fP.
 .sp
@@ -134,33 +134,33 @@ See the utility description for the specified \fIcommand\fP.
 .LP
 The following environment variables shall affect the execution of
 \fIsccs\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
-.TP
+.TP 7
 \fIPROJECTDIR\fP
 .sp
 Provide a default value for the \fB-d\fP \fIpath\fP option. If the
@@ -191,21 +191,21 @@ See the utility description for the specified \fIcommand\fP.
 The following pseudo-utilities shall be supported as \fIcommand\fP
 operands. All options referred to in the following list are
 values given in the \fIoptions\fP operands following \fIcommand\fP.
-.TP
+.TP 7
 \fBcheck\fP
 Equivalent to \fBinfo\fP, except that nothing shall be printed if
 nothing is being edited, and a non-zero exit status shall be
 returned if anything is being edited. The intent is to have this included
 in an "install" entry in a makefile to ensure that
 everything is included into the SCCS file before a version is installed.
-.TP
+.TP 7
 \fBclean\fP
 Remove everything from the current directory that can be recreated
 from SCCS files, but do not remove any files being edited.
 If the \fB-b\fP option is given, branches shall be ignored in the
 determination of whether they are being edited; this is
 dangerous if branches are kept in the same directory.
-.TP
+.TP 7
 \fBcreate\fP
 Create an SCCS file, taking the initial contents from the file of
 the same name. Any options to \fIadmin\fP are accepted. If the creation
@@ -213,7 +213,7 @@ is successful, the original files shall be renamed by
 prefixing the basenames with a comma. These renamed files should be
 removed after it has been verified that the SCCS files have
 been created successfully.
-.TP
+.TP 7
 \fBdelget\fP
 Perform a \fIdelta\fP on the named files and then \fIget\fP new versions.
 The new versions shall have ID keywords expanded and shall not be
@@ -222,7 +222,7 @@ Any \fB-m\fP, \fB-p\fP, \fB-r\fP, \fB-s\fP, and \fB-y\fP options shall
 be passed to \fIdelta\fP, and any \fB-b\fP, \fB-c\fP, \fB-e\fP, \fB-i\fP,
 \fB-k\fP, \fB-l\fP, \fB-s\fP,
 and \fB-x\fP options shall be passed to \fIget\fP.
-.TP
+.TP 7
 \fBdeledit\fP
 Equivalent to \fBdelget\fP, except that the \fIget\fP phase shall
 include the \fB-e\fP
@@ -230,7 +230,7 @@ option. This option is useful for making a checkpoint of the current
 editing phase. The same options shall be passed to \fIdelta\fP as
 described above, and all the options listed for \fIget\fP above except
 \fB-e\fP shall be passed to \fBedit\fP.
-.TP
+.TP 7
 \fBdiffs\fP
 Write a difference listing between the current version of the files
 checked out for editing and the versions in SCCS format.
@@ -239,33 +239,33 @@ be passed to \fIget\fP; any \fB-l\fP, \fB-s\fP, \fB-e\fP, \fB-f\fP,
 \fB-h\fP, and \fB-b\fP options shall be
 passed to \fIdiff\fP. A \fB-C\fP option shall be passed to \fIdiff\fP
 as \fB-c\fP.
-.TP
+.TP 7
 \fBedit\fP
 Equivalent to \fIget\fP \fB-e\fP.
-.TP
+.TP 7
 \fBfix\fP
 Remove the named delta, but leave a copy of the delta with the changes
 that were in it. It is useful for fixing small compiler
 bugs, and so on. The application shall ensure that it is followed
 by a \fB-r\fP \fISID\fP option. Since \fBfix\fP does not leave
 audit trails, it should be used carefully.
-.TP
+.TP 7
 \fBinfo\fP
 Write a listing of all files being edited. If the \fB-b\fP option
 is given, branches (that is, SIDs with two or fewer
 components) shall be ignored. If a \fB-u\fP \fIuser\fP option is given,
 then only files being edited by the named user shall be
-listed. A \fB-U\fP option shall be equivalent to \fB-u\fP< \fIcurrent\0user\fP>.
-.TP
+listed. A \fB-U\fP option shall be equivalent to \fB-u\fP< \fIcurrent\ user\fP>.
+.TP 7
 \fBprint\fP
 Write out verbose information about the named files, equivalent to
 \fIsccs\fP \fIprs\fP.
-.TP
+.TP 7
 \fBtell\fP
 Write a <newline>-separated list of the files being edited to standard
 output. Takes the \fB-b\fP, \fB-u\fP, and
 \fB-U\fP options like \fBinfo\fP and \fBcheck\fP.
-.TP
+.TP 7
 \fBunedit\fP
 This is the opposite of an \fBedit\fP or a \fIget\fP \fB-e\fP. It
 should be used with
@@ -274,10 +274,10 @@ caution, since any changes made since the \fIget\fP are lost.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -293,8 +293,7 @@ as specific filenames. The pseudo-utilities supported by
 \fIsccs\fP are not described as having this capability, but are not
 prohibited from doing so.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 To get a file for editing, edit it and produce a new delta:
 .sp
 .RS
@@ -306,9 +305,8 @@ sccs delta file.c
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 To get a file from another directory:
 .sp
 .RS
@@ -328,9 +326,8 @@ or:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 To make a delta of a large number of files in the current directory:
 .sp
 .RS
@@ -340,9 +337,8 @@ To make a delta of a large number of files in the current directory:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 To get a list of files being edited that are not on branches:
 .sp
 .RS
@@ -352,9 +348,8 @@ To get a list of files being edited that are not on branches:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 To delta everything being edited by the current user:
 .sp
 .RS
@@ -364,9 +359,8 @@ To delta everything being edited by the current user:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 In a makefile, to get source files from an SCCS file if it does not
 already exist:
 .sp
@@ -379,7 +373,7 @@ $(SRCS):
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 SCCS and its associated utilities are part of the XSI Development

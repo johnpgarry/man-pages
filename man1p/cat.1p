@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cat" P 2003 POSIX
+.TH "CAT" P 2003 POSIX
 .\" cat 
 .SH NAME
-cat - concatenate and print files
+cat \- concatenate and print files
 .SH SYNOPSIS
 .LP
 \fBcat\fP \fB[\fP\fB-u\fP\fB][\fP\fIfile\fP \fB...\fP\fB]\fP
@@ -14,10 +14,10 @@ sequence.
 .SH OPTIONS
 .LP
 The \fIcat\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following option shall be supported:
-.TP
+.TP 7
 \fB-u\fP
 Write bytes from the input file to the standard output without delay
 as each is read.
@@ -25,7 +25,7 @@ as each is read.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of an input file. If no \fIfile\fP operands are specified,
 the standard input shall be used. If a \fIfile\fP is
@@ -47,29 +47,29 @@ The input files can be any file type.
 .LP
 The following environment variables shall affect the execution of
 \fIcat\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -94,10 +94,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All input files were output successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -131,7 +131,7 @@ the \fIcat\fP utility buffers output if the \fB-u\fP option is
 not specified. Traditionally, the \fB-u\fP option is implemented using
 the equivalent of the \fIsetvbuf\fP() function defined in the System
 Interfaces volume of
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .SH EXAMPLES
 .LP
 The following command:
@@ -262,7 +262,7 @@ can be obtained from the \fB-n\fP option of the \fIpr\fP utility.
 None.
 .SH SEE ALSO
 .LP
-\fImore\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+\fImore\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIsetvbuf\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

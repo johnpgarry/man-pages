@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "renice" P 2003 POSIX
+.TH "RENICE" P 2003 POSIX
 .\" renice 
 .SH NAME
-renice - set nice values of running processes
+renice \- set nice values of running processes
 .SH SYNOPSIS
 .LP
 \fBrenice -n\fP \fIincrement\fP \fB[\fP\fB-g | -p | -u\fP\fB]\fP \fIID\fP
@@ -10,7 +10,7 @@ renice - set nice values of running processes
 .SH DESCRIPTION
 .LP
 The \fIrenice\fP utility shall request that the nice values (see the
-Base Definitions volume of IEEE\0Std\01003.1-2001,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 3.239, Nice Value) of one or more running processes be changed.
 By
 default, the applicable processes are specified by their process IDs.
@@ -40,14 +40,14 @@ the user has appropriate privileges.
 .SH OPTIONS
 .LP
 The \fIrenice\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-g\fP
 Interpret all operands as unsigned decimal integer process group IDs.
-.TP
-\fB-n\0\fP \fIincrement\fP
+.TP 7
+\fB-n\ \fP \fIincrement\fP
 Specify how the nice value of the specified process or processes is
 to be adjusted. The \fIincrement\fP option-argument is a
 positive or negative decimal integer that shall be used to modify
@@ -56,12 +56,12 @@ the nice value of the specified process or processes.
 Positive \fIincrement\fP values shall cause a lower nice value. Negative
 \fIincrement\fP values may require appropriate
 privileges and shall cause a higher nice value.
-.TP
+.TP 7
 \fB-p\fP
 Interpret all operands as unsigned decimal integer process IDs. The
 \fB-p\fP option is the default if no options are
 specified.
-.TP
+.TP 7
 \fB-u\fP
 Interpret all operands as users. If a user exists with a user name
 equal to the operand, then the user ID of that user is used
@@ -72,7 +72,7 @@ the user.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIID\fP
 A process ID, process group ID, or user name/user ID, depending on
 the option selected.
@@ -87,29 +87,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIrenice\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -132,10 +132,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -148,8 +148,7 @@ Default.
 .LP
 None.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 Adjust the nice value so that process IDs 987 and 32 would have a
 lower nice value:
 .sp
@@ -160,9 +159,8 @@ lower nice value:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Adjust the nice value so that group IDs 324 and 76 would have a higher
 nice value, if the user has the appropriate privileges to
 do so:
@@ -174,9 +172,8 @@ do so:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Adjust the nice value so that numeric user ID 8 and user \fBsas\fP
 would have a lower nice value:
 .sp
@@ -187,7 +184,7 @@ would have a lower nice value:
 \fP
 .fi
 .RE
-.in -5
+.LP
 .LP
 Useful nice value increments on historical systems include 19 or 20
 (the affected processes run only when nothing else in the
@@ -203,12 +200,12 @@ rather than the OPERANDS section.
 The definition of nice value is not intended to suggest that all processes
 in a system have priorities that are comparable.
 Scheduling policy extensions such as the realtime priorities in the
-System Interfaces volume of IEEE\0Std\01003.1-2001 make
+System Interfaces volume of IEEE\ Std\ 1003.1-2001 make
 the notion of a single underlying priority for all scheduling policies
 problematic. Some implementations may implement the \fInice\fP-related
 features to affect all processes on the system, others to affect just
 the general
-time-sharing activities implied by this volume of IEEE\0Std\01003.1-2001,
+time-sharing activities implied by this volume of IEEE\ Std\ 1003.1-2001,
 and others may have no effect at all. Because of
 the use of "implementation-defined" in \fInice\fP and \fIrenice\fP,
 a wide range of

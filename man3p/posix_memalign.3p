@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_memalign" P 2003 POSIX
+.TH "POSIX_MEMALIGN" P 2003 POSIX
 .\" posix_memalign 
 .SH NAME
-posix_memalign - aligned memory allocation (\fBADVANCED REALTIME\fP)
+posix_memalign \- aligned memory allocation (\fBADVANCED REALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -35,11 +35,11 @@ the error.
 .SH ERRORS
 .LP
 The \fIposix_memalign\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the alignment parameter is not a power of two multiple
 of \fIsizeof\fP( \fBvoid *\fP).
-.TP
+.TP 7
 .B ENOMEM
 There is insufficient memory available with the requested alignment.
 .sp
@@ -62,7 +62,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfree\fP() , \fImalloc\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

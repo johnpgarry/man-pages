@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "initstate" P 2003 POSIX
+.TH "INITSTATE" P 2003 POSIX
 .\" initstate 
 .SH NAME
-initstate, random, setstate, srandom - pseudo-random number functions
+initstate, random, setstate, srandom \- pseudo-random number functions
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -24,7 +24,7 @@ void srandom(unsigned\fP \fIseed\fP\fB); \fP
 The \fIrandom\fP() function shall use a non-linear additive feedback
 random-number generator employing a default state array
 size of 31 \fBlong\fP integers to return successive pseudo-random
-numbers in the range from 0 to 2-1.
+numbers in the range from 0 to 2**31-1.
 The period of this random-number generator is approximately 16 x (2**31-1).
 The size of the state array
 determines the period of the random-number generator. Increasing the
@@ -93,23 +93,21 @@ None.
 .LP
 After initialization, a state array can be restarted at a different
 point in one of two ways:
-.in +5
-.LP
+.IP " 1." 4
 The \fIinitstate\fP() function can be used, with the desired seed,
 state array, and size of the array.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The \fIsetstate\fP() function, with the desired state, can be used,
 followed by \fIsrandom\fP() with the desired seed. The
 advantage of using both of these functions is that the size of the
 state array does not have to be saved once it is
 initialized.
-.in -5
+.LP
 .LP
 Although some implementations of \fIrandom\fP() have written messages
 to standard error, such implementations do not conform to
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .LP
 Issue 5 restored the historical behavior of this function.
 .LP
@@ -126,7 +124,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIdrand48\fP() , \fIrand\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

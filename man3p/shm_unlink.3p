@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "shm_unlink" P 2003 POSIX
+.TH "SHM_UNLINK" P 2003 POSIX
 .\" shm_unlink 
 .SH NAME
-shm_unlink - remove a shared memory object (\fBREALTIME\fP)
+shm_unlink \- remove a shared memory object (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <sys/mman.h>
@@ -39,14 +39,14 @@ object shall not be changed by this function call.
 .SH ERRORS
 .LP
 The \fIshm_unlink\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Permission is denied to unlink the named shared memory object.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIname\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 The named shared memory object does not exist.
 .sp
@@ -73,7 +73,7 @@ None.
 .LP
 \fIclose\fP() , \fImmap\fP() , \fImunmap\fP() , \fIshmat\fP() , \fIshmctl\fP()
 , \fIshmdt\fP() , \fIshm_open\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/mman.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

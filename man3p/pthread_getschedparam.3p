@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_getschedparam" P 2003 POSIX
+.TH "PTHREAD_GETSCHEDPARAM" P 2003 POSIX
 .\" pthread_getschedparam 
 .SH NAME
-pthread_getschedparam, pthread_setschedparam - dynamic thread scheduling
+pthread_getschedparam, pthread_setschedparam \- dynamic thread scheduling
 parameters access (\fBREALTIME
 THREADS\fP)
 .SH SYNOPSIS
@@ -13,11 +13,11 @@ THREADS\fP)
 int pthread_getschedparam(pthread_t\fP \fIthread\fP\fB, int *restrict\fP
 \fIpolicy\fP\fB,
 .br
-\0\0\0\0\0\0 struct sched_param *restrict\fP \fIparam\fP\fB);
+\ \ \ \ \ \  struct sched_param *restrict\fP \fIparam\fP\fB);
 .br
 int pthread_setschedparam(pthread_t\fP \fIthread\fP\fB, int\fP \fIpolicy\fP\fB,
 .br
-\0\0\0\0\0\0 const struct sched_param *\fP\fIparam\fP\fB); \fP
+\ \ \ \ \ \  const struct sched_param *\fP\fIparam\fP\fB); \fP
 \fB
 .br
 \fP
@@ -80,37 +80,37 @@ error number shall be returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_getschedparam\fP() function may fail if:
-.TP
+.TP 7
 .B ESRCH
 The value specified by \fIthread\fP does not refer to an existing
 thread.
 .sp
 .LP
 The \fIpthread_setschedparam\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIpolicy\fP or one of the scheduling parameters
 associated with the scheduling policy \fIpolicy\fP is
 invalid.
-.TP
+.TP 7
 .B ENOTSUP
 An attempt was made to set the policy or scheduling parameters to
 an unsupported value.
-.TP
+.TP 7
 .B ENOTSUP
 An attempt was made to dynamically change the scheduling policy to
 SCHED_SPORADIC, and the implementation does not support this
 change. 
-.TP
+.TP 7
 .B EPERM
 The caller does not have the appropriate permission to set either
 the scheduling parameters or the scheduling policy of the
 specified thread.
-.TP
+.TP 7
 .B EPERM
 The implementation does not allow the application to modify one of
 the parameters to the value specified.
-.TP
+.TP 7
 .B ESRCH
 The value specified by \fIthread\fP does not refer to a existing thread.
 .sp
@@ -134,7 +134,7 @@ None.
 .LP
 \fIpthread_setschedprio\fP() , \fIsched_getparam\fP() , \fIsched_getscheduler\fP()
 , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP, \fI<sched.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP, \fI<sched.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

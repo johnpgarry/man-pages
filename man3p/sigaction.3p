@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sigaction" P 2003 POSIX
+.TH "SIGACTION" P 2003 POSIX
 .\" sigaction 
 .SH NAME
-sigaction - examine and change a signal action
+sigaction \- examine and change a signal action
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -11,7 +11,7 @@ sigaction - examine and change a signal action
 int sigaction(int\fP \fIsig\fP\fB, const struct sigaction *restrict\fP
 \fIact\fP\fB,
 .br
-\0\0\0\0\0\0 struct sigaction *restrict\fP \fIoact\fP\fB); \fP
+\ \ \ \ \ \  struct sigaction *restrict\fP \fIoact\fP\fB); \fP
 \fB
 .br
 \fP
@@ -26,13 +26,61 @@ The structure \fBsigaction\fP, used to describe an action to be taken,
 is defined in the \fI<signal.h>\fP header to include at least the
 following members:
 .TS C
-center;l l l l l l l l l l l.
-\fBMember Type\fP 	 \fBMember Name\fP 	 \fBDescription\fP 	
-\fBvoid(*) (int)\fP 	 \fIsa_handler\fP 	 Pointer to a signal-catching function or one of the macros SIG_IGN or SIG_DFL. 	
-\fBsigset_t\fP 	 \fIsa_mask\fP 	 Additional set of signals to be blocked during execution of signal-catching function. 	
-\fBint\fP 	 \fIsa_flags\fP 	 Special flags to affect behavior of signal. 	
-\fBvoid(*) (int,\fP 	 \fI\0\fP 	 \0 	
-\fB\0\0siginfo_t *, void *)\fP 	 \fIsa_sigaction\fP 	 Pointer to a signal-catching function. 	
+center; lw(15) l lw(30).
+T{
+.na
+\fBMember Type\fP
+.ad
+T}	\fBMember Name\fP	T{
+.na
+\fBDescription\fP
+.ad
+T}
+T{
+.na
+\fBvoid(*) (int)\fP
+.ad
+T}	\fIsa_handler\fP	T{
+.na
+Pointer to a signal-catching function or one of the macros SIG_IGN or SIG_DFL.
+.ad
+T}
+T{
+.na
+\fBsigset_t\fP
+.ad
+T}	\fIsa_mask\fP	T{
+.na
+Additional set of signals to be blocked during execution of signal-catching function.
+.ad
+T}
+T{
+.na
+\fBint\fP
+.ad
+T}	\fIsa_flags\fP	T{
+.na
+Special flags to affect behavior of signal.
+.ad
+T}
+T{
+.na
+\fBvoid(*) (int,\fP
+.ad
+T}	\fI\ \fP	T{
+.na
+\ 
+.ad
+T}
+T{
+.na
+\fB\ \ siginfo_t *, void *)\fP
+.ad
+T}	\fIsa_sigaction\fP	T{
+.na
+Pointer to a signal-catching function.
+.ad
+T}
 .TE
 .LP
 The storage occupied by \fIsa_handler\fP and \fIsa_sigaction\fP may
@@ -54,7 +102,7 @@ indicated.
 If the SA_SIGINFO flag (see below) is cleared in the \fIsa_flags\fP
 field of the \fBsigaction\fP structure, the
 \fIsa_handler\fP field identifies the action to be associated with
-the specified signal.   \0If the
+the specified signal.   \ If the
 SA_SIGINFO flag is set in the \fIsa_flags\fP field, and the implementation
 supports the Realtime Signals Extension option or the
 XSI Extension option, the \fIsa_sigaction\fP field specifies a signal-catching
@@ -74,43 +122,44 @@ specified signal.
 The following flags, defined in the \fI<signal.h>\fP header, can be
 set in
 \fIsa_flags\fP:
-.TP
+.TP 7
 SA_NOCLDSTOP
-Do not generate SIGCHLD when children stop   \0or stopped children
+Do not generate SIGCHLD when children stop   \ or stopped children
 continue.  
 .LP
 If \fIsig\fP is SIGCHLD and the SA_NOCLDSTOP flag is not set in \fIsa_flags\fP,
 and the implementation supports the SIGCHLD
 signal, then a SIGCHLD signal shall be generated for the calling process
-whenever any of its child processes stop   \0and a
+whenever any of its child processes stop   \ and a
 SIGCHLD signal may be generated for the calling process whenever any
-of its stopped child processes are continued.  \0If \fIsig\fP is SIGCHLD
+of its stopped child processes are continued.  \ If \fIsig\fP is SIGCHLD
 and the SA_NOCLDSTOP flag is set in
 \fIsa_flags\fP, then the implementation shall not generate a SIGCHLD
 signal in this way.
-.TP
+.TP 7
 SA_ONSTACK
 If set and an alternate signal stack has been declared with \fIsigaltstack\fP(),
 the
 signal shall be delivered to the calling process on that stack. Otherwise,
-the signal shall be delivered on the current stack. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
-.TP
+the signal shall be delivered on the current stack. 
+.TP 7
 SA_RESETHAND
 If set, the disposition of the signal shall be reset to SIG_DFL and
 the SA_SIGINFO flag shall be cleared on entry to the signal
 handler.  
-.TP
+.TP 7
 \fBNote:\fP
+.RS
 SIGILL and SIGTRAP cannot be automatically reset when delivered; the
 system silently enforces this restriction.
+.RE
 .sp
 Otherwise, the disposition of the signal shall not be modified on
 entry to the signal handler. 
 .LP
 In addition, if this flag is set, \fIsigaction\fP() behaves as if
 the SA_NODEFER flag were also set. 
-.TP
+.TP 7
 SA_RESTART
 This flag affects the behavior of interruptible functions; that is,
 those specified to fail with \fIerrno\fP set to [EINTR]. If
@@ -119,7 +168,7 @@ signal, the function shall restart and shall not fail with
 [EINTR] unless otherwise specified. If the flag is not set, interruptible
 functions interrupted by this signal shall fail with
 \fIerrno\fP set to [EINTR]. 
-.TP
+.TP 7
 SA_SIGINFO
 If cleared and the signal is caught, the signal-catching function
 shall be entered as: 
@@ -174,7 +223,7 @@ signal was generated by a process and \fIsi_pid\fP and
 ID of the sender.  The \fI<signal.h>\fP header description contains
 information about the signal-specific contents of the elements of
 the \fBsiginfo_t\fP type.
-.TP
+.TP 7
 SA_NOCLDWAIT
 If set, and \fIsig\fP equals SIGCHLD, child processes of the calling
 processes shall not be transformed into zombie processes when
@@ -186,7 +235,7 @@ shall fail and set \fIerrno\fP to [ECHILD]. Otherwise, terminating
 child
 processes shall be transformed into zombie processes, unless SIGCHLD
 is set to SIG_IGN. 
-.TP
+.TP 7
 SA_NODEFER
 If set and \fIsig\fP is caught, \fIsig\fP shall not be added to the
 process' signal mask on entry to the signal handler unless it
@@ -201,15 +250,15 @@ installed for the duration of the signal-catching function (or until
 a call to either \fIsigprocmask\fP() or \fIsigsuspend\fP() is
 made). This mask is formed by taking the union of the current signal
 mask and the value of the \fIsa_mask\fP for the signal being
-delivered   \0unless SA_NODEFER or SA_RESETHAND is set,  and
+delivered   \ unless SA_NODEFER or SA_RESETHAND is set,  and
 then including the signal being delivered. If and when the user's
 signal handler returns normally, the original signal mask is
 restored.
 .LP
 Once an action is installed for a specific signal, it shall remain
 installed until another action is explicitly requested (by
-another call to \fIsigaction\fP()),   \0until the SA_RESETHAND flag
-causes resetting of the handler,  \0or until one of the \fIexec\fP
+another call to \fIsigaction\fP()),   \ until the SA_RESETHAND flag
+causes resetting of the handler,  \ or until one of the \fIexec\fP
 functions is called.
 .LP
 If the previous action for \fIsig\fP had been established by \fIsignal\fP(),
@@ -233,7 +282,7 @@ causes an error to be returned with \fIerrno\fP set to [EINVAL].
 If SA_SIGINFO is not set in \fIsa_flags\fP, then the disposition of
 subsequent occurrences of \fIsig\fP when it is already
 pending is implementation-defined; the signal-catching function shall
-be invoked with a single argument.   \0If the
+be invoked with a single argument.   \ If the
 implementation supports the Realtime Signals Extension option, and
 if SA_SIGINFO is set in \fIsa_flags\fP, then subsequent
 occurrences of \fIsig\fP generated by \fIsigqueue\fP() or as a result
@@ -257,12 +306,12 @@ indicate the error, and no new signal-catching function shall be installed.
 .SH ERRORS
 .LP
 The \fIsigaction\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIsig\fP argument is not a valid signal number or an attempt
 is made to catch a signal that cannot be caught or ignore a
 signal that cannot be ignored.
-.TP
+.TP 7
 .B ENOTSUP
 The SA_SIGINFO bit flag is set in the \fIsa_flags\fP field of the
 \fBsigaction\fP structure, and the implementation does not
@@ -271,7 +320,7 @@ option.
 .sp
 .LP
 The \fIsigaction\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 An attempt was made to set the action to SIG_DFL for a signal that
 cannot be caught or ignored (or both).
@@ -289,7 +338,7 @@ used in preference. In particular, \fIsigaction\fP() and \fIsignal\fP()
 should not be used
 in the same process to control the same signal. The behavior of reentrant
 functions, as defined in the DESCRIPTION, is as specified
-by this volume of IEEE\0Std\01003.1-2001, regardless of invocation
+by this volume of IEEE\ Std\ 1003.1-2001, regardless of invocation
 from a signal-catching function. This is the only
 intended meaning of the statement that reentrant functions may be
 used in signal-catching functions without restrictions.
@@ -325,7 +374,7 @@ functions or the standard I/O
 library, both of which traditionally use data structures in a non-reentrant
 manner. Since any combination of different functions
 using a common data structure can cause reentrancy problems, this
-volume of IEEE\0Std\01003.1-2001 does not define the
+volume of IEEE\ Std\ 1003.1-2001 does not define the
 behavior when any unsafe function is called in a signal handler that
 interrupts an unsafe function.
 .LP
@@ -349,14 +398,14 @@ is used to leave the signal handler, then the signal mask must be
 explicitly
 restored by the process.
 .LP
-This volume of IEEE\0Std\01003.1-2001 defines the third argument of
+This volume of IEEE\ Std\ 1003.1-2001 defines the third argument of
 a signal handling function when SA_SIGINFO is set as
 a \fBvoid *\fP instead of a \fBucontext_t *\fP, but without requiring
 type checking. New applications should explicitly cast the
 third argument of the signal handling function to \fBucontext_t *\fP.
 .LP
 The BSD optional four argument signal handling function is not supported
-by this volume of IEEE\0Std\01003.1-2001. The
+by this volume of IEEE\ Std\ 1003.1-2001. The
 BSD declaration would be:
 .sp
 .RS
@@ -376,7 +425,7 @@ objects pointed to by the second argument of the signal handler specified
 when SA_SIGINFO is set.
 .SH RATIONALE
 .LP
-Although this volume of IEEE\0Std\01003.1-2001 requires that signals
+Although this volume of IEEE\ Std\ 1003.1-2001 requires that signals
 that cannot be ignored shall not be added to the
 signal mask when a signal-catching function is entered, there is no
 explicit requirement that subsequent calls to
@@ -402,18 +451,18 @@ Some historical implementations also define other mechanisms for stopping
 processes, such as the \fIptrace\fP() function. These
 implementations usually do not generate a SIGCHLD signal when processes
 stop due to this mechanism; however, that is beyond the
-scope of this volume of IEEE\0Std\01003.1-2001.
+scope of this volume of IEEE\ Std\ 1003.1-2001.
 .LP
-This volume of IEEE\0Std\01003.1-2001 requires that calls to \fIsigaction\fP()
+This volume of IEEE\ Std\ 1003.1-2001 requires that calls to \fIsigaction\fP()
 that supply a NULL \fIact\fP argument
 succeed, even in the case of signals that cannot be caught or ignored
 (that is, SIGKILL or SIGSTOP). The System V \fIsignal\fP() and BSD
 \fIsigvec\fP() functions return [EINVAL] in these cases and, in this
 respect, their behavior varies from \fIsigaction\fP().
 .LP
-This volume of IEEE\0Std\01003.1-2001 requires that \fIsigaction\fP()
+This volume of IEEE\ Std\ 1003.1-2001 requires that \fIsigaction\fP()
 properly save and restore a signal action set up
-by the ISO\0C standard \fIsignal\fP() function. However, there is
+by the ISO\ C standard \fIsignal\fP() function. However, there is
 no guarantee that the
 reverse is true, nor could there be given the greater amount of information
 conveyed by the \fBsigaction\fP structure. Because of
@@ -444,7 +493,7 @@ None.
 , \fIsigemptyset\fP() , \fIsigfillset\fP() , \fIsigismember\fP() ,
 \fIsignal\fP() , \fIsigprocmask\fP() , \fIsigsuspend\fP() , \fIwait\fP()
 , \fIwaitid\fP() , \fIwaitpid\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<signal.h>\fP, \fI<ucontext.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP, \fI<ucontext.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

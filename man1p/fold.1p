@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fold" P 2003 POSIX
+.TH "FOLD" P 2003 POSIX
 .\" fold 
 .SH NAME
-fold - filter for folding lines
+fold \- filter for folding lines
 .SH SYNOPSIS
 .LP
 \fBfold\fP \fB[\fP\fB-bs\fP\fB][\fP\fB-w\fP \fIwidth\fP\fB][\fP\fIfile\fP\fB...\fP\fB]\fP
@@ -22,19 +22,19 @@ columns any single character in the input would occupy.
 If the <carriage-return>s, <backspace>s, or <tab>s are encountered
 in the input, and the \fB-b\fP option is
 not specified, they shall be treated specially:
-.TP
+.TP 7
 <backspace>
 The current count of line width shall be decremented by one, although
 the count never shall become negative. The \fIfold\fP
 utility shall not insert a <newline> immediately before or after any
 <backspace>.
-.TP
+.TP 7
 <carriage-return>
 .sp
 The current count of line width shall be set to zero. The \fIfold\fP
 utility shall not insert a <newline> immediately before
 or after any <carriage-return>.
-.TP
+.TP 7
 <tab>
 Each <tab> encountered shall advance the column position pointer to
 the next tab stop. Tab stops shall be at each column
@@ -43,21 +43,21 @@ position \fIn\fP such that \fIn\fP modulo 8 equals 1.
 .SH OPTIONS
 .LP
 The \fIfold\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-b\fP
 Count \fIwidth\fP in bytes rather than column positions.
-.TP
+.TP 7
 \fB-s\fP
 If a segment of a line contains a <blank> within the first \fIwidth\fP
 column positions (or bytes), break the line after
 the last such <blank> meeting the width constraints. If there is no
 <blank> meeting the requirements, the \fB-s\fP
 option shall have no effect for that output segment of the input line.
-.TP
-\fB-w\0\fP \fIwidth\fP
+.TP 7
+\fB-w\ \fP \fIwidth\fP
 Specify the maximum line length, in column positions (or bytes if
 \fB-b\fP is specified). The results are unspecified if
 \fIwidth\fP is not a positive decimal number. The default value shall
@@ -66,7 +66,7 @@ be 80.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a text file to be folded. If no \fIfile\fP operands
 are specified, the standard input shall be used.
@@ -85,31 +85,31 @@ files shall be text files.
 .LP
 The following environment variables shall affect the execution of
 \fIfold\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files), and
 for the determination of the width in column positions each
 character would occupy on a constant-width font output device.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -134,10 +134,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All input files were processed successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp

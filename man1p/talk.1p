@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "talk" P 2003 POSIX
+.TH "TALK" P 2003 POSIX
 .\" talk 
 .SH NAME
-talk - talk to another user
+talk \- talk to another user
 .SH SYNOPSIS
 .LP
 \fBtalk\fP \fIaddress\fP \fB[\fP\fIterminal\fP\fB]\fP\fB\fP
@@ -34,51 +34,42 @@ message can reply by typing:
 Once communication is established, the two parties can type simultaneously,
 with their output displayed in separate regions of
 the screen. Characters shall be processed as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Typing the alert character shall alert the recipient's terminal.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Typing <control>-L shall cause the sender's screen regions to be refreshed.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Typing the erase and kill characters shall affect the sender's terminal
 in the manner described by the \fBtermios\fP interface
-in the Base Definitions volume of IEEE\0Std\01003.1-2001, Chapter
+in the Base Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter
 11, General
 Terminal Interface.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Typing the interrupt or end-of-file characters shall terminate the
 local \fItalk\fP utility. Once the \fItalk\fP session has
 been terminated on one side, the other side of the \fItalk\fP session
 shall be notified that the \fItalk\fP session has been
 terminated and shall be able to do nothing except exit.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Typing characters from \fILC_CTYPE\fP classifications \fBprint\fP
 or \fBspace\fP shall cause those characters to be sent to
 the recipient's terminal.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 When and only when the \fIstty\fP \fBiexten\fP local mode is enabled,
 the existence and
 processing of additional special control characters and multi-byte
 or single-byte functions shall be implementation-defined.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Typing other non-printable characters shall cause implementation-defined
 sequences of printable characters to be sent to the
 recipient's terminal.
-.in -5
-.RE
+.LP
 .LP
 Permission to be a recipient of a \fItalk\fP message can be denied
 or granted by use of the \fImesg\fP utility. However, a user's privilege
@@ -99,13 +90,13 @@ None.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIaddress\fP
 The recipient of the \fItalk\fP session. One form of \fIaddress\fP
-is the <\fIuser\0name\fP>, as returned by the
+is the <\fIuser\ name\fP>, as returned by the
 \fIwho\fP utility. Other address formats and how they are handled
 are unspecified.
-.TP
+.TP 7
 \fIterminal\fP
 If the recipient is logged in more than once, the \fIterminal\fP argument
 can be used to indicate the appropriate terminal
@@ -127,35 +118,35 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fItalk\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files). If
 the recipient's locale does not use an \fILC_CTYPE\fP
 equivalent to the sender's, the results are undefined.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fITERM\fP
 Determine the name of the invoker's terminal type. If this variable
 is unset or null, an unspecified default terminal type
@@ -185,10 +176,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred or \fItalk\fP was invoked on a terminal incapable
 of supporting it.
@@ -211,7 +202,7 @@ character sequences.
 None.
 .SH RATIONALE
 .LP
-The \fIwrite\fP utility was included in this volume of IEEE\0Std\01003.1-2001
+The \fIwrite\fP utility was included in this volume of IEEE\ Std\ 1003.1-2001
 since it can be implemented on all terminal types. The \fItalk\fP
 utility, which cannot be implemented on certain terminals, was
 considered to be a "better" communications interface. Both of these
@@ -220,47 +211,42 @@ Therefore, both utilities have been specified.
 .LP
 All references to networking abilities (\fItalk\fPing to a user on
 another system) were removed as being outside the scope of
-this volume of IEEE\0Std\01003.1-2001.
+this volume of IEEE\ Std\ 1003.1-2001.
 .LP
 Historical BSD and System V versions of \fItalk\fP terminate both
 of the conversations when either user breaks out of the
 session. This can lead to adverse consequences if a user unwittingly
 continues to enter text that is interpreted by the shell when
 the other terminates the session. Therefore, the version of \fItalk\fP
-specified by this volume of IEEE\0Std\01003.1-2001
+specified by this volume of IEEE\ Std\ 1003.1-2001
 requires both users to terminate their end of the session explicitly.
 .LP
 Only messages sent to the terminal of the invoking user can be internationalized
 in any way:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The original "Message from <\fIunspecified string\fP> ..." message
 sent to the terminal of the recipient cannot be
 internationalized because the environment of the recipient is as yet
 inaccessible to the \fItalk\fP utility. The environment of
 the invoking party is irrelevant.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Subsequent communication between the two parties cannot be internationalized
 because the two parties may specify different
 languages in their environment (and non-portable characters cannot
 be mapped from one language to another).
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Neither party can be required to communicate in a language other than
 C and/or the one specified by their environment because
 unavailable terminal hardware support (for example, fonts) may be
 required.
-.in -5
-.RE
+.LP
 .LP
 The text in the STDOUT section reflects the usage of the verb "display"
 in this section; some \fItalk\fP implementations
 actually use standard output to write to the terminal, but this volume
-of IEEE\0Std\01003.1-2001 does not require that to
+of IEEE\ Std\ 1003.1-2001 does not require that to
 be the case.
 .LP
 The format of the terminal name is unspecified, but the descriptions
@@ -279,7 +265,7 @@ None.
 .SH SEE ALSO
 .LP
 \fImesg\fP , \fIstty\fP , \fIwho\fP , \fIwrite\fP , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Chapter 11, General Terminal Interface
+volume of IEEE\ Std\ 1003.1-2001, Chapter 11, General Terminal Interface
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cfgetispeed" P 2003 POSIX
+.TH "CFGETISPEED" P 2003 POSIX
 .\" cfgetispeed 
 .SH NAME
-cfgetispeed - get input baud rate
+cfgetispeed \- get input baud rate
 .SH SYNOPSIS
 .LP
 \fB#include <termios.h>
@@ -46,17 +46,15 @@ The \fIcfgetospeed\fP(), \fIcfgetispeed\fP(), \fIcfsetospeed\fP(),
 and \fIcfsetispeed\fP()
 functions do not take arguments as numbers, but rather as symbolic
 names. There are two reasons for this:
-.in +5
-.LP
+.IP " 1." 4
 Historically, numbers were not used because of the way the rate was
 stored in the data structure. This is retained even though a
 function is now used.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 More importantly, only a limited set of possible rates is at all portable,
 and this constrains the application to that set.
-.in -5
+.LP
 .LP
 There is nothing to prevent an implementation accepting as an extension
 a number (such as 126), and since the encoding of the
@@ -65,15 +63,15 @@ ambiguity.
 .LP
 Setting the input baud rate to zero was a mechanism to allow for split
 baud rates. Clarifications in this volume of
-IEEE\0Std\01003.1-2001 have made it possible to determine whether
+IEEE\ Std\ 1003.1-2001 have made it possible to determine whether
 split rates are supported and to support them without
 having to treat zero as a special case. Since this functionality is
 also confusing, it has been declared obsolescent. The 0
 argument referred to is the literal constant 0, not the symbolic constant
-B0. This volume of IEEE\0Std\01003.1-2001 does
+B0. This volume of IEEE\ Std\ 1003.1-2001 does
 not preclude B0 from being defined as the value 0; in fact, implementations
 would likely benefit from the two being equivalent.
-This volume of IEEE\0Std\01003.1-2001 does not fully specify whether
+This volume of IEEE\ Std\ 1003.1-2001 does not fully specify whether
 the previous \fIcfsetispeed\fP() value is retained after a \fItcgetattr\fP()
 as the actual value or as zero. Therefore, conforming applications
 should
@@ -95,7 +93,7 @@ None.
 .LP
 \fIcfgetospeed\fP() , \fIcfsetispeed\fP() , \fIcfsetospeed\fP() ,
 \fItcgetattr\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 11, General Terminal Interface, \fI<termios.h>\fP
+IEEE\ Std\ 1003.1-2001, Chapter 11, General Terminal Interface, \fI<termios.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

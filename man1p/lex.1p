@@ -1,19 +1,18 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "lex" P 2003 POSIX
+.TH "LEX" P 2003 POSIX
 .\" lex 
 .SH NAME
-lex - generate programs for lexical tasks (\fBDEVELOPMENT\fP)
+lex \- generate programs for lexical tasks (\fBDEVELOPMENT\fP)
 .SH SYNOPSIS
 .LP
-\fBlex\fP \fB[\fP\fB-t\fP\fB][\fP\fB-n|-v\fP\fB][\fP\fIfile\fP \fB...\fP\fB]\fP\fB<img
-src="../images/opt-end.gif" alt="[Option End]" border="0">\fP
+\fBlex\fP \fB[\fP\fB-t\fP\fB][\fP\fB-n|-v\fP\fB][\fP\fIfile\fP \fB...\fP\fB]\fP\fB\fP
 .SH DESCRIPTION
 .LP
 The \fIlex\fP utility shall generate C programs to be used in lexical
 processing of character input, and that can be used as an
 interface to \fIyacc\fP. The C programs shall be generated from \fIlex\fP
 source code and
-conform to the ISO\0C standard. Usually, the \fIlex\fP utility shall
+conform to the ISO\ C standard. Usually, the \fIlex\fP utility shall
 write the program it generates to the file
 \fBlex.yy.c\fP; the state of this file is unspecified if \fIlex\fP
 exits with a non-zero exit status. See the EXTENDED
@@ -22,19 +21,19 @@ language.
 .SH OPTIONS
 .LP
 The \fIlex\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-n\fP
 Suppress the summary of statistics usually written with the \fB-v\fP
 option. If no table sizes are specified in the \fIlex\fP
 source code and the \fB-v\fP option is not specified, then \fB-n\fP
 is implied.
-.TP
+.TP 7
 \fB-t\fP
 Write the resulting program to standard output instead of \fBlex.yy.c\fP.
-.TP
+.TP 7
 \fB-v\fP
 Write a summary of \fIlex\fP statistics to the standard output. (See
 the discussion of \fIlex\fP table sizes in Definitions in lex .) If
@@ -47,7 +46,7 @@ specified, the \fB-v\fP option may be enabled.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of an input file. If more than one such \fIfile\fP is specified,
 all files shall be concatenated to produce a
@@ -68,38 +67,38 @@ as described in the EXTENDED DESCRIPTION section.
 .LP
 The following environment variables shall affect the execution of
 \fIlex\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements within regular
 expressions. If this variable is not set to the POSIX locale, the
 results are unspecified.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files), and
 the behavior of character classes within regular expressions.
 If this variable is not set to the POSIX locale, the results are unspecified.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -114,15 +113,12 @@ output of \fIlex\fP shall be written to standard
 output.
 .LP
 If the \fB-t\fP option is not specified:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Implementation-defined informational, error, and warning messages
 concerning the contents of \fIlex\fP source code input shall
 be written to either the standard output or standard error.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the \fB-v\fP option is specified and the \fB-n\fP option is not
 specified, \fIlex\fP statistics shall also be written to
 either the standard output or standard error, in an implementation-defined
@@ -130,8 +126,7 @@ format. These statistics may also be generated if table
 sizes are specified with a \fB'%'\fP operator in the \fIDefinitions\fP
 section, as long as the \fB-n\fP option is not
 specified.
-.in -5
-.RE
+.LP
 .SH STDERR
 .LP
 If the \fB-t\fP option is specified, implementation-defined informational,
@@ -139,14 +134,12 @@ error, and warning messages concerning the contents
 of \fIlex\fP source code input shall be written to the standard error.
 .LP
 If the \fB-t\fP option is not specified:
-.in +5
-.LP
+.IP " 1." 4
 Implementation-defined informational, error, and warning messages
 concerning the contents of \fIlex\fP source code input shall
 be written to either the standard output or standard error.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the \fB-v\fP option is specified and the \fB-n\fP option is not
 specified, \fIlex\fP statistics shall also be written to
 either the standard output or standard error, in an implementation-defined
@@ -154,7 +147,7 @@ format. These statistics may also be generated if table
 sizes are specified with a \fB'%'\fP operator in the \fIDefinitions\fP
 section, as long as the \fB-n\fP option is not
 specified.
-.in -5
+.LP
 .SH OUTPUT FILES
 .LP
 A text file containing C source code shall be written to \fBlex.yy.c\fP,
@@ -167,14 +160,12 @@ of regular expressions with corresponding actions in the
 form of C program fragments.
 .LP
 When \fBlex.yy.c\fP is compiled and linked with the \fIlex\fP library
-(using the \fB-l\0l\fP operand with \fIc99\fP), the resulting program
+(using the \fB-l\ l\fP operand with \fIc99\fP), the resulting program
 shall read character input from the standard input and shall
 partition it into strings that match the given expressions.
 .LP
 When an expression is matched, these actions shall occur:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The input string that was matched shall be left in \fIyytext\fP as
 a null-terminated string; \fIyytext\fP shall either be an
 external character array or a pointer to a character string. As explained
@@ -182,18 +173,15 @@ in Definitions in lex ,
 the type can be explicitly selected using the \fB%array\fP or \fB%pointer\fP
 declarations, but the default is
 implementation-defined.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The external \fBint\fP \fIyyleng\fP shall be set to the length of
 the matching string.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The expression's corresponding program fragment, or action, shall
 be executed.
-.in -5
-.RE
+.LP
 .LP
 During pattern matching, \fIlex\fP shall search the set of patterns
 for the single longest possible match. Among rules that
@@ -256,7 +244,7 @@ format of these lines shall be:
 .RE
 .LP
 If a \fIname\fP does not meet the requirements for identifiers in
-the ISO\0C standard, the result is undefined. The string
+the ISO\ C standard, the result is undefined. The string
 \fIsubstitute\fP shall replace the string { \fIname\fP} when it is
 used in a rule. The \fIname\fP string shall be recognized in
 this context only when the braces are provided and when it does not
@@ -280,11 +268,11 @@ in lex .
 .LP
 Implementations shall accept either of the following two mutually-exclusive
 declarations in the \fIDefinitions\fP section:
-.TP
+.TP 7
 \fB%array\fP
 Declare the type of \fIyytext\fP to be a null-terminated character
 array.
-.TP
+.TP 7
 \fB%pointer\fP
 Declare the type of \fIyytext\fP to be a pointer to a null-terminated
 character string.
@@ -299,16 +287,18 @@ declaration in the scanner source file.
 Implementations shall accept declarations in the \fIDefinitions\fP
 section for setting certain internal table sizes. The
 declarations are shown in the following table.
+.sp
+.ce 1
 \fBTable: Table Size Declarations in \fIlex\fP\fP
 .TS C
-center;l l l l l l l l.
-\fBDeclaration\fP 	 \fBDescription\fP 	 \fBMinimum Value\fP 	
-%\fBp\fP \fIn\fP 	 Number of positions 	 2500 	
-%\fBn\fP \fIn\fP 	 Number of states 	 500 	
-%\fBa\fP \fIn\fP 	 Number of transitions 	 2000 	
-%\fBe\fP \fIn\fP 	 Number of parse tree nodes 	 1000 	
-%\fBk\fP \fIn\fP 	 Number of packed character classes 	 1000 	
-%\fBo\fP \fIn\fP 	 Size of the output array 	 3000 	
+center; l2 l2 l.
+\fBDeclaration\fP	\fBDescription\fP	\fBMinimum Value\fP
+%\fBp\fP \fIn\fP	Number of positions	2500
+%\fBn\fP \fIn\fP	Number of states	500
+%\fBa\fP \fIn\fP	Number of transitions	2000
+%\fBe\fP \fIn\fP	Number of parse tree nodes	1000
+%\fBk\fP \fIn\fP	Number of packed character classes	1000
+%\fBo\fP \fIn\fP	Size of the output array	3000
 .TE
 .LP
 In the table, \fIn\fP represents a positive decimal integer, preceded
@@ -342,20 +332,15 @@ The extended regular expression (ERE) portion of a row shall be separated
 from \fIaction\fP by one or more <blank>s. A
 regular expression containing <blank>s shall be recognized under one
 of the following conditions:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The entire expression appears within double-quotes.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The <blank>s appear within double-quotes or square brackets.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Each <blank> is preceded by a backslash character.
-.in -5
-.RE
+.LP
 .SS User Subroutines in lex
 .LP
 Anything in the user subroutines section shall be copied to \fBlex.yy.c\fP
@@ -364,9 +349,9 @@ following \fIyylex\fP().
 .LP
 The \fIlex\fP utility shall support the set of extended regular expressions
 (see the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 9.4, Extended Regular Expressions),
+IEEE\ Std\ 1003.1-2001, Section 9.4, Extended Regular Expressions),
 with the following additions and exceptions to the syntax:
-.TP
+.TP 7
 \fB"..."\fP
 Any string enclosed in double-quotes shall represent the characters
 within the double-quotes as themselves, except that
@@ -375,19 +360,19 @@ Any backslash-escape sequence shall be terminated by
 the closing quote. For example, \fB"\\01"\fP \fB"1"\fP represents
 a single string: the octal value 1 followed by the character
 \fB'1'\fP .
-.TP
-<\fIstate\fP>\fIr\fP,\0<\fIstate1,state2,\fP...>\fIr\fP
+.TP 7
+<\fIstate\fP>\fIr\fP,\ <\fIstate1,state2,\fP...>\fIr\fP
 .sp
 The regular expression \fIr\fP shall be matched only when the program
 is in one of the start conditions indicated by \fIstate\fP,
 \fIstate1\fP, and so on; see Actions in lex . (As an exception to
 the typographical conventions of
-the rest of this volume of IEEE\0Std\01003.1-2001, in this case <\fIstate\fP>
+the rest of this volume of IEEE\ Std\ 1003.1-2001, in this case <\fIstate\fP>
 does not represent a metavariable, but
 the literal angle-bracket characters surrounding a symbol.) The start
 condition shall be recognized as such only at the beginning
 of a regular expression.
-.TP
+.TP 7
 \fIr\fP/\fIx\fP
 The regular expression \fIr\fP shall be matched only if it is followed
 by an occurrence of regular expression \fIx\fP (
@@ -402,7 +387,7 @@ operator; \fIx\fP cannot include the \fB'^'\fP
 context is allowed in a \fIlex\fP regular expression, and the \fB'^'\fP
 operator only can be used at the beginning of such an
 expression.
-.TP
+.TP 7
 {\fIname\fP}
 When \fIname\fP is one of the substitution symbols from the \fIDefinitions\fP
 section, the string, including the enclosing
@@ -415,7 +400,7 @@ or within double-quotes.
 .LP
 Within an ERE, a backslash character shall be considered to begin
 an escape sequence as specified in the table in the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Chapter 5, File Format
+Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 5, File Format
 Notation (
 \fB'\\\\'\fP , \fB'\\a'\fP , \fB'\\b'\fP , \fB'\\f'\fP , \fB'\\n'\fP
 , \fB'\\r'\fP , \fB'\\t'\fP , \fB'\\v'\fP ). In
@@ -425,16 +410,58 @@ A literal <newline> cannot occur within an ERE; the escape sequence
 \fB'\\n'\fP can be used to represent a
 <newline>. A <newline> shall not be matched by a period operator.
 .br
+.sp
+.ce 1
 \fBTable: Escape Sequences in \fIlex\fP\fP
 .TS C
-center;l l l l l l l l.
-\fBEscape\fP 	 \fB\0\fP 	 \fB\0\fP 	
-\fBSequence\fP 	 \fBDescription\fP 	 \fBMeaning\fP 	
-\\\fIdigits\fP 	 A backslash character followed by the longest sequence of one, two, or three octal-digit characters (01234567). If all of the digits are 0 (that is, representation of the NUL character), the behavior is undefined. 	 The character whose encoding is represented by the one, two, or three-digit octal integer. If the size of a byte on the system is greater than nine bits, the valid escape sequence used to represent a byte is implementation-defined. Multi-byte characters require multiple, concatenated escape sequences of this type, including the leading \fB'\\'\fP for each byte. 	
-\\x\fIdigits\fP 	 A backslash character followed by the longest sequence of hexadecimal-digit characters (01234567abcdefABCDEF). If all of the digits are 0 (that is, representation of the NUL character), the behavior is undefined. 	 The character whose encoding is represented by the hexadecimal integer. 	
-\\c 	 A backslash character followed by any character not described in this table or in the table in the Base Definitions volume of IEEE\0Std\01003.1-2001, Chapter 5, File Format Notation ( \fB'\\\\'\fP , \fB'\\a'\fP , \fB'\\b'\fP , \fB'\\f'\fP , \fB'\\n'\fP , \fB'\\r'\fP , \fB'\\t'\fP , \fB'\\v'\fP ). 	 The character \fB'c'\fP , unchanged. 	
+center; l1 lw(30)1 lw(30).
+\fBEscape\fP	T{
+.na
+\fB\ \fP
+.ad
+T}	T{
+.na
+\fB\ \fP
+.ad
+T}
+\fBSequence\fP	T{
+.na
+\fBDescription\fP
+.ad
+T}	T{
+.na
+\fBMeaning\fP
+.ad
+T}
+\\\fIdigits\fP	T{
+.na
+A backslash character followed by the longest sequence of one, two, or three octal-digit characters (01234567). If all of the digits are 0 (that is, representation of the NUL character), the behavior is undefined.
+.ad
+T}	T{
+.na
+The character whose encoding is represented by the one, two, or three-digit octal integer. If the size of a byte on the system is greater than nine bits, the valid escape sequence used to represent a byte is implementation-defined. Multi-byte characters require multiple, concatenated escape sequences of this type, including the leading \fB'\\'\fP for each byte.
+.ad
+T}
+\\x\fIdigits\fP	T{
+.na
+A backslash character followed by the longest sequence of hexadecimal-digit characters (01234567abcdefABCDEF). If all of the digits are 0 (that is, representation of the NUL character), the behavior is undefined.
+.ad
+T}	T{
+.na
+The character whose encoding is represented by the hexadecimal integer.
+.ad
+T}
+\\c	T{
+.na
+A backslash character followed by any character not described in this table or in the table in the Base Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 5, File Format Notation ( \fB'\\\\'\fP , \fB'\\a'\fP , \fB'\\b'\fP , \fB'\\f'\fP , \fB'\\n'\fP , \fB'\\r'\fP , \fB'\\t'\fP , \fB'\\v'\fP ).
+.ad
+T}	T{
+.na
+The character \fB'c'\fP , unchanged.
+.ad
+T}
 .TE
-.TP
+.TP 7
 \fBNote:\fP
 If a \fB'\\x'\fP sequence needs to be immediately followed by a hexadecimal
 digit character, a sequence such as
@@ -445,10 +472,10 @@ the value 1, followed by the character
 .LP
 The order of precedence given to extended regular expressions for
 \fIlex\fP differs from that specified in the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Section 9.4, Extended Regular
+volume of IEEE\ Std\ 1003.1-2001, Section 9.4, Extended Regular
 Expressions. The order of precedence for \fIlex\fP shall be as shown
 in the following table, from high to low. 
-.TP
+.TP 7
 \fBNote:\fP
 The escaped characters entry is not meant to imply that these are
 operators, but they are included in the table to show their
@@ -459,20 +486,22 @@ they can only appear at the beginning or ending of an
 ERE.
 .sp
 .sp
+.sp
+.ce 1
 \fBTable: ERE Precedence in \fIlex\fP\fP
 .TS C
-center;l l l l l l l l.
-\fBExtended Regular Expression\fP 	 \fBPrecedence\fP 	
-collation-related bracket symbols 	 [= =] [: :] [. .] 	
-escaped characters 	 \\<\fIspecial character\fP> 	
-bracket expression 	 [ ] 	
-quoting 	 "..." 	
-grouping 	 ( ) 	
-definition 	 {\fIname\fP} 	
-single-character RE duplication 	 * + ? 	
-concatenation 	 \0 	
-interval expression 	 {m,n} 	
-alternation 	 | 	
+center; l2 l.
+\fBExtended Regular Expression\fP	\fBPrecedence\fP
+collation-related bracket symbols	[= =] [: :] [. .]
+escaped characters	\\<\fIspecial character\fP>
+bracket expression	[ ]
+quoting	"..."
+grouping	( )
+definition	{\fIname\fP}
+single-character RE duplication	* + ?
+concatenation	\ 
+interval expression	{m,n}
+alternation	|
 .TE
 .LP
 The ERE anchoring operators \fB'^'\fP and \fB'$'\fP do not appear
@@ -490,7 +519,7 @@ or \fB"def"\fP on a line by itself.
 .LP
 Unlike the general ERE rules, embedded anchoring is not allowed by
 most historical \fIlex\fP implementations. An example of
-embedded anchoring would be for patterns such as \fB"(^|\0)foo(\0|$)"\fP
+embedded anchoring would be for patterns such as \fB"(^|\ )foo(\ |$)"\fP
 to match \fB"foo"\fP when it exists as a
 complete word. This functionality can be obtained using existing \fIlex\fP
 features:
@@ -559,17 +588,17 @@ Four special actions shall be available:
 \fP
 .fi
 .RE
-.TP
+.TP 7
 \fB|\fP
 The action \fB'|'\fP means that the action for the next rule is the
 action for this rule. Unlike the other three actions,
 \fB'|'\fP cannot be enclosed in braces or be semicolon-terminated;
 the application shall ensure that it is specified alone, with
 no other actions.
-.TP
+.TP 7
 \fBECHO;\fP
 Write the contents of the string \fIyytext\fP on the output.
-.TP
+.TP 7
 \fBREJECT;\fP
 Usually only a single expression is matched by a given string in the
 input. \fBREJECT\fP means "continue to the next
@@ -587,7 +616,7 @@ implemented in such a fashion that flow of control does not continue
 after it, as if it were equivalent to a \fBgoto\fP to another
 part of \fIyylex\fP(). The use of \fBREJECT\fP may result in somewhat
 larger and slower scanners.
-.TP
+.TP 7
 \fBBEGIN\fP
 The action: 
 .sp
@@ -609,30 +638,30 @@ unspecified. The initial state is indicated by the digit
 The functions or macros described below are accessible to user code
 included in the \fIlex\fP input. It is unspecified whether
 they appear in the C code output of \fIlex\fP, or are accessible only
-through the \fB-l\0l\fP operand to \fIc99\fP (the \fIlex\fP library).
-.TP
-\fBint\0\fP \fIyylex\fP(\fBvoid\fP)
+through the \fB-l\ l\fP operand to \fIc99\fP (the \fIlex\fP library).
+.TP 7
+\fBint\ \fP \fIyylex\fP(\fBvoid\fP)
 .sp
 Performs lexical analysis on the input; this is the primary function
 generated by the \fIlex\fP utility. The function shall return
 zero when the end of input is reached; otherwise, it shall return
 non-zero values (tokens) determined by the actions that are
 selected.
-.TP
-\fBint\0\fP \fIyymore\fP(\fBvoid\fP)
+.TP 7
+\fBint\ \fP \fIyymore\fP(\fBvoid\fP)
 .sp
 When called, indicates that when the next input string is recognized,
 it is to be appended to the current value of \fIyytext\fP
 rather than replacing it; the value in \fIyyleng\fP shall be adjusted
 accordingly.
-.TP
-\fBint\0\fP \fIyyless\fP(\fBint\0\fP \fIn\fP)
+.TP 7
+\fBint\ \fP \fIyyless\fP(\fBint\ \fP \fIn\fP)
 .sp
 Retains \fIn\fP initial characters in \fIyytext\fP, NUL-terminated,
 and treats the remaining characters as if they had not been
 read; the value in \fIyyleng\fP shall be adjusted accordingly.
-.TP
-\fBint\0\fP \fIinput\fP(\fBvoid\fP)
+.TP 7
+\fBint\ \fP \fIinput\fP(\fBvoid\fP)
 .sp
 Returns the next character from the input, or zero on end-of-file.
 It shall obtain input from the stream pointer \fIyyin\fP,
@@ -640,8 +669,8 @@ although possibly via an intermediate buffer. Thus, once scanning
 has begun, the effect of altering the value of \fIyyin\fP is
 undefined. The character read shall be removed from the input stream
 of the scanner without any processing by the scanner.
-.TP
-\fBint\0\fP \fIunput\fP(\fBint\0\fP \fIc\fP)
+.TP 7
+\fBint\ \fP \fIunput\fP(\fBint\ \fP \fIc\fP)
 .sp
 Returns the character \fB'c'\fP to the input; \fIyytext\fP and \fIyyleng\fP
 are undefined until the next expression is
@@ -650,10 +679,10 @@ have been input is unspecified.
 .sp
 .LP
 The following functions shall appear only in the \fIlex\fP library
-accessible through the \fB-l\0l\fP operand; they can
+accessible through the \fB-l\ l\fP operand; they can
 therefore be redefined by a conforming application:
-.TP
-\fBint\0\fP \fIyywrap\fP(\fBvoid\fP)
+.TP 7
+\fBint\ \fP \fIyywrap\fP(\fBvoid\fP)
 .sp
 Called by \fIyylex\fP() at end-of-file; the default \fIyywrap\fP()
 shall always return 1. If the application requires
@@ -661,8 +690,8 @@ shall always return 1. If the application requires
 then the application can include a function \fIyywrap\fP(),
 which associates another file with the external variable \fBFILE *\fP
 \fIyyin\fP and shall return a value of zero.
-.TP
-\fBint\0\fP \fImain\fP(\fBint\0\fP \fIargc\fP, \fBchar *\fP\fIargv\fP[])
+.TP 7
+\fBint\ \fP \fImain\fP(\fBint\ \fP \fIargc\fP, \fBchar *\fP\fIargv\fP[])
 .sp
 Calls \fIyylex\fP() to perform lexical analysis, then exits. The user
 code can contain \fImain\fP() to perform
@@ -675,10 +704,10 @@ with the prefix \fByy\fP or \fBYY\fP.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -808,7 +837,7 @@ specified when the lexical analyzer is executed, but this is
 not possible with the current \fIlex\fP technology.
 .LP
 The description of octal and hexadecimal-digit escape sequences agrees
-with the ISO\0C standard use of escape sequences. See
+with the ISO\ C standard use of escape sequences. See
 the RATIONALE for \fIed\fP for a discussion of bytes larger than 9
 bits being represented by octal values.
 Hexadecimal values can represent larger bytes and multi-byte characters
@@ -846,7 +875,7 @@ new declarations to be considered strictly portable.
 .LP
 The description of EREs avoids unnecessary duplication of ERE details
 because their meanings within a \fIlex\fP ERE are the
-same as that for the ERE in this volume of IEEE\0Std\01003.1-2001.
+same as that for the ERE in this volume of IEEE\ Std\ 1003.1-2001.
 .LP
 The reason for the undefined condition associated with text beginning
 with a <blank> or within \fB"%{"\fP and
@@ -867,7 +896,7 @@ can be reliably redefined by a conforming application.
 The descriptions of standard output and standard error are somewhat
 complicated because historical \fIlex\fP implementations
 chose to issue diagnostic messages to standard output (unless \fB-t\fP
-was given). IEEE\0Std\01003.1-2001 allows this
+was given). IEEE\ Std\ 1003.1-2001 allows this
 behavior, but leaves an opening for the more expected behavior of
 using standard error for diagnostics. Also, the System V behavior
 of writing the statistics when any table sizes are given is allowed,
@@ -889,7 +918,7 @@ performance gains in some applications.
 .LP
 The following examples clarify the differences between \fIlex\fP regular
 expressions and regular expressions appearing
-elsewhere in this volume of IEEE\0Std\01003.1-2001. For regular expressions
+elsewhere in this volume of IEEE\ Std\ 1003.1-2001. For regular expressions
 of the form \fB"r/x"\fP , the string
 matching \fIr\fP is always returned; confusion may arise when the
 beginning of \fIx\fP matches the trailing portion of \fIr\fP.

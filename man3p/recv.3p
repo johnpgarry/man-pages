@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "recv" P 2003 POSIX
+.TH "RECV" P 2003 POSIX
 .\" recv 
 .SH NAME
-recv - receive a message from a connected socket
+recv \- receive a message from a connected socket
 .SH SYNOPSIS
 .LP
 \fB#include <sys/socket.h>
@@ -21,37 +21,43 @@ with connected sockets because it does not permit the application
 to retrieve the source address of received data.
 .LP
 The \fIrecv\fP() function takes the following arguments:
-.TP
+.TP 7
 \fIsocket\fP
 Specifies the socket file descriptor.
-.TP
+.TP 7
 \fIbuffer\fP
 Points to a buffer where the message should be stored.
-.TP
+.TP 7
 \fIlength\fP
 Specifies the length in bytes of the buffer pointed to by the \fIbuffer\fP
 argument.
-.TP
+.TP 7
 \fIflags\fP
 Specifies the type of message reception. Values of this argument are
 formed by logically OR'ing zero or more of the following
 values: 
-.TP
+.TP 7
 MSG_PEEK
+.RS
 Peeks at an incoming message. The data is treated as unread and the
 next \fIrecv\fP() or similar function shall still return
 this data.
-.TP
+.RE
+.TP 7
 MSG_OOB
+.RS
 Requests out-of-band data. The significance and semantics of out-of-band
 data are protocol-specific.
-.TP
+.RE
+.TP 7
 MSG_WAITALL
+.RS
 On SOCK_STREAM sockets this requests that the function block until
 the full amount of data can be returned. The function may
 return the smaller amount of data if the socket is a message-based
 socket, if a signal is caught, if the connection is terminated,
 if MSG_PEEK was specified, or if an error is pending for the socket.
+.RE
 .sp
 .sp
 .LP
@@ -84,7 +90,7 @@ shall return 0. Otherwise, -1 shall be returned and
 .SH ERRORS
 .LP
 The \fIrecv\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN] or [EWOULDBLOCK
 .sp
 The socket's file descriptor is marked O_NONBLOCK and no data is waiting
@@ -92,43 +98,43 @@ to be received; or MSG_OOB is set and no out-of-band data
 is available and either the socket's file descriptor is marked O_NONBLOCK
 or the socket does not support blocking to await
 out-of-band data.
-.TP
+.TP 7
 .B EBADF
 The \fIsocket\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B ECONNRESET
 A connection was forcibly closed by a peer.
-.TP
+.TP 7
 .B EINTR
 The \fIrecv\fP() function was interrupted by a signal that was caught,
 before any data was available.
-.TP
+.TP 7
 .B EINVAL
 The MSG_OOB flag is set and no out-of-band data is available.
-.TP
+.TP 7
 .B ENOTCONN
 A receive is attempted on a connection-mode socket that is not connected.
-.TP
+.TP 7
 .B ENOTSOCK
 The \fIsocket\fP argument does not refer to a socket.
-.TP
+.TP 7
 .B EOPNOTSUPP
 The specified flags are not supported for this socket type or protocol.
-.TP
+.TP 7
 .B ETIMEDOUT
 The connection timed out during connection establishment, or due to
 a transmission timeout on active connection.
 .sp
 .LP
 The \fIrecv\fP() function may fail if:
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while reading from or writing to the file system.
-.TP
+.TP 7
 .B ENOBUFS
 Insufficient resources were available in the system to perform the
 operation.
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory was available to fulfill the request.
 .sp
@@ -156,7 +162,7 @@ None.
 \fIpoll\fP() , \fIread\fP() , \fIrecvmsg\fP() , \fIrecvfrom\fP() ,
 \fIselect\fP() , \fIsend\fP() , \fIsendmsg\fP() , \fIsendto\fP() ,
 \fIshutdown\fP() , \fIsocket\fP() , \fIwrite\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/socket.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/socket.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

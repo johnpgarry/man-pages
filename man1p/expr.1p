@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "expr" P 2003 POSIX
+.TH "EXPR" P 2003 POSIX
 .\" expr 
 .SH NAME
-expr - evaluate arguments as an expression
+expr \- evaluate arguments as an expression
 .SH SYNOPSIS
 .LP
 \fBexpr\fP \fIoperand\fP
@@ -40,36 +40,36 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIexpr\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements within regular
 expressions and by the string comparison operators.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments) and the behavior of
 character classes within regular expressions.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -100,26 +100,102 @@ increasing precedence, with equal-precedence operators grouped between
 horizontal lines. All of the operators shall be
 left-associative.
 .TS C
-center;l l l l l l l l.
-\fBExpression\fP 	 \fBDescription\fP 	
-\fIexpr1\fP\0|\0\fIexpr2\fP 	 Returns the evaluation of \fIexpr1\fP if it is neither null nor zero; otherwise, returns the evaluation of \fIexpr2\fP if it is not null; otherwise, zero. 	
-\fIexpr1\fP\0&\0\fIexpr2\fP 	 Returns the evaluation of \fIexpr1\fP if neither expression evaluates to null or zero; otherwise, returns zero. 	
-\0 	 Returns the result of a decimal integer comparison if both arguments are integers; otherwise, returns the result of a string comparison using the locale-specific collation sequence. The result of each comparison is 1 if the specified relationship is true, or 0 if the relationship is false. 	
-\fIexpr1\fP\0=\0\fIexpr2\fP 	 Equal. 	
-\fIexpr1\fP\0>\0\fIexpr2\fP 	 Greater than. 	
-\fIexpr1\fP\0>=\0\fIexpr2\fP 	 Greater than or equal. 	
-\fIexpr1\fP\0<\0\fIexpr2\fP 	 Less than. 	
-\fIexpr1\fP\0<=\0\fIexpr2\fP 	 Less than or equal. 	
-\fIexpr1\fP\0!=\0\fIexpr2\fP 	 Not equal. 	
-\fIexpr1\fP\0+\0\fIexpr2\fP 	 Addition of decimal integer-valued arguments. 	
-\fIexpr1\fP\0-\0\fIexpr2\fP 	 Subtraction of decimal integer-valued arguments. 	
-\fIexpr1\fP\0*\0\fIexpr2\fP 	 Multiplication of decimal integer-valued arguments. 	
-\fIexpr1\fP\0/\0\fIexpr2\fP 	 Integer division of decimal integer-valued arguments, producing an integer result. 	
-\fIexpr1\fP\0%\0\fIexpr2\fP 	 Remainder of integer division of decimal integer-valued arguments. 	
-\fIexpr1\fP\0:\0\fIexpr2\fP 	 Matching expression; see below. 	
-(\0\fIexpr\fP\0) 	 Grouping symbols. Any expression can be placed within parentheses. Parentheses can be nested to a depth of {EXPR_NEST_MAX}. 	
-\fIinteger\fP 	 An argument consisting only of an (optional) unary minus followed by digits. 	
-\fIstring\fP 	 A string argument; see below. 	
+center; l lw(40).
+\fBExpression\fP	T{
+.na
+\fBDescription\fP
+.ad
+T}
+\fIexpr1\fP\ |\ \fIexpr2\fP	T{
+.na
+Returns the evaluation of \fIexpr1\fP if it is neither null nor zero; otherwise, returns the evaluation of \fIexpr2\fP if it is not null; otherwise, zero.
+.ad
+T}
+\fIexpr1\fP\ &\ \fIexpr2\fP	T{
+.na
+Returns the evaluation of \fIexpr1\fP if neither expression evaluates to null or zero; otherwise, returns zero.
+.ad
+T}
+\ 	T{
+.na
+Returns the result of a decimal integer comparison if both arguments are integers; otherwise, returns the result of a string comparison using the locale-specific collation sequence. The result of each comparison is 1 if the specified relationship is true, or 0 if the relationship is false.
+.ad
+T}
+\fIexpr1\fP\ =\ \fIexpr2\fP	T{
+.na
+Equal.
+.ad
+T}
+\fIexpr1\fP\ >\ \fIexpr2\fP	T{
+.na
+Greater than.
+.ad
+T}
+\fIexpr1\fP\ >=\ \fIexpr2\fP	T{
+.na
+Greater than or equal.
+.ad
+T}
+\fIexpr1\fP\ <\ \fIexpr2\fP	T{
+.na
+Less than.
+.ad
+T}
+\fIexpr1\fP\ <=\ \fIexpr2\fP	T{
+.na
+Less than or equal.
+.ad
+T}
+\fIexpr1\fP\ !=\ \fIexpr2\fP	T{
+.na
+Not equal.
+.ad
+T}
+\fIexpr1\fP\ +\ \fIexpr2\fP	T{
+.na
+Addition of decimal integer-valued arguments.
+.ad
+T}
+\fIexpr1\fP\ -\ \fIexpr2\fP	T{
+.na
+Subtraction of decimal integer-valued arguments.
+.ad
+T}
+\fIexpr1\fP\ *\ \fIexpr2\fP	T{
+.na
+Multiplication of decimal integer-valued arguments.
+.ad
+T}
+\fIexpr1\fP\ /\ \fIexpr2\fP	T{
+.na
+Integer division of decimal integer-valued arguments, producing an integer result.
+.ad
+T}
+\fIexpr1\fP\ %\ \fIexpr2\fP	T{
+.na
+Remainder of integer division of decimal integer-valued arguments.
+.ad
+T}
+\fIexpr1\fP\ :\ \fIexpr2\fP	T{
+.na
+Matching expression; see below.
+.ad
+T}
+(\ \fIexpr\fP\ )	T{
+.na
+Grouping symbols. Any expression can be placed within parentheses. Parentheses can be nested to a depth of {EXPR_NEST_MAX}.
+.ad
+T}
+\fIinteger\fP	T{
+.na
+An argument consisting only of an (optional) unary minus followed by digits.
+.ad
+T}
+\fIstring\fP	T{
+.na
+A string argument; see below.
+.ad
+T}
 .TE
 .SS Matching Expression
 .LP
@@ -127,7 +203,7 @@ The \fB':'\fP matching operator shall compare the string resulting
 from the evaluation of \fIexpr1\fP with the regular
 expression pattern resulting from the evaluation of \fIexpr2\fP. Regular
 expression syntax shall be that defined in the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Section 9.3, Basic Regular
+Definitions volume of IEEE\ Std\ 1003.1-2001, Section 9.3, Basic Regular
 Expressions, except that all patterns are anchored to the beginning
 of the string (that is, only sequences starting at the
 first character of a string are matched by the regular expression)
@@ -149,16 +225,16 @@ or \fBmatch\fP produces unspecified results.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 The \fIexpression\fP evaluates to neither null nor zero.
-.TP
-\01
+.TP 7
+\ 1
 The \fIexpression\fP evaluates to null or zero.
-.TP
-\02
+.TP 7
+\ 2
 Invalid \fIexpression\fP.
-.TP
+.TP 7
 >2
 An error occurred.
 .sp
@@ -203,38 +279,34 @@ reliably:
 .fi
 .RE
 .LP
-Also note that this volume of IEEE\0Std\01003.1-2001 permits implementations
+Also note that this volume of IEEE\ Std\ 1003.1-2001 permits implementations
 to extend utilities. The \fIexpr\fP
 utility permits the integer arguments to be preceded with a unary
 minus. This means that an integer argument could look like an
 option. Therefore, the conforming application must employ the \fB"--"\fP
 construct of Guideline 10 of the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax
+volume of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax
 Guidelines to protect its operands if there is any chance the first
 operand might be a negative integer (or any string with a
 leading minus).
 .SH EXAMPLES
 .LP
 The \fIexpr\fP utility has a rather difficult syntax:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Many of the operators are also shell control operators or reserved
 words, so they have to be escaped on the command line.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Each part of the expression is composed of separate arguments, so
 liberal usage of <blank>s is required. For example:
 .TS C
-center;l l l l l l l l.
-\fBInvalid\fP 	 \fBValid\fP 	
-\fIexpr\fP 1+2 	 \fIexpr\fP 1 + 2 	
-\fIexpr\fP "1 + 2" 	 \fIexpr\fP 1 + 2 	
-\fIexpr\fP 1 + (2 * 3) 	 \fIexpr\fP 1 + \\( 2 \\* 3 \\) 	
+center; l l.
+\fBInvalid\fP	\fBValid\fP
+\fIexpr\fP 1+2	\fIexpr\fP 1 + 2
+\fIexpr\fP "1 + 2"	\fIexpr\fP 1 + 2
+\fIexpr\fP 1 + (2 * 3)	\fIexpr\fP 1 + \\( 2 \\* 3 \\)
 .TE
-.in -5
-.RE
+.LP
 .LP
 In many cases, the arithmetic and string features provided as part
 of the shell command language are easier to use than their

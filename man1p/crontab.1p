@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "crontab" P 2003 POSIX
+.TH "CRONTAB" P 2003 POSIX
 .\" crontab 
 .SH NAME
-crontab - schedule periodic background work
+crontab \- schedule periodic background work
 .SH SYNOPSIS
 .LP
 \fBcrontab\fP \fB[\fP\fIfile\fP\fB]\fP\fB
@@ -24,25 +24,25 @@ is specified.
 Upon execution of a command from a crontab entry, the implementation
 shall supply a default environment, defining at least the
 following environment variables:
-.TP
+.TP 7
 \fIHOME\fP
 A pathname of the user's home directory.
-.TP
+.TP 7
 \fILOGNAME\fP
 The user's login name.
-.TP
+.TP 7
 \fIPATH\fP
 A string representing a search path guaranteed to find all of the
 standard utilities.
-.TP
+.TP 7
 \fISHELL\fP
 A pathname of the command interpreter. When \fIcrontab\fP is invoked
 as specified by this volume of
-IEEE\0Std\01003.1-2001, the value shall be a pathname for \fIsh\fP.
+IEEE\ Std\ 1003.1-2001, the value shall be a pathname for \fIsh\fP.
 .sp
 .LP
 The values of these variables when \fIcrontab\fP is invoked as specified
-by this volume of IEEE\0Std\01003.1-2001 shall
+by this volume of IEEE\ Std\ 1003.1-2001 shall
 not affect the default values provided when the scheduled command
 is run.
 .LP
@@ -63,26 +63,26 @@ consist of one user name per line.
 .SH OPTIONS
 .LP
 The \fIcrontab\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-e\fP
 Edit a copy of the invoking user's crontab entry, or create an empty
 entry to edit if the crontab entry does not exist. When
 editing is complete, the entry shall be installed as the user's crontab
 entry.
-.TP
+.TP 7
 \fB-l\fP
 (The letter ell.) List the invoking user's crontab entry.
-.TP
+.TP 7
 \fB-r\fP
 Remove the invoking user's crontab entry.
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 The pathname of a file that contains specifications, in the format
 defined in the INPUT FILES section, for crontab
@@ -98,26 +98,21 @@ entry is a text file consisting of lines of six fields
 each. The fields shall be separated by <blank>s. The first five fields
 shall be integer patterns that specify the
 following:
-.in +5
-.LP
+.IP " 1." 4
 Minute [0,59]
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Hour [0,23]
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Day of the month [1,31]
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Month of the year [1,12]
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 Day of the week ([0,6] with 0=Sunday)
-.in -5
+.LP
 .LP
 Each of these patterns can be either an asterisk (meaning all valid
 values), an element, or a list of elements separated by
@@ -156,33 +151,33 @@ to the service underlying the \fIcrontab\fP utility.
 .LP
 The following environment variables shall affect the execution of
 \fIcrontab\fP:
-.TP
+.TP 7
 \fIEDITOR\fP
 Determine the editor to be invoked when the \fB-e\fP option is specified.
 The default editor shall be \fIvi\fP.
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -206,10 +201,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -229,7 +224,7 @@ The default settings of the \fIHOME ,\fP \fILOGNAME ,\fP \fIPATH ,\fP
 and \fISHELL\fP variables that are given to the
 scheduled job are not affected by the settings of those variables
 when \fIcrontab\fP is run; as stated, they are defaults. The
-text about "invoked as specified by this volume of IEEE\0Std\01003.1-2001"
+text about "invoked as specified by this volume of IEEE\ Std\ 1003.1-2001"
 means that the implementation may provide
 extensions that allow these variables to be affected at runtime, but
 that the user has to take explicit action in order to access
@@ -243,8 +238,7 @@ is replaced by an empty file. In this case, the user
 should type the interrupt character, which prevents the crontab entry
 from being replaced.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 Clean up \fBcore\fP files every weekday morning at 3:15 am:
 .sp
 .RS
@@ -254,9 +248,8 @@ Clean up \fBcore\fP files every weekday morning at 3:15 am:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Mail a birthday greeting:
 .sp
 .RS
@@ -266,9 +259,8 @@ Mail a birthday greeting:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 As an example of specifying the two types of days:
 .sp
 .RS
@@ -292,7 +284,7 @@ other field should be set to \fB'*'\fP ; for example:
 .RE
 .LP
 would run a command only on Mondays.
-.in -5
+.LP
 .SH RATIONALE
 .LP
 All references to a \fIcron\fP daemon and to \fIcron\fP \fIfiles\fP

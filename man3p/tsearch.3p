@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tdelete" P 2003 POSIX
+.TH "TDELETE" P 2003 POSIX
 .\" tdelete 
 .SH NAME
-tdelete, tfind, tsearch, twalk - manage a binary search tree
+tdelete, tfind, tsearch, twalk \- manage a binary search tree
 .SH SYNOPSIS
 .LP
 \fB#include <search.h>
@@ -11,19 +11,19 @@ tdelete, tfind, tsearch, twalk - manage a binary search tree
 void *tdelete(const void *restrict\fP \fIkey\fP\fB, void **restrict\fP
 \fIrootp\fP\fB,
 .br
-\0\0\0\0\0\0 int(*\fP\fIcompar\fP\fB)(const void *, const void *));
+\ \ \ \ \ \  int(*\fP\fIcompar\fP\fB)(const void *, const void *));
 .br
 void *tfind(const void *\fP\fIkey\fP\fB, void *const *\fP\fIrootp\fP\fB,
 .br
-\0\0\0\0\0\0 int(*\fP\fIcompar\fP\fB)(const void *, const void *));
+\ \ \ \ \ \  int(*\fP\fIcompar\fP\fB)(const void *, const void *));
 .br
 void *tsearch(const void *\fP\fIkey\fP\fB, void **\fP\fIrootp\fP\fB,
 .br
-\0\0\0\0\0\0 int (*\fP\fIcompar\fP\fB)(const void *, const void *));
+\ \ \ \ \ \  int (*\fP\fIcompar\fP\fB)(const void *, const void *));
 .br
 void twalk(const void *\fP\fIroot\fP\fB,
 .br
-\0\0\0\0\0\0 void (*\fP\fIaction\fP\fB)(const void *, VISIT, int));
+\ \ \ \ \ \  void (*\fP\fIaction\fP\fB)(const void *, VISIT, int));
 \fP
 \fB
 .br
@@ -231,7 +231,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIhcreate\fP() , \fIlsearch\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<search.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<search.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "rm" P 2003 POSIX
+.TH "RM" P 2003 POSIX
 .\" rm 
 .SH NAME
-rm - remove directory entries
+rm \- remove directory entries
 .SH SYNOPSIS
 .LP
 \fBrm\fP \fB[\fP\fB-fiRr\fP\fB]\fP \fIfile\fP\fB...\fP
@@ -17,33 +17,28 @@ component), \fIrm\fP shall write a diagnostic message to standard
 error and do nothing more with such operands.
 .LP
 For each \fIfile\fP the following steps shall be taken:
-.in +5
-.LP
+.IP " 1." 4
 If the \fIfile\fP does not exist:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If the \fB-f\fP option is not specified, \fIrm\fP shall write a diagnostic
 message to standard error.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Go on to any remaining \fIfiles\fP.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 2." 4
 If \fIfile\fP is of type directory, the following steps shall be taken:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 If neither the \fB-R\fP option nor the \fB-r\fP option is specified,
 \fIrm\fP shall write a diagnostic message to standard
 error, do nothing more with \fIfile\fP, and go on to any remaining
 files.
-.in -5
-.in +5
 .LP
+.IP " b." 4
 If the \fB-f\fP option is not specified, and either the permissions
 of \fIfile\fP do not permit writing and the standard input
 is a terminal or the \fB-i\fP option is specified, \fIrm\fP shall
@@ -51,25 +46,23 @@ write a prompt to standard error and read a line from the
 standard input. If the response is not affirmative, \fIrm\fP shall
 do nothing more with the current file and go on to any
 remaining files.
-.in -5
-.in +5
 .LP
+.IP " c." 4
 For each entry contained in \fIfile\fP, other than dot or dot-dot,
 the four steps listed here (1 to 4) shall be taken with the
 entry as if it were a \fIfile\fP operand. The \fIrm\fP utility shall
 not traverse directories by following symbolic links into
 other parts of the hierarchy, but shall remove the links themselves.
-.in -5
-.in +5
 .LP
+.IP " d." 4
 If the \fB-i\fP option is specified, \fIrm\fP shall write a prompt
 to standard error and read a line from the standard input.
 If the response is not affirmative, \fIrm\fP shall do nothing more
 with the current file, and go on to any remaining files.
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 3." 4
 If \fIfile\fP is not of type directory, the \fB-f\fP option is not
 specified, and either the permissions of \fIfile\fP do not
 permit writing and the standard input is a terminal or the \fB-i\fP
@@ -77,24 +70,23 @@ option is specified, \fIrm\fP shall write a prompt to the
 standard error and read a line from the standard input. If the response
 is not affirmative, \fIrm\fP shall do nothing more with
 the current file and go on to any remaining files.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If the current file is a directory, \fIrm\fP shall perform actions
 equivalent to the \fIrmdir\fP() function defined in the System Interfaces
-volume of IEEE\0Std\01003.1-2001
+volume of IEEE\ Std\ 1003.1-2001
 called with a pathname of the current file used as the \fIpath\fP
 argument. If the current file is not a directory, \fIrm\fP
 shall perform actions equivalent to the \fIunlink\fP() function defined
 in the System
-Interfaces volume of IEEE\0Std\01003.1-2001 called with a pathname
+Interfaces volume of IEEE\ Std\ 1003.1-2001 called with a pathname
 of the current file used as the \fIpath\fP
 argument.
 .LP
 If this fails for any reason, \fIrm\fP shall write a diagnostic message
 to standard error, do nothing more with the current
 file, and go on to any remaining files.
-.in -5
+.LP
 .LP
 The \fIrm\fP utility shall be able to descend to arbitrary depths
 in a file hierarchy, and shall not fail due to path length
@@ -103,29 +95,29 @@ limitations).
 .SH OPTIONS
 .LP
 The \fIrm\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-f\fP
 Do not prompt for confirmation. Do not write diagnostic messages or
 modify the exit status in the case of nonexistent operands.
 Any previous occurrences of the \fB-i\fP option shall be ignored.
-.TP
+.TP 7
 \fB-i\fP
 Prompt for confirmation as described previously. Any previous occurrences
 of the \fB-f\fP option shall be ignored.
-.TP
+.TP 7
 \fB-R\fP
 Remove file hierarchies. See the DESCRIPTION.
-.TP
+.TP 7
 \fB-r\fP
 Equivalent to \fB-R\fP.
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a directory entry to be removed.
 .sp
@@ -141,26 +133,26 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIrm\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements used in the extended
 regular expression defined for the \fByesexpr\fP locale keyword in
 the \fILC_MESSAGES\fP category.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
@@ -168,12 +160,12 @@ opposed to multi-byte characters in arguments) and the behavior of
 character classes within regular expressions used in the
 extended regular expression defined for the \fByesexpr\fP locale keyword
 in the \fILC_MESSAGES\fP category.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale for the processing of affirmative responses that
 should be used to affect the format and contents of
 diagnostic messages written to standard error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -200,11 +192,11 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All of the named directory entries for which \fIrm\fP performed actions
 equivalent to the \fIrmdir\fP() or \fIunlink\fP() functions were removed.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -231,7 +223,7 @@ Some implementations do not permit the removal of the last link to
 an executable binary file that is being executed; see the
 [EBUSY] error in the \fIunlink\fP() function defined in the System
 Interfaces volume of
-IEEE\0Std\01003.1-2001. Thus, the \fIrm\fP utility can fail to remove
+IEEE\ Std\ 1003.1-2001. Thus, the \fIrm\fP utility can fail to remove
 such files.
 .LP
 The \fB-i\fP option causes \fIrm\fP to prompt and read the standard
@@ -239,8 +231,7 @@ input even if the standard input is not a terminal, but in
 the absence of \fB-i\fP the mode prompting is not done when the standard
 input is not a terminal.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 The following command:
 .sp
 .RS
@@ -252,9 +243,8 @@ The following command:
 .RE
 .LP
 removes the directory entries: \fBa.out\fP and \fBcore\fP.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The following command:
 .sp
 .RS
@@ -266,7 +256,7 @@ The following command:
 .RE
 .LP
 removes the directory \fBjunk\fP and all its contents, without prompting.
-.in -5
+.LP
 .SH RATIONALE
 .LP
 For absolute clarity, paragraphs (2b) and (3) in the DESCRIPTION of
@@ -292,7 +282,7 @@ directly with the user, based on the behavior specified.
 .LP
 The \fB-r\fP option is historical practice on all known systems. The
 synonym \fB-R\fP option is provided for consistency with
-the other utilities in this volume of IEEE\0Std\01003.1-2001 that
+the other utilities in this volume of IEEE\ Std\ 1003.1-2001 that
 provide options requesting recursive descent through the
 file hierarchy.
 .LP
@@ -307,7 +297,7 @@ a service to either shell scripts or users.
 .LP
 It is less clear that error messages regarding files that cannot be
 unlinked (removed) should be suppressed. Although this is
-historical practice, this volume of IEEE\0Std\01003.1-2001 does not
+historical practice, this volume of IEEE\ Std\ 1003.1-2001 does not
 permit the \fB-f\fP option to suppress such
 messages.
 .LP
@@ -323,7 +313,7 @@ permissions of the file did not permit writing. The POSIX Shell and
 Utilities \fIrm\fP differs little from historic practice, but
 does require that prompts be consistent. Historical versions of \fIrm\fP
 were also inconsistent in that prompts were done to both
-standard output and standard error. This volume of IEEE\0Std\01003.1-2001
+standard output and standard error. This volume of IEEE\ Std\ 1003.1-2001
 requires that prompts be done to standard error,
 for consistency with \fIcp\fP and \fImv\fP, and to allow
 historical extensions to \fIrm\fP that provide an option to list deleted
@@ -350,7 +340,7 @@ made explicit.
 None.
 .SH SEE ALSO
 .LP
-\fIrmdir\fP() , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+\fIrmdir\fP() , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIremove\fP(), \fIrmdir\fP(), \fIunlink\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

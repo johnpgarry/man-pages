@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sigsuspend" P 2003 POSIX
+.TH "SIGSUSPEND" P 2003 POSIX
 .\" sigsuspend 
 .SH NAME
-sigsuspend - wait for a signal
+sigsuspend \- wait for a signal
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -39,7 +39,7 @@ occurs, -1 shall be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fIsigsuspend\fP() function shall fail if:
-.TP
+.TP 7
 .B EINTR
 A signal is caught by the calling process and control is returned
 from the signal-catching function.
@@ -66,7 +66,7 @@ None.
 .LP
 \fISignal Concepts\fP , \fIpause\fP() , \fIsigaction\fP() , \fIsigaddset\fP()
 , \fIsigdelset\fP() , \fIsigemptyset\fP() , \fIsigfillset\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<signal.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

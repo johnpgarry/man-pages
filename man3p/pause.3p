@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pause" P 2003 POSIX
+.TH "PAUSE" P 2003 POSIX
 .\" pause 
 .SH NAME
-pause - suspend the thread until a signal is received
+pause \- suspend the thread until a signal is received
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -32,7 +32,7 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIpause\fP() function shall fail if:
-.TP
+.TP 7
 .B EINTR
 A signal is caught by the calling process and control is returned
 from the signal-catching function.
@@ -58,7 +58,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIsigsuspend\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIsigsuspend\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "unlink" P 2003 POSIX
+.TH "UNLINK" P 2003 POSIX
 .\" unlink 
 .SH NAME
-unlink - remove a directory entry
+unlink \- remove a directory entry
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -46,62 +46,62 @@ be returned and \fIerrno\fP set to indicate the error. If
 .LP
 The \fIunlink\fP() function shall fail and shall not unlink the file
 if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied for a component of the path prefix, or
 write permission is denied on the directory containing the
 directory entry to be removed.
-.TP
+.TP 7
 .B EBUSY
 The file named by the \fIpath\fP argument cannot be unlinked because
 it is being used by the system or another process and the
 implementation considers this an error.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIpath\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing file or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix is not a directory.
-.TP
+.TP 7
 .B EPERM
 The file named by \fIpath\fP is a directory, and either the calling
 process does not have appropriate privileges, or the
 implementation prohibits using \fIunlink\fP() on directories.
-.TP
+.TP 7
 .B EPERM] or [EACCES
 .sp
 The S_ISVTX flag is set on the directory containing the file referred
 to by the \fIpath\fP argument and the caller is not the file
 owner, nor is the caller the directory owner, nor does the caller
 have appropriate privileges. 
-.TP
+.TP 7
 .B EROFS
 The directory entry to be unlinked is part of a read-only file system.
 .sp
 .LP
 The \fIunlink\fP() function may fail and not unlink the file if:
-.TP
+.TP 7
 .B EBUSY
 The file named by \fIpath\fP is a named STREAM. 
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 As a result of encountering a symbolic link in resolution of the \fIpath\fP
 argument, the length of the substituted pathname
 string exceeded {PATH_MAX}.
-.TP
+.TP 7
 .B ETXTBSY
 The entry to be unlinked is the last directory entry to a pure procedure
 (shared text) file that is being executed.
@@ -243,7 +243,7 @@ implementations for reasons given in \fIlink\fP() (see also \fIrename\fP()).
 .LP
 The meaning of [EBUSY] in historical implementations is "mount point
 busy". Since this volume of
-IEEE\0Std\01003.1-2001 does not cover the system administration concepts
+IEEE\ Std\ 1003.1-2001 does not cover the system administration concepts
 of mounting and unmounting, the description of the
 error was changed to "resource busy". (This meaning is used by some
 device drivers when a second process tries to open an
@@ -256,7 +256,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIclose\fP() , \fIlink\fP() , \fIremove\fP() , \fIrmdir\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

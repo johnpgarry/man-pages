@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "diff" P 2003 POSIX
+.TH "DIFF" P 2003 POSIX
 .\" diff 
 .SH NAME
-diff - compare two files
+diff \- compare two files
 .SH SYNOPSIS
 .LP
 \fBdiff\fP \fB[\fP\fB-c| -e| -f| -C\fP \fIn\fP\fB][\fP\fB-br\fP\fB]\fP
@@ -17,35 +17,35 @@ are identical.
 .SH OPTIONS
 .LP
 The \fIdiff\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-b\fP
 Cause any amount of white space at the end of a line to be treated
 as a single <newline> (that is, the white-space
 characters preceding the <newline> are ignored) and other strings
 of white-space characters, not including <newline>s,
 to compare equal.
-.TP
+.TP 7
 \fB-c\fP
 Produce output in a form that provides three lines of context.
-.TP
-\fB-C\0n\fP
+.TP 7
+\fB-C\ n\fP
 Produce output in a form that provides \fIn\fP lines of context (where
 \fIn\fP shall be interpreted as a positive decimal
 integer).
-.TP
+.TP 7
 \fB-e\fP
 Produce output in a form suitable as input for the \fIed\fP utility,
 which can then be used
 to convert \fIfile1\fP into \fIfile2\fP.
-.TP
+.TP 7
 \fB-f\fP
 Produce output in an alternative form, similar in format to \fB-e\fP,
 but not intended to be suitable as input for the \fIed\fP utility,
 and in the opposite order.
-.TP
+.TP 7
 \fB-r\fP
 Apply \fIdiff\fP recursively to files and directories of the same
 name when \fIfile1\fP and \fIfile2\fP are both
@@ -54,8 +54,8 @@ directories.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
-\fIfile1\fP,\0\fIfile2\fP
+.TP 7
+\fIfile1\fP,\ \fIfile2\fP
 A pathname of a file to be compared. If either the \fIfile1\fP or
 \fIfile2\fP operand is \fB'-'\fP , the standard input
 shall be used in its place.
@@ -85,37 +85,37 @@ The input files may be of any type.
 .LP
 The following environment variables shall affect the execution of
 \fIdiff\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fILC_TIME\fP
 Determine the locale for affecting the format of file timestamps written
 with the \fB-C\fP and \fB-c\fP options.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone used for calculating file timestamps written
 with the \fB-C\fP and \fB-c\fP options. If \fITZ\fP is
@@ -247,7 +247,7 @@ format:
 .RS
 .nf
 
-\fB"<%s", <\fP\fIline\fP\fB>
+\fB"< %s", <\fP\fIline\fP\fB>
 \fP
 .fi
 .RE
@@ -257,7 +257,7 @@ and all lines affected in the second file using the format:
 .RS
 .nf
 
-\fB">%s", <\fP\fIline\fP\fB>
+\fB"> %s", <\fP\fIline\fP\fB>
 \fP
 .fi
 .RE
@@ -288,23 +288,20 @@ period ( \fB'.'\fP ), shall be output as they appear in the file.
 With the \fB-f\fP option, an alternative format of script shall be
 produced. It is similar to that produced by \fB-e\fP, with
 the following differences:
-.in +5
-.LP
+.IP " 1." 4
 It is expressed in reverse sequence; the output of \fB-e\fP orders
 changes from the end of the file to the beginning; the
 \fB-f\fP from beginning to end.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The command form <\fIlines\fP> <\fIcommand-letter\fP> used by \fB-e\fP
 is reversed. For example, 10\fIc\fP with
 \fB-e\fP would be \fIc\fP10 with \fB-f\fP.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The form used for ranges of line numbers is <space>-separated, rather
 than comma-separated.
-.in -5
+.LP
 .SS Diff -c or -C Output Format
 .LP
 With the \fB-c\fP or \fB-C\fP option, the output format shall consist
@@ -392,7 +389,7 @@ the following format:
 .RS
 .nf
 
-\fB"%s", <\fP\fIunaffected_line\fP\fB>
+\fB"  %s", <\fP\fIunaffected_line\fP\fB>
 \fP
 .fi
 .RE
@@ -402,7 +399,7 @@ Deleted lines shall be written as:
 .RS
 .nf
 
-\fB"-%s", <\fP\fIdeleted_line\fP\fB>
+\fB"- %s", <\fP\fIdeleted_line\fP\fB>
 \fP
 .fi
 .RE
@@ -412,7 +409,7 @@ Changed lines shall be written as:
 .RS
 .nf
 
-\fB"!%s", <\fP\fIchanged_line\fP\fB>
+\fB"! %s", <\fP\fIchanged_line\fP\fB>
 \fP
 .fi
 .RE
@@ -445,7 +442,7 @@ shall be written in the following format:
 .RS
 .nf
 
-\fB"+%s", <\fP\fIadded_line\fP\fB>
+\fB"+ %s", <\fP\fIadded_line\fP\fB>
 \fP
 .fi
 .RE
@@ -461,13 +458,13 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 No differences were found.
-.TP
-\01
+.TP 7
+\ 1
 Differences were found.
-.TP
+.TP 7
 >1
 An error occurred.
 .sp
@@ -522,7 +519,7 @@ and does not add to applications portability.
 .LP
 Historical implementations employ algorithms that do not always produce
 a minimum list of differences; the current language
-about making every effort is the best this volume of IEEE\0Std\01003.1-2001
+about making every effort is the best this volume of IEEE\ Std\ 1003.1-2001
 can do, as there is no metric that could be
 employed to judge the quality of implementations against any and all
 file contents. The statement "This list should be minimal''
@@ -609,7 +606,7 @@ hierarchies.
 .LP
 Many early implementations of \fIdiff\fP require seekable files. Since
 the System Interfaces volume of
-IEEE\0Std\01003.1-2001 supports named pipes, the standard developers
+IEEE\ Std\ 1003.1-2001 supports named pipes, the standard developers
 decided that such a restriction was unreasonable. Note
 also that the allowed filename \fB-\fP almost always refers to a pipe.
 .LP

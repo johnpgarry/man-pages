@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "true" P 2003 POSIX
+.TH "TRUE" P 2003 POSIX
 .\" true 
 .SH NAME
-true - return true value
+true \- return true value
 .SH SYNOPSIS
 .LP
 \fBtrue\fP
@@ -68,7 +68,7 @@ done
 .RE
 .SH RATIONALE
 .LP
-The \fItrue\fP utility has been retained in this volume of IEEE\0Std\01003.1-2001,
+The \fItrue\fP utility has been retained in this volume of IEEE\ Std\ 1003.1-2001,
 even though the shell special
 built-in \fB:\fP provides similar functionality, because \fItrue\fP
 is widely used in historical scripts and is less cryptic to

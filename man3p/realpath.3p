@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "realpath" P 2003 POSIX
+.TH "REALPATH" P 2003 POSIX
 .\" realpath 
 .SH NAME
-realpath - resolve a pathname
+realpath \- resolve a pathname
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -10,7 +10,7 @@ realpath - resolve a pathname
 .sp
 char *realpath(const char *restrict\fP \fIfile_name\fP\fB,
 .br
-\0\0\0\0\0\0 char *restrict\fP \fIresolved_name\fP\fB); \fP
+\ \ \ \ \ \  char *restrict\fP \fIresolved_name\fP\fB); \fP
 \fB
 .br
 \fP
@@ -35,42 +35,42 @@ are undefined.
 .SH ERRORS
 .LP
 The \fIrealpath\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Read or search permission was denied for a component of \fIfile_name\fP.
-.TP
+.TP 7
 .B EINVAL
 The \fIfile_name\fP argument is a null pointer.
-.TP
+.TP 7
 .B EIO
 An error occurred while reading from the file system.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIfile_name\fP argument exceeds {PATH_MAX} or a
 pathname component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIfile_name\fP does not name an existing file or \fIfile_name\fP
 points to an empty string.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix is not a directory.
 .sp
 .LP
 The \fIrealpath\fP() function may fail if:
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 Pathname resolution of a symbolic link produced an intermediate result
 whose length exceeds {PATH_MAX}.
-.TP
+.TP 7
 .B ENOMEM
 Insufficient storage space is available.
 .sp
@@ -113,7 +113,7 @@ In the future, passing a null pointer to \fIrealpath\fP() for the
 .SH SEE ALSO
 .LP
 \fIgetcwd\fP() , \fIsysconf\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

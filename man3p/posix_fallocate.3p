@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_fallocate" P 2003 POSIX
+.TH "POSIX_FALLOCATE" P 2003 POSIX
 .\" posix_fallocate 
 .SH NAME
-posix_fallocate - file space control (\fBADVANCED REALTIME\fP)
+posix_fallocate \- file space control (\fBADVANCED REALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <fcntl.h>
@@ -44,35 +44,35 @@ the error.
 .SH ERRORS
 .LP
 The \fIposix_fallocate\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfd\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B EBADF
 The \fIfd\fP argument references a file that was opened without write
 permission.
-.TP
+.TP 7
 .B EFBIG
 The value of \fIoffset\fP+ \fIlen\fP is greater than the maximum file
 size.
-.TP
+.TP 7
 .B EINTR
 A signal was caught during execution.
-.TP
+.TP 7
 .B EINVAL
 The \fIlen\fP argument was zero or the \fIoffset\fP argument was less
 than zero.
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while reading from or writing to a file system.
-.TP
+.TP 7
 .B ENODEV
 The \fIfd\fP argument does not refer to a regular file.
-.TP
+.TP 7
 .B ENOSPC
 There is insufficient free space remaining on the file system storage
 media.
-.TP
+.TP 7
 .B ESPIPE
 The \fIfd\fP argument is associated with a pipe or FIFO.
 .sp
@@ -96,7 +96,7 @@ None.
 .LP
 \fIcreat\fP() , \fIftruncate\fP() , \fIopen\fP() , \fIunlink\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<fcntl.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<fcntl.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "who" P 2003 POSIX
+.TH "WHO" P 2003 POSIX
 .\" who 
 .SH NAME
-who - display who is on the system
+who \- display who is on the system
 .SH SYNOPSIS
 .LP
 \fBwho\fP \fB[\fP\fB-mTu\fP\fB]\fP\fB
@@ -40,67 +40,67 @@ for each current system user.
 .SH OPTIONS
 .LP
 The \fIwho\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported. The metavariables, such
 as <\fIline\fP>, refer to fields described in the
 STDOUT section.
-.TP
+.TP 7
 \fB-a\fP
 Process the implementation-defined database or named file with the
 \fB-b\fP, \fB-d\fP, \fB-l\fP, \fB-p\fP, \fB-r\fP,
 \fB-t\fP, \fB-T\fP and \fB-u\fP options turned on. 
-.TP
+.TP 7
 \fB-b\fP
 Write the time and date of the last reboot. 
-.TP
+.TP 7
 \fB-d\fP
 Write a list of all processes that have expired and not been respawned
 by the \fIinit\fP system process. The <\fIexit\fP>
 field shall appear for dead processes and contain the termination
 and exit values of the dead process. This can be useful in
 determining why a process terminated. 
-.TP
+.TP 7
 \fB-H\fP
 Write column headings above the regular output. 
-.TP
+.TP 7
 \fB-l\fP
 (The letter ell.) List only those lines on which the system is waiting
 for someone to login. The <\fIname\fP> field shall be
 \fBLOGIN\fP in such cases. Other fields shall be the same as for user
 entries except that the <\fIstate\fP> field does not
 exist. 
-.TP
+.TP 7
 \fB-m\fP
 Output only information about the current terminal.
-.TP
+.TP 7
 \fB-p\fP
 List any other process that is currently active and has been previously
 spawned by \fIinit\fP. 
-.TP
+.TP 7
 \fB-q\fP
 (Quick.) List only the names and the number of users currently logged
 on. When this option is used, all other options shall be
 ignored. 
-.TP
+.TP 7
 \fB-r\fP
 Write the current \fIrun-level\fP of the \fIinit\fP process. 
-.TP
+.TP 7
 \fB-s\fP
 List only the <\fIname\fP>, <\fIline\fP>, and <\fItime\fP> fields.
 This is the default case. 
-.TP
+.TP 7
 \fB-t\fP
 Indicate the last change to the system clock. 
-.TP
+.TP 7
 \fB-T\fP
 Show the state of each terminal, as described in the STDOUT section.
-.TP
+.TP 7
 \fB-u\fP
 Write "idle time" for each displayed user in addition to any other
 information. The idle time is the time since any activity
 occurred on the user's terminal. The method of determining this is
-unspecified.   \0This option
+unspecified.   \ This option
 shall list only those users who are currently logged in. The <\fIname\fP>
 is the user's login name. The <\fIline\fP>
 is the name of the line as found in the directory \fB/dev\fP. The
@@ -117,12 +117,12 @@ determine whether a person is working at the terminal or not. The
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
-\fBam\0i\fP,\0\fBam\0I\fP
+.TP 7
+\fBam\ i\fP,\ \fBam\ I\fP
 In the POSIX locale, limit the output to describing the invoking user,
 equivalent to the \fB-m\fP option. The \fBam\fP and
 \fBi\fP or \fBI\fP must be separate arguments.
-.TP
+.TP 7
 \fIfile\fP
 Specify a pathname of a file to substitute for the implementation-defined
 database of logged-on users that \fIwho\fP uses by
@@ -138,37 +138,37 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIwho\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fILC_TIME\fP
 Determine the locale used for the format and contents of the date
 and time strings.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone used when writing date and time information.
 If \fITZ\fP is unset or null, an unspecified default
@@ -189,8 +189,7 @@ standard output in the following general format:
 .RS
 .nf
 
-\fB<\fP\fIname\fP\fB>\fP\fB[\fP\fB<\fP\fIstate\fP\fB>\fP\fB]\fP\fB<\fP\fIline\fP\fB><\fP\fItime\fP\fB>\fP\fB[\fP\fB<\fP\fIactivity\fP\fB>\fP\fB][\fP\fB<\fP\fIpid\fP\fB>\fP\fB][\fP\fB<\fP\fIcomment\fP\fB>\fP\fB][\fP\fB<\fP\fIexit\fP\fB>\fP\fB]\fP \fB<img
- src="../images/opt-end.gif" border="0">
+\fB<\fP\fIname\fP\fB>\fP\fB[\fP\fB<\fP\fIstate\fP\fB>\fP\fB]\fP\fB<\fP\fIline\fP\fB><\fP\fItime\fP\fB>\fP\fB[\fP\fB<\fP\fIactivity\fP\fB>\fP\fB][\fP\fB<\fP\fIpid\fP\fB>\fP\fB][\fP\fB<\fP\fIcomment\fP\fB>\fP\fB][\fP\fB<\fP\fIexit\fP\fB>\fP\fB]\fP \fB
 \fP
 .fi
 .RE
@@ -206,19 +205,19 @@ The following format shall be used for the \fB-T\fP option:
 .fi
 .RE
 .LP
-where <\fIterminal\0state\fP> is one of the following characters:
-.TP
+where <\fIterminal\ state\fP> is one of the following characters:
+.TP 7
 \fB+\fP
 The terminal allows write access to other users.
-.TP
+.TP 7
 \fB-\fP
 The terminal denies write access to other users.
-.TP
+.TP 7
 \fB?\fP
 The terminal write-access state cannot be determined.
 .sp
 .LP
-In the POSIX locale, the <\fItime\0of\0login\fP> shall be equivalent
+In the POSIX locale, the <\fItime\ of\ login\fP> shall be equivalent
 in format to the output of:
 .sp
 .RS
@@ -244,10 +243,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tcsetpgrp" P 2003 POSIX
+.TH "TCSETPGRP" P 2003 POSIX
 .\" tcsetpgrp 
 .SH NAME
-tcsetpgrp - set the foreground process group ID
+tcsetpgrp \- set the foreground process group ID
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -36,19 +36,19 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fItcsetpgrp\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B EINVAL
 This implementation does not support the value in the \fIpgid_id\fP
 argument.
-.TP
+.TP 7
 .B ENOTTY
 The calling process does not have a controlling terminal, or the file
 is not the controlling terminal, or the controlling
 terminal is no longer associated with the session of the calling process.
-.TP
+.TP 7
 .B EPERM
 The value of \fIpgid_id\fP is a value supported by the implementation,
 but does not match the process group ID of a process in
@@ -70,7 +70,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fItcgetpgrp\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fItcgetpgrp\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<sys/types.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

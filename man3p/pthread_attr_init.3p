@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_attr_destroy" P 2003 POSIX
+.TH "PTHREAD_ATTR_DESTROY" P 2003 POSIX
 .\" pthread_attr_destroy 
 .SH NAME
-pthread_attr_destroy, pthread_attr_init - destroy and initialize the
+pthread_attr_destroy, pthread_attr_init \- destroy and initialize the
 thread attributes object
 .SH SYNOPSIS
 .LP
@@ -43,7 +43,7 @@ an error number shall be returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_attr_init\fP() function shall fail if:
-.TP
+.TP 7
 .B ENOMEM
 Insufficient memory exists to initialize the thread attributes object.
 .sp
@@ -103,8 +103,7 @@ by the implementation.
 .LP
 The following proposal was provided as a suggested alternative to
 the supplied attributes:
-.in +5
-.LP
+.IP " 1." 4
 Maintain the style of passing a parameter formed by the bitwise-inclusive
 OR of flags to the initialization routines ( \fIpthread_create\fP(),
 \fIpthread_mutex_init\fP(), \fIpthread_cond_init\fP()). The parameter
@@ -113,18 +112,16 @@ for extensibility. If no flags are set in the parameter, then the
 objects are created with default characteristics. An
 implementation may specify implementation-defined flag values and
 associated behavior.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If further specialization of mutexes and condition variables is necessary,
 implementations may specify additional procedures
 that operate on the \fBpthread_mutex_t\fP and \fBpthread_cond_t\fP
 objects (instead of on attributes objects).
-.in -5
+.LP
 .LP
 The difficulties with this solution are:
-.in +5
-.LP
+.IP " 1." 4
 A bitmask is not opaque if bits have to be set into bitvector attributes
 objects using explicitly-coded bitwise-inclusive OR
 operations. If the set of options exceeds an \fBint\fP, application
@@ -132,9 +129,8 @@ programmers need to know the location of each bit. If bits are
 set or read by encapsulation (that is, get and set functions), then
 the bitmask is merely an implementation of attributes objects
 as currently defined and should not be exposed to the programmer.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Many attributes are not Boolean or very small integral values. For
 example, scheduling policy may be placed in 3-bit or 4-bit,
 but priority requires 5-bit or more, thereby taking up at least 8
@@ -146,7 +142,7 @@ a function parameter (which is non-extensible), or by setting a
 structure field (which is non-opaque), or by get and set functions
 (making the bitmask a redundant addition to the attributes
 objects).
-.in -5
+.LP
 .LP
 Stack size is defined as an optional attribute because the very notion
 of a stack is inherently machine-dependent. Some
@@ -156,7 +152,7 @@ discontiguous and can be allocated and released on demand.
 .LP
 The attribute mechanism has been designed in large measure for extensibility.
 Future extensions to the attribute mechanism or to
-any attributes object defined in this volume of IEEE\0Std\01003.1-2001
+any attributes object defined in this volume of IEEE\ Std\ 1003.1-2001
 has to be done with care so as not to affect
 binary-compatibility.
 .LP
@@ -176,7 +172,7 @@ None.
 .LP
 \fIpthread_attr_getstackaddr\fP() , \fIpthread_attr_getstacksize\fP()
 , \fIpthread_attr_getdetachstate\fP() , \fIpthread_create\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

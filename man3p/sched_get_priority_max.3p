@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sched_get_priority_max" P 2003 POSIX
+.TH "SCHED_GET_PRIORITY_MAX" P 2003 POSIX
 .\" sched_get_priority_max 
 .SH NAME
-sched_get_priority_max, sched_get_priority_min - get priority limits
+sched_get_priority_max, sched_get_priority_min \- get priority limits
 (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
@@ -34,7 +34,7 @@ error.
 .LP
 The \fIsched_get_priority_max\fP() and \fIsched_get_priority_min\fP()
 functions shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIpolicy\fP parameter does not represent a defined
 scheduling policy.
@@ -58,7 +58,7 @@ None.
 \fIsched_getparam\fP() , \fIsched_setparam\fP() , \fIsched_getscheduler\fP()
 , \fIsched_rr_get_interval\fP()
 , \fIsched_setscheduler\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sched.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sched.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

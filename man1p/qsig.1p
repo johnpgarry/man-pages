@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "qsig" P 2003 POSIX
+.TH "QSIG" P 2003 POSIX
 .\" qsig 
 .SH NAME
-qsig - signal batch jobs
+qsig \- signal batch jobs
 .SH SYNOPSIS
 .LP
 \fBqsig\fP \fB[\fP\fB-s\fP \fIsignal\fP\fB]\fP \fIjob_identifier\fP
@@ -37,11 +37,11 @@ utility exits.
 .SH OPTIONS
 .LP
 The \fIqsig\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following option shall be supported by the implementation:
-.TP
-\fB-s\0\fP \fIsignal\fP
+.TP 7
+\fB-s\ \fP \fIsignal\fP
 Define the signal to be sent to the batch job. 
 .LP
 The \fIqsig\fP utility shall accept a \fIsignal\fP option-argument
@@ -76,29 +76,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIqsig\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fILOGNAME\fP
 Determine the login name of the user.
 .sp
@@ -121,10 +121,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -170,7 +170,7 @@ POSIX.1-1990 standard defines signals by both name and number.
 .LP
 The \fIqsig\fP utility is a new utility, \fIvis-a-vis\fP existing
 practice; it has been defined in this volume of
-IEEE\0Std\01003.1-2001 in response to user-perceived shortcomings
+IEEE\ Std\ 1003.1-2001 in response to user-perceived shortcomings
 in existing practice.
 .SH FUTURE DIRECTIONS
 .LP

@@ -2,7 +2,7 @@
 .TH "<fmtmsg.h>" P 2003 POSIX
 .\" <fmtmsg.h> 
 .SH NAME
-fmtmsg.h - message display structures
+fmtmsg.h \- message display structures
 .SH SYNOPSIS
 .LP
 \fB#include <fmtmsg.h> \fP
@@ -10,49 +10,49 @@ fmtmsg.h - message display structures
 .LP
 The \fI<fmtmsg.h>\fP header shall define the following macros, which
 expand to constant integer expressions:
-.TP
+.TP 7
 MM_HARD
 Source of the condition is hardware.
-.TP
+.TP 7
 MM_SOFT
 Source of the condition is software.
-.TP
+.TP 7
 MM_FIRM
 Source of the condition is firmware.
-.TP
+.TP 7
 MM_APPL
 Condition detected by application.
-.TP
+.TP 7
 MM_UTIL
 Condition detected by utility.
-.TP
+.TP 7
 MM_OPSYS
 Condition detected by operating system.
-.TP
+.TP 7
 MM_RECOVER
 Recoverable error.
-.TP
+.TP 7
 MM_NRECOV
 Non-recoverable error.
-.TP
+.TP 7
 MM_HALT
 Error causing application to halt.
-.TP
+.TP 7
 MM_ERROR
 Application has encountered a non-fatal fault.
-.TP
+.TP 7
 MM_WARNING
 Application has detected unusual non-error condition.
-.TP
+.TP 7
 MM_INFO
 Informative message.
-.TP
+.TP 7
 MM_NOSEV
 No severity level provided for the message.
-.TP
+.TP 7
 MM_PRINT
 Display message on standard error.
-.TP
+.TP 7
 MM_CONSOLE
 Display message on system console.
 .sp
@@ -64,29 +64,29 @@ column, which expand to constant expressions
 that expand to expressions of the type indicated in the \fBType\fP
 column:
 .TS C
-center;l l l l l l l l l l l.
-\fBArgument\fP 	 \fBType\fP 	 \fBNull-Value\fP 	 \fBIdentifier\fP 	
-\fIlabel\fP 	 \fBchar *\fP 	 (\fBchar\fP*)0 	 MM_NULLLBL 	
-\fIseverity\fP 	 \fBint\fP 	 0 	 MM_NULLSEV 	
-\fIclass\fP 	 \fBlong\fP 	 \fB0L\fP 	 MM_NULLMC 	
-\fItext\fP 	 \fBchar *\fP 	 (\fBchar\fP*)0 	 MM_NULLTXT 	
-\fIaction\fP 	 \fBchar *\fP 	 (\fBchar\fP*)0 	 MM_NULLACT 	
-\fItag\fP 	 \fBchar *\fP 	 (\fBchar\fP*)0 	 MM_NULLTAG 	
+center; l l l l.
+\fBArgument\fP	\fBType\fP	\fBNull-Value\fP	\fBIdentifier\fP
+\fIlabel\fP	\fBchar *\fP	(\fBchar\fP*)0	MM_NULLLBL
+\fIseverity\fP	\fBint\fP	0	MM_NULLSEV
+\fIclass\fP	\fBlong\fP	\fB0L\fP	MM_NULLMC
+\fItext\fP	\fBchar *\fP	(\fBchar\fP*)0	MM_NULLTXT
+\fIaction\fP	\fBchar *\fP	(\fBchar\fP*)0	MM_NULLACT
+\fItag\fP	\fBchar *\fP	(\fBchar\fP*)0	MM_NULLTAG
 .TE
 .LP
 The \fI<fmtmsg.h>\fP header shall also define the following macros
 for use as return values for \fIfmtmsg\fP():
-.TP
+.TP 7
 MM_OK
 The function succeeded.
-.TP
+.TP 7
 MM_NOTOK
 The function failed completely.
-.TP
+.TP 7
 MM_NOMSG
 The function was unable to generate a message on standard error, but
 otherwise succeeded.
-.TP
+.TP 7
 MM_NOCON
 The function was unable to generate a console message, but otherwise
 succeeded.
@@ -116,7 +116,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIfmtmsg\fP()
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIfmtmsg\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_create" P 2003 POSIX
+.TH "PTHREAD_CREATE" P 2003 POSIX
 .\" pthread_create 
 .SH NAME
-pthread_create - thread creation
+pthread_create \- thread creation
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -10,9 +10,9 @@ pthread_create - thread creation
 .sp
 int pthread_create(pthread_t *restrict\fP \fIthread\fP\fB,
 .br
-\0\0\0\0\0\0 const pthread_attr_t *restrict\fP \fIattr\fP\fB,
+\ \ \ \ \ \  const pthread_attr_t *restrict\fP \fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 void *(*\fP\fIstart_routine\fP\fB)(void*), void *restrict\fP
+\ \ \ \ \ \  void *(*\fP\fIstart_routine\fP\fB)(void*), void *restrict\fP
 \fIarg\fP\fB); \fP
 \fB
 .br
@@ -38,16 +38,12 @@ be as if there was an implicit call to \fIexit\fP() using the return
 value of \fImain\fP() as the exit status.
 .LP
 The signal state of the new thread shall be initialized as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The signal mask shall be inherited from the creating thread.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The set of signals pending for the new thread shall be empty.
-.in -5
-.RE
+.LP
 .LP
 The alternate stack shall not be inherited. 
 .LP
@@ -69,15 +65,15 @@ the error.
 .SH ERRORS
 .LP
 The \fIpthread_create\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The system lacked the necessary resources to create another thread,
 or the system-imposed limit on the total number of threads
 in a process {PTHREAD_THREADS_MAX} would be exceeded.
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIattr\fP is invalid.
-.TP
+.TP 7
 .B EPERM
 The caller does not have appropriate permission to set the required
 scheduling parameters or scheduling policy.
@@ -103,30 +99,25 @@ separates the "creation" of a task from its
 .LP
 Splitting the operation was rejected by the standard developers for
 many reasons:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The number of calls required to start a thread would increase from
 one to two and thus place an additional burden on
 applications that do not require the additional synchronization. The
 second call, however, could be avoided by the additional
 complication of a start-up state attribute.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 An extra state would be introduced: "created but not started". This
 would require the standard to specify the behavior of the
 thread operations when the target has not yet started executing.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 For those applications that require such behavior, it is possible
 to simulate the two separate steps with the facilities that
 are currently provided. The \fIstart_routine\fP() can synchronize
 by waiting on a condition variable that is signaled by the start
 operation.
-.in -5
-.RE
+.LP
 .LP
 An Ada implementor can choose to create the thread at either of two
 points in the Ada program: when the task object is created,
@@ -142,9 +133,7 @@ An extension of the preceding model would be to allow the state of
 the thread to be modified between the create and start. This
 would allow the thread attributes object to be eliminated. This has
 been rejected because:
-.RS
-.in +5
-.LP
+.IP " *" 3
 All state in the thread attributes object has to be able to be set
 for the thread. This would require the definition of
 functions to modify thread attributes. There would be no reduction
@@ -155,20 +144,17 @@ the threads would be dramatically increased. Use of a thread attributes
 object permits the application to make one set of attribute
 setting function calls. Otherwise, the set of attribute setting function
 calls needs to be made for each thread creation.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Depending on the implementation architecture, functions to set thread
 state would require kernel calls, or for other
 implementation reasons would not be able to be implemented as macros,
 thereby increasing the cost of thread creation.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The ability for applications to segregate threads by class would be
 lost.
-.in -5
-.RE
+.LP
 .LP
 Another suggested alternative uses a model similar to that for process
 creation, such as "thread fork". The fork semantics
@@ -176,27 +162,23 @@ would provide more flexibility and the "create" function can be implemented
 simply by doing a thread fork followed immediately by
 a call to the desired "start routine" for the thread. This alternative
 has these problems:
-.RS
-.in +5
-.LP
+.IP " *" 3
 For many implementations, the entire stack of the calling thread would
 need to be duplicated, since in many architectures there
 is no way to determine the size of the calling frame.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Efficiency is reduced since at least some part of the stack has to
 be copied, even though in most cases the thread never needs
 the copied context, since it merely calls the desired start routine.
-.in -5
-.RE
+.LP
 .SH FUTURE DIRECTIONS
 .LP
 None.
 .SH SEE ALSO
 .LP
 \fIfork\fP() , \fIpthread_exit\fP() , \fIpthread_join\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

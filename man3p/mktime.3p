@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mktime" P 2003 POSIX
+.TH "MKTIME" P 2003 POSIX
 .\" mktime 
 .SH NAME
-mktime - convert broken-down time into time since the Epoch
+mktime \- convert broken-down time into time since the Epoch
 .SH SYNOPSIS
 .LP
 \fB#include <time.h>
@@ -12,12 +12,6 @@ time_t mktime(struct tm *\fP\fItimeptr\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fImktime\fP() function shall convert the broken-down time, expressed
 as local time, in the structure pointed to by
@@ -41,7 +35,7 @@ Local timezone information shall be set as though \fImktime\fP() called
 The relationship between the \fBtm\fP structure (defined in the \fI<time.h>\fP
 header) and the time in seconds since the Epoch is that the result
 shall be as specified in the expression given in the definition
-of seconds since the Epoch (see the Base Definitions volume of IEEE\0Std\01003.1-2001,
+of seconds since the Epoch (see the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 4.14, Seconds Since the Epoch) corrected for timezone and
 any seasonal time
 adjustments, where the names in the structure and in the expression
@@ -116,7 +110,7 @@ None.
 \fIasctime\fP() , \fIclock\fP() , \fIctime\fP()
 , \fIdifftime\fP() , \fIgmtime\fP() , \fIlocaltime\fP() , \fIstrftime\fP()
 , \fIstrptime\fP() , \fItime\fP() , \fIutime\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<time.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_atfork" P 2003 POSIX
+.TH "PTHREAD_ATFORK" P 2003 POSIX
 .\" pthread_atfork 
 .SH NAME
-pthread_atfork - register fork handlers
+pthread_atfork \- register fork handlers
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -10,7 +10,7 @@ pthread_atfork - register fork handlers
 .sp
 int pthread_atfork(void (*\fP\fIprepare\fP\fB)(void), void (*\fP\fIparent\fP\fB)(void),
 .br
-\0\0\0\0\0\0 void (*\fP\fIchild\fP\fB)(void)); \fP
+\ \ \ \ \ \  void (*\fP\fIchild\fP\fB)(void)); \fP
 \fB
 .br
 \fP
@@ -40,7 +40,7 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_atfork\fP() function shall fail if:
-.TP
+.TP 7
 .B ENOMEM
 Insufficient table space exists to record the fork handler addresses.
 .sp
@@ -140,7 +140,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIatexit\fP() , \fIfork\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/types.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/types.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -2,17 +2,11 @@
 .TH "<float.h>" P 2003 POSIX
 .\" <float.h> 
 .SH NAME
-float.h - floating types
+float.h \- floating types
 .SH SYNOPSIS
 .LP
 \fB#include <float.h>\fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The characteristics of floating types are defined in terms of a model
 that describes a representation of floating-point numbers
@@ -21,19 +15,19 @@ arithmetic.
 .LP
 The following parameters are used to define the model for each floating-point
 type:
-.TP
+.TP 7
 \fIs\fP
 Sign (\(+-1).
-.TP
+.TP 7
 \fIb\fP
 Base or radix of exponent representation (an integer >1).
-.TP
+.TP 7
 \fIe\fP
 Exponent (an integer between a minimum \fIe\fP_min and a maximum \fIe\fP_max).
-.TP
+.TP 7
 \fIp\fP
 Precision (the number of base-\fIb\fP digits in the significand).
-.TP
+.TP 7
 \fIf\fP_k
 Non-negative integers less than \fIb\fP (the significand digits).
 .sp
@@ -69,20 +63,20 @@ provided for all values except FLT_EVAL_METHOD and FLT_ROUNDS.
 .LP
 The rounding mode for floating-point addition is characterized by
 the implementation-defined value of FLT_ROUNDS:
-.TP
+.TP 7
 -1
 Indeterminable.
-.TP
-\00
+.TP 7
+\ 0
 Toward zero.
-.TP
-\01
+.TP 7
+\ 1
 To nearest.
-.TP
-\02
+.TP 7
+\ 2
 Toward positive infinity.
-.TP
-\03
+.TP 7
+\ 3
 Toward negative infinity.
 .sp
 .LP
@@ -94,21 +88,21 @@ to the usual arithmetic conversions and of floating constants
 are evaluated to a format whose range and precision may be greater
 than required by the type. The use of evaluation formats is
 characterized by the implementation-defined value of FLT_EVAL_METHOD:
-.TP
+.TP 7
 -1
 Indeterminable.
-.TP
-\00
+.TP 7
+\ 0
 Evaluate all operations and constants just to the range and precision
 of the type.
-.TP
-\01
+.TP 7
+\ 1
 Evaluate operations and constants of type \fBfloat\fP and \fBdouble\fP
 to the range and precision of the \fBdouble\fP type;
 evaluate \fBlong double\fP operations and constants to the range and
 precision of the \fBlong double\fP type.
-.TP
-\02
+.TP 7
+\ 2
 Evaluate all operations and constants to the range and precision of
 the \fBlong double\fP type.
 .sp
@@ -120,171 +114,194 @@ The values given in the following list shall be defined as constant
 expressions with implementation-defined values that are
 greater or equal in magnitude (absolute value) to those shown, with
 the same sign.
-.RS
-.in +5
-.LP
+.IP " *" 3
 Radix of exponent representation, \fIb\fP.
-.TP
+.TP 7
 FLT_RADIX
+.RS
 2
+.RE
 .sp
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Number of base-FLT_RADIX digits in the floating-point significand,
 \fIp\fP.
-.TP
+.TP 7
 FLT_MANT_DIG
-.TP
+.TP 7
 DBL_MANT_DIG
-.TP
+.TP 7
 LDBL_MANT_DIG
 .sp
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Number of decimal digits, \fIn\fP, such that any floating-point number
 in the widest supported floating type with \fIp\fP_max
 radix \fIb\fP digits can be rounded to a floating-point number with
 \fIn\fP decimal digits and back again without change to the
 value.
 .LP
-.TP
+.TP 7
 DECIMAL_DIG
+.RS
 10
+.RE
 .sp
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Number of decimal digits, \fIq\fP, such that any floating-point number
 with \fIq\fP decimal digits can be rounded into a
 floating-point number with \fIp\fP radix \fIb\fP digits and back again
 without change to the \fIq\fP decimal digits.
 .LP
-.TP
+.TP 7
 FLT_DIG
+.RS
 6
-.TP
+.RE
+.TP 7
 DBL_DIG
+.RS
 10
-.TP
+.RE
+.TP 7
 LDBL_DIG
+.RS
 10
+.RE
 .sp
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Minimum negative integer such that FLT_RADIX raised to that power
 minus 1 is a normalized floating-point number, \fIe\fP_min.
-.TP
+.TP 7
 FLT_MIN_EXP
-.TP
+.TP 7
 DBL_MIN_EXP
-.TP
+.TP 7
 LDBL_MIN_EXP
 .sp
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Minimum negative integer such that 10 raised to that power is in the
 range of normalized floating-point numbers.
 .LP
-.TP
+.TP 7
 FLT_MIN_10_EXP
+.RS
 -37
-.TP
+.RE
+.TP 7
 DBL_MIN_10_EXP
+.RS
 -37
-.TP
+.RE
+.TP 7
 LDBL_MIN_10_EXP
+.RS
 -37
+.RE
 .sp
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Maximum integer such that FLT_RADIX raised to that power minus 1 is
 a representable finite floating-point number, \fIe\fP_max.
-.TP
+.TP 7
 FLT_MAX_EXP
-.TP
+.TP 7
 DBL_MAX_EXP
-.TP
+.TP 7
 LDBL_MAX_EXP
 .sp
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Maximum integer such that 10 raised to that power is in the range
 of representable finite floating-point numbers.
 .LP
-.TP
+.TP 7
 FLT_MAX_10_EXP
+.RS
 +37
-.TP
-DBL_MAX_10_EXP
-+37
-.TP
-LDBL_MAX_10_EXP
-+37
-.sp
-.in -5
 .RE
+.TP 7
+DBL_MAX_10_EXP
+.RS
++37
+.RE
+.TP 7
+LDBL_MAX_10_EXP
+.RS
++37
+.RE
+.sp
+.LP
 .LP
 The values given in the following list shall be defined as constant
 expressions with implementation-defined values that are
 greater than or equal to those shown:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Maximum representable finite floating-point number.
 .LP
-.TP
+.TP 7
 FLT_MAX
+.RS
 1E+37
-.TP
-DBL_MAX
-1E+37
-.TP
-LDBL_MAX
-1E+37
-.sp
-.in -5
 .RE
+.TP 7
+DBL_MAX
+.RS
+1E+37
+.RE
+.TP 7
+LDBL_MAX
+.RS
+1E+37
+.RE
+.sp
+.LP
 .LP
 The values given in the following list shall be defined as constant
 expressions with implementation-defined (positive) values
 that are less than or equal to those shown:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The difference between 1 and the least value greater than 1 that is
 representable in the given floating-point type, \fIb\fP**1-\fIp\fP.
-.TP
+.TP 7
 FLT_EPSILON
+.RS
 1E-5
-.TP
-DBL_EPSILON
-1E-9
-.TP
-LDBL_EPSILON
-1E-9
-.sp
-.in -5
-.in +5
-.LP
-Minimum normalized positive floating-point number, \fIb\fP**\fIe\fP_min.
-.TP
-FLT_MIN
-1E-37
-.TP
-DBL_MIN
-1E-37
-.TP
-LDBL_MIN
-1E-37
-.sp
-.in -5
 .RE
+.TP 7
+DBL_EPSILON
+.RS
+1E-9
+.RE
+.TP 7
+LDBL_EPSILON
+.RS
+1E-9
+.RE
+.sp
+.LP
+.IP " *" 3
+Minimum normalized positive floating-point number, \fIb\fP**\fIe\fP_min.
+.TP 7
+FLT_MIN
+.RS
+1E-37
+.RE
+.TP 7
+DBL_MIN
+.RS
+1E-37
+.RE
+.TP 7
+LDBL_MIN
+.RS
+1E-37
+.RE
+.sp
+.LP
 .LP
 \fIThe following sections are informative.\fP
 .SH APPLICATION USAGE

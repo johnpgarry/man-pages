@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "msgctl" P 2003 POSIX
+.TH "MSGCTL" P 2003 POSIX
 .\" msgctl 
 .SH NAME
-msgctl - XSI message control operations
+msgctl \- XSI message control operations
 .SH SYNOPSIS
 .LP
 \fB#include <sys/msg.h>
@@ -16,7 +16,7 @@ int msgctl(int\fP \fImsqid\fP\fB, int\fP \fIcmd\fP\fB, struct msqid_ds
 .SH DESCRIPTION
 .LP
 The \fImsgctl\fP() function operates on XSI message queues (see the
-Base Definitions volume of IEEE\0Std\01003.1-2001,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Section 3.224, Message Queue). It is unspecified whether this function
 interoperates with the realtime interprocess communication facilities
 defined in \fIRealtime\fP .
@@ -24,13 +24,13 @@ defined in \fIRealtime\fP .
 The \fImsgctl\fP() function shall provide message control operations
 as specified by \fIcmd\fP. The following values for
 \fIcmd\fP, and the message control operations they specify, are:
-.TP
+.TP 7
 IPC_STAT
 Place the current value of each member of the \fBmsqid_ds\fP data
 structure associated with \fImsqid\fP into the structure
 pointed to by \fIbuf\fP. The contents of this structure are defined
 in \fI<sys/msg.h>\fP.
-.TP
+.TP 7
 IPC_SET
 Set the value of the following members of the \fBmsqid_ds\fP data
 structure associated with \fImsqid\fP to the corresponding
@@ -52,7 +52,7 @@ or that has an effective user ID equal to the value of
 \fBmsg_perm.cuid\fP or \fBmsg_perm.uid\fP in the \fBmsqid_ds\fP data
 structure associated with \fImsqid\fP. Only a process with
 appropriate privileges can raise the value of \fBmsg_qbytes\fP.
-.TP
+.TP 7
 IPC_RMID
 Remove the message queue identifier specified by \fImsqid\fP from
 the system and destroy the message queue and \fBmsqid_ds\fP
@@ -70,22 +70,22 @@ error.
 .SH ERRORS
 .LP
 The \fImsgctl\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 The argument \fIcmd\fP is IPC_STAT and the calling process does not
 have read permission; see \fIXSI Interprocess Communication\fP .
-.TP
+.TP 7
 .B EINVAL
 The value of \fImsqid\fP is not a valid message queue identifier;
 or the value of \fIcmd\fP is not a valid command.
-.TP
+.TP 7
 .B EPERM
 The argument \fIcmd\fP is IPC_RMID or IPC_SET and the effective user
 ID of the calling process is not equal to that of a
 process with appropriate privileges and it is not equal to the value
 of \fBmsg_perm.cuid\fP or \fBmsg_perm.uid\fP in the data
 structure associated with \fImsqid\fP.
-.TP
+.TP 7
 .B EPERM
 The argument \fIcmd\fP is IPC_SET, an attempt is being made to increase
 to the value of \fBmsg_qbytes\fP, and the effective
@@ -116,7 +116,7 @@ None.
 , \fImq_getattr\fP() , \fImq_notify\fP() , \fImq_open\fP() , \fImq_receive\fP()
 , \fImq_send\fP() , \fImq_setattr\fP() , \fImq_unlink\fP() , \fImsgget\fP()
 , \fImsgrcv\fP() ,
-\fImsgsnd\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fImsgsnd\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<sys/msg.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

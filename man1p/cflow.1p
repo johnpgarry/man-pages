@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cflow" P 2003 POSIX
+.TH "CFLOW" P 2003 POSIX
 .\" cflow 
 .SH NAME
-cflow - generate a C-language flowgraph (\fBDEVELOPMENT\fP)
+cflow \- generate a C-language flowgraph (\fBDEVELOPMENT\fP)
 .SH SYNOPSIS
 .LP
 \fBcflow\fP \fB[\fP\fB-r\fP\fB][\fP\fB-d\fP \fInum\fP\fB][\fP\fB-D\fP
@@ -10,7 +10,7 @@ cflow - generate a C-language flowgraph (\fBDEVELOPMENT\fP)
 \fIincl\fP\fB][\fP\fB-I\fP
 \fIdir\fP\fB]\fP \fB...
 .br
-\0\0\0\0\0\0\fP \fB[\fP\fB-U\fP \fIdir\fP\fB]\fP \fB...\fP \fIfile\fP
+\ \ \ \ \ \ \fP \fB[\fP\fB-U\fP \fIdir\fP\fB]\fP \fB...\fP \fIfile\fP
 \fB\&... \fP
 .SH DESCRIPTION
 .LP
@@ -21,35 +21,39 @@ graph, written to standard output, charting the external references.
 .SH OPTIONS
 .LP
 The \fIcflow\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
 except that the order of the \fB-D\fP,
 \fB-I\fP, and \fB-U\fP options (which are identical to their interpretation
 by \fIc99\fP) is
 significant.
 .LP
 The following options shall be supported:
-.TP
-\fB-d\0\fP \fInum\fP
+.TP 7
+\fB-d\ \fP \fInum\fP
 Indicate the depth at which the flowgraph is cut off. The application
 shall ensure that the argument \fInum\fP is a decimal
 integer. By default this is a very large number (typically greater
 than 32000). Attempts to set the cut-off depth to a non-positive
 integer shall be ignored.
-.TP
-\fB-i\0\fP \fIincl\fP
+.TP 7
+\fB-i\ \fP \fIincl\fP
 Increase the number of included symbols. The \fIincl\fP option-argument
 is one of the following characters: 
-.TP
+.TP 7
 \fIx\fP
+.RS
 Include external and static data symbols. The default shall be to
 include only functions in the flowgraph.
-.TP
+.RE
+.TP 7
 \fB_\fP
+.RS
 (Underscore) Include names that begin with an underscore. The default
 shall be to exclude these functions (and data if
-\fB-i\0x\fP is used).
+\fB-i\ x\fP is used).
+.RE
 .sp
-.TP
+.TP 7
 \fB-r\fP
 Reverse the caller:callee relationship, producing an inverted listing
 showing the callers of each function. The listing shall
@@ -58,7 +62,7 @@ also be sorted in lexicographical order by callee.
 .SH OPERANDS
 .LP
 The following operand is supported:
-.TP
+.TP 7
 \fIfile\fP
 The pathname of a file for which a graph is to be generated. Filenames
 suffixed by \fB.l\fP shall shall be taken to be \fIlex\fP input, \fB.y\fP
@@ -81,34 +85,34 @@ or \fIyacc\fP source files.
 .LP
 The following environment variables shall affect the execution of
 \fIcflow\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the ordering of the output when the \fB-r\fP
 option is used.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -157,10 +161,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp

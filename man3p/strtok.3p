@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "strtok" P 2003 POSIX
+.TH "STRTOK" P 2003 POSIX
 .\" strtok 
 .SH NAME
-strtok, strtok_r - split string into tokens
+strtok, strtok_r \- split string into tokens
 .SH SYNOPSIS
 .LP
 \fB#include <string.h>
@@ -16,17 +16,17 @@ char *strtok(char *restrict\fP \fIs1\fP\fB, const char *restrict\fP
 \fBchar *strtok_r(char *restrict\fP \fIs\fP\fB, const char *restrict\fP
 \fIsep\fP\fB,
 .br
-\0\0\0\0\0\0 char **restrict\fP \fIlasts\fP\fB); \fP
+\ \ \ \ \ \  char **restrict\fP \fIlasts\fP\fB); \fP
 \fB
 .br
 \fP
 .SH DESCRIPTION
 .LP
 For \fIstrtok\fP():   The functionality described on this reference
-page is aligned with the ISO\0C standard. Any
-conflict between the requirements described here and the ISO\0C standard
+page is aligned with the ISO\ C standard. Any
+conflict between the requirements described here and the ISO\ C standard
 is unintentional. This volume of
-IEEE\0Std\01003.1-2001 defers to the ISO\0C standard. 
+IEEE\ Std\ 1003.1-2001 defers to the ISO\ C standard. 
 .LP
 A sequence of calls to \fIstrtok\fP() breaks the string pointed to
 by \fIs1\fP into a sequence of tokens, each of which is
@@ -57,7 +57,7 @@ argument, starts searching from the saved pointer and
 behaves as described above.
 .LP
 The implementation shall behave as if no function defined in this
-volume of IEEE\0Std\01003.1-2001 calls
+volume of IEEE\ Std\ 1003.1-2001 calls
 \fIstrtok\fP().
 .LP
 The
@@ -166,7 +166,7 @@ to keep track of the current position in the string.
 None.
 .SH SEE ALSO
 .LP
-The Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<string.h>\fP
+The Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<string.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -2,7 +2,7 @@
 .TH "<poll.h>" P 2003 POSIX
 .\" <poll.h> 
 .SH NAME
-poll.h - definitions for the poll() function
+poll.h \- definitions for the poll() function
 .SH SYNOPSIS
 .LP
 \fB#include <poll.h> \fP
@@ -23,7 +23,7 @@ short  revents \fP The output event flags (see below). \fB
 .LP
 The \fI<poll.h>\fP header shall define the following type through
 \fBtypedef\fP:
-.TP
+.TP 7
 \fBnfds_t\fP
 An unsigned integer type used for the number of file descriptors.
 .sp
@@ -37,34 +37,34 @@ utility.
 The following symbolic constants shall be defined, zero or more of
 which may be OR'ed together to form the \fIevents\fP or
 \fIrevents\fP members in the \fBpollfd\fP structure:
-.TP
+.TP 7
 POLLIN
 Data other than high-priority data may be read without blocking.
-.TP
+.TP 7
 POLLRDNORM
 Normal data may be read without blocking.
-.TP
+.TP 7
 POLLRDBAND
 Priority data may be read without blocking.
-.TP
+.TP 7
 POLLPRI
 High priority data may be read without blocking.
-.TP
+.TP 7
 POLLOUT
 Normal data may be written without blocking.
-.TP
+.TP 7
 POLLWRNORM
 Equivalent to POLLOUT.
-.TP
+.TP 7
 POLLWRBAND
 Priority data may be written.
-.TP
+.TP 7
 POLLERR
 An error has occurred ( \fIrevents\fP only).
-.TP
+.TP 7
 POLLHUP
 Device has been disconnected ( \fIrevents\fP only).
-.TP
+.TP 7
 POLLNVAL
 Invalid \fIfd\fP member ( \fIrevents\fP only).
 .sp
@@ -95,8 +95,8 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIconfstr\fP(),
-\fIpoll\fP(), the Shell and Utilities volume of IEEE\0Std\01003.1-2001,
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIconfstr\fP(),
+\fIpoll\fP(), the Shell and Utilities volume of IEEE\ Std\ 1003.1-2001,
 \fIgetconf\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

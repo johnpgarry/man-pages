@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mprotect" P 2003 POSIX
+.TH "MPROTECT" P 2003 POSIX
 .\" mprotect 
 .SH NAME
-mprotect - set protection of memory mapping
+mprotect \- set protection of memory mapping
 .SH SYNOPSIS
 .LP
 \fB#include <sys/mman.h>
@@ -58,31 +58,31 @@ error.
 .SH ERRORS
 .LP
 The \fImprotect\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 The \fIprot\fP argument specifies a protection that violates the access
 permission the process has to the underlying memory
 object.
-.TP
+.TP 7
 .B EAGAIN
 The \fIprot\fP argument specifies PROT_WRITE over a MAP_PRIVATE mapping
 and there are insufficient memory resources to reserve
 for locking the private page.
-.TP
+.TP 7
 .B EINVAL
 The \fIaddr\fP argument is not a multiple of the page size as returned
 by \fIsysconf\fP().
-.TP
+.TP 7
 .B ENOMEM
 Addresses in the range [\fIaddr\fP,\fIaddr\fP+\fIlen\fP) are invalid
 for the address space of a process, or specify one or
 more pages which are not mapped.
-.TP
+.TP 7
 .B ENOMEM
 The \fIprot\fP argument specifies PROT_WRITE on a MAP_PRIVATE mapping,
 and it would require more space than the system is able
 to supply for locking the private pages, if required.
-.TP
+.TP 7
 .B ENOTSUP
 The implementation does not support the combination of accesses requested
 in the \fIprot\fP argument.
@@ -105,7 +105,7 @@ None.
 .SH SEE ALSO
 .LP
 \fImmap\fP() , \fIsysconf\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/mman.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "wcscoll" P 2003 POSIX
+.TH "WCSCOLL" P 2003 POSIX
 .\" wcscoll 
 .SH NAME
-wcscoll - wide-character string comparison using collating information
+wcscoll \- wide-character string comparison using collating information
 .SH SYNOPSIS
 .LP
 \fB#include <wchar.h>
@@ -12,12 +12,6 @@ int wcscoll(const wchar_t *\fP\fIws1\fP\fB, const wchar_t *\fP\fIws2\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIwcscoll\fP() function shall compare the wide-character string
 pointed to by \fIws1\fP to the wide-character string
@@ -38,13 +32,13 @@ greater than, equal to, or less than 0, according to
 whether the wide-character string pointed to by \fIws1\fP is greater
 than, equal to, or less than the wide-character string
 pointed to by \fIws2\fP, when both are interpreted as appropriate
-to the current locale.   \0On error,
+to the current locale.   \ On error,
 \fIwcscoll\fP() shall set \fIerrno\fP, but no return value is reserved
 to indicate an error. 
 .SH ERRORS
 .LP
 The \fIwcscoll\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIws1\fP or \fIws2\fP arguments contain wide-character codes
 outside the domain of the collating sequence. 
@@ -67,7 +61,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIwcscmp\fP() , \fIwcsxfrm\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<wchar.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<wchar.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

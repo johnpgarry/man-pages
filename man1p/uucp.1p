@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "uucp" P 2003 POSIX
+.TH "UUCP" P 2003 POSIX
 .\" uucp 
 .SH NAME
-uucp - system-to-system copy
+uucp \- system-to-system copy
 .SH SYNOPSIS
 .LP
 \fBuucp\fP \fB[\fP\fB-cCdfjmr\fP\fB][\fP\fB-n\fP \fIuser\fP\fB]\fP
@@ -18,16 +18,16 @@ encodings in all circumstances. For example, transmission
 data may be restricted to 7 bits by the underlying network, 8-bit
 data and filenames need not be portable to non-internationalized
 systems, and so on. Under these circumstances, it is recommended that
-only characters defined in the ISO/IEC\0646:1991 standard
+only characters defined in the ISO/IEC\ 646:1991 standard
 International Reference Version (equivalent to ASCII) 7-bit range
 of characters be used, and that only characters defined in the
 portable filename character set be used for naming files. The protocol
 for transfer of files is unspecified by
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .LP
 Typical implementations of this utility require a communications line
 configured to use the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 11, General Terminal Interface, but
+IEEE\ Std\ 1003.1-2001, Chapter 11, General Terminal Interface, but
 other
 communications means may be used. On systems where there are no available
 communications means (either temporarily or permanently),
@@ -36,41 +36,41 @@ exit with a non-zero exit status.
 .SH OPTIONS
 .LP
 The \fIuucp\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-c\fP
 Do not copy local file to the spool directory for transfer to the
 remote machine (default).
-.TP
+.TP 7
 \fB-C\fP
 Force the copy of local files to the spool directory for transfer.
-.TP
+.TP 7
 \fB-d\fP
 Make all necessary directories for the file copy (default).
-.TP
+.TP 7
 \fB-f\fP
 Do not make intermediate directories for the file copy.
-.TP
+.TP 7
 \fB-j\fP
 Write the job identification string to standard output. This job identification
 can be used by \fIuustat\fP to obtain the status or terminate a job.
-.TP
+.TP 7
 \fB-m\fP
 Send mail to the requester when the copy is completed.
-.TP
-\fB-n\0\fP \fIuser\fP
+.TP 7
+\fB-n\ \fP \fIuser\fP
 Notify \fIuser\fP on the remote system that a file was sent.
-.TP
+.TP 7
 \fB-r\fP
 Do not start the file transfer; just queue the job.
 .sp
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
-\fIdestination-file\fP,\0\fIsource-file\fP
+.TP 7
+\fIdestination-file\fP,\ \fIsource-file\fP
 .sp
 A pathname of a file to be copied to, or from, respectively. Either
 name can be a pathname on the local machine, or can have the
@@ -103,36 +103,36 @@ The shell pattern matching notation characters \fB'?'\fP , \fB'*'\fP
 shall be expanded on the appropriate system.
 .LP
 Pathnames can be one of:
-.in +5
-.LP
+.RS
+.IP " 1." 4
 An absolute pathname.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 A pathname preceded by ~ \fIuser\fP where \fIuser\fP is a login name
 on the specified system and is replaced by that
 user's login directory. Note that if an invalid login is specified,
 the default is to the public directory (called \fIPUBDIR\fP;
 the actual location of \fIPUBDIR\fP is implementation-defined).
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 A pathname preceded by ~/ \fIdestination\fP where \fIdestination\fP
 is appended to \fIPUBDIR\fP. 
-.TP
+.TP 7
 \fBNote:\fP
+.RS
 This destination is treated as a filename unless more than one file
 is being transferred by this request or the destination is
 already a directory. To ensure that it is a directory, follow the
 destination with a \fB'/'\fP . For example, \fB~/dan/\fP
 as the destination makes the directory \fBPUBDIR/dan\fP if it does
 not exist and puts the requested files in that directory.
+.RE
 .sp
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Anything else shall be prefixed by the current directory.
-.in -5
+.LP
+.RE
 .LP
 If the result is an erroneous pathname for the remote system, the
 copy shall fail. If the \fIdestination-file\fP is a
@@ -150,37 +150,37 @@ The files to be copied are regular files.
 .LP
 The following environment variables shall affect the execution of
 \fIuucp\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements within bracketed
 filename patterns.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files) and
 the behavior of character classes within bracketed filename
 patterns (for example, \fB"'[[:lower:]]*'"\fP ).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error,
 and informative messages written to standard output.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -206,10 +206,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp

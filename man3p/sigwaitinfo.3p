@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sigtimedwait" P 2003 POSIX
+.TH "SIGTIMEDWAIT" P 2003 POSIX
 .\" sigtimedwait 
 .SH NAME
-sigtimedwait, sigwaitinfo - wait for queued signals (\fBREALTIME\fP)
+sigtimedwait, sigwaitinfo \- wait for queued signals (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -10,13 +10,13 @@ sigtimedwait, sigwaitinfo - wait for queued signals (\fBREALTIME\fP)
 .sp
 int sigtimedwait(const sigset_t *restrict\fP \fIset\fP\fB,
 .br
-\0\0\0\0\0\0 siginfo_t *restrict\fP \fIinfo\fP\fB,
+\ \ \ \ \ \  siginfo_t *restrict\fP \fIinfo\fP\fB,
 .br
-\0\0\0\0\0\0 const struct timespec *restrict\fP \fItimeout\fP\fB);
+\ \ \ \ \ \  const struct timespec *restrict\fP \fItimeout\fP\fB);
 .br
 int sigwaitinfo(const sigset_t *restrict\fP \fIset\fP\fB,
 .br
-\0\0\0\0\0\0 siginfo_t *restrict\fP \fIinfo\fP\fB); \fP
+\ \ \ \ \ \  siginfo_t *restrict\fP \fIinfo\fP\fB); \fP
 \fB
 .br
 \fP
@@ -30,7 +30,7 @@ referenced by \fItimeout\fP. If the \fBtimespec\fP structure pointed
 to by \fItimeout\fP is zero-valued and if none of the
 signals specified by \fIset\fP are pending, then \fIsigtimedwait\fP()
 shall return immediately with an error. If \fItimeout\fP
-is the NULL pointer, the behavior is unspecified.   \0If the Monotonic
+is the NULL pointer, the behavior is unspecified.   \ If the Monotonic
 Clock option is supported, the CLOCK_MONOTONIC
 clock shall be used to measure the time interval specified by the
 \fItimeout\fP argument. 
@@ -71,7 +71,7 @@ Otherwise, the function shall return a value of -1 and set
 .SH ERRORS
 .LP
 The \fIsigtimedwait\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 No signal specified by \fIset\fP was generated within the specified
 timeout period.
@@ -79,7 +79,7 @@ timeout period.
 .LP
 The \fIsigtimedwait\fP() and \fIsigwaitinfo\fP() functions may fail
 if:
-.TP
+.TP 7
 .B EINTR
 The wait was interrupted by an unblocked, caught signal. It shall
 be documented in system documentation whether this error
@@ -87,7 +87,7 @@ causes these functions to fail.
 .sp
 .LP
 The \fIsigtimedwait\fP() function may also fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fItimeout\fP argument specified a \fItv_nsec\fP value less than
 zero or greater than or equal to 1000 million.
@@ -120,11 +120,11 @@ the response time of individual event handling.
 .LP
 It is possible to construct a signal-waiting macro function out of
 the realtime signal function mechanism defined in this volume
-of IEEE\0Std\01003.1-2001. However, such a macro has to include the
+of IEEE\ Std\ 1003.1-2001. However, such a macro has to include the
 definition of a generalized handler for all signals to
 be waited on. A significant portion of the overhead of handler processing
 can be avoided if the signal-waiting function is provided
-by the kernel. This volume of IEEE\0Std\01003.1-2001 therefore provides
+by the kernel. This volume of IEEE\ Std\ 1003.1-2001 therefore provides
 two signal-waiting functions-one that waits
 indefinitely and one with a timeout-as part of the overall realtime
 signal function specification.
@@ -143,7 +143,7 @@ method, the separate function has been included.
 .LP
 Note that the semantics of the \fIsigwaitinfo\fP() function are nearly
 identical to that of the \fIsigwait\fP() function defined by this
-volume of IEEE\0Std\01003.1-2001. The only
+volume of IEEE\ Std\ 1003.1-2001. The only
 difference is that \fIsigwaitinfo\fP() returns the queued signal value
 in the \fIvalue\fP argument. The return of the queued
 value is required so that applications can differentiate between multiple
@@ -173,23 +173,19 @@ important question was how many threads that are suspended in a call
 to a \fIsigwait\fP()
 function for a signal should return from the call when the signal
 is sent. Four choices were considered:
-.in +5
-.LP
+.IP " 1." 4
 Return an error for multiple simultaneous calls to \fIsigwait\fP functions
 for the same signal.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 One or more threads return.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 All waiting threads return.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Exactly one thread returns.
-.in -5
+.LP
 .LP
 Prohibiting multiple calls to \fIsigwait\fP() for the same signal
 was felt to be overly
@@ -208,24 +204,19 @@ Thus, the consensus was that exactly one thread that was suspended
 in a call to a \fIsigwait\fP function for a signal should
 return when that signal occurs. This is not an onerous restriction
 as:
-.RS
-.in +5
-.LP
+.IP " *" 3
 A multi-way signal wait can be built from the single-way wait.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Signals should only be handled by application-level code, as library
 routines cannot guess what the application wants to do with
 signals generated for the entire process.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Applications can thus arrange for a single thread to wait for any
 given signal and call any needed routines upon its
 arrival.
-.in -5
-.RE
+.LP
 .LP
 In an application that is using signals for interprocess communication,
 signal processing is typically done in one place.
@@ -258,7 +249,7 @@ None.
 .LP
 \fIRealtime Signals\fP , \fIpause\fP() , \fIpthread_sigmask\fP() ,
 \fIsigaction\fP() , \fIsigpending\fP() , \fIsigsuspend\fP() , \fIsigwait\fP()
-, the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<signal.h>\fP,
+, the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP,
 \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

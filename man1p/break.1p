@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "break" P 2003 POSIX
+.TH "BREAK" P 2003 POSIX
 .\" break 
 .SH NAME
-break - exit from for, while, or until loop
+break \- exit from for, while, or until loop
 .SH SYNOPSIS
 .LP
 \fBbreak\fP \fB[\fP\fIn\fP\fB]\fP
@@ -47,10 +47,10 @@ None.
 .LP
 None.
 .SH EXIT STATUS
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 The \fIn\fP value was not an unsigned decimal integer greater than
 or equal to 1.
@@ -78,7 +78,7 @@ None.
 In early proposals, consideration was given to expanding the syntax
 of \fIbreak\fP and \fIcontinue\fP to refer to a label associated with
 the appropriate loop as a preferable
-alternative to the \fIn\fP method. However, this volume of IEEE\0Std\01003.1-2001
+alternative to the \fIn\fP method. However, this volume of IEEE\ Std\ 1003.1-2001
 does reserve the name space of command
 names ending with a colon. It is anticipated that a future implementation
 could take advantage of this and provide something

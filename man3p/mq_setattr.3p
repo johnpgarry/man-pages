@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mq_setattr" P 2003 POSIX
+.TH "MQ_SETATTR" P 2003 POSIX
 .\" mq_setattr 
 .SH NAME
-mq_setattr - set message queue attributes (\fBREALTIME\fP)
+mq_setattr \- set message queue attributes (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <mqueue.h>
@@ -11,7 +11,7 @@ mq_setattr - set message queue attributes (\fBREALTIME\fP)
 int mq_setattr(mqd_t\fP \fImqdes\fP\fB, const struct mq_attr *restrict\fP
 \fImqstat\fP\fB,
 .br
-\0\0\0\0\0\0 struct mq_attr *restrict\fP \fIomqstat\fP\fB); \fP
+\ \ \ \ \ \  struct mq_attr *restrict\fP \fIomqstat\fP\fB); \fP
 \fB
 .br
 \fP
@@ -24,7 +24,7 @@ message queue descriptor specified by \fImqdes\fP.
 The message queue attributes corresponding to the following members
 defined in the \fBmq_attr\fP structure shall be set to the
 specified values upon successful completion of \fImq_setattr\fP():
-.TP
+.TP 7
 \fImq_flags\fP
 The value of this member is the bitwise-logical OR of zero or more
 of O_NONBLOCK and any implementation-defined flags.
@@ -51,7 +51,7 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fImq_setattr\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fImqdes\fP argument is not a valid message queue descriptor.
 .sp
@@ -73,7 +73,7 @@ None.
 .LP
 \fImq_open\fP() , \fImq_send\fP() , \fImq_timedsend\fP() , \fImsgctl\fP()
 , \fImsgget\fP() , \fImsgrcv\fP() , \fImsgsnd\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<mqueue.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<mqueue.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

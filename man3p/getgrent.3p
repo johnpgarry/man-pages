@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "endgrent" P 2003 POSIX
+.TH "ENDGRENT" P 2003 POSIX
 .\" endgrent 
 .SH NAME
-endgrent, getgrent, setgrent - group database entry functions
+endgrent, getgrent, setgrent \- group database entry functions
 .SH SYNOPSIS
 .LP
 \fB#include <grp.h>
@@ -57,16 +57,16 @@ a subsequent call to \fIgetgrgid\fP(), \fIgetgrnam\fP(), or
 .SH ERRORS
 .LP
 The \fIgetgrent\fP() function may fail if:
-.TP
+.TP 7
 .B EINTR
 A signal was caught during the operation.
-.TP
+.TP 7
 .B EIO
 An I/O error has occurred.
-.TP
+.TP 7
 .B EMFILE
 {OPEN_MAX} file descriptors are currently open in the calling process.
-.TP
+.TP 7
 .B ENFILE
 The maximum allowable number of files is currently open in the system.
 .sp
@@ -93,7 +93,7 @@ None.
 .LP
 \fIgetgrgid\fP() , \fIgetgrnam\fP() , \fIgetlogin\fP() , \fIgetpwent\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<grp.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<grp.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

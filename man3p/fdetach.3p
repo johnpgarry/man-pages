@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fdetach" P 2003 POSIX
+.TH "FDETACH" P 2003 POSIX
 .\" fdetach 
 .SH NAME
-fdetach - detach a name from a STREAMS-based file descriptor (\fBSTREAMS\fP)
+fdetach \- detach a name from a STREAMS-based file descriptor (\fBSTREAMS\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <stropts.h>
@@ -40,39 +40,39 @@ error.
 .SH ERRORS
 .LP
 The \fIfdetach\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied on a component of the path prefix.
-.TP
+.TP 7
 .B EINVAL
 The \fIpath\fP argument names a file that is not currently attached.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The size of a pathname exceeds {PATH_MAX} or a pathname component
 is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing file or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix is not a directory.
-.TP
+.TP 7
 .B EPERM
 The effective user ID is not the owner of \fIpath\fP and the process
 does not have appropriate privileges.
 .sp
 .LP
 The \fIfdetach\fP() function may fail if:
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 Pathname resolution of a symbolic link produced an intermediate result
 whose length exceeds {PATH_MAX}.
@@ -112,7 +112,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIfattach\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIfattach\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<stropts.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

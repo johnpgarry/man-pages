@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sort" P 2003 POSIX
+.TH "SORT" P 2003 POSIX
 .\" sort 
 .SH NAME
-sort - sort, merge, or sequence check text files
+sort \- sort, merge, or sequence check text files
 .SH SYNOPSIS
 .LP
 \fBsort\fP \fB[\fP\fB-m\fP\fB][\fP\fB-o\fP \fIoutput\fP\fB][\fP\fB-bdfinru\fP\fB][\fP\fB-t\fP
@@ -16,20 +16,17 @@ sort -c\fP \fB[\fP\fB-bdfinru\fP\fB][\fP\fB-t\fP \fIchar\fP\fB][\fP\fB-k\fP
 .SH DESCRIPTION
 .LP
 The \fIsort\fP utility shall perform one of the following functions:
-.in +5
-.LP
+.IP " 1." 4
 Sort lines of all the named files together and write the result to
 the specified output.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Merge lines of all the named (presorted) files together and write
 the result to the specified output.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Check that a single input file is correctly presorted.
-.in -5
+.LP
 .LP
 Comparisons shall be based on one or more sort keys extracted from
 each line of input (or, if no sort keys are specified, the
@@ -39,26 +36,26 @@ current locale.
 .SH OPTIONS
 .LP
 The \fIsort\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
 and the \fB-k\fP \fIkeydef\fP option should
 follow the \fB-b\fP, \fB-d\fP, \fB-f\fP, \fB-i\fP, \fB-n\fP, and \fB-r\fP
 options.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-c\fP
 Check that the single input file is ordered as specified by the arguments
 and the collating sequence of the current locale. No
 output shall be produced; only the exit code shall be affected.
-.TP
+.TP 7
 \fB-m\fP
 Merge only; the input file shall be assumed to be already sorted.
-.TP
-\fB-o\0\fP \fIoutput\fP
+.TP 7
+\fB-o\ \fP \fIoutput\fP
 Specify the name of an output file to be used instead of the standard
 output. This file can be the same as one of the input
 \fIfile\fPs.
-.TP
+.TP 7
 \fB-u\fP
 Unique: suppress all but one in each set of lines having equal keys.
 If used with the \fB-c\fP option, check that there are no
@@ -72,22 +69,22 @@ specifications, the requested field ordering rules shall be applied
 globally to all sort keys. When attached to a specific key (see
 \fB-k\fP), the specified ordering options shall override all global
 ordering options for that key.
-.TP
+.TP 7
 \fB-d\fP
 Specify that only <blank>s and alphanumeric characters, according
 to the current setting of \fILC_CTYPE ,\fP shall be
 significant in comparisons. The behavior is undefined for a sort key
 to which \fB-i\fP or \fB-n\fP also applies.
-.TP
+.TP 7
 \fB-f\fP
 Consider all lowercase characters that have uppercase equivalents,
 according to the current setting of \fILC_CTYPE ,\fP to be
 the uppercase equivalent for the purposes of comparison.
-.TP
+.TP 7
 \fB-i\fP
 Ignore all characters that are non-printable, according to the current
 setting of \fILC_CTYPE .\fP
-.TP
+.TP 7
 \fB-n\fP
 Restrict the sort key to an initial numeric string, consisting of
 optional <blank>s, optional minus sign, and zero or
@@ -95,13 +92,13 @@ more digits with an optional radix character and thousands separators
 (as defined in the current locale), which shall be sorted by
 arithmetic value. An empty digit string shall be treated as zero.
 Leading zeros and signs on zeros shall not affect ordering.
-.TP
+.TP 7
 \fB-r\fP
 Reverse the sense of comparisons.
 .sp
 .LP
 The treatment of field separators can be altered using the options:
-.TP
+.TP 7
 \fB-b\fP
 Ignore leading <blank>s when determining the starting and ending positions
 of a restricted sort key. If the \fB-b\fP
@@ -109,8 +106,8 @@ option is specified before the first \fB-k\fP option, it shall be
 applied to all \fB-k\fP options. Otherwise, the \fB-b\fP
 option can be attached independently to each \fB-k\fP \fIfield_start\fP
 or \fIfield_end\fP option-argument (see below).
-.TP
-\fB-t\0\fP \fIchar\fP
+.TP 7
+\fB-t\ \fP \fIchar\fP
 Use \fIchar\fP as the field separator character; \fIchar\fP shall
 not be considered to be part of a field (although it can be
 included in a sort key). Each occurrence of \fIchar\fP shall be significant
@@ -122,8 +119,8 @@ a field separator.
 .sp
 .LP
 Sort keys can be specified using the options:
-.TP
-\fB-k\0\fP \fIkeydef\fP
+.TP 7
+\fB-k\ \fP \fIkeydef\fP
 The \fIkeydef\fP argument is a restricted sort key field definition.
 The format of this definition is: 
 .sp
@@ -163,7 +160,7 @@ still compare equal are written is unspecified.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file to be sorted, merged, or checked. If no \fIfile\fP
 operands are specified, or if a \fIfile\fP operand is
@@ -183,40 +180,40 @@ with an incomplete last line.
 .LP
 The following environment variables shall affect the execution of
 \fIsort\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for ordering rules.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files) and
 the behavior of character classification for the \fB-b\fP,
 \fB-d\fP, \fB-f\fP, \fB-i\fP, and \fB-n\fP options.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fILC_NUMERIC\fP
 .sp
 Determine the locale for the definition of the radix character and
 thousands separator for the \fB-n\fP option.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -300,16 +297,16 @@ and \fIlast_character\fP.)
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All input files were output successfully, or \fB-c\fP was specified
 and the input file was correctly sorted.
-.TP
-\01
+.TP 7
+\ 1
 Under the \fB-c\fP option, the file was not ordered as specified,
 or if the \fB-c\fP and \fB-u\fP options were both
 specified, two input lines were found with equal keys.
-.TP
+.TP 7
 >1
 An error occurred.
 .sp
@@ -335,11 +332,11 @@ contains:
 the following treatment would occur with default separation as opposed
 to specifically selecting a <space>:
 .TS C
-center;l l l l l l l l.
-\fBField\fP 	 \fBDefault\fP 	 \fB-t "<space>"\fP 	
-1 	 <space><space>foo 	 \fIempty\fP 	
-2 	 \fIempty\fP 	 \fIempty\fP 	
-3 	 \fIempty\fP 	 foo 	
+center; l l l.
+\fBField\fP	\fBDefault\fP	\fB-t "<space>"\fP
+1	<space><space>foo	\fIempty\fP
+2	\fIempty\fP	\fIempty\fP
+3	\fIempty\fP	foo
 .TE
 .LP
 The leading field separator itself is included in a field when \fB-t\fP
@@ -381,7 +378,7 @@ The wording in the OPTIONS section clarifies that the \fB-b\fP, \fB-d\fP,
 \fB-f\fP, \fB-i\fP, \fB-n\fP, and \fB-r\fP
 options have to come before the first sort key specified if they are
 intended to apply to all specified keys. The way it is
-described in this volume of IEEE\0Std\01003.1-2001 matches historical
+described in this volume of IEEE\ Std\ 1003.1-2001 matches historical
 practice, not historical documentation. The results
 are unspecified if these options are specified after a \fB-k\fP option.
 .LP
@@ -389,8 +386,7 @@ The \fB-f\fP option might not work as expected in locales where there
 is not a one-to-one mapping between an uppercase and a
 lowercase letter.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 The following command sorts the contents of \fBinfile\fP with the
 second field as the sort key:
 .sp
@@ -401,9 +397,8 @@ second field as the sort key:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The following command sorts, in reverse order, the contents of \fBinfile1\fP
 and \fBinfile2\fP, placing the output in
 \fBoutfile\fP and using the second character of the second field as
@@ -417,9 +412,8 @@ field is the field separator):
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The following command sorts the contents of \fBinfile1\fP and \fBinfile2\fP
 using the second non- <blank> of the second
 field as the sort key:
@@ -431,10 +425,9 @@ field as the sort key:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
-The following command prints the System\0V password file (user database)
+.IP " 4." 4
+The following command prints the System\ V password file (user database)
 sorted by the numeric user ID (the third
 colon-separated field):
 .sp
@@ -445,9 +438,8 @@ colon-separated field):
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 The following command prints the lines of the already sorted file
 \fBinfile\fP, suppressing all but one occurrence of lines
 having the same third field:
@@ -459,7 +451,7 @@ having the same third field:
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 Examples in some historical documentation state that options \fB-um\fP
@@ -498,7 +490,7 @@ used in a column of numbers (for example, to sort modulo 100),
 that offset is measured relative to the most significant digit, not
 to the column. Based upon a recommendation from the author of
 the original \fIsort\fP utility, the \fB-b\fP implication has been
-omitted from this volume of IEEE\0Std\01003.1-2001,
+omitted from this volume of IEEE\ Std\ 1003.1-2001,
 and an application wishing to achieve the previously mentioned side
 effects has to code the \fB-b\fP flag explicitly.
 .SH FUTURE DIRECTIONS
@@ -507,7 +499,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIcomm\fP , \fIjoin\fP , \fIuniq\fP , the System
-Interfaces volume of IEEE\0Std\01003.1-2001, \fItoupper\fP()
+Interfaces volume of IEEE\ Std\ 1003.1-2001, \fItoupper\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

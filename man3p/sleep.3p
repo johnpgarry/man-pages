@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sleep" P 2003 POSIX
+.TH "SLEEP" P 2003 POSIX
 .\" sleep 
 .SH NAME
-sleep - suspend execution for an interval of time
+sleep \- suspend execution for an interval of time
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -51,8 +51,7 @@ the process' signal mask is restored as part of the
 environment.
 .LP
 Interactions between \fIsleep\fP() and any of \fIsetitimer\fP(), \fIualarm\fP(),
-or \fIusleep\fP() are unspecified. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+or \fIusleep\fP() are unspecified. 
 .SH RETURN VALUE
 .LP
 If \fIsleep\fP() returns because the requested time has elapsed, the
@@ -77,12 +76,12 @@ There are two general approaches to the implementation of the \fIsleep\fP()
 function. One is to use the \fIalarm\fP() function to schedule a SIGALRM
 signal and then suspend the process waiting for that
 signal. The other is to implement an independent facility. This volume
-of IEEE\0Std\01003.1-2001 permits either
+of IEEE\ Std\ 1003.1-2001 permits either
 approach.
 .LP
 In order to comply with the requirement that no primitive shall change
 a process attribute unless explicitly described by this
-volume of IEEE\0Std\01003.1-2001, an implementation using SIGALRM
+volume of IEEE\ Std\ 1003.1-2001, an implementation using SIGALRM
 must carefully take into account any SIGALRM signal
 scheduled by previous \fIalarm\fP() calls, the action previously established
 for SIGALRM,
@@ -111,7 +110,7 @@ problems.
 .LP
 Despite all reasonable care, there are several very subtle, but detectable
 and unavoidable, differences between the two types of
-implementations. These are the cases mentioned in this volume of IEEE\0Std\01003.1-2001
+implementations. These are the cases mentioned in this volume of IEEE\ Std\ 1003.1-2001
 where some other activity relating
 to SIGALRM takes place, and the results are stated to be unspecified.
 All of these cases are sufficiently unusual as not to be of
@@ -128,7 +127,7 @@ Application writers should note that the type of the argument \fIseconds\fP
 and the return value of \fIsleep\fP() is
 \fBunsigned\fP. That means that a Strictly Conforming POSIX System
 Interfaces Application cannot pass a value greater than the
-minimum guaranteed value for {UINT_MAX}, which the ISO\0C standard
+minimum guaranteed value for {UINT_MAX}, which the ISO\ C standard
 sets as 65535, and any application passing a larger value is
 restricting its portability. A different type was considered, but
 historical implementations, including those with a 16-bit
@@ -147,7 +146,7 @@ None.
 \fIalarm\fP() , \fIgetitimer\fP() , \fInanosleep\fP() , \fIpause\fP()
 , \fIsigaction\fP()
 , \fIsigsetjmp\fP() , \fIualarm\fP() , \fIusleep\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

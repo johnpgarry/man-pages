@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "times" P 2003 POSIX
+.TH "TIMES" P 2003 POSIX
 .\" times 
 .SH NAME
-times - write process times
+times \- write process times
 .SH SYNOPSIS
 .LP
 \fBtimes\fP
@@ -26,7 +26,7 @@ the following POSIX locale format:
 .LP
 The four pairs of times shall correspond to the members of the \fI<sys/times.h>\fP
 \fBtms\fP structure (defined in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 13, Headers) as returned by \fItimes\fP():
+IEEE\ Std\ 1003.1-2001, Chapter 13, Headers) as returned by \fItimes\fP():
 \fItms_utime\fP, \fItms_stime\fP, \fItms_cutime\fP, and \fItms_cstime\fP,
 respectively.
 .SH OPTIONS

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tr" P 2003 POSIX
+.TH "TR" P 2003 POSIX
 .\" tr 
 .SH NAME
-tr - translate characters
+tr \- translate characters
 .SH SYNOPSIS
 .LP
 \fBtr\fP \fB[\fP\fB-c | -C\fP\fB][\fP\fB-s]\fP \fIstring1 string2\fP\fB
@@ -27,21 +27,21 @@ characters and single-character collating elements.
 .SH OPTIONS
 .LP
 The \fItr\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-c\fP
 Complement the set of values specified by \fIstring1\fP. See the EXTENDED
 DESCRIPTION section.
-.TP
+.TP 7
 \fB-C\fP
 Complement the set of characters specified by \fIstring1\fP. See the
 EXTENDED DESCRIPTION section.
-.TP
+.TP 7
 \fB-d\fP
 Delete all occurrences of input characters that are specified by \fIstring1\fP.
-.TP
+.TP 7
 \fB-s\fP
 Replace instances of repeated characters with a single character,
 as described in the EXTENDED DESCRIPTION section.
@@ -49,8 +49,8 @@ as described in the EXTENDED DESCRIPTION section.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
-\fIstring1\fP,\0\fIstring2\fP
+.TP 7
+\fIstring1\fP,\ \fIstring2\fP
 .sp
 Translation control strings. Each string shall represent a set of
 characters to be converted into an array of characters used for
@@ -67,35 +67,35 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fItr\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of range expressions and equivalence
 classes.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments) and the behavior of
 character classes.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -121,11 +121,11 @@ list can be used to specify characters or single-character collating
 elements. If any of the constructs result in multi-character
 collating elements, \fItr\fP shall exclude, without a diagnostic,
 those multi-character elements from the resulting array.
-.TP
+.TP 7
 \fIcharacter\fP
 Any character not described by one of the conventions below shall
 represent itself.
-.TP
+.TP 7
 \\\fIoctal\fP
 Octal sequences can be used to represent characters with specific
 coded values. An octal sequence shall consist of a backslash
@@ -137,16 +137,16 @@ system is greater than nine bits, the valid escape sequence used to
 represent a byte is implementation-defined. Multi-byte
 characters require multiple, concatenated escape sequences of this
 type, including the leading \fB'\\'\fP for each byte.
-.TP
+.TP 7
 \\\fIcharacter\fP
-The backslash-escape sequences in the Base Definitions volume of IEEE\0Std\01003.1-2001,
+The backslash-escape sequences in the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Table 5-1, Escape Sequences
 and Associated Actions ( \fB'\\\\'\fP , \fB'\\a'\fP , \fB'\\b'\fP
 , \fB'\\f'\fP , \fB'\\n'\fP , \fB'\\r'\fP ,
 \fB'\\t'\fP , \fB'\\v'\fP ) shall be supported. The results of using
 any other character, other than an octal digit, following
 the backslash are unspecified.
-.TP
+.TP 7
 \fIc\fP-\fIc\fP
 In the POSIX locale, this construct shall represent the range of collating
 elements between the range endpoints (as long as
@@ -162,16 +162,16 @@ this construct has unspecified behavior.
 If either or both of the range endpoints are octal sequences of the
 form \\\fIoctal\fP, this shall represent the range of
 specific coded values between the two range endpoints, inclusive.
-.TP
+.TP 7
 .B :\fIclass\fP:
 Represents all characters belonging to the defined character class,
 as defined by the current setting of the \fILC_CTYPE\fP
 locale category. The following character class names shall be accepted
 when specified in \fIstring1\fP: 
 .TS C
-center;l l l l l l l l.
-\fBalnum\fP 	 \fBblank\fP 	 \fBdigit\fP 	 \fBlower\fP 	 \fBpunct\fP 	 \fBupper\fP 	
-\fBalpha\fP 	 \fBcntrl\fP 	 \fBgraph\fP 	 \fBprint\fP 	 \fBspace\fP 	 \fBxdigit\fP 	
+center; l l l l l l.
+\fBalnum\fP	\fBblank\fP	\fBdigit\fP	\fBlower\fP	\fBpunct\fP	\fBupper\fP
+\fBalpha\fP	\fBcntrl\fP	\fBgraph\fP	\fBprint\fP	\fBspace\fP	\fBxdigit\fP
 .TE
 .LP
 In addition, character class expressions of the form [: \fIname\fP:]
@@ -205,7 +205,7 @@ unspecified order.
 If the name specified for \fIclass\fP does not define a valid character
 class in the current locale, the behavior is
 undefined.
-.TP
+.TP 7
 .B =\fIequiv\fP=
 Represents all characters or collating elements belonging to the same
 equivalence class as \fIequiv\fP, as defined by the
@@ -214,7 +214,7 @@ class expression shall be allowed only in \fIstring1\fP,
 or in \fIstring2\fP when it is being used by the combined \fB-d\fP
 and \fB-s\fP options. The characters belonging to the
 equivalence class shall be placed in the array in an unspecified order.
-.TP
+.TP 7
 .B \fIx\fP*\fIn\fP
 Represents \fIn\fP repeated occurrences of the character \fIx\fP.
 Because this expression is used to map multiple characters
@@ -227,17 +227,14 @@ be interpreted as a decimal value.
 .sp
 .LP
 When the \fB-d\fP option is not specified:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Each input character found in the array specified by \fIstring1\fP
 shall be replaced by the character in the same relative
 position in the array specified by \fIstring2\fP. When the array specified
 by \fIstring2\fP is shorter that the one specified by
 \fIstring1\fP, the results are unspecified.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the \fB-C\fP option is specified, the complements of the characters
 specified by \fIstring1\fP (the set of all characters
 in the current character set, as defined by the current setting of
@@ -245,52 +242,43 @@ in the current character set, as defined by the current setting of
 \fIstring1\fP operand) shall be placed in the array in ascending collation
 sequence, as defined by the current setting of
 \fILC_COLLATE .\fP
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the \fB-c\fP option is specified, the complement of the values
 specified by \fIstring1\fP shall be placed in the array in
 ascending order by binary value.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Because the order in which characters specified by character class
 expressions or equivalence class expressions is undefined,
 such expressions should only be used if the intent is to map several
 characters into one. An exception is case conversion, as
 described previously.
-.in -5
-.RE
+.LP
 .LP
 When the \fB-d\fP option is specified:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Input characters found in the array specified by \fIstring1\fP shall
 be deleted.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 When the \fB-C\fP option is specified with \fB-d\fP, all characters
 except those specified by \fIstring1\fP shall be deleted.
 The contents of \fIstring2\fP are ignored, unless the \fB-s\fP option
 is also specified.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 When the \fB-c\fP option is specified with \fB-d\fP, all values except
 those specified by \fIstring1\fP shall be deleted. The
 contents of \fIstring2\fP shall be ignored, unless the \fB-s\fP option
 is also specified.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The same string cannot be used for both the \fB-d\fP and the \fB-s\fP
 option; when both options are specified, both
 \fIstring1\fP (used for deletion) and \fIstring2\fP (used for squeezing)
 shall be required.
-.in -5
-.RE
+.LP
 .LP
 When the \fB-s\fP option is specified, after any deletions or translations
 have taken place, repeated sequences of the same
@@ -328,10 +316,10 @@ results.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All input was processed successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -350,7 +338,7 @@ the octal sequence must use the full three digits to
 avoid ambiguity.
 .LP
 When \fIstring2\fP is shorter than \fIstring1\fP, a difference results
-between historical System\0V and BSD systems. A BSD
+between historical System\ V and BSD systems. A BSD
 system pads \fIstring2\fP with the last character found in \fIstring2\fP.
 Thus, it is possible to do the following:
 .sp
@@ -364,7 +352,7 @@ Thus, it is possible to do the following:
 .LP
 which would translate all digits to the letter \fB'd'\fP . Since this
 area is specifically unspecified in this volume of
-IEEE\0Std\01003.1-2001, both the BSD and System\0V behaviors are allowed,
+IEEE\ Std\ 1003.1-2001, both the BSD and System\ V behaviors are allowed,
 but a conforming application cannot rely on
 the BSD behavior. It would have to code the example in the following
 way:
@@ -393,8 +381,7 @@ stream. NUL characters can be stripped by using:
 .fi
 .RE
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 The following example creates a list of all words in \fBfile1\fP one
 per line in \fBfile2\fP, where a word is taken to be a
 maximal string of letters.
@@ -406,9 +393,8 @@ maximal string of letters.
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The next example translates all lowercase characters in \fBfile1\fP
 to uppercase and writes the results to standard output.
 .sp
@@ -419,9 +405,8 @@ to uppercase and writes the results to standard output.
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 This example uses an equivalence class to identify accented variants
 of the base character \fB'e'\fP in \fBfile1\fP, which
 are stripped of diacritical marks and written to \fBfile2\fP.
@@ -433,7 +418,7 @@ are stripped of diacritical marks and written to \fBfile2\fP.
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 In some early proposals, an explicit option \fB-n\fP was added to
@@ -518,9 +503,9 @@ themselves. However, any System V script that relied on \fB"a-z"\fP
 representing the three characters \fB'a'\fP ,
 \fB'-'\fP , and \fB'z'\fP have to be rewritten as \fB"az-"\fP .
 .LP
-The ISO\0POSIX-2:1993 standard had a \fB-c\fP option that behaved
+The ISO\ POSIX-2:1993 standard had a \fB-c\fP option that behaved
 similarly to the \fB-C\fP option, but did not supply
-functionality equivalent to the \fB-c\fP option specified in IEEE\0Std\01003.1-2001.
+functionality equivalent to the \fB-c\fP option specified in IEEE\ Std\ 1003.1-2001.
 This meant that historical practice
 of being able to specify \fItr\fP \fB-d\fP\\200-\\377 (which would
 delete all bytes with the top bit set) would have no effect
@@ -533,7 +518,7 @@ specify multi-byte characters. However, it was noted that this caused
 ambiguities because \fItr\fP would not be able to tell
 whether adjacent octal sequences were intending to specify multi-byte
 characters or multiple single byte characters.
-IEEE\0Std\01003.1-2001 specifies that octal sequences always refer
+IEEE\ Std\ 1003.1-2001 specifies that octal sequences always refer
 to single byte binary values.
 .SH FUTURE DIRECTIONS
 .LP

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pow" P 2003 POSIX
+.TH "POW" P 2003 POSIX
 .\" pow 
 .SH NAME
-pow, powf, powl - power function
+pow, powf, powl \- power function
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -17,14 +17,8 @@ long double powl(long double\fP \fIx\fP\fB, long double\fP \fIy\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 These functions shall compute the value of \fIx\fP raised to the power
-\fIy\fP, \fIx\fP. If
+\fIy\fP, \fIx**y\fP. If
 \fIx\fP is negative, the application shall ensure that \fIy\fP is
 an integer value.
 .LP
@@ -40,7 +34,7 @@ Upon successful completion, these functions shall return the value
 of \fIx\fP raised to the power \fIy\fP.
 .LP
 For finite values of \fIx\fP < 0, and finite non-integer values of
-\fIy\fP, a domain error shall occur and   \0either a NaN
+\fIy\fP, a domain error shall occur and   \ either a NaN
 (if representable), or  an implementation-defined value shall be
 returned.
 .LP
@@ -51,8 +45,8 @@ with the same sign as the correct value of the
 function.
 .LP
 If the correct value would cause underflow, and is not representable,
-a range error may occur, and   \0either 0.0 (if
-supported), or  \0an implementation-defined value shall be
+a range error may occur, and   \ either 0.0 (if
+supported), or  \ an implementation-defined value shall be
 returned.
 .LP
 If
@@ -112,8 +106,8 @@ returned.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
-Domain\0Error
+.TP 7
+Domain\ Error
 The value of \fIx\fP is negative and \fIy\fP is a finite non-integer.
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -121,8 +115,8 @@ then \fIerrno\fP shall be set to [EDOM]. If the
 integer expression (math_errhandling & MATH_ERREXCEPT) is non-zero,
 then the invalid floating-point exception shall be
 raised.
-.TP
-Pole\0Error
+.TP 7
+Pole\ Error
 The value of \fIx\fP is zero and \fIy\fP is negative. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -130,8 +124,8 @@ then \fIerrno\fP shall be set to [ERANGE]. If the
 integer expression (math_errhandling & MATH_ERREXCEPT) is non-zero,
 then the divide-by-zero floating-point exception shall be
 raised. 
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The result overflows. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -142,8 +136,8 @@ raised.
 .sp
 .LP
 These functions may fail if:
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The result underflows. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -172,7 +166,7 @@ None.
 .LP
 \fIexp\fP() , \fIfeclearexcept\fP() , \fIfetestexcept\fP() , \fIisnan\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 4.18, Treatment of Error Conditions
+IEEE\ Std\ 1003.1-2001, Section 4.18, Treatment of Error Conditions
 for
 Mathematical Functions, \fI<math.h>\fP
 .SH COPYRIGHT

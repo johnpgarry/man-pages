@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sem_post" P 2003 POSIX
+.TH "SEM_POST" P 2003 POSIX
 .\" sem_post 
 .SH NAME
-sem_post - unlock a semaphore (\fBREALTIME\fP)
+sem_post \- unlock a semaphore (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <semaphore.h>
@@ -25,7 +25,7 @@ become unlocked; the semaphore value is simply incremented.
 If the value of the semaphore resulting from this operation is zero,
 then one of the threads blocked waiting for the semaphore
 shall be allowed to return successfully from its call to \fIsem_wait\fP().
-\0If the Process
+\ If the Process
 Scheduling option is supported, the thread to be unblocked shall be
 chosen in a manner appropriate to the scheduling policies and
 parameters in effect for the blocked threads. In the case of the schedulers
@@ -52,7 +52,7 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIsem_post\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIsem\fP argument does not refer to a valid semaphore.
 .sp
@@ -75,7 +75,7 @@ None.
 .LP
 \fIsemctl\fP() , \fIsemget\fP() , \fIsemop\fP()
 , \fIsem_timedwait\fP() , \fIsem_trywait\fP() , \fIsem_wait\fP() ,
-the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<semaphore.h>\fP
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<semaphore.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

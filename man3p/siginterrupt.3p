@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "siginterrupt" P 2003 POSIX
+.TH "SIGINTERRUPT" P 2003 POSIX
 .\" siginterrupt 
 .SH NAME
-siginterrupt - allow signals to interrupt functions
+siginterrupt \- allow signals to interrupt functions
 .SH SYNOPSIS
 .LP
 \fB#include <signal.h>
@@ -46,7 +46,7 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIsiginterrupt\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIsig\fP argument is not a valid signal number.
 .sp
@@ -71,7 +71,7 @@ None.
 .SH SEE ALSO
 .LP
 \fISignal Concepts\fP , \fIsigaction\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<signal.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

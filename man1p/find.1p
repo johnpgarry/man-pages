@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "find" P 2003 POSIX
+.TH "FIND" P 2003 POSIX
 .\" find 
 .SH NAME
-find - find files
+find \- find files
 .SH SYNOPSIS
 .LP
 \fBfind\fP \fB[\fP\fB-H | -L\fP\fB]\fP \fIpath\fP \fB...\fP \fB[\fP\fIoperand_expression\fP
@@ -27,10 +27,10 @@ either recover its position in the hierarchy or terminate.
 .SH OPTIONS
 .LP
 The \fIfind\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported by the implementation:
-.TP
+.TP 7
 \fB-H\fP
 Cause the file information and file type evaluated for each symbolic
 link encountered on the command line to be those of the
@@ -38,7 +38,7 @@ file referenced by the link, and not the link itself. If the referenced
 file does not exist, the file information and type shall be
 for the link itself. File information for all symbolic links not on
 the command line shall be that of the link itself.
-.TP
+.TP 7
 \fB-L\fP
 Cause the file information and file type evaluated for each symbolic
 link to be those of the file referenced by the link, and
@@ -62,53 +62,53 @@ and operators. In the descriptions, wherever \fIn\fP is
 used as a primary argument, it shall be interpreted as a decimal integer
 optionally preceded by a plus ( \fB'+'\fP ) or minus (
 \fB'-'\fP ) sign, as follows:
-.TP
+.TP 7
 +\fIn\fP
 More than \fIn\fP.
-.TP
+.TP 7
 \fIn\fP
 Exactly \fIn\fP.
-.TP
+.TP 7
 -\fIn\fP
 Less than \fIn\fP.
 .sp
 .LP
 The following primaries shall be supported:
-.TP
-\fB-name\0\fP \fIpattern\fP
+.TP 7
+\fB-name\ \fP \fIpattern\fP
 .sp
 The primary shall evaluate as true if the basename of the filename
 being examined matches \fIpattern\fP using the pattern matching
 notation described in \fIPattern Matching Notation\fP .
-.TP
+.TP 7
 \fB-nouser\fP
 The primary shall evaluate as true if the file belongs to a user ID
 for which the \fIgetpwuid\fP() function defined in the System Interfaces
 volume of
-IEEE\0Std\01003.1-2001 (or equivalent) returns NULL.
-.TP
+IEEE\ Std\ 1003.1-2001 (or equivalent) returns NULL.
+.TP 7
 \fB-nogroup\fP
 The primary shall evaluate as true if the file belongs to a group
 ID for which the \fIgetgrgid\fP() function defined in the System Interfaces
 volume of
-IEEE\0Std\01003.1-2001 (or equivalent) returns NULL.
-.TP
+IEEE\ Std\ 1003.1-2001 (or equivalent) returns NULL.
+.TP 7
 \fB-xdev\fP
 The primary shall always evaluate as true; it shall cause \fIfind\fP
 not to continue descending past directories that have a
 different device ID ( \fIst_dev\fP, see the \fIstat\fP() function
 defined in the System
-Interfaces volume of IEEE\0Std\01003.1-2001). If any \fB-xdev\fP primary
+Interfaces volume of IEEE\ Std\ 1003.1-2001). If any \fB-xdev\fP primary
 is specified, it shall apply to the entire
 expression even if the \fB-xdev\fP primary would not normally be evaluated.
-.TP
+.TP 7
 \fB-prune\fP
 The primary shall always evaluate as true; it shall cause \fIfind\fP
 not to descend the current pathname if it is a directory.
 If the \fB-depth\fP primary is specified, the \fB-prune\fP primary
 shall have no effect.
-.TP
-\fB-perm\0[-]\fP\fImode\fP
+.TP 7
+\fB-perm\ [-]\fP\fImode\fP
 .sp
 The \fImode\fP argument is used to represent file mode bits. It shall
 be identical in format to the \fIsymbolic_mode\fP operand
@@ -131,8 +131,8 @@ resulting template.
 Otherwise, if \fImode\fP is prefixed by a hyphen, the primary shall
 evaluate as true if at least all the bits in the resulting
 template are set in the file permission bits.
-.TP
-\fB-perm\0[-]\fP\fIonum\fP
+.TP 7
+\fB-perm\ [-]\fP\fIonum\fP
 .sp
 If the hyphen is omitted, the primary shall evaluate as true when
 the file permission bits exactly match the value of the octal
@@ -142,56 +142,56 @@ number \fIonum\fP and only the bits corresponding to the octal mask
 by a hyphen, the primary shall
 evaluate as true if at least all of the bits specified in \fIonum\fP
 that are also set in the octal mask 07777 are set.
-.TP
-\fB-type\0\fP \fIc\fP
+.TP 7
+\fB-type\ \fP \fIc\fP
 The primary shall evaluate as true if the type of the file is \fIc\fP,
 where \fIc\fP is \fB'b'\fP , \fB'c'\fP ,
 \fB'd'\fP , \fB'l'\fP , \fB'p'\fP , \fB'f'\fP , or \fB's'\fP for block
 special file, character special file,
 directory, symbolic link, FIFO, regular file, or socket, respectively.
-.TP
-\fB-links\0\fP \fIn\fP
+.TP 7
+\fB-links\ \fP \fIn\fP
 The primary shall evaluate as true if the file has \fIn\fP links.
-.TP
-\fB-user\0\fP \fIuname\fP
+.TP 7
+\fB-user\ \fP \fIuname\fP
 The primary shall evaluate as true if the file belongs to the user
 \fIuname.\fP If \fIuname\fP is a decimal integer and the
 \fIgetpwnam\fP() (or equivalent) function does not return a valid
 user name, \fIuname\fP
 shall be interpreted as a user ID.
-.TP
-\fB-group\0\fP \fIgname\fP
+.TP 7
+\fB-group\ \fP \fIgname\fP
 .sp
 The primary shall evaluate as true if the file belongs to the group
 \fIgname\fP. If \fIgname\fP is a decimal integer and the \fIgetgrnam\fP()
 (or equivalent) function does not return a valid group name, \fIgname\fP
 shall be interpreted as a group ID.
-.TP
-\fB-size\0\fP \fIn\fP\fB[c]\fP
+.TP 7
+\fB-size\ \fP \fIn\fP\fB[c]\fP
 The primary shall evaluate as true if the file size in bytes, divided
 by 512 and rounded up to the next integer, is \fIn\fP.
 If \fIn\fP is followed by the character \fB'c'\fP , the size shall
 be in bytes.
-.TP
-\fB-atime\0\fP \fIn\fP
+.TP 7
+\fB-atime\ \fP \fIn\fP
 The primary shall evaluate as true if the file access time subtracted
 from the initialization time, divided by 86400 (with any
 remainder discarded), is \fIn\fP.
-.TP
-\fB-ctime\0\fP \fIn\fP
+.TP 7
+\fB-ctime\ \fP \fIn\fP
 The primary shall evaluate as true if the time of last change of file
 status information subtracted from the initialization
 time, divided by 86400 (with any remainder discarded), is \fIn\fP.
-.TP
-\fB-mtime\0\fP \fIn\fP
+.TP 7
+\fB-mtime\ \fP \fIn\fP
 The primary shall evaluate as true if the file modification time subtracted
 from the initialization time, divided by 86400
 (with any remainder discarded), is \fIn\fP.
-.TP
-\fB-exec\0\fP \fIutility_name\0\fP \fB[\fP\fIargument\fP\0...\fB]\0;\fP
-.TP
-\fB-exec\0\fP \fIutility_name\0\fP \fB[\fP\fIargument\fP\0...\fB]\0\0\fP
-{}\0+
+.TP 7
+\fB-exec\ \fP \fIutility_name\ \fP \fB[\fP\fIargument\fP\ ...\fB]\ ;\fP
+.TP 7
+\fB-exec\ \fP \fIutility_name\ \fP \fB[\fP\fIargument\fP\ ...\fB]\ \ \fP
+{}\ +
 .sp
 The end of the primary expression shall be punctuated by a semicolon
 or by a plus sign. Only a plus sign that follows an argument
@@ -236,8 +236,8 @@ be the same as the current directory when the \fIfind\fP
 utility was started. If the \fIutility_name\fP names any of the special
 built-in utilities (see \fISpecial Built-In Utilities\fP ), the results
 are undefined.
-.TP
-\fB-ok\0\fP \fIutility_name\0\fP \fB[\fP\fIargument\fP\0...\fB]\0;\fP
+.TP 7
+\fB-ok\ \fP \fIutility_name\ \fP \fB[\fP\fIargument\fP\ ...\fB]\ ;\fP
 .sp
 The \fB-ok\fP primary shall be equivalent to \fB-exec\fP, except that
 the use of a plus sign to punctuate the end of the primary
@@ -248,16 +248,16 @@ in the STDERR section. If the response on standard input is
 affirmative, the utility shall be invoked. Otherwise, the command
 shall not be invoked and the value of the \fB-ok\fP operand
 shall be false.
-.TP
+.TP 7
 \fB-print\fP
 The primary shall always evaluate as true; it shall cause the current
 pathname to be written to standard output.
-.TP
-\fB-newer\0\fP \fIfile\fP
+.TP 7
+\fB-newer\ \fP \fIfile\fP
 The primary shall evaluate as true if the modification time of the
 current file is more recent than the modification time of
 the file named by the pathname \fIfile\fP.
-.TP
+.TP 7
 \fB-depth\fP
 The primary shall always evaluate as true; it shall cause descent
 of the directory hierarchy to be done so that all entries in
@@ -270,21 +270,21 @@ the \fB-depth\fP primary would not normally be evaluated.
 .LP
 The primaries can be combined using the following operators (in order
 of decreasing precedence):
-.TP
-(\0\fIexpression\fP\0)
+.TP 7
+(\ \fIexpression\fP\ )
 True if \fIexpression\fP is true.
-.TP
-\fB!\0\fP \fIexpression\fP
+.TP 7
+\fB!\ \fP \fIexpression\fP
 Negation of a primary; the unary NOT operator.
-.TP
-\fIexpression\0\fP \fB[-a]\0\fP \fIexpression\fP
+.TP 7
+\fIexpression\ \fP \fB[-a]\ \fP \fIexpression\fP
 .sp
 Conjunction of primaries; the AND operator is implied by the juxtaposition
 of two primaries or made explicit by the optional
 \fB-a\fP operator. The second expression shall not be evaluated if
 the first expression is false.
-.TP
-\fIexpression\0\fP \fB-o\0\fP \fIexpression\fP
+.TP 7
+\fIexpression\ \fP \fB-o\ \fP \fIexpression\fP
 .sp
 Alternation of primaries; the OR operator. The second expression shall
 not be evaluated if the first expression is true.
@@ -317,19 +317,19 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIfind\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
@@ -337,7 +337,7 @@ and multi-character collating elements used in the pattern
 matching notation for the \fB-n\fP option and in the extended regular
 expression defined for the \fByesexpr\fP locale keyword in
 the \fILC_MESSAGES\fP category.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 This variable determines the locale for the interpretation of sequences
 of bytes of text data as characters (for example,
@@ -347,20 +347,20 @@ notation used for the \fB-n\fP option, and the behavior of character
 classes within regular expressions used in the extended
 regular expression defined for the \fByesexpr\fP locale keyword in
 the \fILC_MESSAGES\fP category.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale for the processing of affirmative responses that
 should be used to affect the format and contents of
 diagnostic messages written to standard error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fIPATH\fP
 Determine the location of the \fIutility_name\fP for the \fB-exec\fP
 and \fB-ok\fP primaries, as described in the Base
-Definitions volume of IEEE\0Std\01003.1-2001, Chapter 8, Environment
+Definitions volume of IEEE\ Std\ 1003.1-2001, Chapter 8, Environment
 Variables.
 .sp
 .SH ASYNCHRONOUS EVENTS
@@ -396,10 +396,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 All \fIpath\fP operands were traversed successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -417,11 +417,10 @@ shell and must be quoted (see \fIQuoting\fP ).
 The bit that is traditionally used for sticky (historically 01000)
 is specified in the \fB-perm\fP primary using the octal
 number argument form. Since this bit is not defined by this volume
-of IEEE\0Std\01003.1-2001, applications must not assume
+of IEEE\ Std\ 1003.1-2001, applications must not assume
 that it actually refers to the traditional sticky bit.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 The following commands are equivalent:
 .sp
 .RS
@@ -435,9 +434,8 @@ find . -print
 .LP
 They both write out the entire directory hierarchy from the current
 directory.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The following command:
 .sp
 .RS
@@ -450,9 +448,8 @@ The following command:
 .LP
 removes all files named \fBtmp\fP or ending in \fB.xx\fP that have
 not been accessed for seven or more 24-hour periods.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The following command:
 .sp
 .RS
@@ -466,9 +463,8 @@ The following command:
 prints ( \fB-print\fP is assumed) the names of all files in or below
 the current directory, with all of the file permission
 bits S_ISUID, S_ISGID, and S_IWOTH set.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The following command:
 .sp
 .RS
@@ -482,9 +478,8 @@ The following command:
 recursively prints pathnames of all files in the current directory
 and below, but skips directories named SCCS and files in
 them.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 The following command:
 .sp
 .RS
@@ -497,9 +492,8 @@ The following command:
 .LP
 behaves as in the previous example, but prints the names of the SCCS
 directories.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 The following command is roughly equivalent to the \fB-nt\fP extension
 to \fItest\fP:
 .sp
@@ -512,9 +506,8 @@ fi
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 7." 4
 The descriptions of \fB-atime\fP, \fB-ctime\fP, and \fB-mtime\fP use
 the terminology \fIn\fP "86400 second periods
 (days)". For example, a file accessed at 23:59 is selected by:
@@ -530,7 +523,7 @@ the terminology \fIn\fP "86400 second periods
 at 00:01 the next day (less than 24 hours later, not more than one
 day ago); the midnight boundary between days has no effect on
 the 24-hour calculation.
-.in -5
+.LP
 .SH RATIONALE
 .LP
 The \fB-a\fP operator was retained as an optional operator for compatibility
@@ -548,19 +541,15 @@ exactly the matching bits set.
 The exact format of the interactive prompts is unspecified. Only the
 general nature of the contents of prompts are specified
 because:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Implementations may desire more descriptive prompts than those used
 on historical implementations.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Since the historical prompt strings do not terminate with <newline>s,
 there is no portable way for another program to
 interact with the prompts of this utility via pipes.
-.in -5
-.RE
+.LP
 .LP
 Therefore, an application using this prompting option relies on the
 system to provide the most suitable dialog directly with the
@@ -573,25 +562,23 @@ with other utilities using pattern matching.
 The \fB-size\fP operand refers to the size of a file, rather than
 the number of blocks it may occupy in the file system. The
 intent is that the \fIst_size\fP field defined in the System Interfaces
-volume of IEEE\0Std\01003.1-2001 should be used,
+volume of IEEE\ Std\ 1003.1-2001 should be used,
 not the \fIst_blocks\fP found in historical implementations. There
 are at least two reasons for this:
-.in +5
-.LP
+.IP " 1." 4
 In both System V and BSD, \fIfind\fP only uses \fIst_size\fP in size
 calculations for the operands specified by this volume of
-IEEE\0Std\01003.1-2001. (BSD uses \fIst_blocks\fP only when processing
+IEEE\ Std\ 1003.1-2001. (BSD uses \fIst_blocks\fP only when processing
 the \fB-ls\fP primary.)
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Users usually think of file size in terms of bytes, which is also
 the unit used by the \fIls\fP utility for the output from the \fB-l\fP
 option. (In both System V and BSD, \fIls\fP uses \fIst_size\fP for
 the \fB-l\fP option size field and uses \fIst_blocks\fP for the \fIls\fP
-\fB-s\fP calculations. This volume of IEEE\0Std\01003.1-2001 does
+\fB-s\fP calculations. This volume of IEEE\ Std\ 1003.1-2001 does
 not specify \fIls\fP \fB-s\fP.)
-.in -5
+.LP
 .LP
 The descriptions of \fB-atime\fP, \fB-ctime\fP, and \fB-mtime\fP were
 changed from the SVID description of \fIn\fP "days''
@@ -607,7 +594,7 @@ Historical implementations do not modify \fB"{}"\fP when it appears
 as a substring of an \fB-exec\fP or \fB-ok\fP
 \fIutility_name\fP or argument string. There have been numerous user
 requests for this extension, so this volume of
-IEEE\0Std\01003.1-2001 allows the desired behavior. At least one recent
+IEEE\ Std\ 1003.1-2001 allows the desired behavior. At least one recent
 implementation does support this feature, but
 encountered several problems in managing memory allocation and dealing
 with multiple occurrences of \fB"{}"\fP in a string while
@@ -671,7 +658,7 @@ parse the null terminators it would now be reading.
 .LP
 The \fB"-exec ... {} +"\fP syntax adopted was a result of IEEE PASC
 Interpretation 1003.2 #210. It should be noted that this
-is an incompatible change to the ISO/IEC\09899:1999 standard. For
+is an incompatible change to the ISO/IEC\ 9899:1999 standard. For
 example, the following command prints all files with a
 \fB'-'\fP after their name if they are regular files, and a \fB'+'\fP
 otherwise:
@@ -695,7 +682,7 @@ None.
 .LP
 \fIQuoting\fP , \fIPattern Matching
 Notation\fP , \fISpecial Built-In Utilities\fP , \fIchmod\fP() , \fIpax\fP
-, \fIsh\fP , \fItest\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+, \fIsh\fP , \fItest\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIgetgrgid\fP(), \fIgetpwuid\fP(), \fIstat\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

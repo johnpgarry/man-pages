@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "uustat" P 2003 POSIX
+.TH "UUSTAT" P 2003 POSIX
 .\" uustat 
 .SH NAME
-uustat - uucp status inquiry and job control
+uustat \- uucp status inquiry and job control
 .SH SYNOPSIS
 .LP
 \fBuustat\fP \fB[\fP \fB-q| -k\fP \fIjobid\fP\fB| -r\fP \fIjobid\fP\fB]\fP\fB
@@ -23,7 +23,7 @@ the status of all \fIuucp\fP requests issued by the current user.
 .LP
 Typical implementations of this utility require a communications line
 configured to use the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Chapter 11, General Terminal Interface, but
+IEEE\ Std\ 1003.1-2001, Chapter 11, General Terminal Interface, but
 other
 communications means may be used. On systems where there are no available
 communications means (either temporarily or permanently),
@@ -32,31 +32,31 @@ exit with a non-zero exit status.
 .SH OPTIONS
 .LP
 The \fIuustat\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-q\fP
 Write the jobs queued for each machine.
-.TP
-\fB-k\0\fP \fIjobid\fP
+.TP 7
+\fB-k\ \fP \fIjobid\fP
 Kill the \fIuucp\fP request whose job identification is \fIjobid\fP.
 The application
 shall ensure that the killed \fIuucp\fP request belongs to the person
 invoking \fIuustat\fP
 unless that user has appropriate privileges.
-.TP
-\fB-r\0\fP \fIjobid\fP
+.TP 7
+\fB-r\ \fP \fIjobid\fP
 Rejuvenate \fIjobid\fP. The files associated with \fIjobid\fP are
 touched so that their modification time is set to the
 current time. This prevents the cleanup program from deleting the
 job until the jobs modification time reaches the limit imposed by
 the program.
-.TP
-\fB-s\0\fP \fIsystem\fP
+.TP 7
+\fB-s\ \fP \fIsystem\fP
 Write the status of all \fIuucp\fP requests for remote system \fIsystem\fP.
-.TP
-\fB-u\0\fP \fIuser\fP
+.TP 7
+\fB-u\ \fP \fIuser\fP
 Write the status of all \fIuucp\fP requests issued by \fIuser\fP.
 .sp
 .SH OPERANDS
@@ -72,29 +72,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIuustat\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error,
 and informative messages written to standard output.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -120,10 +120,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "bsearch" P 2003 POSIX
+.TH "BSEARCH" P 2003 POSIX
 .\" bsearch 
 .SH NAME
-bsearch - binary search a sorted table
+bsearch \- binary search a sorted table
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -11,17 +11,11 @@ bsearch - binary search a sorted table
 void *bsearch(const void *\fP\fIkey\fP\fB, const void *\fP\fIbase\fP\fB,
 size_t\fP \fInel\fP\fB,
 .br
-\0\0\0\0\0\0 size_t\fP \fIwidth\fP\fB, int (*\fP\fIcompar\fP\fB)(const
+\ \ \ \ \ \  size_t\fP \fIwidth\fP\fB, int (*\fP\fIcompar\fP\fB)(const
 void *, const void *));
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIbsearch\fP() function shall search an array of \fInel\fP objects,
 the initial element of which is pointed to by
@@ -166,7 +160,7 @@ None.
 .LP
 \fIhcreate\fP() , \fIlsearch\fP() , \fIqsort\fP() , \fItsearch\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

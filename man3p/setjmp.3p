@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "setjmp" P 2003 POSIX
+.TH "SETJMP" P 2003 POSIX
 .\" setjmp 
 .SH NAME
-setjmp - set jump point for a non-local goto
+setjmp \- set jump point for a non-local goto
 .SH SYNOPSIS
 .LP
 \fB#include <setjmp.h>
@@ -12,12 +12,6 @@ int setjmp(jmp_buf\fP \fIenv\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 A call to \fIsetjmp\fP() shall save the calling environment in its
 \fIenv\fP argument for later use by \fIlongjmp\fP().
@@ -29,30 +23,24 @@ the name \fIsetjmp\fP, the behavior is undefined.
 .LP
 An application shall ensure that an invocation of \fIsetjmp\fP() appears
 in one of the following contexts only:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The entire controlling expression of a selection or iteration statement
-.in -5
-.in +5
 .LP
+.IP " *" 3
 One operand of a relational or equality operator with the other operand
 an integral constant expression, with the resulting
 expression being the entire controlling expression of a selection
 or iteration statement
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The operand of a unary \fB'!'\fP operator with the resulting expression
 being the entire controlling expression of a
 selection or iteration
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The entire expression of an expression statement (possibly cast to
 \fBvoid\fP)
-.in -5
-.RE
+.LP
 .LP
 If the invocation appears in any other context, the behavior is undefined.
 .SH RETURN VALUE
@@ -83,7 +71,7 @@ None.
 .LP
 \fIlongjmp\fP() , \fIsigsetjmp\fP() , the Base Definitions volume
 of
-IEEE\0Std\01003.1-2001, \fI<setjmp.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<setjmp.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

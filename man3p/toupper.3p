@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "toupper" P 2003 POSIX
+.TH "TOUPPER" P 2003 POSIX
 .\" toupper 
 .SH NAME
-toupper - transliterate lowercase characters to uppercase
+toupper \- transliterate lowercase characters to uppercase
 .SH SYNOPSIS
 .LP
 \fB#include <ctype.h>
@@ -13,20 +13,12 @@ int toupper(int\fP \fIc\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fItoupper\fP() function has as a domain a type \fBint\fP, the
 value of which is representable as an \fBunsigned char\fP
 or the value of EOF. If the argument has any other value, the behavior
 is undefined. If the argument of \fItoupper\fP() represents
 a lowercase letter, and there exists a corresponding uppercase letter
-<img
-src="../images/opt-start.gif" alt="[Option Start]" border="0"> \0(as
-defined by character type information in the program
+\ (as defined by character type information in the program
 locale category \fILC_CTYPE ),\fP  the result shall be the
 corresponding uppercase letter. All other arguments in the domain
 are returned unchanged.
@@ -53,7 +45,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIsetlocale\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIsetlocale\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Chapter 7, Locale, \fI<ctype.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

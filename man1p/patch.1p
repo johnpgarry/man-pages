@@ -1,14 +1,14 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "patch" P 2003 POSIX
+.TH "PATCH" P 2003 POSIX
 .\" patch 
 .SH NAME
-patch - apply changes to files
+patch \- apply changes to files
 .SH SYNOPSIS
 .LP
 \fBpatch\fP \fB[\fP\fB-blNR\fP\fB][\fP \fB-c| -e| -n\fP\fB][\fP\fB-d\fP
 \fIdir\fP\fB][\fP\fB-D\fP \fIdefine\fP\fB][\fP\fB-i\fP \fIpatchfile\fP\fB]
 .br
-\fP \fB\0\0\0\0\0\0\fP \fB[\fP\fB-o\fP \fIoutfile\fP\fB][\fP\fB-p\fP
+\fP \fB\ \ \ \ \ \ \fP \fB[\fP\fB-o\fP \fIoutfile\fP\fB][\fP\fB-p\fP
 \fInum\fP\fB][\fP\fB-r\fP \fIrejectfile\fP\fB][\fP\fIfile\fP\fB]\fP\fB\fP
 .SH DESCRIPTION
 .LP
@@ -30,10 +30,10 @@ name of the patch file is determinable for each \fIdiff\fP listing.)
 .SH OPTIONS
 .LP
 The \fIpatch\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-b\fP
 Save a copy of the original contents of each modified file, before
 the differences are applied, in a file of the same name with
@@ -44,17 +44,17 @@ patch. When the \fB-o\fP \fIoutfile\fP option is also
 specified, \fIfile\fP \fB.orig\fP shall not be created but, if \fIoutfile\fP
 already exists, \fIoutfile\fP \fB.orig\fP shall
 be created.
-.TP
+.TP 7
 \fB-c\fP
 Interpret the patch file as a context difference (the output of the
 utility \fIdiff\fP
 when the \fB-c\fP or \fB-C\fP options are specified).
-.TP
-\fB-d\0\fP \fIdir\fP
+.TP 7
+\fB-d\ \fP \fIdir\fP
 Change the current directory to \fIdir\fP before processing as described
 in the EXTENDED DESCRIPTION section.
-.TP
-\fB-D\0\fP \fIdefine\fP
+.TP 7
+\fB-D\ \fP \fIdefine\fP
 Mark changes with one of the following C preprocessor constructs:
 .sp
 .RS
@@ -77,29 +77,29 @@ If the patched file is processed with the C preprocessor,
 where the macro \fIdefine\fP is defined, the output shall contain
 the changes from the patch file; otherwise, the output shall not
 contain the patches specified in the patch file.
-.TP
+.TP 7
 \fB-e\fP
 Interpret the patch file as an \fIed\fP script, rather than a \fIdiff\fP
 script.
-.TP
-\fB-i\0\fP \fIpatchfile\fP
+.TP 7
+\fB-i\ \fP \fIpatchfile\fP
 Read the patch information from the file named by the pathname \fIpatchfile\fP,
 rather than the standard input.
-.TP
+.TP 7
 \fB-l\fP
 (The letter ell.) Cause any sequence of <blank>s in the difference
 script to match any sequence of <blank>s in the
 input file. Other characters shall be matched exactly.
-.TP
+.TP 7
 \fB-n\fP
 Interpret the script as a normal difference.
-.TP
+.TP 7
 \fB-N\fP
 Ignore patches where the differences have already been applied to
 the file; by default, already-applied patches shall be
 rejected.
-.TP
-\fB-o\0\fP \fIoutfile\fP
+.TP 7
+\fB-o\ \fP \fIoutfile\fP
 Instead of modifying the files (specified by the \fIfile\fP operand
 or the difference listings) directly, write a copy of the
 file referenced by each patch, with the appropriate differences applied,
@@ -107,17 +107,17 @@ to \fIoutfile\fP. Multiple patches for a single file
 shall be applied to the intermediate versions of the file created
 by any previous patches, and shall result in multiple,
 concatenated versions of the file being written to \fIoutfile\fP.
-.TP
-\fB-p\0\fP \fInum\fP
+.TP 7
+\fB-p\ \fP \fInum\fP
 For all pathnames in the patch file that indicate the names of files
 to be patched, delete \fInum\fP pathname components from
 the beginning of each pathname. If the pathname in the patch file
 is absolute, any leading slashes shall be considered the first
-component (that is, \fB-p\01\fP shall remove the leading slashes).
-Specifying \fB-p\00\fP shall cause the full pathname
+component (that is, \fB-p\ 1\fP shall remove the leading slashes).
+Specifying \fB-p\ 0\fP shall cause the full pathname
 to be used. If \fB-p\fP is not specified, only the basename (the final
 pathname component) shall be used.
-.TP
+.TP 7
 \fB-R\fP
 Reverse the sense of the patch script; that is, assume that the difference
 script was created from the new version to the old
@@ -130,8 +130,8 @@ is successfully applied, \fIpatch\fP attempts to apply each
 portion in its reversed sense as well as in its normal sense. If the
 attempt is successful, the user shall be prompted to determine
 whether the \fB-R\fP option should be set.
-.TP
-\fB-r\0\fP \fIrejectfile\fP
+.TP 7
+\fB-r\ \fP \fIrejectfile\fP
 Override the default reject filename. In the default case, the reject
 file shall have the same name as the output file, with
 the suffix \fB.rej\fP appended to it; see Patch Application .
@@ -139,7 +139,7 @@ the suffix \fB.rej\fP appended to it; see Patch Application .
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file to patch.
 .sp
@@ -153,33 +153,33 @@ Input files shall be text files.
 .LP
 The following environment variables shall affect the execution of
 \fIpatch\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fILC_TIME\fP
 Determine the locale for recognizing the format of file timestamps
 written by the \fIdiff\fP utility in a context-difference input file.
@@ -224,8 +224,8 @@ and one or more sets of \fIdiff\fP output, which are customarily called
 .LP
 The \fIpatch\fP utility shall recognize the following expression in
 the header information:
-.TP
-\fBIndex:\0\fP \fIpathname\fP
+.TP 7
+\fBIndex:\ \fP \fIpathname\fP
 .sp
 The file to be patched is named \fIpathname\fP.
 .sp
@@ -235,12 +235,12 @@ leading sequence of <blank>s, the \fIpatch\fP utility
 shall remove this sequence before proceeding. Within each patch, if
 the type of difference is context, the \fIpatch\fP utility
 shall recognize the following expressions:
-.TP
-***\0\fIfilename\0timestamp\fP
+.TP 7
+***\ \fIfilename\ timestamp\fP
 .sp
 The patches arose from \fIfilename\fP.
-.TP
----\0\fIfilename\0timestamp\fP
+.TP 7
+---\ \fIfilename\ timestamp\fP
 .sp
 The patches should be applied to \fIfilename\fP.
 .sp
@@ -253,8 +253,7 @@ shall occur in ascending order.
 .LP
 If no \fIfile\fP operand is specified, \fIpatch\fP shall perform the
 following steps to determine the filename to use:
-.in +5
-.LP
+.IP " 1." 4
 If the type of \fIdiff\fP is context, the \fIpatch\fP utility shall
 delete pathname
 components (as specified by the \fB-p\fP option) from the filename
@@ -262,9 +261,8 @@ on the line beginning with \fB"***"\fP , then test for the
 existence of this file relative to the current directory (or the directory
 specified with the \fB-d\fP option). If the file
 exists, the \fIpatch\fP utility shall use this filename.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If the type of \fIdiff\fP is context, the \fIpatch\fP utility shall
 delete the pathname
 components (as specified by the \fB-p\fP option) from the filename
@@ -272,9 +270,8 @@ on the line beginning with \fB"---"\fP , then test for the
 existence of this file relative to the current directory (or the directory
 specified with the \fB-d\fP option). If the file
 exists, the \fIpatch\fP utility shall use this filename.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the header information contains a line beginning with the string
 \fBIndex:\fP, the \fIpatch\fP utility shall delete
 pathname components (as specified by the \fB-p\fP option) from this
@@ -282,20 +279,18 @@ line, then test for the existence of this file relative to the
 current directory (or the directory specified with the \fB-d\fP option).
 If the file exists, the \fIpatch\fP utility shall use
 this filename.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If an \fBSCCS\fP directory exists in the current directory, \fIpatch\fP
 shall attempt to perform a \fIget\fP \fB-e\fP \fBSCCS/s.\fP \fIfilename\fP
 command to retrieve an editable version of the
 file. If the file exists, the \fIpatch\fP utility shall use this filename.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 The \fIpatch\fP utility shall write a prompt to standard output and
 request a filename interactively from the controlling
 terminal (for example, \fB/dev/tty\fP).
-.in -5
+.LP
 .SS Patch Application
 .LP
 If the \fB-c\fP, \fB-e\fP, or \fB-n\fP option is present, the \fIpatch\fP
@@ -336,13 +331,13 @@ invoking the \fIed\fP utility.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
-\01
+.TP 7
+\ 1
 One or more lines were written to a reject file.
-.TP
+.TP 7
 >1
 An error occurred.
 .sp
@@ -370,7 +365,7 @@ patch file. For example, if the filename in the patch file was:
 .fi
 .RE
 .LP
-Setting \fB-p\00\fP gives the entire pathname unmodified; \fB-p\01\fP
+Setting \fB-p\ 0\fP gives the entire pathname unmodified; \fB-p\ 1\fP
 gives:
 .sp
 .RS
@@ -381,7 +376,7 @@ gives:
 .fi
 .RE
 .LP
-without the leading slash, \fB-p\04\fP gives:
+without the leading slash, \fB-p\ 4\fP gives:
 .sp
 .RS
 .nf
@@ -435,31 +430,31 @@ file would satisfy the prerequisite.
 .LP
 The following options were dropped from historical implementations
 of \fIpatch\fP as insufficiently useful to standardize:
-.TP
+.TP 7
 \fB-b\fP
 The \fB-b\fP option historically provided a method for changing the
 name extension of the backup file from the default
 \fB\&.orig\fP. This option has been modified and retained in this volume
-of IEEE\0Std\01003.1-2001.
-.TP
+of IEEE\ Std\ 1003.1-2001.
+.TP 7
 \fB-F\fP
 The \fB-F\fP option specified the number of lines of a context diff
 to ignore when searching for a place to install a
 patch.
-.TP
+.TP 7
 \fB-f\fP
 The \fB-f\fP option historically caused \fIpatch\fP not to request
 additional information from the user.
-.TP
+.TP 7
 \fB-r\fP
 The \fB-r\fP option historically provided a method of overriding the
 extension of the reject file from the default
 \fB\&.rej\fP.
-.TP
+.TP 7
 \fB-s\fP
 The \fB-s\fP option historically caused \fIpatch\fP to work silently
 unless an error occurred.
-.TP
+.TP 7
 \fB-x\fP
 The \fB-x\fP option historically set internal debugging flags.
 .sp

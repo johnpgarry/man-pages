@@ -2,7 +2,7 @@
 .TH "<cpio.h>" P 2003 POSIX
 .\" <cpio.h> 
 .SH NAME
-cpio.h - cpio archive values
+cpio.h \- cpio archive values
 .SH SYNOPSIS
 .LP
 \fB#include <cpio.h> \fP
@@ -11,28 +11,28 @@ cpio.h - cpio archive values
 Values needed by the \fIc_mode\fP field of the \fIcpio\fP archive
 format are described as follows:
 .TS C
-center;l l l l l l l l l l l.
-\fBName\fP 	 \fBDescription\fP 	 \fBValue (Octal)\fP 	
-C_IRUSR 	 Read by owner. 	 0000400 	
-C_IWUSR 	 Write by owner. 	 0000200 	
-C_IXUSR 	 Execute by owner. 	 0000100 	
-C_IRGRP 	 Read by group. 	 0000040 	
-C_IWGRP 	 Write by group. 	 0000020 	
-C_IXGRP 	 Execute by group. 	 0000010 	
-C_IROTH 	 Read by others. 	 0000004 	
-C_IWOTH 	 Write by others. 	 0000002 	
-C_IXOTH 	 Execute by others. 	 0000001 	
-C_ISUID 	 Set user ID. 	 0004000 	
-C_ISGID 	 Set group ID. 	 0002000 	
-C_ISVTX 	 On directories, restricted deletion flag. 	 0001000 	
-C_ISDIR 	 Directory. 	 0040000 	
-C_ISFIFO 	 FIFO. 	 0010000 	
-C_ISREG 	 Regular file. 	 0100000 	
-C_ISBLK 	 Block special. 	 0060000 	
-C_ISCHR 	 Character special. 	 0020000 	
-C_ISCTG 	 Reserved. 	 0110000 	
-C_ISLNK 	 Symbolic link. 	 0120000 	
-C_ISSOCK 	 Socket. 	 0140000 	
+center; l1 l1 l.
+\fBName\fP	\fBDescription\fP	\fBValue (Octal)\fP
+C_IRUSR	Read by owner.	0000400
+C_IWUSR	Write by owner.	0000200
+C_IXUSR	Execute by owner.	0000100
+C_IRGRP	Read by group.	0000040
+C_IWGRP	Write by group.	0000020
+C_IXGRP	Execute by group.	0000010
+C_IROTH	Read by others.	0000004
+C_IWOTH	Write by others.	0000002
+C_IXOTH	Execute by others.	0000001
+C_ISUID	Set user ID.	0004000
+C_ISGID	Set group ID.	0002000
+C_ISVTX	On directories, restricted deletion flag.	0001000
+C_ISDIR	Directory.	0040000
+C_ISFIFO	FIFO.	0010000
+C_ISREG	Regular file.	0100000
+C_ISBLK	Block special.	0060000
+C_ISCHR	Character special.	0020000
+C_ISCTG	Reserved.	0110000
+C_ISLNK	Symbolic link.	0120000
+C_ISSOCK	Socket.	0140000
 .TE
 .LP
 The header shall define the symbolic constant:
@@ -57,7 +57,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The Shell and Utilities volume of IEEE\0Std\01003.1-2001, \fIpax\fP
+The Shell and Utilities volume of IEEE\ Std\ 1003.1-2001, \fIpax\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

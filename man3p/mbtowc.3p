@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mbtowc" P 2003 POSIX
+.TH "MBTOWC" P 2003 POSIX
 .\" mbtowc 
 .SH NAME
-mbtowc - convert a character to a wide-character code
+mbtowc \- convert a character to a wide-character code
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -13,12 +13,6 @@ int mbtowc(wchar_t *restrict\fP \fIpwc\fP\fB, const char *restrict\fP
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 If \fIs\fP is not a null pointer, \fImbtowc\fP() shall determine the
 number of bytes that constitute the character pointed to
@@ -45,7 +39,7 @@ shift state of this function to be unspecified. At most \fIn\fP bytes
 of the array pointed to by \fIs\fP shall be examined.
 .LP
 The implementation shall behave as if no function defined in this
-volume of IEEE\0Std\01003.1-2001 calls
+volume of IEEE\ Std\ 1003.1-2001 calls
 \fImbtowc\fP().
 .SH RETURN VALUE
 .LP
@@ -55,7 +49,7 @@ do not have state-dependent encodings. If \fIs\fP is not a null pointer,
 \fImbtowc\fP() shall either return 0 (if \fIs\fP points
 to the null byte), or return the number of bytes that constitute the
 converted character (if the next \fIn\fP or fewer bytes form
-a valid character), or return -1   \0and may set \fIerrno\fP to indicate
+a valid character), or return -1   \ and may set \fIerrno\fP to indicate
 the error  (if they do not form a valid character).
 .LP
 In no case shall the value returned be greater than \fIn\fP or the
@@ -63,7 +57,7 @@ value of the {MB_CUR_MAX} macro.
 .SH ERRORS
 .LP
 The \fImbtowc\fP() function may fail if:
-.TP
+.TP 7
 .B EILSEQ
 Invalid character sequence is detected. 
 .sp
@@ -85,7 +79,7 @@ None.
 .LP
 \fImblen\fP() , \fImbstowcs\fP() , \fIwctomb\fP() , \fIwcstombs\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

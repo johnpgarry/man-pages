@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "ulimit" P 2003 POSIX
+.TH "ULIMIT" P 2003 POSIX
 .\" ulimit 
 .SH NAME
-ulimit - set or report file size limit
+ulimit \- set or report file size limit
 .SH SYNOPSIS
 .LP
 \fBulimit\fP \fB[\fP\fB-f\fP\fB][\fP\fIblocks\fP\fB]\fP\fB\fP
@@ -15,10 +15,10 @@ privileges can increase the limit.
 .SH OPTIONS
 .LP
 The \fIulimit\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following option shall be supported:
-.TP
+.TP 7
 \fB-f\fP
 Set (or report, if no \fIblocks\fP operand is present), the file size
 limit in blocks. The \fB-f\fP option shall also be the
@@ -27,7 +27,7 @@ default case.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIblocks\fP
 The number of 512-byte blocks to use as the new file size limit.
 .sp
@@ -41,29 +41,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIulimit\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -108,10 +108,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 A request for a higher limit was rejected or an error occurred.
 .sp
@@ -160,7 +160,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIulimit\fP()
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIulimit\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

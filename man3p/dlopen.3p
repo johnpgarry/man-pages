@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "dlopen" P 2003 POSIX
+.TH "DLOPEN" P 2003 POSIX
 .\" dlopen 
 .SH NAME
-dlopen - gain access to an executable object file
+dlopen \- gain access to an executable object file
 .SH SYNOPSIS
 .LP
 \fB#include <dlfcn.h>
@@ -63,7 +63,7 @@ are not known until the object is loaded. These references
 shall be relocated before the symbols can be accessed. The \fImode\fP
 parameter governs when these relocations take place and may
 have the following values:
-.TP
+.TP 7
 RTLD_LAZY
 Relocations shall be performed at an implementation-defined time,
 ranging from the time of the \fIdlopen\fP() call until the
@@ -73,7 +73,7 @@ symbol binding as a process may not reference all of the functions
 in any given object. And, for systems supporting dynamic symbol
 resolution for normal process execution, this behavior mimics the
 normal handling of process execution.
-.TP
+.TP 7
 RTLD_NOW
 All necessary relocations shall be performed when the object is first
 loaded. This may waste some processing if relocations are
@@ -92,14 +92,14 @@ object itself as well as any other object included in the same
 flag. To determine the scope of visibility for the symbols loaded
 with a \fIdlopen\fP() invocation, the \fImode\fP parameter
 should be a bitwise-inclusive OR with one of the following values:
-.TP
+.TP 7
 RTLD_GLOBAL
 The object's symbols shall be made available for the relocation processing
 of any other object. In addition, symbol lookup
 using \fIdlopen\fP(\fI0, mode\fP) and an associated \fIdlsym\fP()
 allows objects loaded
 with this \fImode\fP to be searched.
-.TP
+.TP 7
 RTLD_LOCAL
 The object's symbols shall not be made available for the relocation
 processing of any other object.
@@ -181,7 +181,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIdlclose\fP() , \fIdlerror\fP() , \fIdlsym\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<dlfcn.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<dlfcn.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

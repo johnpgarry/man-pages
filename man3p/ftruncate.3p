@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "ftruncate" P 2003 POSIX
+.TH "FTRUNCATE" P 2003 POSIX
 .\" ftruncate 
 .SH NAME
-ftruncate - truncate a file to a specified length
+ftruncate \- truncate a file to a specified length
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -22,7 +22,7 @@ shall cause the size of the file to be truncated to
 the extra data shall no longer be available to reads on
 the file. If the file previously was smaller than this size, \fIftruncate\fP()
 shall either increase the size of the file or fail.
-\0XSI-conformant systems shall increase the size of the file. 
+\ XSI-conformant systems shall increase the size of the file. 
 If the file size is increased, the extended area shall appear as if
 it were zero-filled. The value of the seek pointer shall not be
 modified by a call to \fIftruncate\fP().
@@ -67,33 +67,33 @@ the error.
 .SH ERRORS
 .LP
 The \fIftruncate\fP() function shall fail if:
-.TP
+.TP 7
 .B EINTR
 A signal was caught during execution.
-.TP
+.TP 7
 .B EINVAL
 The \fIlength\fP argument was less than 0.
-.TP
+.TP 7
 .B EFBIG] or [EINVAL
 .sp
 The \fIlength\fP argument was greater than the maximum file size.
-.TP
+.TP 7
 .B EFBIG
 The file is a regular file and \fIlength\fP is greater than the offset
 maximum established in the open file description associated
 with \fIfildes\fP. 
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while reading from or writing to a file system.
-.TP
+.TP 7
 .B EBADF] or [EINVAL
 .sp
 The \fIfildes\fP argument is not a file descriptor open for writing.
-.TP
+.TP 7
 .B EINVAL
 The \fIfildes\fP argument references a file that was opened without
 write permission.
-.TP
+.TP 7
 .B EROFS
 The named file resides on a read-only file system.
 .sp
@@ -107,7 +107,7 @@ None.
 None.
 .SH RATIONALE
 .LP
-The \fIftruncate\fP() function is part of IEEE\0Std\01003.1-2001 as
+The \fIftruncate\fP() function is part of IEEE\ Std\ 1003.1-2001 as
 it was deemed to be more useful than \fItruncate\fP(). The \fItruncate\fP()
 function is
 provided as an XSI extension.
@@ -117,7 +117,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIopen\fP() , \fItruncate\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,20 +1,20 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sh" P 2003 POSIX
+.TH "SH" P 2003 POSIX
 .\" sh 
 .SH NAME
-sh - shell, the standard command language interpreter
+sh \- shell, the standard command language interpreter
 .SH SYNOPSIS
 .LP
 \fBsh\fP \fB[\fP\fB-abCefhimnuvx\fP\fB][\fP\fB-o\fP \fIoption\fP\fB][\fP\fB+abCefhimnuvx\fP\fB][\fP\fB+o\fP
 \fIoption\fP\fB]
 .br
-\fP \fB\0\0\0\0\0\0\fP \fB[\fP\fIcommand_file\fP \fB[\fP\fIargument\fP\fB...\fP\fB]]\fP\fB
+\fP \fB\ \ \ \ \ \ \fP \fB[\fP\fIcommand_file\fP \fB[\fP\fIargument\fP\fB...\fP\fB]]\fP\fB
 .br
 .sp
 sh -c\fP\fB[\fP\fB-abCefhimnuvx\fP\fB][\fP\fB-o\fP \fIoption\fP\fB][\fP\fB+abCefhimnuvx\fP\fB][\fP\fB+o\fP
 \fIoption\fP\fB]\fP\fIcommand_string
 .br
-\fP \fB\0\0\0\0\0\0\fP \fI\fP\fB[\fP\fIcommand_name\fP
+\fP \fB\ \ \ \ \ \ \fP \fI\fP\fB[\fP\fIcommand_name\fP
 \fB[\fP\fIargument\fP\fB...\fP\fB]]\fP\fB
 .br
 .sp
@@ -38,7 +38,7 @@ description.
 .SH OPTIONS
 .LP
 The \fIsh\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
 with an extension for support of a leading
 plus sign ( \fB'+'\fP ) as noted below.
 .LP
@@ -50,10 +50,10 @@ the \fIset\fP special built-in shall also be accepted with a leading
 plus sign ( \fB'+'\fP )
 instead of a leading hyphen (meaning the reverse case of the option
 as described in this volume of
-IEEE\0Std\01003.1-2001).
+IEEE\ Std\ 1003.1-2001).
 .LP
 The following additional options shall be supported:
-.TP
+.TP 7
 \fB-c\fP
 Read commands from the \fIcommand_string\fP operand. Set the value
 of special parameter 0 (see \fISpecial Parameters\fP ) from the value
@@ -61,14 +61,14 @@ of the \fIcommand_name\fP operand and the positional
 parameters ($1, $2, and so on) in sequence from the remaining \fIargument\fP
 operands. No commands shall be read from the standard
 input.
-.TP
+.TP 7
 \fB-i\fP
 Specify that the shell is \fIinteractive\fP; see below. An implementation
 may treat specifying the \fB-i\fP option as an
 error if the real user ID of the calling process does not equal the
 effective user ID or if the real group ID does not equal the
 effective group ID.
-.TP
+.TP 7
 \fB-s\fP
 Read commands from the standard input.
 .sp
@@ -82,35 +82,33 @@ to a terminal, the shell is considered to be \fIinteractive\fP.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fB-\fP
 A single hyphen shall be treated as the first operand and then ignored.
 If both \fB'-'\fP and \fB"--"\fP are given as
 arguments, or if other operands precede the single hyphen, the results
 are undefined.
-.TP
+.TP 7
 \fIargument\fP
 The positional parameters ($1, $2, and so on) shall be set to \fIarguments\fP,
 if any.
-.TP
+.TP 7
 \fIcommand_file\fP
 The pathname of a file containing commands. If the pathname contains
 one or more slash characters, the implementation attempts
 to read that file; the file need not be executable. If the pathname
 does not contain a slash character: 
 .RS
-.in +5
-.LP
+.IP " *" 3
 The implementation shall attempt to read that file from the current
 working directory; the file need not be executable.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the file is not in the current working directory, the implementation
 may perform a search for an executable file using the
 value of \fIPATH ,\fP as described in \fICommand Search and Execution\fP
 \&.
-.in -5
+.LP
 .RE
 .LP
 Special parameter 0 (see \fISpecial Parameters\fP ) shall be set to
@@ -120,7 +118,7 @@ omits \fIcommand_file\fP, special parameter 0 shall be set
 to the value of the first argument passed to \fIsh\fP from its parent
 (for example, \fIargv\fP[0] for a C program), which is
 normally a pathname used to execute the \fIsh\fP utility.
-.TP
+.TP 7
 \fIcommand_name\fP
 .sp
 A string assigned to special parameter 0 when executing the commands
@@ -129,33 +127,28 @@ specified, special parameter 0 shall be set to the value of the first
 argument passed to \fIsh\fP from its parent (for example,
 \fIargv\fP[0] for a C program), which is normally a pathname used
 to execute the \fIsh\fP utility.
-.TP
+.TP 7
 \fIcommand_string\fP
 .sp
 A string that shall be interpreted by the shell as one or more commands,
 as if the string were the argument to the \fIsystem\fP() function
-defined in the System Interfaces volume of IEEE\0Std\01003.1-2001.
+defined in the System Interfaces volume of IEEE\ Std\ 1003.1-2001.
 If the \fIcommand_string\fP operand is an empty string, \fIsh\fP shall
 exit with a zero exit status.
 .sp
 .SH STDIN
 .LP
 The standard input shall be used only if one of the following is true:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The \fB-s\fP option is specified.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The \fB-c\fP option is not specified and no operands are specified.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The script executes one or more commands that require input from standard
 input (such as a \fIread\fP command that does not redirect its input).
-.in -5
-.RE
+.LP
 .LP
 See the INPUT FILES section.
 .LP
@@ -185,7 +178,7 @@ exit status.
 .LP
 The following environment variables shall affect the execution of
 \fIsh\fP:
-.TP
+.TP 7
 \fIENV\fP
 This variable, when and only when an interactive shell is invoked,
 shall be subjected to parameter expansion (see \fIParameter Expansion\fP
@@ -195,16 +188,16 @@ The file need not be executable. If the expanded value
 of \fIENV\fP is not an absolute pathname, the results are unspecified.
 \fIENV\fP shall be ignored if the real and effective user
 IDs or real and effective group IDs of the process are different.
-.TP
+.TP 7
 \fIFCEDIT\fP
 This variable, when expanded by the shell, shall determine the default
 value for the \fB-e\fP \fIeditor\fP option's
 \fIeditor\fP option-argument. If \fIFCEDIT\fP is null or unset, \fIed\fP
 shall be used as the
-editor. This volume of IEEE\0Std\01003.1-2001 specifies the effects
+editor. This volume of IEEE\ Std\ 1003.1-2001 specifies the effects
 of this variable only for systems supporting the User
 Portability Utilities option.
-.TP
+.TP 7
 \fIHISTFILE\fP
 Determine a pathname naming a command history file. If the \fIHISTFILE\fP
 variable is not set, the shell may attempt to access
@@ -228,10 +221,10 @@ the shell is using the same history file, it is unspecified how updates
 to the history file from those shells interact. As entries
 are deleted from the history file, they shall be deleted oldest first.
 It is unspecified when history file entries are physically
-removed from the history file. This volume of IEEE\0Std\01003.1-2001
+removed from the history file. This volume of IEEE\ Std\ 1003.1-2001
 specifies the effects of this variable only for
 systems supporting the User Portability Utilities option.
-.TP
+.TP 7
 \fIHISTSIZE\fP
 Determine a decimal number representing the limit to the number of
 previous commands that are accessible. If this variable is
@@ -242,14 +235,14 @@ to access this variable only when initializing the history
 file, as described under \fIHISTFILE .\fP Therefore, it is unspecified
 whether changes made to \fIHISTSIZE\fP after the history
 file has been initialized are effective.
-.TP
+.TP 7
 \fIHOME\fP
 Determine the pathname of the user's home directory. The contents
 of \fIHOME\fP are used in tilde expansion as described in \fITilde
-Expansion\fP . This volume of IEEE\0Std\01003.1-2001 specifies the
+Expansion\fP . This volume of IEEE\ Std\ 1003.1-2001 specifies the
 effects of this variable only for systems supporting the User Portability
 Utilities option.
-.TP
+.TP 7
 \fIIFS\fP
 (Input Field Separators.) A string treated as a list of characters
 that shall be used for field splitting and to split lines
@@ -259,25 +252,25 @@ if the value of \fIIFS\fP were <space>, <tab>,
 and <newline>. Implementations may ignore the value of \fIIFS\fP in
 the environment at the time \fIsh\fP is invoked,
 treating \fIIFS\fP as if it were not set.
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the behavior of range expressions, equivalence classes,
 and multi-character collating elements within pattern
 matching.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
@@ -285,12 +278,12 @@ opposed to multi-byte characters in arguments and input files), which
 characters are defined as letters (character class
 \fBalpha\fP), and the behavior of character classes within pattern
 matching.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fIMAIL\fP
 Determine a pathname of the user's mailbox file for purposes of incoming
 mail notification. If this variable is set, the shell
@@ -302,20 +295,20 @@ string. Such check shall be performed only after the completion of
 the interval defined by the \fIMAILCHECK\fP variable after the
 last such check. The user shall be informed only if \fIMAIL\fP is
 set and \fIMAILPATH\fP is not set. This volume of
-IEEE\0Std\01003.1-2001 specifies the effects of this variable only
+IEEE\ Std\ 1003.1-2001 specifies the effects of this variable only
 for systems supporting the User Portability Utilities
 option.
-.TP
+.TP 7
 \fIMAILCHECK\fP
 .sp
 Establish a decimal integer value that specifies how often (in seconds)
 the shell shall check for the arrival of mail in the files
 specified by the \fIMAILPATH\fP or \fIMAIL\fP variables. The default
 value shall be 600 seconds. If set to zero, the shell shall
-check before issuing each primary prompt. This volume of IEEE\0Std\01003.1-2001
+check before issuing each primary prompt. This volume of IEEE\ Std\ 1003.1-2001
 specifies the effects of this variable only
 for systems supporting the User Portability Utilities option.
-.TP
+.TP 7
 \fIMAILPATH\fP
 Provide a list of pathnames and optional messages separated by colons.
 If this variable is set, the shell shall inform the user
@@ -331,20 +324,20 @@ message is unspecified.
 .LP
 The \fIMAILPATH\fP environment variable takes precedence over the
 \fIMAIL\fP variable. This volume of
-IEEE\0Std\01003.1-2001 specifies the effects of this variable only
+IEEE\ Std\ 1003.1-2001 specifies the effects of this variable only
 for systems supporting the User Portability Utilities
 option.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fIPATH\fP
 Establish a string formatted as described in the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Chapter 8, Environment Variables,
+volume of IEEE\ Std\ 1003.1-2001, Chapter 8, Environment Variables,
 used to effect command interpretation; see \fICommand Search and Execution\fP
 \&.
-.TP
+.TP 7
 \fIPWD\fP
 This variable shall represent an absolute pathname of the current
 working directory. Assignments to this variable may be
@@ -451,43 +444,43 @@ command text.
 While in insert mode, any character typed shall be inserted in the
 current command line, unless it is from the following
 set.
-.TP
+.TP 7
 <newline>
 Execute the current command line. If the current command line is not
 empty, this line shall be entered into the command history
 (see \fIfc\fP ).
-.TP
+.TP 7
 \fIerase\fP
 Delete the character previous to the current cursor position and move
 the current cursor position back one character. In insert
 mode, characters shall be erased from both the screen and the buffer
 when backspacing.
-.TP
+.TP 7
 \fIinterrupt\fP
 Terminate command line editing with the same effects as described
 for interrupting command mode; see Command Line Editing (vi-mode)
 \&.
-.TP
+.TP 7
 \fIkill\fP
 Clear all the characters from the input line.
-.TP
+.TP 7
 <control>-V
 Insert the next character input, even if the character is otherwise
 a special insert mode character.
-.TP
+.TP 7
 <control>-W
 Delete the characters from the one preceding the cursor to the preceding
 word boundary. The word boundary in this case is the
 closer to the cursor of either the beginning of the line or a character
 that is in neither the \fBblank\fP nor \fBpunct\fP
 character classification of the current locale.
-.TP
+.TP 7
 \fIend-of-file\fP
 Interpreted as the end of input in \fIsh\fP. This interpretation shall
 occur only at the beginning of an input line. If
 \fIend-of-file\fP is entered other than at the beginning of the line,
 the results are unspecified.
-.TP
+.TP 7
 <ESC>
 Place \fIsh\fP into command mode.
 .sp
@@ -531,31 +524,33 @@ The term \fIsave buffer\fP corresponds to the term \fIunnamed buffer\fP
 in \fIvi\fP.
 .LP
 The following commands shall be recognized in command mode:
-.TP
+.TP 7
 <newline>
 Execute the current command line. If the current command line is not
 empty, this line shall be entered into the command history
 (see \fIfc\fP ).
-.TP
+.TP 7
 <control>-L
 Redraw the current command line. Position the cursor at the same location
 on the redrawn line.
-.TP
+.TP 7
 \fB#\fP
 Insert the character \fB'#'\fP at the beginning of the current command
 line and treat the resulting edit line as a comment.
 This line shall be entered into the command history; see \fIfc\fP
 \&.
-.TP
+.TP 7
 \fB=\fP
 Display the possible shell word expansions (see \fIWord Expansions\fP
 ) of the bigword
 at the current command line position.  
-.TP
+.TP 7
 \fBNote:\fP
+.RS
 This does not modify the content of the current line, and therefore
 does not cause the current line to become the edit
 line.
+.RE
 .sp
 .LP
 These expansions shall be displayed on subsequent terminal lines.
@@ -566,7 +561,7 @@ matched, these expansions shall have a \fB'/'\fP character appended.
 After the expansion, the line shall be redrawn, the cursor
 repositioned at the current cursor position, and \fIsh\fP shall be
 placed in command mode.
-.TP
+.TP 7
 \fB\\\fP
 Perform pathname expansion (see \fIPathname Expansion\fP ) on the
 current bigword,
@@ -581,7 +576,7 @@ shall be inserted directly after the bigword. If some
 other file is completely matched, a single <space> shall be inserted
 after the bigword. After this operation, \fIsh\fP shall
 be placed in insert mode.
-.TP
+.TP 7
 \fB*\fP
 Perform pathname expansion on the current bigword and insert all expansions
 into the command to replace the current bigword,
@@ -594,7 +589,7 @@ after the expansions and \fIsh\fP shall be placed in insert
 mode. If the current bigword contains none of the characters \fB'?'\fP
 , \fB'*'\fP , or \fB'['\fP , before the operation,
 an asterisk shall be implicitly assumed at the end.
-.TP
+.TP 7
 \fB@\fP\fIletter\fP
 Insert the value of the alias named \fI_letter\fP. The symbol \fIletter\fP
 represents a single alphabetic character from the
@@ -603,7 +598,7 @@ as an extension. If the alias \fI_letter\fP contains
 other editing commands, these commands shall be performed as part
 of the insertion. If no alias \fI_letter\fP is enabled, this
 command shall have no effect.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]~\fP
 Convert, if the current character is a lowercase letter, to the equivalent
 uppercase letter and \fIvice versa\fP, as
@@ -617,7 +612,7 @@ character position after the last character converted. If the \fIcount\fP
 is larger than the number of characters after the
 cursor, this shall not be considered an error; the cursor shall advance
 to the last character on the line.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB].\fP
 Repeat the most recent non-motion command, even if it was executed
 on an earlier command line. If the previous command was
@@ -628,7 +623,7 @@ is preceded by a \fIcount\fP, this shall override any
 \fIcount\fP argument to the previous command. The \fIcount\fP specified
 in the \fB'.'\fP command shall become the count for
 subsequent \fB'.'\fP commands issued without a count.
-.TP
+.TP 7
 \fB[\fP\fInumber\fP\fB]v\fP
 Invoke the \fIvi\fP editor to edit the current command line in a temporary
 file. When the
@@ -636,9 +631,9 @@ editor exits, the commands in the temporary file shall be executed
 and placed in the command history. If a \fInumber\fP is
 included, it specifies the command number in the command history to
 be edited, rather than the current command line.
-.TP
-\fB[\fP\fIcount\fP\fB]l\fP\0\0\0(ell)
-.TP
+.TP 7
+\fB[\fP\fIcount\fP\fB]l\fP\ \ \ (ell)
+.TP 7
 \fB[\fP\fIcount\fP\fB]\fP<space>
 .sp
 Move the current cursor position to the next character position. If
@@ -647,7 +642,7 @@ the terminal shall be alerted and the cursor shall not be advanced.
 If the \fIcount\fP is larger than the number of characters
 after the cursor, this shall not be considered an error; the cursor
 shall advance to the last character on the line.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]h\fP
 Move the current cursor position to the \fIcount\fPth (default 1)
 previous character position. If the cursor was positioned on
@@ -656,7 +651,7 @@ the cursor shall not be moved. If the count is larger than the
 number of characters before the cursor, this shall not be considered
 an error; the cursor shall move to the first character on the
 line.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]w\fP
 Move to the start of the next word. If the cursor was positioned on
 the last character of the line, the terminal shall be
@@ -664,7 +659,7 @@ alerted and the cursor shall not be advanced. If the \fIcount\fP is
 larger than the number of words after the cursor, this shall
 not be considered an error; the cursor shall advance to the last character
 on the line.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]W\fP
 Move to the start of the next bigword. If the cursor was positioned
 on the last character of the line, the terminal shall be
@@ -672,7 +667,7 @@ alerted and the cursor shall not be advanced. If the \fIcount\fP is
 larger than the number of bigwords after the cursor, this
 shall not be considered an error; the cursor shall advance to the
 last character on the line.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]e\fP
 Move to the end of the current word. If at the end of a word, move
 to the end of the next word. If the cursor was positioned on
@@ -681,7 +676,7 @@ the cursor shall not be advanced. If the \fIcount\fP is larger
 than the number of words after the cursor, this shall not be considered
 an error; the cursor shall advance to the last character on
 the line.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]E\fP
 Move to the end of the current bigword. If at the end of a bigword,
 move to the end of the next bigword. If the cursor was
@@ -690,7 +685,7 @@ alerted and the cursor shall not be advanced. If the
 \fIcount\fP is larger than the number of bigwords after the cursor,
 this shall not be considered an error; the cursor shall
 advance to the last character on the line.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]b\fP
 Move to the beginning of the current word. If at the beginning of
 a word, move to the beginning of the previous word. If the
@@ -699,7 +694,7 @@ shall be alerted and the cursor shall not be moved. If the
 \fIcount\fP is larger than the number of words preceding the cursor,
 this shall not be considered an error; the cursor shall
 return to the first character on the line.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]B\fP
 Move to the beginning of the current bigword. If at the beginning
 of a bigword, move to the beginning of the previous bigword.
@@ -708,18 +703,18 @@ terminal shall be alerted and the cursor shall not be moved.
 If the \fIcount\fP is larger than the number of bigwords preceding
 the cursor, this shall not be considered an error; the cursor
 shall return to the first character on the line.
-.TP
+.TP 7
 \fB^\fP
 Move the current cursor position to the first character on the input
 line that is not a <blank>.
-.TP
+.TP 7
 \fB$\fP
 Move to the last character position on the current command line.
-.TP
+.TP 7
 \fB0\fP
 (Zero.) Move to the first character position on the current command
 line.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]|\fP
 Move to the \fIcount\fPth character position on the current command
 line. If no number is specified, move to the first
@@ -727,7 +722,7 @@ position. The first character position shall be numbered 1. If the
 count is larger than the number of characters on the line, this
 shall not be considered an error; the cursor shall be placed on the
 last character on the line.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]f\fP\fIc\fP
 Move to the first occurrence of the character \fB'c'\fP that occurs
 after the current cursor position. If the cursor was
@@ -736,7 +731,7 @@ alerted and the cursor shall not be advanced. If the character
 \fB'c'\fP does not occur in the line after the current cursor position,
 the terminal shall be alerted and the cursor shall not
 be moved.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]F\fP\fIc\fP
 Move to the first occurrence of the character \fB'c'\fP that occurs
 before the current cursor position. If the cursor was
@@ -745,7 +740,7 @@ be alerted and the cursor shall not be moved. If the character
 \fB'c'\fP does not occur in the line before the current cursor position,
 the terminal shall be alerted and the cursor shall not
 be moved.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]t\fP\fIc\fP
 Move to the character before the first occurrence of the character
 \fB'c'\fP that occurs after the current cursor position.
@@ -754,7 +749,7 @@ terminal shall be alerted and the cursor shall not be advanced.
 If the character \fB'c'\fP does not occur in the line after the current
 cursor position, the terminal shall be alerted and the
 cursor shall not be moved.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]T\fP\fIc\fP
 Move to the character after the first occurrence of the character
 \fB'c'\fP that occurs before the current cursor position.
@@ -763,37 +758,37 @@ terminal shall be alerted and the cursor shall not be moved.
 If the character \fB'c'\fP does not occur in the line before the current
 cursor position, the terminal shall be alerted and the
 cursor shall not be moved.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB];\fP
 Repeat the most recent \fBf\fP, \fBF\fP, \fBt\fP, or \fBT\fP command.
 Any number argument on that previous command shall be
 ignored. Errors are those described for the repeated command.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB],\fP
 Repeat the most recent \fBf\fP, \fBF\fP, \fBt\fP, or \fBT\fP command.
 Any number argument on that previous command shall be
 ignored. However, reverse the direction of that command.
-.TP
+.TP 7
 \fBa\fP
 Enter insert mode after the current cursor position. Characters that
 are entered shall be inserted before the next
 character.
-.TP
+.TP 7
 \fBA\fP
 Enter insert mode after the end of the current command line.
-.TP
+.TP 7
 \fBi\fP
 Enter insert mode at the current cursor position. Characters that
 are entered shall be inserted before the current
 character.
-.TP
+.TP 7
 \fBI\fP
 Enter insert mode at the beginning of the current command line.
-.TP
+.TP 7
 \fBR\fP
 Enter insert mode, replacing characters from the command line beginning
 at the current cursor position.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]c\fP\fImotion\fP
 .sp
 Delete the characters between the current cursor position and the
@@ -826,14 +821,14 @@ characters in the aforementioned range shall be deleted and
 insert mode shall be entered. If the motion command is invalid, the
 terminal shall be alerted, the cursor shall not be moved, and
 no text shall be deleted.
-.TP
+.TP 7
 \fBC\fP
 Delete from the current character to the end of the line and enter
 insert mode at the new end-of-line.
-.TP
+.TP 7
 \fBS\fP
 Clear the entire edit line and enter insert mode.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]r\fP\fIc\fP
 Replace the current character with the character \fB'c'\fP . With
 a number \fIcount\fP, replace the current and the
@@ -842,14 +837,14 @@ cursor position shall be on the last character that was
 changed. If the \fIcount\fP is larger than the number of characters
 after the cursor, this shall not be considered an error; all
 of the remaining characters shall be changed.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]_\fP
 Append a <space> after the current character position and then append
 the last bigword in the previous input line after
 the <space>. Then enter insert mode after the last character just
 appended. With a number \fIcount\fP, append the
 \fIcount\fPth bigword in the previous line.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]x\fP
 Delete the character at the current cursor position and place the
 deleted characters in the save buffer. If the cursor was
@@ -859,7 +854,7 @@ character (the new last character). If the \fIcount\fP is larger than
 the number of characters after the cursor, this shall not be
 considered an error; all the characters from the cursor to the end
 of the line shall be deleted.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]X\fP
 Delete the character before the current cursor position and place
 the deleted characters in the save buffer. The character
@@ -872,7 +867,7 @@ shall be alerted and the cursor shall not be moved. If the
 \fIcount\fP is larger than the number of characters before the cursor,
 this shall not be considered an error; all the characters
 from before the cursor to the beginning of the line shall be deleted.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]d\fP\fImotion\fP
 .sp
 Delete the characters between the current cursor position and the
@@ -888,12 +883,12 @@ would move the cursor, this shall not be considered an
 error; all of the remaining characters in the aforementioned range
 shall be deleted. The deleted characters shall be placed in the
 save buffer.
-.TP
+.TP 7
 \fBD\fP
 Delete all characters from the current cursor position to the end
 of the line. The deleted characters shall be placed in the
 save buffer.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]y\fP\fImotion\fP
 .sp
 Yank (that is, copy) the characters from the current cursor position
@@ -909,37 +904,37 @@ between the current cursor position and the end of the
 command line toward which the motion command would move the cursor,
 this shall not be considered an error; all of the remaining
 characters in the aforementioned range shall be yanked.
-.TP
+.TP 7
 \fBY\fP
 Yank the characters from the current cursor position to the end of
 the line into the save buffer. The current character
 position shall be unchanged.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]p\fP
 Put a copy of the current contents of the save buffer after the current
 cursor position. The current cursor position shall be
 advanced to the last character put from the save buffer. A \fIcount\fP
 shall indicate how many copies of the save buffer shall be
 put.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]P\fP
 Put a copy of the current contents of the save buffer before the current
 cursor position. The current cursor position shall be
 moved to the last character put from the save buffer. A \fIcount\fP
 shall indicate how many copies of the save buffer shall be
 put.
-.TP
+.TP 7
 \fBu\fP
 Undo the last command that changed the edit line. This operation shall
 not undo the copy of any command line to the edit
 line.
-.TP
+.TP 7
 \fBU\fP
 Undo all changes made to the edit line. This operation shall not undo
 the copy of any command line to the edit line.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]k\fP
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]-\fP
 Set the current command line to be the \fIcount\fPth previous command
 line in the shell command history. If \fIcount\fP is
@@ -949,9 +944,9 @@ on the first character of the new command. If a \fBk\fP or
 in effect for this shell (affected by the \fIHISTSIZE\fP
 environment variable), the terminal shall be alerted, and the command
 shall have no effect.
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]j\fP
-.TP
+.TP 7
 \fB[\fP\fIcount\fP\fB]+\fP
 Set the current command line to be the \fIcount\fPth next command
 line in the shell command history. If \fIcount\fP is not
@@ -960,14 +955,14 @@ the first character of the new command. If a \fBj\fP or
 \fB+\fP command advances past the edit line, the current command line
 shall be restored to the edit line and the terminal shall be
 alerted.
-.TP
+.TP 7
 \fB[\fP\fInumber\fP\fB]G\fP
 Set the current command line to be the oldest command line stored
 in the shell command history. With a number \fInumber\fP,
 set the current command line to be the command line \fInumber\fP in
 the history. If command line \fInumber\fP does not exist, the
 terminal shall be alerted and the command line shall not be changed.
-.TP
+.TP 7
 \fB/\fP\fIpattern\fP<newline>
 .sp
 Move backwards through the command history, searching for the specified
@@ -989,7 +984,7 @@ If \fIpattern\fP is empty, the last non-empty pattern provided to
 \fB/\fP or \fB?\fP shall be used. If there is no previous
 non-empty pattern, the terminal shall be alerted and the current command
 line shall remain unchanged.
-.TP
+.TP 7
 \fB?\fP\fIpattern\fP<newline>
 .sp
 Move forwards through the command history, searching for the specified
@@ -1010,12 +1005,12 @@ If \fIpattern\fP is empty, the last non-empty pattern provided to
 \fB/\fP or \fB?\fP shall be used. If there is no previous
 non-empty pattern, the terminal shall be alerted and the current command
 line shall remain unchanged.
-.TP
+.TP 7
 \fBn\fP
 Repeat the most recent \fB/\fP or \fB?\fP command. If there is no
 previous \fB/\fP or \fB?\fP, the terminal shall be
 alerted and the current command line shall remain unchanged.
-.TP
+.TP 7
 \fBN\fP
 Repeat the most recent \fB/\fP or \fB?\fP command, reversing the direction
 of the search. If there is no previous \fB/\fP or
@@ -1025,16 +1020,16 @@ shall remain unchanged.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\0\0\0\00
+.TP 7
+\ \ \ \ 0
 The script to be executed consisted solely of zero or more blank lines
 or comments, or both.
-.TP
+.TP 7
 1-125
 A non-interactive shell detected a syntax, redirection, or variable
 assignment error.
-.TP
-\0\0127
+.TP 7
+\ \ 127
 A specified \fIcommand_file\fP could not be found by a non-interactive
 shell.
 .sp
@@ -1158,8 +1153,7 @@ done
 .fi
 .RE
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 Execute a shell command from a string:
 .sp
 .RS
@@ -1169,9 +1163,8 @@ Execute a shell command from a string:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Execute a shell script from a file in the current directory:
 .sp
 .RS
@@ -1181,7 +1174,7 @@ Execute a shell script from a file in the current directory:
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 The \fIsh\fP utility and the \fIset\fP special built-in utility share
@@ -1200,7 +1193,7 @@ The text in the STDIN section about non-blocking reads concerns an
 instance of \fIsh\fP that has been invoked, probably by a
 C-language program, with standard input that has been opened using
 the O_NONBLOCK flag; see \fIopen\fP() in the System Interfaces volume
-of IEEE\0Std\01003.1-2001. If the shell did not
+of IEEE\ Std\ 1003.1-2001. If the shell did not
 reset this flag, it would immediately terminate because no input data
 would be available yet and that would be considered the same
 as end-of-file.
@@ -1234,15 +1227,15 @@ or by:
 .RE
 .LP
 the historical systems have assumed that no option letters follow.
-Thus, this volume of IEEE\0Std\01003.1-2001 allows
+Thus, this volume of IEEE\ Std\ 1003.1-2001 allows
 the single hyphen to mark the end of the options, in addition to the
 use of the regular \fB"--"\fP argument, because it was
 considered that the older practice was so pervasive. An alternative
 approach is taken by the KornShell, where real and effective
 user/group IDs must match for an interactive shell; this behavior
 is specifically allowed by this volume of
-IEEE\0Std\01003.1-2001. 
-.TP
+IEEE\ Std\ 1003.1-2001. 
+.TP 7
 \fBNote:\fP
 There are other problems with set-user-ID scripts that the two approaches
 described here do not resolve.
@@ -1286,7 +1279,7 @@ or:
 .RE
 .LP
 It is important that the descriptions of command line editing refer
-to the same shell as that in IEEE\0Std\01003.1-2001
+to the same shell as that in IEEE\ Std\ 1003.1-2001
 so that interactive users can also be application programmers without
 having to deal with programmatic differences in their two
 environments. It is also essential that the utility name \fIsh\fP
@@ -1330,7 +1323,7 @@ models of editors their users are most comfortable with.
 .LP
 Early proposals had the following list entry in vi Line Editing Insert
 Mode :
-.TP
+.TP 7
 \fB\\\fP
 If followed by the \fIerase\fP or \fIkill\fP character, that character
 shall be inserted into the input line. Otherwise, the
@@ -1349,7 +1342,7 @@ None.
 .LP
 \fIShell Command Language\fP , \fIcd\fP , \fIecho\fP , \fIexit\fP()
 , \fIfc\fP , \fIpwd\fP , \fIread\fP() , \fIset\fP , \fIstty\fP , \fItest\fP
-, \fIumask\fP() , \fIvi\fP , the System Interfaces volume of IEEE\0Std\01003.1-2001,
+, \fIumask\fP() , \fIvi\fP , the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 \fIdup\fP(), \fIexec\fP, \fIexit\fP(), \fIfork\fP(), \fIopen\fP(),
 \fIpipe\fP(), \fIsignal\fP(), \fIsystem\fP(), \fIulimit\fP(), \fIumask\fP(),
 \fIwait\fP()

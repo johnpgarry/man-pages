@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tty" P 2003 POSIX
+.TH "TTY" P 2003 POSIX
 .\" tty 
 .SH NAME
-tty - return user's terminal name
+tty \- return user's terminal name
 .SH SYNOPSIS
 .LP
 \fBtty\fP
@@ -12,11 +12,11 @@ The \fItty\fP utility shall write to the standard output the name
 of the terminal that is open as standard input. The name that
 is used shall be equivalent to the string that would be returned by
 the \fIttyname\fP()
-function defined in the System Interfaces volume of IEEE\0Std\01003.1-2001.
+function defined in the System Interfaces volume of IEEE\ Std\ 1003.1-2001.
 .SH OPTIONS
 .LP
 The \fItty\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .SH OPERANDS
 .LP
 None.
@@ -32,29 +32,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fItty\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error and
 informative messages written to standard output.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -66,7 +66,7 @@ Default.
 .LP
 If standard input is a terminal device, a pathname of the terminal
 as specified by the \fIttyname\fP() function defined in the System
-Interfaces volume of IEEE\0Std\01003.1-2001
+Interfaces volume of IEEE\ Std\ 1003.1-2001
 shall be written in the following format:
 .sp
 .RS
@@ -100,13 +100,13 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Standard input is a terminal.
-.TP
-\01
+.TP 7
+\ 1
 Standard input is not a terminal.
-.TP
+.TP 7
 >1
 An error occurred.
 .sp
@@ -133,7 +133,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-The System Interfaces volume of IEEE\0Std\01003.1-2001, \fIisatty\fP(),
+The System Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIisatty\fP(),
 \fIttyname\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mmap" P 2003 POSIX
+.TH "MMAP" P 2003 POSIX
 .\" mmap 
 .SH NAME
-mmap - map pages of memory
+mmap \- map pages of memory
 .SH SYNOPSIS
 .LP
 \fB#include <sys/mman.h>
@@ -11,7 +11,7 @@ mmap - map pages of memory
 void *mmap(void *\fP\fIaddr\fP\fB, size_t\fP \fIlen\fP\fB, int\fP
 \fIprot\fP\fB, int\fP \fIflags\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fIfildes\fP\fB, off_t\fP \fIoff\fP\fB); \fP
+\ \ \ \ \ \  int\fP \fIfildes\fP\fB, off_t\fP \fIoff\fP\fB); \fP
 \fB
 .br
 \fP
@@ -19,7 +19,7 @@ void *mmap(void *\fP\fIaddr\fP\fB, size_t\fP \fIlen\fP\fB, int\fP
 .LP
 The \fImmap\fP() function shall establish a mapping between a process'
 address space and a file, shared memory object, or
-\0typed memory object.  The format of the call is as
+\ typed memory object.  The format of the call is as
 follows:
 .sp
 .RS
@@ -42,8 +42,8 @@ continuing for \fIlen\fP bytes shall be legitimate for the possible
 (not necessarily current) address space of the process. The
 range of bytes starting at \fIoff\fP and continuing for \fIlen\fP
 bytes shall be legitimate for the possible (not necessarily
-current) offsets in the file, shared memory object, or   \0typed memory
-object  \0represented by \fIfildes\fP.
+current) offsets in the file, shared memory object, or   \ typed memory
+object  \ represented by \fIfildes\fP.
 .LP
 If \fIfildes\fP represents a typed memory object opened with either
 the POSIX_TYPED_MEM_ALLOCATE flag or the
@@ -52,8 +52,7 @@ shall be that portion of the typed memory object allocated by
 the implementation as specified below. In this case, if \fIoff\fP
 is non-zero, the behavior of \fImmap\fP() is undefined. If
 \fIfildes\fP refers to a valid typed memory object that is not accessible
-from the calling process, \fImmap\fP() shall fail. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+from the calling process, \fImmap\fP() shall fail. 
 .LP
 The mapping established by \fImmap\fP() shall replace any previous
 mappings for those whole pages containing any part of the
@@ -67,7 +66,7 @@ to added or removed portions of the file is
 unspecified.
 .LP
 The \fImmap\fP() function shall be supported for regular files, shared
-memory objects, and   \0typed memory
+memory objects, and   \ typed memory
 objects.  Support for any other type of file is unspecified.
 .LP
 The parameter \fIprot\fP determines whether read, write, execute,
@@ -76,12 +75,12 @@ being mapped. The \fIprot\fP shall be either PROT_NONE or the bitwise-inclusive
 OR of one or more of the other flags in the
 following table, defined in the \fI<sys/mman.h>\fP header.
 .TS C
-center;l l l l l l l l l l l.
-\fBSymbolic Constant\fP 	 \fBDescription\fP 	
-PROT_READ 	 Data can be read. 	
-PROT_WRITE 	 Data can be written. 	
-PROT_EXEC 	 Data can be executed. 	
-PROT_NONE 	 Data cannot be accessed. 	
+center; l l.
+\fBSymbolic Constant\fP	\fBDescription\fP
+PROT_READ	Data can be read.
+PROT_WRITE	Data can be written.
+PROT_EXEC	Data can be executed.
+PROT_NONE	Data cannot be accessed.
 .TE
 .LP
 If an implementation cannot support the combination of access types
@@ -89,7 +88,7 @@ specified by \fIprot\fP, the call to \fImmap\fP() shall
 fail.
 .LP
 An implementation may permit accesses other than those specified by
-\fIprot\fP;   \0however, if
+\fIprot\fP;   \ however, if
 the Memory Protection option is supported, the implementation shall
 not permit a write to succeed where PROT_WRITE has not been set
 or shall not permit any access where PROT_NONE alone has been set.
@@ -109,18 +108,18 @@ The parameter \fIflags\fP provides other information about the handling
 of the mapped data. The value of \fIflags\fP is the
 bitwise-inclusive OR of these options, defined in \fI<sys/mman.h>\fP:
 .TS C
-center;l l l l l l l l l l l.
-\fBSymbolic Constant\fP 	 \fBDescription\fP 	
-MAP_SHARED 	 Changes are shared. 	
-MAP_PRIVATE 	 Changes are private. 	
-MAP_FIXED 	 Interpret \fIaddr\fP exactly. 	
+center; l l.
+\fBSymbolic Constant\fP	\fBDescription\fP
+MAP_SHARED	Changes are shared.
+MAP_PRIVATE	Changes are private.
+MAP_FIXED	Interpret \fIaddr\fP exactly.
 .TE
 .LP
 Implementations that do not support the Memory Mapped Files option
 are not required to support MAP_PRIVATE.
 .LP
 It is implementation-defined whether MAP_FIXED shall be supported.
-\0MAP_FIXED shall be supported on XSI-conformant systems.
+\ MAP_FIXED shall be supported on XSI-conformant systems.
 .LP
 MAP_SHARED and MAP_PRIVATE describe the disposition of write references
 to the memory object. If MAP_SHARED is specified, write
@@ -189,7 +188,7 @@ range [\fIpa\fP,\fIpa\fP+\fIlen\fP).
 The system shall always zero-fill any partial page at the end of an
 object. Further, the system shall never write out any
 modified portions of the last page of an object which are beyond its
-end.   \0References
+end.   \ References
 within the address range starting at \fIpa\fP and continuing for \fIlen\fP
 bytes to whole pages following the end of an object
 shall result in delivery of a SIGBUS signal. 
@@ -244,72 +243,72 @@ return the value MAP_FAILED.
 .SH ERRORS
 .LP
 The \fImmap\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 The \fIfildes\fP argument is not open for read, regardless of the
 protection specified, or \fIfildes\fP is not open for write
 and PROT_WRITE was specified for a MAP_SHARED type mapping.
-.TP
+.TP 7
 .B EAGAIN
 The mapping could not be locked in memory, if required by \fImlockall\fP(),
 due to a lack
 of resources. 
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid open file descriptor.
-.TP
+.TP 7
 .B EINVAL
 The \fIaddr\fP argument (if MAP_FIXED was specified) or \fIoff\fP
 is not a multiple of the page size as returned by \fIsysconf\fP(),
 or is considered invalid by the implementation.
-.TP
+.TP 7
 .B EINVAL
 The value of \fIflags\fP is invalid (neither MAP_PRIVATE nor MAP_SHARED
 is set).
-.TP
+.TP 7
 .B EMFILE
 The number of mapped regions would exceed an implementation-defined
 limit (per process or per system).
-.TP
+.TP 7
 .B ENODEV
 The \fIfildes\fP argument refers to a file whose type is not supported
 by \fImmap\fP().
-.TP
+.TP 7
 .B ENOMEM
 MAP_FIXED was specified, and the range [\fIaddr\fP,\fIaddr\fP+\fIlen\fP)
 exceeds that allowed for the address space of a
 process; or, if MAP_FIXED was not specified and there is insufficient
 room in the address space to effect the mapping.
-.TP
+.TP 7
 .B ENOMEM
 The mapping could not be locked in memory, if required by \fImlockall\fP(),
 because it
 would require more space than the system is able to supply. 
-.TP
+.TP 7
 .B ENOMEM
 Not enough unallocated memory resources remain in the typed memory
 object designated by \fIfildes\fP to allocate \fIlen\fP bytes.
-.TP
+.TP 7
 .B ENOTSUP
 MAP_FIXED or MAP_PRIVATE was specified in the \fIflags\fP argument
 and the implementation does not support this functionality.
 .LP
 The implementation does not support the combination of accesses requested
 in the \fIprot\fP argument.
-.TP
+.TP 7
 .B ENXIO
 Addresses in the range [\fIoff\fP,\fIoff\fP+\fIlen\fP) are invalid
 for the object specified by \fIfildes\fP.
-.TP
+.TP 7
 .B ENXIO
 MAP_FIXED was specified in \fIflags\fP and the combination of \fIaddr\fP,
 \fIlen\fP, and \fIoff\fP is invalid for the
 object specified by \fIfildes\fP.
-.TP
+.TP 7
 .B ENXIO
 The \fIfildes\fP argument refers to a typed memory object that is
 not accessible from the calling process. 
-.TP
+.TP 7
 .B EOVERFLOW
 The file is a regular file and the value of \fIoff\fP plus \fIlen\fP
 exceeds the offset maximum established in the open file
@@ -401,7 +400,7 @@ to map over existing data structures. Furthermore, it is also
 desirable to make as few system calls as possible, and it might be
 considered onerous to require an \fImunmap\fP() before an \fImmap\fP()
 to the same address range. This volume of
-IEEE\0Std\01003.1-2001 specifies that the new mappings replace any
+IEEE\ Std\ 1003.1-2001 specifies that the new mappings replace any
 existing mappings, following existing practice in this
 regard.
 .LP
@@ -485,9 +484,9 @@ locked.
 .LP
 Existing implementations of \fImmap\fP() return the value -1 when
 unsuccessful. Since the casting of this value to type \fBvoid
-*\fP cannot be guaranteed by the ISO\0C standard to be distinct from
+*\fP cannot be guaranteed by the ISO\ C standard to be distinct from
 a successful value, this volume of
-IEEE\0Std\01003.1-2001 defines the symbol MAP_FAILED, which a conforming
+IEEE\ Std\ 1003.1-2001 defines the symbol MAP_FAILED, which a conforming
 implementation does not return as the result of a
 successful call.
 .SH FUTURE DIRECTIONS
@@ -498,7 +497,7 @@ None.
 \fIexec\fP() , \fIfcntl\fP() , \fIfork\fP() , \fIlockf\fP() , \fImsync\fP()
 , \fImunmap\fP() , \fImprotect\fP() , \fIposix_typed_mem_open\fP()
 , \fIshmat\fP() , \fIsysconf\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/mman.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "false" P 2003 POSIX
+.TH "FALSE" P 2003 POSIX
 .\" false 
 .SH NAME
-false - return false value
+false \- return false value
 .SH SYNOPSIS
 .LP
 \fBfalse\fP

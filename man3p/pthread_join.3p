@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_join" P 2003 POSIX
+.TH "PTHREAD_JOIN" P 2003 POSIX
 .\" pthread_join 
 .SH NAME
-pthread_join - wait for thread termination
+pthread_join \- wait for thread termination
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -39,18 +39,18 @@ the error.
 .SH ERRORS
 .LP
 The \fIpthread_join\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The implementation has detected that the value specified by \fIthread\fP
 does not refer to a joinable thread.
-.TP
+.TP 7
 .B ESRCH
 No thread could be found corresponding to that specified by the given
 thread ID.
 .sp
 .LP
 The \fIpthread_join\fP() function may fail if:
-.TP
+.TP 7
 .B EDEADLK
 A deadlock was detected or the value of \fIthread\fP specifies the
 calling thread.
@@ -126,7 +126,7 @@ waiting on individual thread termination is considered
 widely useful. Also, including the \fIpthread_join\fP() function in
 no way precludes a programmer from coding such complex waits.
 Thus, while not a primitive, including \fIpthread_join\fP() in this
-volume of IEEE\0Std\01003.1-2001 was considered
+volume of IEEE\ Std\ 1003.1-2001 was considered
 valuable.
 .LP
 The \fIpthread_join\fP() function provides a simple mechanism allowing
@@ -144,18 +144,14 @@ associated with the thread may be reclaimed.
 .LP
 The interaction between \fIpthread_join\fP() and cancellation is well-defined
 for the following reasons:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The \fIpthread_join\fP() function, like all other non-async-cancel-safe
 functions, can only be called with deferred
 cancelability type.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Cancellation cannot occur in the disabled cancelability state.
-.in -5
-.RE
+.LP
 .LP
 Thus, only the default cancelability state need be considered. As
 specified, either the \fIpthread_join\fP() call is canceled,
@@ -170,7 +166,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_create\fP() , \fIwait\fP() , the Base Definitions volume
-of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

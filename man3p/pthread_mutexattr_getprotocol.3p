@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_mutexattr_getprotocol" P 2003 POSIX
+.TH "PTHREAD_MUTEXATTR_GETPROTOCOL" P 2003 POSIX
 .\" pthread_mutexattr_getprotocol 
 .SH NAME
-pthread_mutexattr_getprotocol, pthread_mutexattr_setprotocol - get
+pthread_mutexattr_getprotocol, pthread_mutexattr_setprotocol \- get
 and set the protocol attribute of the mutex
 attributes object (\fBREALTIME THREADS\fP)
 .SH SYNOPSIS
@@ -12,11 +12,11 @@ attributes object (\fBREALTIME THREADS\fP)
 .sp
 \fBint pthread_mutexattr_getprotocol(const pthread_mutexattr_t *
 .br
-\0\0\0\0\0\0 restrict\fP \fIattr\fP\fB, int *restrict\fP \fIprotocol\fP\fB);
+\ \ \ \ \ \  restrict\fP \fIattr\fP\fB, int *restrict\fP \fIprotocol\fP\fB);
 .br
 int pthread_mutexattr_setprotocol(pthread_mutexattr_t *\fP\fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fIprotocol\fP\fB); \fP
+\ \ \ \ \ \  int\fP \fIprotocol\fP\fB); \fP
 .sp
 \fP
 \fB
@@ -100,17 +100,17 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_mutexattr_setprotocol\fP() function shall fail if:
-.TP
+.TP 7
 .B ENOTSUP
 The value specified by \fIprotocol\fP is an unsupported value.
 .sp
 .LP
 The \fIpthread_mutexattr_getprotocol\fP() and \fIpthread_mutexattr_setprotocol\fP()
 functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIattr\fP or \fIprotocol\fP is invalid.
-.TP
+.TP 7
 .B EPERM
 The caller does not have the privilege to perform the operation.
 .sp
@@ -134,7 +134,7 @@ None.
 .LP
 \fIpthread_cond_destroy\fP() , \fIpthread_create\fP() , \fIpthread_mutex_destroy\fP()
 , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "tcflow" P 2003 POSIX
+.TH "TCFLOW" P 2003 POSIX
 .\" tcflow 
 .SH NAME
-tcflow - suspend or restart the transmission or reception of data
+tcflow \- suspend or restart the transmission or reception of data
 .SH SYNOPSIS
 .LP
 \fB#include <termios.h>
@@ -18,28 +18,22 @@ or reception of data on the object referred to by
 \fIfildes\fP, depending on the value of \fIaction\fP. The \fIfildes\fP
 argument is an open file descriptor associated with a
 terminal.
-.RS
-.in +5
-.LP
+.IP " *" 3
 If \fIaction\fP is TCOOFF, output shall be suspended.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIaction\fP is TCOON, suspended output shall be restarted.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIaction\fP is TCIOFF, the system shall transmit a STOP character,
 which is intended to cause the terminal device to stop
 transmitting data to the system.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIaction\fP is TCION, the system shall transmit a START character,
 which is intended to cause the terminal device to start
 transmitting data to the system.
-.in -5
-.RE
+.LP
 .LP
 The default on the opening of a terminal file is that neither its
 input nor its output are suspended.
@@ -57,19 +51,19 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fItcflow\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B EINVAL
 The \fIaction\fP argument is not a supported value.
-.TP
+.TP 7
 .B ENOTTY
 The file associated with \fIfildes\fP is not a terminal.
 .sp
 .LP
 The \fItcflow\fP() function may fail if:
-.TP
+.TP 7
 .B EIO
 The process group of the writing process is orphaned, and the writing
 process is not ignoring or blocking SIGTTOU.
@@ -90,7 +84,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fItcsendbreak\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fItcsendbreak\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 Chapter 11, General Terminal Interface, \fI<termios.h>\fP, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

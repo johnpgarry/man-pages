@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "abort" P 2003 POSIX
+.TH "ABORT" P 2003 POSIX
 .\" abort 
 .SH NAME
-abort - generate an abnormal process abort
+abort \- generate an abnormal process abort
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -12,12 +12,6 @@ void abort(void);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIabort\fP() function shall cause abnormal process termination
 to occur, unless the signal SIGABRT is being caught and the
@@ -55,9 +49,9 @@ with a portable means to abort processing, free from possible
 interference from any implementation-defined functions.
 .SH RATIONALE
 .LP
-The ISO/IEC\09899:1999 standard requires the \fIabort\fP() function
+The ISO/IEC\ 9899:1999 standard requires the \fIabort\fP() function
 to be async-signal-safe. Since
-IEEE\0Std\01003.1-2001 defers to the ISO\0C standard, this required
+IEEE\ Std\ 1003.1-2001 defers to the ISO\ C standard, this required
 a change to the DESCRIPTION from ``shall include
 the effect of \fIfclose\fP()'' to ``may include an attempt to effect
 \fIfclose\fP().''
@@ -73,29 +67,24 @@ processing shall include the effect of \fIfclose\fP() on message catalog
 descriptors.''
 .LP
 There were several reasons to remove this paragraph:
-.RS
-.in +5
-.LP
+.IP " *" 3
 No special processing of open message catalogs needs to be performed
 prior to abnormal process termination.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The main reason to specifically mention that \fIabort\fP() includes
 the effect of \fIfclose\fP() on open streams is to flush output queued
 on the stream. Message catalogs in this
 context are read-only and, therefore, do not need to be flushed.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The effect of \fIfclose\fP() on a message catalog descriptor is unspecified.
 Message
 catalog descriptors are allowed, but not required to be implemented
 using a file descriptor, but there is no mention in
-IEEE\0Std\01003.1-2001 of a message catalog descriptor using a standard
+IEEE\ Std\ 1003.1-2001 of a message catalog descriptor using a standard
 I/O stream FILE object as would be expected by \fIfclose\fP().
-.in -5
-.RE
+.LP
 .SH FUTURE DIRECTIONS
 .LP
 None.
@@ -103,7 +92,7 @@ None.
 .LP
 \fIexit\fP() , \fIkill\fP() , \fIraise\fP() , \fIsignal\fP() , \fIwait\fP()
 , \fIwaitpid\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<stdlib.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "rand" P 2003 POSIX
+.TH "RAND" P 2003 POSIX
 .\" rand 
 .SH NAME
-rand, rand_r, srand - pseudo-random number generator
+rand, rand_r, srand \- pseudo-random number generator
 .SH SYNOPSIS
 .LP
 \fB#include <stdlib.h>
@@ -20,15 +20,9 @@ void srand(unsigned\fP \fIseed\fP\fB);
 \fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fIrand\fP() function shall compute a sequence of pseudo-random
-integers in the range [0, {RAND_MAX}]   \0with a
-period of at least 2. 
+integers in the range [0, {RAND_MAX}]   \ with a
+period of at least 2**32. 
 .LP
 The
 \fIrand\fP() function need not be reentrant. A function that is not
@@ -52,7 +46,7 @@ are made, the same sequence shall be generated as when
 \fIsrand\fP() is first called with a seed value of 1.
 .LP
 The implementation shall behave as if no function defined in this
-volume of IEEE\0Std\01003.1-2001 calls \fIrand\fP()
+volume of IEEE\ Std\ 1003.1-2001 calls \fIrand\fP()
 or \fIsrand\fP().
 .SH RETURN VALUE
 .LP
@@ -143,7 +137,7 @@ this function should be avoided whenever non-trivial requirements
 (including safety) have to be fulfilled.
 .SH RATIONALE
 .LP
-The ISO\0C standard \fIrand\fP() and \fIsrand\fP() functions allow
+The ISO\ C standard \fIrand\fP() and \fIsrand\fP() functions allow
 per-process pseudo-random streams shared by all
 threads. Those two functions need not change, but there has to be
 mutual-exclusion that prevents interference between two threads
@@ -151,16 +145,14 @@ concurrently accessing the random number generator.
 .LP
 With regard to \fIrand\fP(), there are two different behaviors that
 may be wanted in a multi-threaded program:
-.in +5
-.LP
+.IP " 1." 4
 A single per-process sequence of pseudo-random numbers that is shared
 by all threads that call \fIrand\fP()
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 A different sequence of pseudo-random numbers for each thread that
 calls \fIrand\fP()
-.in -5
+.LP
 .LP
 This is provided by the modified thread-safe function based on whether
 the seed value is global to the entire process or local
@@ -175,7 +167,7 @@ forms of a deficient function.
 None.
 .SH SEE ALSO
 .LP
-\fIdrand48\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIdrand48\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<stdlib.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

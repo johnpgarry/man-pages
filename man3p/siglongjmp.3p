@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "siglongjmp" P 2003 POSIX
+.TH "SIGLONGJMP" P 2003 POSIX
 .\" siglongjmp 
 .SH NAME
-siglongjmp - non-local goto with signal handling
+siglongjmp \- non-local goto with signal handling
 .SH SYNOPSIS
 .LP
 \fB#include <setjmp.h>
@@ -18,18 +18,14 @@ void siglongjmp(sigjmp_buf\fP \fIenv\fP\fB, int\fP \fIval\fP\fB);
 The \fIsiglongjmp\fP() function shall be equivalent to the \fIlongjmp\fP()
 function,
 except as follows:
-.RS
-.in +5
-.LP
+.IP " *" 3
 References to \fIsetjmp\fP() shall be equivalent to \fIsigsetjmp\fP().
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The \fIsiglongjmp\fP() function shall restore the saved signal mask
 if and only if the \fIenv\fP argument was initialized by a
 call to \fIsigsetjmp\fP() with a non-zero \fIsavemask\fP argument.
-.in -5
-.RE
+.LP
 .SH RETURN VALUE
 .LP
 After \fIsiglongjmp\fP() is completed, program execution shall continue
@@ -60,7 +56,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIlongjmp\fP() , \fIsetjmp\fP() , \fIsigprocmask\fP() , \fIsigsetjmp\fP()
-, \fIsigsuspend\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIsigsuspend\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<setjmp.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

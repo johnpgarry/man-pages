@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_mutexattr_gettype" P 2003 POSIX
+.TH "PTHREAD_MUTEXATTR_GETTYPE" P 2003 POSIX
 .\" pthread_mutexattr_gettype 
 .SH NAME
-pthread_mutexattr_gettype, pthread_mutexattr_settype - get and set
+pthread_mutexattr_gettype, pthread_mutexattr_settype \- get and set
 the mutex type attribute
 .SH SYNOPSIS
 .LP
@@ -12,7 +12,7 @@ the mutex type attribute
 int pthread_mutexattr_gettype(const pthread_mutexattr_t *restrict\fP
 \fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 int *restrict\fP \fItype\fP\fB);
+\ \ \ \ \ \  int *restrict\fP \fItype\fP\fB);
 .br
 int pthread_mutexattr_settype(pthread_mutexattr_t\fP \fI*attr\fP\fB,
 int\fP \fItype\fP\fB); \fP
@@ -29,7 +29,7 @@ parameter to these functions. The default value of the
 .LP
 The type of mutex is contained in the \fItype\fP attribute of the
 mutex attributes. Valid mutex types include:
-.TP
+.TP 7
 PTHREAD_MUTEX_NORMAL
 .sp
 This type of mutex does not detect deadlock. A thread attempting to
@@ -37,7 +37,7 @@ relock this mutex without first unlocking it shall deadlock.
 Attempting to unlock a mutex locked by a different thread results
 in undefined behavior. Attempting to unlock an unlocked mutex
 results in undefined behavior.
-.TP
+.TP 7
 PTHREAD_MUTEX_ERRORCHECK
 .sp
 This type of mutex provides error checking. A thread attempting to
@@ -45,7 +45,7 @@ relock this mutex without first unlocking it shall return with
 an error. A thread attempting to unlock a mutex which another thread
 has locked shall return with an error. A thread attempting to
 unlock an unlocked mutex shall return with an error.
-.TP
+.TP 7
 PTHREAD_MUTEX_RECURSIVE
 .sp
 A thread attempting to relock this mutex without first unlocking it
@@ -57,7 +57,7 @@ thread can acquire the mutex. A thread attempting to unlock
 a mutex which another thread has locked shall return with an error.
 A thread attempting to unlock an unlocked mutex shall return
 with an error.
-.TP
+.TP 7
 PTHREAD_MUTEX_DEFAULT
 .sp
 Attempting to recursively lock a mutex of this type results in undefined
@@ -81,14 +81,14 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_mutexattr_settype\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value \fItype\fP is invalid.
 .sp
 .LP
 The \fIpthread_mutexattr_gettype\fP() and \fIpthread_mutexattr_settype\fP()
 functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIattr\fP is invalid.
 .sp
@@ -116,7 +116,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_cond_timedwait\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

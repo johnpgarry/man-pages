@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "vfork" P 2003 POSIX
+.TH "VFORK" P 2003 POSIX
 .\" vfork 
 .SH NAME
-vfork - create a new process; share virtual memory
+vfork \- create a new process; share virtual memory
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -32,13 +32,13 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIvfork\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The system-wide limit on the total number of processes under execution
 would be exceeded, or the system-imposed limit on the
 total number of processes under execution by a single user would be
 exceeded.
-.TP
+.TP 7
 .B ENOMEM
 There is insufficient swap space for the new process.
 .sp
@@ -100,7 +100,7 @@ This function may be withdrawn in a future version.
 .LP
 \fIexec\fP() , \fIexit\fP() , \fIfork\fP() , \fIwait\fP() , the Base
 Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

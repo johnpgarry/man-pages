@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "getnameinfo" P 2003 POSIX
+.TH "GETNAMEINFO" P 2003 POSIX
 .\" getnameinfo 
 .SH NAME
-getnameinfo - get name information
+getnameinfo \- get name information
 .SH SYNOPSIS
 .LP
 \fB#include <sys/socket.h>
@@ -13,11 +13,11 @@ getnameinfo - get name information
 int getnameinfo(const struct sockaddr *restrict\fP \fIsa\fP\fB, socklen_t\fP
 \fIsalen\fP\fB,
 .br
-\0\0\0\0\0\0 char *restrict\fP \fInode\fP\fB, socklen_t\fP \fInodelen\fP\fB,
+\ \ \ \ \ \  char *restrict\fP \fInode\fP\fB, socklen_t\fP \fInodelen\fP\fB,
 char *restrict\fP
 \fIservice\fP\fB,
 .br
-\0\0\0\0\0\0 socklen_t\fP \fIservicelen\fP\fB, int\fP \fIflags\fP\fB);
+\ \ \ \ \ \  socklen_t\fP \fIservicelen\fP\fB, int\fP \fIflags\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
@@ -32,7 +32,7 @@ If the socket address structure contains an IPv4-mapped IPv6 address
 or an IPv4-compatible IPv6 address, the implementation shall
 extract the embedded IPv4 address and lookup the node name for that
 IPv4 address.  
-.TP
+.TP 7
 \fBNote:\fP
 The IPv6 unspecified address ( \fB"::"\fP ) and the IPv6 loopback
 address ( \fB"::1"\fP ) are not IPv4-compatible
@@ -64,57 +64,49 @@ name.
 The \fIflags\fP argument is a flag that changes the default actions
 of the function. By default the fully-qualified domain name
 (FQDN) for the host shall be returned, but:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If the flag bit NI_NOFQDN is set, only the node name portion of the
 FQDN shall be returned for local hosts.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the flag bit NI_NUMERICHOST is set, the numeric form of the address
 contained in the socket address structure pointed to by
 the \fIsa\fP argument shall be returned instead of its name, under
 all circumstances.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the flag bit NI_NAMEREQD is set, an error shall be returned if
 the host's name cannot be located.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the flag bit NI_NUMERICSERV is set, the numeric form of the service
 address shall be returned (for example, its port number)
 instead of its name, under all circumstances.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the flag bit NI_NUMERICSCOPE is set, the numeric form of the scope
 identifier shall be returned (for example, interface
 index) instead of its name. This flag shall be ignored if the \fIsa\fP
 argument is not an IPv6 address.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the flag bit NI_DGRAM is set, this indicates that the service is
 a datagram service (SOCK_DGRAM). The default behavior shall
 assume that the service is a stream service (SOCK_STREAM).
-.in -5
-.RE
-.TP
-\fBNotes:\fP
-.in +5
 .LP
+.TP 7
+\fBNotes:\fP
+.RS
+.IP " 1." 4
 The two NI_NUMERICxxx flags are required to support the \fB-n\fP flag
 that many commands provide.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The NI_DGRAM flag is required for the few AF_INET and AF_INET6 port
 numbers (for example, [512,514]) that represent different
 services for UDP and TCP.
-.in -5
+.LP
+.RE
 .sp
 .LP
 The \fIgetnameinfo\fP() function shall be thread-safe.
@@ -131,35 +123,35 @@ buffers provided. The returned names are always null-terminated strings.
 .LP
 The \fIgetnameinfo\fP() function shall fail and return the corresponding
 value if:
-.TP
+.TP 7
 .B EAI_AGAIN
 The name could not be resolved at this time. Future attempts may succeed.
-.TP
+.TP 7
 .B EAI_BADFLAGS
 .sp
 The \fIflags\fP had an invalid value.
-.TP
+.TP 7
 .B EAI_FAIL
 A non-recoverable error occurred.
-.TP
+.TP 7
 .B EAI_FAMILY
 The address family was not recognized or the address length was invalid
 for the specified family.
-.TP
+.TP 7
 .B EAI_MEMORY
 There was a memory allocation failure.
-.TP
+.TP 7
 .B EAI_NONAME
 The name does not resolve for the supplied parameters. 
 .LP
 NI_NAMEREQD is set and the host's name cannot be located, or both
 \fInodename\fP and \fIservname\fP were null.
-.TP
+.TP 7
 .B EAI_OVERFLOW
 .sp
 An argument buffer overflowed. The buffer pointed to by the \fInode\fP
 argument or the \fIservice\fP argument was too small.
-.TP
+.TP 7
 .B EAI_SYSTEM
 A system error occurred. The error code can be found in \fIerrno\fP.
 .sp
@@ -188,7 +180,7 @@ None.
 .LP
 \fIgai_strerror\fP() , \fIgetaddrinfo\fP() , \fIgetservbyname\fP()
 , \fIinet_ntop\fP() , \fIsocket\fP() , the Base Definitions volume
-of IEEE\0Std\01003.1-2001, \fI<netdb.h>\fP, \fI<sys/socket.h>\fP
+of IEEE\ Std\ 1003.1-2001, \fI<netdb.h>\fP, \fI<sys/socket.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

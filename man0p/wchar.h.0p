@@ -2,45 +2,45 @@
 .TH "<wchar.h>" P 2003 POSIX
 .\" <wchar.h> 
 .SH NAME
-wchar.h - wide-character handling
+wchar.h \- wide-character handling
 .SH SYNOPSIS
 .LP
 \fB#include <wchar.h>\fP
 .SH DESCRIPTION
 .LP
 Some of the functionality described on this reference page extends
-the ISO\0C standard. Applications shall define
+the ISO\ C standard. Applications shall define
 the appropriate feature test macro (see the System Interfaces volume
-of IEEE\0Std\01003.1-2001, Section 2.2, The Compilation Environment)
+of IEEE\ Std\ 1003.1-2001, Section 2.2, The Compilation Environment)
 to enable the visibility of these symbols in this
 header. 
 .LP
 The \fI<wchar.h>\fP header shall define the following types:
-.TP
+.TP 7
 \fBwchar_t\fP
 As described in \fI<stddef.h>\fP .
-.TP
+.TP 7
 \fBwint_t\fP
 An integer type capable of storing any valid value of \fBwchar_t\fP
 or WEOF.
-.TP
+.TP 7
 \fBwctype_t\fP
 A scalar type of a data object that can hold values which represent
 locale-specific character classification. 
-.TP
+.TP 7
 \fBmbstate_t\fP
 An object type other than an array type that can hold the conversion
 state information necessary to convert between sequences
-of (possibly multi-byte) characters and wide characters.   \0If a
+of (possibly multi-byte) characters and wide characters.   \ If a
 codeset is being used such that an \fBmbstate_t\fP needs to
 preserve more than 2 levels of reserved state, the results are unspecified.
-.TP
+.TP 7
 \fBFILE\fP
 As described in \fI<stdio.h>\fP . 
-.TP
+.TP 7
 \fBsize_t\fP
 As described in \fI<stddef.h>\fP .
-.TP
+.TP 7
 \fBva_list\fP
 As described in \fI<stdarg.h>\fP . 
 .sp
@@ -157,17 +157,17 @@ int           wscanf(const wchar_t *restrict, ...);
 .RE
 .LP
 The \fI<wchar.h>\fP header shall define the following macros:
-.TP
+.TP 7
 WCHAR_MAX
 The maximum value representable by an object of type \fBwchar_t\fP.
-.TP
+.TP 7
 WCHAR_MIN
 The minimum value representable by an object of type \fBwchar_t\fP.
-.TP
+.TP 7
 WEOF
 Constant expression of type \fBwint_t\fP that is returned by several
 WP functions to indicate end-of-file.
-.TP
+.TP 7
 NULL
 As described in \fI<stddef.h>\fP .
 .sp
@@ -183,9 +183,9 @@ from the headers \fI<ctype.h>\fP, \fI<string.h>\fP, \fI<stdarg.h>\fP,
 \fIThe following sections are informative.\fP
 .SH APPLICATION USAGE
 .LP
-The \fIiswblank\fP() function was a late addition to the ISO\0C standard
+The \fIiswblank\fP() function was a late addition to the ISO\ C standard
 and was
-introduced at the same time as the ISO\0C standard introduced \fI<wctype.h>\fP,
+introduced at the same time as the ISO\ C standard introduced \fI<wctype.h>\fP,
 which contains all of the \fIisw*\fP() functions. The Open Group Base
 Specifications had
 previously aligned with the MSE working draft and had introduced the
@@ -199,7 +199,7 @@ for the
 \fIisw*\fP() functions.
 .SH RATIONALE
 .LP
-In the ISO\0C standard, the symbols referenced as XSI extensions are
+In the ISO\ C standard, the symbols referenced as XSI extensions are
 in \fI<wctype.h>\fP. Their presence here is thus an extension.
 .SH FUTURE DIRECTIONS
 .LP
@@ -209,7 +209,7 @@ None.
 \fI<ctype.h>\fP , \fI<stdarg.h>\fP , \fI<stddef.h>\fP , \fI<stdio.h>\fP
 , \fI<stdlib.h>\fP , \fI<string.h>\fP , \fI<time.h>\fP , \fI<wctype.h>\fP
 , the System Interfaces volume of
-IEEE\0Std\01003.1-2001, \fIbtowc\fP(), \fIconfstr\fP(), \fIfgetwc\fP(),
+IEEE\ Std\ 1003.1-2001, \fIbtowc\fP(), \fIconfstr\fP(), \fIfgetwc\fP(),
 \fIfgetws\fP(), \fIfputwc\fP(), \fIfputws\fP(), \fIfwide\fP(), \fIfwprintf\fP(),
 \fIfwscanf\fP(), \fIgetwc\fP(), \fIgetwchar\fP(), \fIiswalnum\fP(),
 \fIiswalpha\fP(), \fIiswcntrl\fP(), \fIiswctype\fP(), \fIiswdigit\fP(),
@@ -228,7 +228,7 @@ IEEE\0Std\01003.1-2001, \fIbtowc\fP(), \fIconfstr\fP(), \fIfgetwc\fP(),
 \fIwcswcs\fP(), \fIwcswidth\fP(), \fIwcsxfrm\fP(), \fIwctob\fP(),
 \fIwctype\fP(), \fIwcwidth\fP(), \fIwmemchr\fP(), \fIwmemcmp\fP(),
 \fIwmemcpy\fP(), \fIwmemmove\fP(), \fIwmemset\fP(), \fIwprintf\fP(),
-\fIwscanf\fP(), the Shell and Utilities volume of IEEE\0Std\01003.1-2001,
+\fIwscanf\fP(), the Shell and Utilities volume of IEEE\ Std\ 1003.1-2001,
 \fIgetconf\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

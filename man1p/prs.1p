@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "prs" P 2003 POSIX
+.TH "PRS" P 2003 POSIX
 .\" prs 
 .SH NAME
-prs - print an SCCS file (\fBDEVELOPMENT\fP)
+prs \- print an SCCS file (\fBDEVELOPMENT\fP)
 .SH SYNOPSIS
 .LP
 \fBprs\fP \fB[\fP\fB-a\fP\fB][\fP\fB-d\fP
@@ -28,34 +28,34 @@ of an SCCS file in a user-supplied format.
 .SH OPTIONS
 .LP
 The \fIprs\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
 except that the \fB-r\fP option has an
 optional option-argument. This optional option-argument cannot be
 presented as a separate argument. The following options shall be
 supported:
-.TP
-\fB-d\0\fP \fIdataspec\fP
+.TP 7
+\fB-d\ \fP \fIdataspec\fP
 Specify the output data specification. The \fIdataspec\fP shall be
 a string consisting of SCCS file \fIdata\fP
 \fIkeywords\fP (see Data Keywords ) interspersed with optional user-supplied
 text.
-.TP
+.TP 7
 \fB-r[\fP\fISID\fP\fB]\fP
 Specify the SCCS identification string (SID) of a delta for which
 information is desired. If no \fISID\fP option-argument is
 specified, the SID of the most recently created delta shall be assumed.
-.TP
+.TP 7
 \fB-e\fP
 Request information for all deltas created earlier than and including
 the delta designated via the \fB-r\fP option or the
 date-time given by the \fB-c\fP option.
-.TP
+.TP 7
 \fB-l\fP
 Request information for all deltas created later than and including
 the delta designated via the \fB-r\fP option or the
 date-time given by the \fB-c\fP option.
-.TP
-\fB-c\0\fP \fIcutoff\fP
+.TP 7
+\fB-c\ \fP \fIcutoff\fP
 Indicate the \fIcutoff\fP date-time, in the form: 
 .sp
 .RS
@@ -68,20 +68,22 @@ Indicate the \fIcutoff\fP date-time, in the form:
 For the \fIYY\fP component, values in the range [69,99] shall refer
 to years 1969 to 1999 inclusive, and values in the range
 [00,68] shall refer to years 2000 to 2068 inclusive. 
-.TP
+.TP 7
 \fBNote:\fP
-It is expected that in a future version of IEEE\0Std\01003.1-2001
+.RS
+It is expected that in a future version of IEEE\ Std\ 1003.1-2001
 the default century inferred from a 2-digit year will
 change. (This would apply to all commands accepting a 2-digit year
 as input.)
+.RE
 .sp
 .LP
 No changes (deltas) to the SCCS file that were created after the specified
 \fIcutoff\fP date-time shall be included in the
 output. Units omitted from the date-time default to their maximum
-possible values; for example, \fB-c\07502\fP is equivalent
-to \fB-c\0750228235959\fP.
-.TP
+possible values; for example, \fB-c\ 7502\fP is equivalent
+to \fB-c\ 750228235959\fP.
+.TP 7
 \fB-a\fP
 Request writing of information for both removed-that is, \fIdelta\fP
 \fItype\fP=
@@ -93,7 +95,7 @@ provided.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of an existing SCCS file or a directory. If \fIfile\fP
 is a directory, the \fIprs\fP utility shall behave as
@@ -119,29 +121,29 @@ Any SCCS files displayed are files of an unspecified format.
 .LP
 The following environment variables shall affect the execution of
 \fIprs\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -161,16 +163,14 @@ data keyword. A data keyword may appear in a \fIdataspec\fP multiple
 times.
 .LP
 The information written by \fIprs\fP shall consist of:
-.in +5
-.LP
+.IP " 1." 4
 The user-supplied text
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Appropriate values (extracted from the SCCS file) substituted for
 the recognized data keywords in the order of appearance in the
 \fIdataspec\fP
-.in -5
+.LP
 .LP
 The format of a data keyword value shall either be simple ( \fB'S'\fP
 ), in which keyword substitution is direct, or
@@ -199,74 +199,76 @@ and the following \fIdataspec\fP shall be used for each selected delta:
 .fi
 .RE
 .TS C
-center;l l l l l l l l.
-<th colspan="5" align="center"> \fBSCCS File Data Keywords\fP 	
-\fBKeyword\fP 	 \fBData Item\fP 	 \fBFile Section\fP 	 \fBValue\fP 	 \fBFormat\fP 	
-\fB:Dt:\fP 	 Delta information 	 Delta Table 	 \fBSee below*\fP 	 S 	
-\fB:DL:\fP 	 Delta line statistics 	 " 	 \fB:Li:/:Ld:/:Lu:\fP 	 S 	
-\fB:Li:\fP 	 Lines inserted by Delta 	 " 	 \fB\fInnnnn\fP***\fP 	 S 	
-\fB:Ld:\fP 	 Lines deleted by Delta 	 " 	 \fB\fInnnnn\fP***\fP 	 S 	
-\fB:Lu:\fP 	 Lines unchanged by Delta 	 " 	 \fB\fInnnnn\fP***\fP 	 S 	
-\fB:DT:\fP 	 Delta type 	 " 	 \fBD or R\fP 	 S 	
-\fB:I:\fP 	 SCCS ID string (SID) 	 " 	 \fBSee below**\fP 	 S 	
-\fB:R:\fP 	 Release number 	 " 	 \fB\fInnnn\fP\fP 	 S 	
-\fB:L:\fP 	 Level number 	 " 	 \fB\fInnnn\fP\fP 	 S 	
-\fB:B:\fP 	 Branch number 	 " 	 \fB\fInnnn\fP\fP 	 S 	
-\fB:S:\fP 	 Sequence number 	 " 	 \fB\fInnnn\fP\fP 	 S 	
-\fB:D:\fP 	 Date delta created 	 " 	 \fB:Dy:/:Dm:/:Dd:\fP 	 S 	
-\fB:Dy:\fP 	 Year delta created 	 " 	 \fB\fInn\fP\fP 	 S 	
-\fB:Dm:\fP 	 Month delta created 	 " 	 \fB\fInn\fP\fP 	 S 	
-\fB:Dd:\fP 	 Day delta created 	 " 	 \fB\fInn\fP\fP 	 S 	
-\fB:T:\fP 	 Time delta created 	 " 	 \fB:Th:::Tm:::Ts:\fP 	 S 	
-\fB:Th:\fP 	 Hour delta created 	 " 	 \fB\fInn\fP\fP 	 S 	
-\fB:Tm:\fP 	 Minutes delta created 	 " 	 \fB\fInn\fP\fP 	 S 	
-\fB:Ts:\fP 	 Seconds delta created 	 " 	 \fB\fInn\fP\fP 	 S 	
-\fB:P:\fP 	 Programmer who created Delta 	 " 	 \fB\fIlogname\fP\fP 	 S 	
-\fB:DS:\fP 	 Delta sequence number 	 " 	 \fB\fInnnn\fP\fP 	 S 	
-\fB:DP:\fP 	 Predecessor Delta sequence 	 " 	 \fB\fInnnn\fP\fP 	 S 	
-\fB\0\fP 	 number 	 \0 	 \fB\0\fP 	 \0 	
-\fB:DI:\fP 	 Sequence number of deltas 	 " 	 \fB:Dn:/:Dx:/:Dg:\fP 	 S 	
-\fB\0\fP 	 included, excluded, or ignored 	 \0 	 \fB\0\fP 	 \0 	
-\fB:Dn:\fP 	 Deltas included (sequence #) 	 " 	 \fB:DS: :DS: ...\fP 	 S 	
-\fB:Dx:\fP 	 Deltas excluded (sequence #) 	 " 	 \fB:DS: :DS: ...\fP 	 S 	
-\fB:Dg:\fP 	 Deltas ignored (sequence #) 	 " 	 \fB:DS: :DS: ...\fP 	 S 	
-\fB:MR:\fP 	 MR numbers for delta 	 " 	 \fB\fItext\fP\fP 	 M 	
-\fB:C:\fP 	 Comments for delta 	 " 	 \fB\fItext\fP\fP 	 M 	
-\fB:UN:\fP 	 User names 	 User Names 	 \fB\fItext\fP\fP 	 M 	
-\fB:FL:\fP 	 Flag list 	 Flags 	 \fB\fItext\fP\fP 	 M 	
-\fB:Y:\fP 	 Module type flag 	 " 	 \fB\fItext\fP\fP 	 S 	
-\fB:MF:\fP 	 MR validation flag 	 " 	 \fByes or no\fP 	 S 	
-\fB:MP:\fP 	 MR validation program name 	 " 	 \fB\fItext\fP\fP 	 S 	
-\fB:KF:\fP 	 Keyword error, warning flag 	 " 	 \fByes or no\fP 	 S 	
-\fB:KV:\fP 	 Keyword validation string 	 " 	 \fB\fItext\fP\fP 	 S 	
-\fB:BF:\fP 	 Branch flag 	 " 	 \fByes or no\fP 	 S 	
-\fB:J:\fP 	 Joint edit flag 	 " 	 \fByes or no\fP 	 S 	
-\fB:LK:\fP 	 Locked releases 	 " 	 \fB:R: ...\fP 	 S 	
-\fB:Q:\fP 	 User-defined keyword 	 " 	 \fB\fItext\fP\fP 	 S 	
-\fB:M:\fP 	 Module name 	 " 	 \fB\fItext\fP\fP 	 S 	
-\fB:FB:\fP 	 Floor boundary 	 " 	 \fB:R:\fP 	 S 	
-\fB:CB:\fP 	 Ceiling boundary 	 " 	 \fB:R:\fP 	 S 	
-\fB:Ds:\fP 	 Default SID 	 " 	 \fB:I:\fP 	 S 	
-\fB:ND:\fP 	 Null delta flag 	 " 	 \fByes or no\fP 	 S 	
-\fB:FD:\fP 	 File descriptive text 	 Comments 	 \fB\fItext\fP\fP 	 M 	
-\fB:BD:\fP 	 Body 	 Body 	 \fB\fItext\fP\fP 	 M 	
-\fB:GB:\fP 	 Gotten body 	 " 	 \fB\fItext\fP\fP 	 M 	
-\fB:W:\fP 	 A form of \fIwhat\fP string 	 N/A 	 \fB:Z::M:\\t:I:\fP 	 S 	
-\fB:A:\fP 	 A form of \fIwhat\fP string 	 N/A 	 \fB:Z::Y: :M: :I::Z:\fP 	 S 	
-\fB:Z:\fP 	 \fIwhat\fP string delimiter 	 N/A 	 \fB\fB@(#)\fP\fP 	 S 	
-\fB:F:\fP 	 SCCS filename 	 N/A 	 \fB\fItext\fP\fP 	 S 	
-\fB:PN:\fP 	 SCCS file pathname 	 N/A 	 \fB\fItext\fP\fP 	 S 	
+center;c1 s1 s1 s1 s.
+\fBSCCS File Data Keywords\fP
+.T&
+l l l l l.
+\fBKeyword\fP	\fBData Item\fP	\fBFile Section\fP	\fBValue\fP	\fBFormat\fP
+\fB:Dt:\fP	Delta information	Delta Table	\fBSee below*\fP	S
+\fB:DL:\fP	Delta line statistics	"	\fB:Li:/:Ld:/:Lu:\fP	S
+\fB:Li:\fP	Lines inserted by Delta	"	\fB\fInnnnn\fP***\fP	S
+\fB:Ld:\fP	Lines deleted by Delta	"	\fB\fInnnnn\fP***\fP	S
+\fB:Lu:\fP	Lines unchanged by Delta	"	\fB\fInnnnn\fP***\fP	S
+\fB:DT:\fP	Delta type	"	\fBD or R\fP	S
+\fB:I:\fP	SCCS ID string (SID)	"	\fBSee below**\fP	S
+\fB:R:\fP	Release number	"	\fB\fInnnn\fP\fP	S
+\fB:L:\fP	Level number	"	\fB\fInnnn\fP\fP	S
+\fB:B:\fP	Branch number	"	\fB\fInnnn\fP\fP	S
+\fB:S:\fP	Sequence number	"	\fB\fInnnn\fP\fP	S
+\fB:D:\fP	Date delta created	"	\fB:Dy:/:Dm:/:Dd:\fP	S
+\fB:Dy:\fP	Year delta created	"	\fB\fInn\fP\fP	S
+\fB:Dm:\fP	Month delta created	"	\fB\fInn\fP\fP	S
+\fB:Dd:\fP	Day delta created	"	\fB\fInn\fP\fP	S
+\fB:T:\fP	Time delta created	"	\fB:Th:::Tm:::Ts:\fP	S
+\fB:Th:\fP	Hour delta created	"	\fB\fInn\fP\fP	S
+\fB:Tm:\fP	Minutes delta created	"	\fB\fInn\fP\fP	S
+\fB:Ts:\fP	Seconds delta created	"	\fB\fInn\fP\fP	S
+\fB:P:\fP	Programmer who created Delta	"	\fB\fIlogname\fP\fP	S
+\fB:DS:\fP	Delta sequence number	"	\fB\fInnnn\fP\fP	S
+\fB:DP:\fP	Predecessor Delta sequence	"	\fB\fInnnn\fP\fP	S
+\fB\ \fP	number	\ 	\fB\ \fP	\ 
+\fB:DI:\fP	Sequence number of deltas	"	\fB:Dn:/:Dx:/:Dg:\fP	S
+\fB\ \fP	included, excluded, or ignored	\ 	\fB\ \fP	\ 
+\fB:Dn:\fP	Deltas included (sequence #)	"	\fB:DS: :DS: ...\fP	S
+\fB:Dx:\fP	Deltas excluded (sequence #)	"	\fB:DS: :DS: ...\fP	S
+\fB:Dg:\fP	Deltas ignored (sequence #)	"	\fB:DS: :DS: ...\fP	S
+\fB:MR:\fP	MR numbers for delta	"	\fB\fItext\fP\fP	M
+\fB:C:\fP	Comments for delta	"	\fB\fItext\fP\fP	M
+\fB:UN:\fP	User names	User Names	\fB\fItext\fP\fP	M
+\fB:FL:\fP	Flag list	Flags	\fB\fItext\fP\fP	M
+\fB:Y:\fP	Module type flag	"	\fB\fItext\fP\fP	S
+\fB:MF:\fP	MR validation flag	"	\fByes or no\fP	S
+\fB:MP:\fP	MR validation program name	"	\fB\fItext\fP\fP	S
+\fB:KF:\fP	Keyword error, warning flag	"	\fByes or no\fP	S
+\fB:KV:\fP	Keyword validation string	"	\fB\fItext\fP\fP	S
+\fB:BF:\fP	Branch flag	"	\fByes or no\fP	S
+\fB:J:\fP	Joint edit flag	"	\fByes or no\fP	S
+\fB:LK:\fP	Locked releases	"	\fB:R: ...\fP	S
+\fB:Q:\fP	User-defined keyword	"	\fB\fItext\fP\fP	S
+\fB:M:\fP	Module name	"	\fB\fItext\fP\fP	S
+\fB:FB:\fP	Floor boundary	"	\fB:R:\fP	S
+\fB:CB:\fP	Ceiling boundary	"	\fB:R:\fP	S
+\fB:Ds:\fP	Default SID	"	\fB:I:\fP	S
+\fB:ND:\fP	Null delta flag	"	\fByes or no\fP	S
+\fB:FD:\fP	File descriptive text	Comments	\fB\fItext\fP\fP	M
+\fB:BD:\fP	Body	Body	\fB\fItext\fP\fP	M
+\fB:GB:\fP	Gotten body	"	\fB\fItext\fP\fP	M
+\fB:W:\fP	A form of \fIwhat\fP string	N/A	\fB:Z::M:\\t:I:\fP	S
+\fB:A:\fP	A form of \fIwhat\fP string	N/A	\fB:Z::Y: :M: :I::Z:\fP	S
+\fB:Z:\fP	\fIwhat\fP string delimiter	N/A	\fB\fB@(#)\fP\fP	S
+\fB:F:\fP	SCCS filename	N/A	\fB\fItext\fP\fP	S
+\fB:PN:\fP	SCCS file pathname	N/A	\fB\fItext\fP\fP	S
 .TE
-.TP
+.TP 7
 *
 \fB:Dt:\fP= \fB:DT: :I: :D: :T: :P: :DS: :DP:\fP
-.TP
+.TP 7
 **
 \fB:R:.:L:.:B:.:S:\fP if the delta is a branch delta ( \fB:BF:\fP==
 \fByes\fP)
 .br
 \fB:R:.:L:\fP if the delta is not a branch delta ( \fB:BF:\fP== \fBno\fP)
-.TP
+.TP 7
 ***
 The line statistics are capped at 99999. For example, if 100000 lines
 were unchanged in a certain revision, \fB:Lu:\fP shall
@@ -284,10 +286,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -300,8 +302,7 @@ Default.
 .LP
 None.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 The following example:
 .sp
 .RS
@@ -324,9 +325,8 @@ abc
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The following example:
 .sp
 .RS
@@ -346,9 +346,8 @@ might write to standard output:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 As a special case:
 .sp
 .RS
@@ -380,7 +379,7 @@ this is the comment line for s.file initial delta
 for each delta table entry of the \fBD\fP type. The only option allowed
 to be used with this special case is the \fB-a\fP
 option.
-.in -5
+.LP
 .SH RATIONALE
 .LP
 None.

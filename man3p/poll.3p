@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "poll" P 2003 POSIX
+.TH "POLL" P 2003 POSIX
 .\" poll 
 .SH NAME
-poll - input/output multiplexing
+poll \- input/output multiplexing
 .SH SYNOPSIS
 .LP
 \fB#include <poll.h>
@@ -32,42 +32,42 @@ of interest. The array's members are \fBpollfd\fP structures
 within which \fIfd\fP specifies an open file descriptor and \fIevents\fP
 and \fIrevents\fP are bitmasks constructed by OR'ing a
 combination of the following event flags:
-.TP
+.TP 7
 POLLIN
 Data other than high-priority data may be read without blocking. 
 .LP
 For STREAMS, this flag is set in \fIrevents\fP even if the message
 is of zero length. This flag shall be equivalent to POLLRDNORM
 | POLLRDBAND. 
-.TP
+.TP 7
 POLLRDNORM
 Normal data may be read without blocking. 
 .LP
 For STREAMS, data on priority band 0 may be read without blocking.
 This flag is set in \fIrevents\fP even if the message is of
 zero length. 
-.TP
+.TP 7
 POLLRDBAND
 Priority data may be read without blocking. 
 .LP
 For STREAMS, data on priority bands greater than 0 may be read without
 blocking. This flag is set in \fIrevents\fP even if the
 message is of zero length. 
-.TP
+.TP 7
 POLLPRI
 High-priority data may be read without blocking. 
 .LP
 For STREAMS, this flag is set in \fIrevents\fP even if the message
 is of zero length. 
-.TP
+.TP 7
 POLLOUT
 Normal data may be written without blocking. 
 .LP
 For STREAMS, data on priority band 0 may be written without blocking.
-.TP
+.TP 7
 POLLWRNORM
 Equivalent to POLLOUT.
-.TP
+.TP 7
 POLLWRBAND
 Priority data may be written. 
 .LP
@@ -75,12 +75,12 @@ For STREAMS, data on priority bands greater than 0 may be written
 without blocking. If any priority band has been written to on
 this STREAM, this event only examines bands that have been written
 to at least once. 
-.TP
+.TP 7
 POLLERR
 An error has occurred on the device or stream. This flag is only valid
 in the \fIrevents\fP bitmask; it shall be ignored in
 the \fIevents\fP member.
-.TP
+.TP 7
 POLLHUP
 The device has been disconnected. This event and POLLOUT are mutually-exclusive;
 a stream can never be writable if a hangup has
@@ -88,7 +88,7 @@ occurred. However, this event and POLLIN, POLLRDNORM, POLLRDBAND,
 or POLLPRI are not mutually-exclusive. This flag is only valid in
 the \fIrevents\fP bitmask; it shall be ignored in the \fIevents\fP
 member.
-.TP
+.TP 7
 POLLNVAL
 The specified \fIfd\fP value is invalid. This flag is only valid in
 the \fIrevents\fP member; it shall ignored in the
@@ -131,7 +131,7 @@ flag.
 .LP
 The \fIpoll\fP() function shall support regular files, terminal and
 pseudo-terminal devices, FIFOs, pipes, sockets and  
-\0STREAMS-based files.  The behavior of \fIpoll\fP() on
+\ STREAMS-based files.  The behavior of \fIpoll\fP() on
 elements of \fIfds\fP that refer to other types of file is unspecified.
 .LP
 Regular files shall always poll TRUE for reading and writing.
@@ -153,16 +153,16 @@ selected. Upon failure, \fIpoll\fP() shall return -1 and set
 .SH ERRORS
 .LP
 The \fIpoll\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN
 The allocation of internal data structures failed but a subsequent
 request may succeed.
-.TP
+.TP 7
 .B EINTR
 A signal was caught during \fIpoll\fP().
-.TP
+.TP 7
 .B EINVAL
-The \fInfds\fP argument is greater than {OPEN_MAX},   \0or one of
+The \fInfds\fP argument is greater than {OPEN_MAX},   \ or one of
 the \fIfd\fP members refers to a STREAM or multiplexer
 that is linked (directly or indirectly) downstream from a multiplexer.
 .sp
@@ -174,56 +174,49 @@ that is linked (directly or indirectly) downstream from a multiplexer.
 The following example opens a pair of STREAMS devices and then waits
 for either one to become writable. This example proceeds as
 follows:
-.in +5
-.LP
+.IP " 1." 4
 Sets the \fItimeout\fP parameter to 500 milliseconds.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Opens the STREAMS devices \fB/dev/dev0\fP and \fB/dev/dev1\fP, and
 then polls them, specifying POLLOUT and POLLWRBAND as the
 events of interest.
 .LP
 The STREAMS device names \fB/dev/dev0\fP and \fB/dev/dev1\fP are only
 examples of how STREAMS devices can be named; STREAMS
-naming conventions may vary among systems conforming to the IEEE\0Std\01003.1-2001.
-.in -5
-.in +5
+naming conventions may vary among systems conforming to the IEEE\ Std\ 1003.1-2001.
 .LP
+.IP " 3." 4
 Uses the \fIret\fP variable to determine whether an event has occurred
 on either of the two STREAMS. The \fIpoll\fP() function
 is given 500 milliseconds to wait for an event to occur (if it has
 not occurred prior to the \fIpoll\fP() call).
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 Checks the returned value of \fIret\fP. If a positive value is returned,
 one of the following can be done:
-<ol type="a">
-.in +5
-.LP
+.RS
+.IP " a." 4
 Priority data can be written to the open STREAM on priority bands
 greater than 0, because the POLLWRBAND event occurred on the
 open STREAM ( \fIfds\fP[0] or \fIfds\fP[1]).
-.in -5
-.in +5
 .LP
+.IP " b." 4
 Data can be written to the open STREAM on priority-band 0, because
 the POLLOUT event occurred on the open STREAM ( \fIfds\fP[0]
 or \fIfds\fP[1]).
-.in -5
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 5." 4
 If the returned value is not a positive value, permission to write
 data to the open STREAM (on any priority band) is denied.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 If the POLLHUP event occurs on the open STREAM ( \fIfds\fP[0] or \fIfds\fP[1]),
 the device on the open STREAM has
 disconnected.
-.in -5
+.LP
 .sp
 .RS
 .nf
@@ -279,7 +272,7 @@ None.
 .SH SEE ALSO
 .LP
 \fISTREAMS\fP , \fIgetmsg\fP() , \fIputmsg\fP() , \fIread\fP() , \fIselect\fP()
-, \fIwrite\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIwrite\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<poll.h>\fP, \fI<stropts.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

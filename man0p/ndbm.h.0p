@@ -2,7 +2,7 @@
 .TH "<ndbm.h>" P 2003 POSIX
 .\" <ndbm.h> 
 .SH NAME
-ndbm.h - definitions for ndbm database operations
+ndbm.h \- definitions for ndbm database operations
 .SH SYNOPSIS
 .LP
 \fB#include <ndbm.h> \fP
@@ -28,10 +28,10 @@ The \fI<ndbm.h>\fP header shall define the \fBDBM\fP type.
 .LP
 The following constants shall be defined as possible values for the
 \fIstore_mode\fP argument to \fIdbm_store\fP():
-.TP
+.TP 7
 DBM_INSERT
 Insertion of new entries only.
-.TP
+.TP 7
 DBM_REPLACE
 Allow replacing existing entries.
 .sp
@@ -71,7 +71,7 @@ None.
 .SH SEE ALSO
 .LP
 \fI<stddef.h>\fP , \fI<sys/types.h>\fP , the System
-Interfaces volume of IEEE\0Std\01003.1-2001, \fIdbm_clearerr\fP()
+Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIdbm_clearerr\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

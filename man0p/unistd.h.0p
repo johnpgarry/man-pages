@@ -2,7 +2,7 @@
 .TH "<unistd.h>" P 2003 POSIX
 .\" <unistd.h> 
 .SH NAME
-unistd.h - standard symbolic constants and types
+unistd.h \- standard symbolic constants and types
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>\fP
@@ -15,28 +15,27 @@ contents of this header are shown below.
 .SS Version Test Macros
 .LP
 The following symbolic constants shall be defined:
-.TP
+.TP 7
 _POSIX_VERSION
-Integer value indicating version of IEEE\0Std\01003.1 (C-language
+Integer value indicating version of IEEE\ Std\ 1003.1 (C-language
 binding) to which the implementation conforms. For
-implementations conforming to IEEE\0Std\01003.1-2001, the value shall
+implementations conforming to IEEE\ Std\ 1003.1-2001, the value shall
 be 200112L.
-.TP
+.TP 7
 _POSIX2_VERSION
 Integer value indicating version of the Shell and Utilities volume
-of IEEE\0Std\01003.1 to which the implementation
-conforms. For implementations conforming to IEEE\0Std\01003.1-2001,
+of IEEE\ Std\ 1003.1 to which the implementation
+conforms. For implementations conforming to IEEE\ Std\ 1003.1-2001,
 the value shall be 200112L.
 .sp
 .LP
 The following symbolic constant shall be defined only if the implementation
 supports the XSI option; see \fIXSI Conformance\fP .
-.TP
+.TP 7
 _XOPEN_VERSION
 .sp
 Integer value indicating version of the X/Open Portability Guide to
-which the implementation conforms. The value shall be 600. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+which the implementation conforms. The value shall be 600. 
 .sp
 .SS Constants for Options and Option Groups
 .LP
@@ -71,428 +70,425 @@ application that uses such functions without first checking \fIfpathconf\fP(),
 requiring an extension.
 .LP
 For conformance requirements, refer to \fIConformance\fP .
-.TP
+.TP 7
 _POSIX_ADVISORY_INFO
 .sp
 The implementation supports the Advisory Information option. If this
 symbol has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX_ASYNCHRONOUS_IO
 .sp
 The implementation supports the Asynchronous Input and Output option.
 If this symbol has a value other than -1 or 0, it shall have
 the value 200112L. 
-.TP
+.TP 7
 _POSIX_BARRIERS
 .sp
 The implementation supports the Barriers option. If this symbol has
 a value other than -1 or 0, it shall have the value 200112L.
-.TP
+.TP 7
 _POSIX_CHOWN_RESTRICTED
 The use of \fIchown\fP() and \fIfchown\fP() is
 restricted to a process with appropriate privileges, and to changing
 the group ID of a file only to the effective group ID of the
 process or to one of its supplementary group IDs. This symbol shall
 always be set to a value other than -1.
-.TP
+.TP 7
 _POSIX_CLOCK_SELECTION
 .sp
 The implementation supports the Clock Selection option. If this symbol
 has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX_CPUTIME
 .sp
 The implementation supports the Process CPU-Time Clocks option. If
 this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX_FSYNC
 .sp
 The implementation supports the File Synchronization option. If this
 symbol has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX_IPV6
 The implementation supports the IPv6 option. If this symbol has a
 value other than -1 or 0, it shall have the value 200112L.
-.TP
+.TP 7
 _POSIX_JOB_CONTROL
 The implementation supports job control. This symbol shall always
 be set to a value greater than zero.
-.TP
+.TP 7
 _POSIX_MAPPED_FILES
 .sp
 The implementation supports the Memory Mapped Files option. If this
 symbol has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX_MEMLOCK
 .sp
 The implementation supports the Process Memory Locking option. If
 this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX_MEMLOCK_RANGE
 .sp
 The implementation supports the Range Memory Locking option. If this
 symbol has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX_MEMORY_PROTECTION
 .sp
 The implementation supports the Memory Protection option. If this
 symbol has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX_MESSAGE_PASSING
 .sp
 The implementation supports the Message Passing option. If this symbol
 has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX_MONOTONIC_CLOCK
 .sp
 The implementation supports the Monotonic Clock option. If this symbol
 has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX_NO_TRUNC
 Pathname components longer than {NAME_MAX} generate an error. This
 symbol shall always be set to a value other than -1.
-.TP
+.TP 7
 _POSIX_PRIORITIZED_IO
 .sp
 The implementation supports the Prioritized Input and Output option.
 If this symbol has a value other than -1 or 0, it shall have
 the value 200112L. 
-.TP
+.TP 7
 _POSIX_PRIORITY_SCHEDULING
 .sp
 The implementation supports the Process Scheduling option. If this
 symbol has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX_RAW_SOCKETS
 .sp
 The implementation supports the Raw Sockets option. If this symbol
 has a value other than -1 or 0, it shall have the value 200112L.
-.TP
+.TP 7
 _POSIX_READER_WRITER_LOCKS
 .sp
 The implementation supports the Read-Write Locks option. This is always
 set to a value greater than zero if the Threads option is
 supported. If this symbol has a value other than -1 or 0, it shall
 have the value 200112L. 
-.TP
+.TP 7
 _POSIX_REALTIME_SIGNALS
 .sp
 The implementation supports the Realtime Signals Extension option.
 If this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX_REGEXP
 The implementation supports the Regular Expression Handling option.
 This symbol shall always be set to a value greater than
 zero.
-.TP
+.TP 7
 _POSIX_SAVED_IDS
 Each process has a saved set-user-ID and a saved set-group-ID. This
 symbol shall always be set to a value greater than zero.
-.TP
+.TP 7
 _POSIX_SEMAPHORES
 .sp
 The implementation supports the Semaphores option. If this symbol
 has a value other than -1 or 0, it shall have the value 200112L.
-.TP
+.TP 7
 _POSIX_SHARED_MEMORY_OBJECTS
 .sp
 The implementation supports the Shared Memory Objects option. If this
 symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX_SHELL
 The implementation supports the POSIX shell. This symbol shall always
 be set to a value greater than zero.
-.TP
+.TP 7
 _POSIX_SPAWN
 .sp
 The implementation supports the Spawn option. If this symbol has a
-value other than -1 or 0, it shall have the value 200112L. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
-.TP
+value other than -1 or 0, it shall have the value 200112L. 
+.TP 7
 _POSIX_SPIN_LOCKS
 .sp
 The implementation supports the Spin Locks option. If this symbol
 has a value other than -1 or 0, it shall have the value 200112L.
-.TP
+.TP 7
 _POSIX_SPORADIC_SERVER
 .sp
 The implementation supports the Process Sporadic Server option. If
 this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX_SYNCHRONIZED_IO
 .sp
 The implementation supports the Synchronized Input and Output option.
 If this symbol has a value other than -1 or 0, it shall have
 the value 200112L. 
-.TP
+.TP 7
 _POSIX_THREAD_ATTR_STACKADDR
 .sp
 The implementation supports the Thread Stack Address Attribute option.
 If this symbol has a value other than -1 or 0, it shall have
 the value 200112L. 
-.TP
+.TP 7
 _POSIX_THREAD_ATTR_STACKSIZE
 .sp
 The implementation supports the Thread Stack Size Attribute option.
 If this symbol has a value other than -1 or 0, it shall have
 the value 200112L. 
-.TP
+.TP 7
 _POSIX_THREAD_CPUTIME
 .sp
 The implementation supports the Thread CPU-Time Clocks option. If
 this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX_THREAD_PRIO_INHERIT
 .sp
 The implementation supports the Thread Priority Inheritance option.
 If this symbol has a value other than -1 or 0, it shall have
 the value 200112L. 
-.TP
+.TP 7
 _POSIX_THREAD_PRIO_PROTECT
 .sp
 The implementation supports the Thread Priority Protection option.
 If this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX_THREAD_PRIORITY_SCHEDULING
 .sp
 The implementation supports the Thread Execution Scheduling option.
 If this symbol has a value other than -1 or 0, it shall have
 the value 200112L. 
-.TP
+.TP 7
 _POSIX_THREAD_PROCESS_SHARED
 .sp
 The implementation supports the Thread Process-Shared Synchronization
 option. If this symbol has a value other than -1 or 0, it
 shall have the value 200112L. 
-.TP
+.TP 7
 _POSIX_THREAD_SAFE_FUNCTIONS
 .sp
 The implementation supports the Thread-Safe Functions option. If this
 symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX_THREAD_SPORADIC_SERVER
 .sp
 The implementation supports the Thread Sporadic Server option. If
 this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX_THREADS
 .sp
 The implementation supports the Threads option. If this symbol has
 a value other than -1 or 0, it shall have the value 200112L.
-.TP
+.TP 7
 _POSIX_TIMEOUTS
 .sp
 The implementation supports the Timeouts option. If this symbol has
 a value other than -1 or 0, it shall have the value 200112L.
-.TP
+.TP 7
 _POSIX_TIMERS
 .sp
 The implementation supports the Timers option. If this symbol has
-a value other than -1 or 0, it shall have the value 200112L. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
-.TP
+a value other than -1 or 0, it shall have the value 200112L. 
+.TP 7
 _POSIX_TRACE
 .sp
 The implementation supports the Trace option. If this symbol has a
-value other than -1 or 0, it shall have the value 200112L. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
-.TP
+value other than -1 or 0, it shall have the value 200112L. 
+.TP 7
 _POSIX_TRACE_EVENT_FILTER
 .sp
 The implementation supports the Trace Event Filter option. If this
 symbol has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX_TRACE_INHERIT
 .sp
 The implementation supports the Trace Inherit option. If this symbol
 has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX_TRACE_LOG
 .sp
 The implementation supports the Trace Log option. If this symbol has
 a value other than -1 or 0, it shall have the value 200112L.
-.TP
+.TP 7
 _POSIX_TYPED_MEMORY_OBJECTS
 .sp
 The implementation supports the Typed Memory Objects option. If this
 symbol has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX_VDISABLE
 This symbol shall be defined to be the value of a character that shall
 disable terminal special character handling as described in
 \fI<termios.h>\fP . This symbol shall always be set to a value other
 than -1.
-.TP
+.TP 7
 _POSIX2_C_BIND
 The implementation supports the C-Language Binding option. This symbol
 shall always have the value 200112L.
-.TP
+.TP 7
 _POSIX2_C_DEV
 .sp
 The implementation supports the C-Language Development Utilities option.
 If this symbol has a value other than -1 or 0, it shall
 have the value 200112L. 
-.TP
+.TP 7
 _POSIX2_CHAR_TERM
 The implementation supports at least one terminal type.
-.TP
+.TP 7
 _POSIX2_FORT_DEV
 .sp
 The implementation supports the FORTRAN Development Utilities option.
 If this symbol has a value other than -1 or 0, it shall have
 the value 200112L. 
-.TP
+.TP 7
 _POSIX2_FORT_RUN
 .sp
 The implementation supports the FORTRAN Runtime Utilities option.
 If this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX2_LOCALEDEF
 The implementation supports the creation of locales by the \fIlocaledef\fP
 utility. If
 this symbol has a value other than -1 or 0, it shall have the value
 200112L.
-.TP
+.TP 7
 _POSIX2_PBS
 .sp
 The implementation supports the Batch Environment Services and Utilities
 option. If this symbol has a value other than -1 or 0, it
 shall have the value 200112L. 
-.TP
+.TP 7
 _POSIX2_PBS_ACCOUNTING
 .sp
 The implementation supports the Batch Accounting option. If this symbol
 has a value other than -1 or 0, it shall have the value
 200112L. 
-.TP
+.TP 7
 _POSIX2_PBS_CHECKPOINT
 .sp
 The implementation supports the Batch Checkpoint/Restart option. If
 this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX2_PBS_LOCATE
 .sp
 The implementation supports the Locate Batch Job Request option. If
 this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX2_PBS_MESSAGE
 .sp
 The implementation supports the Batch Job Message Request option.
 If this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX2_PBS_TRACK
 .sp
 The implementation supports the Track Batch Job Request option. If
 this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _POSIX2_SW_DEV
 .sp
 The implementation supports the Software Development Utilities option.
 If this symbol has a value other than -1 or 0, it shall have
 the value 200112L. 
-.TP
+.TP 7
 _POSIX2_UPE
 .sp
 The implementation supports the User Portability Utilities option.
 If this symbol has a value other than -1 or 0, it shall have the
 value 200112L. 
-.TP
+.TP 7
 _V6_ILP32_OFF32
 The implementation provides a C-language compilation environment with
 32-bit \fBint\fP, \fBlong\fP, \fBpointer\fP, and
 \fBoff_t\fP types.
-.TP
+.TP 7
 _V6_ILP32_OFFBIG
 The implementation provides a C-language compilation environment with
 32-bit \fBint\fP, \fBlong\fP, and \fBpointer\fP types and
 an \fBoff_t\fP type using at least 64 bits.
-.TP
+.TP 7
 _V6_LP64_OFF64
 The implementation provides a C-language compilation environment with
 32-bit \fBint\fP and 64-bit \fBlong\fP, \fBpointer\fP, and
 \fBoff_t\fP types.
-.TP
+.TP 7
 _V6_LPBIG_OFFBIG
 The implementation provides a C-language compilation environment with
 an \fBint\fP type using at least 32 bits and \fBlong\fP,
 \fBpointer\fP, and \fBoff_t\fP types using at least 64 bits.
-.TP
+.TP 7
 _XBS5_ILP32_OFF32 (\fBLEGACY\fP)
 .sp
 The implementation provides a C-language compilation environment with
 32-bit \fBint\fP, \fBlong\fP, \fBpointer\fP, and
 \fBoff_t\fP types. 
-.TP
+.TP 7
 _XBS5_ILP32_OFFBIG (\fBLEGACY\fP)
 .sp
 The implementation provides a C-language compilation environment with
 32-bit \fBint\fP, \fBlong\fP, and \fBpointer\fP types and
 an \fBoff_t\fP type using at least 64 bits. 
-.TP
+.TP 7
 _XBS5_LP64_OFF64 (\fBLEGACY\fP)
 .sp
 The implementation provides a C-language compilation environment with
 32-bit \fBint\fP and 64-bit \fBlong\fP, \fBpointer\fP, and
 \fBoff_t\fP types. 
-.TP
+.TP 7
 _XBS5_LPBIG_OFFBIG (\fBLEGACY\fP)
 .sp
 The implementation provides a C-language compilation environment with
 an \fBint\fP type using at least 32 bits and \fBlong\fP,
 \fBpointer\fP, and \fBoff_t\fP types using at least 64 bits. 
-.TP
+.TP 7
 _XOPEN_CRYPT
 .sp
 The implementation supports the X/Open Encryption Option Group.
-.TP
+.TP 7
 _XOPEN_ENH_I18N
 The implementation supports the Issue 4, Version 2 Enhanced Internationalization
 Option Group. This symbol shall always be set to a
 value other than -1.
-.TP
+.TP 7
 _XOPEN_LEGACY
 The implementation supports the Legacy Option Group.
-.TP
+.TP 7
 _XOPEN_REALTIME
 The implementation supports the X/Open Realtime Option Group.
-.TP
+.TP 7
 _XOPEN_REALTIME_THREADS
 The implementation supports the X/Open Realtime Threads Option Group.
-.TP
+.TP 7
 _XOPEN_SHM
 The implementation supports the Issue 4, Version 2 Shared Memory Option
 Group. This symbol shall always be set to a value other
 than -1.
-.TP
+.TP 7
 _XOPEN_STREAMS
 The implementation supports the XSI STREAMS Option Group. 
-.TP
+.TP 7
 _XOPEN_UNIX
 .sp
 The implementation supports the XSI extension. 
@@ -512,15 +508,15 @@ implementation shall provide the option on all applicable files.
 All of the following constants, whether defined in \fI<unistd.h>\fP
 or not, may be queried with respect to a specific
 file using the \fIpathconf\fP() or \fIfpathconf\fP() functions:
-.TP
+.TP 7
 _POSIX_ASYNC_IO
 Asynchronous input or output operations may be performed for the associated
 file.
-.TP
+.TP 7
 _POSIX_PRIO_IO
 Prioritized input or output operations may be performed for the associated
 file.
-.TP
+.TP 7
 _POSIX_SYNC_IO
 Synchronized input or output operations may be performed for the associated
 file.
@@ -528,23 +524,23 @@ file.
 .SS Constants for Functions
 .LP
 The following symbolic constant shall be defined:
-.TP
+.TP 7
 NULL
 Null pointer
 .sp
 .LP
 The following symbolic constants shall be defined for the \fIaccess\fP()
 function:
-.TP
+.TP 7
 F_OK
 Test for existence of file.
-.TP
+.TP 7
 R_OK
 Test for read permission.
-.TP
+.TP 7
 W_OK
 Test for write permission.
-.TP
+.TP 7
 X_OK
 Test for execute (search) permission.
 .sp
@@ -555,11 +551,11 @@ The constants F_OK, R_OK, W_OK, and X_OK and the expressions \fIR_OK\fP|\fIW_OK\
 .LP
 The following symbolic constants shall be defined for the \fIconfstr\fP()
 function:
-.TP
+.TP 7
 _CS_PATH
 This is the value for the \fIPATH\fP environment variable that finds
 all standard utilities.
-.TP
+.TP 7
 _CS_POSIX_V6_ILP32_OFF32_CFLAGS
 If \fIsysconf\fP(_SC_V6_ILP32_OFF32) returns -1, the meaning of this
 value is unspecified. Otherwise, this value is the set of
@@ -567,7 +563,7 @@ initial options to be given to the \fIc99\fP utility to build an application
 using a
 programming model with 32-bit \fBint\fP, \fBlong\fP, \fBpointer\fP,
 and \fBoff_t\fP types.
-.TP
+.TP 7
 _CS_POSIX_V6_ILP32_OFF32_LDFLAGS
 If \fIsysconf\fP(_SC_V6_ILP32_OFF32) returns -1, the meaning of this
 value is unspecified. Otherwise, this value is the set of
@@ -575,7 +571,7 @@ final options to be given to the \fIc99\fP utility to build an application
 using a programming
 model with 32-bit \fBint\fP, \fBlong\fP, \fBpointer\fP, and \fBoff_t\fP
 types.
-.TP
+.TP 7
 _CS_POSIX_V6_ILP32_OFF32_LIBS
 If \fIsysconf\fP(_SC_V6_ILP32_OFF32) returns -1, the meaning of this
 value is unspecified. Otherwise, this value is the set of
@@ -583,7 +579,7 @@ libraries to be given to the \fIc99\fP utility to build an application
 using a programming
 model with 32-bit \fBint\fP, \fBlong\fP, \fBpointer\fP, and \fBoff_t\fP
 types.
-.TP
+.TP 7
 _CS_POSIX_V6_ILP32_OFFBIG_CFLAGS
 If \fIsysconf\fP(_SC_V6_ILP32_OFFBIG) returns -1, the meaning of this
 value is unspecified. Otherwise, this value is the set of
@@ -592,7 +588,7 @@ using a
 programming model with 32-bit \fBint\fP, \fBlong\fP, and \fBpointer\fP
 types, and an \fBoff_t\fP type using at least 64
 bits.
-.TP
+.TP 7
 _CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS
 If \fIsysconf\fP(_SC_V6_ILP32_OFFBIG) returns -1, the meaning of this
 value is unspecified. Otherwise, this value is the set of
@@ -600,7 +596,7 @@ final options to be given to the \fIc99\fP utility to build an application
 using a programming
 model with 32-bit \fBint\fP, \fBlong\fP, and \fBpointer\fP types,
 and an \fBoff_t\fP type using at least 64 bits.
-.TP
+.TP 7
 _CS_POSIX_V6_ILP32_OFFBIG_LIBS
 If \fIsysconf\fP(_SC_V6_ILP32_OFFBIG) returns -1, the meaning of this
 value is unspecified. Otherwise, this value is the set of
@@ -608,7 +604,7 @@ libraries to be given to the \fIc99\fP utility to build an application
 using a programming
 model with 32-bit \fBint\fP, \fBlong\fP, and \fBpointer\fP types,
 and an \fBoff_t\fP type using at least 64 bits.
-.TP
+.TP 7
 _CS_POSIX_V6_LP64_OFF64_CFLAGS
 If \fIsysconf\fP(_SC_V6_LP64_OFF64) returns -1, the meaning of this
 value is unspecified. Otherwise, this value is the set of
@@ -616,7 +612,7 @@ initial options to be given to the \fIc99\fP utility to build an application
 using a
 programming model with 32-bit \fBint\fP and 64-bit \fBlong\fP, \fBpointer\fP,
 and \fBoff_t\fP types.
-.TP
+.TP 7
 _CS_POSIX_V6_LP64_OFF64_LDFLAGS
 If \fIsysconf\fP(_SC_V6_LP64_OFF64) returns -1, the meaning of this
 value is unspecified. Otherwise, this value is the set of
@@ -624,7 +620,7 @@ final options to be given to the \fIc99\fP utility to build an application
 using a programming
 model with 32-bit \fBint\fP and 64-bit \fBlong\fP, \fBpointer\fP,
 and \fBoff_t\fP types.
-.TP
+.TP 7
 _CS_POSIX_V6_LP64_OFF64_LIBS
 If \fIsysconf\fP(_SC_V6_LP64_OFF64) returns -1, the meaning of this
 value is unspecified. Otherwise, this value is the set of
@@ -632,7 +628,7 @@ libraries to be given to the \fIc99\fP utility to build an application
 using a programming
 model with 32-bit \fBint\fP and 64-bit \fBlong\fP, \fBpointer\fP,
 and \fBoff_t\fP types.
-.TP
+.TP 7
 _CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS
 If \fIsysconf\fP(_SC_V6_LPBIG_OFFBIG) returns -1, the meaning of this
 value is unspecified. Otherwise, this value is the set of
@@ -641,7 +637,7 @@ using a
 programming model with an \fBint\fP type using at least 32 bits and
 \fBlong\fP, \fBpointer\fP, and \fBoff_t\fP types using at
 least 64 bits.
-.TP
+.TP 7
 _CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS
 If \fIsysconf\fP(_SC_V6_LPBIG_OFFBIG) returns -1, the meaning of this
 value is unspecified. Otherwise, this value is the set of
@@ -650,7 +646,7 @@ using a programming
 model with an \fBint\fP type using at least 32 bits and \fBlong\fP,
 \fBpointer\fP, and \fBoff_t\fP types using at least 64
 bits.
-.TP
+.TP 7
 _CS_POSIX_V6_LPBIG_OFFBIG_LIBS
 If \fIsysconf\fP(_SC_V6_LPBIG_OFFBIG) returns -1, the meaning of this
 value is unspecified. Otherwise, this value is the set of
@@ -659,7 +655,7 @@ using a programming
 model with an \fBint\fP type using at least 32 bits and \fBlong\fP,
 \fBpointer\fP, and \fBoff_t\fP types using at least 64
 bits.
-.TP
+.TP 7
 _CS_POSIX_V6_WIDTH_RESTRICTED_ENVS
 This value is a <newline>-separated list of names of programming environments
 supported by the implementation in which the
@@ -710,29 +706,29 @@ _CS_XBS5_LPBIG_OFFBIG_LINTFLAGS (\fBLEGACY\fP)
 .LP
 The following symbolic constants shall be defined for the \fIlseek\fP()
 and \fIfcntl\fP() functions and shall have distinct values:
-.TP
+.TP 7
 SEEK_CUR
 Set file offset to current plus \fIoffset\fP.
-.TP
+.TP 7
 SEEK_END
 Set file offset to EOF plus \fIoffset\fP.
-.TP
+.TP 7
 SEEK_SET
 Set file offset to \fIoffset\fP.
 .sp
 .LP
 The following symbolic constants shall be defined as possible values
 for the \fIfunction\fP argument to the \fIlockf\fP() function:
-.TP
+.TP 7
 F_LOCK
 Lock a section for exclusive use.
-.TP
+.TP 7
 F_TEST
 Test section for locks by other processes.
-.TP
+.TP 7
 F_TLOCK
 Test and lock a section for exclusive use.
-.TP
+.TP 7
 F_ULOCK
 Unlock locked sections.
 .sp
@@ -1027,13 +1023,13 @@ The two constants _SC_PAGESIZE and _SC_PAGE_SIZE may be defined to
 have the same value.
 .LP
 The following symbolic constants shall be defined for file streams:
-.TP
+.TP 7
 STDERR_FILENO
 File number of \fIstderr\fP; 2.
-.TP
+.TP 7
 STDIN_FILENO
 File number of \fIstdin\fP; 0.
-.TP
+.TP 7
 STDOUT_FILENO
 File number of \fIstdout\fP; 1.
 .sp
@@ -1196,10 +1192,10 @@ extern int    optind, opterr, optopt;
 \fIThe following sections are informative.\fP
 .SH APPLICATION USAGE
 .LP
-IEEE\0Std\01003.1-2001 only describes the behavior of systems that
+IEEE\ Std\ 1003.1-2001 only describes the behavior of systems that
 claim conformance to it. However, application
 developers who want to write applications that adapt to other versions
-of IEEE\0Std\01003.1 (or to systems that do not
+of IEEE\ Std\ 1003.1 (or to systems that do not
 conform to any POSIX standard) may find it useful to code them so
 as to conditionally compile different code depending on the value
 of _POSIX_VERSION, for example:
@@ -1219,27 +1215,27 @@ long pos=ftell(fp);
 .fi
 .RE
 .LP
-Earlier versions of IEEE\0Std\01003.1 and of the Single UNIX Specification
+Earlier versions of IEEE\ Std\ 1003.1 and of the Single UNIX Specification
 can be identified by the following
 macros:
-.TP
+.TP 7
 POSIX.1-1988 standard
 _POSIX_VERSION==198808L
-.TP
+.TP 7
 POSIX.1-1990 standard
 _POSIX_VERSION==199009L
-.TP
-ISO\0POSIX-1:1996 standard
+.TP 7
+ISO\ POSIX-1:1996 standard
 _POSIX_VERSION==199506L
-.TP
+.TP 7
 Single UNIX Specification, Version 1
 _XOPEN_UNIX and _XOPEN_VERSION==4
-.TP
+.TP 7
 Single UNIX Specification, Version 2
 _XOPEN_UNIX and _XOPEN_VERSION==500
 .sp
 .LP
-IEEE\0Std\01003.1-2001 does not make any attempt to define application
+IEEE\ Std\ 1003.1-2001 does not make any attempt to define application
 binary interaction with the underlying operating
 system. However, application developers may find it useful to query
 _SC_VERSION at runtime via \fIsysconf\fP() to determine whether the
@@ -1260,7 +1256,7 @@ necessary functionality as in the following program fragment:
 New applications should not use _XOPEN_SHM or _XOPEN_ENH_I18N.
 .SH RATIONALE
 .LP
-As IEEE\0Std\01003.1-2001 evolved, certain options became sufficiently
+As IEEE\ Std\ 1003.1-2001 evolved, certain options became sufficiently
 standardized that it was concluded that simply
 requiring one of the option choices was simpler than retaining the
 option. However, for backwards-compatibility, the option flags
@@ -1275,7 +1271,7 @@ since the implementation of the functionality is potentially problematic.
 However, they recognized that support for existing
 application binaries is a concern to manufacturers, application developers,
 and the users of implementations conforming to
-IEEE\0Std\01003.1-2001.
+IEEE\ Std\ 1003.1-2001.
 .LP
 While the example using _SC_VERSION in the APPLICATION USAGE section
 does not provide the greatest degree of imaginable utility
@@ -1290,7 +1286,7 @@ standard developers elected to retain the _POSIX_VERSION and
 _SC_VERSION functionality.
 .SS Compile-Time Symbolic Constants for System-Wide Options
 .LP
-IEEE\0Std\01003.1-2001 now includes support in certain areas for the
+IEEE\ Std\ 1003.1-2001 now includes support in certain areas for the
 newly adopted policy governing options and
 stubs.
 .LP
@@ -1298,26 +1294,23 @@ This policy provides flexibility for implementations in how they support
 options. It also specifies how conforming applications
 can adapt to different implementations that support different sets
 of options. It allows the following:
-.in +5
-.LP
+.IP " 1." 4
 If an implementation has no interest in supporting an option, it does
 not have to provide anything associated with that option
 beyond the announcement that it does not support it.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 An implementation can support a partial or incompatible version of
 an option (as a non-standard extension) as long as it does
 not claim to support the option.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 An application can determine whether the option is supported. A strictly
 conforming application must check this announcement
 mechanism before first using anything associated with the option.
-.in -5
 .LP
-There is an important implication of this policy. IEEE\0Std\01003.1-2001
+.LP
+There is an important implication of this policy. IEEE\ Std\ 1003.1-2001
 cannot dictate the behavior of interfaces
 associated with an option when the implementation does not claim to
 support the option. In particular, it cannot require that a
@@ -1335,8 +1328,7 @@ be able to discover whether the implementation supports each
 option.
 .LP
 Any application must consider the following three cases for each option:
-.in +5
-.LP
+.IP " 1." 4
 Option never supported.
 .LP
 The implementation advertises at compile time that the option will
@@ -1344,19 +1336,17 @@ never be supported. In this case, it is not necessary for the
 implementation to supply any of the data types or function interfaces
 that are provided only as part of the option. The
 implementation might provide data types and functions that are similar
-to those defined by IEEE\0Std\01003.1-2001, but
+to those defined by IEEE\ Std\ 1003.1-2001, but
 there is no guarantee for any particular behavior.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Option always supported.
 .LP
 The implementation advertises at compile time that the option will
 always be supported. In this case, all data types and
 function interfaces shall be available and shall operate as specified.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Option might or might not be supported.
 .LP
 Some implementations might not provide a mechanism to specify support
@@ -1370,8 +1360,8 @@ this situation, there must be a mechanism that allows the
 application to query, at runtime, whether the option is supported.
 If the application attempts to use the option when it is not
 supported, the result is unspecified unless explicitly specified otherwise
-in IEEE\0Std\01003.1-2001.
-.in -5
+in IEEE\ Std\ 1003.1-2001.
+.LP
 .SH FUTURE DIRECTIONS
 .LP
 None.
@@ -1379,7 +1369,7 @@ None.
 .LP
 \fI<inttypes.h>\fP , \fI<limits.h>\fP , \fI<sys/socket.h>\fP , \fI<sys/types.h>\fP
 , \fI<termios.h>\fP , \fI<wctype.h>\fP , the System Interfaces volume
-of IEEE\0Std\01003.1-2001, \fIaccess\fP(), \fIalarm\fP(), \fIchdir\fP(),
+of IEEE\ Std\ 1003.1-2001, \fIaccess\fP(), \fIalarm\fP(), \fIchdir\fP(),
 \fIchown\fP(), \fIclose\fP(), \fIcrypt\fP(), \fIctermid\fP(), \fIdup\fP(),
 \fIencrypt\fP(), \fIenviron\fP, \fIexec\fP, \fIexit\fP(), \fIfchdir\fP(),
 \fIfchown\fP(), \fIfcntl\fP(), \fIfork\fP(), \fIfpathconf\fP(), \fIfsync\fP(),

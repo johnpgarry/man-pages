@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fgetpos" P 2003 POSIX
+.TH "FGETPOS" P 2003 POSIX
 .\" fgetpos 
 .SH NAME
-fgetpos - get current file position information
+fgetpos \- get current file position information
 .SH SYNOPSIS
 .LP
 \fB#include <stdio.h>
@@ -13,12 +13,6 @@ int fgetpos(FILE *restrict\fP \fIstream\fP\fB, fpos_t *restrict\fP
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 The \fIfgetpos\fP() function shall store the current values of the
 parse state (if any) and file position indicator for the
@@ -35,17 +29,17 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIfgetpos\fP() function shall fail if:
-.TP
+.TP 7
 .B EOVERFLOW
 The current value of the file position cannot be represented correctly
 in an object of type \fBfpos_t\fP. 
 .sp
 .LP
 The \fIfgetpos\fP() function may fail if:
-.TP
+.TP 7
 .B EBADF
 The file descriptor underlying \fIstream\fP is not valid. 
-.TP
+.TP 7
 .B ESPIPE
 The file descriptor underlying \fIstream\fP is associated with a pipe,
 FIFO, or socket. 
@@ -67,7 +61,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfopen\fP() , \fIftell\fP() , \fIrewind\fP() ,
-\fIungetc\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIungetc\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<stdio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

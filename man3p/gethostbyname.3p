@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "gethostbyaddr" P 2003 POSIX
+.TH "GETHOSTBYADDR" P 2003 POSIX
 .\" gethostbyaddr 
 .SH NAME
-gethostbyaddr, gethostbyname - network host database functions
+gethostbyaddr, gethostbyname \- network host database functions
 .SH SYNOPSIS
 .LP
 \fB#include <netdb.h>
@@ -13,7 +13,7 @@ gethostbyaddr, gethostbyname - network host database functions
 \fBstruct hostent *gethostbyaddr(const void *\fP\fIaddr\fP\fB, socklen_t\fP
 \fIlen\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fItype\fP\fB);
+\ \ \ \ \ \  int\fP \fItype\fP\fB);
 .br
 struct hostent *gethostbyname(const char *\fP\fIname\fP\fB); \fP
 \fB
@@ -25,11 +25,11 @@ These functions shall retrieve information about hosts. This information
 is considered to be stored in a database that can be
 accessed sequentially or randomly. Implementation of this database
 is unspecified. 
-.TP
+.TP 7
 \fBNote:\fP
 In many cases it is implemented by the Domain Name System, as documented
-in RFC\01034, RFC\01035, and
-RFC\01886.
+in RFC\ 1034, RFC\ 1035, and
+RFC\ 1886.
 .sp
 .LP
 Entries shall be returned in \fBhostent\fP structures.
@@ -87,20 +87,20 @@ These functions shall fail in the following cases. The \fIgethostbyaddr\fP()
 and \fIgethostbyname\fP() functions shall set
 \fIh_errno\fP to the value shown in the list below. Any changes to
 \fIerrno\fP are unspecified.
-.TP
+.TP 7
 .B HOST_NOT_FOUND
 .sp
 No such host is known.
-.TP
+.TP 7
 .B NO_DATA
 The server recognized the request and the name, but no address is
 available. Another type of request to the name server for the
 domain might return an answer.
-.TP
+.TP 7
 .B NO_RECOVERY
 .sp
 An unexpected server failure occurred which cannot be recovered.
-.TP
+.TP 7
 .B TRY_AGAIN
 A temporary and possibly transient error occurred, such as a failure
 of a server to respond.
@@ -131,7 +131,7 @@ be withdrawn in a future version.
 \fIendhostent\fP() , \fIendservent\fP() , \fIgai_strerror\fP() , \fIgetaddrinfo\fP()
 , \fIh_errno\fP() , \fIinet_addr\fP() , the Base Definitions volume
 of
-IEEE\0Std\01003.1-2001, \fI<netdb.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<netdb.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

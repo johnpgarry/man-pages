@@ -2,7 +2,7 @@
 .TH "<arpa/inet.h>" P 2003 POSIX
 .\" <arpa/inet.h> 
 .SH NAME
-arpa/inet.h - definitions for internet operations
+arpa/inet.h \- definitions for internet operations
 .SH SYNOPSIS
 .LP
 \fB#include <arpa/inet.h>\fP
@@ -14,7 +14,7 @@ described in \fI<netinet/in.h>\fP .
 The \fBin_addr\fP structure shall be defined as described in \fI<netinet/in.h>\fP
 \&.
 .LP
-The INET_ADDRSTRLEN   \0and INET6_ADDRSTRLEN  macros
+The INET_ADDRSTRLEN   \ and INET6_ADDRSTRLEN  macros
 shall be defined as described in \fI<netinet/in.h>\fP .
 .LP
 The following shall either be declared as functions, defined as macros,
@@ -66,7 +66,7 @@ None.
 .SH SEE ALSO
 .LP
 \fI<netinet/in.h>\fP , \fI<inttypes.h>\fP , the System Interfaces
-volume of IEEE\0Std\01003.1-2001, \fIhtonl\fP(), \fIinet_addr\fP()
+volume of IEEE\ Std\ 1003.1-2001, \fIhtonl\fP(), \fIinet_addr\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

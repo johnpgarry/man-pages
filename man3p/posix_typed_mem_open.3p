@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_typed_mem_open" P 2003 POSIX
+.TH "POSIX_TYPED_MEM_OPEN" P 2003 POSIX
 .\" posix_typed_mem_open 
 .SH NAME
-posix_typed_mem_open - open a typed memory object (\fBADVANCED REALTIME\fP)
+posix_typed_mem_open \- open a typed memory object (\fBADVANCED REALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <sys/mman.h>
@@ -39,19 +39,19 @@ is, the same typed memory pool accessed via several different
 ports shall have several different corresponding names. The binding
 between names and typed memory objects is established in an
 implementation-defined manner. Unlike shared memory objects, there
-is no way within IEEE\0Std\01003.1-2001 for a program to
+is no way within IEEE\ Std\ 1003.1-2001 for a program to
 create a typed memory object.
 .LP
 The value of \fItflag\fP shall determine how the typed memory object
 behaves when subsequently mapped by calls to \fImmap\fP(). At most,
 one of the following flags defined in \fI<sys/mman.h>\fP may be specified:
-.TP
+.TP 7
 POSIX_TYPED_MEM_ALLOCATE
 Allocate on \fImmap\fP().
-.TP
+.TP 7
 POSIX_TYPED_MEM_ALLOCATE_CONTIG
 Allocate contiguously on \fImmap\fP().
-.TP
+.TP 7
 POSIX_TYPED_MEM_MAP_ALLOCATABLE
 Map on \fImmap\fP(), without affecting allocatability.
 .sp
@@ -102,13 +102,13 @@ The file status flags of the open file description shall be set according
 to the value of \fIoflag\fP. Applications shall
 specify exactly one of the three access mode values described below
 and defined in the \fI<fcntl.h>\fP header, as the value of \fIoflag\fP.
-.TP
+.TP 7
 O_RDONLY
 Open for read access only.
-.TP
+.TP 7
 O_WRONLY
 Open for write access only.
-.TP
+.TP 7
 O_RDWR
 Open for read or write access.
 .sp
@@ -121,32 +121,32 @@ lowest numbered unused file descriptor. Otherwise, it shall return
 .SH ERRORS
 .LP
 The \fIposix_typed_mem_open\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 The typed memory object exists and the permissions specified by \fIoflag\fP
 are denied.
-.TP
+.TP 7
 .B EINTR
 The \fIposix_typed_mem_open\fP() operation was interrupted by a signal.
-.TP
+.TP 7
 .B EINVAL
 The flags specified in \fItflag\fP are invalid (more than one of POSIX_TYPED_MEM_ALLOCATE,
 POSIX_TYPED_MEM_ALLOCATE_CONTIG, or
 POSIX_TYPED_MEM_MAP_ALLOCATABLE is specified).
-.TP
+.TP 7
 .B EMFILE
 Too many file descriptors are currently in use by this process.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIname\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENFILE
 Too many file descriptors are currently open in the system.
-.TP
+.TP 7
 .B ENOENT
 The named typed memory object does not exist.
-.TP
+.TP 7
 .B EPERM
 The caller lacks the appropriate privilege to specify the flag POSIX_TYPED_MEM_MAP_ALLOCATABLE
 in argument \fItflag\fP.
@@ -172,7 +172,7 @@ None.
 \fIftruncate\fP() , \fImmap\fP() , \fImsync\fP() ,
 \fIposix_mem_offset\fP() , \fIposix_typed_mem_get_info\fP() , \fIumask\fP()
 , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<fcntl.h>\fP, \fI<sys/mman.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<fcntl.h>\fP, \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

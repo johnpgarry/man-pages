@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "mq_unlink" P 2003 POSIX
+.TH "MQ_UNLINK" P 2003 POSIX
 .\" mq_unlink 
 .SH NAME
-mq_unlink - remove a message queue (\fBREALTIME\fP)
+mq_unlink \- remove a message queue (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <mqueue.h>
@@ -37,14 +37,14 @@ set \fIerrno\fP to indicate the error.
 .SH ERRORS
 .LP
 The \fImq_unlink\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Permission is denied to unlink the named message queue.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIname\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 The named message queue does not exist.
 .sp
@@ -66,7 +66,7 @@ None.
 .LP
 \fImq_close\fP() , \fImq_open\fP() , \fImsgctl\fP() , \fImsgget\fP()
 , \fImsgrcv\fP() , \fImsgsnd\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<mqueue.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<mqueue.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

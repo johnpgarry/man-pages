@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "dirname" P 2003 POSIX
+.TH "DIRNAME" P 2003 POSIX
 .\" dirname 
 .SH NAME
-dirname - return the directory portion of a pathname
+dirname \- return the directory portion of a pathname
 .SH SYNOPSIS
 .LP
 \fBdirname\fP \fIstring\fP
@@ -10,52 +10,44 @@ dirname - return the directory portion of a pathname
 .LP
 The \fIstring\fP operand shall be treated as a pathname, as defined
 in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 3.266, Pathname. The string
+IEEE\ Std\ 1003.1-2001, Section 3.266, Pathname. The string
 \fIstring\fP shall be converted to the name of the directory containing
 the filename corresponding to the last pathname component
 in \fIstring\fP, performing actions equivalent to the following steps
 in order:
-.in +5
-.LP
+.IP " 1." 4
 If \fIstring\fP is \fB//\fP, skip steps 2 to 5.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If \fIstring\fP consists entirely of slash characters, \fIstring\fP
 shall be set to a single slash character. In this case,
 skip steps 3 to 8.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If there are any trailing slash characters in \fIstring\fP, they shall
 be removed.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 If there are no slash characters remaining in \fIstring\fP, \fIstring\fP
 shall be set to a single period character. In this
 case, skip steps 5 to 8.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 If there are any trailing non-slash characters in \fIstring\fP, they
 shall be removed.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 If the remaining \fIstring\fP is \fB//\fP, it is implementation-defined
 whether steps 7 and 8 are skipped or processed.
-.in -5
-.in +5
 .LP
+.IP " 7." 4
 If there are any trailing slash characters in \fIstring\fP, they shall
 be removed.
-.in -5
-.in +5
 .LP
+.IP " 8." 4
 If the remaining \fIstring\fP is empty, \fIstring\fP shall be set
 to a single slash character.
-.in -5
+.LP
 .LP
 The resulting string shall be written to standard output.
 .SH OPTIONS
@@ -64,7 +56,7 @@ None.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIstring\fP
 A string.
 .sp
@@ -78,29 +70,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIdirname\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -132,10 +124,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -154,18 +146,18 @@ or less than two or are prepared to deal with the implementation-defined
 consequences.
 .SH EXAMPLES
 .TS C
-center;l l l l l l l l.
-\fBCommand\fP 	 \fBResults\fP 	
-\fIdirname\fP / 	 / 	
-\fIdirname\fP // 	 / or // 	
-\fIdirname\fP /\fIa\fP/\fIb\fP/ 	 /\fIa\fP 	
-\fIdirname\fP //\fIa\fP//\fIb\fP// 	 //\fIa\fP 	
-\fIdirname\fP 	 Unspecified 	
-\fIdirname a\fP 	 . ($? = 0) 	
-\fIdirname\fP "" 	 . ($? = 0) 	
-\fIdirname\fP /\fIa\fP 	 / 	
-\fIdirname\fP /\fIa\fP/\fIb\fP 	 /\fIa\fP 	
-\fIdirname\fP \fIa\fP/\fIb\fP 	 \fIa\fP 	
+center; l l.
+\fBCommand\fP	\fBResults\fP
+\fIdirname\fP /	/
+\fIdirname\fP //	/ or //
+\fIdirname\fP /\fIa\fP/\fIb\fP/	/\fIa\fP
+\fIdirname\fP //\fIa\fP//\fIb\fP//	//\fIa\fP
+\fIdirname\fP	Unspecified
+\fIdirname a\fP	. ($? = 0)
+\fIdirname\fP ""	. ($? = 0)
+\fIdirname\fP /\fIa\fP	/
+\fIdirname\fP /\fIa\fP/\fIb\fP	/\fIa\fP
+\fIdirname\fP \fIa\fP/\fIb\fP	\fIa\fP
 .TE
 .SH RATIONALE
 .LP
@@ -175,7 +167,7 @@ requirements specified in this description in System V Release 3.
 4.3 BSD and earlier versions did not include \fIdirname\fP.
 .LP
 The behaviors of \fIbasename\fP and \fIdirname\fP in this volume of
-IEEE\0Std\01003.1-2001 have been coordinated so that when \fIstring\fP
+IEEE\ Std\ 1003.1-2001 have been coordinated so that when \fIstring\fP
 is a valid pathname:
 .sp
 .RS
@@ -200,7 +192,7 @@ This would not work for the versions of these utilities in early proposals
 due to the way processing of trailing slashes was
 specified. Consideration was given to leaving processing unspecified
 if there were trailing slashes, but this cannot be done; the
-Base Definitions volume of IEEE\0Std\01003.1-2001, Section 3.266,
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, Section 3.266,
 Pathname allows trailing slashes. The \fIbasename\fP and \fIdirname\fP
 utilities
 have to specify consistent handling for all valid pathnames.

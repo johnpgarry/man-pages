@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "clock_getres" P 2003 POSIX
+.TH "CLOCK_GETRES" P 2003 POSIX
 .\" clock_getres 
 .SH NAME
-clock_getres, clock_gettime, clock_settime - clock and timer functions
+clock_getres, clock_gettime, clock_settime \- clock and timer functions
 (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
@@ -139,27 +139,27 @@ value of -1 shall indicate that an error occurred, and
 .LP
 The \fIclock_getres\fP(), \fIclock_gettime\fP(), and \fIclock_settime\fP()
 functions shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIclock_id\fP argument does not specify a known clock.
 .sp
 .LP
 The \fIclock_settime\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fItp\fP argument to \fIclock_settime\fP() is outside the range
 for the given clock ID.
-.TP
+.TP 7
 .B EINVAL
 The \fItp\fP argument specified a nanosecond value less than zero
 or greater than or equal to 1000 million.
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIclock_id\fP argument is CLOCK_MONOTONIC. 
 .sp
 .LP
 The \fIclock_settime\fP() function may fail if:
-.TP
+.TP 7
 .B EPERM
 The requesting process does not have the appropriate privilege to
 set the specified clock.
@@ -192,7 +192,7 @@ None.
 , \fImq_timedreceive\fP() , \fImq_timedsend\fP() , \fInanosleep\fP()
 , \fIpthread_mutex_timedlock\fP() , \fIsem_timedwait\fP() , \fItime\fP()
 , \fItimer_create\fP() , \fItimer_getoverrun\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<time.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<time.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

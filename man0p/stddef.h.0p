@@ -2,23 +2,17 @@
 .TH "<stddef.h>" P 2003 POSIX
 .\" <stddef.h> 
 .SH NAME
-stddef.h - standard type definitions
+stddef.h \- standard type definitions
 .SH SYNOPSIS
 .LP
 \fB#include <stddef.h>\fP
 .SH DESCRIPTION
 .LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
-.LP
 The \fI<stddef.h>\fP header shall define the following macros:
-.TP
+.TP 7
 NULL
 Null pointer constant.
-.TP
+.TP 7
 offsetof(\fItype\fP, \fImember-designator\fP)
 .sp
 Integer constant expression of type \fBsize_t\fP, the value of which
@@ -27,10 +21,10 @@ is the offset in bytes to the structure member
 .sp
 .LP
 The \fI<stddef.h>\fP header shall define the following types:
-.TP
+.TP 7
 \fBptrdiff_t\fP
 Signed integer type of the result of subtracting two pointers.
-.TP
+.TP 7
 \fBwchar_t\fP
 Integer type whose range of values can represent distinct wide-character
 codes for all members of the largest character set
@@ -39,7 +33,7 @@ the null character has the code value 0 and each member of
 the portable character set has a code value equal to its value when
 used as the lone character in an integer character
 constant.
-.TP
+.TP 7
 \fBsize_t\fP
 Unsigned integer type of the result of the \fIsizeof\fP operator.
 .sp
@@ -63,9 +57,9 @@ None.
 .SH SEE ALSO
 .LP
 \fI<wchar.h>\fP , \fI<sys/types.h>\fP , the System
-Interfaces volume of IEEE\0Std\01003.1-2001, \fIconfstr\fP(), the
+Interfaces volume of IEEE\ Std\ 1003.1-2001, \fIconfstr\fP(), the
 Shell and
-Utilities volume of IEEE\0Std\01003.1-2001, \fIgetconf\fP
+Utilities volume of IEEE\ Std\ 1003.1-2001, \fIgetconf\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

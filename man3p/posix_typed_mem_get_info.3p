@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_typed_mem_get_info" P 2003 POSIX
+.TH "POSIX_TYPED_MEM_GET_INFO" P 2003 POSIX
 .\" posix_typed_mem_get_info 
 .SH NAME
-posix_typed_mem_get_info - query typed memory information (\fBADVANCED
+posix_typed_mem_get_info \- query typed memory information (\fBADVANCED
 REALTIME\fP)
 .SH SYNOPSIS
 .LP
@@ -11,7 +11,7 @@ REALTIME\fP)
 .sp
 int posix_typed_mem_get_info(int\fP \fIfildes\fP\fB,
 .br
-\0\0\0\0\0\0 struct posix_typed_mem_info *\fP\fIinfo\fP\fB); \fP
+\ \ \ \ \ \  struct posix_typed_mem_info *\fP\fIinfo\fP\fB); \fP
 \fB
 .br
 \fP
@@ -49,10 +49,10 @@ status value shall be returned.
 .SH ERRORS
 .LP
 The \fIposix_typed_mem_get_info\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid open file descriptor.
-.TP
+.TP 7
 .B ENODEV
 The \fIfildes\fP argument is not connected to a memory object supported
 by this function.
@@ -96,7 +96,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIfstat\fP() , \fImmap\fP() , \fIposix_typed_mem_open\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/mman.h>\fP
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/mman.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

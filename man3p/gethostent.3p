@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "endhostent" P 2003 POSIX
+.TH "ENDHOSTENT" P 2003 POSIX
 .\" endhostent 
 .SH NAME
-endhostent, gethostent, sethostent - network host database functions
+endhostent, gethostent, sethostent \- network host database functions
 .SH SYNOPSIS
 .LP
 \fB#include <netdb.h>
@@ -21,11 +21,11 @@ These functions shall retrieve information about hosts. This information
 is considered to be stored in a database that can be
 accessed sequentially or randomly. The implementation of this database
 is unspecified. 
-.TP
+.TP 7
 \fBNote:\fP
 In many cases this database is implemented by the Domain Name System,
-as documented in RFC\01034, RFC\01035, and
-RFC\01886.
+as documented in RFC\ 1034, RFC\ 1035, and
+RFC\ 1886.
 .sp
 .LP
 The \fIsethostent\fP() function shall open a connection to the database
@@ -77,7 +77,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIendservent\fP() , \fIgethostbyaddr\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<netdb.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<netdb.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

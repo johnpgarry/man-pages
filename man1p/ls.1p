@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "ls" P 2003 POSIX
+.TH "LS" P 2003 POSIX
 .\" ls 
 .SH NAME
-ls - list directory contents
+ls \- list directory contents
 .SH SYNOPSIS
 .LP
 \fBls\fP \fB[\fP\fB-CFRacdilqrtu1\fP\fB][\fP\fB-H | -L\fP
@@ -40,16 +40,16 @@ either recover its position in the hierarchy or terminate.
 .SH OPTIONS
 .LP
 The \fIls\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-C\fP
 Write multi-text-column output with entries sorted down the columns,
 according to the collating sequence. The number of text
 columns and the column separator characters are unspecified, but should
 be adapted to the nature of the output device.
-.TP
+.TP 7
 \fB-F\fP
 Do not follow symbolic links named as operands unless the \fB-H\fP
 or \fB-L\fP options are specified. Write a slash (
@@ -58,14 +58,14 @@ asterisk ( \fB'*'\fP ) after each that is executable, a
 vertical bar ( \fB'|'\fP ) after each that is a FIFO, and an at sign
 ( \fB'@'\fP ) after each that is a symbolic link. For
 other file types, other symbols may be written.
-.TP
+.TP 7
 \fB-H\fP
 If a symbolic link referencing a file of type directory is specified
 on the command line, \fIls\fP shall evaluate the file
 information and file type to be those of the file referenced by the
 link, and not the link itself; however, \fIls\fP shall write
 the name of the link itself and not the file referenced by the link.
-.TP
+.TP 7
 \fB-L\fP
 Evaluate the file information and file type for all symbolic links
 (whether named on the command line or encountered in a file
@@ -74,92 +74,91 @@ the link itself; however, \fIls\fP shall write the name of the
 link itself and not the file referenced by the link. When \fB-L\fP
 is used with \fB-l\fP, write the contents of symbolic links in
 the long format (see the STDOUT section).
-.TP
+.TP 7
 \fB-R\fP
 Recursively list subdirectories encountered.
-.TP
+.TP 7
 \fB-a\fP
 Write out all directory entries, including those whose names begin
 with a period ( \fB'.'\fP ). Entries beginning with a
 period shall not be written out unless explicitly referenced, the
 \fB-a\fP option is supplied, or an implementation-defined
 condition shall cause them to be written.
-.TP
+.TP 7
 \fB-c\fP
 Use time of last modification of the file status information (see
-\fI<sys/stat.h>\fP in the System Interfaces volume of IEEE\0Std\01003.1-2001)
+\fI<sys/stat.h>\fP in the System Interfaces volume of IEEE\ Std\ 1003.1-2001)
 instead of last modification of the file itself for sorting ( \fB-t\fP)
 or writing ( \fB-l\fP).
-.TP
+.TP 7
 \fB-d\fP
 Do not follow symbolic links named as operands unless the \fB-H\fP
 or \fB-L\fP options are specified. Do not treat
 directories differently than other types of files. The use of \fB-d\fP
 with \fB-R\fP produces unspecified results.
-.TP
+.TP 7
 \fB-f\fP
 Force each argument to be interpreted as a directory and list the
 name found in each slot. This option shall turn off \fB-l\fP,
 \fB-t\fP, \fB-s\fP, and \fB-r\fP, and shall turn on \fB-a\fP; the
 order is the order in which entries appear in the directory.
-.TP
+.TP 7
 \fB-g\fP
 The same as \fB-l\fP, except that the owner shall not be written.
-.TP
+.TP 7
 \fB-i\fP
 For each file, write the file's file serial number (see \fIstat\fP()
 in the System
-Interfaces volume of IEEE\0Std\01003.1-2001).
-.TP
+Interfaces volume of IEEE\ Std\ 1003.1-2001).
+.TP 7
 \fB-l\fP
 (The letter ell.) Do not follow symbolic links named as operands unless
 the \fB-H\fP or \fB-L\fP options are specified. Write
 out in long format (see the STDOUT section). When \fB-l\fP (ell) is
 specified, -1 (one) shall be assumed.
-.TP
+.TP 7
 \fB-m\fP
 Stream output format; list files across the page, separated by commas.
-.TP
+.TP 7
 \fB-n\fP
 The same as \fB-l\fP, except that the owner's UID and GID numbers
 shall be written, rather than the associated character strings.
-.TP
+.TP 7
 \fB-o\fP
 The same as \fB-l\fP, except that the group shall not be written.
-.TP
+.TP 7
 \fB-p\fP
 Write a slash ( \fB'/'\fP ) after each filename if that file is a
 directory. 
-.TP
+.TP 7
 \fB-q\fP
 Force each instance of non-printable filename characters and <tab>s
 to be written as the question-mark ( \fB'?'\fP )
 character. Implementations may provide this option by default if the
 output is to a terminal device.
-.TP
+.TP 7
 \fB-r\fP
 Reverse the order of the sort to get reverse collating sequence or
 oldest first.
-.TP
+.TP 7
 \fB-s\fP
 Indicate the total number of file system blocks consumed by each file
-displayed. The block size is implementation-defined. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
-.TP
+displayed. The block size is implementation-defined. 
+.TP 7
 \fB-t\fP
 Sort with the primary key being time modified (most recently modified
 first) and the secondary key being filename in the
 collating sequence.
-.TP
+.TP 7
 \fB-u\fP
 Use time of last access (see \fI<sys/stat.h>\fP) instead of last modification
 of the file for sorting ( \fB-t\fP) or writing ( \fB-l\fP).
-.TP
+.TP 7
 \fB-x\fP
 The same as \fB-C\fP, except that the multi-text-column output is
 produced with entries sorted across, rather than down, the
 columns. 
-.TP
+.TP 7
 \fB-1\fP
 (The numeric digit one.) Force output to be one entry per line.
 .sp
@@ -173,7 +172,7 @@ specified in each pair shall determine the output format.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file to be written. If the file specified is not found,
 a diagnostic message shall be output on standard
@@ -189,7 +188,7 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIls\fP:
-.TP
+.TP 7
 \fICOLUMNS\fP
 Determine the user's preferred column position width for writing multiple
 text-column output. If this variable contains a
@@ -202,43 +201,43 @@ of the output device. The column width chosen to write the
 names of files in any given directory shall be constant. Filenames
 shall not be truncated to fit into the multiple text-column
 output.
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for character collation information in determining
 the pathname collation sequence.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments) and which characters
 are defined as printable (character class \fBprint\fP).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fILC_TIME\fP
 Determine the format and contents for date and time strings written
 by \fIls\fP.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone for date and time strings written by \fIls\fP.
 If \fITZ\fP is unset or null, an unspecified default
@@ -326,11 +325,11 @@ The \fB-g\fP, \fB-n\fP, and \fB-o\fP options use the same format as
 <blank>s. See the OPTIONS section. 
 .LP
 In both the preceding \fB-l\fP forms, if <\fIowner name\fP> or <\fIgroup
-name\fP> cannot be determined,   \0or if
+name\fP> cannot be determined,   \ or if
 \fB-n\fP is given,  they shall be replaced with their associated
 numeric values using the format \fB%u\fP .
 .LP
-The <\fIdate\0and\0time\fP> field shall contain the appropriate date
+The <\fIdate\ and\ time\fP> field shall contain the appropriate date
 and timestamp of when the file was last
 modified. In the POSIX locale, the field shall be the equivalent of
 the output of the following \fIdate\fP command:
@@ -384,29 +383,29 @@ The file mode written under the \fB-l\fP,   \fB-g\fP, \fB-n\fP, and
 .fi
 .RE
 .LP
-The <\fIoptional\0alternate\0access\0method\0flag\fP> shall be a single
+The <\fIoptional\ alternate\ access\ method\ flag\fP> shall be a single
 <space> if there is no
 alternate or additional access control method associated with the
 file; otherwise, a printable character shall be used.
 .LP
-The <\fIentry\0type\fP> character shall describe the type of file,
+The <\fIentry\ type\fP> character shall describe the type of file,
 as follows:
-.TP
+.TP 7
 \fBd\fP
 Directory.
-.TP
+.TP 7
 \fBb\fP
 Block special file.
-.TP
+.TP 7
 \fBc\fP
 Character special file.
-.TP
-\fBl\fP\0(ell)
+.TP 7
+\fBl\fP\ (ell)
 Symbolic link.
-.TP
+.TP 7
 \fBp\fP
 FIFO.
-.TP
+.TP 7
 \fB-\fP
 Regular file.
 .sp
@@ -415,71 +414,80 @@ Implementations may add other characters to this list to represent
 other implementation-defined file types.
 .LP
 The next three fields shall be three characters each:
-.TP
+.TP 7
 <\fIowner permissions\fP>
 .sp
 Permissions for the file owner class (see the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 4.4, File Access Permissions).
-.TP
+of IEEE\ Std\ 1003.1-2001, Section 4.4, File Access Permissions).
+.TP 7
 <\fIgroup permissions\fP>
 .sp
 Permissions for the file group class.
-.TP
+.TP 7
 <\fIother permissions\fP>
 .sp
 Permissions for the file other class.
 .sp
 .LP
 Each field shall have three character positions:
-.in +5
-.LP
+.IP " 1." 4
 If \fB'r'\fP , the file is readable; if \fB'-'\fP , the file is not
 readable.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 If \fB'w'\fP , the file is writable; if \fB'-'\fP , the file is not
 writable.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The first of the following that applies:
-.TP
+.TP 7
 \fBS\fP
-If in <\fIowner\0permissions\fP>, the file is not executable and set-user-ID
+.RS
+If in <\fIowner\ permissions\fP>, the file is not executable and set-user-ID
 mode is set. If in
-<\fIgroup\0permissions\fP>, the file is not executable and set-group-ID
+<\fIgroup\ permissions\fP>, the file is not executable and set-group-ID
 mode is set.
-.TP
+.RE
+.TP 7
 \fBs\fP
-If in <\fIowner\0permissions\fP>, the file is executable and set-user-ID
+.RS
+If in <\fIowner\ permissions\fP>, the file is executable and set-user-ID
 mode is set. If in
-<\fIgroup\0permissions\fP>, the file is executable and set-group-ID
+<\fIgroup\ permissions\fP>, the file is executable and set-group-ID
 mode is set.
-.TP
+.RE
+.TP 7
 \fBT\fP
-If in <\fIother\0permissions\fP> and the file is a directory, search
+.RS
+If in <\fIother\ permissions\fP> and the file is a directory, search
 permission is not granted to others, and the
 restricted deletion flag is set. 
-.TP
+.RE
+.TP 7
 \fBt\fP
-If in <\fIother\0permissions\fP> and the file is a directory, search
+.RS
+If in <\fIother\ permissions\fP> and the file is a directory, search
 permission is granted to others, and the restricted
 deletion flag is set. 
-.TP
+.RE
+.TP 7
 \fBx\fP
+.RS
 The file is executable or the directory is searchable.
-.TP
+.RE
+.TP 7
 \fB-\fP
+.RS
 None of the attributes of \fB'S'\fP , \fB's'\fP , \fB'T'\fP , \fB't'\fP
 , or \fB'x'\fP applies.
+.RE
 .sp
 .LP
 Implementations may add other characters to this list for the third
 character position. Such additions shall, however, be
 written in lowercase if the file is executable or searchable, and
 in uppercase if it is not.
-.in -5
+.LP
 .LP
 If any of the \fB-l\fP,   \fB-g\fP, \fB-n\fP, \fB-o\fP, or \fB-s\fP
 options is specified, each list of files within the directory shall
@@ -530,10 +538,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -589,7 +597,7 @@ in the file); on others it is calculated based on the file size
 .SH EXAMPLES
 .LP
 An example of a small directory tree being fully listed with \fIls\fP
-\fB-laRF\0a\fP in the POSIX locale:
+\fB-laRF\ a\fP in the POSIX locale:
 .sp
 .RS
 .nf
@@ -626,11 +634,11 @@ of untraversed directories.
 .LP
 The \fB-1\fP (one) option was historically found in BSD and BSD-derived
 implementations only. It is required in this volume of
-IEEE\0Std\01003.1-2001 so that conforming applications might ensure
+IEEE\ Std\ 1003.1-2001 so that conforming applications might ensure
 that output is one entry per line, even if the output
 is to a terminal.
 .LP
-Generally, this volume of IEEE\0Std\01003.1-2001 is silent about what
+Generally, this volume of IEEE\ Std\ 1003.1-2001 is silent about what
 happens when options are given multiple times. In
 the cases of \fB-C\fP, \fB-l\fP, and \fB-1\fP, however, it does specify
 the results of these overlapping options. Since
@@ -656,41 +664,34 @@ from \fB-a\fP did not seem important enough to require both.
 Implementations may make \fB-q\fP the default for terminals to prevent
 trojan horse attacks on terminals with special escape
 sequences. This is not required because:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Some control characters may be useful on some terminals; for example,
 a system might write them as \fB"\\001"\fP or
 \fB"^A"\fP .
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Special behavior for terminals is not relevant to applications portability.
-.in -5
-.RE
+.LP
 .LP
 An early proposal specified that the optional alternate access method
 flag had to be \fB'+'\fP if there was an alternate
 access method used on the file or <space> if there was not. This was
 changed to be <space> if there is not and a single
 printable character if there is. This was done for three reasons:
-.in +5
-.LP
+.IP " 1." 4
 There are historical implementations using characters other than \fB'+'\fP
 \&.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 There are implementations that vary this character used in that position
 to distinguish between various alternate access methods
 in use.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The standard developers did not want to preclude future specifications
 that might need a way to specify more than one alternate
 access method.
-.in -5
+.LP
 .LP
 Nonetheless, implementations providing a single alternate access method
 are encouraged to use \fB'+'\fP .
@@ -702,16 +703,16 @@ have historically used 1024-byte units and System V systems have
 historically used 512-byte units. It was pointed out by BSD developers
 that their system has used 512-byte units in some places and
 1024-byte units in other places. (System V has consistently used 512.)
-Therefore, this volume of IEEE\0Std\01003.1-2001
+Therefore, this volume of IEEE\ Std\ 1003.1-2001
 usually specifies 512. Future releases of BSD are expected to consistently
 provide 512 bytes as a default with a way of specifying
 1024-byte units where appropriate.
 .LP
-The <\fIdate\0and\0time\fP> field in the \fB-l\fP format is specified
+The <\fIdate\ and\ time\fP> field in the \fB-l\fP format is specified
 only for the POSIX locale. As noted, the
 format can be different in other locales. No mechanism for defining
 this is present in this volume of
-IEEE\0Std\01003.1-2001, as the appropriate vehicle is a messaging
+IEEE\ Std\ 1003.1-2001, as the appropriate vehicle is a messaging
 system; that is, the format should be specified as a
 "message".
 .SH FUTURE DIRECTIONS
@@ -721,9 +722,9 @@ portably; it may be withdrawn in a future version.
 .SH SEE ALSO
 .LP
 \fIchmod\fP() , \fIfind\fP , the System Interfaces volume of
-IEEE\0Std\01003.1-2001, \fIstat\fP(), the Base Definitions volume
+IEEE\ Std\ 1003.1-2001, \fIstat\fP(), the Base Definitions volume
 of
-IEEE\0Std\01003.1-2001, \fI<sys/stat.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/stat.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

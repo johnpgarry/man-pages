@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "csplit" P 2003 POSIX
+.TH "CSPLIT" P 2003 POSIX
 .\" csplit 
 .SH NAME
-csplit - split files based on context
+csplit \- split files based on context
 .SH SYNOPSIS
 .LP
 \fBcsplit\fP \fB[\fP\fB-ks\fP\fB][\fP\fB-f\fP \fIprefix\fP\fB][\fP\fB-n\fP
@@ -16,33 +16,33 @@ files.
 .SH OPTIONS
 .LP
 The \fIcsplit\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
-\fB-f\0\fP \fIprefix\fP
+.TP 7
+\fB-f\ \fP \fIprefix\fP
 Name the created files \fIprefix\fP \fB00\fP, \fIprefix\fP \fB01\fP,
 \&..., \fIprefixn\fP. The default is \fBxx00\fP ...
 \fBxx\fP \fIn\fP. If the \fIprefix\fP argument would create a filename
 exceeding {NAME_MAX} bytes, an error shall result,
 \fIcsplit\fP shall exit with a diagnostic message, and no files shall
 be created.
-.TP
+.TP 7
 \fB-k\fP
 Leave previously created files intact. By default, \fIcsplit\fP shall
 remove created files if an error occurs.
-.TP
-\fB-n\0\fP \fInumber\fP
+.TP 7
+\fB-n\ \fP \fInumber\fP
 Use \fInumber\fP decimal digits to form filenames for the file pieces.
 The default shall be 2.
-.TP
+.TP 7
 \fB-s\fP
 Suppress the output of file size messages.
 .sp
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 The pathname of a text file to be split. If \fIfile\fP is \fB'-'\fP
 , the standard input shall be used.
@@ -50,7 +50,7 @@ The pathname of a text file to be split. If \fIfile\fP is \fB'-'\fP
 .LP
 The operands \fIarg1\fP ... \fIargn\fP can be a combination of the
 following:
-.TP
+.TP 7
 /\fIrexp\fP/\fB[\fP\fIoffset\fP\fB]\fP
 .sp
 A file shall be created using the content of the lines from the current
@@ -58,7 +58,7 @@ line up to, but not including, the line that results from
 the evaluation of the regular expression with \fIoffset\fP, if any,
 applied. The regular expression \fIrexp\fP shall follow the
 rules for basic regular expressions described in the Base Definitions
-volume of IEEE\0Std\01003.1-2001, Section 9.3, Basic Regular Expressions.
+volume of IEEE\ Std\ 1003.1-2001, Section 9.3, Basic Regular Expressions.
 The application shall use the sequence
 \fB"\\/"\fP to specify a slash character within the \fIrexp\fP. The
 optional offset shall be a positive or negative integer
@@ -75,19 +75,19 @@ of \fIrexp\fP shall be applied from the current line to the end
 of the file. Otherwise, the pattern match of \fIrexp\fP shall be applied
 from the line following the current line to the end of
 the file.
-.TP
+.TP 7
 %\fIrexp\fP%\fB[\fP\fIoffset\fP\fB]\fP
 .sp
 Equivalent to /\fIrexp\fP/\fB[\fP\fIoffset\fP\fB]\fP, except that
 no file shall be created for the selected section of the
 input file. The application shall use the sequence \fB"\\%"\fP to
 specify a percent-sign character within the \fIrexp\fP.
-.TP
+.TP 7
 \fIline_no\fP
 Create a file from the current line up to (but not including) the
 line number \fIline_no\fP. Lines in the file shall be
 numbered starting at one. The current line becomes \fIline_no\fP.
-.TP
+.TP 7
 {\fInum\fP}
 Repeat operand. This operand can follow any of the operands described
 previously. If it follows a \fIrexp\fP type operand,
@@ -108,37 +108,37 @@ The input file shall be a text file.
 .LP
 The following environment variables shall affect the execution of
 \fIcsplit\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for the behavior of ranges, equivalence classes,
 and multi-character collating elements within regular
 expressions.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files) and
 the behavior of character classes within regular
 expressions.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -173,10 +173,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -191,8 +191,7 @@ be removed if an error occurs.
 .LP
 None.
 .SH EXAMPLES
-.in +5
-.LP
+.IP " 1." 4
 This example creates four files, \fBcobol00\fP ... \fBcobol03\fP:
 .sp
 .RS
@@ -214,9 +213,8 @@ After editing the split files, they can be recombined as follows:
 .RE
 .LP
 Note that this example overwrites the original file.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 This example would split the file after the first 99 lines, and every
 100 lines thereafter, up to 9999 lines; this is because
 lines in the file are numbered from 1 rather than zero, for historical
@@ -229,9 +227,8 @@ reasons:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Assuming that \fBprog.c\fP follows the C-language coding convention
 of ending routines with a \fB'}'\fP at the beginning of
 the line, this example creates a file containing each separate C routine
@@ -244,7 +241,7 @@ the line, this example creates a file containing each separate C routine
 \fP
 .fi
 .RE
-.in -5
+.LP
 .SH RATIONALE
 .LP
 The \fB-n\fP option was added to extend the range of filenames that

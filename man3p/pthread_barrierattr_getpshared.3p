@@ -1,9 +1,9 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_barrierattr_getpshared" P 2003 POSIX
+.TH "PTHREAD_BARRIERATTR_GETPSHARED" P 2003 POSIX
 .\" pthread_barrierattr_getpshared 
 .SH NAME
-pthread_barrierattr_getpshared, pthread_barrierattr_setpshared - get
-and set the process-shared attribute of the
+pthread_barrierattr_getpshared, pthread_barrierattr_setpshared \- get
+and set the process\-shared attribute of the
 barrier attributes object (\fBADVANCED REALTIME THREADS\fP)
 .SH SYNOPSIS
 .LP
@@ -15,11 +15,11 @@ barrier attributes object (\fBADVANCED REALTIME THREADS\fP)
 \fBint pthread_barrierattr_getpshared(const pthread_barrierattr_t
 *
 .br
-\0\0\0\0\0\0 restrict\fP \fIattr\fP\fB, int *restrict\fP \fIpshared\fP\fB);
+\ \ \ \ \ \  restrict\fP \fIattr\fP\fB, int *restrict\fP \fIpshared\fP\fB);
 .br
 int pthread_barrierattr_setpshared(pthread_barrierattr_t *\fP\fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 int\fP \fIpshared\fP\fB); \fP
+\ \ \ \ \ \  int\fP \fIpshared\fP\fB); \fP
 \fB
 .br
 \fP
@@ -60,13 +60,13 @@ returned to indicate the error.
 .SH ERRORS
 .LP
 These functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIattr\fP is invalid.
 .sp
 .LP
 The \fIpthread_barrierattr_setpshared\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The new value specified for the \fIprocess-shared\fP attribute is
 not one of the legal values PTHREAD_PROCESS_SHARED or
@@ -94,7 +94,7 @@ None.
 .LP
 \fIpthread_barrier_destroy\fP() , \fIpthread_barrierattr_destroy\fP()
 , \fIpthread_barrierattr_init\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

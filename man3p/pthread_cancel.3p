@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_cancel" P 2003 POSIX
+.TH "PTHREAD_CANCEL" P 2003 POSIX
 .\" pthread_cancel 
 .SH NAME
-pthread_cancel - cancel execution of a thread
+pthread_cancel \- cancel execution of a thread
 .SH SYNOPSIS
 .LP
 \fB#include <pthread.h>
@@ -34,7 +34,7 @@ the error.
 .SH ERRORS
 .LP
 The \fIpthread_cancel\fP() function may fail if:
-.TP
+.TP 7
 .B ESRCH
 No thread could be found corresponding to that specified by the given
 thread ID.
@@ -90,7 +90,7 @@ None.
 .LP
 \fIpthread_exit\fP() , \fIpthread_cond_timedwait\fP() , \fIpthread_join\fP()
 , \fIpthread_setcancelstate\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

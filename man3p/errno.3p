@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "errno" P 2003 POSIX
+.TH "ERRNO" P 2003 POSIX
 .\" errno 
 .SH NAME
-errno - error return value
+errno \- error return value
 .SH SYNOPSIS
 .LP
 \fB#include <errno.h>\fP
@@ -18,7 +18,7 @@ by the next function call or if the application assigns it a
 value. The value of \fIerrno\fP should only be examined when it is
 indicated to be valid by a function's return value.
 Applications shall obtain the definition of \fIerrno\fP by the inclusion
-of \fI<errno.h>\fP. No function in this volume of IEEE\0Std\01003.1-2001
+of \fI<errno.h>\fP. No function in this volume of IEEE\ Std\ 1003.1-2001
 shall set
 \fIerrno\fP to 0.
 .LP
@@ -44,8 +44,8 @@ None.
 .SH APPLICATION USAGE
 .LP
 Previously both POSIX and X/Open documents were more restrictive than
-the ISO\0C standard in that they required \fIerrno\fP
-to be defined as an external variable, whereas the ISO\0C standard
+the ISO\ C standard in that they required \fIerrno\fP
+to be defined as an external variable, whereas the ISO\ C standard
 required only that \fIerrno\fP be defined as a modifiable
 lvalue with type \fBint\fP.
 .LP
@@ -60,7 +60,7 @@ None.
 None.
 .SH SEE ALSO
 .LP
-\fIError Numbers\fP , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIError Numbers\fP , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<errno.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

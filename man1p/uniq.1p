@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "uniq" P 2003 POSIX
+.TH "UNIQ" P 2003 POSIX
 .\" uniq 
 .SH NAME
-uniq - report or filter out repeated lines in a file
+uniq \- report or filter out repeated lines in a file
 .SH SYNOPSIS
 .LP
 \fBuniq\fP \fB[\fP\fB-c|-d|-u\fP\fB][\fP\fB-f\fP \fIfields\fP\fB][\fP\fB-s\fP
@@ -19,18 +19,18 @@ adjacent.
 .SH OPTIONS
 .LP
 The \fIuniq\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-c\fP
 Precede each output line with a count of the number of times the line
 occurred in the input.
-.TP
+.TP 7
 \fB-d\fP
 Suppress the writing of lines that are not repeated in the input.
-.TP
-\fB-f\0\fP \fIfields\fP
+.TP 7
+\fB-f\ \fP \fIfields\fP
 Ignore the first \fIfields\fP fields on each input line when doing
 comparisons, where \fIfields\fP is a positive decimal
 integer. A field is the maximal string matched by the basic regular
@@ -47,8 +47,8 @@ expression:
 If the \fIfields\fP option-argument specifies more fields than appear
 on an input line, a null string shall be used for
 comparison.
-.TP
-\fB-s\0\fP \fIchars\fP
+.TP 7
+\fB-s\ \fP \fIchars\fP
 Ignore the first \fIchars\fP characters when doing comparisons, where
 \fIchars\fP shall be a positive decimal integer. If
 specified in conjunction with the \fB-f\fP option, the first \fIchars\fP
@@ -56,19 +56,19 @@ characters after the first \fIfields\fP fields shall be
 ignored. If the \fIchars\fP option-argument specifies more characters
 than remain on an input line, a null string shall be used
 for comparison.
-.TP
+.TP 7
 \fB-u\fP
 Suppress the writing of lines that are repeated in the input.
 .sp
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIinput_file\fP
 A pathname of the input file. If the \fIinput_file\fP operand is not
 specified, or if the \fIinput_file\fP is \fB'-'\fP ,
 the standard input shall be used.
-.TP
+.TP 7
 \fIoutput_file\fP
 A pathname of the output file. If the \fIoutput_file\fP operand is
 not specified, the standard output shall be used. The
@@ -87,35 +87,35 @@ The input file shall be a text file.
 .LP
 The following environment variables shall affect the execution of
 \fIuniq\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the locale for ordering rules.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files) and
 which characters constitute a <blank> in the current
 locale.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -159,10 +159,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 The utility executed successfully.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -203,8 +203,7 @@ strings delimited by \fB'\\n'\fP . Accordingly, for the \fIfields\fPth
 member of the sequence, \fIuniq\fP interprets unique or
 repeated adjacent lines strictly relative to the \fIfields\fP+1th
 member.
-.in +5
-.LP
+.IP " 1." 4
 This first example tests the line counting option, comparing each
 line of the input file data starting from the second
 field:
@@ -226,11 +225,10 @@ field:
 The number \fB'2'\fP , prefixing the fifth line of output, signifies
 that the \fIuniq\fP utility detected a pair of repeated
 lines. Given the input data, this can only be true when \fIuniq\fP
-is run using the \fB-f\01\fP option (which shall cause
+is run using the \fB-f\ 1\fP option (which shall cause
 \fIuniq\fP to ignore the first field on each input line).
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The second example tests the option to suppress unique lines, comparing
 each line of the input file data starting from the
 second field:
@@ -243,9 +241,8 @@ second field:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 This test suppresses repeated lines, comparing each line of the input
 file data starting from the second field:
 .sp
@@ -261,9 +258,8 @@ file data starting from the second field:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 This suppresses unique lines, comparing each line of the input file
 data starting from the third character:
 .sp
@@ -277,7 +273,7 @@ data starting from the third character:
 .LP
 In the last example, the \fIuniq\fP utility found no input matching
 the above criteria.
-.in -5
+.LP
 .SH RATIONALE
 .LP
 Some historical implementations have limited lines to be 1080 bytes

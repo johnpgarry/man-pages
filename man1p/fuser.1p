@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "fuser" P 2003 POSIX
+.TH "FUSER" P 2003 POSIX
 .\" fuser 
 .SH NAME
-fuser - list process IDs of all processes that have one or more files
+fuser \- list process IDs of all processes that have one or more files
 open
 .SH SYNOPSIS
 .LP
@@ -25,17 +25,17 @@ A user may need appropriate privilege to invoke the \fIfuser\fP utility.
 .SH OPTIONS
 .LP
 The \fIfuser\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-c\fP
 The file is treated as a mount point and the utility shall report
 on any files open in the file system.
-.TP
+.TP 7
 \fB-f\fP
 The report shall be only for the named files.
-.TP
+.TP 7
 \fB-u\fP
 The user name, in parentheses, associated with each process ID written
 to standard output shall be written to standard
@@ -44,7 +44,7 @@ error.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname on which the file or file system is to be reported.
 .sp
@@ -58,29 +58,29 @@ The user database.
 .LP
 The following environment variables shall affect the execution of
 \fIfuser\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -108,31 +108,26 @@ error.
 .LP
 The \fIfuser\fP utility also shall write the following to standard
 error:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The pathname of each named file is written followed immediately by
 a colon.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 For each process ID written to standard output, the character \fB'c'\fP
 shall be written to standard error if the process is
 using the file as its current directory and the character \fB'r'\fP
 shall be written to standard error if the process is using
 the file as its root directory. Implementations may write other alphabetic
 characters to indicate other uses of files.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 When the \fB-u\fP option is specified, characters indicating the use
 of the file shall be followed immediately by the user
 name, in parentheses, corresponding to the process' real user ID.
 If the user name cannot be resolved from the process' real user
 ID, the process' real user ID shall be written instead of the user
 name.
-.in -5
-.RE
+.LP
 .LP
 When standard output and standard error are directed to the same file,
 the output shall be interleaved so that the filename
@@ -152,10 +147,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp

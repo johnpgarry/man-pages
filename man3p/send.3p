@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "send" P 2003 POSIX
+.TH "SEND" P 2003 POSIX
 .\" send 
 .SH NAME
-send - send a message on a socket
+send \- send a message on a socket
 .SH SYNOPSIS
 .LP
 \fB#include <sys/socket.h>
@@ -22,28 +22,32 @@ when the peer of a connectionless socket has been set
 via \fIconnect\fP()).
 .LP
 The \fIsend\fP() function takes the following arguments:
-.TP
+.TP 7
 \fIsocket\fP
 Specifies the socket file descriptor.
-.TP
+.TP 7
 \fIbuffer\fP
 Points to the buffer containing the message to send.
-.TP
+.TP 7
 \fIlength\fP
 Specifies the length of the message in bytes.
-.TP
+.TP 7
 \fIflags\fP
 Specifies the type of message transmission. Values of this argument
 are formed by logically OR'ing zero or more of the
 following flags: 
-.TP
+.TP 7
 MSG_EOR
+.RS
 Terminates a record (if supported by the protocol).
-.TP
+.RE
+.TP 7
 MSG_OOB
+.RS
 Sends out-of-band data on sockets that support out-of-band communications.
 The significance and semantics of out-of-band data
 are protocol-specific.
+.RE
 .sp
 .sp
 .LP
@@ -75,39 +79,39 @@ bytes sent. Otherwise, -1 shall be returned and
 .SH ERRORS
 .LP
 The \fIsend\fP() function shall fail if:
-.TP
+.TP 7
 .B EAGAIN] or [EWOULDBLOCK
 .sp
 The socket's file descriptor is marked O_NONBLOCK and the requested
 operation would block.
-.TP
+.TP 7
 .B EBADF
 The \fIsocket\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B ECONNRESET
 A connection was forcibly closed by a peer.
-.TP
+.TP 7
 .B EDESTADDRREQ
 .sp
 The socket is not connection-mode and no peer address is set.
-.TP
+.TP 7
 .B EINTR
 A signal interrupted \fIsend\fP() before any data was transmitted.
-.TP
+.TP 7
 .B EMSGSIZE
 The message is too large to be sent all at once, as the socket requires.
-.TP
+.TP 7
 .B ENOTCONN
 The socket is not connected or otherwise has not had the peer pre-specified.
-.TP
+.TP 7
 .B ENOTSOCK
 The \fIsocket\fP argument does not refer to a socket.
-.TP
+.TP 7
 .B EOPNOTSUPP
 The \fIsocket\fP argument is associated with a socket that does not
 support one or more of the values set in
 \fIflags\fP.
-.TP
+.TP 7
 .B EPIPE
 The socket is shut down for writing, or the socket is connection-mode
 and is no longer connected. In the latter case, and if
@@ -116,20 +120,20 @@ to the calling thread.
 .sp
 .LP
 The \fIsend\fP() function may fail if:
-.TP
+.TP 7
 .B EACCES
 The calling process does not have the appropriate privileges.
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while reading from or writing to the file system.
-.TP
+.TP 7
 .B ENETDOWN
 The local network interface used to reach the destination is down.
-.TP
+.TP 7
 .B ENETUNREACH
 .sp
 No route to the network is present.
-.TP
+.TP 7
 .B ENOBUFS
 Insufficient resources were available in the system to perform the
 operation.
@@ -156,7 +160,7 @@ None.
 , \fIrecvfrom\fP() , \fIrecvmsg\fP() , \fIselect\fP() , \fIsendmsg\fP()
 , \fIsendto\fP() , \fIsetsockopt\fP() , \fIshutdown\fP() , \fIsocket\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<sys/socket.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<sys/socket.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

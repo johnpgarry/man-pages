@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sched_setscheduler" P 2003 POSIX
+.TH "SCHED_SETSCHEDULER" P 2003 POSIX
 .\" sched_setscheduler 
 .SH NAME
-sched_setscheduler - set scheduling policy and parameters (\fBREALTIME\fP)
+sched_setscheduler \- set scheduling policy and parameters (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <sched.h>
@@ -10,7 +10,7 @@ sched_setscheduler - set scheduling policy and parameters (\fBREALTIME\fP)
 .sp
 int sched_setscheduler(pid_t\fP \fIpid\fP\fB, int\fP \fIpolicy\fP\fB,
 .br
-\0\0\0\0\0\0 const struct sched_param *\fP\fIparam\fP\fB); \fP
+\ \ \ \ \ \  const struct sched_param *\fP\fIparam\fP\fB); \fP
 \fB
 .br
 \fP
@@ -83,21 +83,17 @@ scheduling behavior.
 .LP
 The effect of this function on individual threads is dependent on
 the scheduling contention scope of the threads:
-.RS
-.in +5
-.LP
+.IP " *" 3
 For threads with system scheduling contention scope, these functions
 shall have no effect on their scheduling.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 For threads with process scheduling contention scope, the threads'
 scheduling policy and associated parameters shall not be
 affected. However, the scheduling of these threads with respect to
 threads in other processes may be dependent on the scheduling
 parameters of their process, which are governed using these functions.
-.in -5
-.RE
+.LP
 .LP
 If an implementation supports a two-level scheduling model in which
 library threads are multiplexed on top of several
@@ -129,17 +125,17 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIsched_setscheduler\fP() function shall fail if:
-.TP
+.TP 7
 .B EINVAL
 The value of the \fIpolicy\fP parameter is invalid, or one or more
 of the parameters contained in \fIparam\fP is outside the
 valid range for the specified scheduling policy.
-.TP
+.TP 7
 .B EPERM
 The requesting process does not have permission to set either or both
 of the scheduling parameters or the scheduling policy of
 the specified process.
-.TP
+.TP 7
 .B ESRCH
 No process can be found corresponding to that specified by \fIpid\fP.
 .sp
@@ -160,7 +156,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIsched_getparam\fP() , \fIsched_getscheduler\fP() ,
-\fIsched_setparam\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIsched_setparam\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<sched.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

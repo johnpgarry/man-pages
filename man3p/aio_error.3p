@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "aio_error" P 2003 POSIX
+.TH "AIO_ERROR" P 2003 POSIX
 .\" aio_error 
 .SH NAME
-aio_error - retrieve errors status for an asynchronous I/O operation
+aio_error \- retrieve errors status for an asynchronous I/O operation
 (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
@@ -35,7 +35,7 @@ shall be returned.
 .SH ERRORS
 .LP
 The \fIaio_error\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 The \fIaiocbp\fP argument does not refer to an asynchronous operation
 whose return status has not yet been retrieved.
@@ -62,7 +62,7 @@ None.
 , \fIaio_write\fP() , \fIclose\fP() , \fIexec\fP() , \fIexit\fP()
 , \fIfork\fP() , \fIlio_listio\fP() , \fIlseek\fP() , \fIread\fP()
 ,
-the Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<aio.h>\fP
+the Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<aio.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "utime" P 2003 POSIX
+.TH "UTIME" P 2003 POSIX
 .\" utime 
 .SH NAME
-utime - set file access and modification times
+utime \- set file access and modification times
 .SH SYNOPSIS
 .LP
 \fB#include <utime.h>
@@ -44,44 +44,44 @@ error, and the file times shall not be affected.
 .SH ERRORS
 .LP
 The \fIutime\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 Search permission is denied by a component of the path prefix; or
 the \fItimes\fP argument is a null pointer and the effective
 user ID of the process does not match the owner of the file, the process
 does not have write permission for the file, and the
 process does not have appropriate privileges.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIpath\fP argument exceeds {PATH_MAX} or a pathname
 component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of \fIpath\fP does not name an existing file or \fIpath\fP
 is an empty string.
-.TP
+.TP 7
 .B ENOTDIR
 A component of the path prefix is not a directory.
-.TP
+.TP 7
 .B EPERM
 The \fItimes\fP argument is not a null pointer and the calling process'
 effective user ID does not match the owner of the file
 and the calling process does not have the appropriate privileges.
-.TP
+.TP 7
 .B EROFS
 The file system containing the file is read-only.
 .sp
 .LP
 The \fIutime\fP() function may fail if:
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 As a result of encountering a symbolic link in resolution of the \fIpath\fP
 argument, the length of the substituted pathname
@@ -111,7 +111,7 @@ buffer, and change one of them before making the
 None.
 .SH SEE ALSO
 .LP
-The Base Definitions volume of IEEE\0Std\01003.1-2001, \fI<sys/stat.h>\fP,
+The Base Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<sys/stat.h>\fP,
 \fI<utime.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

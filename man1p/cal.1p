@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "cal" P 2003 POSIX
+.TH "CAL" P 2003 POSIX
 .\" cal 
 .SH NAME
-cal - print a calendar
+cal \- print a calendar
 .SH SYNOPSIS
 .LP
 \fBcal\fP \fB[[\fP\fImonth\fP\fB]\fP \fIyear\fP \fB]\fP\fB\fP
@@ -19,12 +19,12 @@ None.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fImonth\fP
 Specify the month to be displayed, represented as a decimal integer
 from 1 (January) to 12 (December). The default shall be the
 current month.
-.TP
+.TP 7
 \fIyear\fP
 Specify the year for which the calendar is displayed, represented
 as a decimal integer from 1 to 9999. The default shall be the
@@ -40,36 +40,36 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIcal\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error,
 and informative messages written to standard output.
-.TP
+.TP 7
 \fILC_TIME\fP
 Determine the format and contents of the calendar.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone used to calculate the value of the current
 month.
@@ -93,10 +93,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -126,7 +126,7 @@ None.
 None.
 .SH FUTURE DIRECTIONS
 .LP
-A future version of IEEE\0Std\01003.1-2001 may support locale-specific
+A future version of IEEE\ Std\ 1003.1-2001 may support locale-specific
 recognition of the date of adoption of the
 Gregorian calendar.
 .SH SEE ALSO

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "getpwuid" P 2003 POSIX
+.TH "GETPWUID" P 2003 POSIX
 .\" getpwuid 
 .SH NAME
-getpwuid, getpwuid_r - search user database for a user ID
+getpwuid, getpwuid_r \- search user database for a user ID
 .SH SYNOPSIS
 .LP
 \fB#include <pwd.h>
@@ -16,7 +16,7 @@ struct passwd *getpwuid(uid_t\fP \fIuid\fP\fB);
 char
 *\fP\fIbuffer\fP\fB,
 .br
-\0\0\0\0\0\0 size_t\fP \fIbufsize\fP\fB, struct passwd **\fP\fIresult\fP\fB);
+\ \ \ \ \ \  size_t\fP \fIbufsize\fP\fB, struct passwd **\fP\fIresult\fP\fB);
 \fP
 \fB
 .br
@@ -64,22 +64,22 @@ error.
 .SH ERRORS
 .LP
 The \fIgetpwuid\fP() and \fIgetpwuid_r\fP() functions may fail if:
-.TP
+.TP 7
 .B EIO
 An I/O error has occurred.
-.TP
+.TP 7
 .B EINTR
 A signal was caught during \fIgetpwuid\fP().
-.TP
+.TP 7
 .B EMFILE
 {OPEN_MAX} file descriptors are currently open in the calling process.
-.TP
+.TP 7
 .B ENFILE
 The maximum allowable number of files is currently open in the system.
 .sp
 .LP
 The \fIgetpwuid_r\fP() function may fail if:
-.TP
+.TP 7
 .B ERANGE
 Insufficient storage was supplied via \fIbuffer\fP and \fIbufsize\fP
 to contain the data to be referenced by the resulting
@@ -178,7 +178,7 @@ None.
 .LP
 \fIgetpwnam\fP() , \fIgeteuid\fP() , \fIgetuid\fP() , \fIgetlogin\fP()
 , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<limits.h>\fP, \fI<pwd.h>\fP, \fI<sys/types.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<limits.h>\fP, \fI<pwd.h>\fP, \fI<sys/types.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

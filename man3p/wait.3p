@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "wait" P 2003 POSIX
+.TH "WAIT" P 2003 POSIX
 .\" wait 
 .SH NAME
-wait, waitpid - wait for a child process to stop or terminate
+wait, waitpid \- wait for a child process to stop or terminate
 .SH SYNOPSIS
 .LP
 \fB#include <sys/wait.h>
@@ -43,46 +43,40 @@ arguments.
 The \fIpid\fP argument specifies a set of child processes for which
 \fIstatus\fP is requested. The \fIwaitpid\fP() function
 shall only return the status of a child process from this set:
-.RS
-.in +5
-.LP
+.IP " *" 3
 If \fIpid\fP is equal to (\fBpid_t\fP)-1, \fIstatus\fP is requested
 for any child process. In this respect, \fIwaitpid\fP()
 is then equivalent to \fIwait\fP().
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIpid\fP is greater than 0, it specifies the process ID of a single
 child process for which \fIstatus\fP is requested.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIpid\fP is 0, \fIstatus\fP is requested for any child process
 whose process group ID is equal to that of the calling
 process.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If \fIpid\fP is less than (\fBpid_t\fP)-1, \fIstatus\fP is requested
 for any child process whose process group ID is equal to
 the absolute value of \fIpid\fP.
-.in -5
-.RE
+.LP
 .LP
 The \fIoptions\fP argument is constructed from the bitwise-inclusive
 OR of zero or more of the following flags, defined in the
 \fI<sys/wait.h>\fP header:
-.TP
+.TP 7
 WCONTINUED
 The \fIwaitpid\fP() function shall report the status of any continued
 child process specified by \fIpid\fP whose status has not
 been reported since it continued from a job control stop. 
-.TP
+.TP 7
 WNOHANG
 The \fIwaitpid\fP() function shall not suspend execution of the calling
 thread if \fIstatus\fP is not immediately available
 for one of the child processes specified by \fIpid\fP.
-.TP
+.TP 7
 WUNTRACED
 The status of any child processes specified by \fIpid\fP that are
 stopped, and whose status has not yet been reported since
@@ -105,66 +99,62 @@ pointer, information shall be stored in the location pointed to by
 \fIstat_loc\fP shall be 0 if and only if the status returned is from
 a terminated child process that terminated by one of the
 following means:
-.in +5
-.LP
+.IP " 1." 4
 The process returned 0 from \fImain\fP().
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The process called \fI_exit\fP() or \fIexit\fP()
 with a \fIstatus\fP argument of 0.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The process was terminated because the last thread in the process
 terminated.
-.in -5
+.LP
 .LP
 Regardless of its value, this information may be interpreted using
 the following macros, which are defined in \fI<sys/wait.h>\fP and
 evaluate to integral expressions; the \fIstat_val\fP argument is
 the integer value pointed to by \fIstat_loc\fP.
-.TP
+.TP 7
 WIFEXITED(\fIstat_val\fP)
 .sp
 Evaluates to a non-zero value if \fIstatus\fP was returned for a child
 process that terminated normally.
-.TP
+.TP 7
 WEXITSTATUS(\fIstat_val\fP)
 .sp
 If the value of WIFEXITED(\fIstat_val\fP) is non-zero, this macro
 evaluates to the low-order 8 bits of the \fIstatus\fP argument
 that the child process passed to \fI_exit\fP() or \fIexit\fP(), or
 the value the child process returned from \fImain\fP().
-.TP
+.TP 7
 WIFSIGNALED(\fIstat_val\fP)
 .sp
 Evaluates to a non-zero value if \fIstatus\fP was returned for a child
 process that terminated due to the receipt of a signal that
 was not caught (see \fI<signal.h>\fP).
-.TP
+.TP 7
 WTERMSIG(\fIstat_val\fP)
 .sp
 If the value of WIFSIGNALED(\fIstat_val\fP) is non-zero, this macro
 evaluates to the number of the signal that caused the
 termination of the child process.
-.TP
+.TP 7
 WIFSTOPPED(\fIstat_val\fP)
 .sp
 Evaluates to a non-zero value if \fIstatus\fP was returned for a child
 process that is currently stopped.
-.TP
+.TP 7
 WSTOPSIG(\fIstat_val\fP)
 .sp
 If the value of WIFSTOPPED(\fIstat_val\fP) is non-zero, this macro
 evaluates to the number of the signal that caused the child
 process to stop.
-.TP
+.TP 7
 WIFCONTINUED(\fIstat_val\fP)
 .sp
 Evaluates to a non-zero value if \fIstatus\fP was returned for a child
-process that has continued from a job control stop. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+process that has continued from a job control stop. 
 .sp
 .LP
 It is unspecified whether the \fIstatus\fP value returned by calls
@@ -184,22 +174,22 @@ is called.
 .LP
 If the information pointed to by \fIstat_loc\fP was stored by a call
 to \fIwaitpid\fP() that specified the WUNTRACED flag
-\0and did not specify the WCONTINUED flag,  exactly one of the
+\ and did not specify the WCONTINUED flag,  exactly one of the
 macros WIFEXITED(*\fIstat_loc\fP), WIFSIGNALED(*\fIstat_loc\fP), and
 WIFSTOPPED(*\fIstat_loc\fP) shall evaluate to a non-zero
 value.
 .LP
 If the information pointed to by \fIstat_loc\fP was stored by a call
-to \fIwaitpid\fP() that specified the WUNTRACED   \0and
+to \fIwaitpid\fP() that specified the WUNTRACED   \ and
 WCONTINUED  flags, exactly one of the macros
 WIFEXITED(*\fIstat_loc\fP), WIFSIGNALED(*\fIstat_loc\fP), WIFSTOPPED(*\fIstat_loc\fP),
-\0and
+\ and
 WIFCONTINUED(*\fIstat_loc\fP)  shall evaluate to a non-zero
 value.
 .LP
 If the information pointed to by \fIstat_loc\fP was stored by a call
 to \fIwaitpid\fP() that did not specify the WUNTRACED
-\0or WCONTINUED  flags, or by a call to the \fIwait\fP()
+\ or WCONTINUED  flags, or by a call to the \fIwait\fP()
 function, exactly one of the macros WIFEXITED(*\fIstat_loc\fP) and
 WIFSIGNALED(*\fIstat_loc\fP) shall evaluate to a non-zero
 value.
@@ -207,9 +197,9 @@ value.
 If the information pointed to by \fIstat_loc\fP was stored by a call
 to \fIwaitpid\fP() that did not specify the WUNTRACED
 flag  
-\0and specified the WCONTINUED flag,  or by a call to the
+\ and specified the WCONTINUED flag,  or by a call to the
 \fIwait\fP() function, exactly one of the macros WIFEXITED(*\fIstat_loc\fP),
-WIFSIGNALED(*\fIstat_loc\fP),   \0and
+WIFSIGNALED(*\fIstat_loc\fP),   \ and
 WIFCONTINUED(*\fIstat_loc\fP)  shall evaluate to a non-zero
 value.
 .LP
@@ -256,27 +246,27 @@ to indicate the error.
 .SH ERRORS
 .LP
 The \fIwait\fP() function shall fail if:
-.TP
+.TP 7
 .B ECHILD
 The calling process has no existing unwaited-for child processes.
-.TP
+.TP 7
 .B EINTR
 The function was interrupted by a signal. The value of the location
 pointed to by \fIstat_loc\fP is undefined.
 .sp
 .LP
 The \fIwaitpid\fP() function shall fail if:
-.TP
+.TP 7
 .B ECHILD
 The process specified by \fIpid\fP does not exist or is not a child
 of the calling process, or the process group specified by
 \fIpid\fP does not exist or does not have any member process that
 is a child of the calling process.
-.TP
+.TP 7
 .B EINTR
 The function was interrupted by a signal. The value of the location
 pointed to by \fIstat_loc\fP is undefined.
-.TP
+.TP 7
 .B EINVAL
 The \fIoptions\fP argument is not valid.
 .sp
@@ -299,28 +289,25 @@ produces grandchildren
 by further use of \fIfork\fP(), none of those grandchildren nor any
 of their descendants
 affect the behavior of a \fIwait\fP() from the original parent process.
-Nothing in this volume of IEEE\0Std\01003.1-2001
+Nothing in this volume of IEEE\ Std\ 1003.1-2001
 prevents an implementation from providing extensions that permit a
 process to get \fIstatus\fP from a grandchild or any other
 process, but a process that does not use such extensions must be guaranteed
 to see \fIstatus\fP from only its direct children.
 .LP
 The \fIwaitpid\fP() function is provided for three reasons:
-.in +5
-.LP
+.IP " 1." 4
 To support job control
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 To permit a non-blocking version of the \fIwait\fP() function
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 To permit a library routine, such as \fIsystem\fP() or \fIpclose\fP(),
 to wait for its children without interfering with other terminated
 children for
 which the process has not waited
-.in -5
+.LP
 .LP
 The first two of these facilities are based on the \fIwait3\fP() function
 provided by 4.3 BSD. The function uses the
@@ -331,7 +318,7 @@ job control on systems supporting job control. Its name comes from
 stopped processes in that implementation: processes being traced via
 the \fIptrace\fP() debugging facility and (untraced)
 processes stopped by job control signals. Since \fIptrace\fP() is
-not part of this volume of IEEE\0Std\01003.1-2001, only
+not part of this volume of IEEE\ Std\ 1003.1-2001, only
 the second type is relevant. The name WUNTRACED was retained because
 its usage is the same, even though the name is not intuitively
 meaningful in this context.
@@ -361,7 +348,7 @@ bit encodings as they are in most historical
 implementations (and thus expected by existing programs). This was
 necessary to eliminate a limitation on the number of signals an
 implementation can support that was inherent in the traditional encodings.
-This volume of IEEE\0Std\01003.1-2001 does
+This volume of IEEE\ Std\ 1003.1-2001 does
 require that a \fIstatus\fP value of zero corresponds to a process
 calling \fI_exit\fP(0), as this is the most common encoding
 expected by existing programs. Some of the macro names were adopted
@@ -373,7 +360,7 @@ successful call to \fIwait\fP() or \fIwaitpid\fP() in the location
 pointed to by the \fIstat_loc\fP argument. An early proposal
 attempted to make this clearer by specifying each argument as *\fIstat_loc\fP
 rather than \fIstat_val\fP. However, that did not
-follow the conventions of other specifications in this volume of IEEE\0Std\01003.1-2001
+follow the conventions of other specifications in this volume of IEEE\ Std\ 1003.1-2001
 or traditional usage. It also could
 have implied that the argument to the macro must literally be *\fIstat_loc\fP;
 in fact, that value can be stored or passed as an
@@ -416,29 +403,25 @@ In particular, an implementation that does accept (discard) the SIGCHLD
 signal can make the following guarantees regardless of
 the queuing depth of signals in general (the list of waitable children
 can hold the SIGCHLD queue):
-.in +5
-.LP
+.IP " 1." 4
 If a SIGCHLD signal handler is established via \fIsigaction\fP() without
 the
 SA_RESETHAND flag, SIGCHLD signals can be accurately counted; that
 is, exactly one SIGCHLD signal will be delivered to or accepted
 by the process for every child process that terminates.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 A single \fIwait\fP() issued from a SIGCHLD signal handler can be
 guaranteed to return immediately with status information for
 a child process.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 When SA_SIGINFO is requested, the SIGCHLD signal handler can be guaranteed
 to receive a non-NULL pointer to a \fBsiginfo_t\fP
 structure that describes a child process for which a wait via \fIwaitpid\fP()
 or \fIwaitid\fP() will not block or fail.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The \fIsystem\fP() function will not cause a process' SIGCHLD handler
 to be called as a
 result of the \fIfork\fP()/ \fIexec\fP executed within
@@ -447,13 +430,13 @@ the SIGCHLD signal when it performs a \fIwaitpid\fP() for its child
 process. This is a desirable behavior of \fIsystem\fP() so that it
 can be used in a library without causing side effects to the application
 linked with the library.
-.in -5
+.LP
 .LP
 An implementation that does not permit the \fIwait\fP() family of
 functions to accept (discard) a pending SIGCHLD signal
 associated with a successfully waited-for child, cannot make the guarantees
 described above for the following reasons:
-.TP
+.TP 7
 Guarantee #1
 .sp
 Although it might be assumed that reliable queuing of all SIGCHLD
@@ -464,7 +447,7 @@ implementation supports queued signals, then
 eventually the system will run out of memory for the queue. The guarantee
 cannot be made because there must be some limit to the
 depth of queuing.
-.TP
+.TP 7
 Guarantees #2 and #3
 .sp
 These cannot be guaranteed unless the \fIwait\fP() family of functions
@@ -472,7 +455,7 @@ accepts the SIGCHLD signal. Otherwise, a \fIfork\fP()/ \fIwait\fP()
 executed while SIGCHLD is blocked (as in the \fIsystem\fP() function)
 will result in an invocation of the handler when SIGCHLD is unblocked,
 after the process has disappeared.
-.TP
+.TP 7
 Guarantee #4
 .sp
 Although possible to make this guarantee, \fIsystem\fP() would have
@@ -490,7 +473,7 @@ None.
 .LP
 \fIexec\fP() , \fIexit\fP() , \fIfork\fP() , \fIwaitid\fP() , the
 Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<signal.h>\fP, \fI<sys/wait.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<signal.h>\fP, \fI<sys/wait.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

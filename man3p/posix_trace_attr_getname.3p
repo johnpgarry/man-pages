@@ -1,10 +1,10 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "posix_trace_attr_getclockres" P 2003 POSIX
+.TH "POSIX_TRACE_ATTR_GETCLOCKRES" P 2003 POSIX
 .\" posix_trace_attr_getclockres 
 .SH NAME
 posix_trace_attr_getclockres, posix_trace_attr_getcreatetime, posix_trace_attr_getgenversion,
 posix_trace_attr_getname,
-posix_trace_attr_setname - retrieve and set information about a trace
+posix_trace_attr_setname \- retrieve and set information about a trace
 stream (\fBTRACING\fP)
 .SH SYNOPSIS
 .LP
@@ -15,11 +15,11 @@ stream (\fBTRACING\fP)
 .sp
 int posix_trace_attr_getclockres(const trace_attr_t *\fP\fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 struct timespec *\fP\fIresolution\fP\fB);
+\ \ \ \ \ \  struct timespec *\fP\fIresolution\fP\fB);
 .br
 int posix_trace_attr_getcreatetime(const trace_attr_t *\fP\fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 struct timespec *\fP\fIcreatetime\fP\fB);
+\ \ \ \ \ \  struct timespec *\fP\fIcreatetime\fP\fB);
 .br
 .sp
 .sp
@@ -27,15 +27,15 @@ int posix_trace_attr_getcreatetime(const trace_attr_t *\fP\fIattr\fP\fB,
 .br
 int posix_trace_attr_getgenversion(const trace_attr_t *\fP\fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 char *\fP\fIgenversion\fP\fB);
+\ \ \ \ \ \  char *\fP\fIgenversion\fP\fB);
 .br
 int posix_trace_attr_getname(const trace_attr_t *\fP\fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 char *\fP\fItracename\fP\fB);
+\ \ \ \ \ \  char *\fP\fItracename\fP\fB);
 .br
 int posix_trace_attr_setname(trace_attr_t *\fP\fIattr\fP\fB,
 .br
-\0\0\0\0\0\0 const char *\fP\fItracename\fP\fB); \fP
+\ \ \ \ \ \  const char *\fP\fItracename\fP\fB); \fP
 \fB
 .br
 \fP
@@ -105,7 +105,7 @@ the trace name in the string pointed to by
 The \fIposix_trace_attr_getclockres\fP(), \fIposix_trace_attr_getcreatetime\fP(),
 \fIposix_trace_attr_getgenversion\fP(), and
 \fIposix_trace_attr_getname\fP() functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by one of the arguments is invalid.
 .sp
@@ -127,7 +127,7 @@ None.
 .LP
 \fIposix_trace_attr_init\fP() , \fIposix_trace_create\fP() , \fIposix_trace_get_attr\fP()
 ,
-\fIuname\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+\fIuname\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<time.h>\fP, \fI<trace.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_rwlock_trywrlock" P 2003 POSIX
+.TH "PTHREAD_RWLOCK_TRYWRLOCK" P 2003 POSIX
 .\" pthread_rwlock_trywrlock 
 .SH NAME
-pthread_rwlock_trywrlock, pthread_rwlock_wrlock - lock a read-write
+pthread_rwlock_trywrlock, pthread_rwlock_wrlock \- lock a read-write
 lock object for writing
 .SH SYNOPSIS
 .LP
@@ -52,7 +52,7 @@ indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_rwlock_trywrlock\fP() function shall fail if:
-.TP
+.TP 7
 .B EBUSY
 The read-write lock could not be acquired for writing because it was
 already locked for reading or writing.
@@ -60,14 +60,14 @@ already locked for reading or writing.
 .LP
 The \fIpthread_rwlock_trywrlock\fP() and \fIpthread_rwlock_wrlock\fP()
 functions may fail if:
-.TP
+.TP 7
 .B EINVAL
 The value specified by \fIrwlock\fP does not refer to an initialized
 read-write lock object.
 .sp
 .LP
 The \fIpthread_rwlock_wrlock\fP() function may fail if:
-.TP
+.TP 7
 .B EDEADLK
 The current thread already owns the read-write lock for writing or
 reading.
@@ -83,7 +83,7 @@ None.
 .LP
 Applications using these functions may be subject to priority inversion,
 as discussed in the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 3.285, Priority Inversion.
+IEEE\ Std\ 1003.1-2001, Section 3.285, Priority Inversion.
 .SH RATIONALE
 .LP
 None.
@@ -94,7 +94,7 @@ None.
 .LP
 \fIpthread_rwlock_destroy\fP() , \fIpthread_rwlock_rdlock\fP() , \fIpthread_rwlock_timedrdlock\fP()
 , \fIpthread_rwlock_timedwrlock\fP() , \fIpthread_rwlock_tryrdlock\fP()
-, \fIpthread_rwlock_unlock\fP() , the Base Definitions volume of IEEE\0Std\01003.1-2001,
+, \fIpthread_rwlock_unlock\fP() , the Base Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

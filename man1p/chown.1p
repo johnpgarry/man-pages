@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "chown" P 2003 POSIX
+.TH "CHOWN" P 2003 POSIX
 .\" chown 
 .SH NAME
-chown - change the file ownership
+chown \- change the file ownership
 .SH SYNOPSIS
 .LP
 \fBchown\fP \fB[\fP\fB-hR\fP\fB]\fP \fIowner\fP\fB[\fP\fB:\fP\fIgroup\fP\fB]\fP
@@ -23,23 +23,20 @@ For each \fIfile\fP operand, or, if the \fB-R\fP option is used, each
 file encountered while walking the directory trees
 specified by the \fIfile\fP operands, the \fIchown\fP utility shall
 perform actions equivalent to the \fIchown\fP() function defined in
-the System Interfaces volume of IEEE\0Std\01003.1-2001,
+the System Interfaces volume of IEEE\ Std\ 1003.1-2001,
 called with the following arguments:
-.in +5
-.LP
+.IP " 1." 4
 The \fIfile\fP operand shall be used as the \fIpath\fP argument.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 The user ID indicated by the \fIowner\fP portion of the first operand
 shall be used as the \fIowner\fP argument.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 If the \fIgroup\fP portion of the first operand is given, the group
 ID indicated by it shall be used as the \fIgroup\fP
 argument; otherwise, the group ownership shall not be changed.
-.in -5
+.LP
 .LP
 Unless \fIchown\fP is invoked by a process with appropriate privileges,
 the set-user-ID and set-group-ID bits of a regular file
@@ -48,10 +45,10 @@ bits of other file types may be cleared.
 .SH OPTIONS
 .LP
 The \fIchown\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported by the implementation:
-.TP
+.TP 7
 \fB-h\fP
 If the system supports user IDs for symbolic links, for each \fIfile\fP
 operand that names a file of type symbolic link,
@@ -64,14 +61,14 @@ or group IDs for symbolic links, for each \fIfile\fP operand
 that names a file of type symbolic link, \fIchown\fP shall do nothing
 more with the current file and shall go on to any remaining
 files.
-.TP
+.TP 7
 \fB-H\fP
 If the \fB-R\fP option is specified and a symbolic link referencing
 a file of type directory is specified on the command line,
 \fIchown\fP shall change the user ID (and group ID, if specified)
 of the directory referenced by the symbolic link and all files
 in the file hierarchy below it.
-.TP
+.TP 7
 \fB-L\fP
 If the \fB-R\fP option is specified and a symbolic link referencing
 a file of type directory is specified on the command line
@@ -79,7 +76,7 @@ or encountered during the traversal of a file hierarchy, \fIchown\fP
 shall change the user ID (and group ID, if specified) of the
 directory referenced by the symbolic link and all files in the file
 hierarchy below it.
-.TP
+.TP 7
 \fB-P\fP
 If the \fB-R\fP option is specified and a symbolic link is specified
 on the command line or encountered during the traversal
@@ -87,7 +84,7 @@ of a file hierarchy, \fIchown\fP shall change the owner ID (and group
 ID, if specified) of the symbolic link if the system
 supports this operation. The \fIchown\fP utility shall not follow
 the symbolic link to any other part of the file hierarchy.
-.TP
+.TP 7
 \fB-R\fP
 Recursively change file user and group IDs. For each \fIfile\fP operand
 that names a directory, \fIchown\fP shall change the
@@ -103,7 +100,7 @@ The last option specified shall determine the behavior of the utility.
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIowner\fP\fB[\fP:\fIgroup\fP\fB]\fP
 A user ID and optional group ID to be assigned to \fIfile\fP. The
 \fIowner\fP portion of this operand shall be a user name
@@ -118,7 +115,7 @@ a group ID which shall be given to each file. If a
 numeric group operand exists in the group database as a group name,
 the group ID number associated with that group name shall be
 used as the group ID.
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a file whose user ID is to be modified.
 .sp
@@ -132,29 +129,29 @@ None.
 .LP
 The following environment variables shall affect the execution of
 \fIchown\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -177,10 +174,10 @@ None.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 The utility executed successfully and all requested changes were made.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -209,35 +206,31 @@ masked by specifying only 0 and >0 as exit values.
 .LP
 The functionality of \fIchown\fP is described substantially through
 references to functions in the System Interfaces volume of
-IEEE\0Std\01003.1-2001. In this way, there is no duplication of effort
+IEEE\ Std\ 1003.1-2001. In this way, there is no duplication of effort
 required for describing the interactions of
 permissions, multiple groups, and so on.
 .LP
 The 4.3 BSD method of specifying both owner and group was included
-in this volume of IEEE\0Std\01003.1-2001 because:
-.RS
-.in +5
-.LP
+in this volume of IEEE\ Std\ 1003.1-2001 because:
+.IP " *" 3
 There are cases where the desired end condition could not be achieved
 using the \fIchgrp\fP and \fIchown\fP (that only changed the user
 ID) utilities. (If the current owner is not
 a member of the desired group and the desired owner is not a member
 of the current group, the \fIchown\fP() function could fail unless
 both owner and group are changed at the same time.)
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Even if they could be changed independently, in cases where both are
 being changed, there is a 100% performance penalty caused
 by being forced to invoke both utilities.
-.in -5
-.RE
+.LP
 .LP
 The BSD syntax \fIuser\fP[. \fIgroup\fP] was changed to \fIuser\fP[:
 \fIgroup\fP] in this volume of
-IEEE\0Std\01003.1-2001 because the period is a valid character in
+IEEE\ Std\ 1003.1-2001 because the period is a valid character in
 login names (as specified by the Base Definitions volume
-of IEEE\0Std\01003.1-2001, login names consist of characters in the
+of IEEE\ Std\ 1003.1-2001, login names consist of characters in the
 portable filename character set). The colon character
 was chosen as the replacement for the period character because it
 would never be allowed as a character in a user name or group
@@ -258,7 +251,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIchmod\fP , \fIchgrp\fP , the System Interfaces volume of
-IEEE\0Std\01003.1-2001, \fIchown\fP()
+IEEE\ Std\ 1003.1-2001, \fIchown\fP()
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

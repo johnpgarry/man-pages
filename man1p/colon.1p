@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "colon" P 2003 POSIX
+.TH "COLON" P 2003 POSIX
 .\" colon 
 .SH NAME
-colon - null utility
+colon \- null utility
 .SH SYNOPSIS
 .LP
 \fB:\fP \fB[\fP\fIargument\fP \fB...\fP\fB]\fP

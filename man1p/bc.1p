@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "bc" P 2003 POSIX
+.TH "BC" P 2003 POSIX
 .\" bc 
 .SH NAME
-bc - arbitrary-precision arithmetic language
+bc \- arbitrary-precision arithmetic language
 .SH SYNOPSIS
 .LP
 \fBbc\fP \fB[\fP\fB-l\fP\fB] [\fP\fIfile\fP \fB...\fP\fB]\fP
@@ -17,10 +17,10 @@ constraints described in the following sections.
 .SH OPTIONS
 .LP
 The \fIbc\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following option shall be supported:
-.TP
+.TP 7
 \fB-l\fP
 (The letter ell.) Define the math functions and initialize \fIscale\fP
 to 20, instead of the default zero; see the EXTENDED
@@ -29,7 +29,7 @@ DESCRIPTION section.
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a text file containing \fIbc\fP program statements.
 After all \fIfile\fPs have been read, \fIbc\fP shall read
@@ -47,29 +47,29 @@ as they are read.
 .LP
 The following environment variables shall affect the execution of
 \fIbc\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -263,24 +263,20 @@ named_expression     : LETTER
 .LP
 The lexical conventions for \fIbc\fP programs, with respect to the
 preceding grammar, shall be as follows:
-.in +5
-.LP
+.IP " 1." 4
 Except as noted, \fIbc\fP shall recognize the longest possible token
 or delimiter beginning at a given point.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 A comment shall consist of any characters beginning with the two adjacent
 characters \fB"/*"\fP and terminated by the next
 occurrence of the two adjacent characters \fB"*/"\fP . Comments shall
 have no effect except to delimit lexical tokens.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 The <newline> shall be recognized as the token \fBNEWLINE\fP.
-.in -5
-.in +5
 .LP
+.IP " 4." 4
 The token \fBSTRING\fP shall represent a string constant; it shall
 consist of any characters beginning with the double-quote
 character ( \fB' )'\fP and terminated by another occurrence of the
@@ -290,32 +286,27 @@ characters. All characters shall be taken literally
 from the input, and there is no way to specify a string containing
 a double-quote character. The length of the value of each string
 shall be limited to {BC_STRING_MAX} bytes.
-.in -5
-.in +5
 .LP
+.IP " 5." 4
 A <blank> shall have no effect except as an ordinary character if
 it appears within a \fBSTRING\fP token, or to delimit a
 lexical token other than \fBSTRING\fP.
-.in -5
-.in +5
 .LP
+.IP " 6." 4
 The combination of a backslash character immediately followed by a
 <newline> shall have no effect other than to delimit
 lexical tokens with the following exceptions:
 .RS
-.in +5
-.LP
+.IP " *" 3
 It shall be interpreted as the character sequence \fB"\\<newline>"\fP
 in \fBSTRING\fP tokens.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 It shall be ignored as part of a multi-line \fBNUMBER\fP token.
-.in -5
-.RE
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 7." 4
 The token \fBNUMBER\fP shall represent a numeric constant. It shall
 be recognized by the following grammar:
 .sp
@@ -340,9 +331,8 @@ digit   : 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP " 8." 4
 The value of a \fBNUMBER\fP token shall be interpreted as a numeral
 in the base specified by the value of the internal register
 \fBibase\fP (described below). Each of the \fBdigit\fP characters
@@ -352,12 +342,12 @@ is undefined if digits greater than or equal to the value of
 \fBibase\fP appear in the token. However, note the exception for single-digit
 values being assigned to \fBibase\fP and
 \fBobase\fP themselves, in Operations in bc .
-.in -5
-.in +5
 .LP
+.IP " 9." 4
 The following keywords shall be recognized as tokens:
 .TS C
-center;l l l l l l l l.
+center; lw(15) lw(15) lw(15) lw(15) lw(15).
+T{
 \fB
 .br
 auto
@@ -366,7 +356,9 @@ break
 .br
 define
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 ibase
 .br
@@ -374,7 +366,9 @@ if
 .br
 for
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 length
 .br
@@ -382,7 +376,9 @@ obase
 .br
 quit
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 return
 .br
@@ -390,15 +386,17 @@ scale
 .br
 sqrt
 .br
-\fP 	 \fB
+\fP
+T}	T{
+\fB
 .br
 while
 .br
-\fP 	
+\fP
+T}
 .TE
-.in -5
-.in +5
 .LP
+.IP "10." 4
 Any of the following characters occurring anywhere except within a
 keyword shall be recognized as the token \fBLETTER\fP:
 .sp
@@ -409,9 +407,8 @@ keyword shall be recognized as the token \fBLETTER\fP:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "11." 4
 The following single-character and two-character sequences shall be
 recognized as the token \fBASSIGN_OP\fP:
 .sp
@@ -422,15 +419,13 @@ recognized as the token \fBASSIGN_OP\fP:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "12." 4
 If an \fB'='\fP character, as the beginning of a token, is followed
 by a \fB'-'\fP character with no intervening
 delimiter, the behavior is undefined.
-.in -5
-.in +5
 .LP
+.IP "13." 4
 The following single-characters shall be recognized as the token \fBMUL_OP\fP:
 .sp
 .RS
@@ -440,9 +435,8 @@ The following single-characters shall be recognized as the token \fBMUL_OP\fP:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "14." 4
 The following single-character and two-character sequences shall be
 recognized as the token \fBREL_OP\fP:
 .sp
@@ -453,9 +447,8 @@ recognized as the token \fBREL_OP\fP:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "15." 4
 The following two-character sequences shall be recognized as the token
 \fBINCR_DECR\fP:
 .sp
@@ -466,9 +459,8 @@ The following two-character sequences shall be recognized as the token
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "16." 4
 The following single characters shall be recognized as tokens whose
 names are the character:
 .sp
@@ -479,11 +471,10 @@ names are the character:
 \fP
 .fi
 .RE
-.in -5
-.in +5
 .LP
+.IP "17." 4
 The token \fBEOF\fP is returned when the end of input is reached.
-.in -5
+.LP
 .SS Operations in bc
 .LP
 There are three kinds of identifiers: ordinary identifiers, array
@@ -501,17 +492,19 @@ not conflict.
 The following table summarizes the rules for precedence and associativity
 of all operators. Operators on the same line shall
 have the same precedence; rows are in order of decreasing precedence.
+.sp
+.ce 1
 \fBTable: Operators in \fIbc\fP\fP
 .TS C
-center;l l l l l l l l.
-\fBOperator\fP 	 \fBAssociativity\fP 	
-++, -- 	 N/A 	
-unary - 	 N/A 	
-^ 	 Right to left 	
-*, /, % 	 Left to right 	
-+, binary - 	 Left to right 	
-=, +=, -=, *=, /=, %=, ^= 	 Right to left 	
-==, <=, >=, !=, <, > 	 None 	
+center; l l.
+\fBOperator\fP	\fBAssociativity\fP
+++, --	N/A
+unary -	N/A
+^	Right to left
+*, /, %	Left to right
++, binary -	Left to right
+=, +=, -=, *=, /=, %=, ^=	Right to left
+==, <=, >=, !=, <, >	None
 .TE
 .LP
 Each expression or named expression has a \fIscale\fP, which is the
@@ -566,44 +559,38 @@ the value of \fBibase\fP appear in the input. Both \fBibase\fP and
 Internal computations shall be conducted as if in decimal, regardless
 of the input and output bases, to the specified number of
 decimal digits. When an exact result is not achieved (for example,
-\fBscale\fP=0;\03.2/1)\fB,\fP the result shall be
+\fBscale\fP=0;\ 3.2/1)\fB,\fP the result shall be
 truncated.
 .LP
-For all values of \fBobase\fP specified by this volume of IEEE\0Std\01003.1-2001,
+For all values of \fBobase\fP specified by this volume of IEEE\ Std\ 1003.1-2001,
 \fIbc\fP shall output numeric values
 by performing each of the following steps in order:
-.in +5
-.LP
+.IP " 1." 4
 If the value is less than zero, a hyphen ( \fB'-'\fP ) character shall
 be output.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 One of the following is output, depending on the numerical value:
 .RS
-.in +5
-.LP
+.IP " *" 3
 If the absolute value of the numerical value is greater than or equal
 to one, the integer portion of the value shall be output
 as a series of digits appropriate to \fBobase\fP (as described below),
 most significant digit first. The most significant non-zero
 digit shall be output next, followed by each successively less significant
 digit.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the absolute value of the numerical value is less than one but
 greater than zero and the scale of the numerical value is
 greater than zero, it is unspecified whether the character 0 is output.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 If the numerical value is zero, the character 0 shall be output.
-.in -5
-.RE
-.in -5
-.in +5
 .LP
+.RE
+.LP
+.IP " 3." 4
 If the scale of the value is greater than zero and the numeric value
 is not zero, a period character shall be output, followed
 by a series of digits appropriate to \fBobase\fP (as described below)
@@ -614,8 +601,8 @@ output, the number of digits output shall be \fIs\fP if
 greater than 10, or greater than or equal to \fIs\fP if
 \fBobase\fP is less than 10. For \fBobase\fP values other than 10,
 this should be the number of digits needed to represent a
-precision of 10.
-.in -5
+precision of 10**\fIs\fP.
+.LP
 .LP
 For \fBobase\fP values from 2 to 16, valid digits are the first \fBobase\fP
 of the single characters:
@@ -641,7 +628,7 @@ and so on. For example, the decimal number 1024 in base
 .RS
 .nf
 
-\fB011524
+\fB 01 15 24
 \fP
 .fi
 .RE
@@ -651,7 +638,7 @@ and in base 125, as:
 .RS
 .nf
 
-\fB008024
+\fB 008 024
 \fP
 .fi
 .RE
@@ -690,12 +677,12 @@ A numeric constant shall be an expression. The scale shall be the
 number of digits that follow the radix point in the input
 representing the constant, or zero if no radix point appears.
 .LP
-The sequence (\0\fIexpression\fP\0) shall be an expression with the
+The sequence (\ \fIexpression\fP\ ) shall be an expression with the
 same value and scale as \fIexpression\fP. The
 parentheses can be used to alter the normal precedence.
 .LP
 The semantics of the unary and binary operators are as follows:
-.TP
+.TP 7
 -\fIexpression\fP
 .sp
 The result shall be the negative of the \fIexpression\fP. The scale
@@ -705,22 +692,22 @@ of the result shall be the scale of \fIexpression\fP.
 The unary increment and decrement operators shall not modify the scale
 of the named expression upon which they operate. The
 scale of the result shall be the scale of that named expression.
-.TP
+.TP 7
 ++\fInamed-expression\fP
 .sp
 The named expression shall be incremented by one. The result shall
 be the value of the named expression after incrementing.
-.TP
+.TP 7
 --\fInamed-expression\fP
 .sp
 The named expression shall be decremented by one. The result shall
 be the value of the named expression after decrementing.
-.TP
+.TP 7
 \fInamed-expression\fP++
 .sp
 The named expression shall be incremented by one. The result shall
 be the value of the named expression before incrementing.
-.TP
+.TP 7
 \fInamed-expression\fP--
 .sp
 The named expression shall be decremented by one. The result shall
@@ -729,7 +716,7 @@ be the value of the named expression before decrementing.
 .LP
 The exponentiation operator, circumflex ( \fB'^'\fP ), shall bind
 right to left.
-.TP
+.TP 7
 \fIexpression\fP^\fIexpression\fP
 .sp
 The result shall be the first \fIexpression\fP raised to the power
@@ -748,7 +735,7 @@ the right expression, the scale of the result shall be:
 .sp
 The multiplicative operators ( \fB'*'\fP , \fB'/'\fP , \fB'%'\fP )
 shall bind left to right. 
-.TP
+.TP 7
 \fIexpression\fP*\fIexpression\fP
 .sp
 The result shall be the product of the two expressions. If \fIa\fP
@@ -762,22 +749,21 @@ scale of the result shall be:
 \fP
 .fi
 .RE
-.TP
+.TP 7
 \fIexpression\fP/\fIexpression\fP
 .sp
 The result shall be the quotient of the two expressions. The scale
 of the result shall be the value of \fBscale\fP.
-.TP
+.TP 7
 \fIexpression\fP%\fIexpression\fP
 .sp
 For expressions \fIa\fP and \fIb\fP, \fIa\fP% \fIb\fP shall be evaluated
 equivalent to the steps: 
-.in +5
-.LP
+.RS
+.IP " 1." 4
 Compute \fIa\fP/ \fIb\fP to current scale.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Use the result to compute:
 .sp
 .RS
@@ -797,7 +783,8 @@ to scale:
 \fP
 .fi
 .RE
-.in -5
+.LP
+.RE
 The scale of the result shall be: 
 .sp
 .RS
@@ -814,13 +801,13 @@ remainder operator.
 .LP
 The additive operators ( \fB'+'\fP , \fB'-'\fP ) shall bind left to
 right.
-.TP
+.TP 7
 \fIexpression\fP+\fIexpression\fP
 .sp
 The result shall be the sum of the two expressions. The scale of the
 result shall be the maximum of the scales of the
 expressions.
-.TP
+.TP 7
 \fIexpression\fP-\fIexpression\fP
 .sp
 The result shall be the difference of the two expressions. The scale
@@ -831,7 +818,7 @@ expressions.
 The assignment operators ( \fB'='\fP , \fB"+="\fP , \fB"-="\fP , \fB"*="\fP
 , \fB"/="\fP , \fB"%="\fP ,
 \fB"^="\fP ) shall bind right to left.
-.TP
+.TP 7
 \fInamed-expression\fP=\fIexpression\fP
 .sp
 This expression shall result in assigning the value of the expression
@@ -865,32 +852,32 @@ Unlike all other operators, the relational operators ( \fB'<'\fP ,
 \fB"=="\fP , \fB"!="\fP ) shall be only valid as the object of an
 \fBif\fP, \fBwhile\fP, or inside a \fBfor\fP
 statement.
-.TP
+.TP 7
 \fIexpression1\fP<\fIexpression2\fP
 .sp
 The relation shall be true if the value of \fIexpression1\fP is strictly
 less than the value of \fIexpression2\fP.
-.TP
+.TP 7
 \fIexpression1\fP>\fIexpression2\fP
 .sp
 The relation shall be true if the value of \fIexpression1\fP is strictly
 greater than the value of \fIexpression2\fP.
-.TP
+.TP 7
 \fIexpression1\fP<=\fIexpression2\fP
 .sp
 The relation shall be true if the value of \fIexpression1\fP is less
 than or equal to the value of \fIexpression2\fP.
-.TP
+.TP 7
 \fIexpression1\fP>=\fIexpression2\fP
 .sp
 The relation shall be true if the value of \fIexpression1\fP is greater
 than or equal to the value of \fIexpression2\fP.
-.TP
+.TP 7
 \fIexpression1\fP==\fIexpression2\fP
 .sp
 The relation shall be true if the values of \fIexpression1\fP and
 \fIexpression2\fP are equal.
-.TP
+.TP 7
 \fIexpression1\fP!=\fIexpression2\fP
 .sp
 The relation shall be true if the values of \fIexpression1\fP and
@@ -1022,28 +1009,28 @@ the input, even if it occurs in a function definition, or in an \fBif\fP,
 .LP
 The following functions shall be defined when the \fB-l\fP option
 is specified:
-.TP
-\fBs\fP(\0\fIexpression\fP\0)
+.TP 7
+\fBs\fP(\ \fIexpression\fP\ )
 .sp
 Sine of argument in radians.
-.TP
-\fBc\fP(\0\fIexpression\fP\0)
+.TP 7
+\fBc\fP(\ \fIexpression\fP\ )
 .sp
 Cosine of argument in radians.
-.TP
-\fBa\fP(\0\fIexpression\fP\0)
+.TP 7
+\fBa\fP(\ \fIexpression\fP\ )
 .sp
 Arctangent of argument.
-.TP
-\fBl\fP(\0\fIexpression\fP\0)
+.TP 7
+\fBl\fP(\ \fIexpression\fP\ )
 .sp
 Natural logarithm of argument.
-.TP
-\fBe\fP(\0\fIexpression\fP\0)
+.TP 7
+\fBe\fP(\ \fIexpression\fP\ )
 .sp
 Exponential function of argument.
-.TP
-\fBj\fP(\0\fIexpression\fP,\0\fIexpression\fP\0)
+.TP 7
+\fBj\fP(\ \fIexpression\fP,\ \fIexpression\fP\ )
 .sp
 Bessel function of integer order.
 .sp
@@ -1058,10 +1045,10 @@ mathematical function.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
+.TP 7
 0
 All input files were processed successfully.
-.TP
+.TP 7
 \fIunspecified\fP
 An error occurred.
 .sp
@@ -1122,7 +1109,7 @@ period is also used in output.
 .SH EXAMPLES
 .LP
 In the shell, the following assigns an approximation of the first
-ten digits of \fB''\fP to the variable \fIx\fP:
+ten digits of \fB'pi'\fP to the variable \fIx\fP:
 .sp
 .RS
 .nf
@@ -1132,7 +1119,7 @@ ten digits of \fB''\fP to the variable \fIx\fP:
 .fi
 .RE
 .LP
-The following \fIbc\fP program prints the same approximation of \fB''\fP
+The following \fIbc\fP program prints the same approximation of \fB'pi'\fP
 , with a
 label, to standard output:
 .sp
@@ -1189,38 +1176,32 @@ of the first ten integers:
 .LP
 The \fIbc\fP utility is implemented historically as a front-end processor
 for \fIdc\fP; \fIdc\fP was not selected to be part
-of this volume of IEEE\0Std\01003.1-2001 because \fIbc\fP was thought
+of this volume of IEEE\ Std\ 1003.1-2001 because \fIbc\fP was thought
 to have a more intuitive programmatic interface.
 Current implementations that implement \fIbc\fP using \fIdc\fP are
 expected to be compliant.
 .LP
 The exit status for error conditions has been left unspecified for
 several reasons:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The \fIbc\fP utility is used in both interactive and non-interactive
 situations. Different exit codes may be appropriate for
 the two uses.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 It is unclear when a non-zero exit should be given; divide-by-zero,
 undefined functions, and syntax errors are all
 possibilities.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 It is not clear what utility the exit status has.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 In the 4.3 BSD, System V, and Ninth Edition implementations, \fIbc\fP
 works in conjunction with \fIdc\fP. The \fIdc\fP
 utility is the parent, \fIbc\fP is the child. This was done to cleanly
 terminate \fIbc\fP if \fIdc\fP aborted.
-.in -5
-.RE
+.LP
 .LP
 The decision to have \fIbc\fP exit upon encountering an inaccessible
 input file is based on the belief that \fIbc\fP
@@ -1240,13 +1221,12 @@ with any version of C. An interpreter for a subset of C
 might be a very worthwhile utility, and it could potentially make
 \fIbc\fP obsolete. However, no such utility is known in
 historical practice, and it was not within the scope of this volume
-of IEEE\0Std\01003.1-2001 to define such a language and
+of IEEE\ Std\ 1003.1-2001 to define such a language and
 utility. If and when they are defined, it may be appropriate to include
-them in a future version of IEEE\0Std\01003.1. This
+them in a future version of IEEE\ Std\ 1003.1. This
 left the following alternatives:
-.in +5
-.LP
-Exclude any calculator language from this volume of IEEE\0Std\01003.1-2001.
+.IP " 1." 4
+Exclude any calculator language from this volume of IEEE\ Std\ 1003.1-2001.
 .LP
 The consensus of the standard developers was that a simple programmatic
 calculator language is very useful for both applications
@@ -1255,18 +1235,16 @@ were that it would become obsolete if and when a
 C-compatible one emerged, or that the absence would encourage the
 development of such a C-compatible one. These arguments did not
 sufficiently address the needs of current application writers.
-.in -5
-.in +5
 .LP
+.IP " 2." 4
 Standardize the historical \fIdc\fP, possibly with minor modifications.
 .LP
 The consensus of the standard developers was that \fIdc\fP is a fundamentally
 less usable language and that that would be far
 too severe a penalty for avoiding the issue of being similar to but
 incompatible with C.
-.in -5
-.in +5
 .LP
+.IP " 3." 4
 Standardize the historical \fIbc\fP, possibly with minor modifications.
 .LP
 This was the approach taken. Most of the proponents of changing the
@@ -1286,7 +1264,7 @@ as they see fit, the behavior of this one ambiguous
 construct was made undefined. (At least three implementations have
 been known to support this change already, so the degree of
 change involved should not be great.)
-.in -5
+.LP
 .LP
 The \fB'%'\fP operator is the mathematical remainder operator when
 \fBscale\fP is zero. The behavior of this operator for
@@ -1300,7 +1278,7 @@ than 2, which were not seen as sufficiently useful to standardize.
 These implementations do not interpret input properly for values
 of \fBibase\fP that are greater than 16. This is because numeric constants
 are recognized syntactically, rather than lexically, as
-described in this volume of IEEE\0Std\01003.1-2001. They are built
+described in this volume of IEEE\ Std\ 1003.1-2001. They are built
 from lexical tokens of single hexadecimal digits and
 periods. Since <blank>s between tokens are not visible at the syntactic
 level, it is not possible to recognize the
@@ -1308,7 +1286,7 @@ multi-digit "digits" used in the higher bases properly. The ability
 to recognize input in these bases was not considered useful
 enough to require modifying these implementations. Note that the recognition
 of numeric constants at the syntactic level is not a
-problem with conformance to this volume of IEEE\0Std\01003.1-2001,
+problem with conformance to this volume of IEEE\ Std\ 1003.1-2001,
 as it does not impact the behavior of conforming
 applications (and correct \fIbc\fP programs). Historical implementations
 also accept input with all of the digits \fB'0'\fP -
@@ -1349,7 +1327,7 @@ Exact calculation of the number of fractional digits to output for
 a given value in a base other than 10 can be computationally
 expensive. Historical implementations use a faster approximation,
 and this is permitted. Note that the requirements apply only to
-values of \fBobase\fP that this volume of IEEE\0Std\01003.1-2001 requires
+values of \fBobase\fP that this volume of IEEE\ Std\ 1003.1-2001 requires
 implementations to support (in particular, not
 to 1, 0, or negative bases, if an implementation supports them as
 an extension).

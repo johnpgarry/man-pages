@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "get" P 2003 POSIX
+.TH "GET" P 2003 POSIX
 .\" get 
 .SH NAME
-get - get a version of an SCCS file (\fBDEVELOPMENT\fP)
+get \- get a version of an SCCS file (\fBDEVELOPMENT\fP)
 .SH SYNOPSIS
 .LP
 \fBget\fP \fB[\fP\fB-begkmnlLpst\fP\fB][\fP\fB-c\fP \fIcutoff\fP\fB][\fP\fB-i\fP
@@ -20,18 +20,18 @@ by simply removing the leading \fB"s."\fP .
 .SH OPTIONS
 .LP
 The \fIget\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
-\fB-r\0\fP \fISID\fP
+.TP 7
+\fB-r\ \fP \fISID\fP
 Indicate the SCCS Identification String (SID) of the version (delta)
 of an SCCS file to be retrieved. The table shows, for the
 most useful cases, what version of an SCCS file is retrieved (as well
 as the SID of the version to be eventually created by \fIdelta\fP
 if the \fB-e\fP option is also used), as a function of the SID specified.
-.TP
-\fB-c\0\fP \fIcutoff\fP
+.TP 7
+\fB-c\ \fP \fIcutoff\fP
 Indicate the \fIcutoff\fP date-time, in the form: 
 .sp
 .RS
@@ -44,12 +44,14 @@ Indicate the \fIcutoff\fP date-time, in the form:
 For the \fIYY\fP component, values in the range [69,99] shall refer
 to years 1969 to 1999 inclusive, and values in the range
 [00,68] shall refer to years 2000 to 2068 inclusive. 
-.TP
+.TP 7
 \fBNote:\fP
-It is expected that in a future version of IEEE\0Std\01003.1-2001
+.RS
+It is expected that in a future version of IEEE\ Std\ 1003.1-2001
 the default century inferred from a 2-digit year will
 change. (This would apply to all commands accepting a 2-digit year
 as input.)
+.RE
 .sp
 .LP
 No changes (deltas) to the SCCS file that were created after the specified
@@ -60,8 +62,8 @@ equivalent to \fB-c\fP 750228235959.
 .LP
 Any number of non-numeric characters may separate the various 2-digit
 pieces of the \fIcutoff\fP date-time. This feature allows
-the user to specify a \fIcutoff\fP date in the form: \fB-c\fP "77/2/2\09:22:25".
-.TP
+the user to specify a \fIcutoff\fP date in the form: \fB-c\fP "77/2/2\ 9:22:25".
+.TP 7
 \fB-e\fP
 Indicate that the \fIget\fP is for the purpose of editing or making
 a change (delta) to the SCCS file via a subsequent use of
@@ -80,19 +82,21 @@ option in place of the \fB-e\fP option.
 SCCS file protection specified via the ceiling, floor, and authorized
 user list stored in the SCCS file shall be enforced when
 the \fB-e\fP option is used.
-.TP
+.TP 7
 \fB-b\fP
 Use with the \fB-e\fP option to indicate that the new delta should
 have an SID in a new branch as shown in the table below.
 This option shall be ignored if the \fBb\fP flag is not present in
 the file or if the retrieved delta is not a leaf delta. (A leaf
 delta is one that has no successors on the SCCS file tree.)  
-.TP
+.TP 7
 \fBNote:\fP
+.RS
 A branch delta may always be created from a non-leaf delta.
+.RE
 .sp
-.TP
-\fB-i\0\fP \fIlist\fP
+.TP 7
+\fB-i\ \fP \fIlist\fP
 Indicate a \fIlist\fP of deltas to be included (forced to be applied)
 in the creation of the generated file. The \fIlist\fP
 has the following syntax: 
@@ -112,38 +116,38 @@ DESCRIPTION section, except that the result of supplying a partial
 SID is unspecified. A diagnostic message shall be written if the
 first SID in the range is not an ancestor of the second SID in the
 range.
-.TP
-\fB-x\0\fP \fIlist\fP
+.TP 7
+\fB-x\ \fP \fIlist\fP
 Indicate a \fIlist\fP of deltas to be excluded (forced not to be applied)
 in the creation of the generated file. See the
 \fB-i\fP option for the \fIlist\fP format.
-.TP
+.TP 7
 \fB-k\fP
 Suppress replacement of identification keywords (see below) in the
 retrieved text by their value. The \fB-k\fP option shall be
 implied by the \fB-e\fP option.
-.TP
+.TP 7
 \fB-l\fP
 Write a delta summary into an \fBl-file\fP.
-.TP
+.TP 7
 \fB-L\fP
 Write a delta summary to standard output. All informative output that
 normally is written to standard output shall be written
 to standard error instead, unless the \fB-s\fP option is used, in
 which case it shall be suppressed.
-.TP
+.TP 7
 \fB-p\fP
 Write the text retrieved from the SCCS file to the standard output.
 No \fBg-file\fP shall be created. All informative output
 that normally goes to the standard output shall go to standard error
 instead, unless the \fB-s\fP option is used, in which case it
 shall disappear.
-.TP
+.TP 7
 \fB-s\fP
 Suppress all informative output normally written to standard output.
 However, fatal error messages (which shall always be
 written to the standard error) shall remain unaffected.
-.TP
+.TP 7
 \fB-m\fP
 Precede each text line retrieved from the SCCS file by the SID of
 the delta that inserted the text line in the SCCS file. The
@@ -156,7 +160,7 @@ format shall be:
 \fP
 .fi
 .RE
-.TP
+.TP 7
 \fB-n\fP
 Precede each generated text line with the %\fBM\fP% identification
 keyword value (see below). The format shall be: 
@@ -169,15 +173,15 @@ keyword value (see below). The format shall be:
 .fi
 .RE
 .LP
-When both the \fB-m\fP and \fB-n\fP options are used, the <\fItext\0line\fP>
+When both the \fB-m\fP and \fB-n\fP options are used, the <\fItext\ line\fP>
 shall be replaced by the \fB-m\fP
 option-generated format.
-.TP
+.TP 7
 \fB-g\fP
 Suppress the actual retrieval of text from the SCCS file. It is primarily
 used to generate an \fBl-file\fP, or to verify the
 existence of a particular SID.
-.TP
+.TP 7
 \fB-t\fP
 Use to access the most recently created (top) delta in a given release
 (for example, \fB-r 1\fP), or release and level (for
@@ -186,7 +190,7 @@ example, \fB-r 1.2\fP).
 .SH OPERANDS
 .LP
 The following operands shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of an existing SCCS file or a directory. If \fIfile\fP
 is a directory, the \fIget\fP utility shall behave as
@@ -211,34 +215,34 @@ The SCCS files shall be files of an unspecified format.
 .LP
 The following environment variables shall affect the execution of
 \fIget\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard error,
 and informative messages written to standard output (or standard error,
 if the \fB-p\fP option is used).
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
-.TP
+.TP 7
 \fITZ\fP
 Determine the timezone in which the times and dates written in the
 SCCS file are evaluated. If the \fITZ\fP variable is unset
@@ -355,41 +359,47 @@ Lines in the \fBl-file\fP shall have the following format:
 .RS
 .nf
 
-\fB"%c%c%c%s\\t%s%s\\n", <\fP\fIcode1\fP\fB>, <\fP\fIcode2\fP\fB>, <\fP\fIcode3\fP\fB>,
+\fB"%c%c%c %s\\t%s %s\\n", <\fP\fIcode1\fP\fB>, <\fP\fIcode2\fP\fB>, <\fP\fIcode3\fP\fB>,
     <\fP\fISID\fP\fB>, <\fP\fIdate-time\fP\fB>, <\fP\fIlogin\fP\fB>
 \fP
 .fi
 .RE
 .LP
 where the entries are:
-.TP
+.TP 7
 <\fIcode1\fP>
 A <space> if the delta was applied; \fB'*'\fP otherwise.
-.TP
+.TP 7
 <\fIcode2\fP>
 A <space> if the delta was applied or was not applied and ignored;
 \fB'*'\fP if the delta was not applied and was not
 ignored.
-.TP
+.TP 7
 <\fIcode3\fP>
 A character indicating a special reason why the delta was or was not
 applied: 
-.TP
+.TP 7
 \fBI\fP
+.RS
 Included.
-.TP
+.RE
+.TP 7
 \fBX\fP
+.RS
 Excluded.
-.TP
+.RE
+.TP 7
 \fBC\fP
+.RS
 Cut off (by a \fB-c\fP option).
+.RE
 .sp
-.TP
+.TP 7
 <\fIdate-time\fP>
 Date and time (using the format of the \fIdate\fP utility's \fB%y\fP
 / \fB%m\fP /
 \fB%d\fP \fB%T\fP conversion specification format) of creation.
-.TP
+.TP 7
 <\fIlogin\fP>
 Login name of person who created \fIdelta\fP.
 .sp
@@ -414,7 +424,7 @@ format:
 .RS
 .nf
 
-\fB"%s%s%s%s%s%s\\n", <\fP\fIg-file SID\fP\fB>,
+\fB"%s %s %s %s%s%s\\n", <\fP\fIg-file SID\fP\fB>,
     <\fP\fISID of new delta\fP\fB>, <\fP\fIlogin-name of real user\fP\fB>,
     <\fP\fIdate-time\fP\fB>, <\fP\fIi-value\fP\fB>, <\fP\fIx-value\fP\fB>
 \fP
@@ -427,7 +437,7 @@ was specified, and shall use the format:
 .RS
 .nf
 
-\fB"-i%s", <-i option\fP \fIoption-argument\fP\fB>
+\fB" -i%s", <-i option\fP \fIoption-argument\fP\fB>
 \fP
 .fi
 .RE
@@ -439,7 +449,7 @@ and shall use the format:
 .RS
 .nf
 
-\fB"-x%s", <-x option\fP \fIoption-argument\fP\fB>
+\fB" -x%s", <-x option\fP \fIoption-argument\fP\fB>
 \fP
 .fi
 .RE
@@ -458,28 +468,102 @@ The \fBz-file\fP shall be created read-only.
 .br
 .SH EXTENDED DESCRIPTION
 .TS C
-center;l l l l l l l l.
-<th colspan="5" align="center"> \fBDetermination of SCCS Identification String\fP 	
-\fBSID*\fP 	 \fB-b Keyletter\fP 	 \fBOther\fP 	 \fBSID\fP 	 \fBSID of Delta\fP 	
-\fBSpecified\fP 	 \fBUsed\fP 	 \fBConditions\fP 	 \fBRetrieved\fP 	 \fBto be Created\fP 	
-none 	 no 	 R defaults to mR 	 mR.mL 	 mR.(mL+1) 	
-none 	 yes 	 R defaults to mR 	 mR.mL 	 mR.mL.(mB+1).1 	
-R 	 no 	 R > mR 	 mR.mL 	 R.1*** 	
-R 	 no 	 R = mR 	 mR.mL 	 mR.(mL+1) 	
-R 	 yes 	 R > mR 	 mR.mL 	 mR.mL.(mB+1).1 	
-R 	 yes 	 R = mR 	 mR.mL 	 mR.mL.(mB+1).1 	
-R 	 - 	 R < mR and R does not exist 	 hR.mL** 	 hR.mL.(mB+1).1 	
-R 	 - 	 Trunk successor in release > R and R exists 	 R.mL 	 R.mL.(mB+1).1 	
-R.L 	 no 	 No trunk successor 	 R.L 	 R.(L+1) 	
-R.L 	 yes 	 No trunk successor 	 R.L 	 R.L.(mB+1).1 	
-R.L 	 - 	 Trunk successor in release >= R 	 R.L 	 R.L.(mB+1).1 	
-R.L.B 	 no 	 No branch successor 	 R.L.B.mS 	 R.L.B.(mS+1) 	
-R.L.B 	 yes 	 No branch successor 	 R.L.B.mS 	 R.L.(mB+1).1 	
-R.L.B.S 	 no 	 No branch successor 	 R.L.B.S 	 R.L.B.(S+1) 	
-R.L.B.S 	 yes 	 No branch successor 	 R.L.B.S 	 R.L.(mB+1).1 	
-R.L.B.S 	 - 	 Branch successor 	 R.L.B.S 	 R.L.(mB+1).1 	
+center;c1 s1 s1 s1 s.
+\fBDetermination of SCCS Identification String\fP
+.T&
+ l1 l1 lw(22)1 l1 l.
+\fBSID*\fP	\fB-b Keyletter\fP	T{
+.na
+\fBOther\fP
+.ad
+T}	\fBSID\fP	\fBSID of Delta\fP
+\fBSpecified\fP	\fBUsed&\fP	T{
+.na
+\fBConditions\fP
+.ad
+T}	\fBRetrieved\fP	\fBto be Created\fP
+none&&	no	T{
+.na
+R defaults to mR
+.ad
+T}	mR.mL	mR.(mL+1)
+none&&	yes	T{
+.na
+R defaults to mR
+.ad
+T}	mR.mL	mR.mL.(mB+1).1
+R	no	T{
+.na
+R > mR
+.ad
+T}	mR.mL	R.1***
+R	no	T{
+.na
+R = mR
+.ad
+T}	mR.mL	mR.(mL+1)
+R	yes	T{
+.na
+R > mR
+.ad
+T}	mR.mL	mR.mL.(mB+1).1
+R	yes	T{
+.na
+R = mR
+.ad
+T}	mR.mL	mR.mL.(mB+1).1
+R	-	T{
+.na
+R < mR and R does not exist
+.ad
+T}	hR.mL**	hR.mL.(mB+1).1
+R	-	T{
+.na
+Trunk successor in release > R and R exists
+.ad
+T}	R.mL	R.mL.(mB+1).1
+R.L	no	T{
+.na
+No trunk successor
+.ad
+T}	R.L	R.(L+1)
+R.L	yes	T{
+.na
+No trunk successor
+.ad
+T}	R.L	R.L.(mB+1).1
+R.L	-	T{
+.na
+Trunk successor in release >= R
+.ad
+T}	R.L	R.L.(mB+1).1
+R.L.B	no	T{
+.na
+No branch successor
+.ad
+T}	R.L.B.mS	R.L.B.(mS+1)
+R.L.B	yes	T{
+.na
+No branch successor
+.ad
+T}	R.L.B.mS	R.L.(mB+1).1
+R.L.B.S	no	T{
+.na
+No branch successor
+.ad
+T}	R.L.B.S	R.L.B.(S+1)
+R.L.B.S	yes	T{
+.na
+No branch successor
+.ad
+T}	R.L.B.S	R.L.(mB+1).1
+R.L.B.S	-	T{
+.na
+Branch successor
+.ad
+T}	R.L.B.S	R.L.(mB+1).1
 .TE
-.TP
+.TP 7
 *
 R, L, B, and S are the release, level, branch, and sequence components
 of the SID, respectively; m means maximum. Thus, for
@@ -488,18 +572,20 @@ R.L.(mB+1).1 means "the first sequence number on the new branch
 (that is, maximum branch number plus one) of level L within release
 R". Note that if the SID specified is of the form R.L, R.L.B,
 or R.L.B.S, each of the specified components shall exist.
-.TP
+.TP 7
 **
 hR is the highest existing release that is lower than the specified,
 nonexistent, release R.
-.TP
+.TP 7
 ***
 This is used to force creation of the first delta in a new release.
-.TP
+.TP 7
+&
 The \fB-b\fP option is effective only if the \fBb\fP flag is present
 in the file. An entry of \fB'-'\fP means
 "irrelevant".
-.TP
+.TP 7
+&&
 This case applies if the \fBd\fP (default SID) flag is not present
 in the file. If the \fBd\fP flag is present in the file,
 then the SID obtained from the \fBd\fP flag is interpreted as if it
@@ -517,67 +603,67 @@ Identifying information shall be inserted into the text retrieved
 from the SCCS file by replacing identification keywords with
 their value wherever they occur. The following keywords may be used
 in the text stored in an SCCS file:
-.TP
+.TP 7
 %\fBM\fP%
 Module name: either the value of the \fBm\fP flag in the file, or
 if absent, the name of the SCCS file with the leading
 \fBs.\fP removed.
-.TP
+.TP 7
 %\fBI\fP%
 SCCS identification (SID) (%\fBR\fP%.%\fBL\fP% or %\fBR\fP%.%\fBL\fP%.%\fBB\fP%.%\fBS\fP%)
 of the retrieved text.
-.TP
+.TP 7
 %\fBR\fP%
 Release.
-.TP
+.TP 7
 %\fBL\fP%
 Level.
-.TP
+.TP 7
 %\fBB\fP%
 Branch.
-.TP
+.TP 7
 %\fBS\fP%
 Sequence.
-.TP
+.TP 7
 %\fBD\fP%
 Current date (\fIYY\fP/\fIMM\fP/\fIDD\fP).
-.TP
+.TP 7
 %\fBH\fP%
 Current date (\fIMM\fP/\fIDD\fP/\fIYY\fP).
-.TP
+.TP 7
 %\fBT\fP%
 Current time (\fIHH\fP:\fIMM\fP:\fISS\fP).
-.TP
+.TP 7
 %\fBE\fP%
 Date newest applied delta was created (\fIYY\fP/\fIMM\fP/\fIDD\fP).
-.TP
+.TP 7
 %\fBG\fP%
 Date newest applied delta was created (\fIMM\fP/\fIDD\fP/\fIYY\fP).
-.TP
+.TP 7
 %\fBU\fP%
 Time newest applied delta was created (\fIHH\fP:\fIMM\fP:\fISS\fP).
-.TP
+.TP 7
 %\fBY\fP%
 Module type: value of the \fBt\fP flag in the SCCS file.
-.TP
+.TP 7
 %\fBF\fP%
 SCCS filename.
-.TP
+.TP 7
 %\fBP\fP%
 SCCS absolute pathname.
-.TP
+.TP 7
 %\fBQ\fP%
 The value of the \fBq\fP flag in the file.
-.TP
+.TP 7
 %\fBC\fP%
 Current line number. This keyword is intended for identifying messages
 output by the program, such as "this should not have
 happened" type errors. It is not intended to be used on every line
 to provide sequence numbers.
-.TP
+.TP 7
 %\fBZ\fP%
 The four-character string \fB"@(#)"\fP recognizable by \fIwhat\fP.
-.TP
+.TP 7
 %\fBW\fP%
 A shorthand notation for constructing \fIwhat\fP strings: 
 .sp
@@ -588,7 +674,7 @@ A shorthand notation for constructing \fIwhat\fP strings:
 \fP
 .fi
 .RE
-.TP
+.TP 7
 %\fBA\fP%
 Another shorthand notation for constructing \fIwhat\fP strings: 
 .sp
@@ -603,10 +689,10 @@ Another shorthand notation for constructing \fIwhat\fP strings:
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp

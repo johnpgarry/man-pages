@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_spin_unlock" P 2003 POSIX
+.TH "PTHREAD_SPIN_UNLOCK" P 2003 POSIX
 .\" pthread_spin_unlock 
 .SH NAME
-pthread_spin_unlock - unlock a spin lock object (\fBADVANCED REALTIME
+pthread_spin_unlock \- unlock a spin lock object (\fBADVANCED REALTIME
 THREADS\fP)
 .SH SYNOPSIS
 .LP
@@ -33,10 +33,10 @@ returned to indicate the error.
 .SH ERRORS
 .LP
 The \fIpthread_spin_unlock\fP() function may fail if:
-.TP
+.TP 7
 .B EINVAL
 An invalid argument was specified.
-.TP
+.TP 7
 .B EPERM
 The calling thread does not hold the lock.
 .sp
@@ -60,7 +60,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_spin_destroy\fP() , \fIpthread_spin_lock\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001, \fI<pthread.h>\fP
+Definitions volume of IEEE\ Std\ 1003.1-2001, \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

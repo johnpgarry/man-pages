@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "close" P 2003 POSIX
+.TH "CLOSE" P 2003 POSIX
 .\" close 
 .SH NAME
-close - close a file descriptor
+close \- close a file descriptor
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -74,8 +74,7 @@ closing the master side of the pseudo-terminal flushes all queued
 input and output. 
 .LP
 If \fIfildes\fP refers to the slave side of a STREAMS-based pseudo-terminal,
-a zero-length message may be sent to the master. <img
-src="../images/opt-end.gif" alt="[Option End]" border="0">
+a zero-length message may be sent to the master. 
 .LP
 When there is an outstanding cancelable asynchronous I/O operation
 against \fIfildes\fP when \fIclose\fP() is called, that I/O
@@ -108,16 +107,16 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fIclose\fP() function shall fail if:
-.TP
+.TP 7
 .B EBADF
 The \fIfildes\fP argument is not a valid file descriptor.
-.TP
+.TP 7
 .B EINTR
 The \fIclose\fP() function was interrupted by a signal.
 .sp
 .LP
 The \fIclose\fP() function may fail if:
-.TP
+.TP 7
 .B EIO
 An I/O error occurred while reading from or writing to the file system.
 .sp
@@ -198,7 +197,7 @@ to it no longer refers to a file.
 The use of interruptible device close routines should be discouraged
 to avoid problems with the implicit closes of file
 descriptors by \fIexec\fP and \fIexit\fP(). This volume
-of IEEE\0Std\01003.1-2001 only intends to permit such behavior by
+of IEEE\ Std\ 1003.1-2001 only intends to permit such behavior by
 specifying the [EINTR] error condition.
 .SH FUTURE DIRECTIONS
 .LP
@@ -208,7 +207,7 @@ None.
 \fISTREAMS\fP , \fIfattach\fP() , \fIfclose\fP() , \fIfdetach\fP()
 , \fIfopen\fP() , \fIioctl\fP() , \fIopen\fP() , the Base Definitions
 volume of
-IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

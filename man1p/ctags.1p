@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "ctags" P 2003 POSIX
+.TH "CTAGS" P 2003 POSIX
 .\" ctags 
 .SH NAME
-ctags - create a tags file (\fBDEVELOPMENT\fP, \fBFORTRAN\fP)
+ctags \- create a tags file (\fBDEVELOPMENT\fP, \fBFORTRAN\fP)
 .SH SYNOPSIS
 .LP
 \fBctags\fP \fB[\fP\fB-a\fP\fB][\fP\fB-f\fP \fItagsfile\fP\fB]\fP
@@ -32,18 +32,18 @@ the EXTENDED DESCRIPTION section.
 .SH OPTIONS
 .LP
 The \fIctags\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines.
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-a\fP
 Append to \fItagsfile\fP.
-.TP
-\fB-f\0\fP \fItagsfile\fP
+.TP 7
+\fB-f\ \fP \fItagsfile\fP
 Write the object locator lists into \fItagsfile\fP instead of the
 default file named \fBtags\fP in the current
 directory.
-.TP
+.TP 7
 \fB-x\fP
 Produce a list of object names, the line number, and filename in which
 each is defined, as well as the text of that line, and
@@ -53,17 +53,17 @@ when \fB-x\fP is specified.
 .SH OPERANDS
 .LP
 The following \fIpathname\fP operands are supported:
-.TP
+.TP 7
 \fIfile\fP\fB.c\fP
 Files with basenames ending with the \fB.c\fP suffix shall be treated
 as C-language source code. Such files that are not valid
 input to \fIc99\fP produce unspecified results.
-.TP
+.TP 7
 \fIfile\fP\fB.h\fP
 Files with basenames ending with the \fB.h\fP suffix shall be treated
 as C-language source code. Such files that are not valid
 input to \fIc99\fP produce unspecified results.
-.TP
+.TP 7
 \fIfile\fP\fB.f\fP
 Files with basenames ending with the \fB.f\fP suffix shall be treated
 as FORTRAN-language source code. Such files that are not
@@ -82,38 +82,38 @@ language indicated by the operand filename suffixes.
 .LP
 The following environment variables shall affect the execution of
 \fIctags\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_COLLATE\fP
 .sp
 Determine the order in which output is sorted for the \fB-x\fP option.
 The POSIX locale determines the order in which the
 \fItagsfile\fP is written.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files). When
 processing C-language source code, if the locale is not
-compatible with the C locale described by the ISO\0C standard, the
+compatible with the C locale described by the ISO\ C standard, the
 results are unspecified.
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP 
@@ -200,7 +200,7 @@ an editor to find <\fIidentifier\fP> in
 <\fIfilename\fP>.
 .LP
 Neither alternative format shall be produced by \fIctags\fP when it
-is used as described by IEEE\0Std\01003.1-2001, but
+is used as described by IEEE\ Std\ 1003.1-2001, but
 the standard utilities that process tags files shall be able to process
 those formats as well as the first format.
 .LP
@@ -211,56 +211,41 @@ on the collation sequence in the POSIX locale.
 If the operand identifies C-language source, the \fIctags\fP utility
 shall attempt to produce an output line for each of the
 following objects:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Function definitions
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Type definitions
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Macros with arguments
-.in -5
-.RE
+.LP
 .LP
 It may also produce output for any of the following objects:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Function prototypes
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Structures
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Unions
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Global variable definitions
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Enumeration types
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Macros without arguments
-.in -5
-.in +5
 .LP
+.IP " *" 3
 \fB#define\fP statements
-.in -5
-.in +5
 .LP
+.IP " *" 3
 \fB#line\fP statements
-.in -5
-.RE
+.LP
 .LP
 Any \fB#if\fP and \fB#ifdef\fP statements shall produce no output.
 The tag \fBmain\fP is treated specially in C programs. The
@@ -277,28 +262,21 @@ status to be produced.
 If the operand identifies FORTRAN source, the \fIctags\fP utility
 shall produce an output line for each function definition. It
 may also produce output for any of the following objects:
-.RS
-.in +5
-.LP
+.IP " *" 3
 Subroutine definitions
-.in -5
-.in +5
 .LP
+.IP " *" 3
 COMMON statements
-.in -5
-.in +5
 .LP
+.IP " *" 3
 PARAMETER statements
-.in -5
-.in +5
 .LP
+.IP " *" 3
 DATA and BLOCK DATA statements
-.in -5
-.in +5
 .LP
+.IP " *" 3
 Statement numbers
-.in -5
-.RE
+.LP
 .LP
 On systems that do not support the FORTRAN Development Utilities option,
 \fIctags\fP produces unspecified results for FORTRAN
@@ -311,10 +289,10 @@ identifiers) produce output.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred.
 .sp
@@ -355,14 +333,14 @@ Since the types of such diagnostics could not be
 described, the option was omitted as being not useful.
 .LP
 The text for \fILC_CTYPE\fP about compatibility with the C locale
-acknowledges that the ISO\0C standard imposes
+acknowledges that the ISO\ C standard imposes
 requirements on the locale used to process C source. This could easily
 be a superset of that known as "the C locale" by way of
 implementation extensions, or one of a few alternative locales for
 systems supporting different codesets. No statement is made for
-FORTRAN because the ANSI\0X3.9-1978 standard (FORTRAN 77) does not
+FORTRAN because the ANSI\ X3.9-1978 standard (FORTRAN 77) does not
 (yet) define a similar locale concept. However, a general
-rule in this volume of IEEE\0Std\01003.1-2001 is that any time that
+rule in this volume of IEEE\ Std\ 1003.1-2001 is that any time that
 locales do not match (preparing a file for one locale
 and processing it in another), the results are suspect.
 .LP
@@ -396,8 +374,8 @@ although implementors are encouraged to do so.
 .LP
 The following historical option was not specified, as \fIvgrind\fP
 is not included in this volume of
-IEEE\0Std\01003.1-2001:
-.TP
+IEEE\ Std\ 1003.1-2001:
+.TP 7
 \fB-v\fP
 If the \fB-v\fP flag is given, an index of the form expected by \fIvgrind\fP
 is produced on the standard output. This listing

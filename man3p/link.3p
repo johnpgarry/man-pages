@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "link" P 2003 POSIX
+.TH "LINK" P 2003 POSIX
 .\" link 
 .SH NAME
-link - link to a file
+link \- link to a file
 .SH SYNOPSIS
 .LP
 \fB#include <unistd.h>
@@ -43,65 +43,65 @@ be returned and \fIerrno\fP set to indicate the error.
 .SH ERRORS
 .LP
 The \fIlink\fP() function shall fail if:
-.TP
+.TP 7
 .B EACCES
 A component of either path prefix denies search permission, or the
 requested link requires writing in a directory that denies
 write permission, or the calling process does not have permission
 to access the existing file and this is required by the
 implementation.
-.TP
+.TP 7
 .B EEXIST
 The \fIpath2\fP argument resolves to an existing file or refers to
 a symbolic link.
-.TP
+.TP 7
 .B ELOOP
 A loop exists in symbolic links encountered during resolution of the
 \fIpath1\fP or \fIpath2\fP argument.
-.TP
+.TP 7
 .B EMLINK
 The number of links to the file named by \fIpath1\fP would exceed
 {LINK_MAX}.
-.TP
+.TP 7
 .B ENAMETOOLONG
 The length of the \fIpath1\fP or \fIpath2\fP argument exceeds {PATH_MAX}
 or a pathname component is longer than {NAME_MAX}.
-.TP
+.TP 7
 .B ENOENT
 A component of either path prefix does not exist; the file named by
 \fIpath1\fP does not exist; or \fIpath1\fP or
 \fIpath2\fP points to an empty string.
-.TP
+.TP 7
 .B ENOSPC
 The directory to contain the link cannot be extended.
-.TP
+.TP 7
 .B ENOTDIR
 A component of either path prefix is not a directory.
-.TP
+.TP 7
 .B EPERM
 The file named by \fIpath1\fP is a directory and either the calling
 process does not have appropriate privileges or the
 implementation prohibits using \fIlink\fP() on directories.
-.TP
+.TP 7
 .B EROFS
 The requested link requires writing in a directory on a read-only
 file system.
-.TP
+.TP 7
 .B EXDEV
 The link named by \fIpath2\fP and the file named by \fIpath1\fP are
 on different file systems and the implementation does not
 support links between file systems.
-.TP
+.TP 7
 .B EXDEV
 \fIpath1\fP refers to a named STREAM. 
 .sp
 .LP
 The \fIlink\fP() function may fail if:
-.TP
+.TP 7
 .B ELOOP
 More than {SYMLOOP_MAX} symbolic links were encountered during resolution
 of the \fIpath1\fP or \fIpath2\fP argument.
-.TP
+.TP 7
 .B ENAMETOOLONG
 As a result of encountering a symbolic link in resolution of the \fIpath1\fP
 or \fIpath2\fP argument, the length of the
@@ -171,7 +171,7 @@ Some implementations do allow links between file systems.
 Linking to a directory is restricted to the superuser in most historical
 implementations because this capability may produce
 loops in the file hierarchy or otherwise corrupt the file system.
-This volume of IEEE\0Std\01003.1-2001 continues that
+This volume of IEEE\ Std\ 1003.1-2001 continues that
 philosophy by prohibiting \fIlink\fP() and \fIunlink\fP() from doing
 this. Other functions
 could do it if the implementor designed such an extension.
@@ -189,7 +189,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIsymlink\fP() , \fIunlink\fP() , the Base Definitions volume of
-IEEE\0Std\01003.1-2001, \fI<unistd.h>\fP
+IEEE\ Std\ 1003.1-2001, \fI<unistd.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

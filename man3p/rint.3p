@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "rint" P 2003 POSIX
+.TH "RINT" P 2003 POSIX
 .\" rint 
 .SH NAME
-rint, rintf, rintl - round-to-nearest integral value
+rint, rintf, rintl \- round-to-nearest integral value
 .SH SYNOPSIS
 .LP
 \fB#include <math.h>
@@ -16,12 +16,6 @@ long double rintl(long double\fP \fIx\fP\fB);
 .br
 \fP
 .SH DESCRIPTION
-.LP
-The functionality described on this reference page is aligned with
-the ISO\0C standard. Any conflict between the
-requirements described here and the ISO\0C standard is unintentional.
-This volume of IEEE\0Std\01003.1-2001 defers to
-the ISO\0C standard. 
 .LP
 These functions shall return the integral value (represented as a
 \fBdouble\fP) nearest \fIx\fP in the direction of the
@@ -63,8 +57,8 @@ respectively.
 .SH ERRORS
 .LP
 These functions shall fail if:
-.TP
-Range\0Error
+.TP 7
+Range\ Error
 The result would cause an overflow. 
 .LP
 If the integer expression (math_errhandling & MATH_ERRNO) is non-zero,
@@ -92,7 +86,7 @@ None.
 .LP
 \fIabs\fP() , \fIceil\fP() , \fIfeclearexcept\fP() , \fIfetestexcept\fP()
 , \fIfloor\fP() , \fIisnan\fP() , \fInearbyint\fP() , the
-Base Definitions volume of IEEE\0Std\01003.1-2001, Section 4.18, Treatment
+Base Definitions volume of IEEE\ Std\ 1003.1-2001, Section 4.18, Treatment
 of Error Conditions for Mathematical Functions, \fI<math.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "sched_rr_get_interval" P 2003 POSIX
+.TH "SCHED_RR_GET_INTERVAL" P 2003 POSIX
 .\" sched_rr_get_interval 
 .SH NAME
-sched_rr_get_interval - get execution time limits (\fBREALTIME\fP)
+sched_rr_get_interval \- get execution time limits (\fBREALTIME\fP)
 .SH SYNOPSIS
 .LP
 \fB#include <sched.h>
@@ -29,7 +29,7 @@ zero. Otherwise, it shall return a value of -1 and set
 .SH ERRORS
 .LP
 The \fIsched_rr_get_interval\fP() function shall fail if:
-.TP
+.TP 7
 .B ESRCH
 No process can be found corresponding to that specified by \fIpid\fP.
 .sp
@@ -51,7 +51,7 @@ None.
 .LP
 \fIsched_getparam\fP() , \fIsched_get_priority_max\fP() , \fIsched_getscheduler\fP()
 , \fIsched_setparam\fP() , \fIsched_setscheduler\fP() , the Base Definitions
-volume of IEEE\0Std\01003.1-2001, \fI<sched.h>\fP
+volume of IEEE\ Std\ 1003.1-2001, \fI<sched.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
 from IEEE Std 1003.1, 2003 Edition, Standard for Information Technology

@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "m4" P 2003 POSIX
+.TH "M4" P 2003 POSIX
 .\" m4 
 .SH NAME
-m4 - macro processor (\fBDEVELOPMENT\fP)
+m4 \- macro processor (\fBDEVELOPMENT\fP)
 .SH SYNOPSIS
 .LP
 \fBm4\fP \fB[\fP\fB-s\fP\fB][\fP\fB-D\fP
@@ -17,28 +17,28 @@ macro statements, and write the results to standard output.
 .SH OPTIONS
 .LP
 The \fIm4\fP utility shall conform to the Base Definitions volume
-of IEEE\0Std\01003.1-2001, Section 12.2, Utility Syntax Guidelines,
+of IEEE\ Std\ 1003.1-2001, Section 12.2, Utility Syntax Guidelines,
 except that the order of the \fB-D\fP and
 \fB-U\fP options shall be significant.
 .LP
 The following options shall be supported:
-.TP
+.TP 7
 \fB-s\fP
 Enable line synchronization output for the \fIc99\fP preprocessor
 phase (that is,
 \fB#line\fP directives).
-.TP
-\fB-D\0\fP \fIname\fP\fB[\fP=\fIval\fP\fB]\fP
+.TP 7
+\fB-D\ \fP \fIname\fP\fB[\fP=\fIval\fP\fB]\fP
 .sp
 Define \fIname\fP to \fIval\fP or to null if = \fIval\fP is omitted.
-.TP
-\fB-U\0\fP \fIname\fP
+.TP 7
+\fB-U\ \fP \fIname\fP
 Undefine \fIname\fP.
 .sp
 .SH OPERANDS
 .LP
 The following operand shall be supported:
-.TP
+.TP 7
 \fIfile\fP
 A pathname of a text file to be processed. If no \fIfile\fP is given,
 or if it is \fB'-'\fP , the standard input shall be
@@ -55,29 +55,29 @@ The input file named by the \fIfile\fP operand shall be a text file.
 .LP
 The following environment variables shall affect the execution of
 \fIm4\fP:
-.TP
+.TP 7
 \fILANG\fP
 Provide a default value for the internationalization variables that
 are unset or null. (See the Base Definitions volume of
-IEEE\0Std\01003.1-2001, Section 8.2, Internationalization Variables
+IEEE\ Std\ 1003.1-2001, Section 8.2, Internationalization Variables
 for
 the precedence of internationalization variables used to determine
 the values of locale categories.)
-.TP
+.TP 7
 \fILC_ALL\fP
 If set to a non-empty string value, override the values of all the
 other internationalization variables.
-.TP
+.TP 7
 \fILC_CTYPE\fP
 Determine the locale for the interpretation of sequences of bytes
 of text data as characters (for example, single-byte as
 opposed to multi-byte characters in arguments and input files).
-.TP
+.TP 7
 \fILC_MESSAGES\fP
 Determine the locale that should be used to affect the format and
 contents of diagnostic messages written to standard
 error.
-.TP
+.TP 7
 \fINLSPATH\fP
 Determine the location of message catalogs for the processing of \fILC_MESSAGES
 \&.\fP
@@ -176,7 +176,7 @@ values produced as the defining text of the \fBdecr\fP, \fBdivnum\fP,
 \fBincr\fP, \fBindex\fP, \fBlen\fP, and \fBsysval\fP
 built-in macros shall be in the form of a decimal-constant as defined
 in the C language.
-.TP
+.TP 7
 \fBchangecom\fP
 The \fBchangecom\fP macro shall set the begin-comment and end-comment
 strings. With no arguments, the comment mechanism shall
@@ -186,7 +186,7 @@ end-comment string. With two arguments, the first argument shall become
 the begin-comment string and the second argument shall
 become the end-comment string. Systems shall support comment strings
 of at least five characters.
-.TP
+.TP 7
 \fBchangequote\fP
 The \fBchangequote\fP macro shall set the begin-quote and end-quote
 strings. With no arguments, the quote strings shall be set
@@ -196,21 +196,21 @@ that argument shall become the begin-quote string and the
 first argument shall become the begin-quote string and
 the second argument shall become the end-quote string. Systems shall
 support quote strings of at least five characters.
-.TP
+.TP 7
 \fBdecr\fP
 The defining text of the \fBdecr\fP macro shall be its first argument
 decremented by 1. It shall be an error to specify an
 argument containing any non-numeric characters.
-.TP
+.TP 7
 \fBdefine\fP
 The second argument shall become the defining text of the macro whose
 name is the first argument.
-.TP
+.TP 7
 \fBdefn\fP
 The defining text of the \fBdefn\fP macro shall be the quoted definition
 (using the current quoting strings) of its
 arguments.
-.TP
+.TP 7
 \fBdivert\fP
 The \fIm4\fP utility maintains nine temporary buffers, numbered 1
 to 9, inclusive. When the last of the input has been
@@ -221,23 +221,23 @@ by its argument. Specifying no argument or an argument of 0
 shall resume the normal output process. Output diverted to a stream
 other than 0 to 9 shall be discarded. It shall be an error to
 specify an argument containing any non-numeric characters.
-.TP
+.TP 7
 \fBdivnum\fP
 The defining text of the \fBdivnum\fP macro shall be the number of
 the current output stream as a string.
-.TP
+.TP 7
 \fBdnl\fP
 The \fBdnl\fP macro shall cause \fIm4\fP to discard all input characters
 up to and including the next <newline>.
-.TP
+.TP 7
 \fBdumpdef\fP
 The \fBdumpdef\fP macro shall write the defined text to standard error
 for each of the macros specified as arguments, or, if
 no arguments are specified, for all macros.
-.TP
+.TP 7
 \fBerrprint\fP
 The \fBerrprint\fP macro shall write its arguments to standard error.
-.TP
+.TP 7
 \fBeval\fP
 The \fBeval\fP macro shall evaluate its first argument as an arithmetic
 expression, using 32-bit signed integer arithmetic.
@@ -262,19 +262,19 @@ unary &
 .LP
 and all assignment operators. It shall be an error to specify any
 of these operators. Precedence and associativity shall be as
-in the ISO\0C standard. Systems shall support octal and hexadecimal
-numbers as in the ISO\0C standard. The second argument,
+in the ISO\ C standard. Systems shall support octal and hexadecimal
+numbers as in the ISO\ C standard. The second argument,
 if specified, shall set the radix for the result; the default is 10.
 The third argument, if specified, sets the minimum number of
 digits in the result. It shall be an error to specify the second or
 third argument containing any non-numeric characters.
-.TP
+.TP 7
 \fBifdef\fP
 If the first argument to the \fBifdef\fP macro is defined, the defining
 text shall be the second argument. Otherwise, the
 defining text shall be the third argument, if specified, or the null
 string, if not.
-.TP
+.TP 7
 \fBifelse\fP
 The \fBifelse\fP macro takes three or more arguments. If the first
 two arguments compare as equal strings (after macro
@@ -287,62 +287,62 @@ fourth argument. If the first two arguments do not compare as
 equal strings and there are six or more arguments, the first three
 arguments shall be discarded and processing shall restart with
 the remaining arguments.
-.TP
+.TP 7
 \fBinclude\fP
 The defining text for the \fBinclude\fP macro shall be the contents
 of the file named by the first argument. It shall be an
 error if the file cannot be read.
-.TP
+.TP 7
 \fBincr\fP
 The defining text of the \fBincr\fP macro shall be its first argument
 incremented by 1. It shall be an error to specify an
 argument containing any non-numeric characters.
-.TP
+.TP 7
 \fBindex\fP
 The defining text of the \fBindex\fP macro shall be the first character
 position (as a string) in the first argument where a
 string matching the second argument begins (zero origin), or -1 if
 the second argument does not occur.
-.TP
+.TP 7
 \fBlen\fP
 The defining text of the \fBlen\fP macro shall be the length (as a
 string) of the first argument.
-.TP
+.TP 7
 \fBm4exit\fP
 Exit from the \fIm4\fP utility. If the first argument is specified,
 it is the exit code. The default is zero. It shall be an
 error to specify an argument containing any non-numeric characters.
-.TP
+.TP 7
 \fBm4wrap\fP
 The first argument shall be processed when EOF is reached. If the
 \fBm4wrap\fP macro is used multiple times, the arguments
 specified shall be processed in the order in which the \fBm4wrap\fP
 macros were processed.
-.TP
+.TP 7
 \fBmaketemp\fP
 The defining text shall be the first argument, with any trailing \fB'X'\fP
 characters replaced with the current process ID
 as a string.
-.TP
+.TP 7
 \fBpopdef\fP
 The \fBpopdef\fP macro shall delete the current definition of its
 arguments, replacing that definition with the previous one.
 If there is no previous definition, the macro is undefined.
-.TP
+.TP 7
 \fBpushdef\fP
 The \fBpushdef\fP macro shall be equivalent to the \fBdefine\fP macro
 with the exception that it shall preserve any current
 definition for future retrieval using the \fBpopdef\fP macro.
-.TP
+.TP 7
 \fBshift\fP
 The defining text for the \fBshift\fP macro shall be all of its arguments
 except for the first one.
-.TP
+.TP 7
 \fBsinclude\fP
 The \fBsinclude\fP macro shall be equivalent to the \fBinclude\fP
 macro, except that it shall not be an error if the file is
 inaccessible.
-.TP
+.TP 7
 \fBsubstr\fP
 The defining text for the \fBsubstr\fP macro shall be the substring
 of the first argument beginning at the zero-offset
@@ -353,41 +353,41 @@ of the first argument shall become the defining text. It shall
 not be an error to specify a starting point beyond the end of the
 first argument and the defining text shall be null. It shall be
 an error to specify an argument containing any non-numeric characters.
-.TP
+.TP 7
 \fBsyscmd\fP
 The \fBsyscmd\fP macro shall interpret its first argument as a shell
 command line. The defining text shall be the string
 result of that command. No output redirection shall be performed by
 the \fIm4\fP utility. The exit status value from the command
 can be retrieved using the \fBsysval\fP macro.
-.TP
+.TP 7
 \fBsysval\fP
 The defining text of the \fBsysval\fP macro shall be the exit value
 of the utility last invoked by the \fBsyscmd\fP macro (as
 a string).
-.TP
+.TP 7
 \fBtraceon\fP
 The \fBtraceon\fP macro shall enable tracing for the macros specified
 as arguments, or, if no arguments are specified, for all
 macros. The trace output shall be written to standard error in an
 unspecified format.
-.TP
+.TP 7
 \fBtraceoff\fP
 The \fBtraceoff\fP macro shall disable tracing for the macros specified
 as arguments, or, if no arguments are specified, for
 all macros.
-.TP
+.TP 7
 \fBtranslit\fP
 The defining text of the \fBtranslit\fP macro shall be the first argument
 with every character that occurs in the second
 argument replaced with the corresponding character from the third
 argument.
-.TP
+.TP 7
 \fBundefine\fP
 The \fBundefine\fP macro shall delete all definitions (including those
 preserved using the \fBpushdef\fP macro) of the macros
 named by its arguments.
-.TP
+.TP 7
 \fBundivert\fP
 The \fBundivert\fP macro shall cause immediate output of any text
 in temporary buffers named as arguments, or all temporary
@@ -399,10 +399,10 @@ an argument containing any non-numeric characters.
 .SH EXIT STATUS
 .LP
 The following exit values shall be returned:
-.TP
-\00
+.TP 7
+\ 0
 Successful completion.
-.TP
+.TP 7
 >0
 An error occurred
 .sp

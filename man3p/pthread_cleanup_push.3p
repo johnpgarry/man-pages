@@ -1,8 +1,8 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "pthread_cleanup_pop" P 2003 POSIX
+.TH "PTHREAD_CLEANUP_POP" P 2003 POSIX
 .\" pthread_cleanup_pop 
 .SH NAME
-pthread_cleanup_pop, pthread_cleanup_push - establish cancellation
+pthread_cleanup_pop, pthread_cleanup_push \- establish cancellation
 handlers
 .SH SYNOPSIS
 .LP
@@ -27,21 +27,16 @@ cancellation cleanup handler \fIroutine\fP onto the calling
 thread's cancellation cleanup stack. The cancellation cleanup handler
 shall be popped from the cancellation cleanup stack and
 invoked with the argument \fIarg\fP when:
-.RS
-.in +5
-.LP
+.IP " *" 3
 The thread exits (that is, calls \fIpthread_exit\fP()).
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The thread acts upon a cancellation request.
-.in -5
-.in +5
 .LP
+.IP " *" 3
 The thread calls \fIpthread_cleanup_pop\fP() with a non-zero \fIexecute\fP
 argument.
-.in -5
-.RE
+.LP
 .LP
 These functions may be implemented as macros. The application shall
 ensure that they appear as statements, and in pairs within
@@ -248,7 +243,7 @@ A more ambitious implementation of these routines might do even better
 by allowing the compiler to note that the cancellation
 cleanup handler is a constant and can be expanded inline.
 .LP
-This volume of IEEE\0Std\01003.1-2001 currently leaves unspecified
+This volume of IEEE\ Std\ 1003.1-2001 currently leaves unspecified
 the effect of calling \fIlongjmp\fP() from a signal handler executing
 in a POSIX System Interfaces function. If an
 implementation wants to allow this and give the programmer reasonable
@@ -286,7 +281,7 @@ None.
 .SH SEE ALSO
 .LP
 \fIpthread_cancel\fP() , \fIpthread_setcancelstate\fP() , the Base
-Definitions volume of IEEE\0Std\01003.1-2001,
+Definitions volume of IEEE\ Std\ 1003.1-2001,
 \fI<pthread.h>\fP
 .SH COPYRIGHT
 Portions of this text are reprinted and reproduced in electronic form
