@@ -35,6 +35,7 @@
 .\" Modified Mon Apr 22 02:29:06 1996 by Martin Schulze (joey@infodrom.north.de)
 .\" Modified Tue Aug 27 10:52:51 1996 by Andries Brouwer (aeb@cwi.nl)
 .\" Modified Thu Jan 23 13:29:34 1997 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Sun Mar 28 21:26:46 1999 by Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH GETSOCKOPT 2 "22 April 1996" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -45,10 +46,10 @@ getsockopt, setsockopt \- get and set options on sockets
 .B #include <sys/socket.h>
 .sp 2
 .BI "int getsockopt(int " s ", int " level ", int " optname ,
-.BI "void *" optval ", int *" optlen );
+.BI "void *" optval ", socklen_t *" optlen );
 .sp
 .BI "int setsockopt(int " s ", int " level ", int " optname ,
-.BI "const void *" optval ", int " optlen );
+.BI "const void *" optval ", socklen_t " optlen );
 .SH DESCRIPTION
 .B Getsockopt
 and
@@ -378,6 +379,14 @@ SVr4 documents additional ENOMEM and ENOSR error codes, but does
 not document the 
 .BR SO_SNDLOWAT ", " SO_RCVLOWAT ", " SO_SNDTIMEO ", " SO_RCVTIMEO
 options
+.SH NOTE
+The fifth argument of 
+.BR getsockopt " and " setsockopt
+is in reality an int [*] (and this is what BSD 4.* and libc4 and libc5 have).
+Some POSIX confusion resulted in the present socklen_t.
+The draft standard has not been adopted yet, but glibc2 already
+follows it and also has socklen_t [*]. See also
+.BR accept (2).
 .SH BUGS
 Several of the socket options should be handled at lower levels of the
 system.

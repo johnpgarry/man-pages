@@ -33,6 +33,8 @@
 .\"
 .\" Modified Sat Jul 24 16:42:42 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Mon Oct 21 23:05:29 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Sun Mar 28 21:26:46 1999 by Andries Brouwer <aeb@cwi.nl>
+.\"
 .TH ACCEPT 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
 accept \- accept a connection on a socket
@@ -41,7 +43,7 @@ accept \- accept a connection on a socket
 .sp
 .B #include <sys/socket.h>
 .sp
-.BI "int accept(int " s ", struct sockaddr *" addr ", int *" addrlen );
+.BI "int accept(int " s ", struct sockaddr *" addr ", socklen_t *" addrlen );
 .SH DESCRIPTION
 The argument
 .I s
@@ -160,5 +162,26 @@ function first appeared in BSD 4.2).
 IRIX documents additional errors EMFILE and ENFILE.
 Solaris documents additional errors EINTR, ENODEV, ENOMEM,
 ENOSR and EPROTO.
+.SH NOTE
+The third argument of
+.B accept
+was originally declared as an `int *' (and is that under libc4 and libc5
+and on many other systems like BSD 4.*, SunOS 4, SGI); a POSIX 1003.1g draft
+standard wanted to change it into a `size_t *', and that is what it is for SunOS 5.
+Later POSIX drafts have `socklen_t *', and so do the Single Unix Specification
+and glibc2.
+Quoting Linus Torvalds: `_Any_ sane library _must_ have "socklen_t" be the same size
+as int.  Anything else breaks any BSD socket layer stuff.
+POSIX initially _did_ make it a size_t, and I (and hopefully others, but
+obviously not too many) complained to them very loudly indeed.  Making
+it a size_t is completely broken, exactly because size_t very seldom is
+the same size as "int" on 64-bit architectures, for example.  And it
+_has_ to be the same size as "int" because that's what the BSD socket
+interface is. 
+Anyway, the POSIX people eventually got a clue, and created "socklen_t". 
+They shouldn't have touched it in the first place, but once they did
+they felt it had to have a named type for some unfathomable reason
+(probably somebody didn't like losing face over having done the original
+stupid thing, so they silently just renamed their blunder).'
 .SH "SEE ALSO"
 .BR bind "(2), " connect "(2), " listen "(2), " select "(2), " socket (2)

@@ -57,7 +57,7 @@ declared in \fBstdio.h\fP.
 These functions let your program identify positively the user who is
 running (\fBcuserid\fP) or the user who logged in this session
 (\fBgetlogin\fP).  (These can differ when setuid programs are
-involved.)  The user cannot do anything to fool these functions.
+involved.)
 .PP
 For most purposes, it is more useful to use the environment variable
 \fBLOGNAME\fP to find out who the user is.  This is more flexible
@@ -82,9 +82,11 @@ Sometimes it does not work at all, because some program messed up
 the utmp file. Often, it gives only the first 8 characters of
 the login name. The user currently logged in on the controlling tty
 of our program need not be the user who started it.
+Avoid getlogin() for security-related purposes.
 .LP
 Nobody knows precisely what cuserid() does - avoid it in portable programs -
-avoid it altogether - use getpwuid(geteuid()) instead, if that is what you meant. DO NOT USE cuserid().
+avoid it altogether - use getpwuid(geteuid()) instead, if that is what you meant.
+DO NOT USE cuserid().
 .SH "SEE ALSO"
 .BR geteuid "(2), " getuid (2)
 

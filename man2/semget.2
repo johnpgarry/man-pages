@@ -58,7 +58,8 @@ and
 is asserted in
 .I semflg
 (i.e.
-.IB semflg &IPC_CREAT
+.IR semflg " &"
+.B IPC_CREAT
 isn't zero).
 The presence in
 .I semflg
@@ -75,7 +76,7 @@ and
 in the mode argument of the
 .BR open (2)
 system call: i.e. the
-.B msgget
+.B semget
 function fails if
 .I semflg
 asserts both

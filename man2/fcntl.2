@@ -1,7 +1,8 @@
 .\" Hey Emacs! This file is -*- nroff -*- source.
 .\"
 .\" This manpage is Copyright (C) 1992 Drew Eckhardt;
-.\"                               1993 Michael Haardt, Ian Jackson.
+.\"                               1993 Michael Haardt, Ian Jackson;
+.\"                               1998 Jamie Lokier.
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -25,9 +26,10 @@
 .\"
 .\" Modified Sat Jul 24 13:39:26 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Sep 26 21:47:21 1995 by Andries Brouwer <aeb@cwi.nl>
-.\" and again on 960413 and 980804.
+.\" and again on 960413 and 980804 and 981223.
+.\" Modified Fri Dec 11 17:57:27 1998 by Jamie Lokier <jamie@imbolc.ucc.ie>
 .\"
-.TH FCNTL 2 "26 September 1995" Linux "Linux Programmer's Manual"
+.TH FCNTL 2 "23 December 1998" Linux "Linux Programmer's Manual"
 .SH NAME
 fcntl \- manipulate file descriptor
 .SH SYNOPSIS
@@ -37,6 +39,7 @@ fcntl \- manipulate file descriptor
 .sp
 .BI "int fcntl(int " fd ", int " cmd );
 .BI "int fcntl(int " fd ", int " cmd ", long " arg );
+.BI "int fcntl(int " fd ", int " cmd ", struct flock * " lock );
 .fi
 .SH DESCRIPTION
 .B fcntl
@@ -90,20 +93,20 @@ are returned).
 Set the descriptor's flags to the value specified by
 .IR arg .
 Only
-.BR O_APPEND " and " O_NONBLOCK
-may be set.
+.BR O_APPEND ", " O_NONBLOCK " and " O_ASYNC
+may be set; the other flags are unaffected.
 .sp
 The flags are shared between copies (made with
-.B dup
+.BR dup (2)
 etc.) of the same file descriptor.
 .sp
 The flags and their semantics are described in
 .BR open (2).
-.TP
+.P
 .BR F_GETLK ", " F_SETLK " and " F_SETLKW
-Manage discretionary file locks.
+are used to manage discretionary file locks.
 The third argument
-.I arg
+.I lock
 is a pointer to a struct flock
 (that may be overwritten by this call).
 .TP
@@ -137,11 +140,15 @@ Like
 .BR F_SETLK ,
 but instead of returning an error we wait for the lock to be released.
 If a signal that is to be caught is received while
-.IR fcntl ()
-is waiting, it is interrupted and returns immediately
-(with return value \-1 and
+.B fcntl
+is waiting, it is interrupted and (after the signal handler has returned)
+returns immediately (with return value \-1 and
 .I errno
-set to EINTR).
+set to
+.BR EINTR ).
+.P
+.BR F_GETOWN ", " F_SETOWN ", " F_GETSIG " and " F_SETSIG
+are used to manage I/O availability signals:
 .TP
 .B F_GETOWN
 Get the process ID or process group currently receiving SIGIO
@@ -154,30 +161,91 @@ Set the process ID or process group that will receive SIGIO
 and SIGURG signals for events on file descriptor
 .IR fd .
 Process groups are specified using negative values.
+.RB ( F_SETSIG
+can be used to specify a different signal instead of SIGIO).
 
 .\" From glibc.info:
-If you set the O_ASYNC status flag on a file descriptor
-(either by providing this flag with the
-.I open
-call, or by using the F_SETFL command of
-.IR fcntl ),
+If you set the
+.B O_ASYNC
+status flag on a file descriptor (either by providing this flag with the
+.IR open (2)
+call, or by using the
+.B F_SETFL
+command of
+.BR fcntl ),
 a SIGIO signal is sent whenever input or output becomes possible
-on that file descriptor.  The process or process group to receive
-the signal can be selected by using the F_SETOWN command to the
-.I fcntl
+on that file descriptor.
+.sp
+The process or process group to receive the signal can be selected by
+using the
+.B F_SETOWN
+command to the
+.B fcntl
 function.  If the file descriptor is a socket, this also selects
 the recipient of SIGURG signals that are delivered when out-of-band
-data arrives on that socket. (SIGURG is sent in any situation where
-.I select
+data arrives on that socket.  (SIGURG is sent in any situation where
+.BR select (2)
 would report the socket as having an "exceptional condition".)
 If the file descriptor corresponds to a terminal device, then SIGIO
 signals are sent to the foreground process group of the terminal.
-
-The use of O_ASYNC, F_GETOWN, F_SETOWN is BSD-specific.
-POSIX has asynchronous I/O and the
+.TP
+.B F_GETSIG
+Get the signal sent when input or output becomes possible.  A value of
+zero means SIGIO is sent.  Any other value (including SIGIO) is the
+signal sent instead, and in this case additional info is available to
+the signal handler if installed with SA_SIGINFO.
+.TP
+.B F_SETSIG
+Sets the signal sent when input or output becomes possible.  A value of
+zero means to send the default SIGIO signal.  Any other value (including
+SIGIO) is the signal to send instead, and in this case additional info
+is available to the signal handler if installed with SA_SIGINFO.
+.sp
+By using F_SETSIG with a non-zero value, and setting SA_SIGINFO for the
+signal handler (see
+.BR sigaction (2)),
+extra information about I/O events is passed to
+the handler in a
+.I siginfo_t
+structure.
+If the
+.I si_code
+field indicates the source is SI_SIGIO, the
+.I si_fd
+field gives the file descriptor associated with the event.  Otherwise,
+there is no indication which file descriptors are pending, and you
+should use the usual mechanisms
+.RB ( select (2),
+.BR poll (2),
+.BR read (2)
+with
+.B O_NONBLOCK
+set etc.) to determine which file descriptors are available for I/O.
+.sp
+By selecting a POSIX.1b real time signal (value >= SIGRTMIN), multiple
+I/O events may be queued using the same signal numbers.  (Queuing is
+dependent on available memory).  Extra information is available
+if SA_SIGINFO is set for the signal handler, as above.
+.PP
+Using these mechanisms, a program can implement fully asynchronous I/O
+without using
+.BR select (2)
+or
+.BR poll (2)
+most of the time.
+.PP
+The use of
+.BR O_ASYNC ,
+.BR F_GETOWN ,
+.B F_SETOWN
+is specific to BSD and Linux.
+.B F_GETSIG
+and
+.B F_SETSIG
+are Linux-specific.  POSIX has asynchronous I/O and the
 .I aio_sigevent
-structure to achieve similar things.
-
+structure to achieve similar things; these are also available
+in Linux as part of the GNU C Library (Glibc).
 .SH "RETURN VALUE"
 For a successful call, the return value depends on the operation:
 .TP 0.9i
@@ -193,12 +261,12 @@ Value of flags.
 .B F_GETOWN
 Value of descriptor owner.
 .TP
-.BR F_SETFD ,
-.BR F_SETFL ,
-.BR F_GETLK ,
-.BR F_SETLK ,
-.BR F_SETLKW
-Some value different from \-1.
+.B F_GETSIG
+Value of signal sent when read or write becomes possible, or zero
+for traditional SIGIO behaviour.
+.TP
+All other commands
+Zero.
 .PP
 On error, \-1 is returned, and
 .I errno
@@ -212,21 +280,37 @@ Operation is prohibited by locks held by other processes.
 Operation is prohibited because the file has been memory-mapped by
 another process.
 .TP
-.B EDEADLK
-It was detected that the specified F_SETLKW command would cause a deadlock.
-.TP
 .B EBADF
 .I fd
 is not an open file descriptor.
 .TP
+.B EDEADLK
+It was detected that the specified
+.B F_SETLKW
+command would cause a deadlock.
+.TP
+.B EFAULT
+.I lock
+is outside your accessible address space.
+.TP
 .B EINTR
-The F_SETLKW command was interrupted by a signal.
+For
+.BR F_SETLKW ,
+the command was interrupted by a signal.
+For
+.BR F_GETLK " and " F_SETLK ,
+the command was interrupted by a signal before the lock was checked or
+acquired.  Most likely when locking a remote file (e.g. locking over
+NFS), but can sometimes happen locally.
 .TP
 .B EINVAL
 For
 .BR F_DUPFD ,
 .I arg
-is negative or is greater than the maximum allowable value.
+is negative or is greater than the maximum allowable value.  For
+.BR F_SETSIG ,
+.I arg
+is not an allowable signal number.
 .TP
 .B EMFILE
 For
@@ -234,25 +318,30 @@ For
 the process already has the maximum number of file descriptors open.
 .TP
 .B ENOLCK
-Too many segment locks open, lock table is full.  
+Too many segment locks open, lock table is full, or a remote locking
+protocol failed (e.g. locking over NFS).
+.TP
+.B EPERM
+Attempted to clear the
+.B O_APPEND
+flag on a file that has the append-only attribute set.
 .SH NOTES
 The errors returned by
 .B dup2
 are different from those returned by
 .BR F_DUPFD .
 .SH "CONFORMING TO"
-SVr4, SVID, POSIX, X/OPEN, BSD 4.3.  Only the operations F_DUPFD, 
-F_GETFD, F_SETFD, F_GETFL, F_SETFL, F_GETLK, F_SETLK and F_SETLKW
-are specified in POSIX.1; F_GETOWN and F_SETOWN are BSDisms not
-supported in SVr4. The flags legal for
-F_GETFL/F_SETFL are those supported by 
+SVr4, SVID, POSIX, X/OPEN, BSD 4.3.  Only the operations F_DUPFD,
+F_GETFD, F_SETFD, F_GETFL, F_SETFL, F_GETLK, F_SETLK and F_SETLKW are
+specified in POSIX.1.  F_GETOWN and F_SETOWN are BSDisms not supported
+in SVr4; F_GETSIG and F_SETSIG are specific to Linux.  The flags
+legal for F_GETFL/F_SETFL are those supported by
 .BR open (2)
 and vary between these systems; O_APPEND, O_NONBLOCK, O_RDONLY,
 and O_RDWR are specified in POSIX.1.  SVr4 supports several other
 options and flags not documented here.
 .PP
-POSIX.1 documents an additional EINTR condition.  SVr4 documents
-additional EFAULT, EINTR, EIO, ENOLINK and EOVERFLOW error conditions.
+SVr4 documents additional EIO, ENOLINK and EOVERFLOW error conditions.
 .SH "SEE ALSO"
 .BR dup2 (2),
 .BR open (2),

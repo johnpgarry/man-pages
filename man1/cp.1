@@ -176,9 +176,10 @@ A `sparse file' contains `holes' - sequences of zero bytes that
 do not occupy any physical disk blocks; the `read' system call
 reads these as zeroes.  This can both save considerable disk space
 and increase speed, since many binary files contain lots of
-consecutive zero bytes.  By default, `cp' detects holes in input
-source files via a crude heuristic and makes the corresponding
-output file sparse as well.
+consecutive zero bytes.  By default,
+.B cp
+detects holes in input source files via a crude heuristic
+and makes the corresponding output file sparse as well.
 .RS
 .PP
 The

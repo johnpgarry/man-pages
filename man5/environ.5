@@ -49,7 +49,7 @@ in case they came from glibc and
 .B _GNU_SOURCE
 was defined.)
 This array of strings is made available to the process by the
-\fBexec\fP(2) call that started the process.  By convention these strings
+\fBexec\fP(3) call that started the process.  By convention these strings
 have the form `\fIname\fP\fB=\fP\fIvalue\fP'.  Common examples are:
 .TP
 .B USER
@@ -129,7 +129,8 @@ or LD_LIBRARY_PATH.
 .BR bash (1),
 .BR csh (1),
 .BR tcsh (1),
-.BR exec (2),
+.BR execve (2),
+.BR exec (3),
 .BR getenv (3),
 .BR putenv (3),
 .BR setenv (3),

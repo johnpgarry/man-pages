@@ -98,14 +98,14 @@ struct stat
 .fi
 .RE
 .PP
-Note that
+The value
 .I st_blocks
-may not always be in terms of blocks of size
-.IR st_blksize ,
-and that
-.I st_blksize
-may instead provide a notion of the "preferred" blocksize for efficient
-file system I/O.
+gives the size of the file in 512-byte blocks.
+The value
+.IR st_blksize
+gives the "preferred" blocksize for efficient file system I/O.
+(Writing to a file in smaller chunks may cause
+an inefficient read-modify-rewrite.)
 .PP
 Not all of the Linux filesystems implement all of the time fields.
 Traditionally,
@@ -275,6 +275,13 @@ documents additional
 and
 .B lstat
 error conditions EACCES, EINTR, EMULTIHOP, ENOLINK, and EOVERFLOW.
+Use of the
+.I st_blocks
+and
+.I st_blksize
+fields may be less portable. (They were introduced in BSD.
+Are not specified by POSIX. The interpretation differs between
+systems, and possibly on a single system when NFS mounts are involved.)
 .SH "SEE ALSO"
 .BR chmod (2),
 .BR chown (2),

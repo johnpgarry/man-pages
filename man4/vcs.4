@@ -49,7 +49,7 @@ The devices for the first eight virtual consoles may be created by:
 		mknod -m 644 /dev/vcs$x c 7 $x;
 		mknod -m 644 /dev/vcsa$x c 7 $[$x+128];
 	done
-	chown root.tty /dev/vcs*
+	chown root:tty /dev/vcs*
 .fi
 
 No \fBioctl()\fP requests are supported.  

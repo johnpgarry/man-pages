@@ -1,41 +1,54 @@
 
-The Linux Documentation Project proudly announces. . .
+The Linux Documentation Project (is it still alive?) proudly announces. . .
 
-    man-pages-1.22.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.23.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
-and in addition section 1 man pages for the fileutils-3.16 utilities.
+and in addition section 1 man pages for the fileutils-3.16 utilities,
+and section 5 and 8 man pages for the timezone utilities.
 
-
-[GNU seems to dislike man pages, and either ships no man page at all,
+[The latter were taken from ftp://elsie.nci.nih.gov/pub/tzcode1998h.tar.gz.
+Nowadays the timezone code, data and programs described in these manpages
+come with glibc, but the manpages don't.  Stupid GNUheads.
+GNU seems to strongly dislike man pages, and either ships no man page at all,
 as e.g. for diff, or ships very ugly man pages, mechanically generated
 from some other format, like a help text. In a few cases otherwise
 good man pages have been spoilt by inserting the message that one
 should rather read the info file, even in cases where in fact
 the info file is less informative and less correct.
+In the timezone case the man pages were thrown out, but no info file
+was created: "better a user without docs than a user reading a man page".
 As long as this situation lasts we also ship some Section 1 man pages here.]
 
+[The section 3 man pages for the db routines have been taken from
+ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz. These days glibc2
+includes db routines, but I have not checked whether glibc2 complies
+with these man pages.]
 
-Differences from version 1.21:
+
+Differences from version 1.22:
 
     The man pages
 
-	df.1 diff.1 dircolors.1 du.1 ls.1 mknod.1 rmdir.1 touch.1
+	ls.1
 
-	acct.2 getgid.2 getrlimit.2 getrusage.2 getuid.2 reboot.2
-	rename.2 setrlimit.2 sigaction.2 signal.2 stat.2 swapon.2
-	syslog.2 wait.2
+	accept.2 bind.2 connect.2 fcntl.2 flock.2 ftruncate.2
+	getpeername.2 getsockname.2 getsockopt.2 ioperm.2 iopl.2 open.2
+	readv.2 recv.2 rename.2 send.2 socket.2 stat.2 truncate.2
 
-	fclose.3 fnmatch.3 ftime.3 gethostbyname.3 malloc.3 scanf.3
-	ulimit.3
+	btree.3 ctime.3 dbopen.3 gethostbyname.3 getlogin.3 hash.3 inet.3
+	mkstemp.3 mktemp.3 mpool.3 recno.3 remove.3 strftime.3
 
-	mouse.4
+	charsets.4 full.4 hd.4 initrd.4 mem.4 null.4 ram.4 random.4
+	st.4 ttys.4 vcs.4
 
-	environ.5
+	lilo.conf.5 proc.5 tzfile.5
 
-	suffixes.7
+	tzselect.8 zdump.8 zic.8
 
     are new or have been updated.  Typographical or grammatical errors
     have been corrected in several other places.
+
+    The man page fpurge.3 was deleted.
 
 Here is a breakdown of what this distribution contains:
 
@@ -77,6 +90,7 @@ wrote, edited, or otherwise contributed to this project:
     Graeme W. Wilford (G.Wilford@ee.surrey.ac.uk)
     Helmut Geyer (Helmut.Geyer@iwr.uni-heidelberg.de)
     Ian Jackson (iwj10@cus.cam.ac.uk)
+    Jamie Lokier (jamie@imbolc.ucc.ie)
     Jens Schweikhardt (Jens.Schweikhardt@rus.uni-stuttgart.de)
     Jim Van Zandt (jrv@vanzandt.mv.com)
     Jochen Hein (Hein@Student.TU-Clausthal.de)

@@ -26,15 +26,15 @@
 .\"            First version written
 .\" Modified Tue Oct 22 17:41:07 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
-.TH READV 2 "1996-04-12" "Linux 1.3.86" "Linux Programmer's Manual"
+.TH READV 2 "1999-01-20" "Linux 2.2.0-pre8" "Linux Programmer's Manual"
 .SH NAME
 readv, writev \- read or write a vector
 .SH SYNOPSIS
 .B #include <sys/uio.h>
 .sp
-.BI "int readv(int " fd ", const struct iovec * " vector ", size_t " count );
+.BI "int readv(int " fd ", const struct iovec * " vector ", int " count );
 .sp
-.BI "int writev(int " fd ", const struct iovec * " vector ", size_t " count );
+.BI "int writev(int " fd ", const struct iovec * " vector ", int " count );
 .sp
 .B
 \fBstruct iovec {\fR
@@ -91,6 +91,9 @@ Non-blocking I/O has been selected using
 .TP
 .B EOPNOTSUP
 \fIfd\fR refers to a socket or device that does not support reading/writing.
+.TP
+.B ENOMEM
+Insufficient kernel memory was available.
 .PP
 Other errors may occur, depending on the object connected to \fIfd\fR.
 .SH "CONFORMING TO"
@@ -98,7 +101,9 @@ Other errors may occur, depending on the object connected to \fIfd\fR.
 .B readv
 and
 .B writev
-functions first appeared in BSD 4.2).
+functions first appeared in BSD 4.2), Unix98.  Linux libc5 uses
+\fBsize_t\fR as the type of the \fIcount\fR parameter, which is
+logical but non-standard.
 .SH SEE ALSO
 .BR read (2),
 .BR write (2),

@@ -31,7 +31,7 @@ compact
 vga = normal
 root = /dev/hda1
 read-only
-image = /zImage-1.5.99
+image = /zImage-2.5.99
         label = try
 image = /zImage-1.0.9
         label = 1.0.9
@@ -84,6 +84,10 @@ Sets the name of the device (e.g. a hard disk partition) that contains
 the boot sector. If this keyword is omitted, the boot sector is read
 from (and possibly written to) the device that is currently mounted as root.
 .TP
+.BI "change-rules"
+Defines boot-time changes to partition type numbers (`hiding').
+See section "Partition type change rules" of user.tex for details.
+.TP
 .BI "compact"
 Tries to merge read requests for adjacent sectors into a single 
 read request. This drastically reduces load time and keeps the map 
@@ -103,6 +107,23 @@ The boot loader doesn't wait if `delay' is omitted or is set to zero.
 .BI "disk=" device-name
 Defines non-standard parameters for the specified disk.
 See section "Disk geometry" of user.tex for details.
+Especially useful is the `bios=' parameter.
+The BIOS numbers your disks 0x80, 0x81, etc. and it is impossible
+to decide which Linux disk corresponds to which BIOS disk
+(since this depends on the BIOS setup, and on the type of BIOS),
+so if you have an unusual setup you need to state the correspondence
+between Linux disks and BIOS disks.
+For example,
+.sp
+.nf
+    disk=/dev/sda
+            bios=0x80
+    disk=/dev/hda
+            bios=0x81
+.fi
+.sp
+would say that your SCSI disk is the first BIOS disk,
+and your (primary master) IDE disk is the second BIOS disk.
 .TP
 .BI "disktab=" disktab-file
 Specifies the name of the disk parameter table.

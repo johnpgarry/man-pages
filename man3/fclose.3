@@ -68,6 +68,10 @@ to the stream results in undefined behaviour.
 The argument
 .I stream
 is not an open stream.
+.\"  This error cannot occur unless you are mixing ANSI C stdio operations and
+.\"  low-level file operations on the same stream. If you do get this error,
+.\"  you must have closed the stream's low-level file descriptor using
+.\"  something like close(fileno(fp)).
 .PP
 The
 .B fclose

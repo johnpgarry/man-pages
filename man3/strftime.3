@@ -24,10 +24,13 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
+.\"     GNU texinfo documentation on glibc date/time functions.
 .\" Modified Sat Jul 24 18:03:44 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Applied fix by Wolfgang Franke, aeb, 961011
 .\" Corrected return value, aeb, 970307
-.TH STRFTIME 3  "July 2, 1993" "GNU" "Linux Programmer's Manual"
+.\" Added Single Unix Spec conversions and %z, aeb/esr, 990329.
+.\"
+.TH STRFTIME 3  "29 March 1999" "GNU" "Linux Programmer's Manual"
 .SH NAME
 strftime \- format date and time
 .SH SYNOPSIS
@@ -61,8 +64,37 @@ The full month name according to the current locale.
 .B %c
 The preferred date and time representation for the current locale.
 .TP
+.B %C
+The century number (year/100) as a 2-digit integer. (SU)
+.TP
 .B %d
 The day of the month as a decimal number (range 01 to 31).
+.TP
+.B %D
+Equivalent to %m/%d/%y. (Yecch - for Americans only.
+Americans should note that in other countries %d/%m/%y is rather
+common. This means that in international context this format is
+ambiguous and should not be used.) (SU)
+.TP
+.B %e
+Like %d, the day of the month as a decimal number, but a leading
+zero is replaced by a space. (SU)
+.TP
+.B %E
+Modifier: use alternative format, see below. (SU)
+.TP
+.B %G
+The ISO 8601 year with century as a decimal number.
+The 4-digit year corresponding to the ISO week number (see %V).
+This has the same format and value as %y, except that if the
+ISO week number belongs to the previous or next year,
+that year is used instead. (TZ)
+.TP
+.B %g
+Like %G, but without century, i.e., with a 2-digit year (00-99). (TZ)
+.TP
+.B %h
+Equivalent to %b. (SU)
 .TP
 .B %H
 The hour as a decimal number using a 24-hour clock (range 00 to 23).
@@ -73,29 +105,78 @@ The hour as a decimal number using a 12-hour clock (range 01 to 12).
 .B %j
 The day of the year as a decimal number (range 001 to 366).
 .TP
+.B %k
+The hour (24-hour clock) as a decimal number (range 0 to 23);
+single digits are preceded by a blank. (See also %H.) (TZ)
+.TP
+.B %l
+The hour (12-hour clock) as a decimal number (range 1 to 12);
+single digits are preceded by a blank. (See also %I.) (TZ)
+.TP
 .B %m
 The month as a decimal number (range 01 to 12).
 .TP
 .B %M
-The minute as a decimal number.
+The minute as a decimal number (range 00 to 59).
+.TP
+.B %n
+A newline character. (SU)
+.TP
+.B %O
+Modifier: use alternative format, see below. (SU)
 .TP
 .B %p
-Either `am' or `pm' according to the given time value, or the 
+Either `AM' or `PM' according to the given time value, or the 
 corresponding strings for the current locale.
+Noon is treated as `pm' and midnight as `am'.
+.TP
+.B %P
+Like %p but in lowercase: `am' or `pm' or a corresponding
+string for the current locale. (GNU)
+.TP
+.B %r
+The time in a.m. or p.m. notation.
+In the POSIX locale this is equivalent to `%I:%M:%S %p'. (SU)
+.TP
+.B %R
+The time in 24-hour notation (%H:%M). (SU)
+For a version including the seconds, see %T below.
+.TP
+.B %s
+The number of seconds since the Epoch, i.e., since 1970-01-01
+00:00:00 UTC. (TZ)
 .TP
 .B %S
-The second as a decimal number.
+The second as a decimal number (range 00 to 61).
+.TP
+.B %t
+A tab character. (SU)
+.TP
+.B %T
+The time in 24-hour notation (%H:%M:%S). (SU)
+.TP
+.B %u
+The day of the week as a decimal, range 1 to 7, Monday being 1.
+See also %w. (SU)
 .TP
 .B %U
-The week number of the current year as a decimal number, starting
-with the first Sunday as the first day of the first week.
+The week number of the current year as a decimal number,
+range 00 to 53, starting with the first Sunday as the first day
+of week 01. See also %V and %W.
 .TP
-.B %W
-The week number of the current year as a decimal number, starting
-with the first Monday as the first day of the first week.
+.B %V
+The ISO 8601:1988 week number of the current year as a decimal number,
+range 01 to 53, where week 1 is the first week that has at least
+4 days in the current year, and with Monday as the first day of
+the week. See also %U and %W. (SU)
 .TP
 .B %w
-The day of the week as a decimal, Sunday being 0.
+The day of the week as a decimal, range 0 to 6, Sunday being 0.
+See also %u.
+.TP
+.B %W
+The week number of the current year as a decimal number,
+range 00 to 53, starting with the first Monday as the first day of week 01.
 .TP
 .B %x
 The preferred date representation for the current locale without the time.
@@ -109,78 +190,59 @@ The year as a decimal number without a century (range 00 to 99).
 .B %Y
 The year as a decimal number including the century.
 .TP
+.B %z
+The time-zone as hour offset from GMT.
+Required to emit RFC822-conformant dates
+(using "%a, %d %b %Y %H:%M:%S %z"). (GNU)
+.TP
 .B %Z
 The time zone or name or abbreviation.
+.TP
+.B %+
+The date and time in date(1) format. (TZ)
 .TP
 .B %%
 A literal `%' character.
 .PP
-The broken-down time structure \fItm\fP is defined in \fI<time.h>\fP
-as follows:
-.sp
-.RS
-.nf
-.ne 12
-.ta 8n 16n 32n
-struct tm
-{
-	int	tm_sec;			/* seconds */
-	int	tm_min;			/* minutes */
-	int	tm_hour;		/* hours */
-	int	tm_mday;		/* day of the month */
-	int	tm_mon;			/* month */
-	int	tm_year;		/* year */
-	int	tm_wday;		/* day of the week */
-	int	tm_yday;		/* day in the year */
-	int	tm_isdst;		/* daylight saving time */
-};
-.ta
-.fi
-.RE
+Some conversion specifiers can be modified by preceding them
+by the E or O modifier to indicate that an alternative format
+should be used.
+If the alternative format or specification does not exist for
+the current locale, the behaviour will be as if the unmodified
+conversion specification were used. (SU)
+The Single Unix Specification mentions %Ec, %EC, %Ex, %EX,
+%Ry, %EY, %Od, %Oe, %OH, %OI, %Om, %OM, %OS, %Ou, %OU, %OV,
+%Ow, %OW, %Oy, where the effect of the O modifier is to use
+alternative numeric symbols (say, roman numerals), and that of the
+E modifier is to use a locale-dependent alternative representation.
 .PP
-The members of the \fItm\fP structure are:
-.TP
-.I tm_sec
-The number of seconds after the minute, normally in the range 0 to 59, 
-but can be up to 61 to allow for leap seconds.
-.TP
-.I tm_min
-The number of minutes after the hour, in the range 0 to 59. 
-.TP
-.I tm_hour
-The number of hours past midnight, in the range 0 to 23.
-.TP
-.I tm_mday
-The day of the month, in the range 1 to 31.
-.TP
-.I tm_mon
-The number of months since January, in the range 0 to 11.
-.TP
-.I tm_year
-The number of years since 1900.
-.TP
-.I tm_wday
-The number of days since Sunday, in the range 0 to 6.
-.TP
-.I tm_yday
-The number of days since January 1, in the range 0 to 365.
-.TP
-.I tm_isdst
-A flag that indicates whether daylight saving time is in effect at the
-time described.  The value is positive if daylight saving time is in
-effect, zero if it is not, and negative if the information is not
-available.
+The broken-down time structure \fItm\fP is defined in \fI<time.h>\fP.
+See also
+.BR ctime (3).
+
 .SH "RETURN VALUE"
 The \fBstrftime()\fP function returns the number of characters placed
-in the array \fIs\fP, not including the terminating NULL character,
-provided the string, including the terminating NULL, fits.
+in the array \fIs\fP, not including the terminating NUL character,
+provided the string, including the terminating NUL, fits.
 Otherwise, it returns 0, and the contents of the array is undefined.
 (Thus at least since libc 4.4.4; very old versions of libc,
 such as libc 4.4.1, would return \fImax\fP if the array was too small.)
 .LP
 Note that the return value 0 does not necessarily indicate an error;
 for example, in many locales %p yields an empty string.
+.SH ENVIRONMENT
+The environment variables TZ and LC_TIME are used.
 .SH "CONFORMING TO"
-ANSI C, SVID 3, POSIX, BSD 4.3, ISO 9899
+ANSI C, SVID 3, ISO 9899.
+There are strict inclusions between the set of conversions
+given in ANSI C (unmarked), those given in the Single Unix Specification
+(marked SU), those given in Olson's timezone package (marked TZ),
+and those given in glibc (marked GNU), except that %+ is not supported
+in glibc2. On the other hand glibc2 has several more extensions.
+POSIX.1 only refers to ANSI C; POSIX.2 describes under
+.BR date (1)
+several extensions that could apply to
+.B strftime
+as well.
 .SH "SEE ALSO"
 .BR date "(1), " time "(2), " ctime "(3), " setlocale "(3), " sprintf (3)

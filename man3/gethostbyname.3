@@ -27,10 +27,11 @@
 .\" Modified Sat May 22 18:43:54 1993, David Metcalfe
 .\" Modified Sun Jul 25 10:42:30 1993, Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Feb 16 13:23:10 1997, Andries Brouwer (aeb@cwi.nl)
+.\" Modified Mon Dec 21 14:49:33 1998, Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH GETHOSTBYNAME 3  "April 19, 1993" "BSD" "Linux Programmer's Manual"
 .SH NAME
-gethostbyname, gethostbyaddr, sethostent, endhostent, herror \- get network 
+gethostbyname, gethostbyaddr, sethostent, endhostent, herror, hstrerror \- get network 
 host entry
 .SH SYNOPSIS
 .nf
@@ -47,6 +48,8 @@ host entry
 .B void endhostent(void);
 .sp
 .BI "void herror(const char *" s );
+.sp
+.BI "const char * hstrerror(int " err );
 .fi
 .SH DESCRIPTION
 The \fBgethostbyname()\fP function returns a structure of type \fIhostent\fP
@@ -90,8 +93,11 @@ name server queries will use UDP datagrams.
 The \fBendhostent()\fP function ends the use of a TCP connection for name
 server queries.
 .PP
-The \fBherror()\fP function prints the error message associated with the
-current value of \fIh_errno\fP on stderr.
+The (obsolete) \fBherror()\fP function prints the error message associated
+with the current value of \fIh_errno\fP on stderr.
+.PP
+The (obsolete) \fBhstrerror()\fP function takes an error number
+(typically \fIh_errno\fP) and returns the corresponding message string.
 .PP
 The domain name queries carried out by \fBgethostbyname()\fP and
 \fBgethostbyaddr()\fP use a combination of any or all of the name server
@@ -150,7 +156,7 @@ The variable \fIh_errno\fP can have the following values:
 .B HOST_NOT_FOUND
 The specified host is unknown.
 .TP
-.B NO_ADDRESS
+.BR NO_ADDRESS " or " NO_DATA
 The requested name is valid but does not have an IP address.
 .TP
 .B NO_RECOVERY

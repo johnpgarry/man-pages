@@ -30,7 +30,9 @@
 .\" Modified Mon May 13 00:53:52 1996: added symbolic constants
 .\"          as sent by Thomas Koenig
 .\" Modified Fri Dec 20 16:06:45 1996 by Michael Haardt: More NFS details
-.TH OPEN 2 "December 20, 1996" "Linux 2.0.32" "Linux Programmer's Manual"
+.\" Modified Fri Feb 19 15:08:34 1999 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified 981128 by Joseph S. Myers <jsm28@hermes.cam.ac.uk>
+.TH OPEN 2 "28 November 1998" "Linux 2.1.130" "Linux Programmer's Manual"
 .SH NAME
 open, creat \- open and possibly create a file or device
 .SH SYNOPSIS
@@ -114,6 +116,28 @@ The file is opened for synchronous I/O. Any
 on the resulting file descriptor will block the calling process until
 the data has been physically written to the underlying hardware.
 .I See RESTRICTIONS below, though.
+.TP
+.B O_NOFOLLOW
+If \fIpathname\fR is a symbolic link, then the open fails.  This is a
+FreeBSD extension, which was added to Linux in version 2.1.126.
+Symbolic links in earlier components of the pathname will still be
+followed.  The headers from glibc 2.0.100 and later include a
+definition of this flag; \fIkernels before 2.1.126 will ignore it if
+used\fR.
+.TP
+.B O_DIRECTORY
+If \fIpathname\fR is not a directory, cause the open to fail.  This
+flag is Linux-specific, and was added in kernel version 2.1.126, to
+avoid denial-of-service problems if \fBopendir\fR(3) is called on a
+FIFO or tape device, but should not be used outside of the
+implementation of \fBopendir\fR.
+.TP
+.B O_LARGEFILE
+On 32-bit systems that support the Large Files System, allow files
+whose sizes cannot be represented in 31 bits to be opened.  The Linux
+kernel does not yet have the support for this (as of 2.1.130), but the
+flag definition is there and the userspace LFS interfaces are present
+in the glibc 2.1 test releases.
 .PP
 Some of these optional flags can be altered using
 .B fcntl
@@ -208,19 +232,12 @@ were used.
 .I pathname
 refers to a directory and the access requested involved writing.
 .TP
-.B ETXTBSY
-.I pathname
-refers to an executable image which is currently being executed and
-write access was requested.
-.TP
-.B EFAULT
-.IR pathname " points outside your accessible address space."
-.TP
 .B EACCES
 The requested access to the file is not allowed, or one of the
 directories in
 .IR pathname
-did not allow search (execute) permission.
+did not allow search (execute) permission, or the file did not exist
+yet and write access to the parent directory is not allowed.
 .TP
 .B ENAMETOOLONG
 .IR pathname " was too long."
@@ -233,7 +250,47 @@ does not exist or is a dangling symbolic link.
 .B ENOTDIR
 A component used as a directory in
 .I pathname
-is not, in fact, a directory.
+is not, in fact, a directory, or \fBO_DIRECTORY\fR was specified and
+.I pathname
+was not a directory.
+.TP
+.B ENXIO
+O_NONBLOCK | O_WRONLY is set, the named file id a FIFO and
+no process has the file open for reading.
+Or, the file is a device special file and no corresponding device exists.
+.TP
+.B ENODEV
+.I pathname
+refers to a device special file and no corresponding device exists.
+.TP
+.B EROFS
+.I pathname
+refers to a file on a read-only filesystem and write access was
+requested.
+.TP
+.B ETXTBSY
+.I pathname
+refers to an executable image which is currently being executed and
+write access was requested.
+.TP
+.B EFAULT
+.IR pathname " points outside your accessible address space."
+.TP
+.B ELOOP
+Too many symbolic links were encountered in resolving
+.IR pathname ,
+or \fBO_NOFOLLOW\fR was specified but
+.I pathname
+was a symbolic link.
+.TP
+.B ENOSPC
+.I pathname
+was to be created but the device containing
+.I pathname
+has no room for the new file.
+.TP
+.B ENOMEM
+Insufficient kernel memory was available.
 .TP
 .B EMFILE
 The process already has the maximum number of files open.
@@ -241,30 +298,16 @@ The process already has the maximum number of files open.
 .B ENFILE
 The limit on the total number of files open on the system has been
 reached.
-.TP
-.B ENOMEM
-Insufficient kernel memory was available.
-.TP
-.B EROFS
-.I pathname
-refers to a file on a read-only filesystem and write access was
-requested.
-.TP
-.B ELOOP
-Too many symbolic links were encountered in resolving
-.IR pathname .
-.TP
-.B ENOSPC
-.I pathname
-was to be created but the device containing
-.I pathname
-has no room for the new file.
 .SH "CONFORMING TO"
 SVr4, SVID, POSIX, X/OPEN, BSD 4.3
 .SH RESTRICTIONS
 There are many infelicities in the protocol underlying NFS, affecting
 amongst others
 .BR O_SYNC " and " O_NDELAY .
+
+POSIX provides for three different variants of synchronised I/O,
+corresponding to the flags \fBO_SYNC\fR, \fBO_DSYNC\fR and
+\fBO_RSYNC\fR.  Currently (2.1.130) these are all synonymous under Linux.
 .SH "SEE ALSO"
 .BR read "(2), " write "(2), " fcntl "(2), " close (2),
 .BR unlink "(2), " mknod "(2), " stat "(2), " umask (2),

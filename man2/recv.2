@@ -33,6 +33,7 @@
 .\"
 .\" Modified Sat Jul 24 00:22:20 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 17:45:19 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Sun Mar 28 21:26:46 1999 by Andries Brouwer <aeb@cwi.nl>
 .\"
 .TH RECV 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -45,7 +46,7 @@ recv, recvfrom, recvmsg \- receive a message from a socket
 .BI "int recv(int " s ", void *" buf ", int " len ", unsigned int " flags );
 .sp
 .BI "int recvfrom(int " s ", void *" buf ", int " len ", unsigned int " flags
-.BI "struct sockaddr *" from ", int *" fromlen );
+.BI "struct sockaddr *" from ", socklen_t *" fromlen );
 .sp
 .BI "int recvmsg(int " s ", struct msghdr *" msg ", unsigned int " flags );
 .SH DESCRIPTION
@@ -259,5 +260,13 @@ The receive buffer pointer(s) point outside the process's
 address space.
 .SH "CONFORMING TO"
 4.4BSD (these function calls first appeared in 4.2BSD).
+.SH NOTE
+The sixth argument of
+.B recvfrom
+is in reality an `int *' (and this is what BSD 4.* and libc4 and libc5 have).
+Some POSIX confusion resulted in the present socklen_t.
+The draft standard has not been adopted yet, but glibc2 already
+follows it and also has `socklen_t *'. See also
+.BR accept (2).
 .SH "SEE ALSO"
 .BR fcntl "(2), " read "(2), " select "(2), " getsockopt "(2), " socket (2)

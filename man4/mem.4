@@ -41,7 +41,7 @@ It is typically created by:
 .sp
 mknod -m 660 /dev/mem c 1 1
 .br
-chown root.mem /dev/mem
+chown root:mem /dev/mem
 .sp
 .RE
 .LP
@@ -53,7 +53,7 @@ It is typically created by:
 .sp
 mknod -m 640 /dev/kmem c 1 2
 .br
-chown root.mem /dev/kmem
+chown root:mem /dev/kmem
 .sp
 .RE
 .LP
@@ -64,7 +64,7 @@ It is typically created by:
 .sp
 mknod -m 660 /dev/port c 1 4
 .br
-chown root.mem /dev/port
+chown root:mem /dev/port
 .sp
 .RE
 .SH FILES

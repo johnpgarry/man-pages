@@ -89,12 +89,15 @@ Thus, to print out the environment of process 1, you would do:
 a pointer to the binary which was executed, and appears as a symbolic
 link.
 .I readlink(2)
-on the exe special file returns a string in the format:
+on the exe special file returns under Linux 2.0 and earlier
+a string in the format:
 
 [device]:inode
 
 For example, [0301]:1502 would be inode 1502 on device major 03 (IDE,
 MFM, etc. drives) minor 01 (first partition on the first drive).
+Under Linux 2.2 the link contains the actual path name of the
+command.
 
 Also, the symbolic link can be dereferenced normally - attempting to
 open "exe" will open the executable.  You can even type
@@ -126,7 +129,7 @@ are not seekable.
 
 /proc/self/fd/N is approximately the same as /dev/fd/N in some UNIX
 and UNIX-like systems.  Most Linux MAKEDEV scripts symbolically link
-/dev/fd to /proc/self/fd, in fact.
+/dev/fd to [..]/proc/self/fd, in fact.
 .TP
 .I maps
 A file containing the currently mapped memory regions and their access
@@ -163,9 +166,12 @@ offset is the offset into the file/whatever, dev is the device
 (major:minor), and inode is the inode on that device.  0 indicates
 that no inode is associated with the memory region, as the case would
 be with bss.
+.PP
+Under Linux 2.2 there is an additional field giving a pathname
+where applicable.
 .TP
 .I mem
-This is not the same as the mem (1,1) device, despite the fact that it
+This is not the same as the mem (1:1) device, despite the fact that it
 has the same device numbers.  The /dev/mem device is the physical
 memory before any address translation is done, but the mem file here
 is the memory of the process that accesses it.  This cannot be

@@ -79,7 +79,7 @@ Write (in single-column format) the file mode, the number of links
 to the file, the owner name, the group name, the size of the file (in bytes),
 the timestamp, and the filename.
 By default, the timestamp shown is that of the last modification; the
-options \-c and \u select the other two timestamps.
+options \-c and \-u select the other two timestamps.
 For device special files the size field is commonly replaced
 by the major and minor device numbers.
 .TP
@@ -271,8 +271,8 @@ output is a terminal. It is always the default for
 .BR dir " and " d .
 .TP
 .B "\-D, \-\-dired"
-With the long listing (
-.BR \-l ) 
+With the long listing
+.RB ( \-l ) 
 format, print an additional line after the main output:
 .br
 .B //DIRED//
@@ -341,7 +341,7 @@ is zero, do not use tabs at all.
 Do not sort directory contents; list them in whatever order they are
 stored on the disk. (The difference between 
 .BR \-U and \-f 
-is that the later doesn't disable or enable options). This is especially
+is that the former doesn't disable or enable options.) This is especially
 useful when listing very large directories, since not doing any sorting
 can be noticeably faster.
 .TP

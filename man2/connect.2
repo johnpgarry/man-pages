@@ -59,6 +59,7 @@
 .\" SUCH DAMAGE.
 .\"
 .\" Modified Fri Jan 31 16:22:26 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Sun Mar 28 21:26:46 1999 by Andries Brouwer <aeb@cwi.nl>
 .\"
 .TH CONNECT 2 "23 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
@@ -68,7 +69,7 @@ connect \- initiate a connection on a socket
 .br
 .B #include <sys/socket.h>
 .sp
-.BI "int connect(int " sockfd ", struct sockaddr *" serv_addr ", int
+.BI "int connect(int " sockfd ", struct sockaddr *" serv_addr ", socklen_t
 .BI " addrlen );
 .SH DESCRIPTION
 The parameter
@@ -148,6 +149,14 @@ function first appeared in BSD 4.2).  SVr4 documents additional
 general error codes EADDRNOTAVAIL, EINVAL, EAFNOSUPPORT, 
 EALREADY, EINTR, EPROTOTYPE, ENOSR.  It also
 documents many additional error conditions not described here.
+.SH NOTE
+The third argument of
+.B connect
+is in reality an int (and this is what BSD 4.* and libc4 and libc5 have).
+Some POSIX confusion resulted in the present socklen_t.
+The draft standard has not been adopted yet, but glibc2 already
+follows it and also has socklen_t. See also
+.BR accept (2).
 .SH "SEE ALSO"
 .BR accept "(2), " bind "(2), " listen "(2), "
 .BR socket "(2), " getsockname (2)

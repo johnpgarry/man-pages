@@ -27,12 +27,14 @@
 .\" Modified Sat Jul 24 18:48:06 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Fri Jun 23 01:26:34 1995 by Andries Brouwer (aeb@cwi.nl)
 .\" (prompted by Scott Burkett <scottb@IntNet.net>)
+.\" Modified Sun Mar 28 23:44:38 1999 by Andries Brouwer (aeb@cwi.nl)
+.\"
 .TH MKTEMP 3  "April 3, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 mktemp \- make a unique temporary file name
 .SH SYNOPSIS
 .nf
-.B #include <unistd.h>
+.B #include <stdlib.h>
 .sp
 .BI "char *mktemp(char *" template );
 .fi
@@ -40,15 +42,40 @@ mktemp \- make a unique temporary file name
 The \fBmktemp()\fP function generates a unique temporary file name
 from \fItemplate\fP.  The last six characters of \fItemplate\fP must
 be XXXXXX and these are replaced with a string that makes the
-filename unique.
+filename unique. Since it will be modified,
+.I template
+must not be a string constant, but should be declared as a character array.
 .SH "RETURN VALUE"
-The \fBmktemp()\fP function returns a pointer to \fItemplate\fP on
-success, and NULL on failure.
+The \fBmktemp()\fP function returns NULL on error (\fItemplate\fP did not
+end in XXXXXX) and \fItemplate\fP otherwise.
+If the call was successful, the last six bytes of \fItemplate\fP will
+have been modified in such a way that the resulting name is unique
+(does not exist already). If the call was unsuccessful, \fItemplate\fP
+is made an empty string.
+
 .SH "ERRORS"
 .TP
 .B EINVAL
 The last six characters of \fItemplate\fP were not XXXXXX.
 .SH "CONFORMING TO"
 BSD 4.3. POSIX dictates tmpnam().
+.SH NOTE
+The prototype is in
+.I <unistd.h>
+for libc4, libc5, glibc1; glibc2 follows the Single Unix Specification
+and has the prototype in
+.IR <stdlib.h> .
+.SH BUGS
+Never use \fBmktemp()\fP. Some implementations follow BSD 4.3
+and replace XXXXXX by the current process id and a single letter,
+so that at most 26 different names can be returned.
+Since on the one hand the names are easy to guess, and on the other
+hand there is a race between testing whether the name exists and
+opening the file, every use of \fBmktemp()\fP is a security risk.
+The race is avoided by
+.BR mkstemp (3).
 .SH "SEE ALSO"
-.BR mkstemp "(3), " tmpnam "(3), " tempnam "(3), " tmpfile (3)
+.BR mkstemp (3),
+.BR tmpnam (3),
+.BR tempnam (3),
+.BR tmpfile (3)

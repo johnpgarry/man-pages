@@ -59,6 +59,8 @@
 .\" SUCH DAMAGE.
 .\"
 .\" Modified Mon Oct 21 23:05:29 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Sun Mar 28 21:26:46 1999 by Andries Brouwer <aeb@cwi.nl>
+.\"
 .TH BIND 2 "23 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 bind \- bind a name to a socket
@@ -67,7 +69,7 @@ bind \- bind a name to a socket
 .br
 .B #include <sys/socket.h>
 .sp
-.BI "int bind(int " sockfd ", struct sockaddr *" my_addr ", int " addrlen );
+.BI "int bind(int " sockfd ", struct sockaddr *" my_addr ", socklen_t " addrlen );
 .SH DESCRIPTION
 .B bind
 gives the socket,
@@ -151,6 +153,14 @@ SVr4, 4.4BSD (the
 function first appeared in BSD 4.2).  SVr4 documents additional
 EADDRNOTAVAIL, EADDRINUSE, ENOSR general error conditions, and
 additional EIO, EISDIR and EROFS Unix-domain error conditions.
+.SH NOTE
+The third argument of
+.B bind
+is in reality an int (and this is what BSD 4.* and libc4 and libc5 have).
+Some POSIX confusion resulted in the present socklen_t.
+The draft standard has not been adopted yet, but glibc2 already
+follows it and also has socklen_t. See also
+.BR accept (2).
 .SH "SEE ALSO"
 .BR accept "(2), " connect "(2), " listen "(2), "
 .BR socket "(2), " getsockname (2)

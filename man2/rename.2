@@ -52,7 +52,7 @@ will find it missing.
 
 If
 .I newpath
-exists but the operation fails for some reason or the system crashes
+exists but the operation fails for some reason
 .B rename
 guarantees to leave an instance of
 .I newpath
@@ -75,7 +75,7 @@ On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-.TP 0.8i
+.TP
 .B EISDIR
 .I newpath
 is an existing directory, but
@@ -86,20 +86,26 @@ is not a directory.
 .IR oldpath " and " newpath
 are not on the same filesystem.
 .TP
-.B ENOTEMPTY
+.BR ENOTEMPTY " or " EEXIST
 .IR newpath
-is a non-empty directory.
+is a non-empty directory, i.e., contains entries other than "." and "..".
 .TP
 .B EBUSY
-.I newpath
-exists and is the current working directory or root directory of some
-process.
-.TP
-.B EEXIST
-The new pathname contained a path prefix of the old.
+The rename fails because
+.IR oldpath " or " newpath
+is a directory that is in use by some process (perhaps as
+current working directory, or as root directory, or because
+it was open for reading) or is in use by the system
+(for example as mount point), while the system considers
+this an error.
+(Note that there is no requirement to return EBUSY in such
+cases - there is nothing wrong with doing the rename anyway -
+but it is allowed to return EBUSY if the system cannot otherwise
+handle such situations.)
 .TP
 .B EINVAL
-An attempt was made to make a directory a subdirectory of itself.
+The new pathname contained a path prefix of the old, or, more generally,
+an attempt was made to make a directory a subdirectory of itself.
 .TP
 .B EMLINK
 .I oldpath
@@ -112,6 +118,11 @@ has the maximum number of links.
 A component used as a directory in
 .IR oldpath " or " newpath
 is not, in fact, a directory.
+Or,
+.I oldpath
+is a directory, and
+.I newpath
+exists but is not a directory.
 .TP
 .B EFAULT
 .IR oldpath " or " newpath " points outside your accessible address space."
@@ -129,11 +140,16 @@ the
 .B ..
 entry).
 .TP
-.B EPERM
+.BR EPERM " or " EACCES
 The directory containing
 .I oldpath
-has the sticky bit set and the process's effective uid is neither the
-uid of the file to be deleted nor that of the directory containing it,
+has the sticky bit set and the process's effective uid is neither that of root
+nor the uid of the file to be deleted nor that of the directory containing it,
+or
+.I newpath
+is an existing file and the directory containing it has the sticky bit set
+and the process's effective uid is neither that of root nor the uid of the
+file to be replaced nor that of the directory containing it,
 or the filesystem containing
 .IR pathname
 does not support renaming of the type requested.

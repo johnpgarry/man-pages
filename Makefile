@@ -24,7 +24,7 @@ allbz: bz2 all
 #  allow_null_glob_expansion.]
 
 screen:
-	mkdir not_installed
+	-mkdir not_installed
 	files=man?/*; \
 	if [ "$$files" != "man?/*" ]; then for i in $$files; do \
 		if [ $(MANDIR)/$$i -nt $$i ]; then \

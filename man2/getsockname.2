@@ -33,6 +33,7 @@
 .\"
 .\" Modified Sat Jul 24 16:30:29 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 00:22:35 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Sun Mar 28 21:26:46 1999 by Andries Brouwer <aeb@cwi.nl>
 .\"
 .TH GETSOCKNAME 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -40,7 +41,7 @@ getsockname \- get socket name
 .SH SYNOPSIS
 .B #include <sys/socket.h>
 .sp
-.B "int getsockname(int " s ", struct sockaddr *" name ", int *" namelen )
+.B "int getsockname(int " s ", struct sockaddr *" name ", socklen_t *" namelen )
 .SH DESCRIPTION
 .B Getsockname
 returns the current 
@@ -83,5 +84,13 @@ SVr4, 4.4BSD (the
 .B getsockname
 function call appeared in 4.2BSD).  SVr4 documents additional ENOMEM
 and ENOSR error codes. 
+.SH NOTE
+The third argument of 
+.B getsockname
+is in reality an `int *' (and this is what BSD 4.* and libc4 and libc5 have).
+Some POSIX confusion resulted in the present socklen_t.
+The draft standard has not been adopted yet, but glibc2 already
+follows it and also has socklen_t. See also
+.BR accept (2).
 .SH "SEE ALSO"
 .BR bind "(2), " socket (2)

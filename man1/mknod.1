@@ -34,7 +34,7 @@ printer) or to operating system services (/dev/null, /dev/random).
 Block special files usually are disk-like devices
 (where data can be accessed given a block number,
 and e.g. it is meaningful to have a block cache).
-All other devices are character special devices.
+All other devices are character special files.
 (Long ago the distinction was a different one: I/O to
 a character special file would be unbuffered, to a block
 special file buffered.)
@@ -74,7 +74,7 @@ set in the umask.
 .SH OPTIONS
 .TP
 .BI "\-m " mode ", \-\-mode=" mode
-Set the mode of created directories to
+Set the mode of created files to
 .IR mode ,
 which can be symbolic as in
 .BR chmod (1)

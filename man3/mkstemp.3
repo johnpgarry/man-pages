@@ -26,12 +26,14 @@
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:48:48 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified 980310, aeb
+.\" Modified 990328, aeb
+.\"
 .TH MKSTEMP 3  "April 3, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 mkstemp \- create a unique temporary file
 .SH SYNOPSIS
 .nf
-.B #include <unistd.h>
+.B #include <stdlib.h>
 .sp
 .BI "int mkstemp(char *" template );
 .fi
@@ -39,23 +41,37 @@ mkstemp \- create a unique temporary file
 The \fBmkstemp()\fP function generates a unique temporary file name
 from \fItemplate\fP.  The last six characters of \fItemplate\fP must
 be XXXXXX and these are replaced with a string that makes the
-filename unique.  The file is then created with mode read/write and
+filename unique. The file is then created with mode read/write and
 permissions 0666 (glibc 2.0.6 and earlier), 0600 (glibc 2.0.7 and later).
+Since it will be modified,
+.I template
+must not be a string constant, but should be declared as a character array.
+The file is opened with the O_EXCL flag, guaranteeing that when
+.B mkstemp
+returns successfully we are the only user.
 .SH "RETURN VALUE"
 The \fBmkstemp()\fP function returns the file descriptor fd of the
-temporary file.
+temporary file or \-1 on error.
 .SH "ERRORS"
 .TP
 .B EINVAL
 The last six characters of \fItemplate\fP were not XXXXXX.
+Now \fItemplate\fP is unchanged.
 .TP
 .B EEXIST
-The temporary file is not unique.
+Could not create a unique temporary filename.
+Now the contents of \fItemplate\fP are undefined.
 .SH BUGS
 The old behaviour (creating a file with mode 0666) may be
 a security risk, especially since other Unix flavours use 0600,
 and somebody might overlook this detail when porting programs.
 .SH "CONFORMING TO"
 BSD 4.3
+.SH NOTE
+The prototype is in
+.I <unistd.h>
+for libc4, libc5, glibc1; glibc2 follows the Single Unix Specification
+and has the prototype in
+.IR <stdlib.h> .
 .SH "SEE ALSO"
 .BR mktemp "(3), " tmpnam "(3), " tempnam "(3), " tmpfile (3)
