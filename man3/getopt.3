@@ -27,6 +27,8 @@
 .\"  opterr and getopt_long_only.  Clarified explanations (borrowing heavily
 .\"  from the source code).
 .\" Modified 8 May 1998 by Joseph S. Myers (jsm28@cam.ac.uk)
+.\" Modified 990715, aeb: changed `EOF' into `-1' since that is what POSIX
+.\"  says; moreover, EOF is not defined in <unistd.h>.
 .\"
 .TH GETOPT 3  "8 May 1998" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -75,8 +77,8 @@ variable \fInextchar\fP so that the next call to \fBgetopt()\fP can
 resume the scan with the following option character or
 \fIargv\fP-element.
 .PP
-If there are no more option characters, \fBgetopt()\fP returns
-\fBEOF\fP.  Then \fIoptind\fP is the index in \fIargv\fP of the first
+If there are no more option characters, \fBgetopt()\fP returns \-1.
+Then \fIoptind\fP is the index in \fIargv\fP of the first
 \fIargv\fP-element that is not an option.
 .PP
 .I optstring
@@ -189,13 +191,13 @@ The
 .B getopt()
 function returns the option character if the option was found
 successfully, `:' if there was a missing parameter for one of the
-options, `?' for an unknown option character, or \fBEOF\fP 
+options, `?' for an unknown option character, or \-1
 for the end of the option list.
 .PP
 \fBgetopt_long()\fP and \fBgetopt_long_only()\fP also return the option
 character when a short option is recognized.  For a long option, they
 return \fIval\fP if \fIflag\fP is \fBNULL\fP, and 0 otherwise.  Error
-and EOF returns are the same as for \fBgetopt()\fP, plus `?' for an
+and \-1 returns are the same as for \fBgetopt()\fP, plus `?' for an
 ambiguous match or an extraneous parameter.
 .SH "ENVIRONMENT VARIABLES"
 .TP

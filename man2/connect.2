@@ -208,6 +208,12 @@ Some POSIX confusion resulted in the present socklen_t.
 The draft standard has not been adopted yet, but glibc2 already
 follows it and also has socklen_t. See also
 .BR accept (2).
+.SH BUGS
+Unconnecting a socket by calling
+.B connect
+with a
+.B AF_UNSPEC
+address is not yet implemented.
 .SH "SEE ALSO"
 .BR accept "(2), " bind "(2), " listen "(2), "
 .BR socket "(2), " getsockname (2)

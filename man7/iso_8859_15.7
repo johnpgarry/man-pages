@@ -1,5 +1,6 @@
 '\" t
 .\" Copyright 1993-1995 Daniel Quinlan (quinlan@yggdrasil.com)
+.\" Copyright 1999      Dimitri Papadopoulos (dpo@club-internet.fr)
 .\"
 .\" This is free documentation; you can redistribute it and/or
 .\" modify it under the terms of the GNU General Public License as
@@ -20,28 +21,25 @@
 .\" License along with this manual; if not, write to the Free
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
-.\"
-.\" Slightly rearranged, aeb, 950713
-.\" Updated, dpo, 990531
-.TH ISO_8859_1 7 "31 May 1999" "Linux" "Linux Programmer's Manual"
+.TH ISO_8859_15 7 "31 May 1999" "Linux" "Linux Programmer's Manual"
 .nh
 .SH NAME
-iso_8859_1 \- the ISO 8859-1 character set encoded in octal, decimal,
+iso_8859_15 \- the ISO 8859-15 character set encoded in octal, decimal,
 and hexadecimal
 .SH DESCRIPTION
 The ISO 8859 standard includes several 8-bit extensions to the ASCII
 character set (also known as ISO 646-IRV).  Especially important is
 ISO 8859-1, the "Latin Alphabet No. 1", which has become widely
 implemented and may already be seen as the de-facto standard ASCII
-replacement.
+replacement.  However, it lacks the EURO symbol and does not fully 
+cover Finnish and French.  ISO 8859-15 is a modification of ISO 8859-1
+that covers these needs.
 .P
-ISO 8859-1 supports the following languages: Afrikaans, Basque,
-Catalan, Danish, Dutch, English, Faeroese, Finnish, French, Galician,
-German, Icelandic, Irish, Italian, Norwegian, Portuguese, Scottish,
-Spanish, and Swedish.
-.P
-Note that the ISO 8859-1 characters are also the first 256 characters
-of ISO 10646 (Unicode).
+ISO 8859-15 supports the following languages: Albanian, Basque, Breton,
+Catalan, Danish, Dutch, English, Estonian, Faroese, Finnish, French,
+Frisian, Galician, German, Greenlandic, Icelandic, Irish Gaelic,
+Italian, Latin, Luxemburgish, Norwegian, Portuguese, Rhaeto-Romanic,
+Scottish Gaelic, Spanish, and Swedish.
 .SS "ISO 8859 Alphabets"
 The full set of ISO 8859 alphabets includes:
 .P
@@ -62,8 +60,8 @@ ISO 8859-13	Baltic Rim languages (Latin-7)
 ISO 8859-14	Celtic (Latin-8)
 ISO 8859-15	west European languages (Latin-9)
 .TE
-.SS "ISO 8859-1 Characters"
-The following table displays the characters in ISO 8859 Latin-1, which
+.SS "ISO 8859-15 Characters"
+The following table displays the characters in ISO 8859 Latin-9, which
 are printable and unlisted in the
 .BR ascii (7)
 manual page.
@@ -76,11 +74,11 @@ _
 241	161	A1	¡	INVERTED EXCLAMATION MARK
 242	162	A2	¢	CENT SIGN
 243	163	A3	£	POUND SIGN
-244	164	A4	¤	CURRENCY SIGN
+244	164	A4	¤	EURO SIGN
 245	165	A5	¥	YEN SIGN
-246	166	A6	¦	BROKEN BAR
+246	166	A6	¦	LATIN CAPITAL LETTER S WITH CARON
 247	167	A7	§	SECTION SIGN
-250	168	A8	¨	DIAERESIS
+250	168	A8	¨	LATIN SMALL LETTER S WITH CARON
 251	169	A9	©	COPYRIGHT SIGN
 252	170	AA	ª	FEMININE ORDINAL INDICATOR
 253	171	AB	«	LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
@@ -92,17 +90,17 @@ _
 261	177	B1	±	PLUS-MINUS SIGN
 262	178	B2	²	SUPERSCRIPT TWO
 263	179	B3	³	SUPERSCRIPT THREE
-264	180	B4	´	ACUTE ACCENT
+264	180	B4	´	LATIN CAPITAL LETTER Z WITH CARON
 265	181	B5	µ	MICRO SIGN
 266	182	B6	¶	PILCROW SIGN
 267	183	B7	·	MIDDLE DOT
-270	184	B8	¸	CEDILLA
+270	184	B8	¸	LATIN SMALL LETTER Z WITH CARON
 271	185	B9	¹	SUPERSCRIPT ONE
 272	186	BA	º	MASCULINE ORDINAL INDICATOR
 273	187	BB	»	RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
-274	188	BC	¼	VULGAR FRACTION ONE QUARTER
-275	189	BD	½	VULGAR FRACTION ONE HALF
-276	190	BE	¾	VULGAR FRACTION THREE QUARTERS
+274	188	BC	¼	LATIN CAPITAL LIGATURE OE
+275	189	BD	½	LATIN SMALL LIGATURE OE
+276	190	BE	¾	LATIN CAPITAL LETTER Y WITH DIAERESIS
 277	191	BF	¿	INVERTED QUESTION MARK
 300	192	C0	À	LATIN CAPITAL LETTER A WITH GRAVE
 301	193	C1	Á	LATIN CAPITAL LETTER A WITH ACUTE
@@ -171,4 +169,4 @@ _
 .TE
 .SH SEE ALSO
 .BR ascii (7),
-.BR iso_8859_15 (7)
+.BR iso_8859_1 (7)

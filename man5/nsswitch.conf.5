@@ -1,4 +1,4 @@
-.\" Copyright (c) 1998 Thorsten Kukuk (kukuk@vt.uni-paderborn.de)
+.\" Copyright (c) 1998, 1999 Thorsten Kukuk (kukuk@vt.uni-paderborn.de)
 .\"
 .\" This is free documentation; you can redistribute it and/or
 .\" modify it under the terms of the GNU General Public License as
@@ -22,7 +22,7 @@
 .\"
 .\" This manual page based on the GNU C Library info pages.
 .\"
-.TH NSSWITCH.CONF 5 "11 January 1998" "Linux" "Linux Programmer's Manual"
+.TH NSSWITCH.CONF 5 "17 January 1999" "Linux" "Linux Programmer's Manual"
 .SH NAME
 nsswitch.conf \- System Databases and Name Service Switch configuration file
 .SH DESCRIPTION
@@ -45,10 +45,11 @@ The following databases are available in the NSS:
 .TP
 .B aliases
 Mail aliases, used by
-.BR sendmail (8)
+.BR sendmail (8).
+Presently ignored.
 .TP
 .B ethers
-Ethernet numbers
+Ethernet numbers.
 .TP
 .B group
 Groups of users, used by
@@ -61,7 +62,8 @@ Host names and numbers, used by
 and similar functions.
 .TP
 .B netgroup
-Network wide list of hosts and users, used for access rules
+Network wide list of hosts and users, used for access rules.
+C libraries before glibc 2.1 only support netgroups over NIS.
 .TP
 .B network
 Network names and numbers, used by
@@ -79,7 +81,7 @@ Network protocols, used by
 functions.
 .TP
 .B publickey
-Public and secret keys for secure_rpc used by NIS+ and NFS.
+Public and secret keys for Secure_RPC used by NFS and NIS+.
 .TP
 .B rpc
 Remote procedure call names and numbers, used by
@@ -93,7 +95,7 @@ functions.
 .TP
 .B shadow
 Shadow user passwords, used by
-.BR getspnam (3)
+.BR getspnam (3).
 .LP
 An example
 .B /etc/nsswitch.conf
@@ -149,12 +151,15 @@ For libc5 with NYS, the allowed service specifications are `files', `nis'
 and `nisplus'. For hosts, you could specify `dns' as extra service, for
 passwd and group `compat', but not for shadow.
 .LP
-For GNU C Library, you must have a file called
-.B /lib/libnss_SERVICE.so.1
+For glibc, you must have a file called
+.BI /lib/libnss_SERVICE.so. X
 for every SERVICE you are using. On a standard installation, you could use
 `files', `db', `nis' and `nisplus'. For hosts, you could specify `dns' as
-extra service, for passwd, group and shadow `compat'. This Services will not
+extra service, for passwd, group and shadow `compat'. These services will not
 be used by libc5 with NYS.
+The version number
+.I X
+is 1 for glibc 2.0 and 2 for glibc 2.1.
 .LP
 The second item in the specification gives the user much finer
 control on the lookup process.  Action items are placed between two
@@ -220,38 +225,41 @@ and
 .BR shadow_compat.
 This pseudo-databases are only available in GNU C Library.
 .SH FILES
-A service named SERVICE is implemented by a shared object library
-named libnss_SERVICE.so.1 that resides in /lib.
+A service named SERVICE is implemented by a shared object library named
+.BI libnss_SERVICE.so. X
+that resides in
+.IR /lib .
 .TP 25
 .PD 0
 .B /etc/nsswitch.conf
 configuration file
 .TP
-.B /lib/libnss_compat.so.1
-implements `compat' source for GNU C Library 2.x
+.BI /lib/libnss_compat.so. X
+implements `compat' source for glibc2
 .TP
-.B /lib/libnss_db.so.1
-implements `db' source for GNU C Library 2.x
+.BI /lib/libnss_db.so. X
+implements `db' source for glibc2
 .TP
-.B /lib/libnss_dns.so.1
-implements `dns' source for GNU C Library 2.x
+.BI /lib/libnss_dns.so. X
+implements `dns' source for glibc2
 .TP
-.B /lib/libnss_files.so.1
-implements `files' source for GNU C Library 2.x
+.BI /lib/libnss_files.so. X
+implements `files' source for glibc2
 .TP
-.B /lib/libnss_hesoid.so.1
-implements `hesoid' source for GNU C Library 2.x
+.BI /lib/libnss_hesoid.so. X
+implements `hesoid' source for glibc2
 .TP
-.B /lib/libnss_nis.so.1
-implements `nis' source for GNU C Library 2.x
+.BI /lib/libnss_nis.so. X
+implements `nis' source for glibc2
 .TP
-.B /lib/libnss_nisplus.so.1
-implements `nisplus' source for GNU C Library 2.x
+.B /lib/libnss_nisplus.so.2
+implements `nisplus' source for glibc 2.1
 .SH NOTES
-Within each process that uses nsswitch.conf, the entire
-file is read only once; if the file is later changed, the
+Within each process that uses
+.BR nsswitch.conf ,
+the entire file is read only once; if the file is later changed, the
 process will continue using the old configuration.
 .LP
-With Solaris, is isn't possible to link programs using the NSS Service
+With Solaris, it isn't possible to link programs using the NSS Service
 statically. With Linux, this is no problem.
 

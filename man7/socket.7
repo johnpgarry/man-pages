@@ -116,10 +116,61 @@ The user can then wait for various events via
 .BR poll (2)
 or
 .BR select (2).
-An incoming connection on a listening socket is reported as a readable event
-and a finished outgoing connection is reported as a writable event.
-An alternative is to let the kernel inform the application about events
-via the
+.PP
+.TS
+tab(:) allbox;
+c s s
+l l l.
+I/O events
+Event:Poll flag:Occurrence
+Read:POLLIN:T{
+New data arrived. 
+T}
+Read:POLLIN:T{
+A connection setup has been completed
+(for connection-oriented sockets)
+T}
+Read:POLLHUP:T{
+A disconnection request has been initiated by the other end. 
+T}
+Read:POLLHUP:T{
+A connection is broken (only for connection-oriented protocols). 
+When the socket is writen
+.B SIGPIPE 
+is also sent.
+T}
+Write:POLLOUT:T{
+Socket has enough send buffer space for writing new data.
+T}
+Read/Write:T{
+POLLIN|
+.br
+POLLOUT
+T}:T{
+An outgoing
+.BR connect (2)
+finished.
+T}
+Read/Write:POLLERR:An asynchronous error occured.
+Read/Write:POLLHUP:The other end has shut down one direction.
+Exception:POLLPRI:T{
+Urgent data arrived.  
+.B SIGURG
+is sent then.
+T}
+.\" XXX not true currently
+.\" It is no I/O event when the connection
+.\" is broken from the local end using 
+.\" .BR shutdown (2)
+.\" or 
+.\" .BR close (2)
+.\" .
+.TE
+
+.PP
+An alternative to poll/select  
+is to let the kernel inform the application about events
+via a
 .B SIGIO
 signal. For that the
 .B FASYNC
@@ -132,7 +183,7 @@ must be installed via
 .BR sigaction (2). 
 See the
 .I SIGNALS
-discussion below for more information.
+discussion below.
 .SH SOCKET OPTIONS 
 These socket options can be set by using
 .BR setsockopt (2)
@@ -207,8 +258,8 @@ structure. Only valid as a
 Bind this socket to a particular device like \(lqeth0\(rq,
 as specified in the passed interface name. If the
 name is an empty string or the option length is zero, the socket is not bound. 
-The passed option is a variable-length interface name string (with 
-the maximum size of 
+The passed option is a variable-length null terminated interface name string 
+(with the maximum size of 
 .BR IFNAMSIZ ). 
 If a socket is bound to an interface,
 only packets received from the bound interface are passed to the user.
@@ -343,49 +394,12 @@ See
 .BR fcntl (2)
 for more information.
 .PP
-.TS
-tab(:) allbox;
-c s  
-l l.
-I/O events
-Event:Occurrence
-Read:T{
-New data arrived. The socket send buffer has enough room to queue new data.
-T}
-Read:T{
-A new connection request has completed (for connection-oriented sockets)
-T}
-Read:T{
-A disconnection request has been initiated by the other end. 
-T}
-Read:T{
-A connection is broken (only for connection-oriented protocols). 
-.B SIGPIPE 
-might be sent also in this case.
-T}
-Read/Write:An asynchronous error occured.
-Read/Write:The other end has shut down one direction.
-Exception:T{
-Out-of-band data arrived. 
-.B SIGURG
-is sent then.
-T}
-.\" XXX not true currently
-.\" It is no I/O event when the connection
-.\" is broken from the local end using 
-.\" .BR shutdown (2)
-.\" or 
-.\" .BR close (2)
-.\" .
-.TE
-
 Under some circumstances (e.g. multiple processes accessing a single socket),
 the condition that caused the
 .B SIGIO
 may have already disappeared when the process reacts to the signal.
 If this happens, the process should wait again because Linux will resend the
-.B SIGIO
-later.
+signal later.
 .\" .SH ANCILLARY MESSAGES
 .SH SYSCTLS
 The core socket networking sysctls can be accessed using the 
@@ -468,7 +482,9 @@ Change the
 flag to enable or disable asynchronous IO mode of the socket. Asynchronous IO
 mode means that the
 .B SIGIO 
-signal is raised when a new I/O event occurs.
+signal or the signal set with 
+.B F_SETSIG
+is raised when a new I/O event occurs.
 .IP
 Argument is a integer boolean flag. 
 .\"
@@ -489,6 +505,10 @@ The same as the SIOCGPGRP ioctl.
 .TP
 .BR FIOCSETOWN
 The same as the SIOCSPGRP ioctl
+.SH NOTES
+Linux assumes that half of the send/receive buffer is used for internal
+kernel structures; thus the sysctls are twice than what can be observed
+on the wire.
 .SH BUGS
 The 
 .B CONFIG_FILTER 

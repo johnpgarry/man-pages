@@ -46,7 +46,7 @@ struct ifreq
 .ta
 .fi
 
-Normally, the ioctl specifies which device to affect by setting
+Normally, the user specifies which device to affect by setting
 .B ifr_name
 to the name of the interface. All other members of the structure may 
 share memory. 
@@ -121,7 +121,8 @@ if you attempt to set it.
 .BR SIOCGIFMTU ", " SIOCSIFMTU
 Get or set the MTU (Maximum Transfer Unit) of a device using
 .BR ifr_mtu .
-Setting the MTU is a privileged operation.
+Setting the MTU is a privileged operation. Setting the MTU to
+too small values may cause kernel crashes.
 
 .TP
 .BR SIOCGIFHWADDR ", " SIOCSIFHWADDR
@@ -164,6 +165,9 @@ Add an address to or delete an address from the device's link layer
 multicast filters using
 .BR ifr_hwaddr .
 These are privileged operations.
+See also
+.BR packet (7)
+for an alternative.
 
 .TP
 .BR SIOCGIFTXQLEN ", " SIOCSIFTXQLEN

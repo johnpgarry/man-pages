@@ -41,7 +41,8 @@ files or with the
 interface. Most of these sysctls are rate limitations for specific ICMP types.
 Linux 2.2 uses a token bucket filter to limit ICMPs. 
 .\" XXX  better description needed
-The value is the timeout in seconds until the token bucket filter is cleared.
+The value is the timeout in seconds until the token bucket filter is cleared
+after a burst. 
 .TP
 .B icmp_destunreach_rate
 Maximum rate to send ICMP Destination Unreachable packets.  This limits the

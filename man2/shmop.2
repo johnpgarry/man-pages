@@ -33,16 +33,14 @@ shmop \- shared memory operations
 .B
 # include <sys/types.h>
 .B
-# include <sys/ipc.h>
-.B
 # include <sys/shm.h>
 .fi
 .sp
-.BI "char *shmat ( int " shmid ,
-.BI "char *" shmaddr ,
+.BI "void *shmat ( int " shmid ,
+.BI "const void *" shmaddr ,
 .BI "int " shmflg " )"
 .sp
-.BI "int shmdt ( char *" shmaddr ")"
+.BI "int shmdt ( const void *" shmaddr ")"
 .SH DESCRIPTION
 The function
 .B shmat
@@ -229,6 +227,18 @@ number of shared memory segments
 .RB ( SHMSEG )
 .SH "CONFORMING TO"
 SVr4, SVID.  SVr4 documents an additional error condition EMFILE.
+In SVID-v4 the type of the \fIshmaddr\fP argument was changed from
+.B "char *"
+into
+.BR "const void *" ,
+and the returned type of \fIshmat\fP() from
+.B "char *"
+into
+.BR "void *" .
+(Linux libc4 and libc5 have the
+.B "char *"
+prototypes; glibc2 has
+.BR "void *" .)
 .SH "SEE ALSO"
 .BR ipc (5),
 .BR shmctl (2),

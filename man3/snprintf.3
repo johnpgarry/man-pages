@@ -51,11 +51,16 @@ allocate at least \fIn\fP characters for the string \fIstr\fP.
 \fBvsnprintf\fP is the equivalent of \fBsnprintf\fP with the variable
 argument list specified directly as for \fBvprintf\fP.
 .SH "RETURN VALUE"
-If the output was truncated, the return value is -1, otherwise it is the number
-of characters stored, not including the terminating null.
-.SH EXAMPLES
+If the output was truncated, the return value is -1, otherwise it is
+the number of characters stored, not including the terminating null.
+(Thus until glibc 2.0.6.  Since glibc 2.1 these functions
+return the  number of characters (excluding the trailing null)
+which would have been written to the final string if enough space
+had been available.)
+.SH EXAMPLE
 .br
-Here is an example program which dynamically enlarges its output buffer.
+Here is an example program which dynamically enlarges its output buffer,
+and works correctly under both glibc 2.0 and glibc 2.1.
 .br
 .sp
 .nf
@@ -74,16 +79,19 @@ Here is an example program which dynamically enlarges its output buffer.
           int nchars = snprintf (buffer, size,
                         "value of %s is %s", name, value);
           /* If that worked, return the string. */
-          if (nchars > -1)
+          if (nchars > -1 && nchars < size)
             return buffer;
-          /* Else try again with twice as much space. */
-          size *= 2;
+          /* Else try again with more space. */
+          if (nchars > -1)
+            size = nchars+1;  /* precisely what is needed */
+          else
+            size *= 2;        /* twice the old size */
           buffer = (char *) xrealloc (buffer, size);
         }
     }
 .fi
 .RE
 .SH "CONFORMING TO"
-These are GNU extensions.
+These are GNU extensions, expected to become part of ISO C9x.
 .SH "SEE ALSO"
 .BR printf "(3), " sprintf "(3), " vsprintf "(3), " stdarg (3)

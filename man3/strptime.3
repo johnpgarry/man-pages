@@ -192,7 +192,10 @@ The return values point to static data,
 whose contents are overwritten by each call.
 .SH NOTES
 .LP
-This function is only available in libraries newer than version 4.6.5
+This function is only available in libraries newer than version 4.6.5.
+Linux libc4 and libc5 includes define the prototype unconditionally;
+glibc2 includes provide a prototype only when _XOPEN_SOURCE or _GNU_SOURCE
+are defined.
 .PP
 The function supports only those locales specified in
 .BR locale "(7)"

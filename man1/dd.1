@@ -194,6 +194,13 @@ The variables LANG, LC_ALL, LC_CTYPE and LC_MESSAGES have the
 usual meaning.
 .SH "CONFORMING TO"
 POSIX 1003.2
+.SH EXAMPLE
+Often a tape drive will not accept arbitrarily sized blocks, and
+.B dd
+would get an I/O error for the last fragment of data that does not
+fill an entire block. Use `dd if=myfile of=/dev/mytape conv=sync'
+to get everything on tape. Of course, reading it back will now
+produce a slightly larger file, with nulls added at the end.
 .SH NOTES
 This page describes
 .B dd

@@ -104,9 +104,8 @@ do not write more than
 .I size
 bytes (including the trailing '\e0'), and return -1 if the output
 was truncated due to this limit.
-(Thus until glibc 2.0.6. Since glibc 2.1 the function
-.B vsnprintf
-returns the number of characters (excluding the trailing '\e0')
+(Thus until glibc 2.0.6. Since glibc 2.1 these functions
+return the number of characters (excluding the trailing '\e0')
 which would have been written to the final string if enough space
 had been available.)
 .PP
@@ -530,7 +529,9 @@ char *newfmt(const char *fmt, ...)
 .fi
 .RE
 .SH "SEE ALSO"
-.BR printf "(1), " scanf (3)
+.BR printf (1),
+.BR scanf (3),
+.BR snprintf (3)
 .SH STANDARDS
 The
 .BR fprintf ,

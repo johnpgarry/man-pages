@@ -46,7 +46,9 @@ to open a
 .BR udp (7)
 socket, or
 .B SOCK_RAW
-to open a raw socket to access the IP protocol directly. 
+to open a 
+.BR raw (7)
+socket to access the IP protocol directly. 
 .I protocol 
 is the IP protocol in the IP header to be received or sent.  The only valid
 values for
@@ -66,11 +68,6 @@ a valid IANA IP protocol defined in
 RFC1700
 assigned numbers.
 .PP
-Raw sockets may only be opened by a process which has an effective user id
-0 or the
-.B CAP_NET_RAW
-capability.
-.PP
 .\" XXX ip current does an autobind in listen, but I'm not sure if that should
 .\" be documented.
 When a process wants to receive new incoming packets or connections, it 
@@ -88,6 +85,7 @@ or
 are called on a unbound socket the socket is automatically bound to a
 random free port with the local address set to
 .BR INADDR_ANY .
+
 A TCP local socket address that has been bound is unavailable for some time after closing,
 unless the 
 .B SO_REUSEADDR
@@ -101,7 +99,9 @@ are implemented by higher level protocols like
 .BR udp (7)
 and
 .BR tcp (7).
-Raw sockets ignore the port.
+On raw sockets
+.B sin_port
+is set to the IP protocol.
 
 .PP
 .RS
@@ -304,10 +304,11 @@ but the exact behaviour depends on the configured queueing discipline.
 Some high priority levels may require an effective user id of 0 or the
 .B CAP_NET_ADMIN
 capability.
-The priority can also be set in a protocol independent way by the 
-.B (SOL_SOCKET, SO_PRIORITY) 
-socket option (see
-.BR socket (7)). 
+The priority can also be set in a protocol independent way by the (
+.B SOL_SOCKET, SO_PRIORITY
+) socket option (see
+.BR socket (7)
+). 
 
 .TP  
 .B IP_TTL
@@ -388,10 +389,12 @@ by not allowing it to recover properly from routing shifts and other normal
 conditions and breaks the protocol specification. 
 Note that TCP has no error queue; 
 .B MSG_ERRQUEUE
-is not invalid on 
+is illegal on 
 .B SOCK_STREAM 
 sockets. 
-All errors are returned by socket functions only. 
+Thus all errors are returned by socket function return or 
+.B SO_ERROR
+only. 
 .IP
 For raw sockets,
 .I IP_RECVERR 
@@ -412,16 +415,17 @@ The system-wide default is controlled by the
 .B ip_no_pmtu_disc 
 sysctl for 
 .B SOCK_STREAM 
-sockets, and disabled on all others. The user can retrieve the 
-path MTU 
-using the 
-.I IP_MTU 
-or the 
-.I IP_RECVERR 
-options. 
+sockets, and disabled on all others. For non
+.B SOCK_STREAM 
+sockets it is the user's responsibility to packetize the data 
+in MTU sized chunks and to do the retransmits if necessary. 
+The kernel will reject packets that are bigger than the known
+path MTU if this flag is set (with
+.B EMSGSIZE
+). 
 
 .TS
-tab(:) allbox;
+tab(:);
 c l
 l l.
 Path MTU discovery flags:Meaning
@@ -433,9 +437,6 @@ IP_PMTUDISC_DO:Always do Path MTU Discovery.
 
 When PMTU discovery is enabled the kernel automatically keeps track of
 the path MTU per destination host. 
-Packets sent from datagram (including raw) sockets which are larger than
-the MTU are rejected with
-.BR EMSGSIZE .
 When it is connected to a specific peer with
 .BR connect (2)
 the currently known path MTU can be retrieved conveniently using the 
@@ -444,8 +445,11 @@ socket option (e.g. after a
 .B EMSGSIZE 
 error occurred).  It may change over time. 
 For connectionless sockets with many destinations 
-the new MTU can be accessed using the error queue (see 
+the new also MTU for a given destination can also be accessed using the 
+error queue (see 
 .BR IP_RECVERR ).
+A new error will be queued for every incoming MTU update.
+
 While MTU discovery is in progress initial packets from datagram sockets
 may be dropped.  Applications using UDP should be aware of this and not
 take it into account for their packet retransmit strategy.

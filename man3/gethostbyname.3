@@ -173,7 +173,13 @@ resolver configuration file
 .I /etc/hosts
 host database file
 .SH "CONFORMING TO"
-BSD 4.3
+BSD 4.3.
+The SUS-v2 declares the
+.I len
+parameter to be of type
+.IR size_t .
+.SH RUMOURS
+The future glibc2.2 will follow SUS-v2.
 .SH "SEE ALSO"
 .BR resolver (3),
 .BR hosts (5),

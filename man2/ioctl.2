@@ -33,6 +33,7 @@
 .\"
 .\" Modified Fri Jul 23 21:38:19 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 00:22:35 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Fri Jun 25 23:51:39 BST 1999 by Rachael Munns <vashti@dream.org.uk>
 .\"
 .TH IOCTL 2 "23 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -76,6 +77,10 @@ is set appropriately.
 .B EBADF
 .I d
 is not a valid descriptor.
+.TP
+.B EFAULT
+.I argp
+references an inaccessible memory area.
 .TP
 .B ENOTTY
 .I d

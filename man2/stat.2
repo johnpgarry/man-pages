@@ -1,3 +1,4 @@
+'\" t
 .\" Hey Emacs! This file is -*- nroff -*- source.
 .\"
 .\" Copyright (c) 1992 Drew Eckhardt (drew@cs.colorado.edu), March 28, 1992
@@ -31,6 +32,8 @@
 .\" Modified Thu Jan 9 10:20:31 1995 by Martin Schulze (joey@infodrom.north.de)
 .\"          to add more error codes suggested by Richard Kettlewell (richard@greenend.org.uk)
 .\" Modified Wed May 13 18:46:44 1998 by Michael Haardt <michael@cantor.informatik.rwth-aachen.de>
+.\" Modified 990706 by aeb; much of the info under `Other Systems' was
+.\"          taken from a net post by Albert Cahalan.
 .\" 
 .TH STAT 2 "May 13, 1998" "Linux" "System calls"
 .SH NAME
@@ -156,77 +159,45 @@ socket?
 The following flags are defined for the
 .I st_mode
 field:
-.RS
-.TP 0.9i
-S_IFMT
-00170000 bitmask for the file type bitfields (not POSIX)
-.TP
-S_IFSOCK
-0140000 socket (not POSIX)
-.TP
-S_IFLNK
-0120000 symbolic link (not POSIX)
-.TP
-S_IFREG
-0100000 regular file (not POSIX)
-.TP
-S_IFBLK
-0060000 block device (not POSIX)
-.TP
-S_IFDIR
-0040000 directory (not POSIX)
-.TP
-S_IFCHR
-0020000 character device (not POSIX)
-.TP
-S_IFIFO
-0010000 fifo (not POSIX)
-.TP
-S_ISUID
-0004000 set UID bit
-.TP
-S_ISGID
-0002000 set GID bit
-.TP
-S_ISVTX
-0001000 sticky bit (not POSIX)
-.TP
-S_IRWXU
-00700 user (file owner) has read, write and execute permission
-.TP
-S_IRUSR
-00400 user has read permission (same as S_IREAD, which is not POSIX)
-.TP
-S_IWUSR
-00200 user has write permission (same as S_IWRITE, which is not POSIX)
-.TP
-S_IXUSR
-00100 user has execute permission (same as S_IEXEC, which is not POSIX)
-.TP
-S_IRWXG
-00070 group has read, write and execute permission
-.TP
-S_IRGRP
-00040 group has read permission
-.TP
-S_IWGRP
-00020 group has write permission
-.TP
-S_IXGRP
-00010 group has execute permission
-.TP
-S_IRWXO
-00007 others have read, write and execute permission
-.TP
-S_IROTH
-00004 others have read permission
-.TP
-S_IWOTH
-00002 others have write permisson
-.TP
-S_IXOTH
-00001 others have execute permission
-.RE
+.P
+.TS
+l l l.
+S_IFMT	0170000	bitmask for the file type bitfields
+S_IFSOCK	0140000	socket
+S_IFLNK	0120000	symbolic link
+S_IFREG	0100000	regular file
+S_IFBLK	0060000	block device
+S_IFDIR	0040000	directory
+S_IFCHR	0020000	character device
+S_IFIFO	0010000	fifo
+S_ISUID	0004000	set UID bit
+S_ISGID	0002000	set GID bit (see below)
+S_ISVTX	0001000	sticky bit (see below)
+S_IRWXU	00700	mask for user (file owner) permissions
+S_IRUSR	00400	user has read permission
+S_IWUSR	00200	user has write permission
+S_IXUSR	00100	user has execute permission
+S_IRWXG	00070	mask for group permissions
+S_IRGRP	00040	group has read permission
+S_IWGRP	00020	group has write permission
+S_IXGRP	00010	group has execute permission
+S_IRWXO	00007	mask for permissions for others (not in group)
+S_IROTH	00004	others have read permission
+S_IWOTH	00002	others have write permisson
+S_IXOTH	00001	others have execute permission
+.TE
+.P
+The set GID bit (S_ISGID) has several special uses:
+For a directory it indicates that BSD semantics is to be used
+for that directory: files created there inherit their group ID from
+the directory, not from the effective gid of the creating process,
+and directories created there will also get the S_ISGID bit set.
+For a file that does not have the group execution bit (S_IXGRP) set,
+it indicates mandatory file/record locking.
+.P
+The `sticky' bit (S_ISVTX) on a directory means that a file
+in that directory can be renamed or deleted only by the owner
+of the file, by the owner of the directory, and by root.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -282,8 +253,55 @@ and
 fields may be less portable. (They were introduced in BSD.
 Are not specified by POSIX. The interpretation differs between
 systems, and possibly on a single system when NFS mounts are involved.)
+.LP
+POSIX does not describe the S_IFMT, S_IFSOCK, S_IFLNK, S_IFREG, S_IFBLK,
+S_IFDIR, S_IFCHR, S_IFIFO, S_ISVTX bits, but instead demands the use of
+the macros S_ISDIR(), etc.
+Unix V7 (and later systems) had S_IREAD, S_IWRITE, S_IEXEC, where POSIX
+prescribes the synonyms S_IRUSR, S_IWUSR, S_IXUSR.
+.SH "OTHER SYSTEMS"
+Values that have been (or are) in use on various systems:
+.P
+.TS
+l l l l l.
+hex	name	ls	octal	description
+f000	S_IFMT		170000	mask for file type
+0000			000000	SCO out-of-service inode, BSD unknown type
+				SVID-v2 and XPG2 have both 0 and 0100000 for ordinary file
+1000	S_IFIFO	p|	010000	fifo (named pipe)
+2000	S_IFCHR	c	020000	character special (V7)
+3000	S_IFMPC		030000	multiplexed character special (V7)
+4000	S_IFDIR	d/	040000	directory (V7)
+5000	S_IFNAM		050000	XENIX named special file
+				with two subtypes, distinguished by st_rdev values 1, 2:
+0001	S_INSEM	s	000001	XENIX semaphore subtype of IFNAM
+0002	S_INSHD	m	000002	XENIX shared data subtype of IFNAM
+6000	S_IFBLK	b	060000	block special (V7)
+7000	S_IFMPB		070000	multiplexed block special (V7)
+8000	S_IFREG	-	100000	regular (V7)
+9000	S_IFCMP		110000	VxFS compressed
+9000	S_IFNWK	n	110000	network special (HP-UX)
+a000	S_IFLNK	l@	120000	symbolic link (BSD)
+b000	S_IFSHAD		130000	Solaris shadow inode for ACL (not seen by userspace)
+c000	S_IFSOCK	s=	140000	socket (BSD; also "S_IFSOC" on VxFS)
+d000	S_IFDOOR	D	150000	Solaris door
+e000	S_IFWHT	w%	160000	BSD whiteout (not used for inode)
+
+0200	S_ISVTX		001000	`sticky bit': save swapped text even after use (V7)
+				reserved (SVID-v2)
+				On non-directories: don't cache this file (SunOS)
+				On directories: restricted deletion flag (SVID-v4.2)
+0400	S_ISGID		002000	set group ID on execution (V7)
+				for directories: use BSD semantics for propagation of gid
+0400	S_ENFMT		002000	SysV file locking enforcement (shared w/ S_ISGID)
+0800	S_ISUID		004000	set user ID on execution (V7)
+0800	S_CDF		004000	directory is a context dependent file (HP-UX)
+.TE
+
+A sticky command appeared in Version 32V AT&T UNIX.
+
 .SH "SEE ALSO"
 .BR chmod (2),
 .BR chown (2),
 .BR readlink (2),
-.B utime (2)
+.BR utime (2)

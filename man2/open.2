@@ -122,6 +122,8 @@ The file is opened in non-blocking mode. Neither the
 .B open
 nor any subsequent operations on the file descriptor which is
 returned will cause the calling process to wait.
+For the handling of FIFOs (named pipes), see also
+.BR fifo (4).
 .TP
 .B O_SYNC
 The file is opened for synchronous I/O. Any
@@ -268,13 +270,14 @@ is not, in fact, a directory, or \fBO_DIRECTORY\fR was specified and
 was not a directory.
 .TP
 .B ENXIO
-O_NONBLOCK | O_WRONLY is set, the named file id a FIFO and
+O_NONBLOCK | O_WRONLY is set, the named file is a FIFO and
 no process has the file open for reading.
 Or, the file is a device special file and no corresponding device exists.
 .TP
 .B ENODEV
 .I pathname
 refers to a device special file and no corresponding device exists.
+(This is a Linux kernel bug - in this situation ENXIO must be returned.)
 .TP
 .B EROFS
 .I pathname
@@ -322,7 +325,16 @@ POSIX provides for three different variants of synchronised I/O,
 corresponding to the flags \fBO_SYNC\fR, \fBO_DSYNC\fR and
 \fBO_RSYNC\fR.  Currently (2.1.130) these are all synonymous under Linux.
 .SH "SEE ALSO"
-.BR read "(2), " write "(2), " fcntl "(2), " close (2),
-.BR unlink "(2), " mknod "(2), " stat "(2), " umask (2),
-.BR mount "(2), " socket "(2), " socket "(2), " fopen (3),
-.BR link (2).
+.BR read (2),
+.BR write (2),
+.BR fcntl (2),
+.BR close (2),
+.BR link (2),
+.BR mknod (2),
+.BR mount (2),
+.BR stat (2),
+.BR umask (2),
+.BR unlink (2),
+.BR socket (2),
+.BR fopen (3),
+.BR fifo (4)

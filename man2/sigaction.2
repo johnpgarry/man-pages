@@ -28,11 +28,8 @@
 .\" Modified Sat May  8 17:40:19 1999 by Matthew Wilcox - add POSIX.1b signals
 .\"
 .TH SIGACTION 2 "8 May 1999" "Linux 2.2" "Linux Programmer's Manual"
-
 .SH NAME
-sigaction, sigprocmask, sigpending, sigsuspend \- POSIX signal handling
-functions.
-
+sigaction, sigprocmask, sigpending, sigsuspend \- POSIX signal handling functions.
 .SH SYNOPSIS
 .B #include <signal.h>
 .sp 2
@@ -45,7 +42,6 @@ functions.
 .BI "int sigpending(sigset_t *" set );
 .sp
 .BI "int sigsuspend(const sigset_t *" mask );
-
 .SH DESCRIPTION
 The
 .B sigaction
@@ -88,6 +84,9 @@ struct sigaction {
 The
 .I sa_restorer
 element is obsolete and should not be used.
+POSIX does not specify a
+.I sa_restorer
+element.
 .PP
 .I sa_handler
 specifies the action to be associated with

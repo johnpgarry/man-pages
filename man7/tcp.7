@@ -274,7 +274,8 @@ sysctl.
 .SH ERRORS
 .TP 0.8i
 .B EPIPE
-The other end closed the socket unexpectedly.
+The other end closed the socket unexpectedly or a read is executed on
+a shut down socket.
 .TP
 .B ETIMEDOUT
 The other end didn't acknowledge retransmitted data after some time.
@@ -306,7 +307,10 @@ is new in 2.2.
 .SH SEE ALSO
 .BR socket "(7), " socket "(2), " ip "(7), " sendmsg "(2), " recvmsg (2)
 .br
-RFC793 for the TCP specification
+RFC793 for the TCP specification.
 .br
-RFC2001 for some TCP algorithms
+RFC1122 for the TCP requirements and a description of the Nagle
+algorithm.
+.br
+RFC2001 for some TCP algorithms.
 

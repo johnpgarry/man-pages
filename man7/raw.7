@@ -63,7 +63,8 @@ is specified and the IP header has a non-zero destination address then
 the destination address of the socket is used to route the packet. When 
 .B MSG_DONTROUTE
 is specified the destination address should refer to a local interface,
-otherwise a routing table lookup is done anyways.
+otherwise a routing table lookup is done anyways but gatewayed routes
+are ignored.
 
 If
 .B IP_HDRINCL
@@ -74,9 +75,8 @@ see
 for more information.
 
 In Linux 2.2 all IP header fields and options can be set using
-IP socket options. This means raw sockets are only needed for new
-protocols or protocols with no user interface (like ICMP). Generating custom
-TCP or UDP packets using raw sockets is normally unnecessary. 
+IP socket options. This means raw sockets are usually only needed for new
+protocols or protocols with no user interface (like ICMP).
 
 When a packet is received, it is passed to any raw sockets which have
 been bound to its protocol before it is passed to other protocol handlers
@@ -89,17 +89,14 @@ Raw sockets use the standard
 address structure defined in 
 .BR ip (7).
 The 
+The 
 .B sin_port
-field 
-can be used to specify the IP protocol number, 
-when it is 0 the protocol specified  
-in the initial 
-.BR socket (2)
-call is used. 
-.\" This seems to be not true currently. I think that is a bug.
-.\" For incoming packets 
-.\" .B sin_port 
-.\" is set to the protocol of the packet. 
+field could be used to specify the IP protocol number, 
+but it is ignored for sending in Linux 2.2 and should be always
+set to 0 (see BUGS)
+For incoming packets 
+.B sin_port 
+is set to the protocol of the packet. 
 See the
 .B <netinet/in.h>
 include file for valid IP protocols. 
@@ -127,7 +124,8 @@ In addition all
 socket options valid for datagram sockets are supported.
 
 .SH NOTES
-Raw sockets fragment a packet when its total length exceeds the interface MTU.
+Raw sockets fragment a packet when its total length exceeds the interface MTU
+(but see BUGS).
 A more network friendly and faster alternative is to implement path MTU 
 discovery as described in the
 .B IP_PMTU_DISCOVER 
@@ -170,6 +168,11 @@ This differs from many other implementations of raw sockets.
 
 RAW sockets are generally rather unportable and should be avoided in programs
 intended to be portable.
+
+Sending on raw sockets should take the IP protocol from 
+.B sin_port;
+this ability was lost in Linux 2.2. Work around is to use
+.B IP_HDRINCL.
 
 .SH ERROR HANDLING
 Errors originating from the network are only passed to the user when the
@@ -230,6 +233,13 @@ When the
 .B IP_HDRINCL
 option is set datagrams will not be fragmented and are limited to the interface
 MTU.  This is a limitation in Linux 2.2.
+
+Setting the IP protocol for sending in
+.B sin_port
+got lost in Linux 2.2. The protocol that socket was bound to or that
+was specified in the initial 
+.BR socket (2)
+call is always used.
 
 .SH AUTHORS
 This man page was writen by Andi Kleen. 

@@ -50,7 +50,9 @@ open it for reading or writing, in the same way as an ordinary file.
 However, it has to be open at both ends simultaneously before you can
 proceed to do any input or output operations on it.  Opening a FIFO
 for reading normally blocks until some other process opens the same
-FIFO for writing, and vice versa.
+FIFO for writing, and vice versa. See
+.BR fifo (4)
+for non-blocking handling of FIFO special files.
 .SH "RETURN VALUE"
 The normal, successful return value from \fImkfifo\fP is \fB0\fP.  In
 the case of an error, \fB-1\fP is returned (in which case, \fIerrno\fP
@@ -87,6 +89,11 @@ directory.
 .SH "CONFORMING TO"
 POSIX.1
 .SH "SEE ALSO"
-.BR mkfifo "(1), " read "(2), " write "(2), " open (2),
-.BR close "(2), " stat "(2), " umask (2).
-
+.BR mkfifo (1),
+.BR read (2),
+.BR write (2),
+.BR open (2),
+.BR close (2),
+.BR stat (2),
+.BR umask (2),
+.BR fifo (4)

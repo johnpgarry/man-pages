@@ -28,8 +28,9 @@
 .\" Modified Tue Sep 26 21:47:21 1995 by Andries Brouwer <aeb@cwi.nl>
 .\" and again on 960413 and 980804 and 981223.
 .\" Modified Fri Dec 11 17:57:27 1998 by Jamie Lokier <jamie@imbolc.ucc.ie>
+.\" Applied correction by Christian Ehrhardt - aeb, 990712
 .\"
-.TH FCNTL 2 "23 December 1998" Linux "Linux Programmer's Manual"
+.TH FCNTL 2 "12 July 1999" Linux "Linux Programmer's Manual"
 .SH NAME
 fcntl \- manipulate file descriptor
 .SH SYNOPSIS
@@ -49,16 +50,14 @@ The operation in question is determined by
 .IR cmd :
 .TP 0.9i
 .B F_DUPFD
-Makes
+Find the lowest numbered availiable file descriptor
+greater than or equal to
 .I arg
-be a copy of
-.IR fd ,
-closing
-.I fd
-first if necessary.
-.sp
-The same functionality can be more easily achieved by using
-.BR dup2 (2).
+and make it be a copy of
+.IR fd .
+This is different form
+.BR dup2 (2)
+which uses exactly the descriptor specified.
 .sp
 The old and new descriptors may be used interchangeably. They share locks,
 file position pointers and flags; for example, if the file position is
@@ -68,7 +67,7 @@ on one of the descriptors, the position is also changed for the other.
 .sp
 The two descriptors do not share the close-on-exec flag, however.
 The close-on-exec flag of the copy is off, meaning that it will
-be closed on exec.
+not be closed on exec.
 .sp
 On success, the new descriptor is returned.
 .TP
