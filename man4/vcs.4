@@ -72,15 +72,21 @@ there:
 
 .nf
 	#include <unistd.h>
+	#include <stdlib.h>
 	#include <stdio.h>
 	#include <fcntl.h>
 
 	int main() {
 		int fd;
-		struct {char lines, cols, x, y;} scrn;
+		char *device = "/dev/vcsa2";
+		struct {unsigned char lines, cols, x, y;} scrn;
 		char ch, attrib;
 
-		fd = open("/dev/vcsa2", O_RDWR);
+		fd = open(device, O_RDWR);
+		if (fd < 0) {
+			perror(device);
+			exit(1);
+		}
 		(void)read(fd, &scrn, 4);
 		(void)lseek(fd, 4 + 2*(scrn.y*scrn.cols + scrn.x), 0);
 		(void)read(fd, &ch, 1);

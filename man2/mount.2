@@ -93,6 +93,13 @@ The
 arguments are ignored.
 .\" with the exception of the "hidden" MS_REC mountflags bit
 .TP
+.B MS_DIRSYNC
+(Since Linux 2.5.19.)
+Make directory changes on this file system synchronous.
+(This property can be obtained for individual directories
+or subtrees using
+.BR chattr (8).)
+.TP
 .B MS_MANDLOCK
 Permit mandatory locking on files in this file system.
 (Mandatory locking must still be enabled on a per-file basis,

@@ -31,6 +31,7 @@
 .\" Modified Mon Oct 21 23:05:29 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Thu Feb 24 01:41:09 CET 2000 by aeb
 .\" Modified Thu Feb  9 22:32:09 CET 2001 by bert hubert <ahu@ds9a.nl>, aeb
+.\" Modified Mon Nov 11 14:35:00 PST 2002 by Ben Woodard <ben@zork.net>
 .\"
 .TH SELECT 2 2001-02-09 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
@@ -302,6 +303,13 @@ Glibc2.0 has a function with this name, that however does not take a
 .I sigmask
 parameter.
 .SH NOTES
+An fd_set is a fixed size buffer. Executing FD_CLR or FD_SET with a value of
+.I fd
+that is negative or is equal to or larger than FD_SETSIZE will result
+in undefined behavior. Moreover, POSIX requires
+.I fd
+to be a valid file descriptor.
+
 Concerning the types involved, the classical situation is that
 the two fields of a struct timeval are longs (as shown above),
 and the struct is defined in

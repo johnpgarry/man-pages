@@ -111,6 +111,10 @@ linux/xia_fs.h:
 .fi
 .RE
 .PP
+Nobody knows what
+.I f_fsid
+is supposed to contain (but see below).
+.PP
 Fields that are undefined for a particular file system are set to 0.
 .B fstatfs
 returns the same information about an open file referenced by descriptor
@@ -189,5 +193,49 @@ The Linux
 .B statfs
 was inspired by the 4.4BSD one
 (but they do not use the same structure).
+.SS f_fsid
+Solaris and POSIX 1003.1-2001 have a system call
+.I statvfs
+that returns a
+.B "struct statvfs"
+(defined in
+.IR "<sys/statvfs.h>" )
+containing an
+.B "unsigned long"
+.IR f_fsid .
+Linux, SunOS, HPUX, 4.4BSD have a system call
+.I statfs
+that returns a
+.B "struct statfs"
+(defined in
+.IR "<sys/vfs.h>" )
+containing a
+.B fsid_t
+.IR f_fsid ,
+where
+.I fsid_t
+is defined as
+.BR "struct { int val[2]; }" .
+The same holds for FreeBSD, except that it uses the include file
+.IR "<sys/mount.h>" .
+
+The general idea is that
+.I f_fsid
+contains some random stuff such that the pair
+.RI ( f_fsid , ino )
+uniquely determines a file.
+Some OSes use (a variation on) the device number, or the device number
+combined with the filesystem type.
+Several OSes restrict giving out the
+.I f_fsid
+field to the superuser only (and zero it for nonprivileged users),
+because this field is used in the filehandle of the filesystem
+when NFS-exported, and giving it out is a security concern.
+.LP
+Under some OSes the
+.I fsid
+can be used as second parameter to the
+.I sysfs()
+system call.
 .SH "SEE ALSO"
 .BR stat (2)

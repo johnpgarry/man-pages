@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.53.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.54.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,31 +12,28 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.52:
+Differences from version 1.53:
 
     The man pages
 
-	intro.1
+	rm.1
 
-	ioctl.2 kill.2 select.2 select_tut.2 setfsgid.2 setfsuid.2
-	socketpair.2 write.2
+	clone.2 dup.2 mount.2 msync.2 readv.2 sched_getaffinity.2
+	sched_setaffinity.2 select.2 select_tut.2 shmop.2 statfs.2
+	wait.2
 
-	assert.3 assert_perror.3 copysign.3 copysignf.3 copysignl.3
-	ecvt_r.3 fcvt_r.3 gamma.3 gammaf.3 gammal.3 getumask.3
-	gsignal.3 index.3 j0.3 j0f.3 j0l.3 j1f.3 j1l.3 jnf.3 jnl.3
-	lgamma.3 lgammaf.3 lgammal.3 lgamma_r.3 lgammaf_r.3 lgammal_r.3
-	nan.3 nanf.3 nanl.3 nextafter.3 nextafterf.3 nextafterl.3
-	nexttoward.3 nexttowardf.3 nexttowardl.3 qecvt.3 qecvt_r.3
-	qfcvt.3 qfcvt_r.3 qgcvt.3 signbit.3 ssignal.3 tgamma.3 tgammaf.3
-	tgammal.3 undocumented.3 y0f.3 y0l.3 y1f.3 y1l.3 ynf.3 ynl.3
+	errno.3 nl_langinfo.3 realpath.3 strftime.3
 
-	ttyS.4
+	tty_ioctl.4 vcs.4
 
-	proc.5
+	proc.5 securetty.5
+
+	capabilities.7 iso_8859-9.7 socket.7 tcp.7 unix.7
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.
 
+    Page readv.3 was (merged into readv.2 and) removed.
 
 Here is a breakdown of what this distribution contains:
 
@@ -120,6 +117,7 @@ wrote, edited, or otherwise contributed to this project:
     Reed H. Petty <rhp@draper.net>
     Rik Faith <faith@cs.unc.edu>
     Robert K. Nichols <Robert.K.Nichols@att.com>
+    Robert Love <rml@tech9.net>
     Sam Varshavchik <mrsam@courier-mta.com>
     Stephen Lee <sl14@cornell.edu>
     Steven Greenland <stevegr@sugar.neosoft.com>

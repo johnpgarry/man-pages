@@ -29,12 +29,6 @@
 .SH NAME
 console ioctl \- ioctl's for console terminal and virtual consoles
 .SH DESCRIPTION
-\fBWARNING: If you use the following information you are going to burn
-yourself.\fP
-
-\fBWARNING: ioctl's are undocumented Linux internals, liable to be changed 
-without warning.  Use POSIX functions.\fP
-
 The following Linux-peculiar \fBioctl()\fP requests are supported.  
 Each requires a third argument, assumed here to be \fIargp\fP.
 .IP \fBKDGETLED\fP
@@ -511,7 +505,7 @@ blank_timer times out, then you choose this option.
 (Since 1.1.76.)
 
 .SH "RETURN VALUE"
--1 for error, and \fIerrno\fP is set.
+On success, 0 is returned. On error \-1 is returned, and \fIerrno\fP is set.
 .SH ERRORS
 \fIerrno\fP may take on these values:
 
@@ -564,6 +558,7 @@ Use POSIX functions.
 .BR sd (4),
 .BR tty (4),
 .BR ttys (4),
+.BR tty_ioctl (4),
 .BR vcs (4),
 .BR vcsa (4),
 .BR charsets (7),

@@ -201,12 +201,13 @@ gcc -rdynamic -o foo foo.c -ldl
 The symbols RTLD_DEFAULT and RTLD_NEXT are defined by
 .I <dlfcn.h>
 only when _GNU_SOURCE was defined before including it.
-.SH ACKNOWLEDGEMENTS
-The dlopen interface standard comes from Solaris.
-The Linux dlopen implementation was primarily written by
-Eric Youngdale with help from Mitch D'Souza, David Engel,
-Hongjiu Lu, Andreas Schwab and others.
-The manual page was written by Adam Richter.
+.SH HISTORY
+The dlopen interface standard comes from SunOS.
+.\" .SH ACKNOWLEDGEMENTS
+.\" The Linux dlopen implementation was primarily written by
+.\" Eric Youngdale with help from Mitch D'Souza, David Engel,
+.\" Hongjiu Lu, Andreas Schwab and others.
+.\" The manual page was written by Adam Richter.
 .SH "SEE ALSO"
 .BR ld (1),
 .BR ld.so (8),

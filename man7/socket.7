@@ -7,6 +7,11 @@
 .\" and in case of nontrivial modification author and date
 .\" of the modification is added to the header.
 .\" $Id: socket.7,v 1.12 2000/09/15 13:15:26 ak Exp $
+.\"
+.\" 30 Oct 2002, Modified, Michael Kerrisk, mtk16@ext.canterbury.ac.nz
+.\"	Added description of SO_ACCEPTCONN
+.\"	Plus 1 language tidy-up
+.\"
 .TH SOCKET  7 1999-05-07 "Linux Man Page" "Linux Programmer's Manual" 
 .SH NAME
 socket - Linux socket interface
@@ -289,7 +294,19 @@ to bind to this port for any local address.
 .B SO_TYPE
 Gets the socket type as an integer (like 
 .BR SOCK_STREAM ). 
-Can be only read
+Can only be read
+with 
+.BR getsockopt . 
+.\" SO_ACCEPTCONN is in SUSv3, and its origin is explained in 
+.\" W R Stevens, UNPv1
+.TP
+.B SO_ACCEPTCONN
+Returns a value indicating whether or not this socket has been marked
+to accept connections with
+.BR listen ().
+The value 0 indicates that this is not a listening socket,
+the value 1 indicates that this is a listening socket.
+Can only be read
 with 
 .BR getsockopt . 
 .TP

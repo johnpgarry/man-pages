@@ -21,6 +21,9 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" very minor changes, aeb
+.\"
+.\" Modified 5 June 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"
 .TH SELECT_TUT 2 "October 21, 2001" "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
 select, pselect, FD_CLR, FD_ISSET, FD_SET, FD_ZERO \- synchronous I/O multiplexing
@@ -31,11 +34,11 @@ select, pselect, FD_CLR, FD_ISSET, FD_SET, FD_ZERO \- synchronous I/O multiplexi
 .br
 .B #include <unistd.h>
 .sp
-.BI "int select(int " n ", fd_set *" readfds ,
+.BI "int select(int " nfds ", fd_set *" readfds ,
 .BI "fd_set *" writefds ", fd_set *" exceptfds ,
 .BI "struct timeval *" utimeout );
 .sp
-.BI "int pselect(int " n ", fd_set *" readfds ,
+.BI "int pselect(int " nfds ", fd_set *" readfds ,
 .BI "fd_set *" writefds ", fd_set *" exceptfds ,
 .BI "const struct timespec *" ntimeout ", sigset_t *" sigmask );
 .sp
@@ -55,7 +58,7 @@ manner. Its principal arguments are three arrays of file descriptors:
 \fIreadfds\fP, \fIwritefds\fP, and \fIexceptfds\fP. The way that
 \fBselect\fP is usually used is to block while waiting for a "change of
 status" on one or more of the file descriptors. A "change of status" is
-when more characters become available from the file descriptor; \fIor\fP
+when more characters become available from the file descriptor, \fIor\fP
 when space becomes available within the kernel's internal buffers for
 more to be written to the file descriptor, \fIor\fP when a file
 descriptor goes into error (in the case of a socket or pipe this is
@@ -96,7 +99,7 @@ are immediately available for writing with a \fBsend()\fP (for sockets) or
 \fIexceptfds\fP
 This set is watched for exceptions or errors on any of the file
 descriptors. However, that is actually just a rumor. How you use
-\fIexceptfds\fP is to watch for \fIOut of Bounds\fP (OOB) data. OOB data
+\fIexceptfds\fP is to watch for \fIout\-of\-band\fP (OOB) data. OOB data
 is data sent on a socket using the \fBMSG_OOB\fP flag, and hence
 \fIexceptfds\fP only really applies to sockets. See \fBrecv\fP(2) and
 \fBsend\fP(2) about this. After \fBselect\fP has returned,
@@ -107,11 +110,11 @@ writing OOB data (done with \fBsend\fP) can be done at any time and will
 not block. Hence there is no need for a fourth set to check if a socket
 is available for writing OOB data.
 .TP
-\fIn\fP
+\fInfds\fP
 This is an integer one more than the maximum of any file descriptor in
 any of the sets. In other words, while you are busy adding file descriptors
 to your sets, you must calculate the maximum integer value of all of
-them, then increment this value by one, and then pass this as \fIn\fP to
+them, then increment this value by one, and then pass this as \fInfds\fP to
 \fBselect\fP.
 .TP
 \fIutimeout\fP
@@ -192,7 +195,7 @@ int main (int argc, char **argv) {
         for (; child_events > 0; child_events--) {
             /* do event work here */
         }
-        r = pselect (n, &rd, &wr, &er, 0, &orig_sigmask);
+        r = pselect (nfds, &rd, &wr, &er, 0, &orig_sigmask);
 
         /* main body of program */
     }
@@ -203,7 +206,7 @@ Note that the above \fBpselect\fP call can be replaced with:
 .PP
 .nf
         sigprocmask (SIG_BLOCK, &orig_sigmask, 0);
-        r = select (n, &rd, &wr, &er, 0);
+        r = select (nfds, &rd, &wr, &er, 0);
         sigprocmask (SIG_BLOCK, &sigmask, 0);
 .fi
 .PP
@@ -395,41 +398,41 @@ int main (int argc, char **argv) {
         exit (1);
 
     for (;;) {
-        int r, n = 0;
+        int r, nfds = 0;
         fd_set rd, wr, er;
         FD_ZERO (&rd);
         FD_ZERO (&wr);
         FD_ZERO (&er);
         FD_SET (h, &rd);
-        n = max (n, h);
+        nfds = max (nfds, h);
         if (fd1 > 0 && buf1_avail < BUF_SIZE) {
             FD_SET (fd1, &rd);
-            n = max (n, fd1);
+            nfds = max (nfds, fd1);
         }
         if (fd2 > 0 && buf2_avail < BUF_SIZE) {
             FD_SET (fd2, &rd);
-            n = max (n, fd2);
+            nfds = max (nfds, fd2);
         }
         if (fd1 > 0
             && buf2_avail - buf2_written > 0) {
             FD_SET (fd1, &wr);
-            n = max (n, fd1);
+            nfds = max (nfds, fd1);
         }
         if (fd2 > 0
             && buf1_avail - buf1_written > 0) {
             FD_SET (fd2, &wr);
-            n = max (n, fd2);
+            nfds = max (nfds, fd2);
         }
         if (fd1 > 0) {
             FD_SET (fd1, &er);
-            n = max (n, fd1);
+            nfds = max (nfds, fd1);
         }
         if (fd2 > 0) {
             FD_SET (fd2, &er);
-            n = max (n, fd2);
+            nfds = max (nfds, fd2);
         }
 
-        r = select (n + 1, &rd, &wr, &er, NULL);
+        r = select (nfds + 1, &rd, &wr, &er, NULL);
 
         if (r == -1 && errno == EINTR)
             continue;
@@ -580,7 +583,7 @@ should have nothing to do if there is no data available. Code that
 depends on timeouts is not usually portable and difficult to debug.
 .TP
 \fB2.\fP
-The value \fIn\fP must be properly calculated for efficiency as
+The value \fInfds\fP must be properly calculated for efficiency as
 explained above.
 .TP
 \fB3.\fP
@@ -691,7 +694,8 @@ An interrupting signal was caught like \fBSIGINT\fP or \fBSIGCHLD\fP etc.
 In this case you should rebuild your file descriptor sets and retry.
 .TP
 \fBEINVAL\fP
-Occurs if \fIn\fP is negative.
+Occurs if \fInfds\fP is negative or an invalid value is specified
+in \fIutimeout\fP or \fIntimeout\fP.
 .TP
 \fBENOMEM\fP
 Internal memory allocation failure.

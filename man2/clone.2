@@ -1,25 +1,29 @@
 .\" Hey Emacs! This file is -*- nroff -*- source.
 .\"
 .\" Copyright (c) 1992 Drew Eckhardt <drew@cs.colorado.edu>, March 28, 1992
+.\"		and Michael Kerrisk, 2001, 2002
 .\" May be distributed under the GNU General Public License.
 .\" Modified by Michael Haardt <michael@moria.de>
-.\" Modified Sat Jul 24 13:22:07 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 24 Jul 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified 21 Aug 1994 by Michael Chastain <mec@shell.portal.com>:
 .\"   New man page (copied from 'fork.2').
 .\" Modified 10 June 1995 by Andries Brouwer <aeb@cwi.nl>
-.\" Modified 25 april 1998 by Xavier Leroy <Xavier.Leroy@inria.fr>
+.\" Modified 25 April 1998 by Xavier Leroy <Xavier.Leroy@inria.fr>
 .\" Modified 26 Jun 2001 by Michael Kerrisk
 .\"     Mostly upgraded to 2.4.x
 .\"     Added prototype for sys_clone() plus description
-.\"	Added CLONE_THREAD with a briefdescription of thread groups
+.\"	Added CLONE_THREAD with a brief description of thread groups
 .\"	Added CLONE_PARENT and revised entire page remove ambiguity 
 .\"		between "calling process" and "parent process"
 .\"	Added CLONE_PTRACE and CLONE_VFORK
 .\"	Added EPERM and EINVAL error codes
 .\"	Renamed "__clone" to "clone" (which is the protype in <sched.h>)
 .\"	various other minor tidy ups and clarifications.
-.\"  Modified 26 Jun 2001 by Michael Kerrisk <mtk16@ext.canterbiry.ac.nz>
+.\" Modified 26 Jun 2001 by Michael Kerrisk <mtk16@ext.canterbiry.ac.nz>
 .\"	Updated notes for 2.4.7+ behaviour of CLONE_THREAD
+.\" Modified 15 Oct 2002 by Michael Kerrisk <mtk16@ext.canterbiry.ac.nz>
+.\"	Added description for CLONE_NEWNS, which was added in 2.4.19
+.\" Slightly rephrased, aeb.
 .\"
 .TH CLONE 2 2001-06-26 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
@@ -194,6 +198,48 @@ Operations on file descriptors performed later by either the calling process or
 the child process do not affect the other process.
 
 .TP
+.B CLONE_NEWNS
+(Linux 2.4.19 onwards)
+Start the child in a new namespace.
+
+Every process lives in a namespace. The
+.I namespace
+of a process is the data (the set of mounts) describing the file hierarchy
+as seen by that process. After a
+.BR fork (2)
+or
+.BR clone (2)
+where the
+.B CLONE_NEWNS
+flag is not set, the child lives in the same namespace as the parent.
+The system calls
+.BR mount (2)
+and
+.BR umount (2)
+change the namespace of the calling process, and hence affect
+all processes that live in the same namespace, but do not affect
+processes in a different namespace.
+
+After a
+.BR clone (2)
+where the
+.B CLONE_NEWNS
+flag is set, the cloned child is started in a new namespace,
+initialized with a copy of the namespace of the parent.
+
+Only a privileged process may specify the
+.B CLONE_NEWNS
+flag.
+.\" The required capability is CAP_SYS_ADMIN. -- MTK, 15 Oct 02
+It is not permitted to specify both
+.B CLONE_NEWNS
+and
+.B CLONE_FS
+in the same
+.BR clone 
+call.
+
+.TP
 .B CLONE_SIGHAND
 If
 .B CLONE_SIGHAND
@@ -351,6 +397,14 @@ Returned by
 .B clone 
 when a zero value is specified for 
 .IR child_stack .
+.TP
+.B EINVAL
+Both
+.B CLONE_FS
+and
+.B CLONE_NEWNS
+were specified in
+.IR flags .
 .TP 
 .B EPERM
 .B CLONE_PID

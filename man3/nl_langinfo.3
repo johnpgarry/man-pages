@@ -9,6 +9,8 @@
 .\"   GNU glibc-2 manual
 .\"   OpenGroup's Single Unix specification http://www.UNIX-systems.org/online.html
 .\"
+.\" Corrected prototype, 2002-10-18, aeb
+.\"
 .TH NL_LANGINFO 3  2001-05-11 "GNU" "Linux Programmer's Manual"
 .SH NAME
 nl_langinfo \- query language and locale information
@@ -16,7 +18,7 @@ nl_langinfo \- query language and locale information
 .nf
 .B #include <langinfo.h>
 .sp
-.BI "char *nl_langinfo(nl_item *" item );
+.BI "char *nl_langinfo(nl_item " item );
 .fi
 .SH DESCRIPTION
 The \fBnl_langinfo\fP function provides access to locale information
@@ -33,8 +35,8 @@ using the constants defined in <langinfo.h> are:
 Return a string with the name of the character encoding used in the
 selected locale, such as "UTF-8", "ISO-8859-1", or "ANSI_X3.4-1968"
 (better known as US-ASCII). This is the same string that you get with
-"locale charmap". For a list of character encoding names, try "locale
--m", cf.\&
+"locale charmap". For a list of character encoding names,
+try "locale \-m", cf.\&
 .BR locale (1).
 
 .TP

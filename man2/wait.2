@@ -101,8 +101,10 @@ is an OR of zero or more of the following constants:
 which means to return immediately if no child has exited.
 .TP
 .B WUNTRACED
-which means to also return for children which are stopped, and whose
-status has not been reported.
+which means to also return for children which are stopped
+(but not traced), and whose status has not been reported.
+Status for traced children which are stopped is provided
+also without this option.
 .PP
 (For Linux-only options, see below.)
 .PP
@@ -147,7 +149,9 @@ returned non\-zero.
 .BI WIFSTOPPED( status )
 returns true if the child process which caused the return is currently
 stopped; this is only possible if the call was done using
-.BR WUNTRACED .
+.BR WUNTRACED
+or when the child is being traced (see
+.BR ptrace (2)).
 .TP
 .BI WSTOPSIG( status )
 returns the number of the signal which caused the child to stop.  This
@@ -254,6 +258,7 @@ the same thread group. This was the default before Linux 2.4.
 SVr4, POSIX.1
 .SH "SEE ALSO"
 .BR clone (2),
+.BR ptrace (2),
 .BR signal (2),
 .BR wait4 (2),
 .BR pthread_create (3),

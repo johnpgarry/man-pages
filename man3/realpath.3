@@ -90,16 +90,25 @@ The named file does not exist.
 .B ENOTDIR
 A component of the path prefix is not a directory.
 .SH BUGS
+Never use this function. It is broken by design since it is
+impossible to determine a suitable size for the output buffer.
+According to POSIX a buffer of size PATH_MAX suffices, but
+PATH_MAX need not be a defined constant, and may have to be
+obtained using
+.IR pathconf() .
+And asking
+.I pathconf()
+does not really help, since on the one hand POSIX warns that
+the result of
+.I pathconf()
+may be huge and unsuitable for mallocing memory. And on the other
+hand
+.I pathconf()
+may return \-1 to signify that PATH_MAX is not bounded.
+.LP
 The libc4 and libc5 implementation contains a buffer overflow
 (fixed in libc-5.4.13).
 Thus, suid programs like mount need a private version.
-.LP
-The length of the output buffer should have been an additional
-parameter, especially since
-.BR pathconf (3)
-warns that the result of
-.I pathconf()
-may be huge and unsuitable for mallocing memory.
 .SH HISTORY
 The
 .B realpath
@@ -123,6 +132,7 @@ function. A typical source fragment would be
 #endif
 .fi
 .RE
+(But see the BUGS section.)
 .LP
 The BSD 4.4, Linux and SUSv2 versions always return an absolute
 path name. Solaris may return a relative path name when the
