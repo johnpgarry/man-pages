@@ -1,0 +1,28 @@
+.\" -*- nroff -*-
+.\"
+.\" (C)opyright 1993 by Dan Miner (dminer@nyx.cs.du.edu)
+.\"
+.\"  Permission is granted to freely distribute or modify this file
+.\"  for the purpose of improving Linux or its documentation efforts.
+.\"  If you modify this file, please put a date stamp and HOW you
+.\"  changed this file.  Thanks.   -DM
+.\"
+.TH IN_GROUP_P 9 "July 7, 1993" "Linux 0.99.10" "Kernel Reference Guide"
+.SH NAME
+in_group_p \- searches group IDs for a match
+.SH SYNOPSIS
+.nf
+linux/kernel/sys.c
+
+.IR "" "int in_group_p(gid_t " grp ");"
+.fi
+.SH DESCRIPTION
+Searches supplementary group IDs and the effective group ID for a
+match with \fIgrp\fP.
+.SH "RETURN VALUE"
+	Returns true (1) if found; otherwise, false (0).
+.SH AUTHOR
+Linus Torvalds
+.SH "SEE ALSO"
+\fIgetgroups\fP(2), \fIgetgid\fP(2), \fIgetegid\fP(2), \fIsetgid\fP(2),
+\fIsetregid\fP(2), \fIsetgroups\fP(2)

@@ -1,0 +1,77 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" This manpage is Copyright (C) 1992 Drew Eckhardt;
+.\"                               1993 Michael Haardt, Ian Jackson.
+.\" You may distribute it under the terms of the GNU General
+.\" Public Licence. It comes with NO WARRANTY.
+.\"
+.\" Modified Sat Jul 24 13:35:59 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH WRITE 2 "24 July 1993" Linux "Linux Programmer's Manual"
+.SH NAME
+write \- write to a file descriptor
+.SH SYNOPSIS
+.B #include <sys/types.h>
+.br
+.B #include <unistd.h>
+.sp
+.BI "int write(int " fd ", const char *" buf ", size_t " count );
+.SH DESCRIPTION
+.B write
+writes up to
+.I count
+bytes from file descriptor
+.I fd
+from the buffer starting at
+.I buf.
+.SH RETURN VALUE
+On success, the number of bytes written are returned (zero indicated end of
+file).  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP 0.8i
+.B EBADF
+.I fd
+is not a valid file descriptor or is not open for reading.
+.TP
+.B EINVAL
+.I fd
+is attached to an object which is unsuitable for reading.
+.TP
+.B EFAULT
+.I buf
+is outside your accessible address space.
+.TP
+.B EPIPE
+.I fd
+is connected to a pipe or socket whose reading end is closed. When
+this happens the writing process will receive a
+.B SIGPIPE
+signal; if it catches, blocks or ignores this the error
+.B EPIPE
+is returned.
+.TP
+.B EAGAIN 
+Non-blocking I/O has been selected using
+.B O_NONBLOCK
+and there was no room in the pipe or socket connected to
+.I fd
+to write the data immediately.
+.TP
+.B EINTR
+The call was interrupted by a signal before any data was written.
+.TP
+.B ENOSPC
+The device containing the file referred to by
+.I fd
+has no room for the data.
+
+Other errors may occur, depending on the object connected to
+.IR fd .
+.SH "CONFORMING TO"
+SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+.SH SEE ALSO
+.BR open "(2), " read "(2), " fcntl "(2), " close (2),
+.BR lseek "(2), "
+.BR select "(2), " ioctl "(2), " fwrite (3).

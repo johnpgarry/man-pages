@@ -1,0 +1,89 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright (c) 1992 Drew Eckhardt (drew@cs.colorado.edu), March 28, 1992
+.\" May be distributed under the GNU General Public License.
+.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
+.\" Modified Sat Jul 24 13:03:05 1993 by Rik Faith (faith@cs.unc.edu)
+.TH UTIME 2 "24 July 1993" "Linux" "Linux Programmer's Manual"
+.SH NAME
+utime, utimes \- change access and/or modification times of an inode
+.SH SYNOPSIS
+.B #include <sys/types.h>
+.br
+.B #include <utime.h>
+.sp
+.BI "int utime(const char *" filename ", struct utimbuf *" buf );
+.sp 2
+.B #include <sys/time.h>
+.sp
+.BI "int utimes(char *" filename ", struct timeval *" tvp );
+.SH DESCRIPTION
+.B utime
+changes the access and modification times of the inode specified by
+.I filename
+to the
+.IR actime " and " modtime
+fields of 
+.I buf
+respectively.  If
+.I buf
+is
+.BR NULL ,
+then the access and modification times of the file are set to the current
+time.  The
+.I utimbuf
+structure is:
+
+.RS
+.nf
+struct utimbuf {
+        time_t actime;  /* access time */
+        time_t modtime; /* modification time */
+};
+.fi
+.RE
+
+In the Linux DLL 4.4.1 libraries,
+.B utimes
+is just a wrapper for
+.BR utime :
+.IR tvp [0]. tv_sec
+is
+.IR actime ,
+and
+.IR tvp [1]. tv_sec
+is
+.IR modtime .
+The
+.I timeval
+structure is:
+
+.RS
+.nf
+struct timeval {
+        long    tv_sec;         /* seconds */
+        long    tv_usec;        /* microseconds */
+};
+.fi
+.RE
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+Other errors may occur.
+
+.TP 0.8i
+.B EACCESS
+Permission to write the file is denied.
+.B ENOENT
+.I filename
+does not exist.
+.SH "CONFORMING TO"
+.BR utime :
+SVID, POSIX
+.br
+.BR utimes :
+BSD 4.3
+.SH "SEE ALSO"
+.BR stat (2)

@@ -1,0 +1,27 @@
+.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" This file may be distributed under the GNU General Public License.
+.\" Modified Sat Jul 24 17:03:24 1993 by Rik Faith (faith@cs.unc.edu)
+.TH TTYS 4 "19 December 1992" "Linux" "Linux Programmer's Manual"
+.SH NAME
+ttys \- serial terminal lines
+.SH DESCRIPTION
+\fBttyS[0-3]\fP are character devices for the serial terminal lines.
+.LP
+They are typically created by:
+.RS
+.sp
+mknod -m 660 /dev/ttyS0 c 4 64 # baseaddress 0x03f8
+.br
+mknod -m 660 /dev/ttyS1 c 4 65 # baseaddress 0x02f8
+.br
+mknod -m 660 /dev/ttyS2 c 4 66 # baseaddress 0x03e8
+.br
+mknod -m 660 /dev/ttyS3 c 4 67 # baseaddress 0x02e8
+.br
+chown root.tty /dev/ttyS[0-3]
+.sp
+.RE
+.SH FILES
+/dev/ttyS[0-3]
+.SH "SEE ALSO"
+.BR mknod "(1), " chown "(1), " getty "(1), " tty (4)

@@ -1,0 +1,44 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" This manpage is Copyright (C) 1992 Drew Eckhardt;
+.\"                               1993 Michael Haardt, Ian Jackson.
+.\" You may distribute it under the terms of the GNU General
+.\" Public Licence. It comes with NO WARRANTY.
+.\"
+.\" Modified Wed Jul 21 23:02:38 1993 by Rik Fiath (faith@cs.unc.edu)
+.\"
+.TH _EXIT 2 "21 July 1993" Linux "Linux Programmer's Manual"
+.SH NAME
+_exit \- terminate the current process
+.SH SYNOPSIS
+.B #include <unistd.h>
+.sp
+.BI "void _exit(int " status );
+.SH DESCRIPTION
+.B _exit
+terminates the calling process immediately. Any open file descriptors
+belonging to the process are closed; any children of the process are
+inherited by process 1, init, and the process's parent is sent a
+.B SIGCHLD
+signal.
+
+.I status
+is returned to the parent process as the process's exit status, and
+can be collected using one of the
+.B wait
+family of calls.
+.SH RETURN VALUE
+.B _exit
+never returns.
+.SH CONFORMING TO
+SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+.SH NOTES
+.B _exit
+does not call any functions registered with the ANSI C
+.B atexit
+function and does not flush standard I/O buffers. To do these things,
+use
+.BR exit (3).
+.SH SEE ALSO
+.BR fork "(2), " execve "(2), " waitpid "(2), " wait4 "(2), " kill "(2), "
+.BR wait "(3), " exit (3)

@@ -1,0 +1,25 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" May be distributed under the GNU General Public License
+.TH FSYNC 2 "22 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+fsync \- synchronize a file's in-core state with that on disk
+.SH SYNOPSIS
+.B #include <unistd.h>
+.sp
+.BI "int fsync(int " fd );
+.SH DESCRIPTION
+.B fsync
+copies all in-core parts of a file to disk.
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.BUGS
+Linux 0.99.11 apparently implements
+.B fsync
+in the kernel, but the DLL 4.4.1 libraries call
+.BR sync (2)
+instead of the kernel function.  Doubtless this will change in the near
+future.

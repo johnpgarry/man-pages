@@ -1,0 +1,208 @@
+.\" Copyright (c) 1991 Regents of the University of California.
+.\" All rights reserved.
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\" 3. All advertising materials mentioning features or use of this software
+.\"    must display the following acknowledgement:
+.\"	This product includes software developed by the University of
+.\"	California, Berkeley and its contributors.
+.\" 4. Neither the name of the University nor the names of its contributors
+.\"    may be used to endorse or promote products derived from this software
+.\"    without specific prior written permission.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+.\" SUCH DAMAGE.
+.\"
+.\"	@(#)mmap.2	6.2 (Berkeley) 6/5/91
+.\"     @(#)munmap.2    6.1 (Berkeley) 5/27/91
+.\"
+.\" Modified Fri Jul 23 22:38:29 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH MMAP 2 "23 July 1993" "BSD Man Page" "Linux Programmer's Manual"
+.SH NAME
+mmap, munmap \- map or unmap files or devices into memory
+.SH SYNOPSIS
+.B #include <sys/types.h>
+.br
+.B #include <sys/mman.h>
+.sp
+.BI "caddr_t mmap(caddr_t " addr ", size_t " len ", int " prot
+.BI ", int " flags ", int " fd ", off_t offset );
+.br
+.BI "int munmap(caddr_t " addr ", size_t " len );
+.Sh DESCRIPTION
+WARNING: This is a BSD man page.  Linux 0.99.11 can't map files, and can't
+do other things documented here.
+
+The
+.B mmap
+function causes the pages starting at
+.I addr
+and continuing for at most
+.I len
+bytes to be mapped from the object described by
+.IR fd ,
+starting at byte offset
+.IR offset .
+If
+.I offset
+or
+.I len
+is not a multiple of the pagesize, the mapped region may extend past the
+specified range.
+
+If
+.I addr
+is non-zero, it is used as a hint to the system.  (As a convenience to the
+system, the actual address of the region may differ from the address
+supplied.)  If
+.I addr
+is zero, an address will be selected by the system.  The actual starting
+address of the region is returned.  A successful
+.B mmap
+deletes any previous mapping in the allocated address range.
+
+The protections (region accessibility) are specified in the
+.I prot
+argument by
+.IR or 'ing
+the following values:
+.TP 0.8i
+PROT_EXEC
+Pages may be executed.
+.TP
+PROT_READ
+Pages may be read.
+.TP
+PROT_WRITE
+Pages may be written.
+
+The
+.I flags
+parameter specifies the type of the mapped object, mapping options and
+whether modifications made to the mapped copy of the page are private to
+the process or are to be shared with other references.  Sharing, mapping
+type and options are specified in the
+.I flags
+argument by
+.IR or ;ing
+the following values:
+.TP 0.8i
+MAP_ANON
+Map anonymous memory not associated with any specific file.  The
+file descriptor used for creating MAP_ANON regions is used only for naming,
+and may be specified as \-1 if no name is associated with the region.
+.TP
+MAP_FILE
+Mapped from a regular file or character-special device memory.
+.TP
+MAP_FIXED
+Do not permit the system to select a different address than the
+one specified.  If the specified address cannot be used,
+.B mmap
+will fail.  If MAP_FIXED is specified,
+.I addr
+must be a multiple of the pagesize.  Use of this option is discouraged.
+.TP
+MAP_HASSEMAPHORE
+Notify the kernel that the region may contain semaphores and that special
+handling may be necessary.
+.TP
+MAP_INHERIT
+Permit regions to be inherited across
+.BR exec (2)
+system calls.
+.TP
+MAP_PRIVATE
+Modifications are private.
+.TP
+MAP_SHARED
+Modifications are shared.
+
+The
+.B munmap
+system call deletes the mappings for the specified address range, and
+causes further references to addresses within the range to generate invalid
+memory references.
+
+The current design does not allow a process to specify the location of swap
+space.  In the future we may define an additional mapping type,
+.BR MAP_SWAP ,
+in which the file descriptor argument specifies a file or device to which
+swapping should be done.
+.SH "RETURN VALUES"
+Upon successful completion,
+.B mmap
+returns a pointer to the mapped region.  Otherwise, a value of -1 is
+returned and
+.I errno
+is set to indicate the error.
+.SH ERRORS
+For
+.B mmap:
+.TP 0.8i
+.B EACCES
+The flag PROT_READ was specified as part of the
+.I prot
+parameter and
+.I fd
+was not open for reading.  The flags
+.BR PROT_WRITE ", " MAP_SHARED " and " MAP_WRITE
+were specified as part of the
+.I flags
+and
+.I prot
+parameters and
+.I fd
+was not open for writing.
+.TP
+.B EBADF
+.I Fd
+is not a valid open file descriptor.
+.TP
+.B EINVAL
+One of
+.B MAP_ANON
+or
+.B MAP_FILE
+was not specified as part of the
+.I flags
+parameter.
+.B MAP_FIXED
+was specified and the
+.I addr
+parameter was not page aligned.
+.Fa Fd
+did not reference a regular or character special file.
+.TP
+.B ENOMEM
+.B MAP_FIXED
+was specified and the
+.I addr
+parameter wasn't available.
+.B MAP_ANON was specified an insufficient memory was available.
+.SH BUGS
+This is a BSD man page.  Many of the details explained here are
+.I not
+implemented under Linux.  Please consult the Linux kernel source code for
+complete details on the current implementation of the
+.B mmap
+function.
+.SH "SEE ALSO"
+.BR getpagesize "(2), " phys (2)

@@ -1,0 +1,205 @@
+.\" (c) 1993 by Thomas Koenig (ig25@rz.uni-karlsruhe.de)
+.\" This file can be distributed under the terms of the GNU General Public
+.\" License.
+.\" Modified Sat Jul 24 19:27:50 1993 by Rik Faith (faith@cs.unc.edu)
+.TH GETOPT 3  "April 25, 1993" "GNU" "Linux Programmer's Manual"
+.SH NAME
+getopt \- Read command line options
+.SH SYNOPSIS
+.nf
+.B #include <unistd.h>
+.sp
+.BI "int getopt(int " argc ", char * const " argv[] ","
+.BI "           const char *" optstring ");"
+.sp
+.BI "extern char *" optarg ;
+.BI "extern int " optind ", " opterr ", " optopt ;
+.sp
+.B #include <getopt.h>
+.sp
+.BI "int getopt_long(int " argc ", char * const " argv[] ",
+.BI "                const char *" shortopts ,
+.BI "                const struct option *" longopts ", int " longind ");"
+.fi
+.SH DESCRIPTION
+The
+.B getopt()
+function parses the command line arguments.  Its arguments
+.I argc
+and
+.I argv
+are the argument count and array as passed to the
+.B main()
+function on program invocation.
+.I optstring
+is a list of available option characters.  If such a character is
+followed by a colon, the option takes an argument, which is placed in
+.IR optarg .
+.PP
+The external variable
+.I optind
+is the index of the next array element of
+.I argv[]
+to be processed; it communicates from one call of
+.B getopt()
+to the next which element to process.
+.PP
+The
+.B getopt_long()
+function works like
+.B getopt()
+except that it also accepts long options, started out by two dashes.
+If these take values, it is either in the form
+.B --arg=value
+or
+.BR "--arg value" .
+It takes the additional arguments
+.I longopts
+which is a pointer to the first element of an array of
+.B struct option
+declared in
+.B <getopt.h>
+as
+.nf
+.sp
+.in 10
+struct option {
+.in 14
+const char *name;
+int has_arg;
+int *flag;
+int val;
+.in 10
+};
+.sp
+.fi
+The meaning of the different fields are:
+.TP
+.I name
+is the name of the long option.
+.TP
+.I has_arg
+is a boolean value which should be set to nonzero if the long option
+takes a value.
+.TP
+.I flag
+determines the return value if
+.B getopt_long()
+returns a value for a long option; if it is non-zero, zero is
+returned as a function value, otherwise
+.IR val .
+.TP
+.I val
+determines the value to return if
+.I flag
+is zero.
+.PP
+The last element of the array has to be filled with zeroes.
+.PP
+The
+.I option_index
+points to the index of the long option relative to
+.IR longopts .
+.SH "RETURN VALUE"
+The
+.B getopt()
+function returns the option character if the option was found
+successfully, ':' if there was a missing parameter for one of the
+options, '?' for an unknown option character and -1 for the end of the
+option list.
+.SH "EXAMPLE"
+The following example program, from the source code, illustrates the
+use of
+.BR getopt_long()
+with most of its features.
+.nf
+.sp
+#include <stdio.h>
+
+int
+main (argc, argv)
+     int argc;
+     char **argv;
+{
+  int c;
+  int digit_optind = 0;
+
+  while (1)
+    {
+      int this_option_optind = optind ? optind : 1;
+      int option_index = 0;
+      static struct option long_options[] =
+      {
+	{"add", 1, 0, 0},
+	{"append", 0, 0, 0},
+	{"delete", 1, 0, 0},
+	{"verbose", 0, 0, 0},
+	{"create", 1, 0, 'c'},
+	{"file", 1, 0, 0},
+	{0, 0, 0, 0}
+      };
+
+      c = getopt_long (argc, argv, "abc:d:012",
+		       long_options, &option_index);
+      if (c == -1)
+	break;
+
+      switch (c)
+	{
+	case 0:
+	  printf ("option %s", long_options[option_index].name);
+	  if (optarg)
+	    printf (" with arg %s", optarg);
+	  printf ("\n");
+	  break;
+
+	case '0':
+	case '1':
+	case '2':
+	  if (digit_optind != 0 && digit_optind != this_option_optind)
+	    printf ("digits occur in two different argv-elements.\n");
+	  digit_optind = this_option_optind;
+	  printf ("option %c\n", c);
+	  break;
+
+	case 'a':
+	  printf ("option a\n");
+	  break;
+
+	case 'b':
+	  printf ("option b\n");
+	  break;
+
+	case 'c':
+	  printf ("option c with value `%s'\n", optarg);
+	  break;
+
+	case 'd':
+	  printf ("option d with value `%s'\n", optarg);
+	  break;
+
+	case '?':
+	  break;
+
+	default:
+	  printf ("?? getopt returned character code 0%o ??\n", c);
+	}
+    }
+
+  if (optind < argc)
+    {
+      printf ("non-option ARGV-elements: ");
+      while (optind < argc)
+	printf ("%s ", argv[optind++]);
+      printf ("\n");
+    }
+
+  exit (0);
+}
+.fi
+.SH "BUGS"
+This manpage is confusing.
+.SH "CONFORMS TO"
+.TP
+.BR getopt() " :"
+POSIX.1

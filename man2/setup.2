@@ -1,0 +1,49 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright (c) 1992 Drew Eckhardt (drew@cs.colorado.edu), March 28, 1992
+.\" May be distributed under the GNU General Public License.
+.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
+.\" Modified Sun Jul 25 10:14:13 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH SETUP 2 "March 28, 1992" "Linux" "Linux Programmer's Manual"
+.SH NAME
+setup \- initialize the ST506 hd driver drive and partition parameters
+.SH SYNOPSIS
+.B #include <linux/sys.h>
+.br
+.B #include <linux/config.h>
+.sp
+.BI "void setup(void *" BIOS );
+.SH DESCRIPTION
+.B setup
+may be called once from within
+.IR linux/init/main.c .
+Its purpose is to initialize the  
+.B hd_info[] 
+table for the hard disk driver.  If 
+.B HD_TYPE 
+is defined, from within
+.IR linux/include/linux/config.h ,
+the value provided by 
+.I BIOS
+is overided.  Otherwise, The structure pointed to by
+.I BIOS  
+is assumed to be a one or two element array of 
+.B  hd_i_struct 
+structures defined as follows (in 
+.IR linux/kernel/blk_drv/hd.c ):
+
+.RS
+.nf
+struct hd_i_struct {
+        unsigned int head,sect,cyl,wpcom,lzone,ctl;
+};
+.fi
+.RE
+
+Normal, and extended partitions are detected.  Disk manager partitions are
+accounted for as well.
+.SH "CONFORMING TO"
+This function is Linux specific.
+.SH "SEE ALSO"
+.BR hd (4)

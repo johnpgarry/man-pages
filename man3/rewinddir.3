@@ -1,0 +1,26 @@
+.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" May be distributed under the GNU General Public License
+.\" References consulted:
+.\"     Linux libc source code
+.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+.\"     386BSD man pages
+.\" Modified Sat Jul 24 18:29:11 1993 by Rik Faith (faith@cs.unc.edu)
+.TH REWINDDIR 3  "March 31, 1993" "" "Linux Programmer's Manual"
+.SH NAME
+rewinddir \- reset directory stream
+.SH SYNOPSIS
+.nf
+.B #include <dirent.h>
+.sp
+.BI "void rewinddir(DIR *" dir );
+.fi
+.SH DESCRIPTION
+The \fBrewinddir()\fP function resets the position of the directory
+stream \fIdir\fP to the beginning of the directory.
+.SH "RETURN VALUE"
+The \fBreaddir()\fP function returns no value.
+.SH "CONFORMING TO"
+SVID 3, POSIX, BSD 4.3
+.SH SEE ALSO
+.BR opendir "(3), " readdir "(3), " closedir "(3), " seekdir (3),
+.BR telldir "(3), " scandir (3)

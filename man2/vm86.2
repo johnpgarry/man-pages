@@ -1,0 +1,62 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" May be distributed under the GNU General Public License
+.TH VM86 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+vm86 \- enter virtual 8086 mode
+.SH SYNOPSIS
+.B #include <sys/vm86.h>
+.sp
+.BI "int vm86(struct vm86_struct * " info );
+.SH DESCRIPTION
+Enter VM86 mode with information as specified in
+.IR info :
+
+.RS
+.nf
+struct vm86_struct {
+        struct vm86_regs regs;
+        unsigned long flags;
+        unsigned long screen_bitmap;
+};
+
+struct vm86_regs {
+/*
+ * normal regs, with special meaning for the segment descriptors..
+ */
+        long ebx;
+        long ecx;
+        long edx;
+        long esi;
+        long edi;
+        long ebp;
+        long eax;
+        long __null_ds;
+        long __null_es;
+        long __null_fs;
+        long __null_gs;
+        long orig_eax;
+        long eip;
+        long cs;
+        long eflags;
+        long esp;
+        long ss;
+/*
+ * these are specific to v86 mode:
+ */
+        long es;
+        long ds;
+        long fs;
+        long gs;
+};
+.fi
+.RE
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP 0.8i
+.B EPERM
+Saved kernel stack exists.  [Documenter's note: what does this imply?]

@@ -1,0 +1,15 @@
+.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" This file may be distributed under the GNU General Public License.
+.\" Modified Sun Jul 25 11:06:27 1993 by Rik Faith (faith@cs.unc.edu)
+.TH SECURETTY 5 "December 29 1992" "Linux" "Linux Programmer's Manual"
+.SH NAME
+securetty \- file which lists ttys from which root can log in
+.SH DESCRIPTION
+\fB/etc/securetty\fP is used by
+.BR login(1);
+the file contains tty lines (without leading /dev/) on which root is
+allowed to login.
+.SH FILES
+/etc/securetty
+.SH "SEE ALSO"
+.BR login (1)

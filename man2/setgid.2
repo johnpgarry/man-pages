@@ -1,0 +1,42 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" Poritions extracted from linux/kernel/sys.c:
+.\"             Copyright (C) 1991, 1992  Linus Torvalds
+.\" May be distributed under the GNU General Public License
+.TH SETUID 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+setgid, setegid \- get group identity
+.SH SYNOPSIS
+.B #include <unistd.h>
+.sp
+.BI int setuid(gid_t " gid )
+.br
+.BI int seteuid(gid_t gid )
+.SH DESCRIPTION
+.B setgid
+sets the real group ID of the current process.
+
+.B setegid
+sets the effective group ID of the current process.
+
+The real ID corresonds to the ID of the calling process.  The effective ID
+corresponds to the set ID bit on the file being executed.
+.SH "NOTES FROM THE KERNEL SOURCE"
+Under Linux 0.99.11,
+.B setgid
+is implemeneted like SysV w/ SAVED_IDS 
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP 0.8i
+.B EPERM
+The user is not the super-user, and
+.I uid
+does not match the real or effective user ID of the calling process.
+.SH "CONFORMING TO"
+POSIX, System V
+.SH "SEE ALSO"
+.BR getgid "(2), " setregid (2)

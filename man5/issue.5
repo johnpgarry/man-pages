@@ -1,0 +1,16 @@
+.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" This file may be distributed under the GNU General Public License.
+.\" Modified Sun Jul 25 11:06:22 1993 by Rik Faith (faith@cs.unc.edu)
+.TH ISSUE 5 "24 July 1993" "Linux" "Linux Programmer's Manual"
+.SH NAME
+issue \- issue identification file
+.SH DESCRIPTION
+The file \fB/etc/issue\fP is an text file which contains a message or
+system identification to be printed before the login prompt.  It may
+contain various \fB@\fP\fIchar\fP and \fB\e\fP\fIchar\fP sequences, if
+supported by
+.BR getty (1).
+.SH FILES
+/etc/issue
+.SH "SEE ALSO"
+.BR getty (1)

@@ -1,0 +1,51 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright (c) 1993 Michael Haardt
+.\" (u31b3hs@pool.informatik.rwth-aachen.de)
+.\" Fri Apr  2 11:32:09 MET DST 1993
+.\"
+.\" This file may be distributed under the GNU General Public License.
+.\"
+.\" Modified Sun Jul 25 10:49:24 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH PHYS 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+phys \- allow a process to access physical addresses [NOT IMPLEMENTED]
+.SH SYNOPSIS
+.ad l
+.nf
+.BI "int phys(int " physnum ", char *" virtaddr ", long " size ,
+.BI "char *" physaddr );
+.fi
+.ad b
+.SH DESCRIPTION
+.BR WARNING :
+Since this function is not implemented as of Linux 0.99.11, it will always
+return -1 and set
+.I errno
+to
+.BR ENOSYS .
+
+\fBphys\fP maps arbitrary physical memory into a process's virtual
+address space.  \fIphysnum\fP is  number (0\(en3) that specifies which
+of the 4 ohysical spaces to set up.  Up to 4 \fBphys\fP calls can be
+active at any one time.  \fIvirtaddr\fP is the process's vitual address.
+\fIsize\fP is the number of bytes to map in.  \fIphysaddr\fP is the
+physical address to map in.
+.PP
+Valid \fIvirtaddr\fP and \fIphysaddr\fP values are constarined by
+hardware and must be at an address multiple of the resolution of the
+CPU's memory management scheme.  If \fIsize\fP is non zero, \fIsize\fP
+is rounded up to the next MMU resolution boundary.  If \fIsize\fP is
+zero, any previous \fBphys\fP(2) mapping for that \fIphsynum\fP is
+nullified.
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH "CONFORMING TO"
+v7
+.SH BUGS
+\fBphys\fP is very machine dependent.
+.SH "SEE ALSO"
+.BR mmap "(2), " munmap (2)

@@ -1,0 +1,34 @@
+.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" May be distributed under the GNU General Public License
+.\" References consulted:
+.\"     Linux libc source code
+.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+.\"     386BSD man pages
+.\" Modified Sat Jul 24 18:11:47 1993 by Rik Faith (faith@cs.unc.edu)
+.TH STRCAT 3  "April 11, 1993" "GNU" "Linux Programmer's Manual"
+.SH NAME
+strcat, strncat \- concatenate two strings
+.SH SYNOPSIS
+.nf
+.B #include <string.h>
+.sp
+.BI "char *strcat(char *" dest ", const char *" src );
+.sp
+.BI "char *strncat(char *" dest ", const char *" src ", size_t " n );
+.fi
+.SH DESCRIPTION
+The \fBstrcat()\fP function appends the \fIsrc\fP string to the 
+\fIdest\fP string overwriting the `\\0' character at the end of 
+\fIdest\fP, and then adds a terminating `\\0' character.  The 
+strings may not overlap, and the \fIdest\fP string must have
+enough space for the result.
+.PP
+The \fBstrncat()\fP function is similar, except that only the first
+\fIn\fP characters of \fIsrc\fP are appended to \fIdest\fP.
+.SH "RETURN VALUE"
+The \fBstrcat()\fP and \fBstrncat()\fP functions return a pointer
+to the resulting string \fIdest\fP.
+.SH "CONFORMING TO"
+SVID 3, POSIX, BSD 4.3, ISO 9899
+.SH SEE ALSO
+.BR bcopy "(3), " memccpy "(3), " memcpy "(3), " strcpy "(3), " strncpy (3)

@@ -1,0 +1,53 @@
+.\" -*- nroff -*-
+.\"
+.\" (C)opyright 1993 by Dan Miner (dminer@nyx.cs.du.edu)
+.\"
+.\"  Permission is granted to freely distribute or modify this file
+.\"  for the purpose of improving Linux or its documentation efforts.
+.\"  If you modify this file, please put a date stamp and HOW you
+.\"  changed this file.  Thanks.   -DM
+.\"
+.TH KERNEL_MKTIME 9 "July 5, 1993" "Linux 0.99.10" "Kernel Reference Guide"
+.SH NAME
+kernel_mktime \- convert startup \fIstruct\ mktime\fP
+into the number of seconds since 00:00:00 January 1, 1970
+.SH SYNOPSIS
+
+linux/kernel/mktime.c
+
+long kernel_mktime(struct mktime * time);
+.SH DESCRIPTION
+This routine is called from time_init(void), 
+linux/init/main.c.  kernel_mktime()
+converts \fIstruct\ mktime\fP 
+(initialized from CMOS) into an encoded long.
+.SS "Conversion Method"
+First an array, \fImonth[12]\fP, is created holding how 
+many seconds has passed to reach a peculiar month, for a \fIleap\fP year.
+Next, it substracts 70 from the current year, making 1970 the beginning year.
+It is math magic after this point, please look yourself.  If you know
+why it does this, then send email (see nroff source).
+.SH "RETURN VALUE"
+Returns the encoded time in a long
+.SH FILES
+.nf
+linux/kernel/mktime.c              home of routine
+.fi
+.SH NOTES
+This routine is call only during startup of the kernel.
+.sp
+Historically, the value (encoded long) counts the number 
+of seconds since the \fBEpoch\fP, which
+occurred at 00:00:00 January\ 1,\ 1970 and 
+is called \fICoordinated\ Universal\ Time\ (UTC)\fP.
+In older manuals, this event is 
+called \fIGreenwich\ Mean\ Time\ (GMT)\fP.
+.SH WARNINGS
+kernel_mktime() doesn't check to see if the year is greater than 1969.  Be 
+sure your CMOS is set correctly.  It is customary to set on-board clocks
+to GMT and let processes who ask for the time to convert it to local time, if
+necessary.
+.SH RESTRICTIONS
+For kernel use only.
+.SH AUTHOR
+Linus Torvalds

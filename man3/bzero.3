@@ -1,0 +1,25 @@
+.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" May be distributed under the GNU General Public License
+.\" References consulted:
+.\"     Linux libc source code
+.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+.\"     386BSD man pages
+.\" Modified Sat Jul 24 21:28:17 1993 by Rik Faith (faith@cs.unc.edu)
+.TH BZERO 3  "April 9, 1993" "GNU" "Linux Programmer's Manual"
+.SH NAME
+bzero \- write zeros to a byte string
+.SH SYNOPSIS
+.nf
+.B #include <string.h>
+.sp
+.BI "void bzero(void *" s ", int " n );
+.fi
+.SH DESCRIPTION
+The \fBbzero()\fP function sets the first \fIn\fP bytes of the byte
+string \fIs\fP to zero.
+.SH "RETURN VALUE"
+The \fBbcmp()\fP function returns no value.
+.SH "CONFORMING TO"
+BSD 4.3
+.SH SEE ALSO
+.BR memset "(3), " swab (3)

@@ -1,0 +1,26 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" May be distributed under the GNU General Public License
+.TH GETDTABLESIZE 2 "22 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+getdtablesize \- get descriptor table size
+.SH SYNOPSIS
+.B #include <unistd.h>
+.sp
+.B int getdtablesize(void);
+.SH DESCRIPTION
+.B gettablesize
+returns the maximum number of files a process can have open.
+.SH NOTES
+.B gettablesize
+is implemented as a library function in DLL 4.4.1.  This function returns
+.B OPEN_MAX
+(set to 256 in Linux 0.99.11) if
+.B OPEN_MAX
+was defined when the library was compiled.  Otherwise, -1 is returned, and
+.I errno
+is set to
+.BR ENOSYS .
+.SH SEE ALSO
+.BR close "(2), " dup "(2), " open (2)

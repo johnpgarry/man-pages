@@ -1,0 +1,30 @@
+.\" -*- nroff -*-
+.\"
+.\" Copyright 1993 by Dan Miner (dminer@nyx.cs.du.edu)
+.\"
+.\"  Permission is granted to freely distribute or modify this file
+.\"  for the purpose of improving Linux or its documentation efforts.
+.\"  If you modify this file, please put a date stamp and HOW you
+.\"  changed this file.  Thanks.   -DM
+.\"
+.\" $Id: insert_file_free.9,v 1.1 1993/07/13 05:01:29 dminer Exp $
+.\"
+.TH NAME 9 DATE "Linux 0.99.10" "Kernel Reference Guide"
+.SH NAME
+insert_file_free \- adds a file entry into the file table
+.SH SYNOPSIS
+.nf
+linux/fs/file_table.c
+
+.IR "" "static void insert_file_free(struct file " *file ");"
+.fi
+.SH DESCRIPTION
+This nightmare of pointers adds \fIfile\fP into the file table with
+the root pointer at \fIfile\fP.  This is a building block of the
+file table management.
+.SH AUTHOR
+Linus Torvalds
+.SH "SEE ALSO"
+.IR file_table_init "(9), " remove_file_free "(9), " put_last_free (9)
+.sp
+See \fIfile_table\fP(9) for details on the file table structure.

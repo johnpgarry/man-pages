@@ -1,0 +1,25 @@
+.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" This file may be distributed under the GNU General Public License.
+.\" Modified Sat Jul 24 17:17:50 1993 by Rik Faith (faith@cs.unc.edu)
+.TH TTYTYPE 5 "24 July 1993" "Linux" "Linux Programmer's Manual"
+.SH NAME
+ttytype \- terminal name and device list
+.SH DESCRIPTION
+.B Ttytype
+is an ASCII file that lists the names of terminals, as used in termcap,
+in association with the names of the ttys (minus /dev/) to which they
+are attached.  It is used by the program tset to set the environment
+variable TERM to the correct terminal name for the user's current tty.
+.SH EXAMPLE
+A typical /etc/ttytype is:
+.RS
+.sp
+con80x25 tty1
+.br
+vt320 ttys0
+.sp
+.RE
+.SH FILES
+/etc/ttytype
+.SH "SEE ALSO"
+.BR getty "(1), " termcap (5)

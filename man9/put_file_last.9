@@ -1,0 +1,29 @@
+.\" -*- nroff -*-
+.\"
+.\" Copyright 1993 by Dan Miner (dminer@nyx.cs.du.edu)
+.\"
+.\"  Permission is granted to freely distribute or modify this file
+.\"  for the purpose of improving Linux or its documentation efforts.
+.\"  If you modify this file, please put a date stamp and HOW you
+.\"  changed this file.  Thanks.   -DM
+.\"
+.\" $Id: put_file_last.9,v 1.1 1993/07/13 05:01:29 dminer Exp $
+.\"
+.TH PUT_FILE_LAST 9 "July 11, 1993" "Linux 0.99.10" "Kernel Reference Guide"
+.SH NAME
+put_file_last \- moves a file to the ``end'' of the file table
+.SH SYNOPSIS
+linux/fs/file_table.c
+
+static void put_last_free(struct file *\fIfile\fP);
+.SH DESCRIPTION
+This function will remove \fIfile\fP from the file table and insert
+it again at the ``end''.  You can access by:
+.sp
+.RS
+first_file->prev
+.RE
+.SH AUTHOR
+Linus Torvalds
+.SH "SEE ALSO"
+.IR insert_file_free "(9), " remove_file_free (9)

@@ -1,0 +1,47 @@
+.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" May be distributed under the GNU General Public License
+.\" References consulted:
+.\"     Linux libc source code
+.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+.\"     386BSD man pages
+.\" Modified Sat Jul 24 18:46:01 1993 by Rik Faith (faith@cs.unc.edu)
+.TH OPENDIR 3  "March 31, 1993" "" "Linux Programmer's Manual"
+.SH NAME
+opendir \- open a directory
+.SH SYNOPSIS
+.nf
+.B #include <dirent.h>
+.sp
+.BI "DIR *opendir(const char *" name );
+.fi
+.SH DESCRIPTION
+The \fBopendir()\fP function opens a directory stream corrsponding to the
+directory \fIname\fP, and returns a pointer to the directory stream.  The
+stream is positioned at the first entry in the directory.
+.SH "RETURN VALUE"
+The \fBopendir()\fP function returns a pointer to the directory stream or
+NULL if an error occurred.
+.SH "ERRORS"
+.TP
+.B EACESS
+Permission denied.
+.TP
+.B EMFILE
+Too many file descriptors in use by process.
+.TP
+.B ENFILE
+Too many files are currently open in the system.
+.TP
+.B ENOENT
+Directory does not exist.
+.TP
+.B ENOMEM
+Insufficient memory to complete the operation.
+.TP
+.B ENOTDIR
+\fIname\fP is not a directory.
+.SH "CONFORMING TO"
+SVID 3, POSIX, BSD 4.3
+.SH SEE ALSO
+.BR open "(2), " readdir "(3), " closedir "(3), " rewinddir (3),
+.BR seekdir "(3), " telldir "(3), " scandir (3)

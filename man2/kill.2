@@ -1,0 +1,59 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright (c) 1992 Drew Eckhardt (drew@cs.colorado.edu), March 28, 1992
+.\" May be distributed under the GNU General Public License.
+.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
+.\" Modified by Thomas Koengig (ig25@rz.uni-karlsruhe.de)
+.\" Modified Fri Jul 23 21:51:36 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sun Jul 25 10:53:24 1993 by Rik Faith (faith@cs.unc.edu)
+.TH KILL 2 "23 July 1993" "Linux" "Linux Programmer's Manual"
+.SH NAME
+kill \- send signal to a process
+.SH SYNOPSIS
+.nf
+.B #include <signal.h>
+.sp
+.BI "int kill(pid_t " pid ", int " sig );
+.fi
+.SH DESCRIPTION
+\fBkill()\fP
+can be used to send any signal to any process group or process.
+.PP
+If \fIpid\fP is positive, then signal \fIsig\fP is sent to \fIpid\fP.
+In this case, 0 is returned on success, or a negative value on error.
+.PP
+If \fIpid\fP equals \-1, then \fIsig\fP is sent to every process except
+for the first one, from higher numbers in the proc table to lower.  In
+this case, 0 is returned on success, or the last error condition from
+\fBsend_sig()\fP is returned.
+.PP
+If \fIpid\fP is less than \-1, then \fIsig\fP is sent to every process
+in the process group \fI\-pid\fP.  In this case, the number of processes
+the signal was sent to is returned, or a negative value for failure.
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP
+.B EINVAL
+An invalid signal is sent.
+.TP
+.B ESRCH
+The pid or process group does not exist.
+.TP
+.B EPERM
+The effective userid of the process calling 
+.B kill()
+is not equal to the effctive userid of    
+\fIpid\fP,
+unless the superuser called
+\fBkill()\fP.
+.SH "BUGS"
+It is impossible to send a signal to task number one, the init process, for
+which it has not installed a signal handler.  This is done to assure the
+system is not brought down accidentally.
+.SH "CONFORMING TO"
+SVID, AT&T, POSIX.1, X/OPEN, BSD 4.3
+.SH "SEE ALSO"
+.BR _exit "(2), " exit "(2), " signal "(2), " signal (7)

@@ -1,0 +1,109 @@
+.\" (c) 1993 by Thomas Koenig (ig25@rz.uni-karlsruhe.de)
+.\" This file can be distributed under the terms of the GNU General Public
+.\" License.
+.\" Modified Sat Jul 24 19:10:00 1993 by Rik Faith (faith@cs.unc.edu)
+.TH ISALPHA 3  "April 4, 1993" "GNU" "Linux Programmer's Manual"
+.SH NAME
+isalnum, isalpha, iscntrl, isdigit, isgraph, islower, isprint, ispunct,
+isspace, isupper, isxdigit \- character classification routines
+.SH SYNOPSIS
+.nf
+.B #include <ctype.h>
+.sp
+.BI "int isalnum (int " "c" ");"
+.nl
+.BI "int isalpha (int " "c" ");"
+.nl
+.BI "int iscntrl (int " "c" ");"
+.nl
+.BI "int isdigit (int " "c" ");"
+.nl
+.BI "int isgraph (int " "c" ");"
+.nl
+.BI "int islower (int " "c" ");"
+.nl
+.BI "int isprint (int " "c" ");"
+.nl
+.BI "int ispunct (int " "c" ");"
+.nl
+.BI "int isspace (int " "c" ");"
+.nl
+.BI "int isupper (int " "c" ");"
+.nl
+.BI "int isxdigit (int " "c" ");"
+.fi
+.SH DESCRIPTION
+These functions check wether
+.IR c ,
+which must have the value of an
+.B unsigned char
+or
+.BR EOF ,
+falls into a certain character class according to the current locale.
+.TP 
+.B "isalnum()"
+checks for an alphanumeric character; it is equivalent to
+.BI "(isalpha(" c ") || isdigit(" c "))" . 
+.TP
+.B "isalpha()"
+checks for an alphabetic character; it is equivalent to
+.BI "(isupper(" c ") || islower(" c "))" .
+.TP
+.B "iscntrl()"
+checks for a control character.
+.TP
+.B "isdigit()"
+checks for a digit.
+.TP
+.B "isgraph()"
+checks for any printable character except space.
+.TP
+.B "islower()"
+checks for a lower - case character.
+.TP
+.B "isprint()"
+checks for any printable character including space.
+.TP
+.B "ispunct()"
+checks for any printable character which is not a space or an
+alphanumeric character.
+.TP
+.B "isspace()"
+checks for white - space characters.  In the
+.B """C"""
+and
+.B """POSIX"""
+locales, these are: space, form-feed
+.RB ( '\ef' ),
+newline
+.RB ( '\en' ),
+carriage return
+.RB ( '\er' ),
+horizontal tab
+.RB ( '\et' ),
+and vertical tab
+.RB ( '\ev' ).
+.TP
+.B "isupper()"
+checks for an uppercase letter.
+.TP
+.B "isxdigit()"
+checks for a hexadecimal digits, i.e. one of
+.nl
+.B 0 1 2 3 4 5 6 7 8 9 0 a b c d e f A B C D E F
+.SH "RETURN VALUE"
+The values returned are nonzero if the character
+.I c
+falls into the tested class, and a nonzero value 
+if not.
+.SH "CONFORMS TO"
+ANSI - C, BSD 4.3
+.SH "BUGS"
+The details of what characters belong into which class depend on the current
+locale.  For example,
+.B isupper()
+will not recognize an A - umlaut as an uppercase letter in the default
+.B "C"
+locale.
+.SH "SEE ALSO"
+.BR toupper "(3), " setlocale "(3), " ascii "(7), " locale (7)

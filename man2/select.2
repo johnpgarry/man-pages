@@ -1,0 +1,98 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" This manpage is Copyright (C) 1992 Drew Eckhardt;
+.\"
+.\" You may distribute it under the terms of the GNU General
+.\" Public Licence. It comes with NO WARRANTY.
+.\"
+.\" Modified Sat Jul 24 00:41:28 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH SELECT 2 "April 14, 1993" "Linux 0.99.7" "Linux Programmer's Manual"
+.SH NAME
+select \- synchronous I/O multiplexing 
+.SH SYNOPSIS
+.B #include <sys/time.h>
+.br
+.B #include <sys/types.h>
+.br
+.B #include <unistd.h>
+.sp
+.BI "int select(int " numfds ", fd_set *" readfds ", fd_set *"  writefds
+.BI ", fd_set *" exceptfds ", struct timeval * " timeout );
+.sp
+.BI "FD_CLR(int " fd ", fd_set *" set );
+.br
+.BI "FD_ISSET(int " fd ", fd_set *" set );
+.br
+.BI "FD_SET(int " fd ", fd_set *" set );
+.br
+.BI "FD_ZERO(fd_set * " set );
+.SH DESCRIPTION
+.B Select 
+causes the calling process to sleep until a file descriptor in 
+.IR readfds ,
+.IR writefds ,
+or
+.I exceptfds
+becomes availble for reading, writing, or has 
+an exception raised respectively, or until the time limit set 
+by 
+.I timout
+has elapsed.
+
+On exit, 
+.B select
+indicates file descriptors that have become available by modifying
+.IR readfds ,
+.IR writefds ,
+and
+.I exceptfds 
+in place.  
+.I Timeout
+is also updated to reflect the amount of time remaining.
+
+Several macros are provided for manipulating file descriptor sets.
+.B FD_SET 
+and
+.B FD_CLR
+add and remove
+.I fd
+to/from 
+.I set, 
+.B FD_ZERO
+clears 
+.I set,
+and 
+.B FD_ISSET 
+returns nonzero 
+.I fd
+is in 
+.I set.
+.SH RETURN VALUE
+On success,
+.B select 
+returns the number of descriptors contained in the descriptor sets.  On
+error, -1  is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP 0.8i
+.B EBADF
+An invalid file descriptor was given in one of the sets.
+.TP
+.B EINTR 
+A non blocked signal was caught.
+.TP
+.B EINVAL 
+.I nd
+is negative.
+.TP
+.B ENOMEM
+select was unable to allocate memory for internal tables.
+.SH NOTES
+The Linux behavior with respect to 
+.I timeout
+differs from other unices that don't modify it.
+.SH "SEE ALSO"
+.BR accept "(2), " connect "(2), " read "(2), " recv "(2), "
+.BR send "(2), " write (2)

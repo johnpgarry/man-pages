@@ -1,0 +1,59 @@
+.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" This file may be distributed under the GNU General Public License.
+.\" Modified Sat Jul 24 16:55:26 1993 by Rik Faith (faith@cs.unc.edu)
+.TH FD 4 "17 December 1992" "Linux" "Linux Programmer's Manual"
+.SH NAME
+fd \- floppy disk devive
+.SH DESCRIPTION
+\fBFd\fP are block devices to access the floppy disk drives in raw mode.
+.LP
+They are typically created by:
+.RS
+.sp
+mknod -m 660 /dev/fd0 b 2 0
+.br
+mknod -m 660 /dev/fd1 b 2 1
+.br
+mknod -m 660 /dev/fd0d360 b 2 4
+.br
+mknod -m 660 /dev/fd1d360 b 2 5
+.br
+mknod -m 660 /dev/fd0h360 b 2 20
+.br
+mknod -m 660 /dev/fd1h360 b 2 21
+.br
+mknod -m 660 /dev/fd0h720 b 2 24
+.br
+mknod -m 660 /dev/fd1h720 b 2 25
+.br
+mknod -m 660 /dev/fd0h1200 b 2 8
+.br
+mknod -m 660 /dev/fd1h1200 b 2 9
+.br
+mknod -m 660 /dev/fd0D360 b 2 12
+.br
+mknod -m 660 /dev/fd1D360 b 2 13
+.br
+mknod -m 660 /dev/fd0D720 b 2 16
+.br
+mknod -m 660 /dev/fd1D720 b 2 17
+.br
+mknod -m 660 /dev/fd0H360 b 2 12
+.br
+mknod -m 660 /dev/fd1H360 b 2 13
+.br
+mknod -m 660 /dev/fd0H720 b 2 16
+.br
+mknod -m 660 /dev/fd1H720 b 2 17
+.br
+mknod -m 660 /dev/fd0H1440 b 2 28
+.br
+mknod -m 660 /dev/fd1H1440 b 2 29
+.br
+chown root.floppy /dev/fd*
+.sp
+.RE
+.SH FILES
+/dev/fd*
+.SH "SEE ALSO"
+.BR mknod "(1), " chown "(1), " mount (8)

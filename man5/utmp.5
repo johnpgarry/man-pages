@@ -1,0 +1,66 @@
+.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" This file may be distributed under the GNU General Public License.
+.\" Modified Sun Jul 25 10:44:50 1993 by Rik Faith (faith@cs.unc.edu)
+.TH UTMP 5 "January 21, 1992" "Linux" "Linux Programmer's Manual"
+.SH NAME
+utmp, wtmp \- login records
+.SH SYNOPSIS
+#include <utmp.h>
+.SH DESCRIPTION
+The
+.B utmp
+file allows one to discover information about who is currently using the
+system.  The file is a sequence of entries with the following structure
+declared in the include file:
+.RS
+.nf
+.sp
+.ta 3i
+#define UT_UNKNOWN	0
+#define RUN_LVL		1
+#define BOOT_TIME	2
+#define NEW_TIME	3
+#define OLD_TIME	4
+#define INIT_PROCESS	5
+#define LOGIN_PROCESS	6
+#define USER_PROCESS	7
+#define DEAD_PROCESS	8
+
+struct utmp {
+  short ut_type;	/* type of login */
+  pid_t ut_pid;		/* pid of process */
+  char ut_line[12];	/* devicename of tty -"/dev/" */
+  char ut_id[2];	/* init id or abbrev. ttyname */
+  time_t ut_time;	/* logintime */
+  char ut_user[8];	/* username, not null-term */
+  char ut_host[16];	/* hostname for remote login */
+  long ut_addr;	/* IP addr of remote host */
+};
+.sp
+.fi
+.RE
+This structure gives the name of the special file associated with the
+user's terminal, the user's login name, and the time of login in the form
+of
+.BR time (2).
+String fields are terminated by \fB\e0\fP if they are short than the size
+of the field.
+.LP
+The
+.B wtmp
+file records all logins and logouts.  Its format is exactly like
+.B utmp
+execpt that a null user name indicates a logout on the associated
+terminal.  Furthermore, the terminal name ``~'' with username
+``shutdown'' or ``reboot'' indicates a system shutdown or reboot.
+.LP
+.B Wtmp
+is maintained by \fBlogin\fP(1), and \fBinit\fP(1) and some very of
+\fBgetty\fP(1).  Neither of these programs creates the file, so if it is
+removed record-keeping is turned off.
+.SH FILES
+/etc/utmp
+.br
+/etc/wtmp
+.SH "SEE ALSO"
+.BR last "(1), " login "(1), " who (1)

@@ -1,0 +1,15 @@
+.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" This file may be distributed under the GNU General Public License.
+.\" Modified Sun Jul 25 11:06:34 1993 by Rik Faith (faith@cs.unc.edu)
+.TH NOLOGIN 5 "December 29 1992" "Linux" "Linux Programmer's Manual"
+.SH NAME
+nologin \- prevent usual users from log into the system
+.SH DESCRIPTION
+\fB/etc/nologin\fP is used by
+.BR login (1);
+if this file exists, login will allow access only to root; other users are
+given a "System going down" message.
+.SH FILES
+/etc/nologin
+.SH "SEE ALSO"
+.BR login "(1), " shutdown (8)

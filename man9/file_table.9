@@ -1,0 +1,102 @@
+.\" -*- nroff -*-
+.\"
+.\" Copyright 1993 by Dan Miner (dminer@nyx.cs.du.edu)
+.\"
+.\"  Permission is granted to freely distribute or modify this file
+.\"  for the purpose of improving Linux or its documentation efforts.
+.\"  If you modify this file, please put a date stamp and HOW you
+.\"  changed this file.  Thanks.   -DM
+.\"
+.\" $Id: file_table.9,v 1.1 1993/07/13 05:01:29 dminer Exp $
+.\"
+.TH FILE_TABLE 9 "July 11, 1993" "Linux 0.99.10" "Kernel Reference Guide"
+.SH NAME
+file_table \- detailed description of the table and table entry
+.SH SYNOPSIS
+.nf
+From #include <linux/fs.h>
+
+struct file {
+	mode_t f_mode;
+	dev_t f_rdev;                /* needed for /dev/tty */
+	off_t f_pos;
+	unsigned short f_flags;
+	unsigned short f_count;
+	unsigned short f_reada;
+	struct file *f_next, *f_prev;
+	struct inode *f_inode;
+	struct file_operations *f_op;
+};
+
+From linux/fs/file_table.c
+
+struct file *first_file;
+int nr_files = 0;
+.fi
+.SH DESCRIPTION
+The \fBfile table\fP is fundamentally important to any UNIX system.  It is
+where all open files (Linux includes closed files as well) are stored
+and managed by the kernel.  For Linux, you can hardly do anything without
+referencing it in some way.
+.PP
+Linux stores its file table as a \fIdouble circular linked list\fP.  The
+root pointer to the ``head'' of this list is \fIfirst_file\fP.  Also, a count
+of how many entries are in the file table is maintained, called \fInr_files\fP.
+Under this scheme, the file table for Linux could be as large memory could
+hold.  Unfortunately, this would be unmanageable in most cases.  Your computer
+would be in the kernel most of the time when processes are more important.
+To keep this from happening,
+.I nr_files
+is tested against 
+.I NR_FILE 
+to limit the number of file table entries.
+.SS "\fIUnderstanding the Structure of the File Table\fP"
+The file table is organized as a \fIdouble circular linked list\fP.
+Imagine, a circle of people with everyone facing the same direction.
+Each person is facing so that one arm is in the circle and the other
+arm is outside the circle.  Now, if each person put his or her right 
+hand on the
+shoulder of the person in front of him or her and if each person touched
+the person behind him or her with his or her left hand.  You 
+have formed two
+circles of arms, one inside and the other outside.  The right arms represent
+pointers to the \fInext\fP entry (or person).  The left arms represent
+pointers to the previous entry (or person).
+.SS "The file structure, a file table entry"
+At first glance, a table entry looks quite simple.  A entry contains
+how a file was opened, what tty device, a reference count, pointers to
+another entries, pointer to v-node (the vfs i-node) and filesystem 
+specific i-node information, etc.
+.PP
+.IP \fIf_mode\fP 1.75i
+After and'ing with O_ACCMODE, this is what bits 0 and 1 mean.
+.nf
+
+00 = no permissions needed
+01 = read-permission
+10 = write-permission
+11 = read-write
+.fi
+.IP \fIf_rdev\fP
+It is only used with tty lines.  It contains the major and minor
+numbers of the tty device.
+.IP \fIf_pos\fP
+The current position in a file, if meaningful.
+.IP \fIf_flags\fP
+Storage for the flags from open() and fcntl()
+.IP \fIf_count\fP
+Reference counter
+.IP \fIf_reada\fP
+This is a boolean variable where true means that an actual read is
+needed.
+.IP "\fIf_next, f_prev\fP"
+Pointers to other entries
+.IP \fIf_inode\fP
+Pointer to v-node and fs specific i-node information
+.IP \fIf_op\fP
+Pointer to a file's operations
+.SH AUTHOR
+Linus Torvalds
+.SH "SEE ALSO"
+\fIinsert_file_free\fP(9), \fIremove_file_free\fP(9), \fIput_last_free\fP(9)
+\fIgrow_files\fP(9), \fIfile_table_init\fP(9), \fIget_empty_filp\fP(9)

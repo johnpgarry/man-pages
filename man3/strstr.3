@@ -1,0 +1,26 @@
+.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" May be distributed under the GNU General Public License
+.\" References consulted:
+.\"     Linux libc source code
+.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+.\"     386BSD man pages
+.\" Modified Sat Jul 24 17:56:43 1993 by Rik Faith (faith@cs.unc.edu)
+.TH STRSTR 3  "April 12, 1993" "GNU" "Linux Programmer's Manual"
+.SH NAME
+strstr \- locate a substring
+.SH SYNOPSIS
+.nf
+.B #include <string.h>
+.sp
+.BI "void *strstr(const char *" haystack ", const char *" needle );
+.fi
+.SH DESCRIPTION
+The \fBstrstr()\fP function finds the first occurrence of the substring
+\fIneedle\fP in the string \fIhaystack\fP.  The terminating `\\0'
+characters are not compared.
+.SH "RETURN VALUE"
+The \fBstrstr()\fP function returns a pointer to the beginning of the
+substring, or NULL if the substring is not found.
+.SH SEE ALSO
+.BR index "(3), " memchr "(3), " rindex "(3), " strchr (3),
+.BR strpbrk "(3), " strsep "(3), " strspn "(3), " strtok (3)

@@ -1,0 +1,146 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" This manpage is Copyright (C) 1992 Drew Eckhardt;
+.\"                               1993 Michael Haardt, Ian Jackson.
+.\" You may distribute it under the terms of the GNU General
+.\" Public Licence. It comes with NO WARRANTY.
+.\"
+.\" Modified Sat Jul 24 13:39:26 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH FCNTL 2 "24 July 1993" Linux "Linux Programmer's Manual"
+.SH NAME
+fcntl \- manipulate file descriptor
+.SH SYNOPSIS
+.nf
+.B #include <unistd.h>
+.B #include <fcntl.h>
+.sp
+.BI "int fcntl(int " fd ", int " cmd );
+.BI "int fcntl(int " fd ", int " cmd ", long " arg );
+.fi
+.SH DESCRIPTION
+.B fcntl
+performs one of various miscellaneous operations on
+.IR fd .
+The operation in question is determined by
+.IR cmd :
+.TP 0.9i
+F_DUPFD
+Makes
+.I arg
+be a copy of
+.IR fd ,
+closing
+.I fd
+first if necessary.
+.sp
+The same functionality can be more easily achieved by using
+.BR dup2 .
+.sp
+The old and new descriptors may be used interchangeably. They share locks,
+file position pointers and flags; for example, if the file position is
+modified by using
+.B lseek
+on one of the descriptors, the position is also changed for the other.
+.sp
+The two descriptors do not share the close-on-exec flag, however.
+.sp
+On success, the new descriptor is returned.
+.TP
+F_GETFD
+Read the close-on-exec flag.  If the low-order bit is 0, the file will
+remaind open across
+.BR exec ,
+otherwise it will be closed.
+.TP
+F_SETFD
+Set the close-on-exec flag to the value specified by
+.I arg
+(only the least significant bit is used).
+
+.TP
+F_GETFL
+Read the descriptor's flags (all flags (as set by
+.BR open (2))
+are returned).
+.TP
+F_SETFL
+Set the descriptor's flags to the value specified by
+.IR arg .
+Only
+.BR O_APPEND " and " O_NONBLOCK
+may be set.
+.sp
+The flags are shared between copies (made with
+.B dup
+etc.) of the same file descriptor.
+The flags are shared between copies (made with
+.B dup
+etc.) of the same file descriptor.
+.sp
+The flags and their semantics are described in
+.BR open (2).
+.TP
+F_GETLK, F_SETLK, and F_SETLKW
+Manage discretionary file locks.
+.TP
+F_GETOWN
+Get the process ID (or process group) of the owner of a socket.
+.sp
+Process groups are returned as negative values.
+.TP
+F_SETOWN
+Set the process or process group that owns a socket.
+.sp
+For these commands, ownership means receiving
+.B SIGIO
+or
+.B SIGURG
+signals.
+.sp
+Process groups are specified using negative values.
+.SH "RETURN VALUE"
+The return value depends on the operation:
+.TP 0.9i
+F_DUPFD
+The new descriptor.
+.TP
+F_GETFD
+Value of flag.
+.TP
+F_GETFL
+Value of falgs.
+.TP
+F_GETOWN
+Value of descriptor owner.
+.PP
+On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP 0.9i
+.B EBADF
+.I fs
+is not an open file descriptor.
+.TP
+.B EINVAL
+For
+.BR F_DUPFD ,
+.I arg
+is negative or is greater than the maximum allowable value.
+.TP
+.B EINVAL
+For
+.BR F_DUPFD ,
+the process already has the masimum number of file descriptors open.
+.SH NOTES
+The errors returned by
+.B dup2
+are different from those returned by
+.BR F_DUPFD .
+.SH CONFORMING TO
+SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+.SH SEE ALSO
+.BR open "(2), "
+.BR F_DUPFD "(2), " F_GETFD "(2), " F_GETFL "(2), " F_GETLK "(2), "
+.BR socket "(2). "

@@ -1,0 +1,119 @@
+.\" (c) 1993 by Thomas Koenig (ig25@rz.uni-karlsruhe.de)
+.\" This file can be distributed under the terms of the GNU General Public
+.\" License.
+.\" Modified Sat Jul 24 17:35:15 1993 by Rik Faith (faith@cs.unc.edu)
+.TH SUFFIXES 7  "April 25, 1993" "Linux" "Linux Programmer's Manual"
+.SH NAME
+suffixes \- list of file suffixes
+.SH DESCRIPTION
+It is customary to mark the contents of a file with the file suffix,
+which consists of a period, followed by one or more letters.  Many
+standard utilities such as compilers use this to recognize the type of
+file they are dealing with, and the make(1) utility contains many
+rules for dealing with files based on suffix type.
+.PP
+Following is a list of suffixes which are likely to be found on a
+Linux system.
+.PP
+.TS 
+l | l
+_ | _
+lI |  l .
+Suffix	File type
+ ,v	Files for RCS (Revision Control System)
+ -	backup file
+ .C	C++ source code
+ .F	FORTRAN source with cpp(1) directives
+ .S	Assembler source with cpp(1) directives
+ .Z	File compressed using compress(1)
+ .[0-9]+pk	TeX fontfiles
+ .[1-9]	Manual page for the corresponding section
+ .[1-9][a-z]	Manual page for section plus subsection
+ .a	static object code library
+ .afm	PostScript font metrics
+ .arc	ARC archive
+ .awk	AWK language program
+ .bak	Backup file
+ .bm	Bitmap source
+ .c	C source
+ .cat	Message catalog files
+ .cf	configuration file
+ .conf	configuration file
+ .config	cofiguration file
+ .cweb	Donald Knuth's WEB for C
+ .dat	data file
+ .def	Modula-2 source for definition modules
+ .def	other definition files
+ .diff	ASCII File differences
+ .doc	documenation file
+ .dvi	TeX device independent output
+ .el	EMACS lisp source
+ .elc	compiled EMACS lisp
+ .eps	encapsulated prostscript
+ .f	FORTRAN source
+ .fas	precompiled common Lisp
+ .fi	FORTRAN include files
+ .gif	Graphics Interchange Format
+ .gsf	Ghostscript fonts
+ .h	C or C++ header files
+ .hlp	Help file
+ .i	C source after preprocessing
+ .icon	Bitmap source
+ .image	Bitmap source
+ .in	Input file for some utility
+ .info	Files for the EMACS info browser
+ .jpg	JPEG compressed picture format
+ .l	lex(1) or flex(1) files
+ .lib	Common Lisp library
+ .ln	Files for use with lint(1)
+ .lsp	Common Lisp source
+ .man	Manual page
+ .mf	Metafont (fontgenerator for TeX) source
+ .mm	Sources for groff(1) in mm - format
+ .mod	Modula-2 source for implementation modules
+ .o	object file
+ .old	old or backup file
+ .out	Output file, often executable program (a.out)
+ .p	Pascal source
+ .patch	File differences from patch(1)
+ .pcf	X11 font files (???)
+ .pfa	Postscript font definition files
+ .pid	File to store daemon pid (e.g. crond.pid)
+ .pl	Perl script
+ .pr	Bitmap source
+ .ps	Postscript file
+ .r	RATFOR source
+ .rules	Rules for something
+ .s	Assembler source
+ .sa	Something to do with shared libraries (???)
+ .sc	sc(1) spreadsheed commands
+ .sh	sh(1) scripts
+ .shar	archive created by the shar(1) utility
+ .so	DLL dynamic library
+ .sty	LaTeX style files
+ .sym	Modula-2 compiled definition modules
+ .tar	archive created by the tar(1) utility
+ .tar.Z	tar archive compressed with compress(1)
+ .tar.z	tar archive compressed with gzip(1)
+ .taz	Tar archive compressed with compress(1)
+ .tex	TeX or LaTeX source
+ .texi	equivalent to \fI.texinfo\fR
+ .texinfo	TeXinfo documentation source
+ .tfm	TeX font metrics
+ .tmpl	Template files
+ .tpz	Tar archive compressed with gzip(1)
+ .txt	Text file
+ .uue	Binary file encoded with uuencode(1)
+ .web	Donald Kuth's WEB
+ .y	yacc(1) or bison(1) (parser generator) files
+ .z	File compressed using gnuzip(1)
+ .zoo	ZOO archive
+ ~	EMACS or patch backup file
+ rc	Startup file, e.g. .newsrc
+.TE
+.SH "CONFORMS TO"
+General UNIX conventions
+.SH BUGS
+This list is not exhaustive.
+.SH SEE ALSO
+.BR file "(1), " make (1)

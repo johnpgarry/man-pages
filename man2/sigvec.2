@@ -1,0 +1,22 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" May be distributed under the GNU General Public License
+.TH SIGVEC 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+sigvec \- software signal facilities
+.SH SYNOPSIS
+.B #include <bsd/signal.h>
+.sp
+.BI "int sigvec(int " sig ", struct sigvec *" vec ", struct sigvec *" ovec );
+.SH DESCRIPTION
+.B WARNING:
+Under Linux DLL 4.4.1,
+.B sigvec
+is #defined'd to be
+.BR sigaction .
+
+This interface is made obsolete by
+.BR sigaction (2).
+.SH SEE ALSO
+.BR sigaction "(2), " signal (2)

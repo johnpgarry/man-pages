@@ -1,0 +1,47 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright (c) 1992 Drew Eckhardt (drew@cs.colorado.edu), March 28, 1992
+.\" May be distributed under the GNU General Public License.
+.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
+.\" Modified Sat Jul 24 12:53:43 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH UNAME 2 "24 July 93" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+uname \- get name and information about current kernel
+.SH SYNOPSIS
+.B #include <sys/utsname.h>
+.sp
+.BI "int uname(struct utsname *" buf );
+.SH DESCRIPTION
+.B uname
+returns system information in
+.IR buf .
+The 
+.I utsname 
+struct is as defined in /usr/include/sys/utsname.h :
+.br
+.nf
+struct utsname {
+.in 22
+char sysname[65];
+char nodename[65];
+char release[65];
+char version[65];
+char machine[65];
+char domainname[65];
+};
+.in 10
+.fi
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP 0.8i
+.B EFAULT
+.I buf
+is not valid.
+.SH "CONFORMING TO"
+SVID, AT&T, POSIX, X/OPEN
+.SH "SEE ALSO"
+.BR uname "(1), " getdomainname "(2), " gethostname (2)

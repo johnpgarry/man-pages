@@ -1,0 +1,34 @@
+.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" May be distributed under the GNU General Public License
+.\" References consulted:
+.\"     Linux libc source code
+.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+.\"     386BSD man pages
+.\" Modified Sat Jul 24 17:46:05 1993 by Rik Faith (faith@cs.unc.edu)
+.TH TMPNAM 3  "April 3, 1993" "GNU" "Linux Programmer's Manual"
+.SH NAME
+tmpnam \- create a name for a temporary file
+.SH SYNOPSIS
+.nf
+.B #include <stdio.h>
+.sp
+.BI "char *tmpnam(char *" s );
+.fi
+.SH DESCRIPTION
+The \fBtmpnam()\fP function generates a unique temporary filename 
+using the path prefix \fIP_tmpdir\fP defined in \fI<stdio.h>\fP.  
+If the argument \fIs\fP is NULL, \fBtmpnam()\fP returns the address 
+of an internal static area which holds the filename, which is 
+overwritten by subsequent calls to \fBtmpnam()\fP.  If \fIs\fP is 
+not NULL, the filename is returned in \fIs\fP.
+.SH "RETURN VALUE"
+The \fBtmpnam()\fP function returns a pointer to the unique temporary 
+filename, or NULL if a unique name cannot be generated.
+.SH "ERRORS"
+.TP
+.B EEXIST
+Unable to generate a unique filename.
+.SH "CONFORMING TO"
+SVID 3, POSIX, BSD 4.3, ISO 9899
+.SH SEE ALSO
+.BR mktemp "(3), " mkstemp "(3), " tempnam "(3), " tmpfile (3)

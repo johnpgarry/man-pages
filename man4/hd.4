@@ -1,0 +1,39 @@
+.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" This file may be distributed under the GNU General Public License.
+.\" Modified Sat Jul 24 16:56:20 1993 by Rik Faith (faith@cs.unc.edu)
+.TH HD 4 "17 December 1992" "Linux" "Linux Programmer's Manual"
+.SH NAME
+hd \- MFM/IDE hard disk devive
+.SH DESCRIPTION
+\fBHd*\fP are block devices to access the MFM/IDE hard disk drives in raw mode.
+.LP
+They are typically created by:
+.RS
+.sp
+mknod -m 660 /dev/hda b 3 0
+.br
+mknod -m 660 /dev/hda1 b 3 1
+.br
+mknod -m 660 /dev/hda2 b 3 2
+.br
+\&...
+.br
+mknod -m 660 /dev/hda8 b 3 8
+.br
+mknod -m 660 /dev/hdb b 3 64
+.br
+mknod -m 660 /dev/hdb1 b 3 65
+.br
+mknod -m 660 /dev/hdb2 b 3 66
+.br
+\&...
+.br
+mknod -m 660 /dev/hdb8 b 3 72
+.br
+chown root.disk /dev/hd*
+.sp
+.RE
+.SH FILES
+/dev/hd*
+.SH "SEE ALSO"
+.BR mknod "(1), " chown "(1), " mount (8)

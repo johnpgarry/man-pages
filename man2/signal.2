@@ -1,0 +1,129 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright (c) 1992 Drew Eckhardt, March 28, 1992
+.\" May be distributed under the GNU General Public License.
+.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
+.\" Modified Sat Jul 24 10:23:36 1993 by Rik Faith (faith@cs.unc.edu)
+.TH SIGNAL 2 "24 July 1993" "Obsolete Man Page" "Linux Programmer's Manual"
+.SH NAME
+signal, sigaction, sigsuspend, sigpending, sgetmask, ssetmask \- signal handling functions.
+.SH SYNOPSIS
+.B #include <signal.h>
+.br
+.B #include <unistd.h>
+.sp 2
+.BI "int sigaction(int " signum ", const struct sigaction *" new ","
+.BI "struct sigaction *" old );
+.sp
+.BI "void (*signal(int " signum ", (void *" handler ")(int))))(int);
+.sp
+.BI "sigsuspend(int " restart ", sigset_t " old_mask ", sigset_t " set );
+.sp
+.BI "int sigpending(sigset_t *" buf );
+.sp
+.B sigset_t sgetmask(void);
+.sp
+.BI "sigset_t ssetmask(sigset_t " mask );
+.SH DESCRIPTION
+.B WARNING:
+This man page is very old.
+
+.B sgetmask
+and 
+.B ssetmask
+get and set the mask of blocked signals.  Signals are bitmapped into this
+mask as 1 << (signum \- 1).  Both return the old value of the mask.  Note
+that
+.B SIGKILL 
+and 
+.B SIGSTOP
+cannot be blocked.
+
+.B sigpending
+fills in 
+.I buf
+with which signals are pending but blocked. 0 is returned.
+
+.B sigsuspend
+is used to atomically swap out the signal mask, while waiting for a
+signal.  If the
+.I restart
+flag is set, then the current mask is replaced with 
+old_mask, and sigsuspend exists with a 
+.BR EINTR .
+Otherwise, the current signal mask is set to set, a 
+.B pause
+system call performed, and 
+.B ERESTARTNOINTR
+is returned.
+
+.B signal
+is used to set up a signal handler for 
+.IR signum .
+The signal handler is set to 
+.IR handler ,
+which may be a user specified function or one of these from
+.IR signal.h :
+.TP 1.0i
+SIG_DFL     
+use the default handler.
+.TP
+SIG_IGN
+ignore signal.  
+.PP
+Note that 
+.B signal
+sets up signals to be SA_ONESHOT and SA_NOMASK.  This may be changed by a
+call to
+.BR sigaction .
+
+Also note that
+.BR SIG_KILL " and " SIG_STOP
+cannot be changed.
+
+The address of the handler is returned on success, a negative value on error.
+
+.B sigaction
+is similar to a more general version of 
+.BR signal .
+It can be used to  set the entire 
+.B sigaction 
+structure for a signal.  
+
+If 
+.I old
+is non null, the old action will be stored there.  The action will then be
+set to
+.I new.
+
+The 
+.BB sigaction 
+structure is as defined in <signal.h>:
+.br
+.nf
+struct sigaction {
+.in 24
+void (*sa_handler)(int);
+sigset_t sa_mask;
+int sa_flags;
+void (*sa_restorer)(void);
+};
+.in 10
+.fi
+.PP
+0 is returned on success.  Note that 
+.B SIGKILL 
+and 
+.B SIGSTOP
+may not have signals set for them.
+.SH ERRORS
+.TP 0.8i
+.B EINVAL
+An invalid
+.I signum
+is passed to the functions.
+.SH BUGS
+Signals have changed quite a bit in the Linux kernel since this man page
+was written.  It is probably obsolete.
+.SH SEE ALSO
+.BR kill "(2), " raise (3)

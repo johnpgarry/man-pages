@@ -1,0 +1,60 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright (c) 1992 Drew Eckhardt (drew@cs.colorado.edu), March 28, 1992
+.\" May be distributed under the GNU General Public License.
+.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
+.\" Modified Sat Jul 24 11:47:53 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH SWAPON 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+swapon, swapoff \- start/stop swaping to file/device
+.SH SYNOPSIS
+.B #include <unistd.h>
+.sp
+.BI "int swapon(const char *" path );
+.br
+.BI "int swapoff(const char *" path );
+.SH DESCRIPTION
+.B swapon
+sets the swap area to the file or block device specified by
+.IR path .
+
+.B swapoff
+stops swapping to the file or block device specified by
+.IR path .
+
+These functions may only be used by the super-user.
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+Many other errors can occur if
+.I path
+is not valid.
+
+.TP 0.8i
+.B EPERM
+The user is not the super-user, or more than
+.B MAX_SWAPFILES
+(defined to be 8 in Linux 0.99.11) are in use.
+.TP
+.B EINVAL
+is returned if 
+.I path 
+exists, but is neither a regular path nor a block device.
+.TP
+.B ENOENT
+is returned if 
+.I path 
+does not exist.
+.TP
+.B ENOMEM 
+is returned if there is insufficient memory to start swapping.
+.SH "CONFORMING TO"
+These functions are Linux specific.
+.SH NOTES
+The partition or path must be prepared with
+.BR mkswap (8).
+.SH "SEE ALSO"
+.BR mkswap "(8), " swapon "(8), " swapoff (8)

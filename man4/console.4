@@ -1,0 +1,21 @@
+.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" This file may be distributed under the GNU General Public License.
+.\" Modified Sat Jul 24 16:53:39 1993 by Rik Faith (faith@cs.unc.edu)
+.TH CONSOLE 4 "January 21, 1992" "Linux" "Linux Programmer's Manual"
+.SH NAME
+console \- console terminal
+.SH DESCRIPTION
+\fB/dev/console\fP is a character device with major number 4 and minor number
+0, usually of mode 0622 and owner root.tty.  It refers to the currently
+displayed virtual console terminal.
+.LP
+\fB/dev/tty[1-8]\fP are character devices for virtual console terminals,
+they have major number 4 and minor number 1 to 8, usually mode 0622 and owner
+root.tty.
+.SH FILES
+/dev/console
+.br
+/dev/tty[1-8]
+.SH "SEE ALSO"
+.BR mknod "(1), " chown "(1), " getty "(1), " termios "(2), "
+.BR tty "(4), " ttys (4)

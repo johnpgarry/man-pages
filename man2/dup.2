@@ -1,0 +1,71 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" This manpage is Copyright (C) 1992 Drew Eckhardt;
+.\"                               1993 Michael Haardt, Ian Jackson.
+.\" You may distribute it under the terms of the GNU General
+.\" Public Licence. It comes with NO WARRANTY.
+.\"
+.\" Modified Wed Jul 21 22:45:39 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH DUP 2 "21 July 1993" Linux "Linux Programmer's Manual"
+.SH NAME
+dup, dup2 \- duplicate a file descriptor
+.SH SYNOPSIS
+.nf
+.B #include <unistd.h>
+.sp
+.BI "int dup(int " oldfd );
+.BI "int dup2(int " oldfd ", int " newfd );
+.fi
+.SH DESCRIPTION
+.B dup " and " dup2
+create a copy of the file descriptor
+.IR oldfd .
+
+The old and new descriptors may be used interchangeably. They share
+locks, file position pointers and flags; for example, if the file
+position is modified by using
+.B lseek
+on one of the descriptors, the position is also changed for the other.
+
+The two descriptors do not share the close-on-exec flag, however.
+
+.B dup
+uses the lowest-numbered unused descriptor for the new descriptor.
+
+.B dup2
+.RI "makes " newfd " be the copy of " oldfd ", closing " oldfd
+first if necessary.
+.SH RETURN VALUE
+.BR dup " and " dup2
+return the new descriptor, or -1 if an error occurred (in which case,
+.I errno
+is set appropriately).
+.SH ERRORS
+.TP
+BADF
+.I oldfd
+isn't an open file descriptor, or
+.I newfd
+is out of the allowed range for file descriptors.
+.TP
+.B EMFILE
+The process already has the maximum number of file
+descriptors open and tried to open a new one.
+.SH WARNING
+The error returned by
+.B dup2
+is different to that returned by
+.BR fcntl( ..., F_DUPFD ,... )
+when
+.I newfd
+is out of range. On some systems
+.B dup2
+also sometimes returns
+.B EINVAL
+like
+.BR F_DUPFD .
+.SH CONFORMING TO
+SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+.SH SEE ALSO
+.BR F_DUPFD "(2), " fcntl "(2), " open "(2), " close (2).

@@ -1,0 +1,46 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" Portions extracted from linux/kernel/ioport.c (no copyright notice).
+.\" May be distributed under the GNU General Public License
+.TH IOPL 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+iopl \- change I/O privilege level
+.SH SYNOPSIS
+.B #include <unistd.h>
+.sp
+.BI "int iopl(int " level );
+.SH DESCRIPTION
+.B iopl
+changes the I/O privilege level of the current process, as specified in
+.IR level .
+
+This call is necessary to allow 8514-compatible X servers to run under
+Linux.  Since these X servers require access to all 65536 I/O ports, the
+.B ioperm
+call is not sufficient.
+
+In addition to granting unrestricted I/O port access, running at a higher
+I/O privilege level also allows the process to disable interrupts.  This
+will probably crash the system, and is not recommended.
+
+The I/O privilege level for a normal process is 0.
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP 0.8i
+.B EINVAL
+.I level
+is greater than 3.
+.TP
+.B EPERM
+The current user is not the super-user.
+.SH "NOTES FROM THE KERNEL SOURCE"
+.B iopl
+has to be used when you want to access the I/O ports beyond the 0x3ff
+range: to get the full 65536 ports bitmapped you'd need 8kB of
+bitmaps/process, which is a bit excessive.
+.SH SEE ALSO
+.BR ioperm (2)

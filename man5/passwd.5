@@ -1,0 +1,55 @@
+.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" This file may be distributed under the GNU General Public License.
+.\" Modified Sun Jul 25 10:46:28 1993 by Rik Faith (faith@cs.unc.edu)
+.TH PASSWD 5 "24 July 1993" "Linux" "Linux Programmer's Manual"
+.SH NAME
+passwd \- password file
+.SH DESCRIPTION
+.B Passwd
+is an ASCII file which contains a list of the system's users and the
+passwords they must use for access.  The password file should have read
+access for everyone, which is ok because of the encryption, but write
+access only for the superuser.  If you create a new login, leave the
+password field empty and use \fBpasswd\fP(2) to fill it.  A star or
+something like that in the password field means, that this user can not
+login via \fBlogin\fP(1).  If your root file system is on /dev/ram, you
+must save a changed password file to your root file system floppy, before
+you shutdown the system and check the access rights.  If you want to create
+user groups, their GID's must be equal and there must be an entry in
+\fI/etc/group\fP, or no group will exist.
+.PP
+There is one entry per line, and each line has the format:
+.sp
+.RS
+login_name:passwd:GID:UID:user_name:directory:shell
+.RE
+.sp
+The field descriptions are:
+.sp
+.RS
+.TP 1.0in
+login_name
+the name of the user on the system.
+.TP
+.B password
+the encrypted optional user password.
+.TP
+.B GID
+the numerical group ID for this user.
+.TP
+.B UID
+the numerical user ID.
+.TP
+.B user_name
+the (optional) comment field (often a full user name).
+.TP
+.B directory
+the user's $HOME directory.
+.TP
+.B shell
+the program to run at logon (if empty, use /bin/sh).
+.RE
+.SH FILES
+/etc/passwd
+.SH "SEE ALSO"
+.BR passwd "(1), " login "(1), " group (5)

@@ -1,0 +1,37 @@
+.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" May be distributed under the GNU General Public License
+.\" References consulted:
+.\"     Linux libc source code
+.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+.\"     386BSD man pages
+.\" Modified Sun Jul 25 10:40:44 1993 by Rik Faith (faith@cs.unc.edu)
+.TH STRCOLL 3  "April 12, 1993" "GNU" "Linux Programmer's Manual"
+.SH NAME
+strcoll \- compare two strings using the current locale
+.SH SYNOPSIS
+.nf
+.B #include <string.h>
+.sp
+.BI "int strcoll(const char *" s1 ", const char *" s2 );
+.fi
+.SH DESCRIPTION
+The \fBstrcoll()\fP function compares the two strings \fIs1\fP and
+\fIs2\fP.  It returns an integer less than, equal to, or greater 
+than zero if \fIs1\fP is found, respectively, to be less than, 
+to match, or be greater than \fIs2\fP.  The comparison is based on
+strings interpreted as appropriate for the program's current locale 
+for category \fILC_COLLATE\fP.  (See \fBsetlocale\fP(3)).
+.SH "RETURN VALUE"
+The \fBstrcoll()\fP function returns an integer less than, equal to, 
+or greater than zero if \fIs1\fP is found, respectively, to be less 
+than, to match, or be greater than \fIs2\fP, when both are interpreted
+as appropriate for the current locale.
+.SH "CONFORMING TO"
+SVID 3, BSD 4.3, ISO 9899
+.SH NOTES
+The Linux C Library currently only understands the \fI"C"\fP or
+\fI"POSIX"\fP locales in which \fBstrcoll()\fP is equivalent to
+\fBstrcmp()\fP.
+.SH SEE ALSO
+.BR bcmp "(3), " memcmp "(3), " strcasecmp "(3), " strcmp (3),
+.BR strxfrm "(3), " setlocale (3)

@@ -1,0 +1,137 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright (c) 1992 Drew Eckhardt (drew@cs.colorado.edu), March 28, 1992
+.\" May be distributed under the GNU General Public License.
+.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
+.\" Modified Wed Jul 21 20:18:11 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH CHMOD 2 "21 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+chmod, fchmod \- change permissions of a file
+.SH SYNOPSIS
+.B #include <sys/types.h>
+.br
+.B #include <sys/stat.h>
+.sp
+.BI "int chmod(const char *" path ", mode_t " mode );
+.br
+.BI "int fchmod(int " fildes ", mode_t " mode );
+.SH DESCRIPTION
+The mode of the file given by
+.I path
+or referenced by
+.I filedes
+is changed.
+
+Modes are specified by
+.IR or'ing
+the following:
+.RS
+.sp
+.TP 1.0i
+S_ISUID
+04000 set user ID on execution
+.TP
+S_ISGID
+02000 set group ID on execution
+.TP
+S_ISVTX
+01000 sticky bit
+.TP
+S_IRUSR (S_IREAD)
+00400 read by owner
+.TP
+S_IWUSR (S_IWRITE)
+00200 write by owner
+.TP
+S_IXUSR (S_IEXEC)
+00100 execute/search by owner
+.TP
+S_IRGRP
+00040 read by group
+.TP
+S_IWGRP
+00020 write by group
+.TP
+S_IXGRP
+00010 execute/search by group
+.TP
+S_IROTH
+00004 read by others
+.TP
+S_IWOTH
+00002 write by others
+.TP
+S_IXOTH
+00001 execute/search by others
+.sp
+.RE
+
+The effective UID of the process must be zero or must match the owner of
+the file.
+
+The effective UID or GID must be appropriate for setting execution bits.
+
+Depending on the file system, set user ID and set group ID execution bits
+may be turned off if a file is written.  On some file systems, only the
+super-user can set the sticky bit, which may have a special meaning (i.e.,
+for directories, a file can only be deleted by the owner or the super-user).
+
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+Depending on the file system, other errors can be returned.  The more
+general errors for
+.B chmod
+are listed below:
+
+.TP 0.8i
+.B EPERM
+The effective UID does not match the owner of the file, and is not zero.
+.TP
+.B EROFS
+The named file resides on a read-only file system.
+.TP
+.B EFAULT
+.I path
+points outside your accessible address space.
+.TP
+.B ENAMETOOLONG
+.I path
+is too long.
+.TP
+.B ENOENT
+The file does not exist.
+.TP
+.B ENOMEM
+Insufficient kernel memory was available.
+.TP
+.B ENOTDIR
+A component of the path prefix is not a directory.
+.TP
+.B EACCES
+Search permission is denied on a component of the path prefix.
+.TP
+.B ELOOP
+.I path
+contains a circular reference (i.e., via a symbolic link)
+.PP
+The general errors for
+.B fchmod
+are listed below:
+.TP 0.8i
+.B EBADF
+The descriptor is not value.
+.TP
+.B ENOENT
+See above.
+.TP
+.B EPERM
+See above.
+.TP
+.B EROFS
+See above.
+.SH "SEE ALSO"
+.BR open "(2), " chown "(2), " stat "(2) "

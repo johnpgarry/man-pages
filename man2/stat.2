@@ -1,0 +1,181 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright (c) 1992 Drew Eckhardt (drew@cs.colorado.edu), March 28, 1992
+.\" May be distributed under the GNU General Public License.
+.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
+.\" Modified Sat Jul 24 10:54:27 1993 by Rik Faith (faith@cs.unc.edu)
+.\" 
+.TH STAT 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+stat, fstat, lstat \- get file status
+.SH SYNOPSIS
+.B #include <sys/stat.h>
+.br
+.B #include <unistd.h>
+.sp
+.BI "int stat(const char *" file_name ", struct stat *" buf );
+.br
+.BI "int fstat(int " filedes ", struct stat *" buf );
+.br
+.BI "int lstat(const char *" file_name ", struct stat *" buf );
+.SH DESCRIPTION
+.BR stat ", " fstat ", and " lstat
+return a
+.I stat
+structure, which is declared as follows:
+.PP
+.RS
+.nf
+struct stat
+{
+    dev_t         st_dev;      /* device */
+    ino_t         st_ino;      /* inode */
+    umode_t       st_mode;     /* protection */
+    nlink_t       st_nlink;    /* number of hard links */
+    uid_t         st_uid;      /* user ID of owner */
+    gid_t         st_gid;      /* group ID of owner */
+    dev_t         st_rdev;     /* device type (if inode device) */
+    off_t         st_size;     /* total size, in bytes */
+    unsigned long st_blksize;  /* blocksize for filesystem I/O */
+    unsigned long st_blocks;   /* number of blocks allocated */
+    time_t        st_atime;    /* time of last access */
+    time_t        st_mtime;    /* time of last modification */
+    time_t        st_ctime;    /* time of last change */
+};
+.fi
+.RE
+.PP
+Not all of the Linux filesystems implement all of the time fields.
+Traditionally,
+.I st_atime
+is changed by
+.BR mknod "(2), " utime "(2), " read "(2), " write "(2), and " truncate (2).
+
+Traditionally,
+.I st_mtime
+is changed by
+.BR mknod "(2), " utime "(2), and " write (2).
+The
+.I st_mtime
+is
+.I not
+changed for changes in owner, group, hard link count, or mode.
+
+Traditionally,
+.I st_ctime
+is changed by writing or by setting inode information (i.e., owner, group,
+link count, mode, etc.).
+
+The following flags are defined for the
+.I st_mode
+field:
+
+.RS
+.TP 0.8i
+S_IFMT
+0170000 type of file
+.TP
+S_IFSOCK
+0140000 socket
+.TP
+S_IFLNK
+0120000 symbolic link
+.TP
+S_IFREG
+0100000 regular file
+.TP
+S_IFBLK
+0060000 block device
+.TP
+S_IFDIR
+0040000 directory
+.TP
+S_IFCHR
+0020000 chracter device
+.TP
+S_IFIFO
+0010000 fifo
+.TP
+S_ISUID
+04000 set user ID on execution
+.TP
+S_ISGID
+02000 set group ID on execution
+.TP
+S_ISVTX
+01000 sticky bit
+.TP
+S_IRUSR (S_IREAD)
+00400 read by owner
+.TP
+S_IWUSR (S_IWRITE)
+00200 write by owner
+.TP
+S_IXUSR (S_IEXEC)
+00100 execute/search by owner
+.TP
+S_IRGRP
+00040 read by group
+.TP
+S_IWGRP
+00020 write by group
+.TP
+S_IXGRP
+00010 execute/search by group
+.TP
+S_IROTH
+00004 read by others
+.TP
+S_IWOTH
+00002 write by others
+.TP
+S_IXOTH
+00001 execute/search by others
+.RE
+.PP
+And the following macros are defined to utilize those fields:
+.sp
+.nf
+#define S_ISLNK(m)	(((m) & S_IFMT) == S_IFLNK)
+#define S_ISREG(m)	(((m) & S_IFMT) == S_IFREG)
+#define S_ISDIR(m)	(((m) & S_IFMT) == S_IFDIR)
+#define S_ISCHR(m)	(((m) & S_IFMT) == S_IFCHR)
+#define S_ISBLK(m)	(((m) & S_IFMT) == S_IFBLK)
+#define S_ISFIFO(m)	(((m) & S_IFMT) == S_IFIFO)
+#define S_ISSOCK(m)	(((m) & S_IFMT) == S_IFSOCK)
+.fi
+.PP
+.B stat
+stats the file pointed to by 
+.I file_name
+and fills in
+.IR buf .
+
+.B lstat
+is identical to
+.BR stat ,
+only the link itself is stated, not the file that is obtained by tracing
+the links.
+
+.B fstat
+is identical to stat, only the open file pointed to by 
+.I filedes
+is stated in place of 
+.IR file_name .
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP 0.8i
+.B EBADF
+.I filedes
+is bad.
+.TP
+.B ENOENT
+File does not exist.
+.SH "CONFORMING TO"
+SVID (not \fBlstat()\fP), AT&T (not \fBlstat()\fP), POSIX (not
+\fBlstat()\fP), X/OPEN (not \fBlstat()\fP), BSD 4.3
+.SH "SEE ALSO"
+.BR chmod "(2), " chown "(2), " readlink "(2), " utime (2)

@@ -1,0 +1,63 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" May be distributed under the GNU General Public License
+.TH MOUNT 2 "23 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+mount, umount \- mount and unmount filesystems.
+.SH SYNOPSIS
+.B #include <sys/mount.h>
+.sp
+.BI "int mount(const char *" specialfile ", const char * " dir
+.BI ", const char * " filesystemtype ", unsigned long " rwflag
+.BI ", const void * " data );
+.sp
+.BI "int umount(const char *" specialfile );
+.SH DESCRIPTION
+.B mount
+attaches the filesystem specified by
+.I specialfile
+(which is often a device name)
+to the directory specified by
+.IR dir .
+
+.B unmount
+removes the attachement of the filesystem specified by
+.IR specialfile .
+
+Only the super-user may mount and unmount filesystems.
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+The errors are far too numerous to completely list here.  Further, each
+filesystem type may have its own special errors and its own special
+behavior.  See the kernel source code for details.
+
+.TP 0.8i
+.B EPERM
+The user is not the super-user.
+.TP
+.B ENODEV
+.I Specialfile
+is not valid.
+.TP
+.B ENOTBLK
+.I Specialfile
+is not a block device (if a device was required).
+.TP
+.B EACCES
+Permission to read the inode is not available.
+.TP
+.B ENXIO
+The major number of
+.I specialfile
+is out of range.
+.TP
+.B EINVAL
+A parameter was invalid.
+.SH "CONFORMING TO"
+These function are completely Linux-specific.
+.SH "SEE ALSO"
+.BR mount "(8), " umount (8)

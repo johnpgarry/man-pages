@@ -1,0 +1,96 @@
+.\" Copyright (c) 1993 Luigi P. Bai (lpb@softint.com) July 28, 1993
+.\" May be distributed under the GNU General Public License.
+.\" Modified Wed Jul 28 11:06:29 1993, Rik Faith (faith@cs.unc.edu)
+.TH SHMOP 2 "July 28, 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+shmop, shmat, shmdt \- shared memory operations
+.SH SYNOPSIS
+.ad l
+.B #include <sys/ipc.h>
+.sp
+.B #include <sys/shm.h>
+.sp
+.B "char *shmat (int shmid, char *shmaddr, int shmflg);"
+.sp
+.BI "int shmdt(char *" shmaddr );
+.ad b
+.SH DESCRIPTION
+.B shmat()
+maps a shared segment into the process's address space. Upon success,
+the address of the mapped segment is returned.
+.PP
+If
+.I shmaddr
+is 0, then the system finds an unmapped region to map the segment into.
+If \fIshmaddr\fP is not 0 then the address must be page-aligned, or
+.I shmflg
+must specify
+.B SHM_RND
+to round \fIshmaddr\fP DOWN to the nearest page.
+.PP
+If 
+.I shmflg
+specifies
+.B SHM_RDONLY
+then the segment is mapped in for reading only; otherwise, both read
+and write access is allowed.
+.PP
+.B shmdt()
+detaches an already mapped-in segment.
+.I shmaddr
+must be a valid address returned by
+.BR shmat() .
+.SH SYSTEM CALLS
+.TP
+.B fork()
+After a
+.B fork()
+the child inherits the attached shared memory segments.
+.TP
+.B exec()
+After an
+.B exec()
+all attached shared memory segments are detached (not destroyed).
+.TP
+.B exit()
+Upon
+.B exit()
+all attached shared memory segments are detached (not destroyed).
+.PP
+.SH "RETURN VALUE"
+.B shmat()
+returns the mapped address on success, -1 on error.
+.PP
+.B shmdt()
+returns 0 on success, -1 on error.
+.SH ERRORS
+.sp
+.B shmat()
+returns the following errors:
+.TP 0.8i
+.B EACCESS
+is returned if the user does not have permission to access the segment.
+.TP
+.B EINVAL
+is returned if 
+.I shmid
+is invalid, 
+.I shmaddr
+is not page-aligned and \fBSHM_RND\fP was not specified, or the 
+segment could not be mapped into the address space.
+.TP
+.B EIDRM
+is returned if \fIshmid\fP points to a removed identifier.
+.TP
+.B ENOMEM
+is returned if no memory could be allocated for descriptor or page tables.
+.PP
+.PP
+.B shmdt()
+returns the following errors:
+.TP
+.B EINVAL
+is returned if there is no shared memory segment mapped in at address
+.IR shmaddr .
+.SH SEE ALSO
+.BR shmget "(2), " shmctl (2)

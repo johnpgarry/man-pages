@@ -1,0 +1,30 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" May be distributed under the GNU General Public License
+.TH GETHOSTID 2 "23 July1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+gethostid, sethostid \- get/set host's Internet number [NOT IMPLEMENTED]
+.SH SYNOPSIS
+.B #include <unistd.h>
+.sp
+.B long int gethostid(void);
+.br
+.BR "int sethostid(long int " id )
+.SH DESCRIPTION
+.BR WARNING :
+These function are not implemented in the Linux 0.99.11 kernel.
+
+Get or set a unique 32-bit identifier for the current machine.
+
+Although prototypes are present in
+.IR /usr/include/unistd.h ,
+neither the 0.99.11 kernel, nor the DLL 4.4.1 libraries defines this
+function.
+.SH "CONFORMING TO"
+POSIX.1 does not define these functions, but ISO/IEC 9945-1:1990 mentions
+them in B.4.4.1.  In general, they deal with a 32-bit integer that is
+supposed to be unique among all machines in existence, and is often the
+Internet address of the machine.
+.SH SEE ALSO
+.BR hostid "(1), " gethostbyname (3)

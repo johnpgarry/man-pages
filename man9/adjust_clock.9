@@ -1,0 +1,29 @@
+.\" -*- nroff -*-
+.\"
+.\" (C)opyright 1993 by Dan Miner (dminer@nyx.cs.du.edu)
+.\"
+.\"  Permission is granted to freely distribute or modify this file
+.\"  for the purpose of improving Linux or its documentation efforts.
+.\"  If you modify this file, please put a date stamp and HOW you
+.\"  changed this file.  Thanks.   -DM
+.\"
+.TH ADJUST_CLOCK 9 "July 7, 1993" "Linux 0.99.10" "Kernel Reference Guide"
+.SH NAME
+adjust_clock \- Adjusts startup time counter to tick in GMT
+.SH SYNOPSIS
+.nf
+linux/kernel/sys.c
+
+void adjust_clock();
+.fi
+.SH DESCRIPTION
+This routine adjusts the startup time by adding the
+time zone information to it.  The goal is to get the startup
+time ticking in GMT time.
+.SH NOTES
+This routine is called from \fIsettimeofday\fP(2) when the
+timezone information is \fBfirst\fP set.
+.SH AUTHOR
+Ty's Tytso (?)
+.SH "SEE ALSO"
+.IR settimeofday "(2)"

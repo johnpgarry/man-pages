@@ -1,0 +1,25 @@
+.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" May be distributed under the GNU General Public License
+.\" References consulted:
+.\"     Linux libc source code
+.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+.\"     386BSD man pages
+.TH BCOPY 3  "April 9, 1993" "GNU" "LINUX Programmer's Manual"
+.SH NAME
+bcopy \- copy byte strings
+.SH SYNOPSIS
+.nf
+.B #include <string.h>
+.sp
+.B void bcopy (const void *src, void *dest, int n);
+.fi
+.SH DESCRIPTION
+The \fBbcopy()\fP function copies the first \fIn\fP bytes of the source
+string \fIsrc\fP to the destination string \fIdest\fP.  If \fIn\fP is
+zero, no bytes are copied.
+.SH "RETURN VALUE"
+The \fBbcopy()\fP function returns no value.
+.SH "CONFORMING TO"
+BSD 4.3
+.SH SEE ALSO
+memccpy(3), memcpy(3), memmove(3), strcpy(3), strncpy(3)

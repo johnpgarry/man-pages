@@ -1,0 +1,47 @@
+.\" -*- nroff -*-
+.\"
+.\" Copyright 1993 by Dan Miner (dminer@nyx.cs.du.edu)
+.\"
+.\"  Permission is granted to freely distribute or modify this file
+.\"  for the purpose of improving Linux or its documentation efforts.
+.\"  If you modify this file, please put a date stamp and HOW you
+.\"  changed this file.  Thanks.   -DM
+.\"
+.\" $Id: filesystems.9,v 1.1 1993/07/15 07:19:58 dminer Exp $
+.\"
+.TH FILESYSTEMS 9 "July 12, 1993" "Linux 0.99.10" "Kernel Reference Guide"
+.SH NAME
+filesystems \- details the table of configured file systems
+.SH SYNOPSIS
+.nf
+linux/fs/filesystems.c
+
+From #include <linux/fs.h>
+
+struct file_system_type {
+   struct super_block *(*read_super) (struct super_block *, void *, int);
+   char *name;
+   int requires_dev;
+};
+.fi
+.SH DESCRIPTION
+This source code makes a data structure call \fIfile_systems\fP[] which
+contain all the configured filesystems for the kernel.  It is used primarily
+in linux/fs/super.c for many of the mounting of filesystems functions.
+.SS "The meanings"
+This first member, in struct file_system_type, is a function pointer to
+a routine that will read in the super_block.  A super_block generically
+means an i-node or special place on the device where information about
+the overall filesystem in stored.
+.PP
+The \fIname\fP is just the string representation of the name of a
+specific filesystem, e.g. "ext2" or "minix".
+.PP
+The final member, int \fIrequires_dev\fP, is a boolean value.  If it is
+true then the filesystem requires a block device (?).  For false, it
+is unclear what happens but an unname device is used, e.g. proc and
+nfs is this way.
+.SH AUTHOR
+Linus Torvalds
+.SH "SEE ALSO"
+Fill in later.

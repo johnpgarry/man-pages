@@ -1,0 +1,35 @@
+.\" (c) 1993 by Thomas Koenig (ig25@rz.uni-karlsruhe.de)
+.\" This file can be distributed under the terms of the GNU General Public
+.\" License.
+.\" Modified Sat Jul 24 21:42:42 1993 by Rik Faith (faith@cs.unc.edu)
+.TH ASSERT 3  "April 4, 1993" "GNU" "Linux Programmer's Manual"
+.SH NAME
+assert \- Abort the program if assertion is false.
+.SH SYNOPSIS
+.nf
+.B #include <assert.h>
+.sp
+.BI "void assert (int " "expression" ");"
+.fi
+.SH DESCRIPTION
+.B assert()
+prints an error message to standard output and terminates the program
+by calling
+.B abort()
+if
+.B expression
+is false (i.e. nonzero).  This only happens when the macro
+.B NDEBUG
+is undefined.
+.SH "RETURN VALUE"
+No value is returned.
+.SH "CONFORMS TO"
+ANSI - C
+.SH "BUGS"
+.B assert()
+is implemented as a macro; if the expression tested has side - effects,
+program behaviour will be different depending on wether
+.B NDEBUG
+is defined. This may create Heisenbugs which go away when debugging is turned on.
+.SH SEE ALSO
+.BR exit "(3), " abort (3)

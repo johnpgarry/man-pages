@@ -1,0 +1,28 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" Portions from /usr/include/unistd.h are
+.\"               Copyright (C) 1991, 1992 Free Software Foundation, Inc.
+.\" May be distributed under the GNU General Public License
+.TH GETPAGESIZE 2 "23 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+getpagesize \- get system page size
+.SH SYNOPSIS
+.B #include <unistd.h>
+.sp
+.B size_t getpagesize(void);
+.SH DESCRIPTION
+Return the number of bytes in a page.  This is the system's page size,
+which is not necessarily the same as the hardware page size.
+.SH NOTES
+.B getpagesize
+is implemented as a library function in DLL 4.4.1.  Depending on what is
+defined when the library is compiled, this function returns
+.B EXEC_PAGESIZE
+(set to 4096 in Linux 0.99.11),
+.B NBPG
+(set to 4096 in Linux 0.99.11), or
+.B NBPC
+(not defined in Linux 0.99.11 or DLL 4.4.1 libraries).
+.SH SEE ALSO
+.BR sbrk (2)

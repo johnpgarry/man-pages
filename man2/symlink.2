@@ -1,0 +1,119 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" This manpage is Copyright (C) 1992 Drew Eckhardt;
+.\"                               1993 Michael Haardt, Ian Jackson.
+.\" You may distribute it under the terms of the GNU General
+.\" Public Licence. It comes with NO WARRANTY.
+.\"
+.\" Modified Sat Jul 24 12:01:10 1993 by Rik Faith
+.\"
+.TH SYMLINK 2 "24 July 1993" Linux "Linux Programmer's Manual"
+.SH NAME
+symlink \- make a new name for a file
+.SH SYNOPSIS
+.B #include <unistd.h>
+.sp
+.BI "int symlink(const char *" oldpath ", const char *" newpath );
+.SH DESCRIPTION
+.B symlink
+creates a symbolic link named
+.I oldpath
+which contains
+.IR newpath .
+
+Symbolic links are interpreted at run-time, as if the contents of the
+link were substituted into the path being followed to find a file or
+directory.
+
+Symbolic links may contain
+.B ..
+path components, which (if used at the start of the link) refer to the
+parent directories of that in which the link resides.
+
+A symbolic link (also known as a soft link) may point to an existing
+file or to a nonexistent one; the latter case is known as a dangling
+link.
+
+The permissions of a symbolic link are irrelevant; the ownership is
+ignored when following the link, but is checked when removal or
+renaming of the link is requested and the link is in a directory with
+the sticky bit set.
+
+If
+.I newpath
+exists it will
+.I not
+be overwritten.
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP 0.8i
+.B EPERM
+The filesystem containing
+.IR pathname
+does not support the creation of symbolic links.
+.TP
+.B EFAULT
+.IR oldpath " or " newpath " points outside your accessible address space."
+.TP
+.B EACCES
+Write access to the directory containing
+.I newpath
+is not allowed for the process's effective uid, or one of the
+directories in
+.IR newpath
+did not allow search (execute) permission.
+.TP
+.B ENAMETOOLONG
+.IR oldpath " or " newpath " was too long."
+.TP
+.B ENOENT
+A directory component in
+.I newpath
+does not exist or is a dangling symbolic link, or
+.I oldpath
+is the empty string.
+.TP
+.B ENOTDIR
+A component used as a directory in
+.IR newpath
+is not, in fact, a directory.
+.TP
+.B ENOMEM
+Insufficient kernel memory was available.
+.TP
+.B EROFS
+The file is on a read-only filesystem.
+.TP
+.B EEXIST
+.I newpath
+already exists.
+.TP
+.B ELOOP
+.IR newpath
+contains a reference to a circular symbolic link, ie a symbolic link
+whose expansion contains a reference to itself.
+.TP
+.B ENOSPC
+The device containing the file has no room for the new directory
+entry.
+.SH NOTES
+No checking of
+.I oldpath
+is done.
+
+Deleting the name referred to by a symlink will actually delete the
+file (unless it also has other hard links). If this behaviour is not
+desired, use
+.BR link .
+.SH CONFORMING TO
+SVID, AT&T, POSIX, BSD 4.3
+.SH BUGS
+See
+.BR open (2)
+re multiple files with the same name, and NFS.
+.SH SEE ALSO
+.BR link "(2), " unlink "(2), " rename "(2), " open (2),
+.BR lstat "(2), " ln "(1), " link (8).

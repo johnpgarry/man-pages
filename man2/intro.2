@@ -1,0 +1,118 @@
+.\"
+.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" This file may be distributed under the GNU General Public License.
+.\"
+.\" Tue Jul  6 12:42:46 MDT 1993 (dminer@nyx.cs.du.edu)
+.\" Added "Calling Directly" and supporting paragraphcs
+.\"
+.\" Modified Sat Jul 24 15:19:12 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH INTRO 2
+.SH NAME
+into \- Introduction to system calls
+.SH DESCRIPTION
+This chapter describes Linux system calls.
+.SS "Calling Directly"
+In most cases, it is unnecessary to invoke a system call directly, but there
+are times with the Standand C library does not implement a nice function call
+for you.
+.SS "Synopsis"
+#include <linux/unistd.h>
+
+desired system call
+
+A _syscall macro
+.SS Setup
+The important thing to know about a system call is its prototype.  You
+need to know how many arguments, their types, and the function return type.
+There are six macros that make the actual call into the system easier.
+They have the form:
+.sp
+.RS
+_syscall\fIX\fP(\fItype\fP,\fIname\fP,\fIatype\fP,\fIa\fP)
+.RS
+.HP 1.0i
+where \fIX\fP is 0-5, which are the number of arguments taken by the 
+system call
+.HP
+\fItype\fP is the return type of the system call
+.HP
+\fIname\fP is the name of the system call
+.HP
+\fIatype\fP is the first argument's type
+.HP
+\fIa\fP is the name of the first argument
+.RE
+.RE
+.sp
+These macros create a function called \fIname\fP with the arguments you
+specify.  Once you include the _syscall() in your source file,
+you call the system call by \fIname\fP.
+.SH EXAMPLE
+.nf
+.sp
+#include <stdio.h>
+#include <linux/unistd.h>	/* for _syscallX macros/related stuff */
+#include <linux/kernel.h>	/* for struct sysinfo */
+
+_syscall1(int, sysinfo, struct sysinfo *, info);
+
+/* Note, if copy directly from the nroff source; remember, to
+REMOVE the extra backslashes in the printf statement.                */
+
+int main(void)
+{
+	struct sysinfo s_info;
+	int error;
+
+	error = sysinfo(&s_info);
+	printf("code error = %d\\n", error);
+	printf("uptime = %d\\n1 min load = %d\\n5 min load = %d\\n"
+		"15 min load = %d\\nTotal ram = %d\\nFree ram = %d\\n"
+		"shared ram = %d\\nMemory in buffers = %d\\nTotal swap = %d\\n"
+		"Free swap = %d\\nNumber of processes = %d\\n",
+		s_info.uptime, s_info.loads[0],
+		s_info.loads[1], s_info.loads[2],
+		s_info.totalram, s_info.freeram,
+		s_info.sharedram, s_info.bufferram,
+		s_info.totalswap, s_info.freeswap,
+		s_info.procs);
+	return(0);
+}
+.fi
+.SH "Sample Output"
+.nf
+code error = 0
+uptime = 147851
+1 min load = 0
+5 min load = 0
+15 min load = 0
+Total ram = 5238784
+Free ram = 495616
+shared ram = 1191936
+Memory in buffers = 2965504
+Total swap = 5218304
+Free swap = 4849664
+Number of processes = 14
+.fi
+.SH NOTES
+The _syscall() macros DO NOT produce a prototype.  You may have to
+create one, especially for C++ users.
+.sp
+System calls are not required to return only positive or negative error
+codes.  You need to read the source to be sure how it will return errors.
+Usually, it is the negative of a standard error code.  ie.  -EPERM.
+.sp
+Some system calls require more than six arguments, these are handle
+differently.  And at this moment I don't know how... *smile*
+.sp
+When defining a system call, the arguments types MUST be passed by-value
+or by-pointer (for aggregates like structs).
+.SH FILES
+.nf
+linux/include/linux/unistd.h		or
+/usr/include/linux/unistd.h
+.fi
+.SH AUTHORS
+Look at the header of the manual page for the author(s) and copyright
+conditions.  Note that these can be different from page to page!

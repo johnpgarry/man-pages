@@ -1,0 +1,71 @@
+.\" (c) 1993 by Thomas Koenig (ig25@rz.uni-karlsruhe.de)
+.\" This file can be distributed under the terms of the GNU General Public
+.\" License.
+.\" Modified Sat Jul 24 17:34:08 1993 by Rik Faith (faith@cs.unc.edu)
+.TH SIGNAL 7  "April 24, 1993" "Linux" "Linux Programmer's Manual"
+.SH NAME
+signal \- list of available signals
+.SH DESCRIPTION
+Linux supports the following signals:
+.sp
+.PP
+.TS
+l | l | l | l
+_ | _ | _ | _
+lB | r | l | l .
+Signal name	Value	Action	Comment
+SIGHUP	1	A	Hangup detected
+SIGINT	2	A	Interrupt from keyboard
+SIGQUIT	3	A	Quit from keyboard
+SIGILL	4	A	Illegal Instruction
+SIGTRAP	5	CG	Trace/breakpont trap
+SIGABRT	6	C	Abort
+SIGUNUSED	7	AG	Unused signal
+SIGFPE	8	C	Floating point exception
+SIGKILL	9	AEF	Termination signal
+SIGUSR1	10	A	User\-defined signal 1
+SIGSEGV	11	C	Invalid memory reference
+SIGUSR2	12	A	User\-defined signal 2
+SIGPIPE	13	A	Write to pipe with no readers
+SIGALRM	14	A	Timer signal from alarm(1).
+SIGTERM	15	A	Termination signal
+SIGSTKFLT	16	AG	Stack fault on coprocessor
+SIGCHLD	17	B	Child terminated
+SIGCONT	18		Continue if stopped
+SIGTSTOP	19	DEF	Stop process
+SIGTSTP	20	D	Stop typed at tty
+SIGTTIN	21	D	tty input for backgroud process
+SIGTTOU	22	D	tty output for background process
+SIGIO	23	AG	I/O error
+SIGXCPU	24	AG	CPU time limit exceeded
+SIGXFSZ	25	AG	File size limit exceeded
+SIGVTALRM	26	AG	Virtual time alarm (???)
+SIGPROF	27	AG	Profile signal
+SIGWINCH	29	BG	Window resize signal
+.TE
+.PP
+The letters in the "Action" column have the following meanings:
+.IP A
+Default action is to terminate the process.
+.IP B
+Default action is to ignore the signal.
+.IP C
+Default action is to dump core.
+.IP D
+Default action is to stop the process.
+.IP E
+Signal cannot be caught.
+.IP F
+Signal cannot be ignored.
+.IP G
+Not a POSIX.1 conformant signal.
+.SH "CONFORMS TO"
+POSIX.1
+.SH BUGS
+A
+.B SIGBUS
+is missing; this is because the 386 hardware does not generate such a
+signal, but makes porting from other architectures unnecessarily
+difficult.
+.SH SEE ALSO
+.BR find "(1), " ln "(1), " mount(1)

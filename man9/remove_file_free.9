@@ -1,0 +1,25 @@
+.\" -*- nroff -*-
+.\"
+.\" Copyright 1993 by Dan Miner (dminer@nyx.cs.du.edu)
+.\"
+.\"  Permission is granted to freely distribute or modify this file
+.\"  for the purpose of improving Linux or its documentation efforts.
+.\"  If you modify this file, please put a date stamp and HOW you
+.\"  changed this file.  Thanks.   -DM
+.\"
+.\" $Id: remove_file_free.9,v 1.1 1993/07/13 05:01:29 dminer Exp $
+.\"
+.TH REMOVE_FILE_FREE 9 "July 11, 1993" "Linux 0.99.10" "Kernel Reference Guide"
+.SH NAME
+remove_file_free \- remove a file table entry from the linked list
+.SH SYNOPSIS
+linux/fs/file_table.c
+
+static void remove_file_free(struct file *\fIfile\fP);
+.SH DESCRIPTION
+This routine removes the \fIfile\fP from the table.  This is used
+mostly for moving a file to the ``end'' of the list.
+.SH AUTHOR
+Linus Torvalds
+.SH "SEE ALSO"
+.IR insert_file_free "(9), " put_file_last (9)

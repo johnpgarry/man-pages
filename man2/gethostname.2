@@ -1,0 +1,62 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" May be distributed under the GNU General Public License
+.TH GETHOSTNAME 2 "23 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+gethostname, sethostname \- get/set host name
+.SH SYNOPSIS
+.B #include <unistd.h>
+.sp
+.BI "int gethostname(char *" name ", size_t " len );
+.br
+.BI "int sethostname(const char *" name ", size_t " len );
+.SH DESCRIPTION
+These functions are used to access or to change the host name of the
+current processor.
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP
+.B EINVAL
+For
+.BR gethostname ,
+.I name
+points to
+.B NULL
+or
+.I name
+is longer than
+.IR len .
+.TP
+.B EPERM
+For
+.BR sethostname ,
+the caller was not the superuser.
+.TP
+.B EINVAL
+For
+.BR sethostname ,
+.I len
+was too long.
+.SH "CONFORMING TO"
+POSIX.1 does not define these functions, but ISO/IEC 9945-1:1990 mentions
+them in B.4.4.1.
+.SH BUGS
+.B gethostname
+is not compliant with other implementations, since they always return
+.I len
+bytes, even if
+.I name
+is longer.  Linux, however, returns
+.B EINVAL
+in this case (as of DLL 4.4.1 libraries).
+.SH NOTES
+Under Linux,
+.B gethostname
+is implemented at the library level by calling
+.BR uname (2).
+.SH "SEE ALSO"
+.BR getdomainname "(2), " setdomainname "(2), " uname (2)

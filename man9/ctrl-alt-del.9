@@ -1,0 +1,34 @@
+.\" -*- nroff -*-
+.\"
+.\" (C)opyright 1993 by Dan Miner (dminer@nyx.cs.du.edu)
+.\"
+.\"  Permission is granted to freely distribute or modify this file
+.\"  for the purpose of improving Linux or its documentation efforts.
+.\"  If you modify this file, please put a date stamp and HOW you
+.\"  changed this file.  Thanks.   -DM
+.\"
+.TH CRTL_ALT_DEL 9 "July 6, 1993" "Linux 0.99.10" "Kernel Reference Guide"
+.SH NAME
+ctrl_alt_del \- routes the keyboard interrupt
+.B ctrl-alt-del 
+key sequence
+.SH SYNOPSIS
+.B linux/kernel/sys.c
+
+.B void ctrl_alt_del(void);
+.SH DESCRIPTION
+This simple routine tests the variable \fIC_A_D\fP for a true/false
+condition.  If it is true then a hard reset is done by the system.
+Otherwise, a signal SIGINT is sent to the process with the process
+ID 1, usually a program called \fBinit\fP.
+.SH WARNINGS
+\fIThis routine is in interrupt mode.  It can not sync() your system.
+Data loss may occur.  It is recommended that you 
+configure your system to send a signal
+to \fBinit\fI, where you can control the shutdown.
+.SH NOTES
+The default of this function is to do hard resets immediately.
+.SH AUTHOR
+Linus Torvalds
+.SH "SEE ALSO"
+.IR reboot "(2), " reset_hard_now "(9), " sync "(2)"

@@ -1,0 +1,39 @@
+.\" (c) 1993 by Thomas Koenig (ig25@rz.uni-karlsruhe.de)
+.\" This file can be distributed under the terms of the GNU General Public
+.\" License.
+.\" Modified Sat Jul 24 18:16:02 1993 by Rik Faith (faith@cs.unc.edu)
+.TH SLEEP 3  "April 7, 1993" "GNU" "Linux Programmer's Manual"
+.SH NAME
+sleep \- Sleep for the specified number of seconds
+.SH SYNOPSIS
+.nf
+.B #include <unistd.h>
+.sp
+.BI "unsigned int sleep(unsigned int " "seconds" ");"
+.fi
+.SH DESCRIPTION
+.B sleep()
+makes the current process sleep until
+.I seconds
+seconds have elapsed or a signal arrives which is not ignored.
+.SH "RETURN VALUE"
+Zero if the requested time has elapsed, or the number of seconds left to sleep.
+.SH "CONFORMS TO"
+POSIX.1
+.SH "BUGS"
+.B sleep()
+may be implemented using
+.BR SIGALRM ;
+mixing calls to
+.B alarm()
+and
+.B sleep() 
+is a bad idea.
+.PP
+Using
+.B longjmp()
+from a signal handler or modifying the handling of 
+.B SIGALRM
+while sleeping will cause undefined results.
+.SH SEE ALSO
+.BR signal "(2), " alarm (2)

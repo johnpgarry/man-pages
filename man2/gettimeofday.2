@@ -1,0 +1,129 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright (c) 1992 Drew Eckhardt (drew@cs.colorado.edu), March 28, 1992
+.\" May be distributed under the GNU General Public License.
+.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
+.\" Modified Fri Jul 23 21:26:27 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH GETTIMEOFDAY 2 "23 July 1993" "Linux" "Linux Programmer's Manual"
+.SH NAME
+gettimeofday, settimeofday \- get / set time
+.SH SYNOPSIS
+.B #include <sys/types.h>
+.br
+.B #include <unistd.h>
+.sp
+.BI "int gettimeofday(struct timeval *" tv ", struct timezone *" tz );
+.br
+.BI "int settimeofday(const struct timeval *" tv
+.BI ", const struct timezone *" tz );
+.SH DESCRIPTION
+.B gettimeofday
+and
+.B settimeofday
+can set the time as well as a timezone.      
+.I tv
+is a 
+.B timeval 
+struct, as specififed  in /usr/include/sys/time.h:
+.sp
+.nf
+struct timeval {
+.in 22
+long	tv_sec;		/* seconds */
+long	tv_usec;	/* microseconds */
+};
+.in 10
+.fi
+.PP
+.sp
+and 
+.I tz
+is a 
+.B timezone 
+:
+.sp
+.nf
+struct timezone {
+.in 23
+int	tz_minuteswest;
+/* minutes west of Greenwich */
+int	tz_dsttime;
+/* type of dst correction */
+};
+.in 10
+.fi
+.PP
+With daylight savings times defined as follows : 
+.PP
+.B DST_NONE
+/* not on dst */
+.br
+.B DST_USA	
+/* USA style dst */
+.br
+.B DST_AUST	
+/* Australian style dst */
+.br
+.B DST_WET
+/* Western European dst */
+.br
+.B DST_MET
+/* Middle European dst */
+.br
+.B DST_EET
+/* Eastern European dst */
+.br
+.B DST_CAN
+/* Canada */
+.br
+.B DST_GB	
+/* Great Britain and Eire */
+.br
+.B DST_RUM
+/* Rumania */
+.br
+.B  DST_TUR
+/* Turkey */
+.br
+.B DST_AUSTALT	
+/* Australian style with shift in 1986 */
+.PP
+And the following macros are defined to operate on this :
+.br
+.nf
+#define FD_SET(fd,fdsetp)	(*(fdsetp) |= (1 << (fd)))
+#define FD_CLR(fd,fdsetp)	(*(fdsetp) &= ~(1 << (fd)))
+#define FD_ISSET(fd,fdsetp)	((*(fdsetp) >> fd) & 1)
+#define FD_ZERO(fdsetp)		(*(fdsetp) = 0)
+#define	timerisset(tvp)\\
+.ti 18
+((tvp)->tv_sec || (tvp)->tv_usec)
+#define	timercmp(tvp, uvp, cmp)\\
+.in 18
+((tvp)->tv_sec cmp (uvp)->tv_sec ||\\
+(tvp)->tv_sec == (uvp)->tv_sec &&\\
+(tvp)->tv_usec cmp (uvp)->tv_usec)
+.in 10
+#define timerclear(tvp)
+.ti 18
+((tvp)->tv_sec = (tvp)->tv_usec = 0)
+.fi
+.PP
+Only the super user is permitted to use settime().  If either
+.I tv
+or 
+.I tz
+is null, then it is not set.
+.SH ERRORS
+.TP
+.B EPERM 
+.B settimeofday
+is called by someone other than the superuser.
+.TP
+.B EINVAL
+Timezone (or something else) is invalid.
+.SH "CONFORMING TO"
+BSD 4.3
+.SH "SEE ALSO"
+.BR ftime "(3), " time "(2), " date "(1), " ctime (3)

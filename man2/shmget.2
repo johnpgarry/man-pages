@@ -1,0 +1,135 @@
+.\" Copyright (c) 1993 Luigi P. Bai (lpb@softint.com) July 28, 1993
+.\" May be distributed under the GNU General Public License.
+.\" Modified Wed Jul 28 10:57:35 1993, Rik Faith (faith@cs.unc.edu)
+.TH SHMGET 2 "July 28, 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+shmget \- allocates a shared memory segment
+.SH SYNOPSIS
+.ad l
+.B #include <sys/ipc.h>
+.sp
+.B #include <sys/shm.h>
+.sp
+.BI "int shmget(key_t " key ", int " size ", int " shmflg );
+.ad b
+.SH DESCRIPTION
+.B shmget()
+allocates a descriptor if there is not one already corresponding to the
+given
+.IR key .
+The key is an integer, usually requested from \fBftok()\fP, or 
+.B IPC_PRIVATE.
+.PP
+The size is effectively rounded up to
+.BR PAGE_SIZE ,
+since memory is allocated in pages.
+.PP
+.I shmflg
+is composed of:
+.TP 0.8i
+.B IPC_CREAT
+to create a new segment. If this flag is not used, then 
+.B shmget()
+will find the segment associated with \fIkey\fP, check to see if 
+the user has permission to receive the \fIshmid\fP associated with the
+segment, and ensure the segment is not marked for destruction.
+.TP
+.B IPC_EXCL
+used with \fBIPC_CREAT\fP to ensure failure if the segment exists. 
+.TP
+.B mode_flags (lowest 9 bits)
+specifying the permissions granted to the owner, group, and world.
+.PP
+If a new segment is created, the access permissions from
+.I shmflg
+are copied into the 
+.I shm_perm
+member of the 
+.I shmid_ds
+structure that defines the segment. The \fIshmid_ds\fP structure:
+.PP
+.in +0.5i
+.nf
+struct shmid_ds {
+	struct	ipc_perm shm_perm;	/* operation perms */
+	int	shm_segsz;		/* size of segment (bytes) */
+	time_t	shm_atime;		/* last attach time */
+	time_t	shm_dtime;		/* last detach time */
+	time_t	shm_ctime;		/* last change time */
+	unsigned short	shm_cpid;	/* pid of creator */
+	unsigned short	shm_lpid;	/* pid of last operator */
+	short	shm_nattch;		/* no. of current attaches */
+};
+.fi
+.in -0.5i
+.PP
+.in +0.5i
+.nf
+struct ipc_perm
+{
+  key_t  key;
+  ushort uid;   /* owner euid and egid */
+  ushort gid;
+  ushort cuid;  /* creator euid and egid */
+  ushort cgid;
+  ushort mode;  /* lower 9 bits of \fIshmflg\fP */
+  ushort seq;   /* sequence number */
+};
+.fi
+.PP
+.SH SYSTEM CALLS
+.TP 0.8i
+.B fork()
+After a
+.B fork()
+the child inherits the attached shared memory segments.
+.TP
+.B exec()
+After an
+.B exec()
+all attached shared memory segments are detached (not destroyed).
+.TP
+.B exit()
+Upon
+.B exit()
+all attached shared memory segments are detached (not destroyed).
+.PP
+.SH "RETURN VALUE"
+A valid segment identifier,
+.IR shmid ,
+is returned on success, -1 on error.
+.SH ERRORS
+.TP 0.8i
+.B EINVAL
+is returned if \fBSHMMIN\fP > \fIsize\fP or
+\fIsize\fP > \fBSHMMAX\fP, or \fIsize\fP is greater than size of segment.
+.TP
+.B EEXIST
+is returned if 
+.B IPC_CREAT | IPC_EXCL
+was specified and the segment exists.
+.TP
+.B EIDRM
+is returned if the segment is marked as destroyed, or was removed.
+.TP
+.B ENOSPC
+is returned if all possible shared memory id's have been taken
+.BR "" ( SHMMNI )
+or if allocating a segment of the requested
+.I size
+would cause the system to exceed the system-wide limit on shared memory
+.BR "" ( SHMALL ).
+.TP
+.B ENOENT
+is returned if no segment exists for the given \fIkey\fP, and
+.B IPC_CREAT
+was not specified.
+.TP
+.B EACCES
+is returned if the user does not have permission to access the 
+shared memory segment.
+.TP
+.B ENOMEM
+is returned if no memory could be allocated for segment overhead.
+.SH SEE ALSO
+.BR ftok "(2), " shmctl "(2), " shmop (2)

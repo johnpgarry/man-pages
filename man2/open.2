@@ -1,0 +1,195 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" This manpage is Copyright (C) 1992 Drew Eckhardt;
+.\"                               1993 Michael Haardt, Ian Jackson.
+.\" You may distribute it under the terms of the GNU General
+.\" Public Licence. It comes with NO WARRANTY.
+.\"
+.\" Modified Wed Jul 21 22:42:16 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH OPEN 2 "21 July 1993" "Linux 0.99.7" "Linux Programmer's Manual"
+.SH NAME
+open, creat \- open and possibly create a file or device
+.SH SYNOPSIS
+.nf
+.B #include <sys/types.h>
+.B #include <fcntl.h>
+.B #include <unistd.h>
+.sp
+.BI "int open(const char *" pathname ", int " flags );
+.BI "int open(const char *" pathname ", int " flags ", mode_t " mode );
+.BI "int creat(const char *" pathname ", mode_t " mode );
+.fi
+.SH DESCRIPTION
+.B open
+attempts to open a file and return a file descriptor (a small,
+non-negative integer for use in
+.BR read ", " write ", etc.)"
+
+.I flags
+is one of
+.BR O_RDONLY ", " O_WRONLY " or " O_RDWR
+which request opening the file read-only, write-only or read/write,
+respectively.
+
+.I flags
+may also be
+.RI bitwise- or 'd
+with one or more of the following:
+.TP
+.B O_CREAT
+If the file does not exist it will be created.
+.TP
+.B O_EXCL
+When used with
+.BR O_CREAT ,
+if the file already exists it is an error and the
+.B open
+will fail.
+.I See BUGS below, though.
+.TP
+.B O_NOCTTY
+If
+.I pathname
+refers to a terminal device \(em see
+.BR tty (4)
+\(em it will not become the process's controlling terminal even if the
+process does not have one.
+.TP
+.B O_TRUNC
+If the file already exists it will be truncated.
+.TP
+.B O_APPEND
+The file is opened in append mode. Initially, and before each
+.BR write ,
+the file pointer is positioned at the end of the file, as if
+with
+.BR lseek .
+.TP
+.BR O_NONBLOCK " or " O_NDELAY
+The file is opened in non-blocking mode. Neither the
+.B open
+nor any subsequent operations on the file descriptor which is
+returned will cause the calling process to wait.
+.TP
+.B O_SYNC
+The file is opened for synchronous I/O. Any
+.BR write s
+on the resulting file descriptor will block the calling process until
+the data has been physically written to the underlying hardware.
+.I See BUGS below, though.
+.PP
+Some of these optional flags can be altered using
+.B fcntl
+after the file has been opened.
+
+.I mode
+specifies the permissions to use if a new file is created. It is
+modified by the process's
+.BR umask
+in the usual way: the permissions of the created file are
+.BR "(mode & ~umask)" .
+
+.I mode
+should always be specified when
+.B O_CREAT
+is in the
+.IR flags ,
+and is ignored otherwise.
+
+.B creat
+is equivalent to
+.B open
+with
+.I flags
+equal to
+.BR O_CREAT|O_WRONLY|O_TRUNC .
+.SH RETURN VALUE
+.BR open " and " creat
+return the new file descriptor, or -1 if an error occurred (in which case,
+.I errno
+is set appropriately).
+.SH ERRORS
+.TP
+.B EEXIST
+.I pathname
+already exists and
+.BR O_CREAT " and " O_EXCL
+were used.
+.TP
+.B EISDIR
+.I pathname
+refers to a directory and the access requested involved writing.
+.TP
+.B ETXTBSY
+.I pathname
+refers to an executable image which is currently being executed and
+write access was requested..
+.TP
+.B EFAULT
+.IR pathname " points outside your accessible address space."
+.TP
+.B EACCES
+The requested access to the file is not allowed, or one of the
+directories in
+.IR pathname
+did not allow search (execute) permission.
+.TP
+.B ENAMETOOLONG
+.IR pathname " was too long."
+.TP
+.B ENOENT
+A directory component in
+.I pathname
+does not exist or is a dangling symbolic link.
+.TP
+.B ENOTDIR
+A component used as a directory in
+.I pathname
+is not, in fact, a directory.
+.TP
+.B EMFILE
+The process already has the maximum number of files open.
+.TP
+.B ENFILE
+The limit on the total number of files open on the system has been
+reached.
+.TP
+.B ENOMEM
+Insufficient kernel memory was available.
+.TP
+.B EROFS
+.I pathname
+refers to a file on a read-only filesystem and write access was
+requested.
+.TP
+.B ELOOP
+.I pathname
+contains a reference to a circular symbolic link, ie a symbolic link
+whose expansion contains a reference to itself.
+.TP
+.B ENOSPC
+.I pathname
+was to be created but the device containing
+.I pathname
+has no room for the new file.
+.SH CONFORMING TO
+SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+.SH BUGS
+Currently (as of Linux 0.99pl7) all the normal filesystems sometime
+allow the creation of two files in the same directory with the same
+name. This occurs only rarely and only on a heavily loaded system. It
+is believed that this bug is fixed in the Minix filesystem in Linux
+0.99pl8 pre-release, and it is hoped that it will be fixed in the
+other filesystems soon.
+
+.B O_SYNC
+is not currently implemented (as of Linux 0.99pl7).
+
+There are many infelicities in the protocol underlying NFS, affecting
+amongst others
+.BR O_SYNC ", " O_EXCL ", " O_NDELAY " and " O_APPEND .
+.SH SEE ALSO
+.BR read "(2), " write "(2), " fcntl "(2), " close (2),
+.BR unlink "(2), " mknod "(2), " stat "(2), " umask (2),
+.BR mount "(2), " socket "(2), " socket "(2), " fopen (3).

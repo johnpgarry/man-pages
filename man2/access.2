@@ -1,0 +1,101 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" This manpage is Copyright (C) 1992 Drew Eckhardt;
+.\"                               1993 Michael Haardt, Ian Jackson.
+.\" You may distribute it under the terms of the GNU General
+.\" Public Licence. It comes with NO WARRANTY.
+.\"
+.\" Modified Wed Jul 21 19:36:29 1993, Rik Faith (faith@cs.unc.edu)
+.\"
+.TH ACCESS 2 "21 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+access \- check user's permissions for a file
+.SH SYNOPSIS
+.nf
+.B #include <unistd.h>
+.sp
+.BI "int access(const char *" pathname ", int " mode );
+.fi
+.SH DESCRIPTION
+.B access
+checks whether the process would be allowed to read,
+write or test for existance of the file (or other filesystem
+object) whose name is
+.IR pathname .
+
+.I mode
+is a mask consisting of one or more of
+.BR R_OK ", " W_OK ", " X_OK " and " F_OK .
+
+.BR R_OK ", " W_OK " and " X_OK
+request testing for reading, writing and executing the file,
+respectively.
+.B F_OK
+requests checking whether merely testing for the existence of the file
+would be allowed (this depends on the permissions of the directories
+in the path to the file, as given in
+.IR pathname .)
+
+The check is done with the process's
+.I real
+uid and gid, rather than with the effective ids as is done when
+actually attempting an operation. This is to allow set-UID programs to
+easily determine the invoking user's authority.
+.I See BUGS below regarding this !
+
+Only access bits are checked, not the file type or contents.  Therefore, if
+a directory is found to be "writable," it probably means that files can be
+created in the directory, and not that the directory can be written as a
+file.  Similarly, a DOS file may be found to be "executable," but the
+.BR execve (2)
+call will still fail.
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP 0.8i
+.B EACCES
+The requested access would be denied, either to the file itself or
+one of the directories in
+.IR pathname .
+.TP
+.B EFAULT
+.IR pathname " points outside your accessible address space."
+.TP
+.B EINVAL
+.IR mode " was incorrectly specified."
+.TP
+.B ENAMETOOLONG
+.IR pathname " is too long."
+.TP
+.B ENOENT
+A directory component in
+.I pathname
+would have been accessible but does not exist or was a dangling
+symbolic link.
+.TP
+.B ENOTDIR
+A component used as a directory in
+.I pathname
+is not, in fact, a directory.
+.TP
+.B ENOMEM
+Insufficient kernel memory was available.
+.TP
+.B ELOOP
+.I pathname
+contains a reference to a circular symbolic link, i.e., a symbolic link
+containing a reference to itself.
+.SH CONFORMING TO
+SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+.SH BUGS
+.IR Important! " Currently (as of Linux 0.99pl11) the " real
+uid and gid are only used when checking access to the final component of
+.IR pathname ;
+the checks on any intervening directories are made using the
+.I effective
+ids.
+.SH SEE ALSO
+.BR stat "(2), " open "(2), " chmod "(2), " chown "(2), "
+.BR setuid "(2), " setgid (2).

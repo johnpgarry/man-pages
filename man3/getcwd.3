@@ -1,0 +1,84 @@
+.\" (c) 1993 by Thomas Koenig (ig25@rz.uni-karlsruhe.de)
+.\" This file can be distributed under the terms of the GNU General Public
+.\" License.
+.\" Modified Wed Jul 21 22:35:42 1993 by Rik Faith (faith@cs.unc.edu)
+.\"
+.TH GETCWD 3 "21 July 1993" "GNU" "Linux Programmer's Manual"
+.SH NAME
+getcwd, get_current_dir_name, getwd \- Get current working directory
+.SH SYNOPSIS
+.nf
+.B #include <unistd.h>
+.sp
+.BI "char *getcwd(char *" buf ", size_t " size ");"
+.B "char *get_current_working_dir_name(void);"
+.BI "char *getwd(char *" buf );
+.fi
+.SH DESCRIPTION
+The
+.B getcwd()
+function copies the absolute pathname of the current working directory
+to the array pointed to by
+.IR buf ,
+which is of length
+.IR size .
+.PP
+If the current absolute path name would require a buffer longer than
+.I size
+elements,
+.B NULL
+is returned, and
+.I errno
+is set to
+.BR ERANGE ;
+an application should check for this error, and allocate a larger
+buffer if necessary.
+.PP
+As an extension to the POSIX.1 standard,
+.B getcwd()
+allocates the buffer dynamically using
+.B malloc()
+if
+.I buf
+is
+.B NULL
+on call.  In this case, the allocated buffer has the length
+.I size
+unless
+.I size
+is less than zero, when
+.I buf
+is allocated as big as necessary.  It is possible (and, indeed,
+advisable) to
+.B free()
+the buffers if they have been obtained this way.
+
+.BR get_current_dir_name ,
+which is only prototyped if
+.B __USE_GNU
+is defined, will
+.BR malloc (3)
+an array big enough to hold the current directory name.  If the environment
+variable
+.B PWD
+is set, and its value is correct, then that value will be returned.
+
+.BR getwd ,
+which is only prototyped if
+.B __USE_BSD
+is defined, will
+.BR malloc (3)
+an array big enough to hold the absolute pathname of the current working
+directory.
+.SH "RETURN VALUE"
+.B NULL
+on failure (for example, if the current directory is not readable),
+with
+.I errno
+set accordingly, and
+.I buf
+on success.
+.SH "CONFORMS TO"
+POSIX.1
+.SH SEE ALSO
+.BR chdir "(2), ", free "(3), " malloc (3)

@@ -1,0 +1,25 @@
+.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" This file may be distributed under the GNU General Public License.
+.\" Modified Sat Jul 24 16:58:03 1993 by Rik Faith (faith@cs.unc.edu)
+.TH LP 4 "19 December 1992" "Linux" "Linux Programmer's Manual"
+.SH NAME
+lp \- line printer devices
+.SH DESCRIPTION
+\fBLp[0-2]\fP are character devices for the parallel line printers.
+.LP
+They are typically created by:
+.RS
+.sp
+mknod -m 620 /dev/lp0 c 6 0 # baseaddress 0x03bc
+.br
+mknod -m 620 /dev/lp1 c 6 1 # baseaddress 0x0378
+.br
+mknod -m 620 /dev/lp2 c 6 2 # baseaddress 0x0278
+.br
+chown root.daemon /dev/lp*
+.sp
+.RE
+.SH FILES
+/dev/lp*
+.SH "SEE ALSO"
+.BR mknod "(1), " chown (1)

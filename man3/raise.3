@@ -1,0 +1,24 @@
+.\" (c) 1993 by Thomas Koenig (ig25@rz.uni-karlsruhe.de)
+.\" This file can be distributed under the terms of the GNU General Public
+.\" License.
+.\" Modified Sat Jul 24 18:40:56 1993 by Rik Faith (faith@cs.unc.edu)
+.TH RAISE 3  "April 4, 1993" "GNU" "Linux Programmer's Manual"
+.SH NAME
+raise \- send a signal.
+.SH SYNOPSIS
+.nf
+.B #include <signal.h>
+.sp
+.BI "int raise (int " "sig" ");"
+.fi
+.SH DESCRIPTION
+.B raise()
+sends a signal to the current process.
+It is equivalent to
+.BI "kill(getpid()," "sig" ")"
+.SH "RETURN VALUE"
+Zero for success, nonzero for failure.
+.SH "CONFORMS TO"
+ANSI - C
+.SH SEE ALSO
+.BR kill "(2), " signal "(2), " getpid (2)

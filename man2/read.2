@@ -1,0 +1,66 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" This manpage is Copyright (C) 1992 Drew Eckhardt;
+.\"                               1993 Michael Haardt, Ian Jackson.
+.\" You may distribute it under the terms of the GNU General
+.\" Public Licence. It comes with NO WARRANTY.
+.\"
+.\" Modified Sat Jul 24 00:06:00 1993 by Rik Faith (faith@cs.ucn.edu)
+.\"
+.TH READ 2 "23 July 1993" Linux "Linux Programmer's Manual"
+.SH NAME
+read \- read from a file descriptor
+.SH SYNOPSIS
+.nf
+.B #include <sys/types.h>
+.B #include <unistd.h>
+.sp
+.BI "int read(int " fd ", char *" buf ", size_t " count );
+.fi
+.SH DESCRIPTION
+.B read
+reads up to
+.I count
+bytes from file descriptor
+.I fd
+into the buffer starting at
+.I buf.
+.SH RETURN VALUE
+On success, the number of bytes read are returned (zero indicated end of
+file).  On error, -1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP 0.8i
+.B EINTR
+The call was interrupted by a signal before any data was read.
+.TP
+.B EAGAIN 
+Non-blocking I/O has been selected using
+.B O_NONBLOCK
+and no data was immediately available for reading.
+.TP
+.B EISDIR
+.I fd
+refers to a directory.
+.TP
+.B EBADF
+.I fd
+is not a valid file descriptor or is not open for reading.
+.TP
+.B EINVAL
+.I fd
+is attached to an object which is unsuitable for reading.
+.TP
+.B EFAULT
+.I buf
+is outside your accessible address space.
+.PP
+Other errors may occur, depending on the object connected to
+.IR fd .
+.SH "CONFORMING TO"
+SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+.SH SEE ALSO
+.BR readdir "(2), " write "(2), " write "(2), " fcntl "(2), " close "(2), "
+.BR lseek "(2), "
+.BR select "(2), " readlink "(2), " ioctl "(2), " fread (3).

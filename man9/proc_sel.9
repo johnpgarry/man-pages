@@ -1,0 +1,47 @@
+.\" -*- nroff -*-
+.\"
+.\" (C)opyright 1993 by Dan Miner (dminer@nyx.cs.du.edu)
+.\"
+.\"  Permission is granted to freely distribute or modify this file
+.\"  for the purpose of improving Linux or its documentation efforts.
+.\"  If you modify this file, please put a date stamp and HOW you
+.\"  changed this file.  Thanks.   -DM
+.\"
+.TH PROC_SEL 9 "July 7, 1993" "Linux 0.99.10" "Kernel Reference Guide"
+.SH NAME
+proc_sel \- select a process by a critria
+.SH SYNOPSIS
+.nf
+linux/kernel/sys.c
+#include <linux/resource.h>
+
+.IR "" "static int proc_sel(struct task_struct " *p ", int " which ", int " who ");"
+.fi
+
+.SH DESCRIPTION
+Compares a task \fIp\fP to supplied information or the current task 
+in some aspect of priority.  If \fIwho\fP is zero then the comparsion 
+is task
+\fIp\fP and the current task.  Otherwise, \fIwho\fP and \fI*p\fP are 
+the supplied information for the comparsion. 
+.SH OPTIONS
+Valid values of \fIwhich\fP:
+.RS
+.IP PRIO_PROCESS
+Compares process ID numbers
+.sp
+There is an exception here.  If
+.I who
+is not zero and task
+.I p
+is the current task then true is \fBalways\fP retured.
+.IP PRIO_PGRP
+Compares process group leader numbers
+.IP PRIO_USER
+Compares user id numners
+.SH "RETURN VALUE"
+Returns truth values (0, 1)
+.SH AUTHOR
+Linus Torvalds
+.SH "ALSO SEE"
+.IR sys_setpriority "(2), " sys_getpriority "(2)"

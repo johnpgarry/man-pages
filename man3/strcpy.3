@@ -1,0 +1,33 @@
+.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" May be distributed under the GNU General Public License
+.\" References consulted:
+.\"     Linux libc source code
+.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+.\"     386BSD man pages
+.\" Modified Sat Jul 24 18:06:49 1993 by Rik Faith (faith@cs.unc.edu)
+.TH STRCPY 3  "April 11, 1993" "GNU" "Linux Programmer's Manual"
+.SH NAME
+strcpy, strncpy \- copy a string
+.SH SYNOPSIS
+.nf
+.B #include <string.h>
+.sp
+.BI "char *strcpy(char *" dest ", const char *" src );
+.sp
+.BI "char *strncpy(char *" dest ", const char *" src ", size_t " n );
+.fi
+.SH DESCRIPTION
+The \fBstrcpy()\fP function copies the string pointed to be \fIsrc\fP
+(including the terminating `\\0' character) to the array pointed to by 
+\fIdest\fP.  The strings may not overlap, and the destination string 
+\fIdest\fP must be large enough to receive the copy.
+.PP
+The \fBstrncpy()\fP function is similar, except that only the first
+\fIn\fP bytes of \fIsrc\fP are copied.
+.SH "RETURN VALUE"
+The \fBstrcpy()\fP and \fBstrncpy()\fP functions return a pointer to
+the destination string \fIdest\fP.
+.SH "CONFORMING TO"
+SVID 3, POSIX, BSD 4.3, ISO 9899
+.SH SEE ALSO
+.BR bcopy "(3), " memccpy "(3), " memcpy "(3), " memmove (3)

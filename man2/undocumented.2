@@ -1,0 +1,32 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" May be distributed under the GNU General Public License
+.TH UNDOCUMENTED 2 "25 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.SH NAME
+break, stty, gtty, prof, ulimit, setsid, siggetmask, sigsetmask,
+socketcall, klog, ipc, sigreturn, clone, syslog \- undocumented system call
+.SH SYNOPSIS
+None.
+.SH DESCRIPTION
+As of Linux 0.99.11, there were 123 system calls listed in
+.IR /usr/include/sys/syscall.h .
+This man pages mentions those calls which are not documented.  Some of
+these calls did not appear to have prototypes in the DLL 4.4.1 include
+files, or did not exist in the kernel.
+
+Since this situation is probably going to change with future kernels,
+please look in the kernel source code, write a man page (using a style
+similar to that of the other Linux section 2 man pages), and send it to
+.B faith@cs.unc.edu
+for inclusion in the next man page release from the Linux Documentation
+Project.
+.SH BUGS
+Old-style system calls (i.e.,
+.BR oldstat " and " oldolduname
+are not listed here.
+
+None of the System V IPC functions are enumerated here, or have their own
+pointers to this page.  Although these functions are now in the kernel,
+they have yet to be documented in man page format.  A texinfo manual,
+however, does exist for them.
