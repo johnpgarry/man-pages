@@ -28,10 +28,8 @@
 .\" Modified Sat Feb 25 18:17:14 1995 by Jim Van Zandt <jrv@vanzandt.mv.com>
 .\" Modified Sat Sep  2 22:33:09 1995 by Jim Van Zandt <jrv@vanzandt.mv.com>
 .\" moved to man3, aeb, 950919
-.\" Modified Sat 22 Sep 2001 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\" Modified 2001-12-17, aeb
 .\"
-.TH TERMIOS 3 2001-12-17 "Linux" "Linux Programmer's Manual"
+.TH TERMIOS 3 1995-09-02 "Linux" "Linux Programmer's Manual"
 .SH NAME
 termios, tcgetattr, tcsetattr, tcsendbreak, tcdrain, tcflush, tcflow,
 cfmakeraw, cfgetospeed, cfgetispeed, cfsetispeed, cfsetospeed,
@@ -59,13 +57,13 @@ terminal foreground process group ID
 .sp
 .BI "int cfmakeraw(struct termios *" termios_p );
 .sp
-.BI "speed_t cfgetispeed(struct termios *" termios_p );
-.sp
 .BI "speed_t cfgetospeed(struct termios *" termios_p );
 .sp
-.BI "int cfsetispeed(struct termios *" termios_p ", speed_t " speed );
-.sp
 .BI "int cfsetospeed(struct termios *" termios_p ", speed_t " speed );
+.sp
+.BI "speed_t cfgetispeed(struct termios *" termios_p );
+.sp
+.BI "int cfsetispeed(struct termios *" termios_p ", speed_t " speed );
 .sp
 .BI "pid_t tcgetpgrp(int " fd );
 .sp
@@ -78,7 +76,7 @@ provided to control asynchronous communications ports.
 .LP
 Many of the functions described here have a \fItermios_p\fP argument
 that is a pointer to a \fBtermios\fP structure.  This structure contains
-at least the following members:
+the following members:
 .ne 9
 .sp
 .RS
@@ -93,11 +91,9 @@ cc_t \fIc_cc\fP[\fBNCCS\fP];       /* control chars */
 .fi
 .PP
 \fIc_iflag\fP flag constants:
-.TP
-.B IGNBRK
+.IP \fBIGNBRK\fP
 Ignore BREAK condition on input.
-.TP
-.B BRKINT
+.IP \fBBRKINT\fP
 If \fBIGNBRK\fP is set, a BREAK is ignored. If it is not set
 but \fBBRKINT\fP is set, then a BREAK causes the input and output
 queues to be flushed, and if the terminal is the controlling
@@ -106,325 +102,158 @@ terminal of a foreground process group, it will cause a
 When neither \fBIGNBRK\fP nor \fBBRKINT\fP are set, a BREAK
 reads as a NUL character, except when \fBPARMRK\fP is set,
 in which case it reads as the sequence \\377 \\0 \\0.
-.TP
-.B IGNPAR
+.IP \fBIGNPAR\fP
 Ignore framing errors and parity errors.
-.TP
-.B PARMRK
+.IP \fBPARMRK\fP
 If \fBIGNPAR\fP is not set, prefix a character with a parity error or 
 framing error with \\377 \\0.  If neither \fBIGNPAR\fP nor \fBPARMRK\fP
 is set, read a character with a parity error or framing error
 as \\0.
-.TP
-.B INPCK
+.IP \fBINPCK\fP
 Enable input parity checking.
-.TP
-.B ISTRIP
+.IP \fBISTRIP\fP
 Strip off eighth bit.
-.TP
-.B INLCR
+.IP \fBINLCR\fP
 Translate NL to CR on input.
-.TP
-.B IGNCR
+.IP \fBIGNCR\fP
 Ignore carriage return on input.
-.TP
-.B ICRNL
+.IP \fBICRNL\fP
 Translate carriage return to newline on input (unless \fBIGNCR\fP is set).
-.TP
-.B IUCLC
-(not in POSIX) Map uppercase characters to lowercase on input.
-.TP
-.B IXON
+.IP \fBIUCLC\fP
+Map uppercase characters to lowercase on input.
+.IP \fBIXON\fP
 Enable XON/XOFF flow control on output.
-.TP
-.B IXANY
-(not in POSIX.1; XSI) Enable any character to restart output.
-.TP
-.B IXOFF
+.IP \fBIXANY\fP
+Enable any character to restart output.
+.IP \fBIXOFF\fP
 Enable XON/XOFF flow control on input.
-.TP
-.B IMAXBEL
-(not in POSIX) Ring bell when input queue is full.
+.IP \fBIMAXBEL\fP
+(Not in POSIX) Ring bell when input queue is full.
 Linux does not implement this bit, and acts as if it is always set.
 .PP
-\fIc_oflag\fP flag constants defined in POSIX.1:
-.TP
-.B OPOST
+\fIc_oflag\fP flag constants:
+.IP \fBOPOST\fP
 Enable implementation-defined output processing.
-.PP
-The remaining \fIc_oflag\fP flag constants are defined in POSIX 1003.1-2001,
-unless marked otherwise.
-.TP
-.B OLCUC
-(not in POSIX) Map lowercase characters to uppercase on output.
-.TP
-.B ONLCR
-(XSI) Map NL to CR-NL on output.
-.TP
-.B OCRNL
+.IP \fBOLCUC\fP
+Map lowercase characters to uppercase on output.
+.IP \fBONLCR\fP
+Map NL to CR-NL on output.
+.IP \fBOCRNL\fP
 Map CR to NL on output.
-.TP
-.B ONOCR
+.IP \fBONOCR\fP
 Don't output CR at column 0.
-.TP
-.B ONLRET
+.IP \fBONLRET\fP
 Don't output CR.
-.TP
-.B OFILL
+.IP \fBOFILL\fP
 Send fill characters for a delay, rather than using a timed delay.
-.TP
-.B OFDEL
-(not in POSIX) Fill character is ASCII DEL (0177).
-If unset, fill character is ASCII NUL.
-.TP
-.B NLDLY
+.IP \fBOFDEL\fP
+Fill character is ASCII DEL (0177).  If unset, fill character is ASCII NUL.
+.IP \fBNLDLY\fP
 Newline delay mask.  Values are \fBNL0\fP and \fBNL1\fP.
-.TP
-.B CRDLY
+.IP \fBCRDLY\fP
 Carriage return delay mask.
 Values are \fBCR0\fP, \fBCR1\fP, \fBCR2\fP, or \fBCR3\fP.
-.TP
-.B TABDLY
+.IP \fBTABDLY\fP
 Horizontal tab delay mask.
-Values are \fBTAB0\fP, \fBTAB1\fP, \fBTAB2\fP, \fBTAB3\fP (or \fBXTABS\fP).
-A value of TAB3, that is, XTABS, expands tabs to spaces
+Values are \fBTAB0\fP, \fBTAB1\fP, \fBTAB2\fP, \fBTAB3\fP, or \fBXTABS\fP.
+A value of TAB3 or XTABS expands tabs to spaces
 (with tab stops every eight columns).
-.TP
-.B BSDLY
+.IP \fBBSDLY\fP
 Backspace delay mask.  Values are \fBBS0\fP or \fBBS1\fP.
-(Has never been implemented.)
-.TP
-.B VTDLY
+.IP \fBVTDLY\fP
 Vertical tab delay mask.  Values are \fBVT0\fP or \fBVT1\fP.
-.TP
-.B FFDLY
+.IP \fBFFDLY\fP
 Form feed delay mask.  Values are \fBFF0\fP or \fBFF1\fP.
 .PP
 \fIc_cflag\fP flag constants:
-.TP
-.B CBAUD
-(not in POSIX) Baud speed mask (4+1 bits).
-.TP
-.B CBAUDEX
-(not in POSIX) Extra baud speed mask (1 bit), included in CBAUD.
-.LP
-(POSIX says that the baud speed is stored in the termios structure
-without specifying where precisely, and provides
-.B cfgetispeed()
-and
-.B cfsetispeed()
-for getting at it. Some systems use bits selected by CBAUD in
-.IR c_cflag ,
-other systems use separate fields, e.g.
-.I sg_ispeed
-and
-.IR sg_ospeed .)
-.TP
-.B CSIZE
+.IP \fBCSIZE\fP
 Character size mask.
 Values are \fBCS5\fP, \fBCS6\fP, \fBCS7\fP, or \fBCS8\fP.
-.TP
-.B CSTOPB
+.IP \fBCSTOPB\fP
 Set two stop bits, rather than one.
-.TP
-.B CREAD
+.IP \fBCREAD\fP
 Enable receiver.
-.TP
-.B PARENB
+.IP \fBPARENB\fP
 Enable parity generation on output and parity checking for input.
-.TP
-.B PARODD
+.IP \fBPARODD\fP
 Parity for input and output is odd.
-.TP
-.B HUPCL
+.IP \fBHUPCL\fP
 Lower modem control lines after last process closes the device (hang up).
-.TP
-.B CLOCAL
+.IP \fBCLOCAL\fP
 Ignore modem control lines.
-.TP
-.B LOBLK
-(not in POSIX) Block output from a noncurrent shell layer.
-(For use by \fBshl\fP.)
-.TP
-.B CIBAUD
-(not in POSIX) Mask for input speeds. The values for the CIBAUD bits are
-the same as the values for the CBAUD bits, shifted left IBSHIFT bits. 
-.TP
-.B CRTSCTS
-(not in POSIX) Enable RTS/CTS (hardware) flow control.
+.IP \fBCIBAUD\fP
+Mask for input speeds (not used).
+.IP \fBCRTSCTS\fP
+Enable RTS/CTS (hardware) flow control.
 .PP
 \fIc_lflag\fP flag constants:
-.TP
-.B ISIG
+.IP \fBISIG\fP
 When any of the characters INTR, QUIT, SUSP, or DSUSP are received,
 generate the corresponding signal.
-.TP
-.B ICANON
+.IP \fBICANON\fP
 Enable canonical mode.  This enables the special characters
-EOF, EOL, EOL2, ERASE, KILL, LNEXT, REPRINT, STATUS, and WERASE, and
+EOF, EOL, EOL2, ERASE, KILL, REPRINT, STATUS, and WERASE, and
 buffers by lines.  
-.TP
-.B XCASE
-(not in POSIX; not supported under Linux)
+.IP \fBXCASE\fP
 If \fBICANON\fP is also set, terminal is uppercase only.
 Input is converted to lowercase, except for characters preceded by \\.
 On output, uppercase characters are preceded by \\ and lowercase
 characters are converted to uppercase.
-.TP
-.B ECHO
+.IP \fBECHO\fP
 Echo input characters.
-.TP
-.B ECHOE
+.IP \fBECHOE\fP
 If \fBICANON\fP is also set, the ERASE character erases the preceding
 input character, and WERASE erases the preceding word.
-.TP
-.B ECHOK
+.IP \fBECHOK\fP
 If \fBICANON\fP is also set, the KILL character erases the current line.
-.TP
-.B ECHONL
+.IP \fBECHONL\fP
 If \fBICANON\fP is also set, echo the NL character even if ECHO is not set.
-.TP
-.B ECHOCTL
-(not in POSIX) If \fBECHO\fP is also set, ASCII control signals other than
-TAB, NL, START, and STOP are echoed as ^X, where X is the character with
-ASCII code 0x40 greater than the control signal.  For example, character
-0x08 (BS) is echoed as ^H.
-.TP
-.B ECHOPRT
-(not in POSIX) If \fBICANON\fP and \fBIECHO\fP are also set, characters
-are printed as they are being erased.
-.TP
-.B ECHOKE
-(not in POSIX) If \fBICANON\fP is also set, KILL is echoed by erasing
-each character on the line, as specified by \fBECHOE\fP and \fBECHOPRT\fP.
-.TP
-.B DEFECHO
-(not in POSIX) Echo only when a process is reading.
-.TP
-.B FLUSHO
-(not in POSIX; not supported under Linux)
-Output is being flushed.  This flag is toggled by typing
-the DISCARD character.
-.TP
-.B NOFLSH
-Disable flushing the input and output queues when generating the SIGINT,
-SIGQUIT and SIGSUSP signals.
-.\" Stevens lets SIGSUSP only flush the input queue
-.TP
-.B TOSTOP
+.IP \fBECHOCTL\fP
+If \fBECHO\fP is also set, ASCII control signals other than TAB, NL, START,
+and STOP are echoed as ^X, where X is the character with ASCII code 0x40
+greater than the control signal.  For example, character 0x08 (BS) is echoed
+as ^H.
+.IP \fBECHOPRT\fP
+If \fBICANON\fP and \fBIECHO\fP are also set, characters are printed as they
+are being erased.
+.IP \fBECHOKE\fP
+If \fBICANON\fP is also set, KILL is echoed by erasing each character on
+the line, as specified by \fBECHOE\fP and \fBECHOPRT\fP.
+.IP \fBFLUSHO\fP
+Output is being flushed.  This flag is toggled by typing the DISCARD character.
+.IP \fBNOFLSH\fP
+Disable flushing the input and output queues when generating the SIGINT
+and SIGQUIT signals, and flushing the input queue when generating
+the SIGSUSP signal.
+.IP \fBTOSTOP\fP
 Send the SIGTTOU signal to the process group of a background process
 which tries to write to its controlling terminal.
-.TP
-.B PENDIN
-(not in POSIX; not supported under Linux)
-All characters in the input queue are reprinted when
-the next character is read.  (\fBbash\fP handles typeahead this way.)
-.TP
-.B IEXTEN
+.IP \fBPENDIN\fP
+All characters in the input queue are reprinted when the next character is
+read.  (\fBbash\fP handles typeahead this way.)
+.IP \fBIEXTEN\fP
 Enable implementation-defined input processing.
-This flag, as well as \fBICANON\fP must be enabled for  the
-special characters EOL2, LNEXT, REPRINT, WERASE to be interpreted,
-and for the \fBIUCLC\fP flag to be effective.
 .PP
 The \fIc_cc\fP array defines the special control characters.
-The symbolic indices (initial values) and meaning are:
-.TP
-.B VINTR
-(003, ETX, Ctrl-C, or also 0177, DEL, rubout)
-Interrupt character. Send a SIGINT signal.
-Recognized when ISIG is set, and then not passed as input.
-.TP
-.B VQUIT
-(034, FS, Ctrl-\e)
-Quit character. Send SIGQUIT signal.
-Recognized when ISIG is set, and then not passed as input.
-.TP
-.B VERASE
-(0177, DEL, rubout, or 010, BS, Ctrl-H, or also #)
-Erase character. This erases the previous not-yet-erased character,
-but does not erase past EOF or beginning-of-line.
-Recognized when ICANON is set, and then not passed as input.
-.TP
-.B VKILL
-(025, NAK, Ctrl-U, or Ctrl-X, or also @)
-Kill character. This erases the input since the last EOF or beginning-of-line.
-Recognized when ICANON is set, and then not passed as input.
-.TP
-.B VEOF
-(004, EOT, Ctrl-D)
-End-of-file character.
-More precisely: this character causes the pending tty buffer to be sent
-to the waiting user program without waiting for end-of-line.
-If it is the first character of the line, the \fIread()\fP in the
-user program returns 0, which signifies end-of-file.
-Recognized when ICANON is set, and then not passed as input.
-.TP
-.B VMIN
-Minimum number of characters for non-canonical read.
-.TP
-.B VEOL
-(0, NUL)
-Additional end-of-line character.
-Recognized when ICANON is set.
-.TP
-.B VTIME
-Timeout in deciseconds for non-canonical read.
-.TP
-.B VEOL2
-(not in POSIX; 0, NUL)
-Yet another end-of-line character.
-Recognized when ICANON is set.
-.TP
-.B VSWTCH
-(not in POSIX; not supported under Linux; 0, NUL)
-Switch character. (Used by \fBshl\fP only.)
-.TP
-.B VSTART
-(021, DC1, Ctrl-Q)
-Start character. Restarts output stopped by the Stop character.
-Recognized when IXON is set, and then not passed as input.
-.TP
-.B VSTOP
-(023, DC3, Ctrl-S)
-Stop character. Stop output until Start character typed.
-Recognized when IXON is set, and then not passed as input.
-.TP
-.B VSUSP
-(032, SUB, Ctrl-Z)
-Suspend character. Send SIGTSTP signal.
-Recognized when ISIG is set, and then not passed as input.
-.TP
-.B VDSUSP
-(not in POSIX; not supported under Linux; 031, EM, Ctrl-Y)
-Delayed suspend character:
-send SIGTSTP signal when the character is read by the user program.
-Recognized when IEXTEN and ISIG are set, and the system supports
-job control, and then not passed as input.
-.TP
-.B VLNEXT
-(not in POSIX; 026, SYN, Ctrl-V)
-Literal next. Quotes the next input character, depriving it of
-a possible special meaning.
-Recognized when IEXTEN is set, and then not passed as input.
-.TP
-.B VWERASE
-(not in POSIX; 027, ETB, Ctrl-W)
-Word erase.
-Recognized when ICANON and IEXTEN are set, and then not passed as input.
-.TP
-.B VREPRINT
-(not in POSIX; 022, DC2, Ctrl-R)
-Reprint unread characters.
-Recognized when ICANON and IEXTEN are set, and then not passed as input.
-.TP
-.B VDISCARD
-(not in POSIX; not supported under Linux; 017, SI, Ctrl-O)
-Toggle: start/stop discarding pending output.
-Recognized when IEXTEN is set, and then not passed as input.
-.TP
-.B VSTATUS
-(not in POSIX; not supported under Linux;
-status request: 024, DC4, Ctrl-T).
+The symbolic indices (and meaning: initial values) are:
+VINTR (interrupt character: 0177, DEL, rubout),
+VQUIT (quit character: 034, FS, Ctrl-\e),
+VERASE (erase character: 010, BS, Ctrl-H),
+VKILL (kill character: 025, NAK, Ctrl-U),
+VEOF (end-of-file character: 004, EOT, Ctrl-D),
+VMIN,
+VEOL (additional end-of-line character: 0, NUL),
+VTIME,
+VEOL2 (yet another end-of-line character: 0, NUL),
+VSWTCH (switch character: 0, NUL),
+VSTART (start character: 021, DC1, Ctrl-Q),
+VSTOP (stop character: 023, DC3, Ctrl-S),
+VSUSP (suspend character: 032, SUB, Ctrl-Z),
+VDSUSP (delayed suspend character: 031, EM, Ctrl-Y),
+VLNEXT (literal next: 026, SYN, Ctrl-V),
+VWERASE (word erase: 027, ETB, Ctrl-W),
+VREPRINT (reprint unread characters: 022, DC2, Ctrl-R),
+VDISCARD (discard pending output: 017, SI, Ctrl-O).
 .LP
 These symbolic subscript values are all different, except that
 VTIME, VMIN may have the same value as VEOL, VEOF, respectively.
@@ -610,20 +439,5 @@ on success.
 on failure and set
 .I errno
 to indicate the error.
-.LP
-Note that
-.BI tcsetattr()
-returns success if \fIany\fP of the requested changes could be
-successfully carried out.  Therefore, when making multiple changes
-it may be necessary to follow this call with a further call to
-.BI tcgetattr()
-to check that all changes have been performed successfully.
-
-.SH NOTES
-Unix V7 and several later systems have a list of baud rates
-where after the fourteen values B0, ..., B9600 one finds the
-two constants EXTA, EXTB ("External A" and "External B").
-Many systems extend the list with much higher baud rates.
 .SH "SEE ALSO"
-.BR stty (1),
 .BR setserial (8)
