@@ -49,28 +49,28 @@ On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-.TP
+.TP 0.8i
 .B ENOSYS
 BSD process accounting has not been enabled when the operating system
 kernel was compiled.
 The kernel configuration parameter controlling this feature is
 CONFIG_BSD_PROCESS_ACCT.
-.TP
+.TP 0.8i
 .B ENOMEM
 Out of memory.
-.TP
+.TP 0.8i
 .B EPERM
 The calling process has no permission to enable process accounting.
-.TP
+.TP 0.8i
 .B EACCESS
 The argument
 .I filename
 is not a regular file.
-.TP
+.TP 0.8i
 .B EIO
 Error writing to the file
 .IR filename .
-.TP
+.TP 0.8i
 .B EUSERS
 There are no more free file structures or we run out of memory.
 .SH "CONFORMING TO"
