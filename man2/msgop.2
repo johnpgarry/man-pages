@@ -38,16 +38,16 @@ msgop \- message operations
 # include <sys/msg.h>
 .fi
 .sp
-.BI "int msgsnd ( int " msqid ,
+.BI "int msgsnd(int " msqid ,
 .BI "struct msgbuf *" msgp ,
 .BI "size_t " msgsz ,
-.BI "int " msgflg " )"
+.BI "int " msgflg );
 .sp
-.BI "ssize_t msgrcv ( int " msqid ,
+.BI "ssize_t msgrcv(int " msqid ,
 .BI "struct msgbuf *" msgp ,
 .BI "size_t " msgsz ,
 .BI "long " msgtyp ,
-.BI "int " msgflg " )"
+.BI "int " msgflg );
 .SH DESCRIPTION
 To send or receive a message, the calling process allocates a structure
 that looks like the following

@@ -40,7 +40,7 @@ ptrace \- process trace
 .SH SYNOPSIS
 .B #include <sys/ptrace.h>
 .sp
-.BI "long int ptrace(enum __ptrace_request " request ", pid_t " pid ", void * " addr ", void * " data )
+.BI "long ptrace(enum __ptrace_request " request ", pid_t " pid ", void *" addr ", void *" data );
 .SH DESCRIPTION
 The
 .B ptrace

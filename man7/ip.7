@@ -868,11 +868,11 @@ is new in Linux 2.2.  Linux 2.0 only supported
 The sysctls were introduced with Linux 2.2. 
 .SH COMPATIBILITY
 For compatibility with Linux 2.0, the obsolete 
-.BI "socket(PF_INET, SOCK_RAW, "protocol ")"
+.BI "socket(PF_INET, SOCK_RAW, " protocol )
 syntax is still supported to open a 
 .BR packet (7) 
 socket. This is deprecated and should be replaced by
-.BI "socket(PF_PACKET, SOCK_RAW, "protocol ")"
+.BI "socket(PF_PACKET, SOCK_RAW, " protocol )
 instead. The main difference is the
 new 
 .B sockaddr_ll 

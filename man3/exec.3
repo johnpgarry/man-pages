@@ -42,16 +42,16 @@ execl, execlp, execle, execv, execvp \- execute a file
 .sp
 .B extern char **environ;
 .sp
-.BI "int execl( const char *" path ", const char *" arg ", ...);
+.BI "int execl(const char *" path ", const char *" arg ", ...);"
 .br
-.BI "int execlp( const char *" file ", const char *" arg ", ...);
+.BI "int execlp(const char *" file ", const char *" arg ", ...);"
 .br
-.BI "int execle( const char *" path ", const char *" arg
+.BI "int execle(const char *" path ", const char *" arg
 .BI ", ..., char * const " envp "[]);"
 .br
-.BI "int execv( const char *" path ", char *const " argv "[]);"
+.BI "int execv(const char *" path ", char *const " argv "[]);"
 .br
-.BI "int execvp( const char *" file ", char *const " argv "[]);"
+.BI "int execvp(const char *" file ", char *const " argv "[]);"
 .SH DESCRIPTION
 The
 .B exec

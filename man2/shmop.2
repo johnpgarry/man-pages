@@ -36,11 +36,11 @@ shmop \- shared memory operations
 # include <sys/shm.h>
 .fi
 .sp
-.BI "void *shmat ( int " shmid ,
+.BI "void *shmat(int " shmid ,
 .BI "const void *" shmaddr ,
-.BI "int " shmflg " )"
+.BI "int " shmflg );
 .sp
-.BI "int shmdt ( const void *" shmaddr ")"
+.BI "int shmdt(const void *" shmaddr );
 .SH DESCRIPTION
 The function
 .B shmat

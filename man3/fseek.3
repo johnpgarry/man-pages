@@ -43,15 +43,15 @@ fgetpos, fseek, fsetpos, ftell, rewind \- reposition a stream
 .SH SYNOPSIS
 .B #include <stdio.h>
 .sp
-.BI "int fseek( FILE *" stream ", long " offset ", int " whence );
+.BI "int fseek(FILE *" stream ", long " offset ", int " whence );
 .br
-.BI "long ftell( FILE *" stream );
+.BI "long ftell(FILE *" stream );
 .br
-.BI "void rewind( FILE *" stream );
+.BI "void rewind(FILE *" stream );
 .br
-.BI "int fgetpos( FILE *" stream ", fpos_t *" pos );
+.BI "int fgetpos(FILE *" stream ", fpos_t *" pos );
 .br
-.BI "int fsetpos( FILE *" stream ", fpos_t *" pos );
+.BI "int fsetpos(FILE *" stream ", fpos_t *" pos );
 .SH DESCRIPTION
 The
 .B fseek

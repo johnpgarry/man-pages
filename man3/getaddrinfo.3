@@ -30,13 +30,13 @@ getaddrinfo \- network address and service translation
 .B #include <sys/socket.h>
 .B #include <netdb.h>
 .sp
-.BI "int getaddrinfo(const char *" "node" ", const char *" "service" ","
-.BI "                const struct addrinfo *" "hints" ","
-.BI "                struct addrinfo **" "res" ");"
+.BI "int getaddrinfo(const char *" "node" ", const char *" "service" ,
+.BI "                const struct addrinfo *" "hints" ,
+.BI "                struct addrinfo **" "res" );
 .sp
-.BI "void freeaddrinfo(struct addrinfo *" "res" ");"
+.BI "void freeaddrinfo(struct addrinfo *" "res" );
 .sp
-.BI "const char *gai_strerror(int " "errcode" ");"
+.BI "const char *gai_strerror(int " "errcode" );
 .fi
 .SH DESCRIPTION
 The

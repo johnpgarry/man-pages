@@ -31,7 +31,7 @@ adjtimex \- tune kernel clock
 .SH SYNOPSIS
 .B #include <sys/timex.h>
 .sp
-.BI "int adjtimex(struct timex *" "buf" ");"
+.BI "int adjtimex(struct timex *" "buf" );
 .SH DESCRIPTION
 Linux uses David L. Mills' clock adjustment algorithm (see RFC 1305).
 The system call

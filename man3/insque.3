@@ -34,8 +34,8 @@ insque, remque \- insert/remove an item from a queue
 .nf
 .B #include <stdlib.h>
 .sp
-.BI "void insque(struct qelem *" elem ", struct qelem *" prev ");
-.BI "void remque(struct qelem *" elem ");
+.BI "void insque(struct qelem *" elem ", struct qelem *" prev );
+.BI "void remque(struct qelem *" elem );
 .SH DESCRIPTION
 \fBinsque()\fP and \fBremque()\fP are functions for manipulating
 queues made from doubly-linked lists.  Each element in this list is of

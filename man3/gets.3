@@ -29,17 +29,17 @@ fgetc, fgets, getc, getchar, gets, ungetc \- input of characters and strings
 .nf
 .B #include <stdio.h>
 .sp
-.BI "int fgetc(FILE *" stream ");"
+.BI "int fgetc(FILE *" stream );
 .nl
-.BI "char *fgets(char *" "s" ", int " "size" ", FILE *" "stream" ");"
+.BI "char *fgets(char *" "s" ", int " "size" ", FILE *" "stream" );
 .nl
-.BI "int getc(FILE *" stream ");"
+.BI "int getc(FILE *" stream );
 .nl
 .BI "int getchar(void);"
 .nl
-.BI "char *gets(char *" "s" ");"
+.BI "char *gets(char *" "s" );
 .nl
-.BI "int ungetc(int " c ", FILE *" stream ");"
+.BI "int ungetc(int " c ", FILE *" stream );
 .SH DESCRIPTION
 .B fgetc()
 reads the next character from

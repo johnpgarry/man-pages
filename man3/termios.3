@@ -43,31 +43,31 @@ terminal foreground process group ID
 .br
 #include <unistd.h>
 .sp
-.BI "int tcgetattr ( int " fd ", struct termios *" termios_p " );"
+.BI "int tcgetattr(int " fd ", struct termios *" termios_p );
 .sp
-.BI "int tcsetattr ( int " fd ", int " optional_actions ", struct termios *" termios_p " );"
+.BI "int tcsetattr(int " fd ", int " optional_actions ", struct termios *" termios_p );
 .sp
-.BI "int tcsendbreak ( int " fd ", int " duration " );"
+.BI "int tcsendbreak(int " fd ", int " duration );
 .sp
-.BI "int tcdrain ( int " fd " );"
+.BI "int tcdrain(int " fd );
 .sp
-.BI "int tcflush ( int " fd ", int " queue_selector " );"
+.BI "int tcflush(int " fd ", int " queue_selector );
 .sp
-.BI "int tcflow ( int " fd ", int " action " );"
+.BI "int tcflow(int " fd ", int " action );
 .sp
-.BI "int cfmakeraw ( struct termios *" termios_p " );"
+.BI "int cfmakeraw(struct termios *" termios_p );
 .sp
-.BI "speed_t cfgetospeed ( struct termios *" termios_p " );"
+.BI "speed_t cfgetospeed(struct termios *" termios_p );
 .sp
-.BI "int cfsetospeed ( struct termios *" termios_p ", speed_t " speed " );"
+.BI "int cfsetospeed(struct termios *" termios_p ", speed_t " speed );
 .sp
-.BI "speed_t cfgetispeed ( struct termios *" termios_p " );"
+.BI "speed_t cfgetispeed(struct termios *" termios_p );
 .sp
-.BI "int cfsetispeed ( struct termios *" termios_p ", speed_t " speed " );"
+.BI "int cfsetispeed(struct termios *" termios_p ", speed_t " speed );
 .sp
-.BI "pid_t tcgetpgrp ( int " fd " );"
+.BI "pid_t tcgetpgrp(int " fd );
 .sp
-.BI "int tcsetpgrp ( int " fd ", pid_t " pgrpid " );"
+.BI "int tcsetpgrp(int " fd ", pid_t " pgrpid );
 .ft P
 .ad b
 .SH DESCRIPTION

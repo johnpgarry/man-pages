@@ -11,17 +11,17 @@ CMSG_ALIGN, CMSG_SPACE, CMSG_NXTHDR, CMSG_FIRSTHDR \- Access ancillary data.
 .B #include <sys/socket.h>
 .br
 .sp 2
-.BI "struct cmsghdr *CMSG_FIRSTHDR(struct msghdr *" msgh ");"
+.BI "struct cmsghdr *CMSG_FIRSTHDR(struct msghdr *" msgh );
 .br
-.BI "struct cmsghdr *CMSG_NXTHDR(struct msghdr *" msgh ", struct cmsghdr *" cmsg ");"
+.BI "struct cmsghdr *CMSG_NXTHDR(struct msghdr *" msgh ", struct cmsghdr *" cmsg );
 .br
-.BI "size_t CMSG_ALIGN(size_t " length ");"
+.BI "size_t CMSG_ALIGN(size_t " length );
 .br
-.BI "size_t CMSG_SPACE(size_t " length ");"
+.BI "size_t CMSG_SPACE(size_t " length );
 .br
-.BI "size_t CMSG_LEN(size_t " length ");"
+.BI "size_t CMSG_LEN(size_t " length );
 .br
-.BI "unsigned char *CMSG_DATA(struct cmsghdr *" cmsg ");"       
+.BI "unsigned char *CMSG_DATA(struct cmsghdr *" cmsg );       
 .sp
 .nf
 .ta 8n 20n 32n

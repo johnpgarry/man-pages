@@ -27,10 +27,10 @@ st \- SCSI tape device
 .nf
 .B #include <sys/mtio.h>
 .sp
-.BI "int ioctl(int " fd ", int " request " [, (void *)" arg3 "])"
-.BI "int ioctl(int " fd ", \s-1MTIOCTOP\s+1, (struct mtop *)" mt_cmd ")"
-.BI "int ioctl(int " fd ", \s-1MTIOCGET\s+1, (struct mtget *)" mt_status ")"
-.BI "int ioctl(int " fd ", \s-1MTIOCPOS\s+1, (struct mtpos *)" mt_pos ")"
+.BI "int ioctl(int " fd ", int " request " [, (void *)" arg3 "]);"
+.BI "int ioctl(int " fd ", \s-1MTIOCTOP\s+1, (struct mtop *)" mt_cmd );
+.BI "int ioctl(int " fd ", \s-1MTIOCGET\s+1, (struct mtget *)" mt_status );
+.BI "int ioctl(int " fd ", \s-1MTIOCPOS\s+1, (struct mtpos *)" mt_pos );
 .fi
 .SH DESCRIPTION
 The

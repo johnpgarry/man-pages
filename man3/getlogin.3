@@ -30,11 +30,11 @@ getlogin, cuserid \- get user name
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
-.BI "char * getlogin ( void );"
+.B "char *getlogin(void);"
 .sp
 .B #include <stdio.h>
 .sp
-.BI "char * cuserid ( char *" string " );"
+.BI "char *cuserid(char *" string );
 .SH DESCRIPTION
 \fBgetlogin\fP returns a pointer to a string containing the name of
 the user logged in on the controlling terminal of the process, or a

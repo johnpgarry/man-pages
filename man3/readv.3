@@ -28,11 +28,11 @@ readv, writev \- read or write data into multiple buffers
 .nf
 .B #include <sys/uio.h>
 .sp
-.BI "int readv(int " filedes ", const struct iovec *" vector ","
-.BI "          size_t " count ");"
+.BI "int readv(int " filedes ", const struct iovec *" vector ,
+.BI "          size_t " count );
 .sp
-.BI "int writev(int " filedes ", const struct iovec *" vector ","
-.BI "          size_t " count ");"
+.BI "int writev(int " filedes ", const struct iovec *" vector ,
+.BI "          size_t " count );
 .fi
 .SH DESCRIPTION
 The

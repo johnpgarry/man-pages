@@ -34,9 +34,9 @@ semop \- semaphore operations
 # include <sys/sem.h>
 .fi
 .sp
-.BI "int semop ( int " semid ,
+.BI "int semop(int " semid ,
 .BI "struct sembuf *" sops ,
-.BI "unsigned " nsops " )"
+.BI "unsigned " nsops );
 .SH DESCRIPTION
 The function performs operations on selected members of the semaphore set indicated by
 .IR semid .

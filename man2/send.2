@@ -43,13 +43,13 @@ send, sendto, sendmsg \- send a message from a socket
 .br
 .B #include <sys/socket.h>
 .sp
-.BI "int send(int " s ", const void *" msg ", size_t " len ","
+.BI "int send(int " s ", const void *" msg ", size_t " len ,
 .BI "int " flags );
 .br
-.BI "int sendto(int " s ", const void *" msg ", size_t " len ","
+.BI "int sendto(int " s ", const void *" msg ", size_t " len ,
 .BI "int " flags ", const struct sockaddr *" to ", socklen_t " tolen );
 .br
-.BI "int sendmsg(int " s ", const struct msghdr *" msg ","
+.BI "int sendmsg(int " s ", const struct msghdr *" msg ,
 .BI "int " flags );
 .SH DESCRIPTION
 .BR Send ,

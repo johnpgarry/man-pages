@@ -30,8 +30,8 @@ inet_ntop \- Parse network address structures
 .B #include <sys/socket.h>
 .B #include <arpa/inet.h>
 .sp
-.BI "const char *inet_ntop(int " "af" ", const void *" "src" ","
-.BI "                      char *" "dst" ", size_t " "cnt" ");"
+.BI "const char *inet_ntop(int " "af" ", const void *" "src" ,
+.BI "                      char *" "dst" ", size_t " "cnt" );
 .SH DESCRIPTION
 This function converts the network address structure
 .I src

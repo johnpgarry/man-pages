@@ -41,8 +41,8 @@ scandir, alphasort \- scan a directory for matching entries
 .sp
 .BI "int scandir(const char *" dir ", struct dirent ***" namelist ,
 .RS
-.BI "int (*" select ")(const struct dirent *),"
-.BI "int (*" compar ")(const struct dirent **, const struct dirent **));
+.BI "int(*" select ")(const struct dirent *),"
+.BI "int(*" compar ")(const struct dirent **, const struct dirent **));"
 .RE
 .sp
 .BI "int alphasort(const struct dirent **" a ", const struct dirent **" b );

@@ -31,16 +31,16 @@ dlclose, dlerror, dlopen, dlsym \- Programming interface to dynamic linking load
 .SH SYNOPSIS
 .B #include <dlfcn.h>
 .sp
-.BI "void *dlopen (const char *" "filename" ", int " flag ");
+.BI "void *dlopen(const char *" filename ", int " flag );
 .br
 .BI "const char *dlerror(void);"
 .br
-.BI "void *dlsym(void *"handle ", char *"symbol ");
+.BI "void *dlsym(void *" handle ", char *" symbol );
 .br
-.BI "int dlclose (void *"handle ");
+.BI "int dlclose(void *" handle );
 .sp
 Special symbols:
-.BR "_init" ", " "_fini" ". "
+.BR "_init" ", " "_fini" .
 .SH DESCRIPTION
 .B dlopen
 loads a dynamic library from the file named by the null terminated

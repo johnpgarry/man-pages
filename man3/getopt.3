@@ -37,8 +37,8 @@ getopt \- Parse command line options
 .nf
 .B #include <unistd.h>
 .sp
-.BI "int getopt(int " argc ", char * const " argv[] ","
-.BI "           const char *" optstring ");"
+.BI "int getopt(int " argc ", char * const " argv[] ,
+.BI "           const char *" optstring );
 .sp
 .BI "extern char *" optarg ;
 .BI "extern int " optind ", " opterr ", " optopt ;
@@ -47,13 +47,13 @@ getopt \- Parse command line options
 .br
 .B #include <getopt.h>
 .sp
-.BI "int getopt_long(int " argc ", char * const " argv[] ",
+.BI "int getopt_long(int " argc ", char * const " argv[] ,
 .BI "           const char *" optstring ,
-.BI "           const struct option *" longopts ", int *" longindex ");"
+.BI "           const struct option *" longopts ", int *" longindex );
 .sp
-.BI "int getopt_long_only(int " argc ", char * const " argv[] ",
+.BI "int getopt_long_only(int " argc ", char * const " argv[] ,
 .BI "           const char *" optstring ,
-.BI "           const struct option *" longopts ", int *" longindex ");"
+.BI "           const struct option *" longopts ", int *" longindex );
 .fi
 .SH DESCRIPTION
 The

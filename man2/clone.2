@@ -25,9 +25,9 @@ clone \- create a child process
 .SH SYNOPSIS
 .B #include <sched.h>
 .sp
-.BI "int clone(int (*" "fn" ") (void *), void *" "child_stack" ", int " "flags" ", void *" "arg" ")"
+.BI "int clone(int (*" "fn" ")(void *), void *" "child_stack" ", int " "flags" ", void *" "arg" );
 .sp
-.BI "_syscall2(int, " "clone" ", int, " "flags" ", void *, " "child_stack" ");"
+.BI "_syscall2(int, " "clone" ", int, " "flags" ", void *, " "child_stack" );
 
 .SH DESCRIPTION
 .B clone 

@@ -34,17 +34,17 @@ getutent, getutid, getutline, pututline, setutent, endutent, utmpname \- access 
 .sp
 .B struct utmp *getutent(void);
 .br
-.BI "struct utmp *getutid(struct utmp *" ut ");"
+.BI "struct utmp *getutid(struct utmp *" ut );
 .br
-.BI "struct utmp *getutline(struct utmp *" ut ");"
+.BI "struct utmp *getutline(struct utmp *" ut );
 .sp
-.BI "struct utmp *pututline(struct utmp *" ut ");"
+.BI "struct utmp *pututline(struct utmp *" ut );
 .sp
 .B void setutent(void);
 .br
 .B void endutent(void);
 .sp
-.BI "void utmpname(const char *" file ");"
+.BI "void utmpname(const char *" file );
 .SH DESCRIPTION
 \fButmpname\fP() sets the name of the utmp-format file for the other utmp
 functions to access.  If \fButmpname\fP() is not used to set the filename

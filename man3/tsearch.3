@@ -28,16 +28,16 @@ tsearch, tfind, tdelete, twalk \- manage a binary tree
 .nf
 .B #include <search.h>
 .sp
-.BI "void *tsearch (const void *" key ", void **" rootp ,
-.BI "                int (*" compar ")(const void *, const void *));"
+.BI "void *tsearch(const void *" key ", void **" rootp ,
+.BI "                int(*" compar ")(const void *, const void *));"
 .sp
-.BI "void *tfind (const void *" key ", const void **" rootp ,
-.BI "                int (*" compar ")(const void *, const void *));"
+.BI "void *tfind(const void *" key ", const void **" rootp ,
+.BI "                int(*" compar ")(const void *, const void *));"
 .sp
-.BI "void *tdelete (const void *" key ", void **" rootp ,
-.BI "                int (*" compar ")(const void *, const void *));"
+.BI "void *tdelete(const void *" key ", void **" rootp ,
+.BI "                int(*" compar ")(const void *, const void *));"
 .sp
-.BI "void twalk (const void *" root ", void (*" action ") (const void *" nodep ,
+.BI "void twalk(const void *" root ", void(*" action ")(const void *" nodep ,
 .BI "                                   const VISIT " which ,
 .BI "                                   const int " depth "));"
 

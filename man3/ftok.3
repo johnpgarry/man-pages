@@ -31,8 +31,8 @@ ftok \- convert a pathname and a project identifier to a System V IPC key
 # include <sys/ipc.h>
 .fi
 .sp
-.BI "key_t ftok ( char *" pathname ,
-.BI "char " proj " )"
+.BI "key_t ftok(char *" pathname ,
+.BI "char " proj );
 .SH DESCRIPTION
 The function converts the pathname of an existing accessible
 file and a project identifier into a

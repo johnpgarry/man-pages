@@ -29,9 +29,9 @@ getline, getdelim \- delimited string input
 .B #define _GNU_SOURCE
 .B #include <stdio.h>
 .sp
-.BI "ssize_t getline(char **" lineptr ", size_t *" n ", FILE *" stream ");"
+.BI "ssize_t getline(char **" lineptr ", size_t *" n ", FILE *" stream );
 .nl
-.BI "ssize_t getdelim(char **" lineptr ", size_t *" n ", int " delim ", FILE *" stream ");"
+.BI "ssize_t getdelim(char **" lineptr ", size_t *" n ", int " delim ", FILE *" stream );
 .SH DESCRIPTION
 .B getline()
 reads an entire line, storing the address of the buffer containing

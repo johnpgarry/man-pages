@@ -19,17 +19,17 @@ wprintf, fwprintf, swprintf, vwprintf, vfwprintf, vswprintf \- formatted wide ch
 .B #include <stdio.h>
 .B #include <wchar.h>
 .sp
-.BI "int wprintf (const wchar_t* " format ", ...);"
-.BI "int fwprintf (FILE* " stream ", const wchar_t* " format ", ...);"
-.BI "int swprintf (wchar_t* " wcs ", size_t " maxlen ,
-.BI "              const wchar_t* " format ", ...);"
+.BI "int wprintf(const wchar_t *" format ", ...);"
+.BI "int fwprintf(FILE *" stream ", const wchar_t *" format ", ...);"
+.BI "int swprintf(wchar_t *" wcs ", size_t " maxlen ,
+.BI "              const wchar_t *" format ", ...);"
 .sp
 .B #include <stdarg.h>
 .sp
-.BI "int vwprintf (const wchar_t* " format ", va_list " args );
-.BI "int vfwprintf (FILE* " stream ", const wchar_t* " format ", va_list " args );
-.BI "int vswprintf (wchar_t* " wcs ", size_t " maxlen ,
-.BI "               const wchar_t* " format ", va_list " args );
+.BI "int vwprintf(const wchar_t *" format ", va_list " args );
+.BI "int vfwprintf(FILE *" stream ", const wchar_t *" format ", va_list " args );
+.BI "int vswprintf(wchar_t *" wcs ", size_t " maxlen ,
+.BI "               const wchar_t *" format ", va_list " args );
 .fi
 .SH DESCRIPTION
 The \fBwprintf\fP family of functions is the wide-character equivalent of the

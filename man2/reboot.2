@@ -32,7 +32,7 @@ LINUX_REBOOT_* for the constants and a fourth argument to the call:
 .br
 .B #include <linux/reboot.h>
 .sp
-.BI "int reboot (int " magic ", int " magic2 ", int " flag ", void *" arg );
+.BI "int reboot(int " magic ", int " magic2 ", int " flag ", void *" arg );
 .sp
 Under glibc some of the constants involved have gotten symbolic names RB_*,
 and the library call is a 1-argument wrapper around the 3-argument
@@ -42,7 +42,7 @@ system call:
 .br
 .B #include <sys/reboot.h>
 .sp
-.BI "int reboot (int " flag );
+.BI "int reboot(int " flag );
 .SH DESCRIPTION
 The 
 .B reboot

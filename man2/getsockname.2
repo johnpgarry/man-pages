@@ -39,9 +39,11 @@
 .SH NAME
 getsockname \- get socket name
 .SH SYNOPSIS
+.nf
 .B #include <sys/socket.h>
 .sp
-.B "int getsockname(int " s ", struct sockaddr *" name ", socklen_t *" namelen )
+.BI "int getsockname(int " s ", struct sockaddr *" name ", socklen_t *" namelen );
+.fi
 .SH DESCRIPTION
 .B Getsockname
 returns the current 

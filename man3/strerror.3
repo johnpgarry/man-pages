@@ -37,9 +37,9 @@ strerror, strerror_r \- return string describing error code
 .nf
 .B #include <string.h>
 .sp
-.BI "char *strerror(int " errnum ");"
+.BI "char *strerror(int " errnum );
 .br
-.BI "int strerror_r(int " errnum ", char *" buf ", size_t " n ");"
+.BI "int strerror_r(int " errnum ", char *" buf ", size_t " n );
 .fi
 .SH DESCRIPTION
 The \fBstrerror()\fP function returns a string describing the error
@@ -80,7 +80,7 @@ SVID 3, POSIX, BSD 4.3, ISO/IEC 9899:1990 (C89).
 with prototype as given above is specified by SUSv3, and was in use
 under Digital Unix and HP Unix. An incompatible function, with prototype
 .sp
-.BI "char *strerror_r(int " errnum ", char *" buf ", size_t " n ");"
+.BI "char *strerror_r(int " errnum ", char *" buf ", size_t " n );
 .sp
 is a GNU extension used by glibc (since 2.0),
 and must be regarded as obsolete in view of SUSv3.

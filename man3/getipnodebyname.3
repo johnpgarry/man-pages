@@ -30,15 +30,15 @@ getipnodebyname, getipnodebyaddr, freehostent \- get network host names and addr
 .B #include <sys/socket.h>
 .B #include <netdb.h>
 .sp
-.BI "struct hostent *getipnodebyname(const char *" "name" ","
-.BI "                         int " "af" ", int " "flags" ","
-.BI "                         int *" "error_num" ");"
+.BI "struct hostent *getipnodebyname(const char *" "name" ,
+.BI "                         int " "af" ", int " "flags" ,
+.BI "                         int *" "error_num" );
 .sp
-.BI "struct hostent *getipnodebyaddr(const void *" "addr" ","
-.BI "                         size_t " "len" ", int " "af" ","
-.BI "                         int *" "error_num" ");"
+.BI "struct hostent *getipnodebyaddr(const void *" "addr" ,
+.BI "                         size_t " "len" ", int " "af" ,
+.BI "                         int *" "error_num" );
 .sp
-.BI "void freehostent(struct hostent *" "ip" ");"
+.BI "void freehostent(struct hostent *" "ip" );
 .fi
 .SH DESCRIPTION
 The

@@ -33,10 +33,10 @@ sigaction, sigprocmask, sigpending, sigsuspend \- POSIX signal handling function
 .SH SYNOPSIS
 .B #include <signal.h>
 .sp 2
-.BI "int sigaction(int " signum ", const struct sigaction *" act ","
+.BI "int sigaction(int " signum ", const struct sigaction *" act ,
 .BI "struct sigaction *" oldact );
 .sp
-.BI "int sigprocmask(int " how ", const sigset_t *" set ", "
+.BI "int sigprocmask(int " how ", const sigset_t *" set ,
 .BI "sigset_t *" oldset );
 .sp
 .BI "int sigpending(sigset_t *" set );
