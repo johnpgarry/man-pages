@@ -47,10 +47,13 @@ returns zero on success, or \-1 if an error occurred (in which case,
 is set appropriately).
 .SH ERRORS
 .TP
-.B EPERM
-The filesystem containing
+.B EACCES
+The parent directory does not allow write permission to the process,
+or one of the directories in
 .IR pathname
-does not support the creation of directories.
+did not allow search permission.
+(See also
+.BR path_resolution (2).)
 .TP
 .B EEXIST
 .I pathname
@@ -62,13 +65,9 @@ is a symbolic link, dangling or not.
 .B EFAULT
 .IR pathname " points outside your accessible address space."
 .TP
-.B EACCES
-The parent directory does not allow write permission to the process,
-or one of the directories in
-.IR pathname
-did not allow search permission.
-(See also
-.BR path_resolution (2).)
+.B ELOOP
+Too many symbolic links were encountered in resolving
+.IR pathname .
 .TP
 .B ENAMETOOLONG
 .IR pathname " was too long."
@@ -78,21 +77,8 @@ A directory component in
 .I pathname
 does not exist or is a dangling symbolic link.
 .TP
-.B ENOTDIR
-A component used as a directory in
-.I pathname
-is not, in fact, a directory.
-.TP
 .B ENOMEM
 Insufficient kernel memory was available.
-.TP
-.B EROFS
-.I pathname
-refers to a file on a read-only filesystem.
-.TP
-.B ELOOP
-Too many symbolic links were encountered in resolving
-.IR pathname .
 .TP
 .B ENOSPC
 The device containing
@@ -102,6 +88,20 @@ has no room for the new directory.
 .B ENOSPC
 The new directory cannot be created because the user's disk quota is
 exhausted.
+.TP
+.B ENOTDIR
+A component used as a directory in
+.I pathname
+is not, in fact, a directory.
+.TP
+.B EPERM
+The filesystem containing
+.IR pathname
+does not support the creation of directories.
+.TP
+.B EROFS
+.I pathname
+refers to a file on a read-only filesystem.
 .SH "CONFORMING TO"
 SVr4, POSIX, BSD, SYSV, X/OPEN.  SVr4 documents additional EIO, EMULTIHOP
 and ENOLINK error conditions; POSIX.1 omits ELOOP.

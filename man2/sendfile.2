@@ -81,28 +81,28 @@ is set appropriately.
 
 .SH ERRORS
 .TP
-.B EBADF
-The input file was not opened for reading or the output file
-was not opened for writing.
-.TP
 .B EAGAIN
 Non-blocking I/O has been selected using
 .B O_NONBLOCK
 and the write would block.
 .TP
+.B EBADF
+The input file was not opened for reading or the output file
+was not opened for writing.
+.TP
+.B EFAULT
+Bad address.
+.TP
 .B EINVAL
 Descriptor is not valid or locked.
-.TP
-.B ENOMEM
-Insufficient memory to read from
-.IR in_fd .
 .TP
 .B EIO
 Unspecified error while reading from
 .IR in_fd .
 .TP
-.B EFAULT
-Bad address.
+.B ENOMEM
+Insufficient memory to read from
+.IR in_fd .
 .SH VERSIONS
 .B sendfile
 is a new feature in Linux 2.2.

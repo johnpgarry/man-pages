@@ -66,12 +66,12 @@ is set appropriately.
 .I fd
 is not a valid file descriptor open for writing.
 .TP
+.B EIO
+An error occurred during synchronization.
+.TP
 .BR EROFS ", " EINVAL
 .I fd
 is bound to a special file which does not support synchronization.
-.TP
-.B EIO
-An error occurred during synchronization.
 .SH NOTES
 In case the hard disk has write cache enabled,
 the data may not really be on permanent storage when

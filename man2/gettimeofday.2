@@ -185,22 +185,22 @@ return 0 for success, or \-1 for failure (in which case
 is set appropriately).
 .SH ERRORS
 .TP
-.B EPERM
-The calling process has insufficient privilege to call 
-.BR settimeofday ;
-under Linux the
-.B CAP_SYS_TIME
-capability is required.
-.TP
-.B EINVAL
-Timezone (or something else) is invalid.
-.TP
 .B EFAULT
 One of 
 .I tv
 or
 .I tz
 pointed outside the accessible address space.
+.TP
+.B EINVAL
+Timezone (or something else) is invalid.
+.TP
+.B EPERM
+The calling process has insufficient privilege to call 
+.BR settimeofday ;
+under Linux the
+.B CAP_SYS_TIME
+capability is required.
 .SH NOTE
 The prototype for
 .B settimeofday

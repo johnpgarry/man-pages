@@ -101,14 +101,14 @@ was delivered within the
 period specified to
 .BR sigtimedwait ().
 .TP
-.B EINVAL
-.I timeout
-was invalid.
-.TP
 .B EINTR
 The wait was interrupted by a signal handler.
 (This handler was for a signal other than one of those in
 .IR set .)
+.TP
+.B EINVAL
+.I timeout
+was invalid.
 .SH NOTES
 In normal usage, the caller blocks the signals in
 .I set

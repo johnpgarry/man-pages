@@ -70,7 +70,7 @@ and may be freed soon after they are accessed.)
 .B MADV_WILLNEED
 Expect access in the near future.
 (Hence, it might be a good idea to read some pages ahead.)
-.TP 
+.TP
 .B MADV_DONTNEED
 Do not expect access in the near future.
 (For the time being, the application is finished with the given range,
@@ -87,8 +87,14 @@ returns zero. On error, it returns \-1 and
 is set appropiately.
 .SH ERRORS
 .TP
+.B EAGAIN
+A kernel resource was temporarily unavailable.
+.TP
+.B EBADF
+The map exists, but the area maps something that isn't a file.
+.TP
 .B EINVAL
-the value 
+The value 
 .IR len
 is negative,
 .\" .I len
@@ -98,23 +104,17 @@ is not page-aligned,
 .I advice 
 is not a valid value, or the application is attempting
 to release locked or shared pages (with MADV_DONTNEED).
-.TP 
-.B ENOMEM
-addresses in the specified range are not currently
-mapped, or are outside the address space of the process.
-.TP
-.B ENOMEM
-(for MADV_WILLNEED) Not enough memory - paging in failed.
 .TP
 .B EIO
 (for MADV_WILLNEED) Paging in this area would exceed the process's
 maximum resident set size.
 .TP
-.B EBADF
-the map exists, but the area maps something that isn't a file.
+.B ENOMEM
+(for MADV_WILLNEED) Not enough memory - paging in failed.
 .TP
-.B EAGAIN
-a kernel resource was temporarily unavailable.
+.B ENOMEM
+Addresses in the specified range are not currently
+mapped, or are outside the address space of the process.
 .SH "LINUX NOTES"
 .LP
 The current Linux implementation (2.4.0) views this system call

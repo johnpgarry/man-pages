@@ -1,13 +1,13 @@
 Begin3
 Title:          Section 2, 3, 4, 5 and 7 man pages for Linux
-Version:        1.68
-Entered-date:   2004-10-10
+Version:        1.69
+Entered-date:   2004-10-11
 Description:    Linux and POSIX manual pages
 Keywords:       man pages
 Author:         several
 Maintained-by:  Andries E. Brouwer (aeb@cwi.nl)
 Primary-site:   ftp://ftp.win.tue.nl/pub/linux-local/manpages
-                2273k man-pages-1.68.tar.gz
+                2272k man-pages-1.69.tar.gz
 Alternate-site: ftp://ftp.XX.kernel.org/pub/linux/docs/manpages
 Copying-policy: several; for the POSIX pages, see the file POSIX-COPYRIGHT;
 		the other pages are all freely distributable provided

@@ -102,11 +102,6 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
-.B EWOULDBLOCK
-The file is locked and the
-.B LOCK_NB
-flag was selected.
-.TP
 .B EBADF
 .I fd
 is not a not an open file descriptor.
@@ -121,6 +116,11 @@ is invalid.
 .TP
 .B ENOLCK
 The kernel ran out of memory for allocating lock records.
+.TP
+.B EWOULDBLOCK
+The file is locked and the
+.B LOCK_NB
+flag was selected.
 .SH "CONFORMING TO"
 4.4BSD (the
 .BR flock (2)

@@ -1,5 +1,5 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "FCNTL" P 2003 POSIX
+.TH "FCNTL" P 2003 "IEEE/The Open Group" "POSIX Programmer's Manual"
 .\" fcntl 
 .SH NAME
 fcntl \- file control
@@ -278,7 +278,7 @@ error.
 .LP
 The \fIfcntl\fP() function shall fail if:
 .TP 7
-.B EACCES] or [EAGAIN
+.B EACCES \fRor\fP EAGAIN
 .sp
 The \fIcmd\fP argument is F_SETLK; the type of lock ( \fIl_type\fP)
 is a shared (F_RDLCK) or exclusive (F_WRLCK) lock and the

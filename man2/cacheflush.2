@@ -51,11 +51,11 @@ returns 0 on success or \-1 on error. If errors are detected,
 errno will indicate the error.
 .SH ERRORS
 .TP
-.B EINVAL
-cache parameter is not one of ICACHE, DCACHE, or BCACHE.
-.TP
 .B EFAULT
 Some or all of the address range addr to (addr+nbytes-1) is not accessible.
+.TP
+.B EINVAL
+cache parameter is not one of ICACHE, DCACHE, or BCACHE.
 .PP
 .SH BUGS
 The current implementation ignores the addr and nbytes parameters.  Therefore

@@ -54,11 +54,11 @@ returns -1 and
 is set appropriately.
 .SH ERRORS
 .TP
-.B ENOMEM
-There was insufficient memory to create the kernel object.
-.TP
 .B ENFILE
 The system limit on the total number of open files has been reached.
+.TP
+.B ENOMEM
+There was insufficient memory to create the kernel object.
 .SH CONFORMING TO
 .BR epoll_create (2)
 is a new API introduced in Linux kernel 2.5.44.

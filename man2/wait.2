@@ -171,23 +171,22 @@ is set to an appropriate value).
 .SH ERRORS
 .TP
 .B ECHILD
-if the process specified in
+The process specified in
 .I pid
 does not exist or is not a child of the calling process.
 (This can happen for one's own child if the action for SIGCHLD
 is set to SIG_IGN. See also the LINUX NOTES section about threads.)
 .TP
-.B EINVAL
-if the
-.I options
-argument was invalid.
-.TP
 .B EINTR
-if
 .B WNOHANG
 was not set and an unblocked signal or a
 .B SIGCHLD
 was caught.
+.TP
+.B EINVAL
+The
+.I options
+argument was invalid.
 .SH NOTES
 The Single Unix Specification describes a flag SA_NOCLDWAIT (not supported
 under Linux) such that if either this flag is set, or the action for

@@ -1,5 +1,5 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "LOCKF" P 2003 POSIX
+.TH "LOCKF" P 2003 "IEEE/The Open Group" "POSIX Programmer's Manual"
 .\" lockf 
 .SH NAME
 lockf \- record locking on files
@@ -122,7 +122,7 @@ The \fIfildes\fP argument is not a valid open file descriptor; or
 \fIfunction\fP is F_LOCK or F_TLOCK and \fIfildes\fP is
 not a valid file descriptor open for writing.
 .TP 7
-.B EACCES] or [EAGAIN
+.B EACCES \fRor\fP EAGAIN
 .sp
 The \fIfunction\fP argument is F_TLOCK or F_TEST and the section is
 already locked by another process.
@@ -150,13 +150,13 @@ The \fIlockf\fP() function may fail if:
 The \fIfunction\fP argument is F_LOCK or F_TLOCK and the file is mapped
 with \fImmap\fP().
 .TP 7
-.B EDEADLK] or [ENOLCK
+.B EDEADLK \fRor\fP ENOLCK
 .sp
 The \fIfunction\fP argument is F_LOCK, F_TLOCK, or F_ULOCK, and the
 request would cause the number of locks to exceed a
 system-imposed limit.
 .TP 7
-.B EOPNOTSUPP] or [EINVAL
+.B EOPNOTSUPP \fRor\fP EINVAL
 .sp
 The implementation does not support the locking of files of the type
 indicated by the \fIfildes\fP argument.

@@ -96,6 +96,11 @@ is set appropriately.
 .I epfd
 is not a valid file descriptor.
 .TP
+.B EFAULT
+The memory area pointed to by
+.I events
+is not accessible with write permissions.
+.TP
 .B EINVAL
 The supplied file descriptor,
 .IR epfd ,
@@ -104,11 +109,6 @@ is not an
 file descriptor, or the
 .I maxevents
 parameter is less than or equal to zero.
-.TP
-.B EFAULT
-The memory area pointed to by
-.I events
-is not accessible with write permissions.
 .SH CONFORMING TO
 .BR epoll_wait (2)
 is a new API introduced in Linux kernel 2.5.44.

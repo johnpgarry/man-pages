@@ -74,14 +74,6 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
-.B EPERM
-The filesystem containing
-.IR newpath
-does not support the creation of symbolic links.
-.TP
-.B EFAULT
-.IR oldpath " or " newpath " points outside your accessible address space."
-.TP
 .B EACCES
 Write access to the directory containing
 .I newpath
@@ -90,6 +82,20 @@ is denied, or one of the directories in the path prefix of
 did not allow search permission.
 (See also
 .BR path_resolution (2).)
+.TP
+.B EEXIST
+.I newpath
+already exists.
+.TP
+.B EFAULT
+.IR oldpath " or " newpath " points outside your accessible address space."
+.TP
+.B EIO
+An I/O error occurred.
+.TP
+.B ELOOP
+Too many symbolic links were encountered in resolving
+.IR newpath .
 .TP
 .B ENAMETOOLONG
 .IR oldpath " or " newpath " was too long."
@@ -101,32 +107,26 @@ does not exist or is a dangling symbolic link, or
 .I oldpath
 is the empty string.
 .TP
-.B ENOTDIR
-A component used as a directory in
-.IR newpath
-is not, in fact, a directory.
-.TP
 .B ENOMEM
 Insufficient kernel memory was available.
-.TP
-.B EROFS
-.I newpath
-is on a read-only filesystem.
-.TP
-.B EEXIST
-.I newpath
-already exists.
-.TP
-.B ELOOP
-Too many symbolic links were encountered in resolving
-.IR newpath .
 .TP
 .B ENOSPC
 The device containing the file has no room for the new directory
 entry.
 .TP
-.B EIO
-An I/O error occurred.
+.B ENOTDIR
+A component used as a directory in
+.IR newpath
+is not, in fact, a directory.
+.TP
+.B EPERM
+The filesystem containing
+.IR newpath
+does not support the creation of symbolic links.
+.TP
+.B EROFS
+.I newpath
+is on a read-only filesystem.
 .SH NOTES
 No checking of
 .I oldpath

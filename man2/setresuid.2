@@ -60,14 +60,14 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
-.B EPERM
-The current process was not privileged (did not have the CAP_SETUID
-capability) and tried to change the IDs is a not allowed way.
-.TP
 .B EAGAIN
 .I uid
 does not match the current uid and this call would
 bring that userID over its NPROC rlimit.
+.TP
+.B EPERM
+The current process was not privileged (did not have the CAP_SETUID
+capability) and tried to change the IDs is a not allowed way.
 .SH "CONFORMING TO"
 This call is nonstandard.
 .SH HISTORY

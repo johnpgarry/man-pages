@@ -181,14 +181,6 @@ and
 .\" .B EIDRM
 .\" The semaphore set is marked to be deleted.
 .TP
-.B ENOENT
-No semaphore set exists for
-.I key
-and
-.I semflg
-wasn't asserting
-.BR IPC_CREAT .
-.TP
 .B EINVAL
 .IR nsems
 is less than 0 or greater than the limit on the number
@@ -199,6 +191,14 @@ or a semaphore set corresponding to
 already exists, and
 .I nsems
 is larger than the number of semaphores in that set.
+.TP
+.B ENOENT
+No semaphore set exists for
+.I key
+and
+.I semflg
+wasn't asserting
+.BR IPC_CREAT .
 .TP
 .B ENOMEM
 A semaphore set has to be created but the system has not enough memory for

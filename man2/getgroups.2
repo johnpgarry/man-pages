@@ -80,10 +80,6 @@ is set appropriately.
 .I list
 has an invalid address.
 .TP
-.B EPERM
-The calling process has insufficient privilege to call 
-.BR setgroups .
-.TP
 .B EINVAL
 For
 .BR setgroups ,
@@ -95,6 +91,10 @@ For
 .BR getgroups ,
 .I size
 is less than the number of supplementary group IDs, but is not zero.
+.TP
+.B EPERM
+The calling process has insufficient privilege to call 
+.BR setgroups .
 .SH NOTES
 A process can have up to at least NGROUPS_MAX supplementary group IDs
 in addition to the effective group ID. The set of supplementary group IDs

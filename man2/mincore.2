@@ -78,15 +78,15 @@ is set appropriately.
 .B EAGAIN
 kernel is temporarily out of resources
 .TP
+.B EFAULT
+.I vec
+points to an invalid address
+.TP
 .B EINVAL
 .I start
 is not a multiple of the page size, or
 .I len
 has a non-positive value
-.TP
-.B EFAULT
-.I vec
-points to an invalid address
 .TP
 .B ENOMEM
 .I address

@@ -291,6 +291,12 @@ When
 fails, at return
 .I errno
 will be set to one among the following values:
+.TP
+.B EACCES
+The calling process does not have write permission on the message queue,
+and does not have the
+.BR CAP_IPC_OWNER
+capability.
 .TP 11
 .B EAGAIN
 The message can't be sent due to the
@@ -299,12 +305,6 @@ limit for the queue and
 .B IPC_NOWAIT
 was asserted in
 .IR mgsflg .
-.TP
-.B EACCES
-The calling process does not have write permission on the message queue,
-and does not have the
-.BR CAP_IPC_OWNER
-capability.
 .TP
 .B EFAULT
 The address pointed to by

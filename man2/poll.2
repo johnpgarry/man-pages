@@ -116,9 +116,6 @@ is set appropriately.
 .B EBADF
 An invalid file descriptor was given in one of the sets.
 .TP
-.B ENOMEM
-There was no space to allocate file descriptor tables.
-.TP
 .B EFAULT
 The array given as argument was not contained in the calling program's
 address space.
@@ -130,6 +127,9 @@ A signal occurred before any requested event.
 The
 .I nfds
 value exceeds the RLIMIT_NOFILE value.
+.TP
+.B ENOMEM
+There was no space to allocate file descriptor tables.
 .SH BUGS
 See the BUGS section of
 .BR select (2).

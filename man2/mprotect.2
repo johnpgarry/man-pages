@@ -71,12 +71,6 @@ returns zero.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
-.B EINVAL
-\fIaddr\fR is not a valid pointer, or not a multiple of PAGESIZE.
-.TP
-.B EFAULT
-The memory cannot be accessed.
-.TP
 .B EACCES
 The memory cannot be given the specified access.  This can happen,
 for example, if you
@@ -85,6 +79,12 @@ a file to which you have read-only access, then ask
 .B mprotect
 to mark it
 .BR PROT_WRITE .
+.TP
+.B EFAULT
+The memory cannot be accessed.
+.TP
+.B EINVAL
+\fIaddr\fR is not a valid pointer, or not a multiple of PAGESIZE.
 .TP
 .B ENOMEM
 Internal kernel structures could not be allocated.

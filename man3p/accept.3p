@@ -1,5 +1,5 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "ACCEPT" P 2003 POSIX
+.TH "ACCEPT" P 2003 "IEEE/The Open Group" "POSIX Programmer's Manual"
 .\" accept 
 .SH NAME
 accept \- accept a new connection on a socket
@@ -71,7 +71,7 @@ shall be returned and \fIerrno\fP set to indicate the error.
 .LP
 The \fIaccept\fP() function shall fail if:
 .TP 7
-.B EAGAIN] or [EWOULDBLOCK
+.B EAGAIN \fRor\fP EWOULDBLOCK
 .sp
 O_NONBLOCK is set for the socket file descriptor and no connections
 are present to be accepted.

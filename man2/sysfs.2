@@ -77,6 +77,10 @@ On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
+.B EFAULT
+.RI "Either " fsname " or " buf
+is outside your accessible address space.
+.TP
 .B EINVAL
 .I fsname
 is not a valid file-system type identifier;
@@ -84,10 +88,6 @@ is not a valid file-system type identifier;
 is out-of-bounds;
 .I option
 is invalid.
-.TP
-.B EFAULT
-.RI "Either " fsname " or " buf
-is outside your accessible address space.
 .PP
 .SH "CONFORMING TO"
 SVr4.

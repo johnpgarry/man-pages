@@ -328,7 +328,7 @@ of not much use. Since 2.3.21 this flag can be
 specified only by the system boot process (PID 0).
 It disappeared in Linux 2.5.16.
 
-.TP 
+.TP
 .BR CLONE_THREAD " (since Linux 2.4.0-test8)"
 If
 .B CLONE_THREAD
@@ -407,8 +407,8 @@ the stack.  In this case, for correct operation, the
 .B CLONE_VM
 option should not be specified.
 
-Since Linux 2.5.49 the system call has five parameters (one unused).
-The additional two parameters are
+Since Linux 2.5.49 the system call has five parameters.
+The two new parameters are
 .I parent_tidptr
 which points to the location (in parent and child memory) where
 the parent thread ID will be written in case CLONE_PARENT_SETTID
@@ -431,16 +431,24 @@ will be set appropriately.
 .B EAGAIN
 Too many processes are already running.
 .TP
-.B ENOMEM
-Cannot allocate sufficient memory to allocate a task structure for the
-child, or to copy those parts of the caller's context that need to be
-copied.
+.B EINVAL
+.B CLONE_SIGHAND
+was specified, but
+.B CLONE_VM
+was not. (Since Linux 2.6.0-test6.)
 .TP
 .B EINVAL
-Returned by 
-.B clone 
-when a zero value is specified for 
-.IR child_stack .
+.B CLONE_THREAD
+was specified, but
+.B CLONE_SIGHAND
+was not. (Since Linux 2.5.35.)
+.TP
+.B EINVAL
+Precisely one of
+.B CLONE_DETACHED
+and
+.B CLONE_THREAD
+was specified. (Since Linux 2.6.0-test6.)
 .TP
 .B EINVAL
 Both
@@ -451,23 +459,15 @@ were specified in
 .IR flags .
 .TP
 .B EINVAL
-.B CLONE_THREAD
-was specified, but
-.B CLONE_SIGHAND
-was not. (Since Linux 2.5.35.)
+Returned by 
+.B clone 
+when a zero value is specified for 
+.IR child_stack .
 .TP
-.B EINVAL
-.B Precisely one of
-.B CLONE_DETACHED
-and
-.B CLONE_THREAD
-was specified. (Since Linux 2.6.0-test6.)
-.TP
-.B EINVAL
-.B CLONE_SIGHAND
-was specified, but
-.B CLONE_VM
-was not. (Since Linux 2.6.0-test6.)
+.B ENOMEM
+Cannot allocate sufficient memory to allocate a task structure for the
+child, or to copy those parts of the caller's context that need to be
+copied.
 .TP
 .B EPERM
 .B CLONE_NEWNS

@@ -126,21 +126,21 @@ or
 .I gid
 was not found.
 .TP
-.B ENOMEM
-Insufficient memory.
-.\" to allocate the group structure, or to allocate buffers
+.B EINTR
+A signal was caught.
 .TP
 .B EIO
 I/O error.
-.TP
-.B EINTR
-A signal was caught.
 .TP
 .B EMFILE
 The maximum number (OPEN_MAX) of files was open already in the calling process.
 .TP
 .B ENFILE
 The maximum number of files was open already in the system.
+.TP
+.B ENOMEM
+Insufficient memory.
+.\" to allocate the group structure, or to allocate buffers
 .TP
 .B ERANGE
 Insufficient buffer space supplied.

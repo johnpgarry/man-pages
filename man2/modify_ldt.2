@@ -77,9 +77,9 @@ returns \-1 and sets
 .IR errno .
 .SH ERRORS
 .TP
-.B ENOSYS
-.I func
-is neither 0 nor 1.
+.B EFAULT
+.I ptr
+points outside the address space.
 .TP
 .B EINVAL
 .I ptr
@@ -94,9 +94,9 @@ or
 .I func
 is 1 and the new ldt entry has invalid values.
 .TP
-.B EFAULT
-.I ptr
-points outside the address space.
+.B ENOSYS
+.I func
+is neither 0 nor 1.
 .SH "CONFORMING TO"
 This call in Linux-specific and should not be used in programs intended
 to be portable.

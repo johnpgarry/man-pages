@@ -56,13 +56,14 @@ a regular file, 0 will be returned without causing any other effect.
 For a special file, the results are not portable.
 .SH ERRORS
 .TP
+.B EAGAIN
+Non-blocking I/O has been selected using
+.B O_NONBLOCK
+and the write would block.
+.TP
 .B EBADF
 .I fd
 is not a valid file descriptor or is not open for writing.
-.TP
-.B EINVAL
-.I fd
-is attached to an object which is unsuitable for writing.
 .TP
 .B EFAULT
 .I buf
@@ -73,6 +74,21 @@ An attempt was made to write a file that exceeds the implementation-defined
 maximum file size or the process' file size limit, or to write at a position
 past than the maximum allowed offset.
 .TP
+.B EINTR
+The call was interrupted by a signal before any data was written.
+.TP
+.B EINVAL
+.I fd
+is attached to an object which is unsuitable for writing.
+.TP
+.B EIO
+A low-level I/O error occurred while modifying the inode.
+.TP
+.B ENOSPC
+The device containing the file referred to by
+.I fd
+has no room for the data.
+.TP
 .B EPIPE
 .I fd
 is connected to a pipe or socket whose reading end is closed.  When this
@@ -81,22 +97,6 @@ happens the writing process will also receive a
 signal.
 (Thus, the write return value is seen only if the program
 catches, blocks or ignores this signal.)
-.TP
-.B EAGAIN
-Non-blocking I/O has been selected using
-.B O_NONBLOCK
-and the write would block.
-.TP
-.B EINTR
-The call was interrupted by a signal before any data was written.
-.TP
-.B ENOSPC
-The device containing the file referred to by
-.I fd
-has no room for the data.
-.TP
-.B EIO
-A low-level I/O error occurred while modifying the inode.
 .PP
 Other errors may occur, depending on the object connected to
 .IR fd .

@@ -113,6 +113,11 @@ is set appropriately, and no changes are made to any locks in the
 address space of the process.
 .SH ERRORS
 .TP
+.B EINVAL
+(Not on Linux)
+.I addr
+was not a multiple of the page size.
+.TP
 .B ENOMEM
 Some of the specified address range does not correspond to mapped
 pages in the address space of the process or the process tried to
@@ -120,15 +125,10 @@ exceed the maximum number of allowed locked pages.
 .TP
 .B EPERM
 The calling process has insufficient privilege to call 
-.BR mlock ;
-the
+.BR mlock .
+Under Linux the
 .B CAP_IPC_LOCK
 capability is required.
-.TP
-.B EINVAL
-(Not on Linux)
-.I addr
-was not a multiple of the page size.
 .LP
 Linux adds
 .TP

@@ -49,11 +49,6 @@ and
 the following may also be returned:
 
 .TP
-.B ENOEXEC
-The file specified by
-.I library
-is not executable, or does not have the correct magic numbers.
-.TP
 .B EACCES
 The library specified by
 .I library
@@ -63,6 +58,11 @@ for one of the directories in the path prefix. (See also
 .TP
 .B ENFILE
 The system limit on the total number of open files has been reached.
+.TP
+.B ENOEXEC
+The file specified by
+.I library
+is not executable, or does not have the correct magic numbers.
 .SH "CONFORMING TO"
 \fBuselib()\fP is Linux specific, and should not be used in programs
 intended to be portable.

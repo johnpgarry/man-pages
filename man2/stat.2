@@ -240,24 +240,6 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
-.B EBADF
-.I filedes
-is bad.
-.TP
-.B ENOENT
-A component of the path
-.I file_name
-does not exist, or the path is an empty string.
-.TP
-.B ENOTDIR
-A component of the path is not a directory.
-.TP
-.B ELOOP
-Too many symbolic links encountered while traversing the path.
-.TP
-.B EFAULT
-Bad address.
-.TP
 .B EACCES
 Search permission is denied for one of the directories
 in the path prefix of
@@ -265,11 +247,29 @@ in the path prefix of
 (See also
 .BR path_resolution (2).)
 .TP
-.B ENOMEM
-Out of memory (i.e. kernel memory).
+.B EBADF
+.I filedes
+is bad.
+.TP
+.B EFAULT
+Bad address.
+.TP
+.B ELOOP
+Too many symbolic links encountered while traversing the path.
 .TP
 .B ENAMETOOLONG
 File name too long.
+.TP
+.B ENOENT
+A component of the path
+.I file_name
+does not exist, or the path is an empty string.
+.TP
+.B ENOMEM
+Out of memory (i.e. kernel memory).
+.TP
+.B ENOTDIR
+A component of the path is not a directory.
 .SH "CONFORMING TO"
 The
 .B stat

@@ -76,14 +76,14 @@ is set appropriately, and no changes are made to any locks in the
 address space of the process.
 .SH ERRORS
 .TP
-.B ENOMEM
-Some of the specified address range does not correspond to mapped
-pages in the address space of the process.
-.TP
 .B EINVAL
 (Not on Linux)
 .I addr
 was not a multiple of the page size.
+.TP
+.B ENOMEM
+Some of the specified address range does not correspond to mapped
+pages in the address space of the process.
 .LP
 Linux adds
 .TP

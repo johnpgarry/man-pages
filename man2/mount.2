@@ -211,19 +211,21 @@ errors. Each filesystem type may have its own special errors and its
 own special behavior.  See the kernel source code for details.
 
 .TP
-.B EPERM
-The caller does not have the required privileges.
-.TP
-.B ENODEV
-.I Filesystemtype
-not configured in the kernel.
-.TP
-.B ENOTBLK
-.I Source
-is not a block device (and a device was required).
+.B EACCES
+A component of a path was not searchable. (See also
+.BR path_resolution (2).)
+.br
+Or, mounting a read-only filesystem was attempted without giving the
+MS_RDONLY flag.
+.br
+Or, the block device
+.I source
+is located on a filesystem mounted with the MS_NODEV option.
+.\" mtk: Probably: write permission is required for MS_BIND, with
+.\" the error EPERM if not present; CAP_DAC_OVERRIDE is required.
 .TP
 .B EBUSY
-.I Source
+.I source
 is already mounted. Or, it cannot be remounted read-only,
 because it still holds files open for writing.
 Or, it cannot be mounted on
@@ -234,8 +236,11 @@ is still busy (it is the working directory of some task,
 the mount point of another device, has open files, etc.).
 Or, it could not be unmounted because it is busy.
 .TP
+.B EFAULT
+One of the pointer arguments points outside the user address space.
+.TP
 .B EINVAL
-.I Source
+.I source
 had an invalid superblock.
 Or, a remount was attempted, while
 .I source
@@ -248,22 +253,6 @@ Or, an umount was attempted, while
 .I target
 was not a mount point.
 .TP
-.B ENOTDIR
-The second argument, or a prefix of the first argument, is not
-a directory.
-.TP
-.B EFAULT
-One of the pointer arguments points outside the user address space.
-.TP
-.B ENOMEM
-The kernel could not allocate a free page to copy filenames or data into.
-.TP
-.B ENAMETOOLONG
-A pathname was longer than MAXPATHLEN.
-.TP
-.B ENOENT
-A pathname was empty or had a nonexistent component.
-.TP
 .B ELOOP
 Too many link encountered during pathname resolution.
 Or, a move was attempted, while
@@ -271,27 +260,38 @@ Or, a move was attempted, while
 is a descendant of
 .IR source .
 .TP
-.B EACCES
-A component of a path was not searchable. (See also
-.BR path_resolution (2).)
-.br
-Or, mounting a read-only filesystem was attempted without giving the
-MS_RDONLY flag.
-.br
-Or, the block device
-.I Source
-is located on a filesystem mounted with the MS_NODEV option.
-.\" mtk: Probably: write permission is required for MS_BIND, with
-.\" the error EPERM if not present; CAP_DAC_OVERRIDE is required.
+.B EMFILE
+(In case no block device is required:)
+Table of dummy devices is full.
+.TP
+.B ENAMETOOLONG
+A pathname was longer than MAXPATHLEN.
+.TP
+.B ENODEV
+.I Filesystemtype
+not configured in the kernel.
+.TP
+.B ENOENT
+A pathname was empty or had a nonexistent component.
+.TP
+.B ENOMEM
+The kernel could not allocate a free page to copy filenames or data into.
+.TP
+.B ENOTBLK
+.I source
+is not a block device (and a device was required).
+.TP
+.B ENOTDIR
+The second argument, or a prefix of the first argument, is not
+a directory.
 .TP
 .B ENXIO
 The major number of the block device
 .I source
 is out of range.
 .TP
-.B EMFILE
-(In case no block device is required:)
-Table of dummy devices is full.
+.B EPERM
+The caller does not have the required privileges.
 .SH "CONFORMING TO"
 These functions are Linux-specific and should not be used in
 programs intended to be portable.

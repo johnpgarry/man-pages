@@ -124,18 +124,18 @@ return 0 for success, or \-1 for failure (in which case
 is set appropriately).
 .SH ERRORS
 .TP
-.B EPERM
-.BR clock_settime ()
-does not have permission to set the clock indicated.
+.B EFAULT
+.I tp
+points outside the accessible address space.
 .TP
 .B EINVAL
 The 
 .I clk_id
 specified is not supported on this system.
 .TP
-.B EFAULT
-.I tp
-points outside the accessible address space.
+.B EPERM
+.BR clock_settime ()
+does not have permission to set the clock indicated.
 .SH NOTE
 Most systems require the program be linked with the librt
 library to use these functions.

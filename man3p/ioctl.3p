@@ -1,5 +1,5 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "IOCTL" P 2003 POSIX
+.TH "IOCTL" P 2003 "IEEE/The Open Group" "POSIX Programmer's Manual"
 .\" ioctl 
 .SH NAME
 ioctl \- control a STREAMS device (\fBSTREAMS\fP)
@@ -125,7 +125,7 @@ The \fIioctl\fP() function with the I_FLUSH command shall fail if:
 Invalid \fIarg\fP value.
 .RE
 .TP 7
-.B EAGAIN] or [ENOSR
+.B EAGAIN \fRor\fP ENOSR
 .RS
 .sp
 Unable to allocate buffers for flush message.
@@ -423,7 +423,7 @@ the STREAM write queue is full due to internal flow
 control conditions.
 .RE
 .TP 7
-.B EAGAIN] or [ENOSR
+.B EAGAIN \fRor\fP ENOSR
 .RS
 .sp
 Buffers cannot be allocated for the message that is to be created.
@@ -514,7 +514,7 @@ message and send it downstream.
 .LP
 The \fIioctl\fP() function with the I_STR command shall fail if:
 .TP 7
-.B EAGAIN] or [ENOSR
+.B EAGAIN \fRor\fP ENOSR
 .RS
 .sp
 Unable to allocate buffers for the \fIioctl\fP() message.
@@ -681,7 +681,7 @@ The \fIioctl\fP() function with the I_LIST command shall fail if:
 The \fIsl_nmods\fP member is less than 1.
 .RE
 .TP 7
-.B EAGAIN] or [ENOSR
+.B EAGAIN \fRor\fP ENOSR
 .RS
 .sp
 Unable to allocate buffers.
@@ -811,7 +811,7 @@ Hangup received on \fIfildes\fP.
 Timeout before acknowledgement message was received at STREAM head.
 .RE
 .TP 7
-.B EAGAIN] or [ENOSR
+.B EAGAIN \fRor\fP ENOSR
 .RS
 .sp
 Unable to allocate STREAMS storage to perform the I_LINK.
@@ -861,7 +861,7 @@ Hangup received on \fIfildes\fP.
 Timeout before acknowledgement message was received at STREAM head.
 .RE
 .TP 7
-.B EAGAIN] or [ENOSR
+.B EAGAIN \fRor\fP ENOSR
 .RS
 .sp
 Unable to allocate buffers for the acknowledgement message.
@@ -907,7 +907,7 @@ Hangup received on \fIfildes\fP.
 Timeout before acknowledgement message was received at STREAM head.
 .RE
 .TP 7
-.B EAGAIN] or [ENOSR
+.B EAGAIN \fRor\fP ENOSR
 .RS
 .sp
 Unable to allocate STREAMS storage to perform the I_PLINK.
@@ -958,7 +958,7 @@ Hangup received on \fIfildes\fP.
 Timeout before acknowledgement message was received at STREAM head.
 .RE
 .TP 7
-.B EAGAIN] or [ENOSR
+.B EAGAIN \fRor\fP ENOSR
 .RS
 .sp
 Unable to allocate buffers for the acknowledgement message.

@@ -54,18 +54,6 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
-.B EXDEV
-.IR oldpath " and " newpath
-are not on the same filesystem.
-.TP
-.B EPERM
-The filesystem containing
-.IR oldpath " and " newpath
-does not support the creation of hard links.
-.TP
-.B EFAULT
-.IR oldpath " or " newpath " points outside your accessible address space."
-.TP
 .B EACCES
 Write access to the directory containing
 .I newpath
@@ -77,6 +65,25 @@ or
 (See also
 .BR path_resolution (2).)
 .TP
+.B EEXIST
+.I newpath
+already exists.
+.TP
+.B EFAULT
+.IR oldpath " or " newpath " points outside your accessible address space."
+.TP
+.B EIO
+An I/O error occurred.
+.TP
+.B ELOOP
+Too many symbolic links were encountered in resolving
+.IR oldpath " or " newpath .
+.TP
+.B EMLINK
+The file referred to by
+.I oldpath
+already has the maximum number of links to it.
+.TP
 .B ENAMETOOLONG
 .IR oldpath " or " newpath " was too long."
 .TP
@@ -85,40 +92,33 @@ A directory component in
 .IR oldpath " or " newpath
 does not exist or is a dangling symbolic link.
 .TP
-.B ENOTDIR
-A component used as a directory in
-.IR oldpath " or " newpath
-is not, in fact, a directory.
-.TP
 .B ENOMEM
 Insufficient kernel memory was available.
-.TP
-.B EROFS
-The file is on a read-only filesystem.
-.TP
-.B EEXIST
-.I newpath
-already exists.
-.TP
-.B EMLINK
-The file referred to by
-.I oldpath
-already has the maximum number of links to it.
-.TP
-.B ELOOP
-Too many symbolic links were encountered in resolving
-.IR oldpath " or " newpath .
 .TP
 .B ENOSPC
 The device containing the file has no room for the new directory
 entry.
 .TP
+.B ENOTDIR
+A component used as a directory in
+.IR oldpath " or " newpath
+is not, in fact, a directory.
+.TP
 .B EPERM
 .I oldpath
 is a directory.
 .TP
-.B EIO
-An I/O error occurred.
+.B EPERM
+The filesystem containing
+.IR oldpath " and " newpath
+does not support the creation of hard links.
+.TP
+.B EROFS
+The file is on a read-only filesystem.
+.TP
+.B EXDEV
+.IR oldpath " and " newpath
+are not on the same filesystem.
 .SH NOTES
 Hard links, as created by
 .BR link ,

@@ -120,17 +120,29 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
-.B EBADF
-(fstatfs)
-.I fd
-is not a valid open file descriptor.
-.TP
 .B EACCES
 (statfs)
 Search permission is denied for a component of the path prefix of
 .IR path .
 (See also
 .BR path_resolution (2).)
+.TP
+.B EBADF
+(fstatfs)
+.I fd
+is not a valid open file descriptor.
+.TP
+.B EFAULT
+.I buf
+or
+.I path
+points to an invalid address.
+.TP
+.B EINTR
+This call was interrupted by a signal.
+.TP
+.B EIO
+An I/O error occurred while reading from the file system.
 .TP
 .B ELOOP
 (statfs)
@@ -148,29 +160,17 @@ The file referred to by
 .I path
 does not exist.
 .TP
-.B ENOTDIR
-(statfs)
-A component of the path prefix of
-.I path
-is not a directory.
-.TP
-.B EFAULT
-.I buf
-or
-.I path
-points to an invalid address.
-.TP
-.B EINTR
-This call was interrupted by a signal.
-.TP
-.B EIO
-An I/O error occurred while reading from the file system.
-.TP
 .B ENOMEM
 Insufficient kernel memory was available.
 .TP
 .B ENOSYS
 The file system does not support this call.
+.TP
+.B ENOTDIR
+(statfs)
+A component of the path prefix of
+.I path
+is not a directory.
 .TP
 .B EOVERFLOW
 Some values were too large to be represented in the returned struct.

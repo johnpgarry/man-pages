@@ -187,19 +187,12 @@ present to be accepted.
 .B EBADF
 The descriptor is invalid.
 .TP
-.B ENOTSOCK
-The descriptor references a file, not a socket.
-.TP
-.B EOPNOTSUPP
-The referenced socket is not of type
-.BR SOCK_STREAM . 
+.B ECONNABORTED
+A connection has been aborted.
 .TP
 .B EINTR
 The system call was interrupted by a signal that was caught
 before a valid connection arrived. 
-.TP
-.B ECONNABORTED
-A connection has been aborted.
 .TP
 .B EINVAL
 Socket is not listening for connections.
@@ -209,6 +202,13 @@ The per-process limit of open file descriptors has been reached.
 .TP
 .B ENFILE
 The system limit on the total number of open files has been reached.
+.TP
+.B ENOTSOCK
+The descriptor references a file, not a socket.
+.TP
+.B EOPNOTSUPP
+The referenced socket is not of type
+.BR SOCK_STREAM . 
 .PP
 .B accept
 may fail if:
@@ -268,8 +268,9 @@ for SunOS 5.
 Later POSIX drafts have `socklen_t *', and so do the Single Unix Specification
 and glibc2.
 Quoting Linus Torvalds:
+
 .\" .I fails: only italicizes a single line
-\fI_Any_ sane library _must_ have "socklen_t" be the same size
+"_Any_ sane library _must_ have "socklen_t" be the same size
 as int.  Anything else breaks any BSD socket layer stuff.
 POSIX initially _did_ make it a size_t, and I (and hopefully others, but
 obviously not too many) complained to them very loudly indeed.  Making
@@ -281,7 +282,8 @@ Anyway, the POSIX people eventually got a clue, and created "socklen_t".
 They shouldn't have touched it in the first place, but once they did
 they felt it had to have a named type for some unfathomable reason
 (probably somebody didn't like losing face over having done the original
-stupid thing, so they silently just renamed their blunder).\fP
+stupid thing, so they silently just renamed their blunder)."
+
 .SH "SEE ALSO"
 .BR bind (2),
 .BR connect (2),

@@ -28,7 +28,7 @@ killpg \- send signal to all members of a process group
 .nf
 .B #include <signal.h>
 .sp
-.BI "int killpg(pid_t " pidgrp ", int " signal );
+.BI "int killpg(pid_t " pgrp ", int " signal );
 .fi
 .SH DESCRIPTION
 The
@@ -36,15 +36,17 @@ The
 function causes signal
 .I signal
 to be sent to all the processes in the process group
-.I pidgrp
+.I pgrp
 or to the processes' own process group if
-.I pidgrp
+.I pgrp
 is equal to zero.
 .PP
-It is equivalent to
+If
+.I pgrp
+is greater than 1, it is equivalent to
 .nf
 .sp
-.BI kill(- pidgrp , signal );
+.BI kill(- pgrp , signal );
 .fi
 .SH "RETURN VALUE"
 The value returned is \-1 on error, or 0 for success.
@@ -56,15 +58,15 @@ and can be one of the following:
 .B EINVAL
 for an invalid signal,
 .TP
-.B ESRCH
-for a process group which does not exist, and
-.TP
 .B EPERM
 if the userid of the calling process is not equal to that of the
 process the signal is sent to, and the userid is not that of the
 superuser.
+.TP
+.B ESRCH
+for a process group which does not exist, and
 .SH "CONFORMING TO"
-???
+POSIX
 .SH "SEE ALSO"
 .BR kill (2),
 .BR signal (2),

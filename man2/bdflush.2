@@ -84,22 +84,22 @@ Otherwise, the return value is 0 on success and \-1 on failure, with
 set to indicate the error.
 .SH ERRORS
 .TP
-.B EPERM
-Caller does not have the
-.B CAP_SYS_ADMIN
-capability.
+.B EBUSY
+An attempt was made to enter the daemon code after
+another process has already entered.
 .TP
 .B EFAULT
 .I address
 points outside your accessible address space.
 .TP
-.B EBUSY
-An attempt was made to enter the daemon code after
-another process has already entered.
-.TP
 .B EINVAL
 An attempt was made to read or write an invalid parameter number,
 or to write an invalid value to a parameter.
+.TP
+.B EPERM
+Caller does not have the
+.B CAP_SYS_ADMIN
+capability.
 .SH "CONFORMING TO"
 \fBbdflush\fP is Linux specific and should not be used in programs
 intended to be portable.

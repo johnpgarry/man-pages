@@ -105,23 +105,22 @@ The alternate signal stack is currently disabled.
 
 .SH ERRORS
 .TP
-.B ENOMEM
-The specified size of the new alternate signal stack
-(\fIss.ss_size\fP) was less than \fBMINSTKSZ\fP.
-.TP
 .B EFAULT
 Either \fIss\fP or \fIoss\fP is not NULL and points to an area
 outside of the process's address space.
+.TP
+.B EINVAL
+\fIss\fP is not NULL and the \fPss_flags\fP field contains
+a non-zero value other than SS_DISABLE.
+.TP
+.B ENOMEM
+The specified size of the new alternate signal stack
+(\fIss.ss_size\fP) was less than \fBMINSTKSZ\fP.
 .TP
 .B EPERM
 An attempt was made to change the alternate signal stack while
 it was active (i.e., the process was already executing
 on the current alternate signal stack).
-.TP
-.B EINVAL
-\fIss\fP is not NULL and the \fPss_flags\fP field contains
-a non-zero value other than SS_DISABLE.
-
 .SH NOTES
 The following code segment demonstrates the use of \fBsigaltstack\fP:
 

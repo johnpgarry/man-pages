@@ -156,12 +156,12 @@ for \fItype\fP equal to 2, 3 or 4, \fBsyslog\fP() returns the number
 of bytes read, and otherwise 0.
 .SH ERRORS
 .TP
+.B EINVAL
+Bad parameters.
+.TP
 .B EPERM
 An attempt was made to change console_loglevel or clear the kernel
 message ring buffer by a process without root permissions.
-.TP
-.B EINVAL
-Bad parameters.
 .TP
 .B ERESTARTSYS
 System call was interrupted by a signal - nothing was read.

@@ -83,16 +83,16 @@ Out of resources.
 .I aio_fildes
 is not a valid file descriptor open for writing.
 .TP
+.B EFBIG
+The file is a regular file, we want to write at least one byte,
+but the starting position is at or beyond the maximum offset for this file.
+.TP
 .B EINVAL
 One or more of
 .IR aio_offset ,
 .IR aio_reqprio ,
 .IR aio_nbytes
 are invalid.
-.TP
-.B EFBIG
-The file is a regular file, we want to write at least one byte,
-but the starting position is at or beyond the maximum offset for this file.
 .TP
 .B ENOSYS
 This function is not supported.

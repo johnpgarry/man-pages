@@ -1,5 +1,5 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "SEND" P 2003 POSIX
+.TH "SEND" P 2003 "IEEE/The Open Group" "POSIX Programmer's Manual"
 .\" send 
 .SH NAME
 send \- send a message on a socket
@@ -80,7 +80,7 @@ bytes sent. Otherwise, -1 shall be returned and
 .LP
 The \fIsend\fP() function shall fail if:
 .TP 7
-.B EAGAIN] or [EWOULDBLOCK
+.B EAGAIN \fRor\fP EWOULDBLOCK
 .sp
 The socket's file descriptor is marked O_NONBLOCK and the requested
 operation would block.

@@ -70,17 +70,17 @@ On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
-.B ESRCH
-The process whose ID is \fIpid\fR could not be found.
-.TP
-.B ENOSYS
-The system call is not yet implemented.
+.B EFAULT
+Problem with copying information to userspace.
 .TP
 .B EINVAL
 Invalid pid.
 .TP
-.B EFAULT
-Problem with copying information to userspace.
+.B ENOSYS
+The system call is not yet implemented.
+.TP
+.B ESRCH
+The process whose ID is \fIpid\fR could not be found.
 .SH "CONFORMING TO"
 POSIX.1b (formerly POSIX.4)
 .SH BUGS

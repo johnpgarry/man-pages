@@ -115,31 +115,48 @@ is set appropriately.
 The following are general socket errors only.  There may be other
 domain-specific error codes. 
 .TP
+.B EACCES
+For Unix domain sockets, which are identified by pathname:
+Write permission is denied on the socket file,
+or search permission is denied for one of the directories
+in the path prefix.
+(See also
+.BR path_resolution (2).)
+.TP
+.B EACCES, EPERM
+The user tried to connect to a broadcast address without having the socket 
+broadcast flag enabled or the connection request failed because of a local
+firewall rule.
+.TP
+.B EADDRINUSE
+Local address is already in use.
+.TP
+.B EAFNOSUPPORT
+The passed address didn't have the correct address family in its 
+.I sa_family
+field.
+.TP
+.B EAGAIN
+No more free local ports or insufficient entries in the routing cache. For
+.B PF_INET
+see the 
+.B net.ipv4.ip_local_port_range
+sysctl in 
+.BR ip (7) 
+on how to increase the number of local ports.
+.TP
+.B EALREADY
+The socket is non-blocking and a previous connection attempt has not yet
+been completed.
+.TP
 .B EBADF
 The file descriptor is not a valid index in the descriptor table.
-.TP
-.B EFAULT
-The socket structure address is outside the user's address space.
-.TP
-.B ENOTSOCK
-The file descriptor is not associated with a socket.
-.TP
-.B EISCONN
-The socket is already connected.
 .TP
 .B ECONNREFUSED
 No one listening on the remote address.
 .TP
-.B ETIMEDOUT
-Timeout while attempting connection. The server may be too 
-busy to accept new connections. Note that for IP sockets the timeout may
-be very long when syncookies are enabled on the server.
-.TP
-.B ENETUNREACH
-Network is unreachable.
-.TP
-.B EADDRINUSE
-Local address is already in use.
+.B EFAULT
+The socket structure address is outside the user's address space.
 .TP
 .B EINPROGRESS
 The socket is non-blocking and the connection cannot be completed
@@ -164,36 +181,19 @@ is zero) or unsuccessfully
 is one of the usual error codes listed here, 
 explaining the reason for the failure).
 .TP
-.B EALREADY
-The socket is non-blocking and a previous connection attempt has not yet
-been completed.
+.B EISCONN
+The socket is already connected.
 .TP
-.B EAGAIN
-No more free local ports or insufficient entries in the routing cache. For
-.B PF_INET
-see the 
-.B net.ipv4.ip_local_port_range
-sysctl in 
-.BR ip (7) 
-on how to increase the number of local ports.
+.B ENETUNREACH
+Network is unreachable.
 .TP
-.B EAFNOSUPPORT
-The passed address didn't have the correct address family in its 
-.I sa_family
-field.
+.B ENOTSOCK
+The file descriptor is not associated with a socket.
 .TP
-.B EACCES, EPERM
-The user tried to connect to a broadcast address without having the socket 
-broadcast flag enabled or the connection request failed because of a local
-firewall rule.
-.TP
-.B EACCES
-For Unix domain sockets, which are identified by pathname:
-Write permission is denied on the socket file,
-or search permission is denied for one of the directories
-in the path prefix.
-(See also
-.BR path_resolution (2).)
+.B ETIMEDOUT
+Timeout while attempting connection. The server may be too 
+busy to accept new connections. Note that for IP sockets the timeout may
+be very long when syncookies are enabled on the server.
 .SH "CONFORMING TO"
 SVr4, 4.4BSD (the
 .B connect
@@ -213,9 +213,8 @@ documents many additional error conditions not described here.
 The third argument of
 .B connect
 is in reality an int (and this is what BSD 4.* and libc4 and libc5 have).
-Some POSIX confusion resulted in the present socklen_t.
-The draft standard has not been adopted yet, but glibc2 already
-follows it and also has socklen_t. See also
+Some POSIX confusion resulted in the present socklen_t, also used by glibc.
+See also
 .BR accept (2).
 .SH BUGS
 Unconnecting a socket by calling

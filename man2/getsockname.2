@@ -66,20 +66,20 @@ The argument
 .I s
 is not a valid descriptor.
 .TP
-.B ENOTSOCK
-The argument
-.I s
-is a file, not a socket.
-.TP
-.B ENOBUFS
-Insufficient resources were available in the system
-to perform the operation.
-.TP
 .B EFAULT
 The 
 .I name
 parameter points to memory not in a valid part of the
 process address space.
+.TP
+.B ENOBUFS
+Insufficient resources were available in the system
+to perform the operation.
+.TP
+.B ENOTSOCK
+The argument
+.I s
+is a file, not a socket.
 .SH "CONFORMING TO"
 SVr4, 4.4BSD (the
 .B getsockname
@@ -89,9 +89,8 @@ and ENOSR error codes.
 The third argument of 
 .B getsockname
 is in reality an `int *' (and this is what BSD 4.* and libc4 and libc5 have).
-Some POSIX confusion resulted in the present socklen_t.
-The draft standard has not been adopted yet, but glibc2 already
-follows it and also has socklen_t. See also
+Some POSIX confusion resulted in the present socklen_t, also used by glibc.
+See also
 .BR accept (2).
 .SH "SEE ALSO"
 .BR bind (2),

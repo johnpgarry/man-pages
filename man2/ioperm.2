@@ -62,7 +62,7 @@ return an error.
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
-.SH ERRORS 
+.SH ERRORS
 .TP
 .B EINVAL
 Invalid values for
@@ -70,15 +70,15 @@ Invalid values for
 or
 .IR num .
 .TP
+.B EIO
+(on ppc) This call is not supported.
+.TP
 .B EPERM
 The calling process has insufficient privilege to call 
 .BR ioperm ;
 the
 .B CAP_SYS_RAWIO
 capability is required.
-.TP
-.B EIO
-(on ppc) This call is not supported.
 .SH "CONFORMING TO"
 \fBioperm\fP is Linux specific and should not be used in programs
 intended to be portable.

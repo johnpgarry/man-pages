@@ -95,10 +95,6 @@ is set to indicate the error.
 .I fildes
 is not an open file descriptor.
 .TP
-.B ESPIPE
-.I fildes
-is associated with a pipe, socket, or FIFO.
-.TP
 .B EINVAL
 .I whence
 is not one of SEEK_SET, SEEK_CUR, SEEK_END,
@@ -108,6 +104,10 @@ or the resulting file offset would be negative.
 .TP
 .B EOVERFLOW
 The resulting file offset cannot be represented in an off_t.
+.TP
+.B ESPIPE
+.I fildes
+is associated with a pipe, socket, or FIFO.
 .SH "CONFORMING TO"
 SVr4, POSIX, BSD 4.3
 .SH RESTRICTIONS

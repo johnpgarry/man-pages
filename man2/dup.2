@@ -72,19 +72,19 @@ isn't an open file descriptor, or
 .I newfd
 is out of the allowed range for file descriptors.
 .TP
-.B EMFILE
-The process already has the maximum number of file
-descriptors open and tried to open a new one.
+.B EBUSY
+(Linux only) This may be returned by
+.B dup2
+during a race condition with open() and dup().
 .TP
 .B EINTR
 The
 .B dup2
 call was interrupted by a signal.
 .TP
-.B EBUSY
-(Linux only) This may be returned by
-.B dup2
-during a race condition with open() and dup().
+.B EMFILE
+The process already has the maximum number of file
+descriptors open and tried to open a new one.
 .SH WARNING
 The error returned by
 .B dup2

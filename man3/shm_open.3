@@ -157,6 +157,11 @@ On failure,
 is set to indicate the cause of the error.  Values which may appear in
 .I errno
 include the following:
+.TP 
+.B EACCES
+Permission to
+.B shm_unlink
+the shared memory object was denied.
 .TP
 .B EACCES
 Permission was denied to 
@@ -167,11 +172,6 @@ in the specified
 or 
 .B O_TRUNC
 was specified and the caller does not have write permission on the object.
-.TP 
-.B EACCES
-Permission to
-.B shm_unlink
-the shared memory object was denied.
 .TP 
 .B EEXIST
 Both

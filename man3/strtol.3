@@ -81,14 +81,14 @@ Precisely the same holds for
 (with LLONG_MIN and LLONG_MAX instead of LONG_MIN and LONG_MAX).
 .SH ERRORS
 .TP
-.B ERANGE
-The resulting value was out of range.
-.TP
 .B EINVAL
 (not in C99)
 The given
 .I base
 contains an unsupported value.
+.TP
+.B ERANGE
+The resulting value was out of range.
 .LP
 The implementation may also set \fIerrno\fP to \fBEINVAL\fP in case
 no conversion was performed (no digits seen, and 0 returned).

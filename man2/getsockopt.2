@@ -129,19 +129,11 @@ On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-.TP
+.TP 10
 .B EBADF
 The argument
 .I s
 is not a valid descriptor.
-.TP
-.B ENOTSOCK
-The argument
-.I s
-is a file, not a socket.
-.TP
-.B ENOPROTOOPT
-The option is unknown at the level indicated.
 .TP
 .B EFAULT
 The address pointed to by 
@@ -155,6 +147,14 @@ is not in a valid part of the process address space.
 .B EINVAL
 .I optlen
 invalid in setsockopt
+.TP
+.B ENOPROTOOPT
+The option is unknown at the level indicated.
+.TP
+.B ENOTSOCK
+The argument
+.I s
+is a file, not a socket.
 .SH "CONFORMING TO"
 SVr4, 4.4BSD (these system calls first appeared in 4.2BSD).
 SVr4 documents additional ENOMEM and ENOSR error codes, but does
@@ -165,9 +165,8 @@ options
 The fifth argument of 
 .BR getsockopt " and " setsockopt
 is in reality an int [*] (and this is what BSD 4.* and libc4 and libc5 have).
-Some POSIX confusion resulted in the present socklen_t.
-The draft standard has not been adopted yet, but glibc2 already
-follows it and also has socklen_t [*]. See also
+Some POSIX confusion resulted in the present socklen_t, also used by glibc.
+See also
 .BR accept (2).
 .SH BUGS
 Several of the socket options should be handled at lower levels of the

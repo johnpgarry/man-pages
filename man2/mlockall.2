@@ -121,19 +121,19 @@ returns zero.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
+.B EINVAL
+Unknown flags were specified.
+.TP
 .B ENOMEM
 The process tried to exceed the maximum number of allowed locked
 pages.
 .TP
 .B EPERM
 The calling process has insufficient privilege to call 
-.BR mlockall ;
-the
+.BR mlockall .
+Under Linux the
 .B CAP_IPC_LOCK
 capability is required.
-.TP
-.B EINVAL
-Unknown flags were specified.
 .SH AVAILABILITY
 On POSIX systems on which
 .B mlockall

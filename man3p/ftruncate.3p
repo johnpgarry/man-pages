@@ -1,5 +1,5 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "FTRUNCATE" P 2003 POSIX
+.TH "FTRUNCATE" P 2003 "IEEE/The Open Group" "POSIX Programmer's Manual"
 .\" ftruncate 
 .SH NAME
 ftruncate \- truncate a file to a specified length
@@ -74,7 +74,7 @@ A signal was caught during execution.
 .B EINVAL
 The \fIlength\fP argument was less than 0.
 .TP 7
-.B EFBIG] or [EINVAL
+.B EFBIG \fRor\fP EINVAL
 .sp
 The \fIlength\fP argument was greater than the maximum file size.
 .TP 7
@@ -86,7 +86,7 @@ with \fIfildes\fP.
 .B EIO
 An I/O error occurred while reading from or writing to a file system.
 .TP 7
-.B EBADF] or [EINVAL
+.B EBADF \fRor\fP EINVAL
 .sp
 The \fIfildes\fP argument is not a file descriptor open for writing.
 .TP 7

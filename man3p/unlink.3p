@@ -1,5 +1,5 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "UNLINK" P 2003 POSIX
+.TH "UNLINK" P 2003 "IEEE/The Open Group" "POSIX Programmer's Manual"
 .\" unlink 
 .SH NAME
 unlink \- remove a directory entry
@@ -77,7 +77,7 @@ The file named by \fIpath\fP is a directory, and either the calling
 process does not have appropriate privileges, or the
 implementation prohibits using \fIunlink\fP() on directories.
 .TP 7
-.B EPERM] or [EACCES
+.B EPERM \fRor\fP EACCES
 .sp
 The S_ISVTX flag is set on the directory containing the file referred
 to by the \fIpath\fP argument and the caller is not the file

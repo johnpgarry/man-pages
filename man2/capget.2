@@ -83,6 +83,13 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
+.B EFAULT
+Bad memory address. Neither of
+.I hdrp
+and
+.I datap
+may be NULL.
+.TP
 .B EINVAL
 One of the arguments was invalid.
 .TP
@@ -101,13 +108,6 @@ capability is required.
 .TP
 .B ESRCH
 No such process.
-.TP
-.B EFAULT
-Bad memory address. Neither of
-.I hdrp
-and
-.I datap
-may be NULL.
 .SH "FURTHER INFORMATION"
 The portable interface to the capability querying and setting
 functions is provided by the

@@ -71,12 +71,12 @@ is set appropriately.
 .I s
 is not a valid descriptor.
 .TP
+.B ENOTCONN
+The specified socket is not connected.
+.TP
 .B ENOTSOCK
 .I s
 is a file, not a socket.
-.TP
-.B ENOTCONN
-The specified socket is not connected.
 .SH NOTES
 The constants SHUT_RD, SHUT_WR, SHUT_RDWR have the value 0, 1, 2,
 respectively, and are defined in

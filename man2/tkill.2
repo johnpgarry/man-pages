@@ -65,12 +65,12 @@ is set appropriately.
 .B EINVAL
 An invalid TID or signal was specified.
 .TP
-.B ESRCH
-No process with the specified thread ID (and thread group ID) exists.
-.TP
 .B EPERM
 Permission denied. For the required permissions, see
 .BR kill (2).
+.TP
+.B ESRCH
+No process with the specified thread ID (and thread group ID) exists.
 .SH "CONFORMING TO"
 \fBtkill\fP and \fBtgkill\fP are Linux specific and should not be used
 in programs that are intended to be portable.

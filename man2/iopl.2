@@ -68,15 +68,15 @@ is set appropriately.
 .I level
 is greater than 3.
 .TP
+.B ENOSYS
+This call is unimplemented.
+.TP
 .B EPERM
 The calling process has insufficient privilege to call 
 .BR iopl ;
 the
 .B CAP_SYS_RAWIO
 capability is required.
-.TP
-.B ENOSYS
-This call is unimplemented.
 .SH "CONFORMING TO"
 \fBiopl\fP is Linux specific and should not be used in processes
 intended to be portable.

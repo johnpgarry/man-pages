@@ -77,9 +77,8 @@ On error, the value
 
 .SH ERRORS
 .TP
-.B EINVAL
-An invalid argument was given. Most likely \fIold_address\fR was not 
-page aligned.
+.B EAGAIN
+The memory segment is locked and cannot be re-mapped.
 .TP
 .B EFAULT
 "Segmentation fault." Some address in the range
@@ -88,8 +87,9 @@ virtual memory address for this process.
 You can also get EFAULT even if there exist mappings that cover the
 whole address space requested, but those mappings are of different types.
 .TP
-.B EAGAIN
-The memory segment is locked and cannot be re-mapped.
+.B EINVAL
+An invalid argument was given. Most likely \fIold_address\fR was not 
+page aligned.
 .TP
 .B ENOMEM
 The memory area cannot be expanded at the current virtual address, and the

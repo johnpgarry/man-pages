@@ -114,13 +114,6 @@ returns \-1 and sets
 .I buf
 does not point to writable memory.
 .TP
-.B EPERM
-.I buf.mode
-is non-zero and the caller does not have sufficient privilege.
-Under Linux the
-.B CAP_SYS_TIME
-capability is required.
-.TP
 .B EINVAL
 An attempt is made to set
 .I buf.offset
@@ -137,6 +130,13 @@ to
 where
 .B HZ
 is the system timer interrupt frequency.
+.TP
+.B EPERM
+.I buf.mode
+is non-zero and the caller does not have sufficient privilege.
+Under Linux the
+.B CAP_SYS_TIME
+capability is required.
 .SH "CONFORMING TO"
 \fBadjtimex\fP is Linux specific and should not be used in programs
 intended to be portable.  There is a similar but less general call 

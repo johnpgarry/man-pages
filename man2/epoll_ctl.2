@@ -158,12 +158,6 @@ The
 .I epfd
 file descriptor is not a valid file descriptor.
 .TP
-.B EPERM
-The target file
-.I fd
-is not supported by
-.BR epoll .
-.TP
 .B EINVAL
 The supplied file descriptor,
 .IR epfd ,
@@ -177,6 +171,12 @@ is not supported by this interface.
 There was insufficient memory to handle the requested
 .I op
 control operation.
+.TP
+.B EPERM
+The target file
+.I fd
+is not supported by
+.BR epoll .
 .SH CONFORMING TO
 .BR epoll_ctl (2)
 is a new API introduced in Linux kernel 2.5.44.

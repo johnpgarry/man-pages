@@ -373,12 +373,6 @@ always returns \-1, normally with the error
 
 .SH ERRORS
 .TP
-.B EINVAL
-An invalid signal was specified.  This will also be generated if an attempt
-is made to change the action for
-.BR SIGKILL " or " SIGSTOP ", "
-which cannot be caught.
-.TP
 .B EFAULT
 .IR act ", " oldact ", " set ", " oldset
 or 
@@ -387,7 +381,12 @@ point to memory which is not a valid part of the process address space.
 .TP
 .B EINTR
 System call was interrupted.
-
+.TP
+.B EINVAL
+An invalid signal was specified.  This will also be generated if an attempt
+is made to change the action for
+.BR SIGKILL " or " SIGSTOP ", "
+which cannot be caught.
 .SH NOTES
 It is not possible to block 
 .BR SIGKILL " or " SIGSTOP

@@ -252,6 +252,9 @@ Or MAP_SHARED was requested and PROT_WRITE is set, but
 is not open in read/write (O_RDWR) mode.
 Or PROT_WRITE is set, but the file is append-only.
 .TP
+.B EAGAIN
+The file has been locked, or too much memory has been locked.
+.TP
 .B EBADF
 .I fd
 is not a valid file descriptor (and MAP_ANONYMOUS was not set).
@@ -274,6 +277,14 @@ The system limit on the total number of open files has been reached.
 .\" .B ENOEXEC
 .\" A file could not be mapped for reading.
 .TP
+.B ENODEV
+The underlying filesystem of the specified file does not support
+memory mapping.
+.TP
+.B ENOMEM
+No memory is available, or the process's maximum number of mappings would
+have been exceeded.
+.TP
 .B EPERM
 The
 .I prot
@@ -287,17 +298,6 @@ was mounted no-exec.
 MAP_DENYWRITE was set but the object specified by
 .I fd
 is open for writing.
-.TP
-.B EAGAIN
-The file has been locked, or too much memory has been locked.
-.TP
-.B ENOMEM
-No memory is available, or the process's maximum number of mappings would
-have been exceeded.
-.TP
-.B ENODEV
-The underlying filesystem of the specified file does not support
-memory mapping.
 .LP
 Use of a mapped region can result in these signals:
 .TP

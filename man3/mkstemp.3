@@ -54,13 +54,13 @@ The \fBmkstemp()\fP function returns the file descriptor fd of the
 temporary file or \-1 on error.
 .SH ERRORS
 .TP
-.B EINVAL
-The last six characters of \fItemplate\fP were not XXXXXX.
-Now \fItemplate\fP is unchanged.
-.TP
 .B EEXIST
 Could not create a unique temporary filename.
 Now the contents of \fItemplate\fP are undefined.
+.TP
+.B EINVAL
+The last six characters of \fItemplate\fP were not XXXXXX.
+Now \fItemplate\fP is unchanged.
 .SH NOTES
 The old behaviour (creating a file with mode 0666) may be
 a security risk, especially since other Unix flavours use 0600,

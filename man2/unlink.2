@@ -67,31 +67,6 @@ did not allow search permission.
 (See also
 .BR path_resolution (2).)
 .TP
-.BR EPERM " or " EACCES
-The directory containing
-.I pathname
-has the sticky bit
-.RB ( S_ISVTX )
-set and the process's effective UID is neither the UID of the file to
-be deleted nor that of the directory containing it, and
-the process is not privileged (Linux: does not have the
-.B CAP_FOWNER
-capability).
-.TP
-.BR EPERM " (Linux only)"
-The filesystem does not allow unlinking of files.
-.TP
-.B EPERM
-The system does not allow unlinking of directories,
-or unlinking of directories requires privileges that the
-current process doesn't have.
-(This is the POSIX prescribed error return.)
-.TP
-.B EISDIR
-.I pathname
-refers to a directory.
-(This is the non-POSIX value returned by Linux since 2.1.132.)
-.TP
 .BR EBUSY " (not on Linux)"
 The file
 .I pathname
@@ -101,6 +76,18 @@ or another process and the implementation considers this an error.
 .B EFAULT
 .I pathname
 points outside your accessible address space.
+.TP
+.B EIO
+An I/O error occurred.
+.TP
+.B EISDIR
+.I pathname
+refers to a directory.
+(This is the non-POSIX value returned by Linux since 2.1.132.)
+.TP
+.B ELOOP
+Too many symbolic links were encountered in translating
+.IR pathname .
 .TP
 .B ENAMETOOLONG
 .IR pathname " was too long."
@@ -112,24 +99,37 @@ does not exist or is a dangling symbolic link, or
 .I pathname
 is empty.
 .TP
+.B ENOMEM
+Insufficient kernel memory was available.
+.TP
 .B ENOTDIR
 A component used as a directory in
 .I pathname
 is not, in fact, a directory.
 .TP
-.B ENOMEM
-Insufficient kernel memory was available.
+.B EPERM
+The system does not allow unlinking of directories,
+or unlinking of directories requires privileges that the
+current process doesn't have.
+(This is the POSIX prescribed error return.)
+.TP
+.BR EPERM " (Linux only)"
+The filesystem does not allow unlinking of files.
+.TP
+.BR EPERM " or " EACCES
+The directory containing
+.I pathname
+has the sticky bit
+.RB ( S_ISVTX )
+set and the process's effective UID is neither the UID of the file to
+be deleted nor that of the directory containing it, and
+the process is not privileged (Linux: does not have the
+.B CAP_FOWNER
+capability).
 .TP
 .B EROFS
 .I pathname
 refers to a file on a read-only filesystem.
-.TP
-.B ELOOP
-Too many symbolic links were encountered in translating
-.IR pathname .
-.TP
-.B EIO
-An I/O error occurred.
 .SH "CONFORMING TO"
 SVr4, SVID, POSIX, X/OPEN, 4.3BSD.  SVr4 documents additional error
 conditions EINTR, EMULTIHOP, ETXTBSY, ENOLINK.

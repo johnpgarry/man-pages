@@ -131,15 +131,15 @@ is set appropriately.
 always returns the current process group.
 .SH ERRORS
 .TP
-.B EINVAL
-.I pgid
-is less than 0
-(\fBsetpgid\fP, \fBsetpgrp\fP).
-.TP
 .B EACCES
 An attempt was made to change the process group ID
 of one of the children of the calling process and the child had
 already performed an \fBexecve\fP
+(\fBsetpgid\fP, \fBsetpgrp\fP).
+.TP
+.B EINVAL
+.I pgid
+is less than 0
 (\fBsetpgid\fP, \fBsetpgrp\fP).
 .TP
 .B EPERM

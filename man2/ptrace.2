@@ -229,6 +229,20 @@ request may be \-1, the caller must check
 after such requests to determine whether or not an error occurred.
 .SH ERRORS
 .TP
+.B EBUSY
+(i386 only) There was an error with allocating or freeing a debug register.
+.TP
+.B EFAULT
+There was an attempt to read from or write to an invalid area in the parent's
+or child's memory, probably because the area wasn't mapped or accessible.
+Unfortunately, under Linux, different variations of this fault will return EIO
+or EFAULT more or less arbitrarily.
+.TP
+.B EIO
+\fIrequest\fP is invalid, or an attempt was made to read from or write to an
+invalid area in the parent's or child's memory, or there was a word-alignment
+violation, or an invalid signal was specified during a restart request.
+.TP
 .B EPERM
 The specified process cannot be traced.  This could be because the 
 parent has insufficient privileges (the required capability is
@@ -242,20 +256,6 @@ reasons.  Alternatively, the process may already be being traced, or be
 .B ESRCH
 The specified process does not exist, or is not currently being traced by the
 caller, or is not stopped (for requests that require that).
-.TP
-.B EIO
-\fIrequest\fP is invalid, or an attempt was made to read from or write to an
-invalid area in the parent's or child's memory, or there was a word-alignment
-violation, or an invalid signal was specified during a restart request.
-.TP
-.B EFAULT
-There was an attempt to read from or write to an invalid area in the parent's
-or child's memory, probably because the area wasn't mapped or accessible.
-Unfortunately, under Linux, different variations of this fault will return EIO
-or EFAULT more or less arbitrarily.
-.TP
-.B EBUSY
-(i386 only) There was an error with allocating or freeing a debug register.
 .SH "CONFORMING TO"
 SVr4, SVID EXT, AT&T, X/OPEN, BSD 4.3
 .SH "SEE ALSO"

@@ -68,19 +68,19 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
-.B EPERM
-The user is not privileged (does not have the
-.B CAP_SETUID
-capability) and
-.I uid
-does not match the real or saved user ID of the calling process.
-.TP
 .B EAGAIN
 The
 .I uid
 does not match the current uid and 
 .I uid
 brings process over it's NPROC rlimit.
+.TP
+.B EPERM
+The user is not privileged (Linux: does not have the
+.B CAP_SETUID
+capability) and
+.I uid
+does not match the real or saved user ID of the calling process.
 .SH "CONFORMING TO"
 SVr4, SVID, POSIX.1.  Not quite compatible with the 4.4BSD call, which
 sets all of the real, saved, and effective user IDs.  SVr4 documents an

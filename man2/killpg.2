@@ -81,6 +81,10 @@ is set appropriately.
 .I Sig
 is not a valid signal number.
 .TP
+.B EPERM
+The process does not have permission to send the signal
+to any of the target processes.
+.TP
 .B ESRCH
 No process can be found in the process group specified by
 .IR pgrp .
@@ -88,10 +92,6 @@ No process can be found in the process group specified by
 .B ESRCH
 The process group was given as 0 but the sending process does not
 have a process group.
-.TP
-.B EPERM
-The process does not have permission to send the signal
-to any of the target processes.
 .SH NOTES
 There are various differences between the permission checking
 in BSD-type systems and SYSV-type systems. See the POSIX rationale

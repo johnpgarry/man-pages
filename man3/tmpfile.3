@@ -52,6 +52,9 @@ Search permission denied for directory in file's path prefix.
 .B EEXIST
 Unable to generate a unique filename.
 .TP
+.B EINTR
+The call was interrupted by a signal.
+.TP
 .B EMFILE
 Too many file descriptors in use by the process.
 .TP
@@ -63,10 +66,6 @@ There was no room in the directory to add the new filename.
 .TP
 .B EROFS
 Read-only filesystem.
-.TP
-.B EINTR
-The call was interrupted by a signal.
-.TP
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3, ISO 9899, SUSv2
 .SH NOTES

@@ -71,13 +71,13 @@ will be filled in.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
-.B EINVAL
-.I dev
-does not refer to a device containing a mounted file system.
-.TP
 .B EFAULT
 .I ubuf
 points outside of your accessible address space.
+.TP
+.B EINVAL
+.I dev
+does not refer to a device containing a mounted file system.
 .TP
 .B ENOSYS
 The mounted file system referenced by

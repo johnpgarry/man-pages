@@ -62,7 +62,9 @@ is obtained with the
 call and set with the
 .B setpriority
 call.
-.I Which
+
+The value
+.I which
 is one of
 .BR PRIO_PROCESS ,
 .BR PRIO_PGRP ,
@@ -110,20 +112,20 @@ call returns 0 if there is no error, or
 \-1 if there is.
 .SH ERRORS
 .TP
+.B EINVAL
+.I which
+was not one of
+.BR PRIO_PROCESS ,
+.BR PRIO_PGRP ,
+or
+.BR PRIO_USER .
+.TP
 .B ESRCH
 No process was located using the 
 .I which
 and
 .I who
 values specified.
-.TP
-.B EINVAL
-.I Which
-was not one of
-.BR PRIO_PROCESS ,
-.BR PRIO_PGRP ,
-or
-.BR PRIO_USER .
 .PP
 In addition to the errors indicated above,
 .B setpriority

@@ -46,14 +46,14 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
+.B EFAULT
+Error in getting information from user space.
+.TP
 .B EPERM
 The calling process has insufficient privilege.
 Under Linux the
 .B CAP_SYS_TIME
 privilege is required.
-.TP
-.B EFAULT
-Error in getting information from user space.
 .SH "CONFORMING TO"
 SVr4, SVID, X/OPEN
 .SH NOTES

@@ -128,6 +128,9 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
+.B EFAULT
+Problem with getting userspace data under LINUX_REBOOT_CMD_RESTART2.
+.TP
 .B EINVAL
 Bad magic numbers or \fIflag\fP.
 .TP
@@ -137,9 +140,6 @@ The calling process has insufficient privilege to call
 the
 .B CAP_SYS_BOOT
 capability is required.
-.TP
-.B EFAULT
-Problem with getting userspace data under LINUX_REBOOT_CMD_RESTART2.
 .SH "CONFORMING TO"
 .B reboot
 is Linux specific, and should not be used in programs intended to be portable.

@@ -25,18 +25,15 @@
 .\" Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
 .\" USA.
 .\"
-.\" Wed May 17 15:26:04 1995: faith@cs.unc.edu, updated BUGS section
+.\" Modified 1995-05-17 by faith@cs.unc.edu
 .\" Minor changes by aeb and Marty Leisner (leisner@sdsp.mc.xerox.com).
-.\" Sat Apr 13 02:32:45 1996: aeb@cwi.nl, added sys, various fixes.
-.\" Mon Jul 22 17:14:44 1996: aeb@cwi.nl, minor fix.
-.\" Sun Dec 16 11:39:19 2001: rwhron@earthlink.net, update for 2.4.
-.\" Sat Jul 13 14:00:00 2002: jbelton@shaw.ca, added to sys/fs and sys/kernel.
-.\" Modified, 22 Jul 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\" Modified, 27 May 2003, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\" Modified,  6 Apr 2004, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\"	Added notes on /proc/sys/kernel/pty directory
+.\" Modified 1996-04-13, 1996-07-22 by aeb@cwi.nl
+.\" Modified 2001-12-16 by rwhron@earthlink.net
+.\" Modified 2002-07-13 by jbelton@shaw.ca
+.\" Modified 2002-07-22, 2003-05-27, 2004-04-06, 2004-05-25
+.\"    by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH PROC 5 2003-05-27 "" "Linux Programmer's Manual"
+.TH PROC 5 2004-05-25 "" "Linux Programmer's Manual"
 .SH NAME
 proc \- process information pseudo-filesystem
 
@@ -54,13 +51,14 @@ The following outline gives a quick tour through the /proc hierarchy.
 .TP
 .I /proc/[number]
 There is a numerical subdirectory for each running process; the
-subdirectory is named by the process ID.  Each contains the following
+subdirectory is named by the process ID.
+Each such subdirectory contains the following
 pseudo-files and directories.
 .TP
 .I /proc/[number]/cmdline
 This holds the complete command line for the process, unless the whole
-process has been swapped out, or unless the process is a zombie.  In
-either of these later cases, there is nothing in this file: i.e. a
+process has been swapped out or the process is a zombie.  In
+either of these latter cases, there is nothing in this file: i.e. a
 read on this file will return 0 characters.
 The command line arguments appear in this file as a set of 
 null-separated strings, with a further null byte after the last string.
@@ -97,26 +95,19 @@ Thus, to print out the environment of process 1, you would do:
 .BR lilo (8).)
 .TP
 .I /proc/[number]/exe
-Under Linux 2.2 and 2.4 
-.I exe
-is a symbolic link containing the actual path name of the executed 
-command.
-The 
-.I exe
-symbolic link can be dereferenced normally - attempting to open 
-.I exe
-will open the executable.  You can even type
+Under Linux 2.2 and later, this file is a symbolic link
+containing the actual path name of the executed command.
+This symbolic link can be dereferenced normally - attempting to open 
+it will open the executable.  You can even type
 .I /proc/[number]/exe
 to run another copy of the same process as [number].
 
 Under Linux 2.0 and earlier
-.I exe
+.I /proc/[number]/exe
 is a pointer to the binary which was executed, 
 and appears as a symbolic link. A
 .BR readlink (2)
-call on the
-.I exe
-special file under Linux 2.0 returns a string in the format:
+call on this file under Linux 2.0 returns a string in the format:
 
 [device]:inode
 
@@ -129,7 +120,7 @@ with the -inum option can be used to locate the file.
 .I /proc/[number]/fd
 This is a subdirectory containing one entry for each file which the
 process has open, named by its file descriptor, and which is a
-symbolic link to the actual file (as the exe entry does).  Thus, 0 is
+symbolic link to the actual file.  Thus, 0 is
 standard input, 1 standard output, 2 standard error, etc.
 
 Programs that will take a filename, but will not take the standard
@@ -139,12 +130,16 @@ is the flag designating an input file and -o is the flag designating
 an output file:
 .br
 .nf
+
 \f(CWfoobar -i /proc/self/fd/0 -o /proc/self/fd/1 ...\fR
+
 .fi
 .br
-and you have a working filter.  Note that this will not work for
-programs that seek on their files, as the files in the fd directory
-are not seekable.
+and you have a working filter.
+.\" The following is not true in my tests (MTK):
+.\" Note that this will not work for
+.\" programs that seek on their files, as the files in the fd directory
+.\" are not seekable.
 
 /proc/self/fd/N is approximately the same as /dev/fd/N in some UNIX
 and UNIX-like systems.  Most Linux MAKEDEV scripts symbolically link
@@ -194,9 +189,7 @@ be with bss.
 Under Linux 2.0 there is no field giving pathname.
 .TP
 .I /proc/[number]/mem
-Via the
-.I mem
-file one can access the pages of a process's memory through
+This file can be used to access the pages of a process's memory through
 .BR open (2),
 .BR read (2),
 and
@@ -206,8 +199,8 @@ and
 Unix and Linux support the idea of a per-process root of the
 filesystem, set by the
 .BR chroot (2)
-system call.  Root points to the file system root, and behaves as exe,
-fd/*, etc. do.
+system call.  This file is a symbolic link that points to the process's
+root directory, and behaves as exe, fd/*, etc. do.
 .TP
 .I /proc/[number]/stat
 Status information about the process.  This is used by
@@ -247,12 +240,15 @@ The session ID of the process.
 The tty the process uses.
 .TP
 \fItpgid\fP %d
+.\" This field and following, up to and including wchan added 0.99.1
 The process group ID of the process which currently owns the tty that
 the process is connected to.
 .TP
 \fIflags\fP %lu
-The flags of the process.
-The math bit is decimal 4, and the traced bit is decimal 10.
+The kernel flags word of the process. For bit meanings,
+see the PF_* defines in
+.IR <linux/sched.h> .
+Details depend on the kernel version.
 .TP
 \fIminflt\fP %lu
 The number of minor faults the process has made which have not
@@ -284,8 +280,8 @@ waited-for children have been scheduled in user mode. (See also
 .BR times (2).)
 .TP
 \fIcstime\fP %ld
-The number of jiffies that this process' waited-for children have been
-scheduled in kernel mode.
+The number of jiffies that this process's
+waited-for children have been scheduled in kernel mode.
 .TP
 \fIpriority\fP %ld
 The standard nice value, plus fifteen.  The value is never negative in
@@ -430,6 +426,12 @@ each CPU.
 Text listing of major numbers and device groups.  This can be used by
 MAKEDEV scripts for consistency with the kernel.
 .TP
+.IR /proc/diskstats " (since Linux 2.5.69)"
+This file contains disk I/O statistics for each disk device.
+See the kernel source file
+.I Documentation/iostats.txt
+for further information.
+.TP
 .I /proc/dma
 This is a list of the registered \fIISA\fP DMA (direct memory access) 
 channels in use.
@@ -487,6 +489,14 @@ I/O memory map in Linux 2.4.
 This is a list of currently registered Input-Output port regions that 
 are in use.
 .TP
+.IR /proc/kallsyms " (since Linux 2.5.71)"
+This holds the kernel exported symbol definitions used by the
+.BR modules (X)
+tools to dynamically link and bind loadable modules.
+In Linux 2.5.47 and earlier, a similar file with slightly different syntax
+was named
+.IR ksyms .
+.TP
 .I /proc/kcore
 This file represents the physical memory of the system and is stored
 in the ELF core file format.  With this pseudo-file, and an unstripped
@@ -510,10 +520,9 @@ Information in this file is retrieved with the
 .BR dmesg (8)
 program.
 .TP
-.I /proc/ksyms
-This holds the kernel exported symbol definitions used by the
-.BR modules (X)
-tools to dynamically link and bind loadable modules.
+.IR /proc/ksyms " (Linux 1.1.23-2.5.47)"
+See
+.IR /proc/kallsyms .
 .TP
 .I /proc/loadavg
 The load average numbers give the number of jobs in the run queue (state 
@@ -1351,6 +1360,30 @@ This directory contains files for memory management tuning, buffer and
 cache
 management.
 .TP
+.I /proc/sys/vm/overcommit_memory
+This file contains the kernel virtual memory accounting mode. Values are:
+.br
+0: heuristic overcommit (this is the default)
+.br
+1: always overcommit, never check
+.br
+2: always check, never overcommit
+.br
+In mode 0, calls of
+.BR mmap (2)
+with MAP_NORESERVE set are not checked, and the default check is very weak,
+leading to the risk of getting a process "OOM-killed".
+Under Linux 2.4 any nonzero value implies mode 1.
+In mode 2 (available since Linux 2.6), the total virtual address space
+on the system is limited to (SS + RAM*(r/100)),
+where SS is the size of the swap space, and RAM
+is the size of the physical memory, and r is the contents of the file
+.IR /proc/sys/vm/overcommit_ratio .
+.TP
+.I /proc/sys/vm/overcommit_ratio
+See the description of 
+.IR /proc/sys/vm/overcommit_memory .
+.TP
 .I /proc/sysvipc
 Subdirectory containing the pseudo-files 
 .IR msg ", "  sem " and "  shm "."
@@ -1383,6 +1416,9 @@ Linux version 1.0.9 (quinlan@phaze) #1 Sat May 14 01:51:54 EDT 1994
 .ft
 .in +2
 .fi
+.TP
+.IR /proc/vmstat " (since Linux 2.6)"
+This file displays various virtual memory statistics.
 
 .RE
 .RE
@@ -1404,6 +1440,7 @@ Linux version 1.0.9 (quinlan@phaze) #1 Sat May 14 01:51:54 EDT 1994
 .BR dmesg (8),
 .BR hdparm (8),
 .BR ifconfig (8),
+.BR init (8),
 .BR lsmod (8),
 .BR lspci (8),
 .BR netstat (8),

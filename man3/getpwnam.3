@@ -130,21 +130,21 @@ or
 .I uid
 was not found.
 .TP
-.B ENOMEM
-Insufficient memory to allocate passwd structure.
-.\" This structure is static, allocated 0 or 1 times. No memory leak. (libc45)
+.B EINTR
+A signal was caught.
 .TP
 .B EIO
 I/O error.
-.TP
-.B EINTR
-A signal was caught.
 .TP
 .B EMFILE
 The maximum number (OPEN_MAX) of files was open already in the calling process.
 .TP
 .B ENFILE
 The maximum number of files was open already in the system.
+.TP
+.B ENOMEM
+Insufficient memory to allocate passwd structure.
+.\" This structure is static, allocated 0 or 1 times. No memory leak. (libc45)
 .TP
 .B ERANGE
 Insufficient buffer space supplied.

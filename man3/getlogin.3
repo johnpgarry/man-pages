@@ -77,14 +77,14 @@ and NULL on failure.
 .SH ERRORS
 POSIX specifies
 .TP
-.B ENXIO
-The calling process has no controlling tty.
-.TP
 .B EMFILE
 The calling process already has the maximum allowed number of open files.
 .TP
 .B ENFILE
 The system already has the maximum allowed number of open files.
+.TP
+.B ENXIO
+The calling process has no controlling tty.
 .TP
 .B ERANGE
 (getlogin_r)
@@ -93,11 +93,11 @@ The length of the user name, including final NUL, is larger than
 .LP
 Linux/glibc also has
 .TP
-.B ENOMEM
-Insufficient memory to allocate passwd structure.
-.TP
 .B ENOENT
 There was no corresponding entry in the utmp-file.
+.TP
+.B ENOMEM
+Insufficient memory to allocate passwd structure.
 .SH FILES
 .nf
 \fI/etc/passwd\fP	password database file

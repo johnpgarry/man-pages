@@ -88,6 +88,9 @@ On success, \fBexecve()\fP does not return, on error \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
+.B E2BIG
+The argument list is too big.
+.TP
 .B EACCES
 Search permission is denied on a component of the path prefix of
 .I filename
@@ -105,36 +108,48 @@ Execute permission is denied for the file or a script or ELF interpreter.
 The file system is mounted
 .IR noexec .
 .TP
-.B EPERM
-The file system is mounted
-.IR nosuid ,
-the user is not the superuser, and the file has an SUID or SGID bit set.
-.TP
-.B EPERM
-The process is being traced, the user is not the superuser and the
-file has an SUID or SGID bit set.
-.TP
-.B E2BIG
-The argument list is too big.
-.TP
-.B ENOEXEC
-An executable is not in a recognised format, is for the wrong
-architecture, or has some other format error that means it cannot be
-executed.
-.TP
 .B EFAULT
 .I filename
 points outside your accessible address space.
 .TP
+.B EINVAL
+An ELF executable had more than one PT_INTERP segment (i.e., tried to
+name more than one interpreter).
+.TP
+.B EIO
+An I/O error occurred.
+.TP
+.B EISDIR
+An ELF interpreter was a directory.
+.TP
+.B ELIBBAD
+An ELF interpreter was not in a recognised format.
+.TP
+.B ELOOP
+Too many symbolic links were encountered in resolving
+.I filename
+or the name of a script or ELF interpreter.
+.TP
+.B EMFILE
+The process has the maximum number of files open.
+.TP
 .B ENAMETOOLONG
 .I filename
 is too long.
+.TP
+.B ENFILE
+The system limit on the total number of open files has been reached.
 .TP
 .B ENOENT
 The file 
 .I filename
 or a script or ELF interpreter does not exist, or a shared library
 needed for file or interpreter cannot be found.
+.TP
+.B ENOEXEC
+An executable is not in a recognised format, is for the wrong
+architecture, or has some other format error that means it cannot be
+executed.
 .TP
 .B ENOMEM
 Insufficient kernel memory was available.
@@ -144,32 +159,17 @@ A component of the path prefix of
 .I filename
 or a script or ELF interpreter is not a directory.
 .TP
-.B ELOOP
-Too many symbolic links were encountered in resolving
-.I filename
-or the name of a script or ELF interpreter.
+.B EPERM
+The file system is mounted
+.IR nosuid ,
+the user is not the superuser, and the file has an SUID or SGID bit set.
+.TP
+.B EPERM
+The process is being traced, the user is not the superuser and the
+file has an SUID or SGID bit set.
 .TP
 .B ETXTBSY
 Executable was open for writing by one or more processes.
-.TP
-.B EIO
-An I/O error occurred.
-.TP
-.B ENFILE
-The system limit on the total number of open files has been reached.
-.TP
-.B EMFILE
-The process has the maximum number of files open.
-.TP
-.B EINVAL
-An ELF executable had more than one PT_INTERP segment (i.e., tried to
-name more than one interpreter).
-.TP
-.B EISDIR
-An ELF interpreter was a directory.
-.TP
-.B ELIBBAD
-An ELF interpreter was not in a recognised format.
 .SH "CONFORMING TO"
 SVr4, SVID, X/OPEN, BSD 4.3.  POSIX does not document the #!  behavior
 but is otherwise compatible.  SVr4 documents additional error

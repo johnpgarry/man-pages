@@ -1,5 +1,5 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "PUTMSG" P 2003 POSIX
+.TH "PUTMSG" P 2003 "IEEE/The Open Group" "POSIX Programmer's Manual"
 .\" putmsg 
 .SH NAME
 putmsg, putpmsg \- send a message on a STREAM (\fBSTREAMS\fP)
@@ -136,7 +136,7 @@ A STREAM is not associated with \fIfildes\fP.
 .B ENXIO
 A hangup condition was generated downstream for the specified STREAM.
 .TP 7
-.B EPIPE] or [EIO
+.B EPIPE \fRor\fP EIO
 The \fIfildes\fP argument refers to a STREAMS-based pipe and the other
 end of the pipe is closed. A SIGPIPE signal is
 generated for the calling thread.

@@ -66,25 +66,25 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
+.B EAFNOSUPPORT
+The specified address family is not supported on this machine.
+.TP
+.B EFAULT
+The address
+.I sv
+does not specify a valid part of the process address space.
+.TP
 .B EMFILE
 Too many descriptors are in use by this process.
 .TP
 .B ENFILE
 The system limit on the total number of open files has been reached.
 .TP
-.B EAFNOSUPPORT
-The specified address family is not supported on this machine.
-.TP
-.B EPROTONOSUPPORT
-The specified protocol is not supported on this machine.
-.TP
 .B EOPNOTSUPP
 The specified protocol does not support creation of socket pairs.
 .TP
-.B EFAULT
-The address
-.I sv
-does not specify a valid part of the process address space.
+.B EPROTONOSUPPORT
+The specified protocol is not supported on this machine.
 .SH "CONFORMING TO"
 4.4BSD, SUSv2, POSIX 1003.1-2001.
 The

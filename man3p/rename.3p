@@ -1,5 +1,5 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "RENAME" P 2003 POSIX
+.TH "RENAME" P 2003 "IEEE/The Open Group" "POSIX Programmer's Manual"
 .\" rename 
 .SH NAME
 rename \- rename a file
@@ -141,7 +141,7 @@ component of either path prefix is not a directory; or the \fIold\fP
 argument names a directory and \fInew\fP argument names a
 non-directory file. 
 .TP 7
-.B EPERM] or [EACCES
+.B EPERM \fRor\fP EACCES
 .sp
 The S_ISVTX flag is set on the directory containing the file referred
 to by \fIold\fP and the caller is not the file owner, nor is

@@ -104,6 +104,10 @@ This will be fixed in future glibc versions.
 may be already used by the threading library.
 .SH ERRORS
 .TP
+.B EFAULT
+.I addr 
+points to an unmapped address or is outside the process address space.
+.TP
 .B EINVAL
 .I code 
 is not a valid subcommand.
@@ -111,10 +115,6 @@ is not a valid subcommand.
 .B EPERM
 .I addr
 is outside the process address space.
-.TP
-.B EFAULT
-.I addr 
-points to an unmapped address or is outside the process address space.
 .SH AUTHOR
 Man page written by Andi Kleen.
 .SH CONFORMANCE

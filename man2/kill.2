@@ -89,15 +89,15 @@ is set appropriately.
 .B EINVAL
 An invalid signal was specified.
 .TP
+.B EPERM
+The process does not have permission to send the signal
+to any of the target processes.
+.TP
 .B ESRCH
 The pid or process group does not exist.
 Note that an existing process might be a zombie,
 a process which already committed termination, but
 has not yet been \fBwait()\fPed for.
-.TP
-.B EPERM
-The process does not have permission to send the signal
-to any of the target processes.
 .SH NOTES
 It is impossible to send a signal to task number one, the init process, for
 which it has not installed a signal handler.  This is done to assure the

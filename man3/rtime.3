@@ -38,11 +38,11 @@ is set appropriately.
 All errors for underlying functions (sendto, poll, recvfrom, connect, read)
 can occur. Moreover:
 .TP
-.B ETIMEDOUT
-The waiting time as defined in timeout has expired.
-.TP
 .B EIO
 The number of returned bytes is not 4.
+.TP
+.B ETIMEDOUT
+The waiting time as defined in timeout has expired.
 .SH "EXAMPLE"
 This example requires that port 37 is up and open. You may check
 that the time entry within

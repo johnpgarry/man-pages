@@ -90,6 +90,12 @@ is not a valid descriptor.
 .I argp
 references an inaccessible memory area.
 .TP
+.B EINVAL
+.I Request
+or
+.I argp
+is not valid.
+.TP
 .B ENOTTY
 .I d
 is not associated with a character special device.
@@ -99,12 +105,6 @@ The specified request does not apply to the kind of object that the
 descriptor
 .I d
 references.
-.TP
-.B EINVAL
-.I Request
-or
-.I argp
-is not valid.
 .SH NOTE
 In order to use this call, one needs an open file descriptor.
 Often the

@@ -70,8 +70,8 @@ is set appropriately.
 .TP
 .B EPERM
 The calling process has insufficient privilege to call 
-.BR munlockall ;
-the
+.BR munlockall .
+Under Linux the
 .B CAP_IPC_LOCK
 capability is required.
 .\" Weirdness this way comes: CAP_IPC_LOCK is required for munlockall()

@@ -60,28 +60,27 @@ On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
-.B EPERM
-The process does not have the capability 
-.B CAP_SYS_ADMIN
-required to look up cookie values.
+.B EFAULT
+The buffer was not valid.
 .TP
 .B EINVAL
 The kernel has no registered cookie/directory entry mappings at the
 time of lookup, or the cookie does not refer to a valid directory entry.
 .TP
+.B ENAMETOOLONG
+The name could not fit in the buffer.
+.TP
 .B ENOMEM
 The kernel could not allocate memory for the temporary buffer holding
 the path.
 .TP
+.B EPERM
+The process does not have the capability 
+.B CAP_SYS_ADMIN
+required to look up cookie values.
+.TP
 .B ERANGE
 The buffer was not large enough to hold the path of the directory entry.
-.TP
-.B ENAMETOOLONG
-The name could not fit in the buffer.
-.TP
-.B EFAULT
-The buffer was not valid.
-
 .SH "CONFORMING TO"
 .B lookup_dcookie
 is Linux-specific.

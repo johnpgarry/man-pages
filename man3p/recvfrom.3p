@@ -1,5 +1,5 @@
 .\" Copyright (c) 2001-2003 The Open Group, All Rights Reserved 
-.TH "RECVFROM" P 2003 POSIX
+.TH "RECVFROM" P 2003 "IEEE/The Open Group" "POSIX Programmer's Manual"
 .\" recvfrom 
 .SH NAME
 recvfrom \- receive a message from a socket
@@ -119,7 +119,7 @@ shall return 0. Otherwise, the function shall return
 .LP
 The \fIrecvfrom\fP() function shall fail if:
 .TP 7
-.B EAGAIN] or [EWOULDBLOCK
+.B EAGAIN \fRor\fP EWOULDBLOCK
 .sp
 The socket's file descriptor is marked O_NONBLOCK and no data is waiting
 to be received; or MSG_OOB is set and no out-of-band data

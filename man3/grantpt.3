@@ -31,6 +31,9 @@ returns 0. Otherwise, it returns \-1 and sets
 appropriately.
 .SH ERRORS
 .TP
+.B EACCES
+The corresponding slave pty could not be accessed.
+.TP
 .B EBADF
 The
 .I fd
@@ -40,9 +43,6 @@ argument is not a valid open file descriptor.
 The
 .I fd
 argument is valid but not associated with a master pty.
-.TP
-.B EACCES
-The corresponding slave pty could not be accessed.
 .SH "CONFORMING TO"
 POSIX 1003.1-2001
 .SH NOTES
