@@ -22,9 +22,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified 2002-04-15 by Roger Luethi <rl@hellgate.ch> and aeb
-.\"
-.TH GETDTABLESIZE 2 2002-04-15 "Linux 2.4" "Linux Programmer's Manual"
+.TH GETDTABLESIZE 2 1993-07-22 "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 getdtablesize \- get descriptor table size
 .SH SYNOPSIS
@@ -33,22 +31,17 @@ getdtablesize \- get descriptor table size
 .B int getdtablesize(void);
 .SH DESCRIPTION
 .B getdtablesize
-returns the maximum number of files a process can have open,
-one more than the largest possible value for a file descriptor.
-.SH "RETURN VALUE"
-The current limit on the number of open files per process.
+returns the maximum number of files a process can have open.
 .SH NOTES
 .B getdtablesize
-is implemented as a libc library function. The glibc version calls
-.BR getrlimit (2)
-and returns the current
-.B RLIMIT_NOFILE
-limit, or
+is implemented as a library function in DLL 4.4.1.  This function returns
 .B OPEN_MAX
-when that fails.
-The libc4 and libc5 versions return
+(set to 256 in Linux 2.0.23) if
 .B OPEN_MAX
-(set to 256 since Linux 0.98.4).
+was defined when the library was compiled.  Otherwise, \-1 is returned, and
+.I errno
+is set to
+.BR ENOSYS .
 .SH "CONFORMING TO"
 SVr4, 4.4BSD (the
 .B getdtablesize
@@ -56,5 +49,4 @@ function first appeared in BSD 4.2).
 .SH "SEE ALSO"
 .BR close (2),
 .BR dup (2),
-.BR getrlimit (2),
 .BR open (2)
