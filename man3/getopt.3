@@ -41,6 +41,8 @@ getopt \- Parse command line options
 .BI "extern char *" optarg ;
 .BI "extern int " optind ", " opterr ", " optopt ;
 .sp
+.B #define _GNU_SOURCE
+.br
 .B #include <getopt.h>
 .sp
 .BI "int getopt_long(int " argc ", char * const " argv[] ",

@@ -25,11 +25,13 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 17:59:03 1993 by Rik Faith (faith@cs.unc.edu)
-.TH STRSIGNAL 3  "April 13, 1993" "GNU" "Linux Programmer's Manual"
+.TH STRSIGNAL 3  "8 February 1999" "GNU" "Linux Programmer's Manual"
 .SH NAME
 strsignal \- return string describing signal
 .SH SYNOPSIS
 .nf
+.B #define _GNU_SOURCE
+.br
 .B #include <string.h>
 .sp
 .BI "char *strsignal(int " sig );
@@ -42,9 +44,15 @@ number passed in the argument \fIsig\fP.  The string can only be used
 until the next call to \fBstrsignal()\fP.
 .PP
 The array \fIsys_siglist\fP holds the signal description strings
-indexed by signal number.
+indexed by signal number.  The \fBstrsignal()\fP function should be
+used if possible instead of this array.
 .SH "RETURN VALUE"
 The \fBstrsignal()\fP function returns the appropriate description
 string, or an unknown signal message if the signal number is invalid.
+On some systems (but not on Linux), a \fBNULL\fP pointer may be
+returned instead for an invalid signal number.
+.SH "CONFORMING TO"
+This function is not part of any standard, but may be found on Linux
+systems and some UNIX systems (such as Solaris).
 .SH "SEE ALSO"
 .BR psignal "(3), " strerror (3)

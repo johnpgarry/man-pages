@@ -38,6 +38,7 @@
 .\" Converted for Linux, Mon Nov 29 14:55:24 1993, faith@cs.unc.edu
 .\" Added section to BUGS, Sun Mar 12 22:28:33 MET 1995,
 .\"                   Thomas.Koenig@ciw.uni-karlsruhe.de
+.\" Correction,  Sun, 11 Apr 1999 15:55:18, Martin Vicente <martin@netadmin.dgac.fr>
 .\"
 .TH SETBUF 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
@@ -46,11 +47,11 @@ setbuf, setbuffer, setlinebuf, setvbuf \- stream buffering operations
 .na
 .B #include <stdio.h>
 .sp
-.BI "int setbuf(FILE *" stream ", char *" buf );
+.BI "void setbuf(FILE *" stream ", char *" buf );
 .br
-.BI "int setbuffer(FILE *" stream ", char *" buf ", size_t"  size );
+.BI "void setbuffer(FILE *" stream ", char *" buf ", size_t"  size );
 .br
-.BI "int setlinebuf(FILE *" stream );
+.BI "void setlinebuf(FILE *" stream );
 .br
 .BI "int setvbuf(FILE *" stream ", char *" buf ", int " mode
 .BI ", size_t " size );

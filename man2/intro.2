@@ -128,6 +128,8 @@ The _syscall() macros will return the result \fIr\fP of the system call
 when \fIr\fP is nonnegative, but will return \-1 and set the variable
 .I errno
 to \-\fIr\fP when \fIr\fP is negative.
+For the error codes, see
+.BR errno (3).
 .sp
 Some system calls, such as
 .BR mmap ,
@@ -170,8 +172,5 @@ V7
 Version 7, the ancestral Unix from Bell Labs.
 .SH FILES
 .I /usr/include/linux/unistd.h
-.SH AUTHORS
-Look at the source header of the manual page for the author(s) and copyright
-conditions.  Note that these can be different from page to page!
-
-
+.SH "SEE ALSO"
+.BR errno (3)

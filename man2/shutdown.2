@@ -29,10 +29,11 @@
 .\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 .\" SUCH DAMAGE.
 .\"
-.\"     @(#)shutdown.2	6.4 (Berkeley) 3/10/91
+.\"     $Id: shutdown.2,v 1.1.1.1 1999/03/21 22:52:23 freitag Exp $
 .\"
 .\" Modified Sat Jul 24 09:57:55 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 22:04:51 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1998 by Andi Kleen
 .\"
 .TH SHUTDOWN 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -43,7 +44,7 @@ shutdown \- shut down part of a full-duplex connection
 .BI "int shutdown(int " s ", int " how );
 .SH DESCRIPTION
 The
-.I shutdown
+.B shutdown
 call causes all or part of a full-duplex connection on the socket
 associated with
 .I s
@@ -75,5 +76,14 @@ The specified socket is not connected.
 4.4BSD (the
 .B shutdown
 function call first appeared in 4.2BSD).
+.SH BUGS
+The numerical 
+.I how 
+flags should be replaced by the Single Unix-mandated 
+.BR SHUT_RD , 
+.BR SHUT_WR ,
+and 
+.B SHUT_RDWR 
+flags. 
 .SH "SEE ALSO"
 .BR connect "(2), " socket (2)

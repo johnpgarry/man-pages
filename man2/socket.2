@@ -29,12 +29,13 @@
 .\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 .\" SUCH DAMAGE.
 .\"
-.\"     @(#)socket.2	6.8 (Berkeley) 3/10/91
+.\"     $Id: socket.2,v 1.4 1999/05/13 11:33:42 freitag Exp $
 .\"
 .\" Modified Sat Jul 24 10:36:46 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 22:10:43 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1998,1999 by Andi Kleen <ak@muc.de>
 .\"
-.TH SOCKET 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
+.TH SOCKET 2 "24 Apr 1999" "Linux Man Page" "Linux Programmer's Manual"
 .SH NAME
 socket \- create an endpoint for communication
 .SH SYNOPSIS
@@ -46,79 +47,95 @@ socket \- create an endpoint for communication
 .SH DESCRIPTION
 .B Socket
 creates an endpoint for communication and returns a descriptor.
-
+.PP
 The
 .I domain
-parameter specifies a communications domain within which communication will
-take place; this selects the protocol family which should be used.  These
-families are defined in the include file
-.IR sys/socket.h .
-The currently understood formats are
-
-.RS
-.TP 0.9i
-AF_UNIX
-(UNIX internal protocols)
+parameter specifies a communication domain; this selects the protocol
+family which will be used for communication.  These families are defined in 
+.BR <sys/socket.h> .
+The currently understood formats include:
 .TP
-AF_INET
-(ARPA Internet protocols)
+.BR PF_UNIX ", " PF_LOCAL
+UNIX protocols for local communication
 .TP
-AF_ISO
-(ISO protocols)
+.B PF_INET
+IPv4 Internet protocols; see
+.BR ip (7)
 .TP
-AF_NS
-(Xerox Network Systems protocols)
+.B PF_INET6
+IPv6 Internet protocols
 .TP
-AF_IMPLINK
-(IMP \*(lqhost at IMP\*(rq link layer)
-.RE
-
+.B PF_IPX
+IPX \- Novell protocols
+.TP
+.B PF_NETLINK
+Kernel user interface device
+.TP
+.B PF_X25
+ITU-T X.25 / ISO-8208 protocol
+.TP
+.B PF_AX25
+Amateur radio AX.25 protocol
+.TP
+.B PF_ATMPVC
+Access to raw ATM PVCs
+.TP
+.B PF_APPLETALK
+Appletalk; see
+.BR ddp (7)
+.TP
+.B
+PF_PACKET
+Low level packet interface; see
+.BR packet (7)
+.PP
 The socket has the indicated
 .IR type ,
-which specifies the semantics of communication.  Currently defined types
+which specifies the communication semantics.  Currently defined types
 are:
-
-.RS
-.nf
-SOCK_STREAM
-SOCK_DGRAM
-SOCK_RAW
-SOCK_SEQPACKET
-SOCK_RDM
-.fi
-.RE
-
-A
+.TP
 .B SOCK_STREAM
-type provides sequenced, reliable, two-way connection based byte streams.
-An out-of-band data transmission mechanism may be supported.  A
+Provides sequenced, reliable, two-way, connection-based byte streams.
+An out-of-band data transmission mechanism may be supported.  
+.TP
 .B SOCK_DGRAM
-socket supports datagrams (connectionless, unreliable messages of a fixed
-(typically small) maximum length).  A
+Supports datagrams (connectionless, unreliable messages of a fixed
+maximum length).
+.TP
 .B SOCK_SEQPACKET
-socket may provide a sequenced, reliable, two-way connection-based data
-transmission path for datagrams of fixed maximum length; a consumer may be
-required to read an entire packet with each read system call.  This
-facility is protocol specific, and presently implemented only for
-.BR AF_NS .
+Provides a sequenced, reliable, two-way connection-based data
+transmission path for datagrams of fixed maximum length; a consumer is
+required to read an entire packet with each read system call.  
+.TP
 .B SOCK_RAW
-sockets provide access to internal network protocols and interfaces.  The
-types
-.BR SOCK_RAW ,
-which is available only to the super-user, and
-.BR SOCK_RDM ,
-which is planned, but not yet implemented, are not described here.
-
+Provides raw network protocol access.
+.TP
+.B SOCK_RDM
+Provides a reliable datagram layer that does not guarantee ordering.
+.TP
+.B SOCK_PACKET
+Obsolete and should not be used in new programs;
+see 
+.BR packet (7).
+.PP
+Some socket types may not be implemented by all protocol families; for example,
+.B SOCK_SEQPACKET
+is currently not implemented in Linux for 
+.BR AF_INET .
+.PP
 The
 .I protocol
 specifies a particular protocol to be used with the socket.  Normally only
 a single protocol exists to support a particular socket type within a given
 protocol family.  However, it is possible that many protocols may exist, in
 which case a particular protocol must be specified in this manner.  The
-protocol number to use is particular to the \*(lqcommunication domain\*(rq
+protocol number to use is specific to the \*(lqcommunication domain\*(rq
 in which communication is to take place; see
 .BR protocols (5).
-
+See
+.BR getprotoent (3)
+on how to map protocol name strings to protocol numbers.
+.PP
 Sockets of type
 .B SOCK_STREAM
 are full-duplex byte streams, similar to pipes.  A stream socket must be in
@@ -141,34 +158,31 @@ may be performed.  Out-of-band data may also be transmitted as described in
 .BR send (2)
 and received as described in
 .BR recv (2).
-
-The communications protocols used to implement a
+.PP
+The communications protocols which implement a
 .B SOCK_STREAM
-insure that data is not lost or duplicated.  If a piece of data for which
+ensure that data is not lost or duplicated.  If a piece of data for which
 the peer protocol has buffer space cannot be successfully transmitted
 within a reasonable length of time, then the connection is considered
-broken and calls will indicate an error with \-1 returns and with
-.B ETIMEDOUT
-as the specific code in the global variable
-.IR errno .
-The protocols optionally keep sockets
-.I warm
-by forcing transmissions roughly every minute in the absence of other
-activity.  An error is then indicated if no response can be elicited on an
-otherwise idle connection for a extended period (e.g. 5 minutes).  A
+to be dead.
+When
+.B SO_KEEPALIVE 
+is enabled on the socket the protocol checks in a protocol-specific
+manner if the other end is still alive.
+A
 .B SIGPIPE
-signal is raised if a process sends
+signal is raised if a process sends or receives
 on a broken stream; this causes naive processes,
 which do not handle the signal, to exit.
-
 .B SOCK_SEQPACKET
 sockets employ the same system calls as
 .B SOCK_STREAM
 sockets.  The only difference is that
 .BR read (2)
 calls will return only the amount of data requested, and any remaining in
-the arriving packet will be discarded.
-
+the arriving packet will be discarded. Also all message boundaries in
+incoming datagrams are preserved. 
+.PP
 .B SOCK_DGRAM
 and
 .B SOCK_RAW
@@ -177,25 +191,53 @@ sockets allow sending of datagrams to correspondents named in
 calls.  Datagrams are generally received with
 .BR recvfrom (2),
 which returns the next datagram with its return address.
-
+.PP
+.B SOCK_PACKET
+is an obsolete socket type to receive raw packets directly from the
+device driver. Use
+.BR packet (7)
+instead.
+.PP
 An 
 .BR fcntl (2)
-call can be used to specify a process group to receive a
+call with the the 
+.B F_SETOWN 
+argument
+can be used to specify a process group to receive a
 .B SIGURG
-signal when the out-of-band data arrives.  It may also enable non-blocking
-I/O and asynchronous notification of I/O events via
-.BR SIGIO .
-
+signal when the out-of-band data arrives or 
+.B SIGPIPE 
+signal when a 
+.B SOCK_STREAM 
+connection breaks unexpectedly.  
+It may also be used to set the process or process group that receives
+the I/O and asynchronous notification of I/O events via
+.BR SIGIO. 
+Using
+.B F_SETOWN
+is equivalent to an
+.BR ioctl (2)
+call with the SIOSETOWN argument.
+.PP
+When the network signals an error condition to the protocol module (e.g.
+using a ICMP message for IP) the pending error flag is set for the socket.
+The next operation on this socket will return the error code of the pending
+error. For some protocols it is possible to enable a per-socket error queue
+to retrieve detailed information about the error; see
+.B IP_RECVERR 
+in
+.BR ip (7) .
+.PP
 The operation of sockets is controlled by socket level
 .IR options .
-These options are defined in the file
-.IR sys/socket.h .
+These options are defined in 
+.BR <sys/socket.h> .
 .BR Setsockopt (2)
 and
 .BR getsockopt (2)
 are used to set and get options, respectively.
 .SH "RETURN VALUES"
-A \-1 is returned if an error occurs, otherwise the return value is a
+\-1 is returned if an error occurs; otherwise the return value is a
 descriptor referencing the socket.
 .SH ERRORS
 .TP 0.8i
@@ -203,19 +245,24 @@ descriptor referencing the socket.
 The protocol type or the specified protocol is not
 supported within this domain.
 .TP
-.B EMFILE
-The per-process descriptor table is full.
-.TP
 .B ENFILE
-The system file table is full.
+Not enough kernel memory to allocate a new socket structure.
+.TP
+.B EMFILE
+Process file table overflow.
 .TP
 .B EACCES
 Permission to create a socket of the specified type and/or protocol
 is denied.
 .TP
-.B ENOBUFS
-Insufficient buffer space is available.  The socket cannot be
+.BR ENOBUFS " or " ENOMEM
+Insufficient memory is available.  The socket cannot be
 created until sufficient resources are freed.
+.TP
+.B EINVAL
+Unknown protocol, or protocol family not available.
+.PP
+Other errors may be generated by the underlying protocol modules.
 .SH "CONFORMING TO"
 4.4BSD (the
 .B socket
@@ -233,11 +280,11 @@ standards use AF_* everywhere.
 .BR getsockname "(2), " getsockopt "(2), " ioctl "(2), " listen "(2), "
 .BR read "(2), " recv "(2), " select "(2), " send "(2), " shutdown "(2), "
 .BR socketpair "(2), " write (2)
-.sp
-"An Introductory 4.3 BSD Interprocess Communication Tutorial"
+.PP
+\(lqAn Introductory 4.3 BSD Interprocess Communication Tutorial\(rq
 is reprinted in
-.I UNIX Programmer's Supplementary Documents Volume 1
-.sp
-"BSD Interprocess Communication Tutorial"
+.I UNIX Programmer's Supplementary Documents Volume 1.
+.PP
+\(lqBSD Interprocess Communication Tutorial\(rq
 is reprinted in
-.I UNIX Programmer's Supplementary Documents Volume 1
+.I UNIX Programmer's Supplementary Documents Volume 1.

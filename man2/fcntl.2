@@ -73,16 +73,17 @@ be closed on exec.
 On success, the new descriptor is returned.
 .TP
 .B F_GETFD
-Read the close-on-exec flag.  If the low-order bit is 0, the file will
-remain open across
+Read the close-on-exec flag.  If the
+.B FD_CLOEXEC
+bit is 0, the file will remain open across
 .BR exec ,
 otherwise it will be closed.
 .TP
 .B F_SETFD
-Set the close-on-exec flag to the value specified by
-.I arg
-(only the least significant bit is used).
-
+Set the close-on-exec flag to the value specified by the
+.B FD_CLOEXEC
+bit of
+.IR arg .
 .TP
 .B F_GETFL
 Read the descriptor's flags (all flags (as set by
@@ -97,7 +98,7 @@ Only
 may be set; the other flags are unaffected.
 .sp
 The flags are shared between copies (made with
-.BR dup (2)
+.BR dup "(2), " fork (2),
 etc.) of the same file descriptor.
 .sp
 The flags and their semantics are described in

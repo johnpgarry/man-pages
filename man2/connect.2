@@ -59,9 +59,10 @@
 .\" SUCH DAMAGE.
 .\"
 .\" Modified Fri Jan 31 16:22:26 1997 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Sun Mar 28 21:26:46 1999 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 1998,1999 by Andi Kleen
+.\" $Id: connect.2,v 1.5 1999/06/12 10:11:37 freitag Exp $
 .\"
-.TH CONNECT 2 "23 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH CONNECT 2 "3 Oct 1998" "Linux 2.2" "Linux Programmer's Manual"
 .SH NAME
 connect \- initiate a connection on a socket
 .SH SYNOPSIS
@@ -69,31 +70,42 @@ connect \- initiate a connection on a socket
 .br
 .B #include <sys/socket.h>
 .sp
-.BI "int connect(int " sockfd ", struct sockaddr *" serv_addr ", socklen_t
-.BI " addrlen );
+.BI "int connect(int " sockfd ", const struct sockaddr *" serv_addr ,
+.BI "socklen_t " addrlen ");"
 .SH DESCRIPTION
-The parameter
+The file descriptor
 .I sockfd
-is a socket.
-If it is of type
-.BR SOCK_DGRAM ,
-this call specifies the peer with which the socket is to be associated;
-this address is that to which datagrams are to be sent, and the only
-address from which datagrams are to be received.  If the socket is of type
-.B SOCK_STREAM ,
+must refer to a socket.
+If the socket is of type
+.B SOCK_DGRAM
+then the
+.I serv_addr
+address is the address to which datagrams are sent by default, and the only
+address from which datagrams are received.  If the socket is of type
+.B SOCK_STREAM
+or
+.BR SOCK_SEQPACKET ,
 this call attempts to make a connection to another socket.  The other
 socket is specified by
-.BR serv_addr ,
-which is an address in the communications space of the socket.  Each
+.IR serv_addr ,
+which is an address (of length
+.IR addrlen )
+in the communications space of the socket.  Each
 communications space interprets the
-.BR serv_addr ,
-parameter in its own way.  Generally, stream sockets may successfully
+.I serv_addr
+parameter in its own way.
+.PP
+Generally, connection-based protocol sockets may successfully
 .B connect
-only once; datagram sockets may use
+only once; connectionless protocol sockets may use
 .B connect
-multiple times to change their association.  Datagram sockets may dissolve
-the association by connecting to an invalid address, such as a null
-address.
+multiple times to change their association.  Connectionless sockets may
+dissolve the association by connecting to an address with the 
+.I sa_family
+member of
+.B sockaddr 
+set to 
+.BR AF_UNSPEC .
 .SH "RETURN VALUE"
 If the connection or binding succeeds, zero is returned.  On error, \-1 is
 returned, and
@@ -107,7 +119,7 @@ domain-specific error codes.
 Bad descriptor.
 .TP
 .B EFAULT
-The socket structure address is outside your address space.
+The socket structure address is outside the user's address space.
 .TP
 .B ENOTSOCK
 The descriptor is not associated with a socket.
@@ -119,7 +131,8 @@ The socket is already connected.
 Connection refused at server.
 .TP
 .B ETIMEDOUT
-Timeout while attempting connection.
+Timeout while attempting connection. The server may be too 
+busy to accept new connections. 
 .TP
 .B ENETUNREACH
 Network is unreachable.
@@ -131,23 +144,61 @@ Address is already in use.
 The socket is non-blocking and the connection cannot be completed
 immediately.  It is possible to
 .BR select (2)
-for completion by selecting the socket for writing. After \fBselect\fR
+or 
+.BR poll (2) 
+for completion by selecting the socket for writing. After 
+.B select
 indicates writability, use
 .BR getsockopt (2)
-to read the \fBSO_ERROR\fR option at level \fBSOL_SOCKET\fR to determine
-whether \fBconnect\fR completed successfully (\fBSO_ERROR\fR is zero) or
-unsuccessfully (\fBSO_ERROR\fR is one of the usual error codes listed
-above, explaining the reason for the failure).
+to read the 
+.B SO_ERROR
+option at level 
+.B SOL_SOCKET
+to determine whether 
+.B connect
+completed successfully 
+.RB ( SO_ERROR
+is zero) or unsuccessfully 
+.RB ( SO_ERROR
+is one of the usual error codes listed here, 
+explaining the reason for the failure).
 .TP
 .B EALREADY
 The socket is non-blocking and a previous connection attempt has not yet
 been completed.
+.TP
+.B EAGAIN
+No more free local ports or insufficient entries in the routing cache. For
+.B PF_INET
+see the 
+.B net.ipv4.ip_local_port_range
+sysctl in 
+.BR ip (7) 
+on how to increase the number of local ports.
+.TP
+.B EAFNOSUPPORT
+The passed address didn't have the correct address family in its 
+.I sa_family
+field.
+.TP
+.B EACCES, EPERM
+The user tried to connect to a broadcast address without having the socket 
+broadcast flag enabled or the connection request failed because of a local
+firewall rule.
 .SH CONFORMING TO
 SVr4, 4.4BSD (the
 .B connect
-function first appeared in BSD 4.2).  SVr4 documents additional
-general error codes EADDRNOTAVAIL, EINVAL, EAFNOSUPPORT, 
-EALREADY, EINTR, EPROTOTYPE, ENOSR.  It also
+function first appeared in BSD 4.2).  SVr4 documents the additional
+general error codes 
+.BR EADDRNOTAVAIL , 
+.BR EINVAL , 
+.BR EAFNOSUPPORT , 
+.BR EALREADY , 
+.BR EINTR , 
+.BR EPROTOTYPE , 
+and
+.BR ENOSR .  
+It also
 documents many additional error conditions not described here.
 .SH NOTE
 The third argument of

@@ -57,6 +57,10 @@ indicates that Daylight Saving time applies locally during the
 appropriate part of the year.
 .SH "RETURN VALUE"
 This function always returns 0.
+.SH BUGS
+Under libc4 and libc5 the millitm field is meaningful.
+But glibc2 is buggy and returns 0 there;
+glibc 2.1.1 is correct again.
 .SH HISTORY
 The
 .I ftime

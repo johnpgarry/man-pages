@@ -1,4 +1,4 @@
-.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" Copyright (c) 1999 Andries Brouwer (aeb@cwi.nl)
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -20,12 +20,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" References consulted:
-.\"     Linux libc source code
-.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
-.\"     386BSD man pages
-.\" Modified Sat Jul 24 17:47:26 1993 by Rik Faith (faith@cs.unc.edu)
-.TH TEMPNAM 3  "April 3, 1993" "GNU" "Linux Programmer's Manual"
+.TH TEMPNAM 3  "14 June 1999" "" "Linux Programmer's Manual"
 .SH NAME
 tempnam \- create a name for a temporary file
 .SH SYNOPSIS
@@ -35,32 +30,74 @@ tempnam \- create a name for a temporary file
 .BI "char *tempnam(const char *" dir ", const char *" pfx );
 .fi
 .SH DESCRIPTION
-The \fBtempnam()\fP function generates a unique temporary filename
-using up to five characters of \fIpfx\fP, if it is not NULL.  The
-directory to place the file is searched for in the following order:-
-.sp
-.RS
-.IP a)
-The directory specified by the environment variable \fITMPDIR\fP,
-if it is writable.
-.IP b)
-The directory specified by the argument \fIdir\fP, if it is not NULL.
-.IP c)
-The directory specified by \fIP_tmpdir\fP.
-.IP d)
-The directory \fI/tmp\fP.
-.RE
-.sp
-The storage for the filename is allocated by \fBmalloc()\fP, and so
-can be free'd by the function \fBfree()\fP.
+The
+.B tempnam()
+function returns a pointer to a string that is a valid filename,
+and such that a file with this name did not exist when
+.B tempnam()
+checked.
+The filename suffix of the pathname generated will start with
+.I pfx
+in case
+.I pfx
+is a non-NULL string of at most five bytes.
+The directory prefix part of the pathname generated is required to
+be `appropriate' (often that at least implies writable).
+Attempts to find an appropriate directory go through the following
+steps: (i) In case the environment variable TMPDIR exists and
+contains the name of an appropriate directory, that is used.
+(ii) Otherwise, if the
+.I dir
+argument is non-NULL and appropriate, it is used.
+(iii) Otherwise, P_tmpdir (as defined in
+.IR <stdio.h> )
+is used when appropriate.
+(iv) Finally an implementation-defined directory may be used.
 .SH "RETURN VALUE"
-The \fBtempnam()\fP function returns a pointer to the unique temporary 
-filename, or NULL if a unique filename cannot be generated.
-.SH "ERRORS"
+The
+.B tempnam()
+function returns a pointer to a unique temporary 
+filename, or NULL if a unique name cannot be generated.
+.SH ERRORS
 .TP
-.B EEXIST
-Unable to generate a unique filename.
+.B ENOMEM
+Allocation of storage failed.
+.LP
+.SH NOTES
+SUSv2 does not mention the use of TMPDIR; glibc will use it only
+when the program is not suid.
+SVID2 specifies that the directory used under (iv) is
+.IR /tmp .
+SVID2 specifies that the string returned by
+.B tempnam()
+was allocated using
+.BR malloc (3)
+and hence can be freed by
+.BR free (3).
+.LP
+The
+.B tempnam()
+function generates a different string each time it is called,
+up to TMP_MAX (defined in
+.IR <stdio.h> )
+times. If it is called more than TMP_MAX times,
+the behaviour is implementation defined.
+.LP
+In case the
+.I pfx
+argument has length larger than five, glibc will use the first
+five bytes.
+Upon failure to find a unique name, glibc will return EEXIST.
+.SH BUGS
+The precise meaning of `appropriate' is undefined;
+it is unspecified how accessibility of a directory is determined.
+Never use this function. Use
+.BR mkstemp (3)
+instead.
 .SH "CONFORMING TO"
-SVID 3, BSD 4.3
+SVID 2, BSD 4.3
 .SH "SEE ALSO"
-.BR mktemp "(3), " mkstemp "(3), " tmpnam "(3), " tmpfile (3)
+.BR mktemp (3),
+.BR mkstemp (3),
+.BR tmpfile (3),
+.BR tmpnam (3)

@@ -29,8 +29,6 @@
 mount, umount \- mount and unmount filesystems.
 .SH SYNOPSIS
 .B "#include <sys/mount.h>"
-.br
-.B "#include <linux/fs.h>        /* very unwise */"
 .sp
 .BI "int mount(const char *" specialfile ", const char * " dir
 .BI ", const char * " filesystemtype ", unsigned long " rwflag
@@ -63,8 +61,8 @@ argument may take one of the values listed in /proc/filesystems
 The
 .IR rwflag
 argument has the magic number 0xC0ED in the top 16 bits,
-and various mount flags (as defined in <linux/fs.h>)
-in the low order 16 bits:
+and various mount flags (as defined in <linux/fs.h> for libc4 and libc5
+and in <sys/mount.h> for glibc2) in the low order 16 bits:
 .nf
 #define MS_RDONLY    1 /* mount read-only */
 #define MS_NOSUID    2 /* ignore suid and sgid bits */

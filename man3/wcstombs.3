@@ -25,6 +25,7 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 17:42:04 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Wed Apr 14 22:56:39 1999 by Takeo Nakano (nakano@apm.seikei.ac.jp)
 .TH WCSTOMBS 3  "March 29, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 wcstombs \- convert a wide character string to a multibyte character string.
@@ -40,7 +41,7 @@ from the array \fIpwcs\fP into a sequence of multibyte characters and
 stores up to \fIn\fP bytes of multibyte characters in the array \fIs\fP.
 .SH "RETURN VALUE"
 \fBwcstombs()\fP returns the number of bytes stored in \fIs\fP or \-1 if
-\fIs\fP contains an invalid wide character.
+\fIpwcs\fP contains an invalid wide character.
 .SH "CONFORMING TO"
 SVID 3, ISO 9899
 .SH "SEE ALSO"
