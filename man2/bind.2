@@ -92,7 +92,7 @@ socket may receive connections (see
 .BR accept (2)).
 .SH NOTES
 The rules used in name binding vary between address families.  Consult
-the manual entries in section 4 for detailed information. For
+the manual entries in Section 7 for detailed information. For
 .B AF_INET
 see
 .BR ip (7),
@@ -202,5 +202,10 @@ The draft standard has not been adopted yet, but glibc2 already
 follows it and also has socklen_t. See also
 .BR accept (2).
 .SH "SEE ALSO"
-.BR accept "(2), " connect "(2), " listen "(2), "
-.BR socket "(2), " getsockname "(2), " ip "(7), " socket (7)
+.BR accept (2),
+.BR connect (2),
+.BR listen (2),
+.BR socket (2),
+.BR getsockname (2),
+.BR ip (7),
+.BR socket (7)

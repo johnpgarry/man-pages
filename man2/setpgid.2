@@ -37,8 +37,9 @@
 .\" Modified 21 July 1996 by Andries Brouwer <aeb@cwi.nl>
 .\" Modified Wed Nov  6 04:02:50 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" FIXME -- error conditions need to be better documented, see kernel
+.\" Modified Thu Sep  2 13:55:37 1999 by Michael Haardt <michael@moria.de>
 .\"
-.TH SETPGID 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
+.TH SETPGID 2 "September 2, 1999" "Linux" "Linux Programmer's Manual"
 .SH NAME
 setpgid, getpgid, setpgrp, getpgrp \- set/get process group
 .SH SYNOPSIS
@@ -63,7 +64,11 @@ is zero, the process ID of the current process is used.  If
 .I pgid
 is zero, the process ID of the process specified by
 .I pid
-is used.
+is used.  If \fBsetpgid\fP is used to move a process from one process
+group to another (as is done by some shells when creating pipelines),
+both process groups must be part of the same session.  In this case,
+the \fIpgid\fP specifies an existing process group to be joined and the
+session ID of that group must match the session ID of the joining process.
 
 .B getpgid
 returns the process group ID of the process specified by
@@ -80,12 +85,13 @@ simply calls
 .B getpgrp
 is equivalent to
 .BR getpgid(0) .
+Each process group is a member of a session and each process is a
+member of the session of which its process group is a member.
 
 Process groups are used for distribution of signals, and by terminals to
-arbitrate requests for their input: processes that have the same process
-group as the terminal are foreground and may read, while others will block
-with a signal if they attempt to read.
-
+arbitrate requests for their input: Processes that have the same process
+group as the terminal are foreground and may read, while others will
+block with a signal if they attempt to read.
 These calls are thus used by programs such as
 .BR csh (1)
 to create process groups in implementing job control.  The
@@ -95,6 +101,17 @@ and
 calls described in
 .BR termios (4)
 are used to get/set the process group of the control terminal.
+
+If a session has a controlling terminal, CLOCAL is not set and a hangup
+occurs, then the session leader is sent a SIGHUP.  If the session leader
+exits, the SIGHUP signal will be sent to each process in the foreground
+process group of the controlling terminal.
+
+If the exit of the process causes a process group to become orphaned,
+and if any member of the newly-orphaned process group is stopped, then a
+SIGHUP signal followed by a SIGCONT signal will be sent to each process
+in the newly-orphaned process group.
+
 .SH "RETURN VALUE"
 On success,
 .BR setpgid " and " setpgrp

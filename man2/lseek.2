@@ -56,15 +56,18 @@ to the argument
 according to the directive
 .I whence
 as follows:
-.IP \fBSEEK_SET\fP
+.TP
+.B SEEK_SET
 The offset is set to
 .I offset
 bytes.
-.IP \fBSEEK_CUR\fP
+.TP
+.B SEEK_CUR
 The offset is set to its current location plus
 .I offset
 bytes.
-.IP \fBSEEK_END\fP
+.TP
+.B SEEK_END
 The offset is set to the size of the file plus
 .I offset
 bytes.
@@ -128,4 +131,6 @@ L_XTND	SEEK_END
 .PP
 SVR1-3 returns \fBlong\fP instead of \fBoff_t\fP, BSD returns \fBint\fP.
 .SH "SEE ALSO"
-.BR dup "(2), " open "(2), " fseek (3)
+.BR dup (2),
+.BR open (2),
+.BR fseek (3)

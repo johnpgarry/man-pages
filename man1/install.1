@@ -4,7 +4,7 @@
 .\" in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998
 .\" that should have been distributed together with this file.
 .\"
-.TH INSTALL 1 "August 1998" "GNU fileutils 3.16"
+.TH INSTALL 1 "November 1998" "GNU fileutils 4.0"
 .SH NAME
 install \- copy files and set attributes
 .SH SYNOPSIS
@@ -27,6 +27,7 @@ Options (shortest form):
 .br
 .B [\-b]
 .B [\-c]
+.B [\-D]
 .BI "[\-g " group ]
 .BI "[\-m " mode ]
 .BI "[\-o " owner ]
@@ -70,6 +71,16 @@ to the defaults.  It also gives any parent directories it creates
 those attributes.  (This is different from the SunOS 4.x
 .BR install ,
 which gives directories that it creates the default attributes.)
+.TP
+.B "\-D"
+Create all leading components of the
+.I dest
+except the last, then copy
+.I source
+to
+.IR dest .
+This option is useful in the first format in the synopsis, above.
+(New in file\%utils-4.0.)
 .TP
 .BI "\-g " "group" ", \-\-group=" "group"
 Set the group ownership of installed files or directories to
@@ -171,7 +182,7 @@ BSD 4.2 (which had the \-c, \-m, \-o, \-g and \-s options).
 .SH NOTES
 This page describes
 .B install
-as found in the fileutils-3.16 package;
-other versions may differ slightly. Mail corrections and additions to
-aeb@cwi.nl and aw@mail1.bet1.puv.fi and ragnar@lightside.ddns.org .
+as found in the fileutils-4.0 package;
+other versions may differ slightly.
+Mail corrections and additions to aeb@cwi.nl.
 Report bugs in the program to fileutils-bugs@gnu.ai.mit.edu.

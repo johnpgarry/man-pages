@@ -24,9 +24,12 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
+.\"	Single UNIX Specification, Version 2
 .\" Modified Thu Apr  8 15:00:12 1993, David Metcalfe
 .\" Modified Sat Jul 24 18:44:45 1993, Rik Faith (faith@cs.unc.edu)
 .\" Modified Fri Feb 14 21:47:50 1997 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Mon Oct 11 11:11:11 1999 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Wed Nov 10 00:02:26 1999 by Andries Brouwer (aeb@cwi.nl)
 .TH PUTENV 3  "April 8, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 putenv \- change or add an environment variable
@@ -43,6 +46,8 @@ If \fIname\fP does not already exist in the environment, then
 \fIstring\fP is added to the environment.  If \fIname\fP does exist,
 then the value of \fIname\fP in the environment is changed to 
 \fIvalue\fP.
+The string pointed to by \fIstring\fP becomes part of the environment,
+so altering the string changes the environment.
 .SH "RETURN VALUE"
 The \fBputenv()\fP function returns zero on success, or \-1 if an error
 occurs.
@@ -50,6 +55,29 @@ occurs.
 .TP
 .B ENOMEM
 Insufficient space to allocate new environment.
+.SH NOTES
+The \fBputenv()\fP function is not required to be reentrant, and the
+one in libc4, libc5 and glibc2.0 is not, but the glibc2.1 version is.
+.LP
+Description for libc4, libc5, glibc:
+If the argument \fIstring\fP is of the form \fIname\fP,
+and does not contain an `=' character, then the variable \fIname\fP
+is removed from the environment.
+If \fBputenv()\fP has to allocate a new array \fIenviron\fP,
+and the previous array was also allocated by \fBputenv()\fP,
+then it will be freed. In no case will the old storage associated
+to the environment variable itself be freed.
+.LP
+The libc4 and libc5 versions conform to SUSv2: the pointer \fIstring\fP
+given to \fBputenv()\fP is used. In particular, this string becomes
+part of the environment; changing it later will change the environment.
+However, glibc 2.0-2.1.1 differ: a copy of the string is used.
+On the one hand this causes a memory leak, and on the other hand
+it violates SUSv2. This has been fixed in glibc2.1.2.
+.LP
+The BSD4.4 version, like glibc 2.0, uses a copy.
+.LP
+SUSv2 removes the `const' from the prototype, and so does glibc 2.2.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3
 .SH "SEE ALSO"

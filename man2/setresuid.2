@@ -34,7 +34,8 @@ setresuid, setresgid \- set real, effective and saved user or group ID
 .SH DESCRIPTION
 .B setresuid
 (introduced in Linux 2.1.44)
-sets the real, effective and saved user ID's of the current process.
+sets the real user ID, the effective user ID, and the saved set-user-ID
+of the current process.
 
 Unprivileged user processes (i.e., processes with each of
 real, effective and saved user ID nonzero) may change the real,

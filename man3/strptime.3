@@ -20,14 +20,16 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Modified, jmv@lucifer.dorms.spbu.ru, 1999-11-08
+.\"
 .TH STRPTIME 3 "26 September 1994"  "GNU" "Linux Programmer's Manual"
 .SH NAME
 strptime \- convert a string representation of time to a time tm structure
 .SH SYNOPSIS
 .B #include <time.h>
 .sp
-.BI "char *strptime(char *" buf ", const char *" format ,
-.BI "const struct tm *" tm );
+.BI "char *strptime(const char *" s ", const char *" format ,
+.BI "struct tm *" tm );
 .SH DESCRIPTION
 .LP
 .IX  "strptime function"  ""  "\fLstrptime()\fP \(em date and time conversion"
@@ -35,7 +37,7 @@ strptime \- convert a string representation of time to a time tm structure
 is the complementary function to
 .B strftime(\|)
 and converts the character string pointed to by
-.I buf
+.I s
 to a time value, which is stored in the
 .B tm
 structure pointed to by
@@ -48,11 +50,20 @@ reminiscent of
 .BR scanf (3).
 Each field descriptor consists of a
 .B %
-character followd by another character that specifies the replacement for the
+character followed by another character that specifies the replacement for the
 field descriptor.
-All other characters are copied from
-.I format
-into the result.
+All other characters in the 
+.I format 
+string must have a matching character in the input string.  Exceptions
+are white spaces in the format string which can match zero or more
+white space characters in the input string.
+.PP
+The \fBstrptime()\fP function processes the input string from right to
+left.  Each of the three possible input elements (white space,
+literal, or format) are handled one after the other.  If the input
+cannot be matched to the format string the function stops.  The
+remainder of the format and input strings are not processed.
+.PP
 The following field descriptors are supported:
 .RS
 .TP
@@ -180,18 +191,32 @@ struct tm
 .fi
 .RE
 .SH "RETURN VALUE"
-The \fBstrptime()\fP function returns a pointer to the character following 
-the last character in the string pointed to by
-.I buf
-\.
+The return value of the function is a pointer to the first character
+not processed in this function call.  In case the input string
+contains more characters than required by the format string the return
+value points right after the last consumed input character.  In case
+the whole input string is consumed the return value points to the NUL
+byte at the end of the string.  If \fBstrptime()\fP fails to match all
+of the format string and therefore an error occurred the function
+returns \fBNULL\fP.
 .SH "SEE ALSO"
 .BR strftime "(3), " time "(2), " setlocale "(3), " scanf (3)
-.SH BUGS
-.LP
-The return values point to static data,
-whose contents are overwritten by each call.
 .SH NOTES
 .LP
+The specification of the function in the XPG standard is rather vague.
+It leaves out a few important pieces of information.  Most important
+it does not specify what happens to those elements of \fBtm\fP which
+are not directly initialized by the different formats.  Various
+implementations on different Unix systems vary here.
+.PP
+The GNU libc implementation does not touch those fields which are not
+directly initialized.  Exceptions are the 
+.IR tm_wday
+and
+.IR tm_yday 
+elements which are recomputed if any of the year, month,
+or date elements changed.
+.PP
 This function is only available in libraries newer than version 4.6.5.
 Linux libc4 and libc5 includes define the prototype unconditionally;
 glibc2 includes provide a prototype only when _XOPEN_SOURCE or _GNU_SOURCE

@@ -4,7 +4,7 @@
 .\" in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998
 .\" that should have been distributed together with this file.
 .\"
-.TH CHOWN 1 "August 1998" "GNU fileutils 3.16"
+.TH CHOWN 1 "November 1998" "GNU fileutils 4.0"
 .SH NAME
 chown \- change file owner and group
 .SH SYNOPSIS
@@ -14,7 +14,8 @@ POSIX options:
 .B [\-R]
 .sp
 GNU options (shortest form):
-.B [\-cfhvR]
+.B "[\-cfhvR] [\-\-dereference]"
+.BI [\-\-reference= rfile ]
 .B "[\-\-help] [\-\-version] [\-\-]"
 .SH DESCRIPTION
 .B chown
@@ -64,6 +65,18 @@ Verbosely describe the action (or non-action) taken for every
 .TP
 .B "\-R, \-\-recursive"
 Recursively change ownership of directories and their contents.
+.TP
+.B \-\-dereference
+Change the ownership of the target of a symbolic link instead of the
+symbolic link itself.
+(New in file\%utils-4.0.)
+.TP
+.BI "\-\-reference=" "rfile"
+(New in file\%utils 4.0.)
+Change the ownership of
+.I file
+to that of
+.IR rfile .
 .SH "GNU STANDARD OPTIONS"
 .TP
 .B "\-\-help"
@@ -83,7 +96,7 @@ between user name and group name.
 .SH NOTES
 This page describes
 .B chown
-as found in the fileutils-3.16 package;
-other versions may differ slightly. Mail corrections and additions to
-aeb@cwi.nl and aw@mail1.bet1.puv.fi and ragnar@lightside.ddns.org .
+as found in the fileutils-4.0 package;
+other versions may differ slightly.
+Mail corrections and additions to aeb@cwi.nl.
 Report bugs in the program to fileutils-bugs@gnu.ai.mit.edu.

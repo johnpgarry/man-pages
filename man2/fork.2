@@ -28,16 +28,15 @@
 .\"   Referenced 'clone(2)'.
 .\" Modified 10 June 1995 by Andries Brouwer (aeb@cwi.nl)
 .\" Modified 18 Apr 1996 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified 1 Nov 1999 by Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH FORK 2 "10 June 1995" "Linux 1.2.9" "Linux Programmer's Manual"
 .SH NAME
-fork, vfork \- create a child process
+fork \- create a child process
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
 .B pid_t fork(void);
-.br
-.B pid_t vfork(void);
 .SH DESCRIPTION
 .B fork
 creates a child process that differs from the parent process only in its
@@ -66,14 +65,12 @@ allocate a task structure for the child.
 .B ENOMEM
 .B fork
 failed to allocate the necessary kernel structures because memory is tight.
-.SH BUGS
-Under Linux,
-.B vfork
-is merely an alias for
-.BR fork .
 .SH "CONFORMING TO"
 The
 .B fork
 call conforms to SVr4, SVID, POSIX, X/OPEN, BSD 4.3.
 .SH "SEE ALSO"
-.BR clone "(2), " execve "(2), " wait (2)
+.BR clone (2),
+.BR execve (2),
+.BR vfork (2),
+.BR wait (2)

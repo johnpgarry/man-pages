@@ -48,7 +48,7 @@ hole that can expose it to unwanted signals from other user IDs.
 .B setfsuid
 will only succeed if the caller is the superuser or if
 .I fsuid
-matches either the real user ID, effective user ID, saved user ID, or
+matches either the real user ID, effective user ID, saved set-user-ID, or
 the current value of
 .IR fsuid .
 .SH "RETURN VALUE"

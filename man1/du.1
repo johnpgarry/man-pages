@@ -4,7 +4,7 @@
 .\" in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998
 .\" that should have been distributed together with this file.
 .\"
-.TH DU 1 "August 1998" "GNU fileutils 3.16"
+.TH DU 1 "November 1998" "GNU fileutils 4.0"
 .SH NAME
 du \- estimate file space usage
 .SH SYNOPSIS
@@ -14,7 +14,10 @@ POSIX options:
 .B [\-askx]
 .sp
 GNU options (shortest form):
-.B [\-abchklmsxDLS]
+.B [\-abcDhHklLmsSxX]
+.BI "[\-\-block\-size=" size ]
+.BI "[\-\-exclude=" pattern ]
+.BI "[\-\-max\-depth=" n ]
 .B "[\-\-help] [\-\-version] [\-\-]"
 .SH DESCRIPTION
 .B du
@@ -57,6 +60,12 @@ Show counts for all files, not just directories.
 .B "\-b, \-\-bytes"
 Print sizes in bytes, instead of kilobytes.
 .TP
+.BI "\-\-block\-size=" size
+Print sizes in blocks of
+.I size
+bytes.
+(New in file\%utils-4.0.)
+.TP
 .B "\-c, \-\-total"
 Print a grand total of all arguments after all arguments have been
 processed.  This can be used to find out the total disk usage of a
@@ -69,10 +78,25 @@ the disk usage of directories, such as
 .IR /usr/tmp ,
 which are often symbolic links.
 .TP
+.BI "\-\-exclude=" pattern
+When recursing, skip subdirectories or files matching
+.IR pattern .
+The
+.I pattern
+may be any standard Bourne shell file glob pattern.
+(New in file\%utils-4.0.)
+.TP
 .B "\-h, \-\-human\-readable"
 Append a size letter, such as
 .B M
-for megabytes, to each size.
+for binary megabytes (`mebibytes'), to each size.
+.TP
+.B "\-H, \-\-si"
+Do the same as for
+.BR \-h ,
+but use the official SI units (with powers of 1000 instead of 1024,
+so that M stands for 1000000 instead of 1048576).
+(New in file\%utils-4.0.)
 .TP
 .B "\-k, \-\-kilobytes"
 Print sizes in kilobytes.
@@ -89,6 +113,18 @@ the link).
 .B "\-m, \-\-megabytes"
 Print sizes in megabyte (that 1,048,576 bytes) blocks.
 .TP
+.BI "\-\-max\-depth=" n
+Print the total for a directory (or file, with the
+.B \-a
+flag) only if it is
+.I n
+or fewer levels below the command line argument;
+.BI "\-\-max\-depth=" 0
+is the same as the
+.B \-s
+flag.
+(New in file\%utils-4.0.)
+.TP
 .B "\-s, \-\-summarize"
 Display only a total for each argument.
 .TP
@@ -99,6 +135,16 @@ sizes of subdirectories.
 .B "\-x, \-\-one\-file\-system"
 Skip directories that are on different filesystems from the one
 that the argument being processed is on.
+.TP
+.BI "\-X " "file, " "\-\-exclude\-from=" "file"
+Like
+.BR \-\-exclude ,
+except take the patterns to exclude from the specified
+.IR file .
+Patterns are listed one per line.  If
+.I file
+is given as `\-', patterns are read from standard input.
+(New in file\%utils-4.0.)
 .SH "GNU STANDARD OPTIONS"
 .TP
 .B "\-\-help"
@@ -131,7 +177,7 @@ POSIX 1003.2
 .SH NOTES
 This page describes
 .B du
-as found in the fileutils-3.16 package;
-other versions may differ slightly. Mail corrections and additions to
-aeb@cwi.nl and aw@mail1.bet1.puv.fi and ragnar@lightside.ddns.org .
+as found in the file\%utils-4.0 package;
+other versions may differ slightly.
+Mail corrections and additions to aeb@cwi.nl.
 Report bugs in the program to fileutils-bugs@gnu.ai.mit.edu.

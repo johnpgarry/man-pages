@@ -54,16 +54,20 @@ appropriately.  If \fIcount\fP is zero and the file descriptor refers to
 a regular file, 0 will be returned without causing any other effect.
 For a special file, the results are not portable.
 .SH ERRORS
-.IP \fBEBADF\fP
+.TP
+.B EBADF
 .I fd
 is not a valid file descriptor or is not open for writing.
-.IP \fBEINVAL\fP
+.TP
+.B EINVAL
 .I fd
 is attached to an object which is unsuitable for writing.
-.IP \fBEFAULT\fP
+.TP
+.B EFAULT
 .I buf
 is outside your accessible address space.
-.IP \fBEPIPE\fP
+.TP
+.B EPIPE
 .I fd
 is connected to a pipe or socket whose reading end is closed.  When this
 happens the writing process will receive a
@@ -71,19 +75,23 @@ happens the writing process will receive a
 signal; if it catches, blocks or ignores this the error
 .B EPIPE
 is returned.
-.IP \fBEAGAIN\fP
+.TP
+.B EAGAIN
 Non-blocking I/O has been selected using
 .B O_NONBLOCK
 and there was no room in the pipe or socket connected to
 .I fd
 to write the data immediately.
-.IP \fBEINTR\fP
+.TP
+.B EINTR
 The call was interrupted by a signal before any data was written.
-.IP \fBENOSPC\fP
+.TP
+.B ENOSPC
 The device containing the file referred to by
 .I fd
 has no room for the data.
-.IP \fBEIO\fP
+.TP
+.B EIO
 A low-level I/O error occurred while modifying the inode.
 .PP
 Other errors may occur, depending on the object connected to
@@ -102,4 +110,4 @@ not just before any data is written.
 .BR select (2),
 .BR ioctl (2),
 .BR fsync (2),
-.BR fwrite (3).
+.BR fwrite (3)

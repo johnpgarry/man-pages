@@ -4,7 +4,7 @@
 .\" in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998
 .\" that should have been distributed together with this file.
 .\"
-.TH RMDIR 1 "August 1998" "GNU fileutils 3.16"
+.TH RMDIR 1 "November 1998" "GNU fileutils 4.0"
 .SH NAME
 rmdir \- remove empty directories
 .SH SYNOPSIS
@@ -15,6 +15,7 @@ POSIX options:
 .sp
 GNU options (shortest form):
 .B [\-p]
+.B [\-\-ignore\-fail\-on\-non\-empty]
 .B "[\-\-help] [\-\-version] [\-\-]"
 .SH DESCRIPTION
 .B rmdir
@@ -33,6 +34,16 @@ the last component and remove the resulting directory, etc., until
 all components have been removed. Thus, `rmdir \-p a/b/c' is
 equivalent to `rmdir a/b/c; rmdir a/b; rmdir a'.
 .SH GNU OPTIONS
+.TP
+.B "\-\-ignore\-fail\-on\-non\-empty"
+Normally
+.B rmdir
+will refuse to remove a directory that is not empty.  This option
+causes
+.B rmdir
+to ignore the failure to remove a directory, if that failure is due
+to the directory being non-empty.
+(New in file\%utils-4.0.)
 .TP
 .B "\-p, \-\-parents"
 As above.
@@ -58,7 +69,7 @@ below, use `\fIrm -r foo\fP'.
 .SH NOTES
 This page describes
 .B rmdir
-as found in the fileutils-3.16 package;
-other versions may differ slightly. Mail corrections and additions to
-aeb@cwi.nl and aw@mail1.bet1.puv.fi and ragnar@lightside.ddns.org .
+as found in the fileutils-4.0 package;
+other versions may differ slightly.
+Mail corrections and additions to aeb@cwi.nl.
 Report bugs in the program to fileutils-bugs@gnu.ai.mit.edu.

@@ -4,7 +4,7 @@
 .\" in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998
 .\" that should have been distributed together with this file.
 .\"
-.TH DD 1 "August 1998" "GNU fileutils 3.16"
+.TH DD 1 "November 1998" "GNU fileutils 4.0"
 .SH NAME
 dd \- convert and copy a file
 .SH SYNOPSIS
@@ -50,6 +50,13 @@ by a multiplier: `k'=1024, `b'=512, `w'=2, `c'=1
 it means 2 in System V and 4 in 4.2BSD).
 Two or more of such numeric expressions can be multiplied
 by putting `x' in between.
+The GNU fileutils-4.0 version also allows the following multiplicative suffixes
+in the specification of blocksizes (in bs=, cbs=, ibs=, obs=):
+M=1048576, G=1073741824, and so on for T, P, E, Z, Y.
+A `D' suffix makes them decimal:
+kD=1000, MD=1000000, GD=1000000000, etc.
+(Note that for ls, df, du the size of M etc. is determined by environment
+variables, but for dd it is fixed.)
 .SH OPTIONS
 .TP
 .BI "if=" file
@@ -203,7 +210,7 @@ produce a slightly larger file, with nulls added at the end.
 .SH NOTES
 This page describes
 .B dd
-as found in the fileutils-3.16 package;
-other versions may differ slightly. Mail corrections and additions to
-aeb@cwi.nl and aw@mail1.bet1.puv.fi and ragnar@lightside.ddns.org .
+as found in the fileutils-4.0 package;
+other versions may differ slightly.
+Mail corrections and additions to aeb@cwi.nl.
 Report bugs in the program to fileutils-bugs@gnu.ai.mit.edu.

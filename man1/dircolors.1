@@ -4,7 +4,9 @@
 .\" in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998
 .\" that should have been distributed together with this file.
 .\"
-.TH DIRCOLORS 1 "August 1998" "GNU fileutils 3.16"
+.\" Modified, James Sneeringer <jvs@ocslink.com>, Wed Sep 22 23:21:19 1999
+.\"
+.TH DIRCOLORS 1 "November 1998" "GNU fileutils 4.0"
 .SH NAME
 dircolors \- color setup for `ls'
 .SH SYNOPSIS
@@ -90,12 +92,27 @@ The variable LS_COLORS is used to transfer information to
 Coloured output for
 .BR ls (1)
 is a GNU extension.
+This implementation is not entirely compatible with the original
+.BR dircolors / color-ls
+package distributed with Slackware Linux.  Notably, specific support
+for the Z shell and Korn shell is not present.  Users of these shells
+should use the Bourne shell (-b) mode.
 .SH "SEE ALSO"
+.BR dir_colors (5),
 .BR ls (1)
+.SH FILES
+.TP
+.I /etc/dir_colors
+System-wide configuration file for
+.BR dircolors.
+.TP
+.I ~/.dir_colors
+Per-user configuration file for
+.BR dircolors .
 .SH NOTES
 This page describes
 .B dircolors
-as found in the fileutils-3.16 package;
-other versions may differ slightly. Mail corrections and additions to
-aeb@cwi.nl and aw@mail1.bet1.puv.fi and ragnar@lightside.ddns.org .
+as found in the file\%utils-4.0 package;
+other versions may differ slightly.
+Mail corrections and additions to aeb@cwi.nl.
 Report bugs in the program to fileutils-bugs@gnu.ai.mit.edu.

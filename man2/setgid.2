@@ -62,12 +62,15 @@ On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-.TP 0.8i
+.TP
 .B EPERM
 The user is not the super-user, and
 .I gid
-does not match the effective or saved group ID of the calling process.
+does not match the effective group ID or saved set-group-ID of
+the calling process.
 .SH "CONFORMING TO"
 SVr4, SVID.
 .SH "SEE ALSO"
-.BR getgid "(2), " setregid "(2), " setegid (2)
+.BR getgid (2),
+.BR setregid (2),
+.BR setegid (2)

@@ -23,8 +23,9 @@
 .\" Modified Wed Jul 28 11:12:17 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Mon May 13 23:08:50 1996 by Martin Schulze (joey@linux.de)
 .\" Modified 11 May 1998 by Joseph S. Myers (jsm28@cam.ac.uk)
+.\" Modified 990912 by aeb
 .\"
-.TH GLOB 3  "11 May 1998" "GNU" "Linux Programmer's Manual"
+.TH GLOB 3  "12 September 1999" "GNU" "Linux Programmer's Manual"
 .SH NAME
 glob, globfree \- find pathnames matching a pattern, free memory from glob()
 .SH SYNOPSIS
@@ -65,7 +66,7 @@ which is a
 which is declared in
 .B <glob.h>
 and includes the following elements defined by POSIX.2 (more may be
-present as a GNU extension):
+present as an extension):
 .PP
 .br
 .nf
@@ -73,9 +74,9 @@ present as a GNU extension):
 typedef struct
 {
 .in 14
-    int gl_pathc;       /* Count of paths matched so far  */
+    size_t gl_pathc;    /* Count of paths matched so far  */
     char **gl_pathv;    /* List of matched pathnames.  */
-    int gl_offs;        /* Slots to reserve in `gl_pathv'.  */
+    size_t gl_offs;     /* Slots to reserve in `gl_pathv'.  */
 .in 10
 } glob_t;
 .fi
@@ -228,15 +229,17 @@ function may fail due to failure of underlying function calls, such as
 .BR malloc() " or " opendir() .
 These will store their error code in
 .IR errno .
-.PP
+.SH NOTES
 The structure elements
 .I gl_pathc
 and
 .I gl_offs
-should be declared as
-.BR size_t ,
-according to POSIX.2, but are declared as
-.BR int .
+are declared as
+.BR size_t
+in glibc 2.1, as they should according to POSIX.2,
+but are declared as
+.B int
+in libc4, libc5 and glibc 2.0.
 .SH "SEE ALSO"
 .BR ls (1),
 .BR sh (1),

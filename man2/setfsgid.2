@@ -49,8 +49,8 @@ IDs.
 .B setfsgid
 will only succeed if the caller is the superuser or if
 .I fsgid
-matches either the real group ID, effective group ID, saved group ID,
-or the current value of
+matches either the real group ID, effective group ID,
+saved set-group-ID, or the current value of
 .IR fsgid .
 .SH "RETURN VALUE"
 On success, the previous value of

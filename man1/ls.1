@@ -4,21 +4,27 @@
 .\" in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998
 .\" that should have been distributed together with this file.
 .\"
-.TH LS 1 "August 1998" "GNU fileutils 3.16"
+.TH LS 1 "November 1998" "GNU fileutils 4.0"
 .SH NAME
 ls, dir, vdir \- list directory contents
 .SH SYNOPSIS
 .BI "ls [" options "] [" file... ]
+.br
+.BI "dir [" file... ]
+.br
+.BI "vdir [" file... ]
 .sp
 POSIX options:
 .BI "[\-CFRacdilqrtu1]"
 .sp
 GNU options (shortest form):
-.B [\-1abcdfgiklmnopqrstuxABCDFGLNQRSUX]
+.B [\-1abcdfghiklmnopqrstuvwxABCDFGHLNQRSUX]
 .BI "[\-w " cols ]
 .BI "[\-T " cols ]
 .BI "[\-I " pattern ]
 .B [\-\-full\-time]
+.B [\-\-show\-control\-chars]
+.BI "[\-\-block\-size=" size ]
 .B [\-\-format={long,verbose,commas,across,vertical,single\-column}]
 .B [\-\-sort={none,time,size,extension}]
 .B [\-\-time={atime,access,use,ctime,status}]
@@ -105,13 +111,13 @@ If standard output is a terminal, the output is in columns (sorted vertically).
 .B dir
 (also installed as
 .BR d )
-is equivalent to `ls \-C'; that is, files are by default listed
+is equivalent to `ls\ \-C\ \-b'; that is, files are by default listed
 in columns, sorted vertically.
 .B vdir
 (also installed as
 .BR v )
-is equivalent to `ls \-l'; that is, files are by default listed in long
-format.
+is equivalent to `ls\ \-l\ \-b'; that is, files are by default listed
+in long format.
 .SH "GNU OPTIONS"
 .TP
 .B "\-1, \-\-format=single\-column"
@@ -121,9 +127,11 @@ not a terminal.
 .B "\-a, \-\-all"
 List all files in directories, including all files that start with `.'.
 .TP
-.B "\-b, \-\-escape"
+.B "\-b, \-\-escape, \-\-quoting\-style=escape"
 Quote nongraphic characters in file names using alphabetic and octal
-backslash sequences like those used in C.
+backslash sequences like those used in C. This option is the same as
+.B "\-Q"
+except that filenames are not surrounded by double\-quotes.
 .TP
 .B "\-c, \-\-time=ctime, \-\-time=status"
 Sort directory contents according to the files' status change time (the
@@ -139,16 +147,25 @@ Do not sort directory contents; list them in whatever order they are
 stored on the disk.
 Also enables
 .B \-a
+and
+.BR \-U
 and disables 
 .BR \-l ,
 .BR \-\-color ,
+.BR \-s ,
 and
-.B \-s
+.B \-t
 if they were specified before the
 .BR \-f .
 .TP
 .B \-g
 Ignored; for Unix compatibility.
+.TP
+.B "\-h, \-\-human\-readable"
+Append a size letter, such as
+.B M
+for binary megabytes (`mebibytes'), to each size.
+(New in file\%utils-4.0.)
 .TP
 .B "\-i, \-\-inode"
 Print the inode number (also called the file serial number and index
@@ -217,10 +234,11 @@ information.  It is equivalent to using
 This option is provided for compatibility with other versions of 
 .BR ls .		    
 .TP
-.B \-p
+.B "\-p, \-\-file\-type, \-\-indicator\-style=file\-type"
 Append a character to each file name indicating the file type. This is like
 .B \-F
 except that executables aren't marked.
+(In fact fileutils-4.0 treats the --file-type option like --classify.)
 .TP
 .B "\-q, \-\-hide\-control\-chars"
 Print question marks instead of nongraphic characters in file names. This
@@ -246,6 +264,35 @@ Sort directory contents according to the files' last access time
 instead of the modification time (the `atime' in the inode). If the long 
 listing format is being used, print the last access time instead of the
 modification time.
+.TP
+.B "\-v"
+Sort directory contents according to the files' version.  This takes into
+account the fact that filenames frequently include indices or version
+numbers.  Standard sorting functions usually do not produce the ordering
+that people expect because comparisons are made on a
+character\-by\-character basis.  The version sort adresses this problem,
+and is especially useful when browsing directories that contain many
+files with indices/version numbers in their names.  For example:
+
+.nf
+     > ls -1            > ls -1v
+     foo.zml-1.gz       foo.zml-1.gz
+     foo.zml-100.gz     foo.zml-12.gz
+     foo.zml-12.gz      foo.zml-25.gz
+     foo.zml-25.gz      foo.zml-100.gz
+.fi
+
+Note also that numeric parts with leading zeroes are considered as
+fractional:
+
+.nf
+     > ls -1            > ls -1v
+     abc-1.007.tgz      abc-1.007.tgz
+     abc-1.012b.tgz     abc-1.01a.tgz
+     abc-1.01a.tgz      abc-1.012b.tgz
+.fi
+
+(New in file\%utils-4.0.)
 .TP
 .BI "\-w, \-\-width " cols
 Assume the screen is
@@ -293,7 +340,7 @@ output a similar line after each subdirectory:
 .B //SUBDIRED//
 .I BEG1 END1 ...
 .TP
-.B "\-F, \-\-classify, \-\-file\-type"
+.B "\-F, \-\-classify, \-\-indicator\-style=classify"
 Append a character to each file name indicating the file type.  For
 regular files that are executable, append a `*'.  The file type
 indicators are `/' for directories, `@' for symbolic links, `|' for
@@ -302,7 +349,14 @@ FIFOs, `=' for sockets, and nothing for regular files.
 .B "\-G, \-\-no\-group"
 Inhibit display of group information in a long format directory listing.
 .TP
-.BI "\-I, \-\-ignore" pattern
+.B "\-H, \-\-si"
+Do the same as for
+.BR \-h ,
+but use the official SI units (with powers of 1000 instead of 1024,
+so that M stands for 1000000 instead of 1048576).
+(New in fileutils-4.0.)
+.TP
+.BI "\-I, \-\-ignore=" pattern
 Do not list files whose names match the shell pattern
 .I pattern
 (not regular expression) unless they are given on the command line.  As
@@ -317,7 +371,7 @@ links rather for the links themselves.
 .B "\-N, \-\-literal"
 Do not quote file names.
 .TP
-.B "\-Q, \-\-quote\-name"
+.B "\-Q, \-\-quote\-name, \-\-quoting\-style=c"
 Enclose file names in double quotes and quote nongraphic characters as
 in C.
 .TP
@@ -347,7 +401,13 @@ can be noticeably faster.
 .TP
 .B "\-X, \-\-sort=extension"
 Sort directory contents alphabetically by file extension (characters
-after the last `.'); files with no extension are sorted first.     
+after the last `.'); files with no extension are sorted first.
+.TP
+.BI "\-\-block\-size=" size
+Print sizes in blocks of
+.I size
+bytes.
+(New in file\%utils-4.0.)
 .TP
 .BI "\-\-color[=" when ]
 Specify whether to use color for distinguishing file types.
@@ -386,7 +446,52 @@ This is most useful because the time output includes the seconds.
 (Unix filesystems store file timestamps only to the nearest
 second, so this option shows all the information there is.)  For
 example, this can help when you have a Makefile that is not
-regenerating files properly.		    
+regenerating files properly.
+.TP
+.BI "\-\-quoting\-style=" word
+Use style
+.I word
+to quote output names.  The
+.I word
+should be one of the following:
+.RS
+.TP
+.B literal
+Output names as\-is.  This is the default behavior of
+.BR ls .
+.TP
+.B shell
+Quote names for the shell if they contain shell metacharacters or
+would cause ambiguous output.
+.TP
+.B "shell\-always"
+Quote names for the shell, even if they would normally not
+require quoting.
+.TP
+.B c
+Quote names as for a C language string; this is the same as the
+.B "\-Q"
+option.
+.TP
+.B escape
+Quote as with
+.I c
+except omit the surrounding double\-quote characters; this is the same
+as the
+.B "\-b"
+option.
+.PD
+.PP
+A default value for this option can be specified with the environment
+variable QUOTING_STYLE.  (See
+.B ENVIRONMENT
+below.)
+.RE
+.TP
+.B "\-\-show\-control\-chars"
+Print nongraphic characters as-is in file names.  This is the
+default unless the output is a terminal and the program is
+.BR ls .
 .SH "GNU STANDARD OPTIONS"
 .TP
 .B "\-\-help"
@@ -404,11 +509,21 @@ number of chars per tab stop.
 The variable COLUMNS (when it contains the representation of a decimal
 integer) determines the output column width (for use with the \-C option).
 Filenames must not be truncated to make them fit a multi-column output.
+.PP
 The variables LANG, LC_ALL, LC_COLLATE, LC_CTYPE, LC_MESSAGES and LC_TIME
 have the usual meaning.
 The variable TZ gives the time zone for time strings written by
 .BR ls .
 The variable LS_COLORS is used to specify the colors used.
+.PP
+The variable QUOTING_STYLE is used to specify the default value for the
+.B "\-\-quoting\-style"
+option.  It currently defaults to
+.BR literal ,
+though the authors have warned that this default may change to
+.B shell
+in some future version of
+.BR ls .
 .SH BUGS
 On BSD systems, the
 .B "\-s"
@@ -427,7 +542,7 @@ POSIX 1003.2
 .SH NOTES
 This page describes
 .B ls
-as found in the fileutils-3.16 package;
-other versions may differ slightly. Mail corrections and additions to
-aeb@cwi.nl and aw@mail1.bet1.puv.fi and ragnar@lightside.ddns.org .
+as found in the fileutils-4.0 package;
+other versions may differ slightly.
+Mail corrections and additions to aeb@cwi.nl.
 Report bugs in the program to fileutils-bugs@gnu.ai.mit.edu.

@@ -77,7 +77,7 @@ descriptors open and tried to open a new one.
 The error returned by
 .B dup2
 is different to that returned by
-.BR fcntl( ..., F_DUPFD ,... )
+.BR fcntl( "..., " F_DUPFD ", ..." )
 when
 .I newfd
 is out of range. On some systems
@@ -90,4 +90,6 @@ like
 SVr4, SVID, POSIX, X/OPEN, BSD 4.3. SVr4 documents additional
 EINTR and ENOLINK error conditions.  POSIX.1 adds EINTR.
 .SH "SEE ALSO"
-.BR " fcntl "(2), " open "(2), " close "(2).
+.BR fcntl (2),
+.BR open (2),
+.BR close (2)

@@ -4,7 +4,7 @@
 .\" in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998
 .\" that should have been distributed together with this file.
 .\"
-.TH DF 1 "August 1998" "GNU fileutils 3.16"
+.TH DF 1 "November 1998" "GNU fileutils 4.0"
 .SH NAME
 df \- report filesystem disk space usage
 .SH SYNOPSIS
@@ -14,9 +14,10 @@ POSIX options:
 .B [\-kP]
 .sp
 GNU options (shortest form):
-.B [\-ahikmPv]
+.B [\-ahHiklmPv]
 .BI "[\-t " fstype ]
 .BI "[\-x " fstype ]
+.BI "[\-\-block\-size=" size ]
 .B [\-\-print\-type]
 .B [\-\-no\-sync]
 .B [\-\-sync]
@@ -72,10 +73,22 @@ special-purpose pseudo-filesystems, such as automounter entries.
 Also, filesystems of type "ignore" or "auto", supported by some
 operating systems, are only included if this option is specified.
 .TP
-.B "\-h, \-\-human-readable"
+.BI "\-\-block\-size=" size
+Print sizes in blocks of
+.I size
+bytes. (New but broken in fileutils-4.0.)
+.TP
+.B "\-h, \-\-human\-readable"
 Append a size letter such as
 .B M
-for megabytes to each size.
+for binary megabytes (`mebibytes') to each size.
+.TP
+.B "\-H, \-\-si"
+Do the same as for
+.BR \-h ,
+but use the official SI units (with powers of 1000 instead of 1024,
+so that M stands for 1000000 instead of 1048576).
+(New in fileutils-4.0.)
 .TP
 .B "\-i, \-\-inodes"
 List inode usage information instead of block usage.  An inode
@@ -85,8 +98,18 @@ as its owner, permissions, timestamps, and location on the disk.
 .B "\-k, \-\-kilobytes"
 Print sizes in 1024-byte blocks.
 .TP
+.B "\-l, \-\-local"
+Limit the output to local filesystems only.
+(New in fileutils-4.0.)
+.TP
 .B "\-m, \-\-megabytes"
-Print sizes in megabyte (that's 1,048,576 bytes) blocks.
+Print sizes in binary megabyte (that's 1048576 bytes) blocks.
+Note that the four options \-h, \-H, \-k, \-m are mutually exclusive
+and only the last one is effective; for example, it is not the case
+that giving both the \-\-si and \-m options would result in output
+in (actual, 1000000-byte) megabytes. [The interpretation of blocksizes
+is also influenced by the environment variable BLOCK_SIZE, but this
+does not work in the fileutils-4.0 version.]
 .TP
 .B "\-\-no\-sync"
 Do not invoke the
@@ -165,7 +188,7 @@ POSIX 1003.2
 .SH NOTES
 This page describes
 .B df
-as found in the fileutils-3.16 package;
-other versions may differ slightly. Mail corrections and additions to
-aeb@cwi.nl and aw@mail1.bet1.puv.fi and ragnar@lightside.ddns.org .
+as found in the fileutils-4.0 package;
+other versions may differ slightly.
+Mail corrections and additions to aeb@cwi.nl.
 Report bugs in the program to fileutils-bugs@gnu.ai.mit.edu.

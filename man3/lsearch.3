@@ -20,19 +20,21 @@
 .\" 
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
-.TH LSEARCH 3  "September 17, 1995" "GNU" "Linux Programmer's Manual"
+.\"
+.\" Corrected prototype and include, aeb, 990927
+.TH LSEARCH 3  "September 27, 1999" "GNU" "Linux Programmer's Manual"
 .SH NAME
 lfind, lsearch \- linear search of an array.
 .SH SYNOPSIS
 .nf
-.B #include <stdlib.h>
+.B #include <search.h>
 .sp
 .BI "void *lfind(const void *" key ", const void *" base ", size_t *" nmemb ,
 .RS
 .BI "size_t " size ", int (*" compar ")(const void *, const void *));
 .RE
 .sp
-.BI "void *lsearch(const void *" key ", const void *" base ", size_t *" nmemb ,
+.BI "void *lsearch(const void *" key ", void *" base ", size_t *" nmemb ,
 .RS
 .BI "size_t " size ", int (*" compar ")(const void *, const void *));
 .RE
@@ -56,6 +58,7 @@ a matching member of the array, or to the newly added member if no
 match is found.
 .\" .SH "CONFORMING TO"
 .\" SVID 3, BSD 4.3, ISO 9899
+.\" Present in libc since libc-4.6.27.
 .SH "SEE ALSO"
 .BR bsearch "(3), " hsearch "(3), " tsearch "(3)"
 

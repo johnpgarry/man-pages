@@ -71,6 +71,8 @@ should be one of:
 \fBRLIMIT_NOFILE\fP	/* max number of open files */
 .br
 \fBRLIMIT_MEMLOCK\fP	/* max locked-in-memory address space*/
+.br
+\fBRLIMIT_AS\fP		/* address space (virtual memory) limit */
 .PP
 A resource may unlimited if you set the limit to 
 .BR RLIM_INFINITY ". " RLIMIT_OFILE
@@ -145,4 +147,5 @@ RLIMIT_NOFILE above the current kernel maximum.
 .SH "CONFORMING TO"
 SVr4, BSD 4.3
 .SH "SEE ALSO"
-.BR ulimit "(2), " quotactl (2)
+.BR ulimit (2),
+.BR quotactl (2)

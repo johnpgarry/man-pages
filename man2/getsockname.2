@@ -57,7 +57,6 @@ returned (in bytes).
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
-A 0 is returned if the call succeeds, \-1 if it fails.
 .SH ERRORS
 .TP 0.8i
 .B EBADF
@@ -93,4 +92,5 @@ The draft standard has not been adopted yet, but glibc2 already
 follows it and also has socklen_t. See also
 .BR accept (2).
 .SH "SEE ALSO"
-.BR bind "(2), " socket (2)
+.BR bind (2),
+.BR socket (2)

@@ -41,8 +41,9 @@
 .\" followed, or as required to translate it into languages other than English.
 .\"
 .\" Modified Fri Jul 25 23:00:00 1999 by David A. Wheeler (dwheeler@ida.org)
+.\" Modified Fri Aug 21 23:00:00 1999 by David A. Wheeler (dwheeler@ida.org)
 .\"
-.TH URI 7 "25 July 1999" "Linux" "Linux Programmer's Manual"
+.TH URI 7 "21 August 1999" "Linux" "Linux Programmer's Manual"
 .SH NAME
 uri, url, urn \- uniform resource identifier (URI), including a URL or URN
 .SH SYNOPSIS
@@ -55,7 +56,7 @@ absoluteURI = scheme ":" ( hierarchical_part | opaque_part )
 relativeURI = ( net_path | absolute_path | relative_path ) [ "?" query ]
 .sp
 .HP
-scheme = "http" | "ftp" | "gopher" | "mailto" | "news" | "telnet" | "file" | "man" | "info" | "whatis" | \&...
+scheme = "http" | "ftp" | "gopher" | "mailto" | "news" | "telnet" | "file" | "man" | "info" | "whatis" | "ldap" | "wais" | \&...
 .HP
 hierarchical_part = ( net_path | absolute_path ) [ "?" query ]
 .sp
@@ -124,7 +125,8 @@ Thus the URI
 <http://fred:fredpassword@xyz.com:8080/>
 logs into a web server on host xyz.com
 as fred (using fredpassword) using port 8080.
-Avoid including a password in a URI if possible because of its security risks.
+Avoid including a password in a URI if possible because of the many
+security risks of having a password written down.
 If the URL supplies a user name but no password, and the remote
 server requests a password, the program interpreting the URL
 should request one from the user.
@@ -157,12 +159,12 @@ Note that
 can be repeated more than once, though it's up to the web server
 and its application programs to determine if there's any meaning to that.
 There is an unfortunate interaction with HTML/XML/SGML and
-this format; when such URIs with more than one key
+the GET query format; when such URIs with more than one key
 are embedded in SGML/XML documents (including HTML), the ampersand
 (&) has to be rewritten as &amp;.
 Note that not all queries use this format; larger forms
 may be too long to store as a URI, so they use a different
-interaction mechanism called POST which does not include the data in the URI.
+interaction mechanism (called POST) which does not include the data in the URI.
 See the Common Gateway Interface specification at
 <http://www.w3.org/CGI> for more information.
 .SS "ftp - File Transfer Protocol (FTP)"
@@ -222,7 +224,11 @@ An example is <news:comp.lang.ada>.
 .PP
 A
 .I message-id
-corresponds to the Message-ID of IETF RFC 1036, without the enclosing "<"
+corresponds to the Message-ID of
+.UR http://www.ietf.org/rfc/rfc1036.txt
+IETF RFC 1036,
+.UE
+without the enclosing "<"
 and ">"; it takes the form
 .IR unique @ full_domain_name .
 A message identifier may be distinguished from a news group name by the
@@ -235,9 +241,9 @@ may be accessed by the Telnet protocol.  The final "/" character may be omitted.
 The default port is 23.
 An example is <telnet://melvyl.ucop.edu/>.
 .SS "file - Normal file"
-.RI file:// ip_server / path
+.RI file:// ip_server / path_segments
 .br
-.RI file:/ path
+.RI file: path_segments
 .PP
 This represents a file or directory accessible locally.
 As a special case,
@@ -246,20 +252,28 @@ can be the string "localhost" or the empty
 string; this is interpreted as `the machine from which the URL is
 being interpreted'.
 If the path is to a directory, the viewer should display the
-directory's contents with links to each containee
-(not all viewers actually support viewing directories at this time,
-though it's desirable).
+directory's contents with links to each containee;
+not all viewers currently do this.
+KDE supports generated files through the URL <file:/cgi-bin>.
+If the given file isn't found, browser writers may want to try to expand
+the filename via filename globbing
+(see
+.BR glob (7)
+and
+.BR glob (3)).
 .PP
-Officially file:/etc/passwd is a correct format for referring to
+The second format (e.g., <file:/etc/passwd>)
+is a correct format for referring to
 a local file.  However, older standards did not permit this format,
 and some programs don't recognize this as a URI.
-Instead, use the empty string as the server name, e.g.,
+A more portable syntax is to use an empty string as the server name, e.g.,
 <file:///etc/passwd>; this form does the same thing
 and is easily recognized by pattern matchers and older programs as a URI.
 Note that if you really mean to say "start from the current location," don't
-specify the scheme at all; use a relative address instead.
-An example is <file:///etc/passwd>.
-.SS "man - man page documentation"
+specify the scheme at all; use a relative address like <../test.txt>,
+which has the side-effect of being scheme-independent.
+An example of this scheme is <file:///etc/passwd>.
+.SS "man - Man page documentation"
 .RI man: command-name
 .br
 .RI man: command-name ( section )
@@ -272,34 +286,36 @@ for more information on the meaning of the section numbers.
 This URI scheme is unique to Unix-like systems (such as Linux)
 and is not currently registered by the IETF.
 An example is <man:ls(1)>.
-.SS "info - info page documentation"
-.RI info: command-name
+.SS "info - Info page documentation"
+.RI info: virtual-filename
 .br
-.RI info:( command-name )
+.RI info: virtual-filename # nodename
 .br
-.RI info:( command-name ) suboption
+.RI info:( virtual-filename )
+.br
+.RI info:( virtual-filename ) nodename
 .PP
-This refers to online texinfo (info) reference pages, often used for
-documentation of GNU tools.
+This scheme refers to online info reference pages (generated from
+texinfo files), a documentation format used by programs such as the GNU tools.
 This URI scheme is unique to Unix-like systems (such as Linux)
 and is not currently registered by the IETF.
-As of this writing, GNOME and KDE differ in the details of their
-required syntax; GNOME requires a simple command-name after info:,
-while KDE requires the command-name be in parentheses
-(KDE also requires that any spaces be unescaped, which contradicts the
-formal standard).
-The form without parentheses used by GNOME is recommended, because this form
-is more consistent with the man: scheme and other URI schemes.
-However, it's hoped that in the future most tools will understand both formats.
-Future versions of the URI will probably permit paths separated by "/",
-since this is consistent with other URIs and enables navigation of the
-large set of interlinked info pages.
-An example of the recommended format is <info:gcc>.
-An example of the KDE format is <info:(gcc)G++ and GCC>.
-.SS "whatis - documentation search"
+As of this writing, GNOME and KDE differ in their URI syntax
+and do not accept the other's syntax.
+The first two formats are the GNOME format; in nodenames all spaces
+are written as underscores.
+The second two formats are the KDE format;
+spaces in nodenames must be written as spaces, even though this
+is forbidden by the URI standards.
+It's hoped that in the future most tools will understand all of these
+formats and will always accept underscores for spaces in nodenames.
+In both GNOME and KDE, if the form without the nodename is used the
+nodename is assumed to be "Top".
+Examples of the GNOME format are <info:gcc> and <info:gcc#G++_and_GCC>.
+Examples of the KDE format are <info:(gcc)> and <info:(gcc)G++ and GCC>.
+.SS "whatis - Documentation search"
 .RI whatis: string
 .PP
-This searches the database of short (one-line) descriptions of commands
+This scheme searches the database of short (one-line) descriptions of commands
 and returns a list of descriptions containing that string.
 Only complete word matches are returned.
 See
@@ -311,6 +327,105 @@ and is not currently registered by the IETF.
 .PP
 This loads GNOME help for the given application.
 Note that not much documentation currently exists in this format.
+.SS "ldap - Lightweight Directory Access Protocol"
+.RI ldap:// hostport
+.br
+.RI ldap:// hostport /
+.br
+.RI ldap:// hostport / dn
+.br
+.RI ldap:// hostport / dn ? attributes
+.br
+.RI ldap:// hostport / dn ? attributes ? scope
+.br
+.RI ldap:// hostport / dn ? attributes ? scope ? filter
+.br
+.RI ldap:// hostport / dn ? attributes ? scope ? filter ? extensions
+.PP
+This scheme supports queries to the
+Lightweight Directory Access Protocol (LDAP), a protocol for querying
+a set of servers for hierarchically-organized information
+(such as people and computing resources).
+More information on the LDAP URL scheme is available in
+.UR http://www.ietf.org/rfc/rfc2255.txt
+RFC 2255.
+.UE
+The components of this URL are:
+.IP hostport 12
+the LDAP server to query, written as a hostname optionally followed by
+a colon and the port number.
+The default LDAP port is TCP port 389. 
+If empty, the client determines which the LDAP server to use.
+.IP dn
+the LDAP Distinguished Name, which identifies
+the base object of the LDAP search (see
+.UR http://www.ietf.org/rfc/rfc2253.txt
+RFC 2253
+.UE
+section 3).
+.IP attributes
+a comma-separated list of attributes to be returned;
+see RFC 2251 section 4.1.5.  If omitted, all attributes should be returned.
+.IP scope
+specifies the scope of the search, which can be one of
+"base" (for a base object search), "one" (for a one-level search),
+or "sub" (for a subtree search).  If scope is omitted, "base" is assumed.
+.IP filter
+specifies the search filter (subset of entries
+to return). If omitted, all entries should be returned.
+See
+.UR http://www.ietf.org/rfc/rfc2254.txt
+RFC 2254
+.UE
+section 4.
+.IP extensions
+a comma-separated list of type=value
+pairs, where the =value portion may be omitted for options not
+requiring it.  An extension prefixed with a '!' is critical
+(must be supported to be valid), otherwise it's non-critical (optional).
+.PP
+LDAP queries are easiest to explain by example.
+Here's a query that asks ldap.itd.umich.edu for information about
+the University of Michigan in the U.S.:
+.RS
+ldap://ldap.itd.umich.edu/o=University%20of%20Michigan,c=US
+.RE
+.PP
+To just get its postal address attribute, request:
+.RS
+ldap://ldap.itd.umich.edu/o=University%20of%20Michigan,c=US?postalAddress
+.RE
+.PP
+To ask a host.com at port 6666 for information about the person
+with common name (cn) "Babs Jensen" at University of Michigan, request:
+.RS
+ldap://host.com:6666/o=University%20of%20Michigan,c=US??sub?(cn=Babs%20Jensen)
+.RE
+.SS "wais - Wide Area Information Servers"
+.RI wais:// hostport / database
+.br
+.RI wais:// hostport / database ? search
+.br
+.RI wais:// hostport / database / wtype / wpath
+.PP
+This scheme designates a WAIS database, search, or document
+(see
+.UR http://www.ietf.org/rfc/rfc1625.txt
+IETF RFC 1625
+.UE
+for more information on WAIS).
+Hostport is the hostname, optionally followed by a colon and port number
+(the default port number is 210).
+.PP
+The first form designates a WAIS database for searching.
+The second form designates a particular search of the WAIS database
+.IR database .
+The third form designates a particular document within a WAIS
+database to be retrieved.
+.I wtype
+is the WAIS designation of the type of the object and
+.I wpath
+is the WAIS document-id.
 .SS "other schemes"
 There are many other URI schemes.
 Most tools that accept URIs support a set of internal URIs
@@ -319,8 +434,11 @@ and the GNOME help browser has the toc: scheme for various starting
 locations).
 There are many schemes that have been defined but are not as widely
 used at the current time
-(e.g., wais and prospero).
+(e.g., prospero).
 The nntp: scheme is deprecated in favor of the news: scheme.
+URNs are to be supported by the urn: scheme, with a hierarchical name space
+(e.g., urn:ietf:... would identify IETF documents); at this time
+URNs are not widely implemented.
 Not all tools support all schemes.
 .SH CHARACTER ENCODING
 .PP
@@ -351,8 +469,8 @@ Because the percent "%" character always has the reserved purpose of
 being the escape indicator, it must be escaped as "%25".
 It is common practice to escape space characters as the plus symbol (+)
 in query text; this practice isn't uniformly defined
-in the relevant RFCs (which recommend %20 instead) but any tool receiving
-URIs should be prepared for them.
+in the relevant RFCs (which recommend %20 instead) but any tool accepting
+URIs with query text should be prepared for them.
 A URI is always shown in its "escaped" form.
 .PP
 Unreserved characters can be escaped without changing the semantics
@@ -392,6 +510,8 @@ is preferred practice in Great Britain and hackers worldwide
 Jargon File's section on Hacker Writing Style
 .UE
 for more information).
+Older documents suggested inserting the prefix "URL:" 
+just before the URI, but this form has never caught on.
 .PP
 The URI syntax was designed to be unambiguous.
 However, as URIs have become commonplace, traditional media
@@ -494,8 +614,8 @@ in those rare cases where the 'password' parameter is intended to be public.
 .UR http://www.ietf.org/rfc/rfc2396.txt
 IETF RFC 2396,
 .UE
-.UR http://www.w3.org
-W3C REC-html40-19980424
+.UR http://www.w3.org/TR/REC-html40
+HTML 4.0.
 .UE
 .SH BUGS
 .PP
@@ -507,7 +627,8 @@ References of the form
 local installation requirements may place the files in different
 directories
 (it may be in /usr/doc, or /usr/local/doc, or /usr/share, or somewhere else).
-Also, the directory ZZZ usually changes when a version changes.
+Also, the directory ZZZ usually changes when a version changes
+(though filename globbing could partially overcome this).
 Finally, using the file: scheme doesn't easily support people who dynamically
 load documentation from the Internet (instead of loading the files
 onto a local filesystem).
@@ -530,7 +651,9 @@ right tool for any URI.
 David A. Wheeler (dwheeler@ida.org) wrote this man page.
 .SH "SEE ALSO"
 .BR lynx (1),
-.BR netscape (1),
 .BR mailaddr (7),
 .BR utf-8 (7),
-.BR man2html (1).
+.BR man2html (1),
+.UR http://www.ietf.org/rfc/rfc2255.txt
+IETF RFC 2255.
+.UE
