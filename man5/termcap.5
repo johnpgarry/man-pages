@@ -82,10 +82,10 @@ ug	Underline glitch
 @8	enter key
 @9	exit key
 al	Insert one line
-AL	Indert #1 lines
-ac	Pairs of block grafic characters
+AL	Insert #1 lines
+ac	Pairs of block graphic characters
 ae	End alternative character set
-as	Start alternative character set for block grafic characters
+as	Start alternative character set for block graphic characters
 bl	Bell
 cd	Clear to end of screen
 ce	Clear to end of line
@@ -163,7 +163,7 @@ UP	Cursor up #1 lines
 us	Start underlining
 vb	Visible bell
 ve	Normal cursor visible
-vi	Cursor unvisible
+vi	Cursor invisible
 vs	Standout cursor
 wi	Set window from line #1 to #2 and column #3 to #4
 .fi
@@ -171,15 +171,15 @@ wi	Set window from line #1 to #2 and column #3 to #4
 .LP
 There are several ways of defining the control codes for string capabilities:
 .LP
-Normal Characters except '^','\\' and '%' repesent themself.
+Normal Characters except '^','\\' and '%' represent themselves.
 .LP
 A '^x' means Control-x.  Control-A equals 1 decimal.
 .LP
-\\x means a special code.  x can be one of the following charaters:
+\\x means a special code.  x can be one of the following characters:
 .RS
 E Escape (27)
 .br
-n Linefeed (10)
+n Line feed (10)
 .br
 r Carriage return (13)
 .br
@@ -192,7 +192,7 @@ f Form feed (12)
 0 Null character.  A \\xxx specifies the octal character xxx.
 .RE
 .IP i
-Increments paramters by one.
+Increments parameters by one.
 .IP r
 Single parameter capability
 .IP +
@@ -208,16 +208,16 @@ If you use binary output, then you should avoid the null character
 because it terminates the string.  You should reset tabulator expansion
 if a tabulator can be the binary output of a parameter.
 .IP Warning:
-The above metacharacters for parameters may be wrong, they document Minix
+The above meta-characters for parameters may be wrong, they document Minix
 termcap which may not be compatible with Linux termcap.
 .LP
-The block grafic characters can be specified by three string capabilities:
+The block graphic characters can be specified by three string capabilities:
 .IP as
 start the alternative charset
 .IP ae
 end it
 .IP ac
-pairs of characters.  The first character is the name of the block grafic
+pairs of characters.  The first character is the name of the block graphic
 symbol and the second characters is its definition.
 .LP
 The following names are available:

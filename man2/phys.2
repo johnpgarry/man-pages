@@ -28,16 +28,16 @@ to
 
 \fBphys\fP maps arbitrary physical memory into a process's virtual
 address space.  \fIphysnum\fP is  number (0\(en3) that specifies which
-of the 4 ohysical spaces to set up.  Up to 4 \fBphys\fP calls can be
-active at any one time.  \fIvirtaddr\fP is the process's vitual address.
+of the 4 physical spaces to set up.  Up to 4 \fBphys\fP calls can be
+active at any one time.  \fIvirtaddr\fP is the process's virtual address.
 \fIsize\fP is the number of bytes to map in.  \fIphysaddr\fP is the
 physical address to map in.
 .PP
-Valid \fIvirtaddr\fP and \fIphysaddr\fP values are constarined by
+Valid \fIvirtaddr\fP and \fIphysaddr\fP values are constrained by
 hardware and must be at an address multiple of the resolution of the
 CPU's memory management scheme.  If \fIsize\fP is non zero, \fIsize\fP
 is rounded up to the next MMU resolution boundary.  If \fIsize\fP is
-zero, any previous \fBphys\fP(2) mapping for that \fIphsynum\fP is
+zero, any previous \fBphys\fP(2) mapping for that \fIphysnum\fP is
 nullified.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and

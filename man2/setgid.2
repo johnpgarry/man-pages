@@ -1,7 +1,7 @@
 .\" Hey Emacs! This file is -*- nroff -*- source.
 .\"
 .\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
-.\" Poritions extracted from linux/kernel/sys.c:
+.\" Portions extracted from linux/kernel/sys.c:
 .\"             Copyright (C) 1991, 1992  Linus Torvalds
 .\" May be distributed under the GNU General Public License
 .TH SETUID 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
@@ -20,12 +20,12 @@ sets the real group ID of the current process.
 .B setegid
 sets the effective group ID of the current process.
 
-The real ID corresonds to the ID of the calling process.  The effective ID
+The real ID corresponds to the ID of the calling process.  The effective ID
 corresponds to the set ID bit on the file being executed.
 .SH "NOTES FROM THE KERNEL SOURCE"
 Under Linux 0.99.11,
 .B setgid
-is implemeneted like SysV w/ SAVED_IDS 
+is implemented like SysV w/ SAVED_IDS 
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno

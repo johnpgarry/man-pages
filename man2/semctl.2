@@ -62,7 +62,7 @@ into the structure pointed to by
 The argument
 .I semnum
 is ignored.
-The calling process must have read access priviledges on the semaphore set.
+The calling process must have read access privileges on the semaphore set.
 .TP
 .B IPC_SET
 Write the values of some members of the
@@ -73,7 +73,7 @@ to the semaphore set data structure, updating also its
 .B sem_ctime
 member.
 Considered members from the user supplied
-.B "struc semid_ds"
+.B "struct semid_ds"
 pointed to by
 .IB arg .buf
 are
@@ -93,8 +93,8 @@ The argument
 is ignored.
 .TP
 .B IPC_RMID
-Remove immediatly the semaphore set and its data structures
-awakening all waiting processess (with an error return and
+Remove immediately the semaphore set and its data structures
+awakening all waiting processes (with an error return and
 .B errno
 set to
 .BR EIDRM ).
@@ -112,7 +112,7 @@ for all semaphores of the set into
 The argument
 .I semnum
 is ignored.
-The calling process must have read access priviledges on the semaphore set.
+The calling process must have read access privileges on the semaphore set.
 .TP
 .B GETNCNT
 The system call returns the value of
@@ -125,7 +125,7 @@ semaphore of the set
 for the
 .IR semno \-th
 semaphore of the set).
-The calling process must have read access priviledges on the semaphore set.
+The calling process must have read access privileges on the semaphore set.
 .TP
 .B GETPID
 The system call returns the value of
@@ -138,7 +138,7 @@ semaphore of the set
 call for the
 .IR semno \-th
 semaphore of the set).
-The calling process must have read access priviledges on the semaphore set.
+The calling process must have read access privileges on the semaphore set.
 .TP
 .B GETVAL
 The system call returns the value of
@@ -146,7 +146,7 @@ The system call returns the value of
 for the
 .IR semno \-th
 semaphore of the set.
-The calling process must have read access priviledges on the semaphore set.
+The calling process must have read access privileges on the semaphore set.
 .TP
 .B GETZCNT
 The system call returns the value of
@@ -159,7 +159,7 @@ semaphore of the set
 of the
 .IR semno \-th
 semaphore of the set to become 0).
-The calling process must have read access priviledges on the semaphore set.
+The calling process must have read access privileges on the semaphore set.
 .TP
 .B SETALL
 Set
@@ -178,7 +178,7 @@ becomes 0 or increases.
 The argument
 .I semnum
 is ignored.
-The calling process must have alter access priviledges on the semaphore set.
+The calling process must have alter access privileges on the semaphore set.
 .TP
 .B SETVAL
 Set the value of
@@ -196,7 +196,7 @@ Undo entry is cleared for altered semaphore in all processes.
 Processes sleeping on the wait queue are awakened if
 .B semval
 becomes 0 or increases.
-The calling process must have alter access priviledges on the semaphore set.
+The calling process must have alter access privileges on the semaphore set.
 .SH "RETURN VALUE"
 On fail the system call returns
 .B \-1
@@ -255,7 +255,7 @@ has value
 or
 .B IPC_RMID
 but the calling process effective user\-ID has insufficient
-priviledges to execute the command.
+privileges to execute the command.
 .TP
 .B ERANGE
 The argument

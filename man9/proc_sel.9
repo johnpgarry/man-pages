@@ -9,7 +9,7 @@
 .\"
 .TH PROC_SEL 9 "July 7, 1993" "Linux 0.99.10" "Kernel Reference Guide"
 .SH NAME
-proc_sel \- select a process by a critria
+proc_sel \- select a process by a criteria
 .SH SYNOPSIS
 .nf
 linux/kernel/sys.c
@@ -20,10 +20,10 @@ linux/kernel/sys.c
 
 .SH DESCRIPTION
 Compares a task \fIp\fP to supplied information or the current task 
-in some aspect of priority.  If \fIwho\fP is zero then the comparsion 
+in some aspect of priority.  If \fIwho\fP is zero then the comparison 
 is task
 \fIp\fP and the current task.  Otherwise, \fIwho\fP and \fI*p\fP are 
-the supplied information for the comparsion. 
+the supplied information for the comparison. 
 .SH OPTIONS
 Valid values of \fIwhich\fP:
 .RS
@@ -34,11 +34,11 @@ There is an exception here.  If
 .I who
 is not zero and task
 .I p
-is the current task then true is \fBalways\fP retured.
+is the current task then true is \fBalways\fP returned.
 .IP PRIO_PGRP
 Compares process group leader numbers
 .IP PRIO_USER
-Compares user id numners
+Compares user id numbers
 .SH "RETURN VALUE"
 Returns truth values (0, 1)
 .SH AUTHOR

@@ -87,7 +87,7 @@ The
 .B lseek
 function allows the file offset to be set beyond the end of the existing
 end-of-file of the file. If data is later written at this point, subsequent
-reads of the data in the gap return bytes of zeros (until data is actualy
+reads of the data in the gap return bytes of zeros (until data is actually
 written into the gap).
 
 Some devices are incapable of seeking.  The value of the pointer
@@ -96,7 +96,7 @@ associated with such a device is undefined.
 Upon successful completion,
 .B lseek
 returns the resulting offset location as measured in bytes from the
-begining of the file.  Otherwise, a value of \-1 is returned and
+beginning of the file.  Otherwise, a value of \-1 is returned and
 .I errno
 is set to indicate the error.
 .SH ERRORS

@@ -10,13 +10,13 @@ ttys \- serial terminal lines
 They are typically created by:
 .RS
 .sp
-mknod -m 660 /dev/ttyS0 c 4 64 # baseaddress 0x03f8
+mknod -m 660 /dev/ttyS0 c 4 64 # base address 0x03f8
 .br
-mknod -m 660 /dev/ttyS1 c 4 65 # baseaddress 0x02f8
+mknod -m 660 /dev/ttyS1 c 4 65 # base address 0x02f8
 .br
-mknod -m 660 /dev/ttyS2 c 4 66 # baseaddress 0x03e8
+mknod -m 660 /dev/ttyS2 c 4 66 # base address 0x03e8
 .br
-mknod -m 660 /dev/ttyS3 c 4 67 # baseaddress 0x02e8
+mknod -m 660 /dev/ttyS3 c 4 67 # base address 0x02e8
 .br
 chown root.tty /dev/ttyS[0-3]
 .sp

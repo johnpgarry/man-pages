@@ -21,8 +21,8 @@ attaches the filesystem specified by
 to the directory specified by
 .IR dir .
 
-.B unmount
-removes the attachement of the filesystem specified by
+.B umount
+removes the attachment of the filesystem specified by
 .IR specialfile .
 
 Only the super-user may mount and unmount filesystems.
@@ -31,7 +31,7 @@ On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-The errors are far too numerous to completely list here.  Further, each
+The errors are far too numerous to be completely list here.  Further, each
 filesystem type may have its own special errors and its own special
 behavior.  See the kernel source code for details.
 

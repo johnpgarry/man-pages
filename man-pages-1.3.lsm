@@ -1,6 +1,6 @@
 Begin2
 Title        = Section 2, 3, 4, 5, 7, and 9 man pages for Linux
-Version      = 1.2
+Version      = 1.3
 Desc1        = Man pages for Linux.  Mostly section 2 is complete.  Section
 Desc2        = 3 has over 200 man pages, but it still far from being finished.
 Author       = Linux Documentation Project
@@ -9,15 +9,15 @@ Maintainer   = Rik Faith
 MaintEmail   = faith@cs.unc.edu
 Site1        = ftp.cs.unc.edu
 Path1        = /pub/faith/linux
-File1        = man-pages-1.2.tar.gz
-FileSize1    = 150k
+File1        = man-pages-1.3.tar.gz
+FileSize1    = 170k
 Site2        = sunsite.unc.edu
 Path2        = /pub/Linux/?
 Site3        = tsx-11.mit.edu
 Path3        = /pub/linux/docs/man
 CopyPolicy1  = GPL, Public Domain, or otherwise freely copyable
 Keywords     = man pages
-Entered      = Mon Nov 29 16:23:35 1993
+Entered      = Mon Jun 19 16:23:35 1994
 EnteredBy    = Rik Faith
 CheckedEmail = faith@cs.unc.edu
 End

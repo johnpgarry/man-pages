@@ -29,10 +29,10 @@ by the child are freed.
 
 The
 .B waitpid
-function function suspends execution of the current process until a
+function suspends execution of the current process until a
 child as specified by the
 .I pid
-argument has exited, or until a signal is deliverd whose action is to
+argument has exited, or until a signal is delivered whose action is to
 terminate the current process or to call a signal handling function.
 If a child as requested by
 .I pid
@@ -87,7 +87,7 @@ store status information in the location pointed to by
 
 This status can be evaluated with the following macros:
 .TP 0.8i
-.BI WIFEXIDED(* status )
+.BI WIFEXITED(* status )
 is non \-zero if the child exited normally.
 .TP
 .BI WEXITSTATUS(* status )

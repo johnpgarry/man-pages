@@ -81,7 +81,7 @@ slots will be reserved at the beginning of the list of strings in
 .BR pglob->pathv ,
 .TP
 .B GLOB_NOCHECK
-which means that, if no pattern matches, to return the original patttern,
+which means that, if no pattern matches, to return the original pattern,
 .TP
 .B GLOB_APPEND
 which means to append to the results of a previous call.  Do not set
@@ -89,10 +89,10 @@ this flag on the first invocation of
 .BR glob() .
 .TP
 .B GLOB_NOESCAPE
-which means that metacharacters cannot be quoted by backspaces, and
+which means that meta characters cannot be quoted by backspaces, and
 .TP
 .B GLOB_PERIOD
-which means that a leading period can be matched by metacharacters.
+which means that a leading period can be matched by meta characters.
 .PP
 If
 .I errfunc

@@ -70,7 +70,7 @@ argument.
 .PP
 The argument
 .I msgflg
-specifies the system call behaviour if enqueueing the new message
+specifies the system call behaviour if enqueuing the new message
 will require more than
 .B msg_qbytes
 in the queue.
@@ -86,7 +86,7 @@ system call succeeds),
 or the queue is removed (in which case the system call fails
 with
 .B errno
-seto to
+set to
 .BR EIDRM ),
 or the process receives a signal that has to be
 caught (in which case the system call fails
@@ -102,7 +102,7 @@ as follows:
 is set to the process-\ID of the calling process.
 .IP
 .B msg_qnum
-is incremente by 1.
+is incremented by 1.
 .IP
 .B msg_stime
 is set to the current time.
@@ -222,7 +222,7 @@ as follows:
 is set to the process-\ID of the calling process.
 .IP
 .B msg_qnum
-is decremente by 1.
+is decremented by 1.
 .IP
 .B msg_rtime
 is set to the current time.
@@ -339,7 +339,7 @@ Maximum size for a message text: the implementation set this value to
 4080 bytes.
 .TP
 .B MSGMNB
-Default maximum syze in bytes of a message queue: policy dependent.
+Default maximum size in bytes of a message queue: policy dependent.
 The super\-user can increase the size of a message queue beyond
 .B MSGMNB
 by a

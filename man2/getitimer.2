@@ -102,13 +102,13 @@ and
 are significant in determining the duration of a timer.
 .LP
 Timers will never expire before the requested time,
-instead expiring some short, constant time afterwards, dependant
+instead expiring some short, constant time afterwards, dependent
 on the system timer resolution (currently 10ms).  Upon expiration, a
 signal will be generated and the timer reset.  If the timer expires
 while the process is active (always true for
 .BR ITIMER_VIRT )
 the signal will be delivered immediately when generated.  Otherwise the
-delivery will be offset by a small time dependant on the system loading.
+delivery will be offset by a small time dependent on the system loading.
 .LP
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and

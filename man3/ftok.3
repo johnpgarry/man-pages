@@ -34,13 +34,13 @@ The generated
 .B key_t
 value is obtained
 .BR stat \-ing
-the disk file correspondig to
+the disk file corresponding to
 .I pathname
 in order to get its i\-node number and the minor device number of the
 filesystem on which the disk file resides,
 then by combining the 8 bit
 .I proj
-value along with the the lower 16 bits of the i\-node number,
+value along with the lower 16 bits of the i\-node number,
 along with the 8 bits of the minor device number.
 The algorithm does not guarantee a unique key value.
 In fact

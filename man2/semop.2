@@ -90,7 +90,7 @@ set to
 Otherwise
 .B semzcnt
 is incremented by one and the process sleeps until
-one of the following occours:
+one of the following occurs:
 .IP
 .RS
 .IP \(bu
@@ -143,7 +143,7 @@ set to
 Otherwise
 .B semncnt
 is incremented by one and the process sleeps until
-one of the following occours:
+one of the following occurs:
 .IP
 .RS
 .IP \(bu
@@ -154,7 +154,7 @@ at which time the value of
 .B semncnt
 is decremented, the absolute value of
 .B sem_op
-is subctracted from
+is subtracted from
 .B semval
 and, if
 .B SEM_UNDO
@@ -256,7 +256,7 @@ For some operation
 .B semop+semval
 is greater than
 .BR SEMVMX ,
-the implementaion dependent maximun value for
+the implementation dependent maximum value for
 .BR semval .
 .SH NOTES
 The
@@ -285,7 +285,7 @@ Maximum allowable value for
 implementation dependent (32767).
 .PP
 The implementation has no intrinsic limits for
-the adjust on exit maximun value
+the adjust on exit maximum value
 .RB ( SEMAEM ),
 the system wide maximum number of undo structures
 .RB ( SEMMNU )
@@ -296,7 +296,7 @@ The system maintains a per process
 structure for each semaphore altered by the process with undo requests.
 Those structures are free at process exit.
 One major cause for unhappiness with the undo mechanism is that it
-does not fit in with the notion of having an atomic set of operations an
+does not fit in with the notion of having an atomic set of operations
 an array of semaphores.
 The undo requests for an array and each semaphore therein may have been
 accumulated over many
@@ -306,7 +306,7 @@ Should the process sleep when
 exiting, or should all undo operations be applied with the
 .B IPC_NOWAIT
 flag in effect?
-Currently those undo operations which go through immediatly are applied,
+Currently those undo operations which go through immediately are applied,
 and those that require a wait are ignored silently.
 Thus harmless undo usage is guaranteed with private semaphores only.
 .SH "SEE ALSO"

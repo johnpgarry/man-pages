@@ -1,7 +1,7 @@
 .\" Hey Emacs! This file is -*- nroff -*- source.
 .\"
 .\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
-.\" Poritions extracted from linux/kernel/sys.c:
+.\" Portions extracted from linux/kernel/sys.c:
 .\"             Copyright (C) 1991, 1992  Linus Torvalds
 .\" May be distributed under the GNU General Public License
 .TH SETUID 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
@@ -20,19 +20,19 @@ sets the real user ID of the current process.
 .B seteuid
 sets the effective user ID of the current process.
 
-The real ID corresonds to the ID of the calling process.  The effective ID
+The real ID corresponds to the ID of the calling process.  The effective ID
 corresponds to the set ID bit on the file being executed.
 .SH "NOTES FROM THE KERNEL SOURCE"
 Under Linux 0.99.11,
 .B setuid
-is implemeneted like SysV w/ SAVED_IDS 
+is implemented like SysV w/ SAVED_IDS 
 
 Note that SAVED_ID's is deficient in that a setuid root program like
 sendmail, for example, cannot set its uid to be a normal user and then
 switch back, because if you're root,
 .B setuid
 sets the saved uid too.  If you don't like this, blame the bright people in
-the POSIX commmittee and/or USG.  Note that the BSD-style
+the POSIX committee and/or USG.  Note that the BSD-style
 .B setreuid
 will allow a root program to temporarily drop privileges and be able to
 regain them by swapping the real and effective uid.

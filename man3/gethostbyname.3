@@ -19,7 +19,7 @@ host entry
 .sp
 .BI "struct hostent *gethostbyaddr(const char *" addr ", int " len ", int " type );
 .sp
-.IB "void sethostent(int " stayopen );
+.BI "void sethostent(int " stayopen );
 .sp
 .B void endhostent(void);
 .sp
@@ -89,7 +89,7 @@ The type of address; always AF_INET at present.
 The length of the address in bytes.
 .TP
 .I h_addr_list
-A zero-terminated array of network addresses for thw host in network byte
+A zero-terminated array of network addresses for the host in network byte
 order.
 .TP
 .I h_addr

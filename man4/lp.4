@@ -10,11 +10,11 @@ lp \- line printer devices
 They are typically created by:
 .RS
 .sp
-mknod -m 620 /dev/lp0 c 6 0 # baseaddress 0x03bc
+mknod -m 620 /dev/lp0 c 6 0 # base address 0x03bc
 .br
-mknod -m 620 /dev/lp1 c 6 1 # baseaddress 0x0378
+mknod -m 620 /dev/lp1 c 6 1 # base address 0x0378
 .br
-mknod -m 620 /dev/lp2 c 6 2 # baseaddress 0x0278
+mknod -m 620 /dev/lp2 c 6 2 # base address 0x0278
 .br
 chown root.daemon /dev/lp*
 .sp

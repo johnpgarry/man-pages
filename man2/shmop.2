@@ -53,7 +53,7 @@ to a multiple of
 .BR SHMLBA .
 Otherwise
 .I shmaddr
-must be a page aligned address at which the attach occours.
+must be a page aligned address at which the attach occurs.
 .PP
 If
 .B SHM_RDONLY
@@ -165,7 +165,7 @@ type.
 .B EINVAL
 Invalid
 .I shmid
-value, unaligned (i.e., not page-aligned and fBSHM_RND\fP was not
+value, unaligned (i.e., not page-aligned and \fBSHM_RND\fP was not
 specified) or invalid
 .I shmaddr
 value, or failing attach at
@@ -185,7 +185,7 @@ will be set to
 .SH NOTES
 On executing a
 .BR fork (2)
-system call, the child inherites all the attached shared memory segments.
+system call, the child inherits all the attached shared memory segments.
 .PP
 The shared memory segments attached to a process executing an
 .BR exec (2)

@@ -29,7 +29,7 @@ are:
 Copy info from the message queue data structure
 into the structure pointed to by
 .IR buf .
-The user must have read access priviledges on the message queue.
+The user must have read access privileges on the message queue.
 .TP
 .B IPC_SET
 Write the values of some members of the
@@ -62,8 +62,8 @@ value beyond the system parameter
 .BR MSGMNB .
 .TP
 .B IPC_RMID
-Remove immediatly the message queue and its data structures
-awakening all waiting reader and writer processess (with an error
+Remove immediately the message queue and its data structures
+awakening all waiting reader and writer processes (with an error
 return and
 .B errno
 set to
@@ -119,7 +119,7 @@ has value
 or
 .B IPC_RMID
 but the calling process effective user\-ID has insufficient
-priviledges to execute the command.
+privileges to execute the command.
 Note this is also the case of a non super\-user process
 trying to increase the
 .B msg_qbytes

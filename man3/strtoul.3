@@ -42,7 +42,7 @@ all, \fBstrtoul()\fP stores the original value of \fInptr\fP in
 is `\\0' on return, the entire string is invalid.)
 .SH "RETURN VALUE"
 The \fBstrtoul()\fP function returns either the result of the conversion
-or, if there was aleading minus sign, the negation of the result of the
+or, if there was a leading minus sign, the negation of the result of the
 conversion, unless the original (non-negated) value would overflow; in
 the latter case, \fBstrtoul()\fP returns ULONG_MAX and sets the global
 variable \fIerrno\fP to ERANGE.

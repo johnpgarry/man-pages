@@ -49,7 +49,7 @@ On success, the new descriptor is returned.
 .TP
 F_GETFD
 Read the close-on-exec flag.  If the low-order bit is 0, the file will
-remaind open across
+remain open across
 .BR exec ,
 otherwise it will be closed.
 .TP
@@ -109,7 +109,7 @@ F_GETFD
 Value of flag.
 .TP
 F_GETFL
-Value of falgs.
+Value of flags.
 .TP
 F_GETOWN
 Value of descriptor owner.
@@ -132,7 +132,7 @@ is negative or is greater than the maximum allowable value.
 .B EINVAL
 For
 .BR F_DUPFD ,
-the process already has the masimum number of file descriptors open.
+the process already has the maximum number of file descriptors open.
 .SH NOTES
 The errors returned by
 .B dup2
