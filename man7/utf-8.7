@@ -176,6 +176,20 @@ encoded as:
 .RS
 11100010 10001001 10100000 = 0xe2 0x89 0xa0
 .RE
+.SH SECURITY
+The Unicode specification requires that producers of UTF-8 shall
+use the shortest form possible, e.g., producing a two-byte sequence
+with first byte 0xc0 is nonconforming.
+Unicode has published a UTF-8 Corrigendum where it is also prohibited
+to conforming programs to accept non-shortest forms in their input.
+This is for security reasons: if user input is checked for possible
+security violations, a program might check only for the ASCII version
+of "/../" or ";" or NUL and overlook that there are many non-ASCII
+ways to represent these things in a non-shortest UTF-8 encoding.
+See also IETF RFC 2279.
+.PP
+However, some systems (that use NUL for string termination) do use
+C0 80 to represent the NUL (ASCII 00) character internally.
 .SH "CONFORMING TO"
 ISO 10646, Unicode 1.1, XPG4, Plan 9.
 .SH AUTHOR

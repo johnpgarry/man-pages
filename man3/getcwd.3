@@ -24,6 +24,7 @@
 .\" Modified 18 Mar 1996 by Martin Schulze (joey@infodrom.north.de):
 .\"   Corrected description of getwd().
 .\" Modified Sat Aug 21 12:32:12 MET 1999 by aeb - applied fix by aj
+.\" Modified Mon Dec 11 13:32:51 MET 2000 by aeb
 .\"
 .TH GETCWD 3 "21 July 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -38,8 +39,8 @@ getcwd, get_current_dir_name, getwd \- Get current working directory
 .fi
 .SH DESCRIPTION
 The
-.B getcwd()
-function copies the absolute pathname of the current working directory
+.BR getcwd ()
+function copies an absolute pathname of the current working directory
 to the array pointed to by
 .IR buf ,
 which is of length
@@ -56,7 +57,13 @@ is set to
 an application should check for this error, and allocate a larger
 buffer if necessary.
 .PP
-As an extension to the POSIX.1 standard,
+If
+.I buf
+is NULL, the behaviour of
+.BR getcwd ()
+is undefined.
+.PP
+As an extension to the POSIX.1 standard, Linux (libc4, libc5, glibc)
 .B getcwd()
 allocates the buffer dynamically using
 .B malloc()
@@ -108,10 +115,12 @@ with
 .I errno
 set accordingly, and
 .I buf
-on success.
+on success. The contents of the array pointed to by
+.IR buf
+is undefined on error.
 .SH "CONFORMING TO"
 POSIX.1
 .SH "SEE ALSO"
 .BR chdir (2),
 .BR free (3),
-.BR malloc (3).
+.BR malloc (3)

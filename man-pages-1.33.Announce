@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.32.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.33.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -27,23 +27,17 @@ with these man pages.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM. They are
 copyrighted by Sun Microsystems, Inc., but can be distributed freely.]
 
-Differences from version 1.31:
+Differences from yesterdays version 1.32:
 
     The man pages
 
-	chmod.1
+	time.1
 
-	brk.2 execve.2 getgroups.2 ioctl.2 kill.2 pause.2 sendfile.2
-	setgid.2 stat.2
+	kill.2 times.2
 
-	fenv.3 fnmatch.3 getpass.3 glob.3 iconv.3 mbsinit.3 memmem.3
-	printf.3 random.3 scandir.3 strfmon.3 termios.3
+	getcwd.3 getnameinfo.3 iconv.3
 
-	vcs.4
-
-	ftpusers.5 nsswitch.conf.5
-
-	bootparam.7 suffixes.7
+	ip.7 uri.7 utf8.7 utf-8.7
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.

@@ -1,5 +1,5 @@
 '\"
-.\" (C) Copyright 1999 David A. Wheeler (dwheeler@ida.org)
+.\" (C) Copyright 1999-2000 David A. Wheeler (dwheeler@dwheeler.com)
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -40,10 +40,11 @@
 .\" copyrights defined in the Internet Standards process must be
 .\" followed, or as required to translate it into languages other than English.
 .\"
-.\" Modified Fri Jul 25 23:00:00 1999 by David A. Wheeler (dwheeler@ida.org)
-.\" Modified Fri Aug 21 23:00:00 1999 by David A. Wheeler (dwheeler@ida.org)
+.\" Modified Fri Jul 25 23:00:00 1999 by David A. Wheeler (dwheeler@dwheeler.com)
+.\" Modified Fri Aug 21 23:00:00 1999 by David A. Wheeler (dwheeler@dwheeler.com)
+.\" Modified Tue Mar 14 2000 by David A. Wheeler (dwheeler@dwheeler.com)
 .\"
-.TH URI 7 "21 August 1999" "Linux" "Linux Programmer's Manual"
+.TH URI 7 "14 March 2000" "Linux" "Linux Programmer's Manual"
 .SH NAME
 uri, url, urn \- uniform resource identifier (URI), including a URL or URN
 .SH SYNOPSIS
@@ -208,7 +209,7 @@ See
 .BR mailaddr (7)
 for more information on the correct format of an email address.
 Note that any % character must be rewritten as %25.
-An example is <mailto:dwheeler@ida.org>.
+An example is <mailto:dwheeler@dwheeler.com>.
 .SS "news - Newsgroup or News message"
 .RI news: newsgroup-name
 .br
@@ -479,16 +480,16 @@ in a context that does not allow the unescaped character to appear.
 For example, "%7e" is sometimes used instead of "~" in an http URL
 path, but the two are equivalent for an http URL.
 .PP
-As of this writing there is no standard on how to handle
-non-US-ASCII characters in arbitrary URIs.
-The HTML 4.0 specification section B.2 recommends the following, which
-should be considered best available current guidance:
+For URIs which must handle characters outside the US ASCII character set,
+the HTML 4.01 specification (section B.2) and
+IETF RFC 2718 (section 2.2.5) recommend the following approach:
 .IP 1. 4
-Represent each non-ASCII character in UTF-8.
+translate the character sequences into UTF-8 (IETF RFC 2279) - see
+.BR utf-8 (7)
+- and then
 .IP 2.
-Escape those bytes with the URI escaping mechanism, that is,
-converting each byte to %HH where HH is the hexadecimal notation
-of the byte value.
+use the URI escaping mechanism, that is,
+use the %HH encoding for unsafe octets.
 .SH WRITING A URI
 When written, URIs should be placed inside doublequotes
 (e.g., "http://www.kernelnotes.org"),
@@ -648,7 +649,7 @@ detects the users' environment (e.g., text or graphics, desktop environment,
 local user preferences, and currently-executing tools) and invokes the
 right tool for any URI.
 .SH AUTHOR
-David A. Wheeler (dwheeler@ida.org) wrote this man page.
+David A. Wheeler (dwheeler@dwheeler.com) wrote this man page.
 .SH "SEE ALSO"
 .BR lynx (1),
 .BR mailaddr (7),
