@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.46.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.47.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -27,28 +27,23 @@ with these man pages.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM. They are
 copyrighted by Sun Microsystems, Inc., but can be distributed freely.]
 
-Differences from version 1.45:
+Differences from version 1.46:
 
     The man pages
 
-	ldd.1
+	fcntl.2 select_tut.2
 
-	gethostname.2 getpagesize.2 getsid.2 kill.2 mount.2 open.2
-	ptrace.2 semctl.2 truncate.2 uname.2
+	ctime.3 forkpty.3 getdate.3 getdate_r.3 gethostbyname2.3
+	gethostbyname2_r.3  gethostbyname_r.3 getloadavg.3 hcreate_r.3
+	hdestroy_r.3 hsearch.3 hsearch_r.3 login_tty.3 openpty.3
+	scandir.3 stdio.3 timegm.3 timelocal.3 undocumented.3
+	versionsort.3
 
-	__fbufsize.3 __flbf.3 __fpending.3 __fpurge.3 __freadable.3
-	__freading.3 __fsetlocking.3 __fwritable.3 __fwriting.3 _flushlbf.3
-	asprintf.3 crypt.3 dprintf.3 ffs.3 fpurge.3 getutent.3 initgroups.3
-	mkstemp.3 printf.3 stdio_ext.3 strftime.3 strverscmp.3 syslog.3
-	termios.3 undocumented.3 vasprintf.3 vdprintf.3
+	console.4
 
-	console_codes.4
-
-	proc.5
+	dir_colors.5
 
 	units.7
-
-	ld.so.8
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.

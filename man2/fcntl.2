@@ -282,7 +282,12 @@ another process.
 .TP
 .B EBADF
 .I fd
-is not an open file descriptor.
+is not an open file descriptor, or the command was
+.B F_SETLK
+or
+.B F_SETLKW
+and the file descriptor open mode doesn't match with the
+type of lock requested.
 .TP
 .B EDEADLK
 It was detected that the specified

@@ -24,70 +24,108 @@
 .\" References consulted:
 .\"     SunOS 4.1.1 man pages
 .\" Modified Sat Sep 30 21:52:01 1995 by Jim Van Zandt <jrv@vanzandt.mv.com>
-.TH HSEARCH 3 1995-09-30 "GNU" "Linux Programmer's Manual"
+.\" Remarks from dhw@gamgee.acad.emich.edu Fri Jun 19 06:46:31 1998
+.\" Modified 2001-12-26, aeb
+.TH HSEARCH 3 2001-12-26 "GNU" "Linux Programmer's Manual"
 .SH NAME
 hcreate, hdestroy, hsearch \- hash table management
 .SH SYNOPSIS
-.nf
 .B #include <search.h>
+.sp
+.BI "int hcreate(size_t " nel );
 .sp
 .BI "ENTRY *hsearch(ENTRY " item ", ACTION " action );
 .sp
-.BI "int hcreate(unsigned " nel );
-.sp
 .B "void hdestroy(void);"
-.RE
-.fi
+.sp 2
+.B #define _GNU_SOURCE
+.br
+.B #include <search.h>
+.sp
+.BI "int hcreate_r(size_t " nel ", struct hsearch_data *" tab );
+.sp
+.BI "int *hsearch_r(ENTRY " item ", ACTION " action ,
+.BI "ENTRY **" ret ", struct hsearch_data *" tab );
+.sp
+.BI "void hdestroy_r(struct hsearch_data *" tab );
 .SH DESCRIPTION
-These three functions allow the user to create a hash table which
-associates a key with any data. 
+The three functions
+.BR hcreate ,
+.BR hsearch ,
+and
+.BR hdestroy
+allow the user to create a hash table (only one at a time)
+which associates a key with any data.
+The three functions
+.BR hcreate_r ,
+.BR hsearch_r ,
+.BR hdestroy_r
+are reentrant versions that allow the use of more than one table.
 .PP
 First the table must be created with the function \fBhcreate()\fP.
-\fInel\fP is an estimate of the number of entries in the table.
-\fBhcreate()\fP may adjust this value upward to improve the
-performance of the resulting hash table.  The GNU implementation of
-\fBhsearch()\fP will also enlarge the table if it gets nearly full.
-.BR malloc (3)
-is used to allocate space for the table.
+The argument \fInel\fP is an estimate of the maximum number of entries
+in the table.
+The function \fBhcreate()\fP may adjust this value upward to improve the
+performance of the resulting hash table.
 .PP
 The corresponding function \fBhdestroy()\fP frees the memory occupied by
 the hash table so that a new table can be constructed.
 .PP
-\fIitem\fP is of type \fBENTRY\fP, which is a typedef defined in
+The argument \fIitem\fP is of type \fBENTRY\fP, which is a typedef defined in
 \fI<search.h>\fP and includes these elements:
 .sp
 .nf
 	typedef struct entry { 
 	    char *\fIkey\fP;
-	    char *\fIdata\fP; 
+	    void *\fIdata\fP; 
 	} ENTRY;
 .fi
 .sp
-\fIkey\fP points to the zero-terminated ASCII string which is the
-search key.  \fIdata\fP points to the data associated with that key.
-(A pointer to a type other than character should be cast to
-pointer-to-character.)  \fBhsearch()\fP searches the hash table for an
-item with the same key as \fIitem\fP, and if successful returns a
-pointer to it.  \fIaction\fP determines what \fBhsearch()\fP does
+The field \fIkey\fP points to the NUL-terminated string which is the
+search key.
+The field \fIdata\fP points to the data associated with that key.
+The function \fBhsearch()\fP searches the hash table for an
+item with the same key as \fIitem\fP (where "the same" is determined using
+.BR strcmp (3)),
+and if successful returns a pointer to it.
+The argument \fIaction\fP determines what \fBhsearch()\fP does
 after an unsuccessful search.  A value of \fBENTER\fP instructs it to
-insert the new item, while a value of \fBFIND\fP means to return
+insert a copy of \fIitem\fP, while a value of \fBFIND\fP means to return
 \fBNULL\fP.
 .SH "RETURN VALUE"
-\fBhcreate()\fP returns \fBNULL\fP if the hash table cannot be
-successfully installed.
-.PP
-\fBhsearch()\fP returns \fBNULL\fP if \fIaction\fP is \fBENTER\fP and
-there is insufficient memory to expand the hash table, or \fIaction\fP
-is \fBFIND\fP and \fIitem\fP cannot be found in the hash table.
-.SH "CONFORMS TO"
-.TP
-SVID, except that in SysV, the hash table cannot grow.
-.SH NOTES
-The implementation can manage only one hash table at a time.  
-Individual hash table entries can be added, but not deleted.
+\fBhcreate()\fP and \fBhcreate_r()\fP return 0 when allocation of the memory
+for the hash table fails, nonzero otherwise.
 .LP
-In recent libc versions, there are reentrant versions \fIhsearch_r()\fP,
-\fIhcreate_r()\fP, \fIhdestroy_r()\fP of these routines.
+\fBhsearch()\fP returns \fBNULL\fP if \fIaction\fP is \fBENTER\fP and
+the hash table is full, or \fIaction\fP is \fBFIND\fP and \fIitem\fP
+cannot be found in the hash table.
+.LP
+\fBhsearch_r()\fP returns 0 if \fIaction\fP is \fBENTER\fP and
+the hash table is full, and nonzero otherwise.
+.SH ERRORS
+.TP
+.B ENOMEM
+Out of memory.
+.SH "CONFORMS TO"
+The functions
+.BR hcreate ,
+.BR hsearch ,
+and
+.BR hdestroy
+are from SVID, and are described in POSIX 1003.1-2001.
+The functions
+.BR hcreate_r ,
+.BR hsearch_r ,
+.BR hdestroy_r
+are GNU extensions.
+.SH BUGS
+SVID and POSIX 1003.1-2001 specify that \fIaction\fP
+is significant only for unsuccessful searches, so that an ENTER
+should not do anything for a successful search. The libc and glibc
+implementations update the \fIdata\fP for the given \fIkey\fP
+in this case.
+.LP
+Individual hash table entries can be added, but not deleted.
 .SH EXAMPLE
 .PP
 The following program inserts 24 items in to a hash table, then prints
@@ -108,8 +146,8 @@ some of them.
       ENTRY e, *ep;
       int i;
     
-      /* start with small table, and let it grow */
-      hcreate(3);
+      /* starting with small table, and letting it grow does not work */
+      hcreate(30);
       for (i = 0; i < 24; i++) {
           e.key = data[i]; 
           /* data is just an integer, instead of a

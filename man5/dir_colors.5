@@ -6,7 +6,9 @@
 .\" in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998
 .\" that should have been distributed together with this file.
 .\"
-.TH DIR_COLORS 5 1998-11 "GNU fileutils 4.0"
+.\" Modified Sat Dec 22 22:25:33 2001 by Martin Schulze <joey@infodrom.org>
+.\"
+.TH DIR_COLORS 5 2001-12-26 "GNU fileutils 4.1"
 .SH NAME
 dir_colors \- configuration file for dircolors(1)
 .SH DESCRIPTION
@@ -16,9 +18,11 @@ uses the environment variable
 .B LS_COLORS
 to determine the colors in which the filenames are to be displayed.
 This environment variable is usually set by a command like
+
 .RS
 eval `dircolors some_path/dir_colors`
 .RE
+
 found in a system default shell initialization file, like
 .I /etc/profile
 or
@@ -32,7 +36,7 @@ and can be overridden by a
 file in one's home directory.
 .PP
 This configuration file consists of several statements, one per line.
-Anything right of a hash mark (\#) is treated as a comment, if the
+Anything right of a hash mark (#) is treated as a comment, if the
 hash mark is at the beginning of a line or is preceded by at least one
 whitespace.  Blank lines are ignored.
 .PP
@@ -63,16 +67,22 @@ statements can be used to create a section which applies for several
 terminal types.
 .TP
 .B COLOR yes|all|no|none|tty
+(Slackware only; ignored by GNU
+.BR dircolors (1).)
 Specifies that colorization should always be enabled (\fIyes\fR or
 \fIall\fR), never enabled (\fIno\fR or \fInone\fR), or enabled only if
 the output is a terminal (\fItty\fR).  The default is \fIno\fR.
 .TP
 .B EIGHTBIT yes|no
+(Slackware only; ignored by GNU
+.BR dircolors (1).)
 Specifies that eight-bit ISO 8859 characters should be enabled by
 default.  For compatibility reasons, this can also be specified as 1 for
 \fIyes\fR or 0 for \fIno\fR.  The default is \fIno\fR.
 .TP
 .B OPTIONS \fIoptions\fR
+(Slackware only; ignored by GNU
+.BR dircolors (1).)
 Adds command line options to the default
 .B ls
 command line.  The options can be any valid
@@ -115,6 +125,10 @@ Specifies the color used for a FIFO (named pipe).
 .TP
 .B SOCK \fIcolor-sequence\fR
 Specifies the color used for a socket.
+.TP
+.B DOOR \fIcolor-sequence\fR
+(Supported since file-utils 4.1)
+Specifies the color used for a door (Solaris 2.5 and later).
 .TP
 .B BLK \fIcolor-sequence\fR
 Specifies the color used for a block device special file.
@@ -318,16 +332,14 @@ is undefined.
 .SH FILES
 .TP
 .I /etc/DIR_COLORS
-System-wide configuration file for
-.BR dircolors .
+System-wide configuration file.
 .TP
 .I ~/.dir_colors
-Per-user configuration file for
-.BR dircolors .
+Per-user configuration file.
 .SH NOTES
 This page describes the
 .B dir_colors
-file format as found in the fileutils-4.0 package;
+file format as used in the fileutils-4.1 package;
 other versions may differ slightly.
 Mail corrections and additions to aeb@cwi.nl.
 Report bugs in the program to fileutils-bugs@gnu.ai.mit.edu.

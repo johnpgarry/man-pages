@@ -40,7 +40,12 @@ tsearch, tfind, tdelete, twalk \- manage a binary tree
 .BI "void twalk(const void *" root ", void(*" action ")(const void *" nodep ,
 .BI "                                   const VISIT " which ,
 .BI "                                   const int " depth "));"
-
+.sp
+.B #define _GNU_SOURCE
+.br
+.B #include <search.h>
+.sp
+.BI "void tdestroy (void *" root ", void (*" free_node ")(void *" nodep ));
 .RE
 .fi
 .SH DESCRIPTION
@@ -80,6 +85,19 @@ third visit to the internal node, or \fBleaf\fP if it is the single
 visit to a leaf node.  (These symbols are defined in
 \fI<search.h>\fP.)  The third argument is the depth of the node, with
 zero being the root.
+.PP
+(More commonly, \fBpreorder\fP, \fBpostorder\fP, and \fBendorder\fP
+are known as \fBpreorder\fP, \fBinorder\fP, and \fBpostorder\fP:
+before visiting the children, after the first and before the second,
+and after visiting the children. Thus, the choice of name \fBpost\%order\fP
+is rather confusing.)
+.PP
+\fBtdestroy\fP removes the whole tree pointed to by \fIrootp\fP,
+freeing all resources allocated by the \fBtsearch\fP function. For
+the data in each tree node the function \fIfree_node\fP is called.
+The pointer to the data is passed as the argument to the function. If
+no such work is necessary \fIfree_node\fP must point to a function
+doing nothing.
 .SH "RETURN VALUE"
 \fBtsearch\fP returns a pointer to a matching item in the tree, or to
 the newly added item, or \fBNULL\fP if there was insufficient memory
@@ -111,18 +129,18 @@ argument "endorder" or "leaf".  This works with the GNU library
 implementation, but is not in the SysV documentation.  
 .SH EXAMPLE
 The following program inserts twelve random numbers into a binary
-tree, then prints the numbers in order.  The numbers are removed from
-the tree and their storage freed during the traversal.
+tree, where duplicate numbers are collapsed, then prints the numbers
+in order.
 .sp
 .nf
     #include <search.h>
     #include <stdlib.h>
     #include <stdio.h>
+    #include <time.h>
     
     void *root=NULL;
     
-    void *xmalloc(unsigned n)
-    {
+    void *xmalloc(unsigned n) {
       void *p;
       p = malloc(n);
       if(p) return p;
@@ -130,20 +148,16 @@ the tree and their storage freed during the traversal.
       exit(1);
     }
     
-    int compare(const void *pa, const void *pb)
-    {
+    int compare(const void *pa, const void *pb) {
       if(*(int *)pa < *(int *)pb) return -1;
       if(*(int *)pa > *(int *)pb) return 1;
       return 0;
     }
     
-    void action(const void *nodep, const VISIT which, const int depth)
-    {
+    void action(const void *nodep, const VISIT which, const int depth) {
       int *datap;
-      void *val;
     
-      switch(which)
-        {
+      switch(which) {
         case preorder:
           break;
         case postorder:
@@ -151,38 +165,34 @@ the tree and their storage freed during the traversal.
           printf("%6d\\n", *datap);
           break;
         case endorder:
-          datap = *(int **)nodep;
-          (void)tdelete(datap, &root, compare);
-          free(datap);
           break;
         case leaf:
           datap = *(int **)nodep;
           printf("%6d\\n", *datap);
-          val = tdelete(datap, &root, compare);
-          free(datap);
           break;
-        }
-      return;
+      }
     }
     
-    int main()
-    {
+    int main() {
       int i, *ptr;
       void *val;
-    
-      for (i = 0; i < 12; i++)
-        {
+
+      srand(time(NULL));    
+      for (i = 0; i < 12; i++) {
           ptr = (int *)xmalloc(sizeof(int));
           *ptr = rand()&0xff;
           val = tsearch((void *)ptr, &root, compare);
           if(val == NULL) exit(1);
-        }
+      }
       twalk(root, action);
       return 0;
     }
 .fi
 .SH "CONFORMING TO"
-SVID
+SVID.
+The function
+.B tdestroy()
+is a GNU extension.
 .SH "SEE ALSO"
 .BR qsort (3),
 .BR bsearch (3),

@@ -88,48 +88,29 @@ See also
 http://physics.nist.gov/cuu/Units/binary.html
 .RE
 .SS Discussion
-Everybody knows that k means 1000 and M means 1000000.
-This usage is old and very standard, at least in countries
-using the metric system. There are no doubts about the
-meaning of terms like kilometer or megawatt.
-However, at the end of the twentieth century
-great confusion arose over the meaning of words like
-kilobit and megabyte.
+Before these binary prefixes were introduced, it was fairly
+common to use k=1000 and K=1024, just like b=bit, B=byte.
+Unfortunately, the M is capital already, and cannot be
+capitalized to indicate binary-ness.
 
-In the computer world one sometimes needs powers of two,
-mainly when talking about the size of (parts of) the internal memory.
-Given a memory of 4096 12-bit words, one would call it a 4K memory,
-since 4K is shorter and more convenient than 4096 (and the 12-bit
-part could be suppressed if one knew that the machine was a PDP-8).
-
-Giving an approximate value is reasonable in two cases:
-firstly, when higher precision is unnecessary (or unavailable),
-and secondly, when the precise value is immediately clear from
-the approximate value.
-
-Thus, for a while everybody was happy and talked about
-16K buffers, and 256K hard disks, and it was clear what was
-meant because such things always came in power-of-two sizes.
-Then disk technology changed and sizes of hard disks became arbitrary numbers.
+At first that didn't matter too much, since memory modules
+and disks came in sizes that were powers of two, so everyone
+knew that in such contexts "kilobyte" and "megabyte" meant
+1024 and 1048576 bytes, respectively. What originally was a
+sloppy use of the prefixes "kilo" and "mega" started to become
+regarded as the "real true meaning" when computers were involved.
+But then disk technology changed, and disk sizes became arbitrary numbers.
 After a period of uncertainty all disk manufacturers settled on the
-standard, namely M = 1000000.
+standard, namely k=1000, M=1000k, G=1000M.
 
-This created a new situation: earlier the word "megabyte" as used
-in memory sizes and disk sizes (but not file sizes) always meant
-1048576 bytes, and now one didn't know any more. In memory sizes
-M is 1048576, in disk sizes M is 1000000, in program output nobody knows.
-In some contexts M is 1000K and K=1024 so that M=1024000.
+The situation was messy: in the 14k4 modems, k=1000; in the 1.44MB
+diskettes, M=1024000; etc. In 1998 the IEC approved the standard
+that defines the binary prefixes given above, enabling people
+to be precise and unambiguous.
 
-Thus, today, one can use M for 1000000, 1024000 or 1048576
-when precision is unnecessary, and one can use it for 1048576
-when one discusses memory modules that only come in power-of-two sizes,
-but in all other contexts, when precision is required, M is 1000000,
-and if one needs a prefix with meaning 1048576 some new abbreviation
-is required. In 1998 the IEC approved the standard that defines the
-binary prefixes given above (and thus abbreviates 1048576 as Mi).
+Thus, today, MB = 1000000B and MiB = 1048576B.
 
-Scientists and engineers like precision, and adopted these new units
-in many contexts. In the free software world programs are slowly
+In the free software world programs are slowly
 being changed to conform. When the Linux kernel boots and says
 
 .RS

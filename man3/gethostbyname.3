@@ -52,7 +52,19 @@ network host entry
 .sp
 .BI "void herror(const char *" s );
 .sp
-.BI "const char * hstrerror(int " err );
+.BI "const char *hstrerror(int " err );
+.sp 2
+/* GNU extensions */
+.br
+.BI "struct hostent *gethostbyname2(const char *" name ", int " af );
+.sp
+.BI "int gethostbyname_r (const char *" name ,
+.BI "  struct hostent *" ret ", char *" buf ", size_t " buflen ,
+.BI "  struct hostent **" result ", int *" h_errnop );
+.sp
+.BI "int gethostbyname2_r (const char *" name ", int " af,
+.BI "  struct hostent *" ret ", char *" buf ", size_t " buflen ,
+.BI "  struct hostent **" result ", int *" h_errnop );
 .fi
 .SH DESCRIPTION
 The \fBgethostbyname()\fP function returns a structure of type \fIhostent\fP
@@ -181,6 +193,20 @@ host database file
 .SH "CONFORMING TO"
 BSD 4.3.
 .SH NOTES
+The SUS-v2 standard is buggy and declares the
+.I len
+parameter of
+.B gethostbyaddr()
+to be of type
+.IR size_t .
+(That is wrong, because it has to be
+.IR int ,
+and
+.I size_t
+is not. POSIX 1003.1-2001 makes it
+.IR socklen_t ,
+which is OK.)
+.LP
 The functions
 .BR gethostbyname ()
 and
@@ -190,27 +216,33 @@ later calls. Copying the
 .I struct hostent
 does not suffice, since it contains pointers - a deep copy is required.
 .LP
-The SUS-v2 standard is buggy and declares the
-.I len
-parameter to be of type
-.IR size_t .
-(That is wrong, because it has to be
-.IR int ,
-and
-.I size_t
-is not. POSIX 1003.1-2001 makes it
-.IR socklen_t ,
-which is OK.)
-.PP
 Glibc2 also has a
-.sp
-.nf
-.BI "struct hostent *gethostbyname2(const char *" name ", int " af );
-.fi
-.sp
+.B gethostbyname2()
 that works like
 .BR gethostbyname() ,
 but permits to specify the address family to which the address must belong.
+.LP
+Glibc2 also has reentrant versions
+.B gethostbyname_r()
+and
+.BR gethostbyname2_r() .
+These return 0 on success and nonzero on error. The result of the call
+is now stored in the struct with address
+.IR ret .
+After the call,
+.RI * result
+will be NULL on error or point to the result on success.
+Auxiliary data is stored in the buffer
+.I buf
+of length
+.IR buflen .
+(If the buffer is too small, these functions will return
+.BR ERANGE .)
+No global variable
+.I h_errno
+is modified, but the address of a variable in which to store error numbers
+is passed in
+.IR h_errnop .
 .PP
 POSIX 1003.1-2001 marks
 .B gethostbyaddr()

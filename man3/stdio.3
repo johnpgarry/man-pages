@@ -32,8 +32,9 @@
 .\"     @(#)stdio.3	6.5 (Berkeley) 5/6/91
 .\"
 .\" Converted for Linux, Mon Nov 29 16:07:22 1993, faith@cs.unc.edu
+.\" Modified, 2001-12-26, aeb
 .\"
-.TH STDIO 3  1993-11-29 "BSD MANPAGE" "Linux Programmer's Manual"
+.TH STDIO 3  2001-12-26 "" "Linux Programmer's Manual"
 .SH NAME
 stdio \- standard input/output library functions
 .SH SYNOPSIS
@@ -165,195 +166,188 @@ Function versions of the macro functions
 and
 .B putchar
 exist and will be used if the macros definitions are explicitly removed.
+.SH "LIST OF FUNCTIONS"
+.TP 10n
+.B Function
+.B Description
+.TP
+.B clearerr
+check and reset stream status
+.TP
+.B fclose
+close a stream
+.TP
+.B fdopen
+stream open functions
+.TP
+.B feof
+check and reset stream status
+.TP
+.B ferror
+check and reset stream status
+.TP
+.B fflush
+flush a stream
+.TP
+.B fgetc
+get next character or word from input stream
+.\" .TP
+.\" .B fgetline
+.\" get a line from a stream (BSD only; renamed to fgetln())
+.TP
+.B fgetpos
+reposition a stream
+.TP
+.B fgets
+get a line from a stream
+.TP
+.B fileno
+check and reset stream status
+.TP
+.B fopen
+stream open functions
+.TP
+.B fprintf
+formatted output conversion
+.TP
+.B fpurge
+flush a stream
+.TP
+.B fputc
+output a character or word to a stream
+.TP
+.B fputs
+output a line to a stream
+.TP
+.B fread
+binary stream input/output
+.TP
+.B freopen
+stream open functions
+.TP
+.B fropen
+open a stream
+.TP
+.B fscanf
+input format conversion
+.TP
+.B fseek
+reposition a stream
+.TP
+.B fsetpos
+reposition a stream
+.TP
+.B ftell
+reposition a stream
+.TP
+.B fwrite
+binary stream input/output
+.TP
+.B getc
+get next character or word from input stream
+.TP
+.B getchar
+get next character or word from input stream
+.TP
+.B gets
+get a line from a stream
+.TP
+.B getw
+get next character or word from input stream
+.TP
+.B mktemp
+make temporary file name (unique)
+.TP
+.B perror
+system error messages
+.TP
+.B printf
+formatted output conversion
+.TP
+.B putc
+output a character or word to a stream
+.TP
+.B putchar
+output a character or word to a stream
+.TP
+.B puts
+output a line to a stream
+.TP
+.B putw
+output a character or word to a stream
+.TP
+.B remove
+remove directory entry
+.TP
+.B rewind
+reposition a stream
+.TP
+.B scanf
+input format conversion
+.TP
+.B setbuf
+stream buffering operations
+.TP
+.B setbuffer
+stream buffering operations
+.TP
+.B setlinebuf
+stream buffering operations
+.TP
+.B setvbuf
+stream buffering operations
+.TP
+.B sprintf
+formatted output conversion
+.TP
+.B sscanf
+input format conversion
+.TP
+.B strerror
+system error messages
+.TP
+.B sys_errlist
+system error messages
+.TP
+.B sys_nerr
+system error messages
+.TP
+.B tempnam
+temporary file routines
+.TP
+.B tmpfile
+temporary file routines
+.TP
+.B tmpnam
+temporary file routines
+.TP
+.B ungetc
+un-get character from input stream
+.TP
+.B vfprintf
+formatted output conversion
+.TP
+.B vfscanf
+input format conversion
+.TP
+.B vprintf
+formatted output conversion
+.TP
+.B vscanf
+input format conversion
+.TP
+.B vsprintf
+formatted output conversion
+.TP
+.B vsscanf
+input format conversion
+.SH "CONFORMING TO"
+The
+.B stdio
+library conforms to ANSI X3.159-1989 (``ANSI C'').
 .SH "SEE ALSO"
 .BR open (2),
 .BR close (2),
 .BR read (2),
 .BR write (2),
 .BR stdout (3)
-.SH BUGS
-The standard buffered functions do not interact well with certain other
-library and system functions, especially
-.B vfork
-and
-.BR abort .
-This may not be the case under Linux.
-.SH "CONFORMING TO"
-The
-.B stdio
-library conforms to ANSI X3.159-1989 (``ANSI C'').
-.SH "LIST OF FUNCTIONS"
-.TP
-.B Function
-.B Description
-.TP
-clearerr
-check and reset stream status
-.TP
-fclose
-close a stream
-.TP
-fdopen
-stream open functions
-.TP
-feof
-check and reset stream status
-.TP
-ferror
-check and reset stream status
-.TP
-fflush
-flush a stream
-.TP
-fgetc
-get next character or word from input stream
-.TP
-fgetline
-get a line from a stream
-.TP
-fgetpos
-reposition a stream
-.TP
-fgets
-get a line from a stream
-.TP
-fileno
-check and reset stream status
-.TP
-fopen
-stream open functions
-.TP
-fprintf
-formatted output conversion
-.TP
-fpurge
-flush a stream
-.TP
-fputc
-output a character or word to a stream
-.TP
-fputs
-output a line to a stream
-.TP
-fread
-binary stream input/output
-.TP
-freopen
-stream open functions
-.TP
-fropen
-open a stream
-.TP
-fscanf
-input format conversion
-.TP
-fseek
-reposition a stream
-.TP
-fsetpos
-reposition a stream
-.TP
-ftell
-reposition a stream
-.TP
-fwrite
-binary stream input/output
-.TP
-getc
-get next character or word from input stream
-.TP
-getchar
-get next character or word from input stream
-.TP
-gets
-get a line from a stream
-.TP
-getw
-get next character or word from input stream
-.TP
-mktemp
-make temporary file name (unique)
-.TP
-perror
-system error messages
-.TP
-printf
-formatted output conversion
-.TP
-putc
-output a character or word to a stream
-.TP
-putchar
-output a character or word to a stream
-.TP
-puts
-output a line to a stream
-.TP
-putw
-output a character or word to a stream
-.TP
-remove
-remove directory entry
-.TP
-rewind
-reposition a stream
-.TP
-scanf
-input format conversion
-.TP
-setbuf
-stream buffering operations
-.TP
-setbuffer
-stream buffering operations
-.TP
-setlinebuf
-stream buffering operations
-.TP
-setvbuf
-stream buffering operations
-.TP
-sprintf
-formatted output conversion
-.TP
-sscanf
-input format conversion
-.TP
-strerror
-system error messages
-.TP
-sys_errlist
-system error messages
-.TP
-sys_nerr
-system error messages
-.TP
-tempnam
-temporary file routines
-.TP
-tmpfile
-temporary file routines
-.TP
-tmpnam
-temporary file routines
-.TP
-ungetc
-un-get character from input stream
-.TP
-vfprintf
-formatted output conversion
-.TP
-vfscanf
-input format conversion
-.TP
-vprintf
-formatted output conversion
-.TP
-vscanf
-input format conversion
-.TP
-vsprintf
-formatted output conversion
-.TP
-vsscanf
-input format conversion
