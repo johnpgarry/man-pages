@@ -4,7 +4,7 @@
 # Do "make gz" or "make bz2" first if you use compressed source pages.
 
 # FHS requires /usr/share/man
-MANDIR=$(prefix)/usr/man
+MANDIR=/usr/man
 
 GZIP=gzip -9
 BZIP2=bzip2 -9
