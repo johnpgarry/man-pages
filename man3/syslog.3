@@ -34,19 +34,19 @@ closelog, openlog, syslog \- send messages to the system logger
 .sp
 .SH DESCRIPTION
 .B closelog()
-closes the descriptor being used to write to the system logger. The use of
+closes the descriptor being used to write to the system logger.  The use of
 .B closelog()
 is optional.
 .sp
 .B openlog()
-opens a connection to the system logger for a program. The string pointed
+opens a connection to the system logger for a program.  The string pointed
 to by
 .I ident 
-is added to each message, and is typically set to the program name. Values for
+is added to each message, and is typically set to the program name.  Values for
 .I option
 and
 .I facility
-are given in the next section. The use of 
+are given in the next section.  The use of 
 .B openlog()
 is optional; It will automatically be called by 
 .B syslog()
@@ -62,11 +62,11 @@ is a combination of the
 .I facility
 and the 
 .IR level , 
-values for which are given in the next section. The remaining arguments
+values for which are given in the next section.  The remaining arguments
 are a 
-.I format
-, as in 
-.BR "printf"(3)
+.IR format ,
+as in 
+.BR printf (3)
 and any arguments required by the 
 .IR format , 
 except that the two character %m will be replaced by the error message 
@@ -76,7 +76,7 @@ corresponding to the present value of
 .IR errno .
 
 .SH "PARAMETERS"
-This section list the parameters used to set the values of 
+This section lists the parameters used to set the values of 
 .IR option , " facility" ", and " priority .
 .SS option
 The
@@ -84,7 +84,7 @@ The
 argument to 
 .B openlog()
 is an OR of any of these:
-.TP 0.5i
+.TP
 .B LOG_CONS
 write directly to system console if there is an error while sending to
 system logger
@@ -146,7 +146,7 @@ generic user-level messages
 UUCP subsystem
 
 .SS level
-This determines the importance of the message. The levels are, in order
+This determines the importance of the message.  The levels are, in order
 of decreasing importance:
 .TP
 .B LOG_EMERG

@@ -27,8 +27,9 @@
 .\" Modified 15 April 1995 by Michael Chastain (mec@shell.portal.com)
 .\"   Update calling parameters to Linux 1.2.4 values.
 .\" Modified 10 June 1995 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified 3 May 1996 by Martin Schulze (joey@infodrom.north.de)
 .\"
-.TH SETUP 2 "10 June 1995" "Linux 1.2.9" "Linux Programmer's Manual"
+.TH SETUP 2 "3 May 1996" "Linux 1.2.9" "Linux Programmer's Manual"
 .SH NAME
 setup \- setup devices and file systems, mount root file system
 .SH SYNOPSIS
@@ -49,8 +50,6 @@ No user process may call
 Any user process, even a process with super-user permission,
 will receive
 .BR EPERM .
-.SH "CONFORMING TO"
-This function is Linux specific.
 .SH "RETURN VALUE"
 .B setup
 always returns \-1 for a user process.
@@ -58,3 +57,5 @@ always returns \-1 for a user process.
 .TP
 .B EPERM
 Always, for a user process.
+.SH "CONFORMING TO"
+This function is Linux specific.

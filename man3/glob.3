@@ -21,7 +21,9 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\" Modified Wed Jul 28 11:12:17 1993 by Rik Faith (faith@cs.unc.edu)
-.TH GLOB 3  "April 13, 1993" "GNU" "Linux Programmer's Manual"
+.\" Modified Mon May 13 23:08:50 1996 by Martin Schulze (joey@linux.de)
+.\"
+.TH GLOB 3  "May 13, 1996" "GNU" "Linux Programmer's Manual"
 .SH NAME
 glob, globfree \- find pathnames matching a pattern, free memory from glob()
 .SH SYNOPSIS
@@ -67,9 +69,9 @@ as
 typedef struct
 {
 .in 14
-    int gl_pathc;	    /* Count of paths matched so far  */
+    int gl_pathc;       /* Count of paths matched so far  */
     char **gl_pathv;    /* List of matched pathnames.  */
-    int gl_offs;        /* Slots to be reserved in `gl_pathv'.  */
+    int gl_offs;        /* Slots to reserve in `gl_pathv'.  */
     int gl_flags;       /* Flags for globbing  */
 .in 10
 } glob_t;
@@ -85,7 +87,7 @@ constants, which modify the of behaviour of
 .TP
 .B GLOB_ERR
 which means to return upon read error (because a directory does not
-have read permission, for example).
+have read permission, for example),
 .TP
 .B GLOB_MARK
 which means to append a slash to each path which corresponds to a directory,
@@ -95,9 +97,9 @@ which means don't sort the returned pathnames (they are by default),
 .TP
 .B GLOB_DOOFS
 which means that
-.B pglob->gl_offs
+.I pglob->gl_offs
 slots will be reserved at the beginning of the list of strings in
-.BR pglob->pathv ,
+.IR pglob->pathv ,
 .TP
 .B GLOB_NOCHECK
 which means that, if no pattern matches, to return the original pattern,
@@ -108,7 +110,7 @@ this flag on the first invocation of
 .BR glob() .
 .TP
 .B GLOB_NOESCAPE
-which means that meta characters cannot be quoted by backspaces, and
+which means that meta characters cannot be quoted by backslashes, and
 .TP
 .B GLOB_PERIOD
 which means that a leading period can be matched by meta characters.
@@ -118,16 +120,16 @@ If
 is not
 .BR NULL ,
 it will be called in case of an error with the arguments
-.I epath
-a pointer to the path which failed and
-.I eerrno
+.IR epath ,
+a pointer to the path which failed, and
+.IR eerrno ,
 the value of
 .I errno
 as returned from one of the calls to
 .BR opendir() ", " readdir() ", or " stat() .
 If 
 .I errfunc
-returns non \- zero, or if
+returns non-zero, or if
 .B GLOB_ERR
 is set, 
 .B glob()

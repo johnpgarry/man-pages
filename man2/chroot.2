@@ -26,6 +26,7 @@
 .\" Modified Wed Jul 21 22:18:17 1993 by  Rik Faith (faith@cs.unc.edu)
 .\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
 .\"   Fixed typoes.
+.\" Modified 13 Jun 1996 by aeb - Added a warning: . may be outside / tree.
 .\"
 .TH CHROOT 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
 .SH NAME
@@ -42,6 +43,9 @@ This directory will be used for path name beginning with /.  The root
 directory is inherited by all children of the current process.
 
 Only the super-user may change the root directory.
+
+Note that this call does not change the current working directory,
+so that `.' can be outside the tree rooted at `/'.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno

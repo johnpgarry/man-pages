@@ -24,6 +24,7 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Wed Jul 21 19:42:57 1993, Rik Faith (faith@cs.unc.edu)
+.\" Modified Sun Jul 21 21:25:26 1996, Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH ALARM 2 "21 July 1993" Linux "Linux Programmer's Manual"
 .SH NAME
@@ -32,7 +33,7 @@ alarm \- set an alarm clock for delivery of a signal
 .nf
 .B #include <unistd.h>
 .sp
-.BI "long alarm(long " seconds );
+.BI "unsigned int alarm(unsigned int " seconds );
 .fi
 .SH DESCRIPTION
 .BR alarm " arranges for a " SIGALRM

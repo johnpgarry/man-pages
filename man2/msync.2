@@ -42,14 +42,17 @@ msync \- synchronize a file with a memory map
 .SH DESCRIPTION
 .B msync
 flushes changes made to the in-core copy of a file that was mapped
-into memory using mmap(2) back to disk.  Without use of this call
-there is no guarantee that changes are written back before munmap(2)
+into memory using
+.BR mmap (2)
+back to disk.  Without use of this call
+there is no guarantee that changes are written back before
+.BR munmap (2)
 is called.  To be more precise, the part of the file that
 corresponds to the memory area starting at
 .I start
 and having length
 .I length
-is updated. The
+is updated.  The
 .I flags
 argument may have the bits MS_ASYNC, MS_SYNC and MS_INVALIDATE set,
 but not both MS_ASYNC and MS_SYNC.

@@ -84,7 +84,9 @@ write output to the given output
 .IR stream ;
 .BR sprintf ,
 .BR snprintf , 
-.BR vsprintf and vsnprintf
+.B vsprintf
+and
+.B vsnprintf
 write to the character string
 .IR  str .
 .PP
@@ -99,7 +101,7 @@ These functions return the number of characters printed
 (not including the trailing `\e0' used to end output to strings).
 .BR snprintf " and " vsnprintf
 do not write more than
-.B size
+.I size
 bytes (including the trailing '\e0'), and return -1 if the output
 was truncated due to this limit.
 .PP
@@ -206,8 +208,8 @@ overrides a space if both are used.
 .TP 
 .B '
 specifying that in a numerical argument the output is to be grouped
-if the locale information indicates any. Note that many versions of 
-.I gcc 
+if the locale information indicates any.  Note that many versions of 
+.B gcc
 cannot parse this option and will issue a warning.
 .RE
 .TP
@@ -291,7 +293,7 @@ or
 .BR L .
 Thus 
 .B ll 
-can be used in combination with float conversions. This usage is,
+can be used in combination with float conversions.  This usage is,
 however, strongly discouraged.
 .TP
 .B \(bu
@@ -316,7 +318,7 @@ or
 .BR X
 conversion corresponds to a 
 .I long long 
-argument. Note that 
+argument.  Note that 
 .I long long 
 is not specified in
 .I ANSI C
@@ -551,7 +553,7 @@ in integer conversions is the GNU notation.
 The Linux version of these functions is based on the 
 .I GNU 
 .I libio
-library. Take a look at the 
+library.  Take a look at the 
 .I info
 documentation of 
 .I GNU
@@ -570,7 +572,7 @@ as well as an additional behaviour of the
 .B L
 and 
 .B l 
-flags. The latter may be considered to be a bug, as it changes the
+flags.  The latter may be considered to be a bug, as it changes the
 behaviour of flags defined in ANSI C3.159-1989.
 .PP
 The effect of padding the
@@ -589,12 +591,10 @@ are not standard; such combinations should be avoided.
 .PP
 Some combinations of flags defined by
 .I ANSI C
-are not making sense in 
-.IR "ANSI C" 
-(e.g. 
+are not making sense (e.g. 
 .BR "%Ld" ).
 While they may have a well-defined behaviour on Linux, this need not
-to be so on other architectures. Therefore it usually is better to use
+to be so on other architectures.  Therefore it usually is better not to use
 flags that are not defined by 
 .I ANSI C
 at all, i.e. use 

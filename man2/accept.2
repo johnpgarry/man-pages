@@ -38,9 +38,9 @@
 accept \- accept a connection on a socket
 .SH SYNOPSIS
 .B #include <sys/types.h>
-.br
+.sp
 .B #include <sys/socket.h>
-.br
+.sp
 .BI "int accept(int " s ", struct sockaddr *" addr ", int *" addrlen );
 .SH DESCRIPTION
 The argument
@@ -53,7 +53,7 @@ and is listening for connections after a
 .BR listen (2).
 The
 .B accept
-argument extracts the first connection request on the queue of pending
+function extracts the first connection request on the queue of pending
 connections, creates a new socket with the same properties of
 .I s
 and allocates a new file descriptor for the socket.  If no pending
@@ -120,7 +120,7 @@ or by calling
 The call returns \-1 on error.  If it succeeds, it returns a non-negative
 integer that is a descriptor for the accepted socket.
 .SH ERRORS
-.TP 0.8i
+.TP
 .B EBADF
 The descriptor is invalid.
 .TP

@@ -24,6 +24,7 @@
 .\" Modified Sat Jul 24 19:10:00 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Aug 21 17:51:50 1994 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sat Sep  2 21:52:01 1995 by Jim Van Zandt <jrv@vanzandt.mv.com>
+.\" Modified Mon May 27 22:55:26 1996 by Martin Schulze (joey@linux.de)
 .\"
 .TH ISALPHA 3  "September 2, 1995" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -71,18 +72,21 @@ falls into a certain character class according to the current locale.
 .TP 
 .B "isalnum()"
 checks for an alphanumeric character; it is equivalent to
-.BI "(isalpha(" c ") || isdigit(" c "))" . 
+.BI "(isalpha(" c ") || isdigit(" c "))" \fR.
 .TP
 .B "isalpha()"
 checks for an alphabetic character; in the standard \fB"C"\fP 
 locale, it is equivalent to
-.BI "(isupper(" c ") || islower(" c "))" .  
+.BI "(isupper(" c ") || islower(" c "))" \fR.
 In some locales, there may be additional characters for which
-`isalpha' is true--letters which are neither upper case nor lower
+.B  isalpha()
+is true--letters which are neither upper case nor lower
 case.  
 .TP
 .B "isascii()"
-checks whether \fIc\fP is a 7-bit `unsigned char' value that fits into
+checks whether \fIc\fP is a 7-bit
+.I unsigned char
+value that fits into
 the ASCII character set.  This function is a BSD extension
 and is also an SVID extension.
 .TP
@@ -131,7 +135,7 @@ checks for an uppercase letter.
 .B "isxdigit()"
 checks for a hexadecimal digits, i.e. one of
 .nl
-.B 0 1 2 3 4 5 6 7 8 9 0 a b c d e f A B C D E F
+.BR "0 1 2 3 4 5 6 7 8 9 0 a b c d e f A B C D E F" .
 .SH "RETURN VALUE"
 The values returned are nonzero if the character
 .I c

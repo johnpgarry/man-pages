@@ -20,6 +20,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Added correction due to Nick Duffek (nsd@bbc.com), aeb, 960426
 .TH MSGGET 2 "November 1, 1993" "Linux 0.99.13" "Linux Programmer's Manual" 
 .SH NAME
 msgget \- get a message queue identifier
@@ -132,7 +133,7 @@ verified, and a check is made to see if it is marked for
 destruction.
 .SH "RETURN VALUE"
 If successful, the return value will be the message queue identifier (a
-positive integer), otherwise
+nonnegative integer), otherwise
 .B \-1
 with
 .B errno

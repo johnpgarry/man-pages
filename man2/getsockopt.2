@@ -32,8 +32,9 @@
 .\"     @(#)getsockopt.2	6.9 (Berkeley) 5/1/91
 .\"
 .\" Modified Sat Jul 24 16:19:32 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Mon Apr 22 02:29:06 1996 by Martin Schulze (joey@infodrom.north.de)
 .\"
-.TH GETSOCKOPT 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
+.TH GETSOCKOPT 2 "22 April 1996" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
 getsockopt, setsockopt \- get and set options on sockets
 .SH SYNOPSIS
@@ -99,7 +100,7 @@ may be NULL.
 .I Optname
 and any specified options are passed uninterpreted to the appropriate
 protocol module for interpretation.  The include file
-.I sys/socket.h
+.I <sys/socket.h>
 contains definitions for socket level options, described below.  Options at
 other protocol levels vary in format and name; consult the appropriate
 entries in section 4 of the manual.
@@ -116,7 +117,7 @@ option is to be disabled.
 uses a
 .I struct linger
 parameter, defined in
-.IR sys/socket.h ,
+.IR <linux/socket.h> ,
 which specifies the desired state of the option and the
 linger interval (see below).
 .B SO_SNDTIMEO
@@ -125,7 +126,7 @@ and
 use a
 .I struct timeval
 parameter, defined in
-.IR sys/time.h .
+.IR <sys/time.h> .
 
 The following options are recognized at the socket level.
 Except as noted, each may be examined with
@@ -203,7 +204,8 @@ are queued on socket and a
 .BR close (2)
 is performed.
 If the socket promises reliable delivery of data and
-.B SO_LINGER is set,
+.B SO_LINGER
+is set,
 the system will block the process on the 
 .B close
 attempt until it is able to transmit the data or until it decides it is
@@ -219,6 +221,33 @@ is disabled and a
 .B close
 is issued, the system will process the close in a manner that allows
 the process to continue as quickly as possible.
+
+The 
+.I linger
+structure is defined in
+.I <linux/socket.h>
+as follows:
+.sp
+.RS
+.nf
+.ta 8n 16n 32n
+struct linger {
+        int  l_onoff;   /* Linger active */
+        int  l_linger;  /* How long to linger for */
+};
+.ta
+.fi
+.RE
+
+.B l_onoff
+indicates wether to linger or not. If it is set to 1 then
+.B l_linger
+contains the time in hundredths of seconds how long the process should
+linger to complete the
+.BR close .
+If
+.B l_onoff
+is set to zero the process returns immediately.
 
 The option
 .B SO_BROADCAST

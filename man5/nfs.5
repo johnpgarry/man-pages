@@ -21,7 +21,7 @@ Here is an example from an \fI/etc/fstab\fP file from an NFS mount.
 .sp
 .nf
 .ta 2.5i +0.75i +0.75i +1.0i
-server:/usr/local/pub	/pub	nfs	timeo=14,intr
+server:/usr/local/pub	/pub	nfs	rsize=8192,wsize=8192,timeo=14,intr
 .fi
 .DT
 .SS Options
@@ -29,10 +29,14 @@ server:/usr/local/pub	/pub	nfs	timeo=14,intr
 .I rsize=n
 The number of bytes NFS uses when reading files from an NFS server.
 The default value is dependent on the kernel, currently 1024 bytes.
+(However, throughput is improved greatly by asking for
+.IR rsize=8192 .)
 .TP 1.5i
 .I wsize=n
 The number of bytes NFS uses when writing files to an NFS server.
 The default value is dependent on the kernel, currently 1024 bytes.
+(However, throughput is improved greatly by asking for
+.IR wsize=8192 .)
 .TP 1.5i
 .I timeo=n
 The value in tenths of a second before sending the

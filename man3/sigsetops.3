@@ -20,6 +20,8 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Modified by aeb, 960721
+.\"
 .TH SIGSETOPS 3 "24 September 1994" "Linux 1.0" "Linux Programmer's Manual"
 
 .SH NAME
@@ -33,11 +35,11 @@ signal set operations.
 .sp
 .BI "int sigfillset(sigset_t *" set );
 .sp
-.BI "int sigaddset(sigset_t *" set ", const int " signum );
+.BI "int sigaddset(sigset_t *" set ", int " signum );
 .sp
-.BI "int sigdelset(sigset_t *" set ", const int " signum );
+.BI "int sigdelset(sigset_t *" set ", int " signum );
 .sp
-.BI "int sigismember(const sigset_t *" set ", const int " signum );
+.BI "int sigismember(const sigset_t *" set ", int " signum );
 
 .SH DESCRIPTION
 The

@@ -26,7 +26,9 @@
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 16:09:49 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified 11 June 1995 by Andries Brouwer (aeb@cwi.nl)
-.TH READDIR 3  "11 June 1995" "" "Linux Programmer's Manual"
+.\" Modified 22 July 1996 by Andries Brouwer (aeb@cwi.nl)
+.\"
+.TH READDIR 3  "22 April 1996" "" "Linux Programmer's Manual"
 .SH NAME
 readdir \- read a directory
 .SH SYNOPSIS
@@ -45,6 +47,15 @@ an error occurred.
 .PP
 The data returned by \fBreaddir()\fP is overwritten by subsequent
 calls to \fBreaddir()\fP for the same directory stream.
+.PP
+According to POSIX, the
+.I dirent
+structure contains a field
+.I "char d_name[]"
+of unspecified size, with at most
+.B NAME_MAX
+characters preceding the terminating null character.
+Use of other fields will harm the portability of your programs.
 .SH "RETURN VALUE"
 The \fBreaddir()\fP function returns a pointer to a dirent structure, or
 NULL if an error occurs or end-of-file is reached.

@@ -1,19 +1,23 @@
 # Do "make install" to copy the pages to their destination.
 # Do "make gz" before "make install" if you use compressed source pages.
-# Do "make remove" before "make gz" if you may have uncompressed
-# source pages around.
+# We now unconditionally do "make remove".
 
 MANDIR=/usr/man
+
+# make this "gzip -9" to squeeze out the last byte
+GZIP=gzip
 
 example: remove gz install
 
 remove:
-	for i in man?; do for j in $$i/*; do rm -f $(MANDIR)/$$i/$$j; done; done
+	for i in man?; do for j in $$i/*; do \
+		rm -f $(MANDIR)/$$i/$$j $(MANDIR)/$$i/$$j.gz; done; done
+	touch remove
 
-gz:
-	for i in man?; do gzip $$i/*; done
+gz: remove
+	for i in man?; do $(GZIP) $$i/*; done
 
-install:
+install: remove
 	for i in man?; do \
 		install -d -m 755 $(MANDIR)/$$i; \
 		install -m 644 $$i/* $(MANDIR)/$$i; \
@@ -22,4 +26,6 @@ install:
 	for j in cfgetispeed cfgetospeed cfsetispeed cfsetospeed \
 		tcdrain tcflow tcflush tcgetattr tcgetpgrp \
 		tcsendbreak tcsetattr tcsetpgrp termios ;\
-	do rm -f $(MANDIR)/man2/$$j.2; done
+	do rm -f $(MANDIR)/man2/$$j.2 $(MANDIR)/man2/$$j.2.gz \
+		$(MANDIR)/cat2/$$j.2 $(MANDIR)/cat2/$$j.2.gz; done
+# someone might also want to look at /var/catman/cat2 or so ...

@@ -25,54 +25,55 @@
 .\" Sat Jan 13 00:16:41 MET 1996, aeb: merged in some text contributed
 .\" by Melvin Smith (msmith@falcon.mercer.peachnet.edu) and various
 .\" other changes.
+.\" Modified Fri May 16 23:41:15 1996 by Martin Schulze (joey@infodrom.north.de)
 .\"
-.TH PERROR 3 "Januari 13, 1996" "" "Library functions"
+.TH PERROR 3 "May 16 1996" "" "Library functions"
 .SH NAME
 perror \- print a system error message
 .SH SYNOPSIS
-#include <stdio.h>
+.B #include <stdio.h>
 .sp
-void perror(const char *s);
+.BI "void perror(const char " *s );
 .sp
-#include <errno.h>
+.B #include <errno.h>
 .sp
-const char * sys_errlist[ ];
+.BI "const char *" sys_errlist [];
 .br
-int sys_nerr;
+.BI int " sys_nerr ;
 .SH DESCRIPTION
 The routine
-.B perror
+.B perror()
 produces a message on the standard error output, describing the last
 error encountered during a call to a system or library function.  The
 argument string
 .I s
 is printed first, then a colon and a blank, then the message and a
 new-line.  To be of most use, the argument string should include the name
-of the program that incurred the error.  The error number is taken from
+of the function that incurred the error.  The error number is taken from
 the external variable
 .IR errno ,
 which is set when errors occur but not
 cleared when non-erroneous calls are made.
 
 The global error list
-.IR sys_errlist "[ ]"
+.IR sys_errlist "[]"
 indexed by
 .I errno
 can be used to obtain the error message without the newline.
 The largest message number provided in the table is
-.IR sys_nerr " - 1."
+.IR sys_nerr " \-1."
 Be careful when directly accessing this list because new error values
 may not have been added to
-.IR sys_errlist "[ ]."
+.IR sys_errlist "[]."
 
-When a system call fails, it usually returns -1 and sets the
+When a system call fails, it usually returns \-1 and sets the
 variable
 .I errno
 to a value describing what went wrong. (These values can be found in
-.BR "<errno.h>" .)
+.IR "<errno.h>" .)
 Many library functions do likewise.
 The function
-.B perror
+.B perror()
 serves to translate this error code into human-readable form.
 Note that
 .I errno

@@ -108,7 +108,7 @@ store status information in the location pointed to by
 This status can be evaluated with the following macros:
 .TP
 .BI WIFEXITED(* status )
-is non \-zero if the child exited normally.
+is non\-zero if the child exited normally.
 .TP
 .BI WEXITSTATUS(* status )
 evaluates to the least significant eight bits of the return code of
@@ -149,7 +149,7 @@ is not
 the
 .B struct rusage
 as defined in
-.B <sys/resource.h>
+.I <sys/resource.h>
 it points to will be filled with accounting information.  See
 .BR getrusage (2)
 for details.
@@ -160,7 +160,7 @@ was used and no child was available (in which case,
 .I errno
 will be set appropriately).
 .SH "ERRORS"
-.TP 0.8i
+.TP
 .B ECHILD
 if the child process specified in
 .I pid

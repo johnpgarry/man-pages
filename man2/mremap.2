@@ -32,7 +32,7 @@
 mremap \- re-map a virtual memory address 
 .SH SYNOPSIS
 .B #include <unistd.h>
-.sp
+.br
 .B #include <sys/mman.h>
 .sp
 .BI "void * mremap(void * " old_address ", size_t " old_size
@@ -44,27 +44,27 @@ moving it at the same time (controlled by the \fIflags\fR argument and
 the available virtual address space).
 
 \fIold_address\fR is the old address of the virtual memory block that you
-want to expand (or shrink). Note that \fIold_address\fR has to be page 
+want to expand (or shrink).  Note that \fIold_address\fR has to be page 
 aligned. \fIold_size\fR is the old size of the 
-virtual memory block. \fInew_size\fR is the requested size of the
+virtual memory block.  \fInew_size\fR is the requested size of the
 virtual memory block after the resize. 
 
 The \fIflags\fR argument is a bitmap of flags.
 
-In Linux the memory is divided into pages. A user process has (one or)
-several linear virtual memory segments. Each virtual memory segment has one
-or more mappings to real memory pages (in the page table). Each virtual
+In Linux the memory is divided into pages.  A user process has (one or)
+several linear virtual memory segments.  Each virtual memory segment has one
+or more mappings to real memory pages (in the page table).  Each virtual
 memory segment has its own protection (access rights), which may cause
 a segmentation violation if the memory is accessed incorrectly (e.g.,
-writing to a read-only segment). Accessing virtual memory outside of the
+writing to a read-only segment).  Accessing virtual memory outside of the
 segments will also cause a segmentation violation.
 
-\fBmremap\fR uses the Linux page table scheme. \fBmremap\fR changes the 
-mapping between virtual addresses and memory pages. This can be used to
+\fBmremap\fR uses the Linux page table scheme.  \fBmremap\fR changes the 
+mapping between virtual addresses and memory pages.  This can be used to
 implement a very efficient \fBrealloc\fR.
 
 .SH FLAGS
-.TP 0.8i
+.TP
 .B MREMAP_MAYMOVE
 indicates if the operation should fail, or change the virtual address 
 if the resize cannot be done at the current virtual address.
@@ -74,7 +74,7 @@ On success \fBmremap\fR returns a pointer to the new virtual memory area.
 On error, \-1 is returned, and \fIerrno\fR is set appropriately.
 
 .SH ERRORS
-.TP 0.8i
+.TP
 .B EINVAL
 An invalid argument was given. Most likely \fIold_address\fR was not 
 page aligned.

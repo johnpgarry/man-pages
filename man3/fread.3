@@ -38,17 +38,18 @@
 .\" Converted for Linux, Mon Nov 29 15:37:33 1993, faith@cs.unc.edu
 .\" Sun Feb 19 21:26:54 1995 by faith, return values
 .\" Modified Thu Apr 20 20:43:53 1995 by Jim Van Zandt <jrv@vanzandt.mv.com>
+.\" Modified Fri May 17 10:21:51 1996 by Martin Schulze <joey@infodrom.north.de>
 .\"
-.TH FREAD 3  "20 April 1995" "BSD MANPAGE" "Linux Programmer's Manual"
+.TH FREAD 3  "17 May 1996" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
 fread, fwrite \- binary stream input/output
 .SH SYNOPSIS
 .B #include <stdio.h>
 .sp
-.BI "int fread( void *" ptr ", size_t " size ", size_t " nmemb ,
+.BI "size_t fread( void *" ptr ", size_t " size ", size_t " nmemb ,
 .BI "FILE *" stream );
 .sp
-.BI "int fwrite( void *" ptr ", size_t " size ", size_t " nmemb ,
+.BI "size_t fwrite( void *" ptr ", size_t " size ", size_t " nmemb ,
 .BI "FILE *" stream );
 .SH DESCRIPTION
 The function

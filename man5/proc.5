@@ -26,8 +26,9 @@
 .\" Wed May 17 15:26:04 1995: faith@cs.unc.edu, updated BUGS section
 .\" Minor changes by aeb and Marty Leisner (leisner@sdsp.mc.xerox.com).
 .\" Sat Apr 13 02:32:45 1996: aeb@cwi.nl, added sys, various fixes.
+.\" Mon Jul 22 17:14:44 1996: aeb@cwi.nl, minor fix.
 .\"
-.TH PROC 5 "4 April 1996" "" "Linux Programmer's Manual"
+.TH PROC 5 "22 July 1996" "" "Linux Programmer's Manual"
 .SH NAME
 /proc \- process information pseudo-filesystem
 
@@ -687,7 +688,7 @@ gives r/w access to the kernel variable
 .IR panic_timeout .
 If this is zero, the kernel will loop on a panic; if nonzero
 it indicates that the kernel should autoreboot after this number
-of minutes.
+of seconds.
 .LP
 The file
 .I securelevel

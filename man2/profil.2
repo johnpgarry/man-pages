@@ -33,7 +33,7 @@ profil \- execution time profile
 .BI "int profil(char *" buf ", int " bufsiz ", int " offset ", int " scale );
 .SH DESCRIPTION
 Under Linux 0.99.11,
-.I profil
+.B profil
 is not implemented in the kernel.  Instead, the DLL 4.4.1 libraries provide
 a user-space implementation.
 
@@ -57,7 +57,7 @@ is zero, profiling is disabled.
 .SH "RETURN VALUE"
 Zero is always returned.
 .SH BUGS
-.I profil
+.B profil
 cannot be used on a program that also uses
 .B ITIMER_PROF
 itimers.

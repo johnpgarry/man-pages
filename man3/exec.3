@@ -161,7 +161,7 @@ to execute the file. (Is this true for Linux?)
 The function
 .B exect
 executes a file with the program tracing facilities enabled (see
-.BR ptrace (2).
+.BR ptrace (2)).
 .SH "RETURN VALUES"
 If any of the
 .B exec
@@ -192,7 +192,11 @@ may fail and set
 for any of the errors specified for the library function
 .BR execve (2).
 .SH "SEE ALSO"
-.BR sh "(1), " execve "(2), " fork "(2), " trace "(2), " environ "(7), "
+.BR sh (1),
+.BR execve (2),
+.BR fork (2),
+.BR trace (2),
+.BR environ (5),
 .BR ptrace (2)
 .SH COMPATIBILITY
 Historically, the default path for the

@@ -24,6 +24,7 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Sat Jul 24 12:01:10 1993 by Rik Faith
+.\" Added correction due to Nick Duffek (nsd@bbc.com), aeb, 960426
 .\"
 .TH SYMLINK 2 "24 July 1993" Linux "Linux Programmer's Manual"
 .SH NAME
@@ -31,13 +32,13 @@ symlink \- make a new name for a file
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
-.BI "int symlink(const char *" oldpath ", const char *" newpath );
+.BI "int symlink(const char *" topath ", const char *" frompath );
 .SH DESCRIPTION
 .B symlink
 creates a symbolic link named
-.I oldpath
-which contains
-.IR newpath .
+.I frompath
+which contains the string
+.IR topath .
 
 Symbolic links are interpreted at run-time, as if the contents of the
 link were substituted into the path being followed to find a file or

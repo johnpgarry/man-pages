@@ -27,7 +27,8 @@
 .\" Modified Sun Aug 21 17:42:42 1994 by Rik Faith (faith@cs.unc.edu)
 .\"          (Thanks to koen@win.tue.nl (Koen Holtman))
 .\" Modified Wed May 17 15:54:12 1995 by Rik Faith (faith@cs.unc.edu)
-."           To remove *'s from status in macros (Thanks to Michael Shields).
+.\"           To remove *'s from status in macros (Thanks to Michael Shields).
+.\" Modified as suggested by Nick Duffek (nsd@bbc.com), aeb, 960426
 .\"
 .TH WAIT 2  "24 July 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -88,7 +89,7 @@ value of
 .PP
 The value of
 .I options
-is an exclusive OR of zero or more of the following constants:
+is an OR of zero or more of the following constants:
 .TP 0.8i
 .B WNOHANG
 which means to return immediately if no child has exited.

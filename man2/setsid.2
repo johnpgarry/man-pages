@@ -23,6 +23,7 @@
 .\" Modified Sun Sep 11 19:19:05 1994 faith@cs.unc.edu
 .\" Modified Mon Mar 25 10:19:00 1996 aeb@cwi.nl (merged a few
 .\"	tiny changes from a man page by Charles Livingston).
+.\" Modified Sun Jul 21 14:45:46 1996 aeb@cwi.nl
 .\"
 .TH SETSID 2 "Aug 27, 1994" "" "System calls"
 .SH NAME
@@ -45,11 +46,16 @@ will be the only process in this new process group and in this new session.
 The session ID of the calling process.
 .SH ERRORS
 On error, \-1 will be returned.  The only error which can happen is
-EPERM.
-.SH NOTES
-If the calling process is already a process group leader,
+EPERM. It is returned when the process group ID of any process
+equals the PID of the calling process. Thus, in particular,
 .B setsid
-fails.
+fails if the calling process is already a process group leader.
+.SH NOTES
+A process group leader is a process with process group ID equal
+to its PID. In order to be sure that
+.B setsid
+will succeed, fork and exit, and have the child do
+.BR setsid().
 .SH "CONFORMING TO"
 POSIX
 .SH "SEE ALSO"

@@ -34,6 +34,7 @@
 .\" Modified Sat Jul 24 01:15:33 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified 15 April 1995 by Michael Chastain (mec@shell.portal.com):
 .\"   Added 'getpgid'.
+.\" Modified 21 July 1996 by Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH SETPGID 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
 .SH NAME
@@ -119,5 +120,16 @@ Various permission violations.
 .B ESRCH
 .I pid
 does not match any process.
+.SH "CONFORMING TO"
+The functions
+.B setpgid
+and
+.B getpgrp
+conform to POSIX.1.
+The function
+.B setpgrp
+is from BSD 4.2.
+I have no information on the source of
+.BR getpgid .
 .SH "SEE ALSO"
 .BR getuid "(2), " setsid "(2), " tcsetpgrp "(3), " termios (4)

@@ -24,6 +24,7 @@
 .\"
 .\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
 .\" Modified Wed Jul 21 21:53:01 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Tue Jul  9 13:59:51 1996 by Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH CHOWN 2 "21 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
@@ -112,6 +113,8 @@ See above.
 .B EROFS
 See above.
 .SH NOTES
+.B chown
+does not follow symbolic links.
 The prototype for
 .B fchown
 is only available if

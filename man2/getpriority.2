@@ -32,6 +32,7 @@
 .\"     @(#)getpriority.2	6.9 (Berkeley) 3/10/91
 .\"
 .\" Modified Sat Jul 24 16:33:19 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Mon Jul  1 21:59:57 1996 by Andries Brouwer (aeb@cwi.nl)
 .TH GETPRIORITY 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
 getpriority, setpriority \- get/set program scheduling priority
@@ -65,10 +66,10 @@ and
 is interpreted relative to 
 .I which
 (a process identifier for
-.B PRIO_PROCESS ,
+.BR PRIO_PROCESS ,
 process group
 identifier for
-.B PRIO_PGRP ,
+.BR PRIO_PGRP ,
 and a user ID for
 .BR PRIO_USER ).
 A zero value of
@@ -90,9 +91,9 @@ Since
 .B getpriority
 can legitimately return the value \-1, it is necessary
 to clear the external variable
-.Va errno
+.I errno
 prior to the
-call, then check it afterward to determine
+call, then check it afterwards to determine
 if a \-1 is an error or a legitimate value.
 The
 .B setpriority

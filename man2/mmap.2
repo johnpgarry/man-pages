@@ -85,7 +85,7 @@ Share this mapping with all other processes that map this object
 .B MAP_PRIVATE
 Create a private copy-on-write mapping.
 .LP
-The above three flags are described in POSIX.4. Linux also knows
+The above three flags are described in POSIX.4.  Linux also knows
 about MAP_DENYWRITE, MAP_EXECUTABLE and MAP_ANON(YMOUS).
 
 The
@@ -115,7 +115,7 @@ is not a valid file descriptor (and MAP_ANONYMOUS was not set).
 .B EACCES
 MAP_PRIVATE was asked, but
 .I fd
-is not open for reading. Or MAP_SHARED was asked and PROT_WRITE is set,
+is not open for reading.  Or MAP_SHARED was asked and PROT_WRITE is set,
 .I fd
 is not open for writing.
 .TP

@@ -21,10 +21,11 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH SIGACTION 2 "13 December 1995" "Linux 1.2" "Linux Programmer's Manual"
+.\" Modified, aeb, 960424, 960621
+.TH SIGNAL 2 "21 July 1996" "Linux 2.0" "Linux Programmer's Manual"
 
 .SH NAME
-signal \- ANSI C signal handling.
+signal \- ANSI C signal handling
 
 .SH SYNOPSIS
 .B #include <signal.h>
@@ -51,6 +52,7 @@ Reset the signal to its default behavior.
 The integer argument that is handed over to the signal handler routine is the
 signal number. This makes it possible to use one signal handler for several
 signals.
+
 .SH "RETURN VALUE"
 .B signal
 returns the previous value of the signal handler, or
@@ -63,8 +65,21 @@ Signal handlers cannot be set for
 or
 .BR SIGSTOP .
 .PP
-Unlike BSD systems, signals under Linux are reset to their default
+Unlike on BSD systems, signals under Linux are reset to their default
 behavior when raised.
+However, if you include
+.B "<bsd/signal.h>"
+instead of
+.B "<signal.h>"
+then 
+.B signal
+is redefined as
+.B __bsd_signal
+and signal has the BSD semantics.
+Both versions of
+.B signal
+are library routines built on top of
+.BR sigaction (2).
 .PP
 If you're confused by the prototype at the top of this manpage, it
 may help to see it separated out thus:
@@ -72,11 +87,19 @@ may help to see it separated out thus:
 typedef void (*sighandler_t)(int);
 .br
 .BI "sighandler_t signal(int " signum ", sighandler_t " handler );
+.PP
+According to POSIX, the behaviour of a process is undefined after it
+ignores a SIGFPE, SIGILL, or SIGSEGV signal that was not generated
+by the \fIkill()\fP or the \fIraise()\fP functions.
+Integer division by zero has undefined result.
+On some architectures it will generate a SIGFPE signal.
+Ignoring this signal might lead to an endless loop.
 
 .SH "CONFORMING TO"
 ANSI C
 
 .SH "SEE ALSO"
 .BR kill "(1), " kill "(2), " killpg "(2), " pause "(2), " raise "(3), "
-.BR sigaction "(2), " signal "(7), " sigsetops "(3), " sigvec (2)
+.BR sigaction "(2), " signal "(7), " sigsetops "(3), " sigvec (2),
+.BR alarm (2).
 

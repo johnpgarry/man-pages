@@ -26,7 +26,9 @@
 .\" Modified Wed Jul 21 22:42:16 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Aug 21 18:18:14 1994: Michael Haardt's NFS diffs were
 .\"          applied by hand (faith@cs.unc.edu).
-,\" Modified Sat Apr 13 16:25:28 1996 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Sat Apr 13 16:25:28 1996 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Mon May 13 00:53:52 1996: added symbolic constants
+.\"          as sent by Thomas Koenig
 .TH OPEN 2 "21 July 1993" "Linux 0.99.7" "Linux Programmer's Manual"
 .SH NAME
 open, creat \- open and possibly create a file or device
@@ -109,7 +111,46 @@ modified by the process's
 .BR umask
 in the usual way: the permissions of the created file are
 .BR "(mode & ~umask)" .
-
+.PP
+The following symbolic constants are provided for
+.IR mode :
+.TP
+.B S_IRWXU
+00700 user (file owner) has read, write and execute permission
+.TP
+.B S_IRUSR (S_IREAD)
+00400 user has read permission
+.TP
+.B S_IWUSR (S_IWRITE)
+00200 user has write permission
+.TP
+.B S_IXUSR (S_IEXEC)
+00100 user has execute permission
+.TP
+.B S_IRWXG
+00070 group has read, write and execute permission
+.TP
+.B S_IRGRP
+00040 group has read permission
+.TP
+.B S_IWGRP
+00020 group has write permission
+.TP
+.B S_IXGRP
+00010 group has execute permission
+.TP
+.B S_IRWXO
+00007 others have read, write and execute permission
+.TP
+.B S_IROTH
+00004 others have read permission
+.TP
+.B S_IWOTH
+00002 others have write permisson
+.TP
+.B S_IXOTH
+00001 others have execute permission
+.PP
 .I mode
 should always be specified when
 .B O_CREAT

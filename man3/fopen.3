@@ -36,6 +36,7 @@
 .\"     @(#)fopen.3	6.8 (Berkeley) 6/29/91
 .\"
 .\" Converted for Linux, Mon Nov 29 15:22:01 1993, faith@cs.unc.edu
+.\" Modified, aeb, 960421
 .\"
 .TH FOPEN 3  "13 December 1995" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
@@ -90,8 +91,7 @@ The
 string can also include the letter ``b'' either as a third character or as
 a character between the characters in any of the two-character strings
 described above.  This is strictly for compatibility with ANSI C3.159-1989
-(``ANSI C'') and has no effect; the ``b'' is ignored.  Linux may not behave
-this way.
+(``ANSI C'') and has no effect; the ``b'' is ignored.
 .PP
 Any created files will have mode
 .BR S_IRUSR \&| S_IWUSR \&|  S_IRGRP \&|  S_IWGRP \&| S_IROTH \&| S_IWOTH
@@ -101,10 +101,9 @@ Any created files will have mode
 Reads and writes may be intermixed on read/write streams in any order, and
 do not require an intermediate seek as in previous versions of
 .IR stdio .
-This is not portable to other systems, however, and may not work under
-Linux (someone should find out and fix this manpage); ANSI C requires that
-a file positioning function intervene between output and input, unless an
-input operation encounters end-of-file.
+This is not portable to other systems, but does work under Linux.
+ANSI C requires that a file positioning function intervene between
+output and input, unless an input operation encounters end-of-file.
 .PP
 The
 .B fdopen

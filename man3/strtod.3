@@ -36,32 +36,31 @@
 .\"     @(#)strtod.3	5.3 (Berkeley) 6/29/91
 .\"
 .\" Modified Sun Aug 21 17:16:22 1994 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat May 04 19:34:31 MET DST 1996 by Michael Haardt (michael@cantor.informatik.rwth-aachen.de)
 .\"
-.TH STRTOD 3 "21 Aug 1994" "BSD Man Page" "Linux Programmer's Manual"
+.TH STRTOD 3 "March 4th, 1996" "BSD Manual Page" "Library functions"
 .SH NAME
 strtod \- convert ASCII string to double
 .SH SYNOPSIS
 .B #include <stdlib.h>
 .sp
-.BI "double strtod(const char *" nptr ", char **" endptr
+.BI "double strtod(const char *" nptr ", char **" endptr );
 .SH DESCRIPTION
 The
-.BR strtod
+.B strtod()
 function converts the initial portion of the string pointed to by
 .I nptr
 to
 .B double
 representation.
 
-The expected form of the string is an optional plus (``+'') or minus sign
+The expected form of the string is optional leading white space as
+checked by \fIisspace\fP(3), an optional plus (``+'') or minus sign
 (``-'') followed by a sequence of digits optionally containing a
-decimal-point character, optionally followed by an exponent.  An exponent
-consists of an ``E'' or ``e'', followed by an optional plus or minus sign,
-followed by a sequence of digits.
-
-Leading white-space characters in the string (as defined by the
-.BR isspace (3)
-function) are skipped.
+decimal-point character, optionally followed by an exponent.  An
+exponent consists of an ``E'' or ``e'', followed by an optional plus or
+minus sign, followed by a non-empty sequence of digits.  If the locale
+is not "C" or "POSIX", different formats may be used.
 .SH "RETURN VALUES"
 The
 .B strtod
@@ -95,17 +94,11 @@ is stored in
 .TP
 .B ERANGE
 Overflow or underflow occurred.
+.SH "CONFORMING TO"
+ANSI C
 .SH "SEE ALSO"
 .BR atof (3),
 .BR atoi (3),
 .BR atol (3),
 .BR strtol (3),
 .BR strtoul (3)
-.SH STANDARDS
-The
-.B strtod
-function
-conforms to ANSI-C.
-.SH BUGS
-This is a BSD manual page and may not reflect the current Linux
-implementation.

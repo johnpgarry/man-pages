@@ -27,6 +27,7 @@
 .\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
 .\"   Referenced 'clone(2)'.
 .\" Modified 10 June 1995 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified 18 Apr 1996 by Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH FORK 2 "10 June 1995" "Linux 1.2.9" "Linux Programmer's Manual"
 .SH NAME
@@ -61,15 +62,15 @@ will be set appropriately.
 .B fork
 cannot allocate sufficient memory to copy the parent's page tables and
 allocate a task structure for the child.
+.TP
+.B ENOMEM
+.B fork
+failed to allocate the necessary kernel structures because memory is tight.
 .SH BUGS
 Under Linux,
 .B vfork
 is merely an alias for
 .BR fork .
-.br
-.B fork
-does never return the error
-.BR ENOMEM .
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH "SEE ALSO"

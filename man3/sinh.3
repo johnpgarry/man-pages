@@ -25,6 +25,7 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:16:31 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jun  8 13:21:29 1996 by aeb
 .TH SINH 3  "June 13, 1993" "" "Linux Programmer's Manual"
 .SH NAME
 sinh \- hyperbolic sine function
@@ -36,7 +37,7 @@ sinh \- hyperbolic sine function
 .fi
 .SH DESCRIPTION
 The \fBsinh()\fP function returns the hyperbolic sine of \fIx\fP, which 
-is defined mathematically as exp(x) - exp(-x) / 2.
+is defined mathematically as (exp(x) - exp(-x)) / 2.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3, ISO 9899
 .SH "SEE ALSO"

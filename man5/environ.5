@@ -21,6 +21,8 @@
 .\" USA.
 .\" 
 .\" Modified Sun Jul 25 10:45:30 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sun Jul 21 21:25:26 1996 by Andries Brouwer (aeb@cwi.nl)
+.\"
 .TH ENVIRON 5 "January 21, 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
 environ \- user environment
@@ -33,17 +35,26 @@ environ \- user environment
 .SH DESCRIPTION
 An array of strings called the `environment' is made available by
 \fBexec\fP(2) when a process begins.  By conventions these strings have
-the form `\fIname\fP\fB=\fP\fIvalue\fP'.  The following names are used
-by various commands:
-.IP \fBPATH\fP
+the form `\fIname\fP\fB=\fP\fIvalue\fP'.  Common examples are:
+.TP
+.B HOME
+A user's login directory, set by \fBlogin\fP(1) from the password file
+\fBpasswd\fP(5).
+.TP
+.B LANG
+The name of a locale to use for locale categories when not overridden
+by \fBLC_ALL\fP or more specific environment variables.
+.TP
+.B PATH
 The sequence of directory prefixes that \fBsh\fP(1) and many other
 programs apply in searching for a file known by an incomplete path name.
 The prefixes are separated by `\fB:\fP'.
-.IP \fBHOME\fP
-A user's login directory, set by \fBlogin\fP(1) from the password file
-\fBpasswd\fP(5).
-.IP \fBSHELL\fP
+.TP
+.B SHELL
 The file name of the users login shell.
+.TP
+.B TERM
+The terminal type for which output is to be prepared.
 .PP
 Further names may be placed in the environment by the \fBexport\fP
 command and `name=value' in \fBsh\fP(1), or by the \fBsetenv\fP command
@@ -52,5 +63,10 @@ environment at the point of an \fBexec\fP(2).  You should check not to
 conflict with certain shell variables, like: \fBMAIL\fP, \fBPS1\fP,
 \fBPS2\fP, \fBIFS\fP etc.
 .SH "SEE ALSO"
-.BR login "(1), " sh "(1), bash "(1), " csh "(1), " tcsh "(1), "
-.BR exec "(2), " system (3)
+.BR login (1),
+.BR sh (1),
+.BR bash (1),
+.BR csh (1),
+.BR tcsh (1),
+.BR exec (2),
+.BR system (3).
