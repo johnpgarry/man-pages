@@ -28,6 +28,8 @@
 .\"   Fixed necessary '#include' lines.
 .\" Modified 15 Apr 1995 by Michael Chastain (mec@shell.portal.com):
 .\"   Added reference to adjtimex.
+.\" Removed some nonsense lines pointed out by urs@isnogud.escape.de (Urs Thuermann),
+.\"   aeb, 950722.
 .\"
 .TH GETTIMEOFDAY 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
 .SH NAME
@@ -116,10 +118,6 @@ With daylight savings times defined as follows :
 And the following macros are defined to operate on this :
 .br
 .nf
-#define FD_SET(fd,fdsetp)	(*(fdsetp) |= (1 << (fd)))
-#define FD_CLR(fd,fdsetp)	(*(fdsetp) &= ~(1 << (fd)))
-#define FD_ISSET(fd,fdsetp)	((*(fdsetp) >> fd) & 1)
-#define FD_ZERO(fdsetp)		(*(fdsetp) = 0)
 #define	timerisset(tvp)\\
 .ti 18
 ((tvp)->tv_sec || (tvp)->tv_usec)

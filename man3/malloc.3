@@ -21,6 +21,8 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\" Modified Sat Jul 24 19:00:59 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Clarification concerning realloc, iwj10@cus.cam.ac.uk (Ian Jackson), 950701
+.\"
 .TH MALLOC 3  "April 4, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 calloc, malloc, free, realloc \- Allocate and free dynamic memory
@@ -108,7 +110,9 @@ aligned for any kind of variable and may be different from
 .IR ptr ,
 or
 .B NULL
-if the request fails or if size was equal to 0.
+if the request fails or if size was equal to 0.  If
+.B realloc()
+fails the original block is left untouched - it is not freed or moved.
 .SH "CONFORMS TO"
 ANSI - C
 .SH "SEE ALSO"

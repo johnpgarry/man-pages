@@ -1,28 +1,22 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.6.tar.gz - section 2, 3, 4, 5, 7, and 9 man pages for Linux
+    man-pages-1.7.tar.gz - section 2, 3, 4, 5, 7, and 9 man pages for Linux
 
 
 
-Differences from version 1.5:
+Differences from version 1.6:
     
     The following files have been updated:
 
-        adjtimex.2 afs_syscall.2 bdflush.2 break.2 chdir.2 dup.2 fchdir.2
-        fsync.2 getpgid.2 gettimeofday.2 gtty.2 ipc.2 llseek.2 lock.2 mpx.2
-        obsolete.2 oldfstat.2 oldlstat.2 oldolduname.2 oldstat.2 olduname.2
-        prof.2 quotactl.2 rename.2 select.2 setfsgid.2 setfsuid.2 setpgid.2
-        setup.2 socketcall.2 stat.2 stty.2 sync.2 undocumented.2
-        unimplemented.2 ustat.2 wait.2 write.2
+	getdents.2 gethostname.2 gettimeofday.2 modify_ldt.2 mprotect.2
+	obsolete.2 profil.2 readdir.2 swapon.2 undocumented.2
 
-        fread.3 getutent.3 hcreate.3 hdestroy.3 isatty.3 perror.3 rand.3
-        setbuf.3 sigaddset.3 sigdelset.3 sigemptyset.3 sigfillset.3
-        sigismember.3 ttyname.3 wcstombs.3
+	exit.3 malloc.3 mktemp.3
 
-        console_ioctl.4
+	passwd.5
 
-        proc.5 utmp.5
+	ascii.7 iso_8859_1.7 mailaddr.7
 
 
 
@@ -51,11 +45,11 @@ Here is a breakdown of what this distribution contains:
 
 To install this distribution, do something like:
 
-    cd /usr/man; zcat man-pages-1.6.tar.gz | tar xvpf -
+    cd /usr/man; zcat man-pages-1.7.tar.gz | tar xvpf -
 
 
 
-The following people (listed in alphabetical order by first name) who
+The following people (listed in alphabetical order by first name)
 wrote, edited, or otherwise contributed to this project:
 
     Alain Knaff (Alain.Knaff@imag.fr)
@@ -89,6 +83,7 @@ wrote, edited, or otherwise contributed to this project:
     Steven Greenland (stevegr@sugar.neosoft.com)
     Thomas Koenig (ig25@rz.uni-karlsruhe.de)
     Ulrich Drepper (drepper@ipd.info.uni-karlsruhe.de)
+    Urs Thuermann (urs@isnogud.escape.de)
 
 
 

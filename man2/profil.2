@@ -22,6 +22,8 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Modified Fri Jun 23 01:35:19 1995 Andries Brouwer (aeb@cwi.nl)
+.\" (prompted by bas@phys.uva.nl (Bas V. de Bakker))
 .TH PROFIL 2 "23 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 profil \- execution time profile
@@ -38,7 +40,7 @@ a user-space implementation.
 .I Buf
 points to
 .I bufsiz
-bytes of core.  Every virtual microsecond, the user's program counter (PC)
+bytes of core.  Every virtual 10 milliseconds, the user's program counter (PC)
 is examined:
 .I offset
 is subtracted and the result is multiplied by

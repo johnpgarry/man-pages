@@ -22,7 +22,9 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH GETHOSTNAME 2 "23 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.\" Modified 22 July 1995 by Michael Chastain (mec@duracef.shout.net):
+.\"   'gethostname' is real system call on Linux/Alpha.
+.TH GETHOSTNAME 2 "22 July 1995" "Linux 1.3.6" "Linux Programmer's Manual"
 .SH NAME
 gethostname, sethostname \- get/set host name
 .SH SYNOPSIS
@@ -41,40 +43,45 @@ is set appropriately.
 .SH ERRORS
 .TP
 .B EINVAL
-For
-.BR gethostname ,
-.I name
-points to
-.B NULL
-or
-.I name
-is longer than
-.IR len .
+.I len
+is negative or, for
+.BR sethostname ,
+.I len
+is larger than the maximum allowed size,
+or, for
+.BR gethostname
+on Linux/i386,
+.I len
+is smaller than the actual size.
 .TP
 .B EPERM
 For
 .BR sethostname ,
 the caller was not the superuser.
 .TP
-.B EINVAL
-For
-.BR sethostname ,
-.I len
-was too long.
+.B EFAULT
+.I name
+is an invalid address.
 .SH "CONFORMING TO"
 POSIX.1 does not define these functions, but ISO/IEC 9945-1:1990 mentions
 them in B.4.4.1.
 .SH BUGS
+Some other implementations of
 .B gethostname
-is not compliant with other implementations, since they always return
+successfully return
 .I len
-bytes, even if
+bytes even if
 .I name
-is longer.  Linux, however, returns
+is longer.
+Linux/Alpha complies with this behaviour.
+Linux/i386, however, returns
 .B EINVAL
-in this case (as of DLL 4.4.1 libraries).
+in this case (as of DLL 4.6.27 libraries).
 .SH NOTES
-Under Linux,
+Under Linux/Alpha,
+.B gethostname
+is a system call.
+Under Linux/i386,
 .B gethostname
 is implemented at the library level by calling
 .BR uname (2).

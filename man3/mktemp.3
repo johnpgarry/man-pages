@@ -25,6 +25,8 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:48:06 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Fri Jun 23 01:26:34 1995 by Andries Brouwer (aeb@cwi.nl)
+.\" (prompted by Scott Burkett <scottb@IntNet.net>)
 .TH MKTEMP 3  "April 3, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 mktemp \- make a unique temporary file name
@@ -47,6 +49,6 @@ success, and NULL on failure.
 .B EINVAL
 The last six characters of \fItemplate\fP were not XXXXXX.
 .SH "CONFORMING TO"
-SVID 3, POSIX, BSD 4.3
+BSD 4.3. POSIX dictates tmpnam().
 .SH "SEE ALSO"
 .BR mkstemp "(3), " tmpnam "(3), " tempnam "(3), " tmpfile (3)

@@ -22,6 +22,7 @@
 .\"
 .\" Modified Sun Jul 25 10:46:28 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Aug 21 18:12:27 1994 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sun Jun 18 01:53:57 1995 by Andries Brouwer (aeb@cwi.nl)
 .TH PASSWD 5 "24 July 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
 passwd \- password file
@@ -42,7 +43,7 @@ user groups, their GID's must be equal and there must be an entry in
 There is one entry per line, and each line has the format:
 .sp
 .RS
-login_name:passwd:GID:UID:user_name:directory:shell
+login_name:passwd:UID:GID:user_name:directory:shell
 .RE
 .sp
 The field descriptions are:
