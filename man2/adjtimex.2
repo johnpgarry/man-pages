@@ -33,11 +33,12 @@ adjtimex \- tune kernel clock
 .sp
 .BI "int adjtimex(struct timex *" "buf" ");"
 .SH DESCRIPTION
-Linux uses David L. Mills' clock adjustment algorithm (see RFC 1305).
-The system call
+Linux uses David L. Mills' clock adjustment algorithm.
 .B adjtimex
 reads and optionally sets adjustment parameters for this algorithm.
-It takes a pointer to a
+.PP
+.B adjtimex
+takes a pointer to a
 .I timex 
 structure, updates kernel parameters from field values,
 and returns the same structure with current kernel values.
@@ -45,7 +46,8 @@ This structure is declared as follows:
 .PP
 .RS
 .nf
-struct timex {
+struct timex
+{
     int modes;           /* mode selector */
     long offset;         /* time offset (usec) */
     long freq;           /* frequency offset (scaled ppm) */
@@ -111,7 +113,7 @@ returns \-1 and sets
 .TP
 .B EFAULT
 .I buf
-does not point to writable memory.
+does not point to writeable memory.
 .TP
 .B EPERM
 .I buf.mode
