@@ -128,28 +128,44 @@ exists but is not a directory.
 .IR oldpath " or " newpath " points outside your accessible address space."
 .TP
 .B EACCES
-Write access to the directory containing
-.IR oldpath " or " newpath
-is not allowed for the process's effective uid, or one of the
-directories in
-.IR oldpath " or " newpath
-did not allow search (execute) permission, or
+Write permission is denied for the directory containing
 .I oldpath
-was a directory and did not allow write permission (needed to update
+or
+.IR newpath ,
+or, search permission is denied for one of the directories
+in the path prefix of
+.I oldpath
+or
+.IR newpath ,
+or
+.I oldpath
+is a directory and does not allow write permission (needed to update
 the
 .B ..
 entry).
+(See also
+.BR path_resolution (2).)
 .TP
 .BR EPERM " or " EACCES
 The directory containing
 .I oldpath
-has the sticky bit set and the process's effective uid is neither that of root
-nor the uid of the file to be deleted nor that of the directory containing it,
+has the sticky bit
+.RB ( S_ISVTX )
+set and the process's effective user ID is neither
+the user ID of the file to be deleted nor that of the directory
+containing it, and the process is not privileged
+(Linux: does not have the
+.B CAP_FOWNER
+capability);
 or
 .I newpath
 is an existing file and the directory containing it has the sticky bit set
-and the process's effective uid is neither that of root nor the uid of the
-file to be replaced nor that of the directory containing it,
+and the process's effective user ID is neither the user ID of the file
+to be replaced nor that of the directory containing it,
+and the process is not privileged
+(Linux: does not have the
+.B CAP_FOWNER
+capability);
 or the filesystem containing
 .IR pathname
 does not support renaming of the type requested.
@@ -186,7 +202,9 @@ deal with this.  See
 .BR link (2)
 for a similar problem.
 .SH "SEE ALSO"
+.BR mv (1),
+.BR chmod (2),
 .BR link (2),
-.BR unlink (2),
+.BR path_resolution (2),
 .BR symlink (2),
-.BR mv (1)
+.BR unlink (2)

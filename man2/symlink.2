@@ -23,12 +23,13 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Sat Jul 24 12:01:10 1993 by Rik Faith
-.\" Added correction due to Nick Duffek <nsd@bbc.com>, aeb, 960426
-.\" Modified Wed Nov  6 04:07:10 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Fri Jan 31 17:51:14 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1993-07-24 by Rik Faith
+.\" Modified 1996-04-26 by Nick Duffek <nsd@bbc.com>
+.\" Modified 1996-11-06 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1997-01-31 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2004-06-23 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH SYMLINK 2 1997-08-21 "Linux 2.0.30" "Linux Programmer's Manual"
+.TH SYMLINK 2 2004-06-23 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 symlink \- make a new name for a file
 .SH SYNOPSIS
@@ -58,7 +59,9 @@ link.
 The permissions of a symbolic link are irrelevant; the ownership is
 ignored when following the link, but is checked when removal or
 renaming of the link is requested and the link is in a directory with
-the sticky bit set.
+the sticky bit
+.RB ( S_ISVTX )
+set.
 
 If
 .I newpath
@@ -82,10 +85,11 @@ does not support the creation of symbolic links.
 .B EACCES
 Write access to the directory containing
 .I newpath
-is not allowed for the process's effective uid, or one of the
-directories in
+is denied, or one of the directories in the path prefix of
 .IR newpath
-did not allow search (execute) permission.
+did not allow search permission.
+(See also
+.BR path_resolution (2).)
 .TP
 .B ENAMETOOLONG
 .IR oldpath " or " newpath " was too long."
@@ -140,10 +144,11 @@ See
 .BR open (2)
 re multiple files with the same name, and NFS.
 .SH "SEE ALSO"
-.BR readlink (2),
+.BR ln (1),
 .BR link (2),
-.BR unlink (2),
-.BR rename (2),
-.BR open (2),
 .BR lstat (2),
-.BR ln (1)
+.BR open (2),
+.BR path_resolution (2),
+.BR readlink (2),
+.BR rename (2),
+.BR unlink (2)

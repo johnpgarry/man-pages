@@ -217,7 +217,9 @@ at least put a finite timeout so that the process does
 not block. At present glibc probably works this way.
 The Linux kernel does not have a native \fBpselect\fP
 system call as yet so this is all probably much of a
-mute point.
+moot point.
+.PP
+
 
 .SH PRACTICAL
 
@@ -737,13 +739,13 @@ that however does not take a \fIsigmask\fP parameter.
 .BR recv (2),
 .BR select (2),
 .BR send (2),
+.BR sigprocmask (2),
+.BR write (2),
 .BR sigaddset (3),
 .BR sigdelset (3),
 .BR sigemptyset (3),
 .BR sigfillset (3),
-.BR sigismember (3),
-.BR sigprocmask (2),
-.BR write (2)
+.BR sigismember (3)
 
 .SH AUTHORS
 This man page was written by Paul Sheer.

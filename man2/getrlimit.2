@@ -40,8 +40,10 @@
 .\"	Enhanced descriptions of 'resource' values for [gs]etrlimit()
 .\" Modified 2003-11-28 by aeb, added RLIMIT_CORE
 .\" Modified 2004-03-26 by aeb, added RLIMIT_AS
+.\" Modified 2004-06-16 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"     Added notes on CAP_SYS_RESOURCE
 .\"
-.TH GETRLIMIT 2 2003-11-28 "Linux" "Linux Programmer's Manual"
+.TH GETRLIMIT 2 2004-06-16 "Linux" "Linux Programmer's Manual"
 .SH NAME
 getrlimit, getrusage, setrlimit \- get/set resource limits and usage
 .SH SYNOPSIS
@@ -83,7 +85,9 @@ corresponding resource.
 The hard limit acts as a ceiling for the soft limit:
 an unprivileged process may only set its soft limit to a value in the 
 range from 0 up to the hard limit, and (irreversibly) lower its hard limit.
-A privileged process may make arbitrary changes to either limit value.
+A privileged process (under Linux: one with the
+.B CAP_SYS_RESOURCE
+capability) may make arbitrary changes to either limit value.
 .PP
 The value
 .B RLIM_INFINITY
@@ -258,9 +262,12 @@ is called with a bad \fIresource\fP, or \fBgetrusage\fP is called with a
 bad \fIwho\fP.
 .TP
 .B EPERM
-A non-superuser tries to use \fBsetrlimit()\fP to increase the soft or hard
-limit above the current hard limit, or a superuser tries to increase
-RLIMIT_NOFILE above the current kernel maximum.
+An unprivileged process tried to use \fBsetrlimit()\fP to
+increase a soft or hard limit above the current hard limit; the
+.B CAP_SYS_RESOURCE
+capability is required to do this. Or, the tried to use \fBsetrlimit()\fP
+to increase the soft of hard RLIMIT_NOFILE limit above the current kernel
+maximum (NR_OPEN).
 .SH "CONFORMING TO"
 SVr4, BSD 4.3
 .SH NOTE
@@ -307,4 +314,5 @@ are maintained.
 .BR wait4 (2),
 .BR malloc (3),
 .BR ulimit (3),
+.BR capabilities (7),
 .BR signal (7)

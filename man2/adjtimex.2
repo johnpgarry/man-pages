@@ -22,10 +22,11 @@
 .\" Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
 .\" USA.
 .\"
-.\" Modified Fri Jan 31 16:11:17 1997 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Wed Jul 30 14:25:16 1997 by Paul Slootman <paul@wurtel.demon.nl>
+.\" Modified 1997-01-31 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1997-07-30 by Paul Slootman <paul@wurtel.demon.nl>
+.\" Modified 2004-05-27 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH ADJTIMEX 2 1997-07-30 "Linux 2.0" "Linux Programmer's Manual"
+.TH ADJTIMEX 2 2004-05-27 "Linux 2.6.6" "Linux Programmer's Manual"
 .SH NAME
 adjtimex \- tune kernel clock
 .SH SYNOPSIS
@@ -115,7 +116,10 @@ does not point to writable memory.
 .TP
 .B EPERM
 .I buf.mode
-is non-zero and the user is not super-user.
+is non-zero and the caller does not have sufficient privilege.
+Under Linux the
+.B CAP_SYS_TIME
+capability is required.
 .TP
 .B EINVAL
 An attempt is made to set
@@ -138,4 +142,5 @@ is the system timer interrupt frequency.
 intended to be portable.  There is a similar but less general call 
 \fBadjtime\fR in SVr4.
 .SH "SEE ALSO"
-.BR settimeofday (2)
+.BR settimeofday (2),
+.BR capabilities (7)

@@ -35,10 +35,12 @@
 .\" Portions extracted from linux/kernel/sys.c:
 .\"             Copyright (C) 1991, 1992  Linus Torvalds
 .\"             May be distributed under the GNU General Public License
-.\" Changes: Fri Jul 29 10:56:01 BST 1994 by Wilf. <G.Wilford@ee.surrey.ac.uk>
-.\"          Tue Aug  2 14:56:48 BST 1994 by Wilf due to change in kernel.
+.\" Changes: 1994-07-29 by Wilf <G.Wilford@ee.surrey.ac.uk>
+.\"          1994-08-02 by Wilf due to change in kernel.
+.\"          2004-07-04 by aeb
+.\"          2004-05-27 by Michael Kerrisk
 .\"
-.TH SETREUID 2 1994-08-02 "Linux 1.1.38" "Linux Programmer's Manual"
+.TH SETREUID 2 2004-07-04 "Linux 2.6" "Linux Programmer's Manual"
 .SH NAME
 setreuid, setregid \- set real and/or effective user or group ID
 .SH SYNOPSIS
@@ -52,15 +54,21 @@ setreuid, setregid \- set real and/or effective user or group ID
 .SH DESCRIPTION
 .B setreuid
 sets real and effective user IDs of the current process.
-Unprivileged users may only set the real user ID to
-the real user ID or the effective user ID, and may only set
-the effective user ID to the real user ID, the effective user ID
-or the saved user ID.
 
 Supplying a value of \-1 for either the real or effective user ID forces
 the system to leave that ID unchanged.
 
-If the real user ID is set or the effective user ID is set to a value 
+Unprivileged processes may only set the effective user ID to the real user ID,
+the effective user ID or the saved effective user ID.
+
+POSIX: It is unspecified whether unprivileged processes may set the
+real user ID to the real user ID, the effective user ID or the saved
+effective user ID.
+
+Linux: Unprivileged users may only set the real user ID to
+the real user ID or the effective user ID.
+
+Linux: If the real user ID is set or the effective user ID is set to a value 
 not equal to the previous real user ID, the saved user ID will be set to the
 new effective user ID.
 
@@ -76,7 +84,16 @@ is set appropriately.
 .SH ERRORS
 .TP
 .B EPERM
-The current process is not the super-user and changes other than (i)
+The current process is not privileged
+(does not have the
+.B CAP_SETUID
+capability in the case of
+.BR setreuid (), 
+or the 
+.B CAP_SETGID
+capability in the case of
+.BR setregid ())
+and a change other than (i)
 swapping the effective user (group) ID with the real user (group) ID,
 or (ii) setting one to the value of the other or (iii) setting the
 effective user (group) ID to the value of the saved user (group) ID
@@ -91,9 +108,10 @@ and
 .B setregid
 function calls first appeared in 4.2BSD).
 .SH "SEE ALSO"
-.BR getuid (2),
 .BR getgid (2),
-.BR setuid (2),
-.BR setgid (2),
+.BR getuid (2),
 .BR seteuid (2),
-.BR setresuid (2)
+.BR setgid (2),
+.BR setresuid (2),
+.BR setuid (2),
+.BR capabilities (7)

@@ -84,7 +84,7 @@ operation are first reported at the final
 .BR close .
 Not checking the return value when closing the file may lead to
 silent loss of data.  This can especially be observed with NFS
-and disk quotas.
+and with disk quota.
 .PP
 A successful close does not guarantee that the data has been successfully
 saved to disk, as the kernel defers writes. It is not common for a filesystem
@@ -93,9 +93,9 @@ the data is physically stored use
 .BR fsync (2).
 (It will depend on the disk hardware at this point.)
 .SH "SEE ALSO"
-.BR open (2),
 .BR fcntl (2),
+.BR fsync (2),
+.BR open (2),
 .BR shutdown (2),
 .BR unlink (2),
-.BR fclose (3),
-.BR fsync (2)
+.BR fclose (3)

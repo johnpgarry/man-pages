@@ -97,6 +97,9 @@ it must have been returned by an earlier call to
 .BR calloc()
 or
 .BR realloc() .
+If the area pointed to was moved, a
+.BI "free(" "ptr" )
+is done.
 .SH "RETURN VALUE"
 For
 .BR calloc() " and " malloc() ,

@@ -3,8 +3,10 @@
 .\" written by Andrew Morgan <morgan@linux.kernel.org>
 .\" may be distributed as per GPL
 .\" Modified by David A. Wheeler <dwheeler@ida.org>
+.\" Modified 2004-05-27, mtk
+.\" Modified 2004-06-21, aeb
 .\"
-.TH CAPGET 2 1999-09-09 "Linux 2.2" "Linux Programmer's Manual"
+.TH CAPGET 2 2004-06-21 "Linux 2.6.6" "Linux Programmer's Manual"
 .SH NAME
 capget, capset \- set/get process capabilities
 .SH SYNOPSIS
@@ -12,16 +14,18 @@ capget, capset \- set/get process capabilities
 .br
 .B #include <sys/capability.h>
 .sp
-.BI "int capget(cap_user_header_t " header ", cap_user_data_t " data );
+.BI "int capget(cap_user_header_t " hdrp ", cap_user_data_t " datap );
 .sp
-.BI "int capset(cap_user_header_t " header ", const cap_user_data_t " data );
+.BI "int capset(cap_user_header_t " hdrp ", const cap_user_data_t " datap );
 .SH DESCRIPTION
 As of Linux 2.2, the power of the superuser (root) has been partitioned into
 a set of discrete capabilities.
 Every process has a set of effective capabilities identifying
 which capabilities (if any) it may currently exercise.
 Every process also has a set of inheritable capabilities that may be
-passed through an execve(2) and a set of permitted capabilites
+passed through an
+.BR execve (2)
+call, and a set of permitted capabilities
 that it can make effective or inheritable.
 .PP
 These two functions are the raw kernel interface for getting and
@@ -41,6 +45,38 @@ use the easier-to-use interfaces
 .IR capsetp (3)
 and 
 .IR capgetp (3).
+.SS "Current details"
+Now that you have been warned, some current kernel details.
+The structs are defined as follows.
+.sp
+.nf
+.in +4n
+#define _LINUX_CAPABILITY_VERSION  0x19980330
+
+typedef struct __user_cap_header_struct {
+        int version;
+        int pid;
+} *cap_user_header_t;
+
+typedef struct __user_cap_data_struct {
+        int effective;
+        int permitted;
+        int inheritable;
+} *cap_user_data_t;
+.fi
+.in -4n
+.sp
+The calls will return EINVAL, and set the version field of
+.I hdr
+to _LINUX_CAPABILITY_VERSION when another version was specified.
+
+The calls refer to the capabilities of the process indicated by
+the pid field of
+.I hdr
+when that is nonzero, or to the current process otherwise.
+
+For details on the data, see
+.BR capabilities (7).
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -54,12 +90,24 @@ One of the arguments was invalid.
 An attempt was made to add a capability to the Permitted set, or to set
 a capability in the Effective or Inheritable sets that is not in the
 Permitted set.
-.\" .TP
-.\" .B ESRCH
-.\" No such process.
-.\" .TP
-.\" .B EFAULT
-.\" Bad memory address.
+.TP
+.B EPERM
+The calling process attempted to use
+.BR capset ()
+to modify the capabilities of a process other than itself,
+but lacked sufficient privilege; the
+.B CAP_SETPCAP
+capability is required.
+.TP
+.B ESRCH
+No such process.
+.TP
+.B EFAULT
+Bad memory address. Neither of
+.I hdrp
+and
+.I datap
+may be NULL.
 .SH "FURTHER INFORMATION"
 The portable interface to the capability querying and setting
 functions is provided by the

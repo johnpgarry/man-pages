@@ -22,22 +22,25 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified by Michael Haardt (michael@moria.de)
-.\" Modified by Thomas Koenig (ig25@rz.uni-karlsruhe.de)
-.\" Modified Fri Jul 23 21:51:36 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sun Jul 25 10:53:24 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Wed Nov 01 18:56:43 1995 by Michael Haardt
-.\"  (michael@cantor.informatik.rwth-aachen.de)
-.\" Modified Sun Apr 14 17:04:32 1996 by Andries Brouwer (aeb@cwi.nl)
-.\"  [added some polishing contributed by Mike Battersby (mib@deakin.edu.au)]
-.\" Modified Sun Jul 21 21:25:26 1996 by Andries Brouwer (aeb@cwi.nl)
-.\" Modified Fri Jan 17 23:49:46 1997 by Andries Brouwer (aeb@cwi.nl)
-.\" Modified Tue Dec 18 10:53:02 2001 by Andries Brouwer (aeb@cwi.nl)
-.\" Modified, 24 Jul 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified by Michael Haardt <michael@moria.de>
+.\" Modified by Thomas Koenig <ig25@rz.uni-karlsruhe.de>
+.\" Modified 1993-07-23 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1993-07-25 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1995-11-01 by Michael Haardt
+.\"  <michael@cantor.informatik.rwth-aachen.de>
+.\" Modified 1996-04-14 by Andries Brouwer <aeb@cwi.nl>
+.\"  [added some polishing contributed by Mike Battersby <mib@deakin.edu.au>]
+.\" Modified 1996-07-21 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 1997-01-17 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 2001-12-18 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 2002-07-24 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"	Added note on historical rules enforced when an unprivileged process
 .\"	sends a signal.
+.\" Modified 2004-06-16 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"     Added note on CAP_KILL
+.\" Modified 2004-06-24 by aeb
 .\"
-.TH KILL 2 2001-12-18 "Linux 2.5.0" "Linux Programmer's Manual"
+.TH KILL 2 2004-06-24 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 kill \- send signal to a process
 .SH SYNOPSIS
@@ -67,8 +70,18 @@ in the process group \fI\-pid\fP.
 .PP
 If \fIsig\fP is 0, then no signal is sent, but error checking is still
 performed.
+
+For a process to have permission to send a signal
+it must either be privileged (under Linux: have the
+.B CAP_KILL
+capability), or the real or effective
+user ID of the sending process must equal the real or
+saved set-user-ID of the target process.
+In the case of SIGCONT it suffices when the sending and receiving
+processes belong to the same session.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, \-1 is returned, and
+On success (at least one signal was sent), zero is returned.
+On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -84,14 +97,7 @@ has not yet been \fBwait()\fPed for.
 .TP
 .B EPERM
 The process does not have permission to send the signal
-to any of the receiving processes.
-For a process to have permission to send a signal to process
-.I pid
-it must either have root privileges, or the real or effective
-user ID of the sending process must equal the real or
-saved set-user-ID of the receiving process.
-In the case of SIGCONT it suffices when the sending and receiving
-processes belong to the same session.
+to any of the target processes.
 .SH NOTES
 It is impossible to send a signal to task number one, the init process, for
 which it has not installed a signal handler.  This is done to assure the
@@ -102,6 +108,12 @@ to all processes that the current process may send signals to,
 except possibly for some implementation-defined system processes.
 Linux allows a process to signal itself, but on Linux the call
 \fIkill(-1,sig)\fP does not signal the current process.
+.LP
+POSIX 1003.1-2003 requires that if a process sends a signal to itself,
+and that process does not have the signal blocked, and no other thread
+has it unblocked or is waiting for it in \fIsigwait()\fP, at least one
+unblocked signal must be delivered to the sending thread before the
+call of \fIkill()\fP returns.
 .SH "LINUX HISTORY"
 Across different kernel versions, Linux has enforced different rules
 for the permissions required for an unprivileged process
@@ -124,4 +136,5 @@ SVr4, SVID, POSIX.1, X/OPEN, BSD 4.3, POSIX 1003.1-2001
 .BR signal (2),
 .BR tkill (2),
 .BR exit (3),
+.BR capabilities (7),
 .BR signal (7)

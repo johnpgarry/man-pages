@@ -9,16 +9,17 @@ cimag, cimagf, cimagl \- get imaginary part of a complex number
 .sp
 .BI "double cimag(double complex " z ");" 
 .sp
-.BI "float cimagf(float double complex " z ");"
+.BI "float cimagf(float complex " z ");"
 .sp
 .BI "long double cimagl(long double complex " z ");"
 .sp
+Link with \-lm.
 .SH DESCRIPTION
 The cimag() function returns the imaginary part of the complex number z.
 .LP
 One has z = creal(z) + I*cimag(z).
 .SH NOTE
-The gcc supports also __imag__. That is a GNU extension. 
+gcc also supports __imag__. That is a GNU extension. 
 .SH "CONFORMING TO"
 C99
 .SH "SEE ALSO"

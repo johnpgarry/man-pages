@@ -44,7 +44,7 @@ network host entry
 .BI "struct hostent *gethostbyname(const char *" name );
 .sp
 .B #include <sys/socket.h> "      " /* for AF_INET */
-.BI "struct hostent *gethostbyaddr(const char *" addr ,
+.BI "struct hostent *gethostbyaddr(const void *" addr ,
 .BI "  int " len ", int " type );
 .sp
 .BI "void sethostent(int " stayopen );
@@ -103,6 +103,9 @@ for the given host address \fIaddr\fP of length \fIlen\fP and address type
 .B AF_INET
 and
 .BR AF_INET6 .
+The host address argument is a pointer to a struct of a type depending
+on the address type, for example a \fBstruct in_addr *\fP (probably
+obtained via a call to \fIinet_addr()\fP) for address type AF_INET.
 .PP
 The \fBsethostent()\fP function specifies, if \fIstayopen\fP is true (1), 
 that a connected TCP socket should be used for the name server queries and 
@@ -213,6 +216,12 @@ is not. POSIX 1003.1-2001 makes it
 .IR socklen_t ,
 which is OK.)
 .LP
+The BSD prototype for
+.B gethostbyaddr()
+uses
+.I const char *
+for the first argument.
+.LP
 The functions
 .BR gethostbyname ()
 and
@@ -268,5 +277,5 @@ obsolescent. See
 .BR resolver (3),
 .BR hosts (5),
 .BR hostname (7),
-.BR resolv+ (8),
-.BR named (8)
+.BR named (8),
+.BR resolv+ (8)

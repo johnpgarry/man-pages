@@ -22,11 +22,12 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified by Michael Haardt (michael@moria.de)
-.\" Modified Sat Jul 24 14:26:24 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Fri Mar 16 17:22:48 2001 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified by Michael Haardt <michael@moria.de>
+.\" Modified 1993-07-24 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 2001-03-16 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 2004-05-27 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH STIME 2 1993-07-24 "Linux 0.99.11" "Linux Programmer's Manual"
+.TH STIME 2 2004-05-27 "Linux 2.6.6" "Linux Programmer's Manual"
 .SH NAME
 stime \- set time
 .SH SYNOPSIS
@@ -46,7 +47,10 @@ is set appropriately.
 .SH ERRORS
 .TP
 .B EPERM
-The caller is not the super-user.
+The calling process has insufficient privilege.
+Under Linux the
+.B CAP_SYS_TIME
+privilege is required.
 .TP
 .B EFAULT
 Error in getting information from user space.
@@ -60,5 +64,5 @@ only provides a prototype when
 is defined.
 .SH "SEE ALSO"
 .BR date (1),
-.BR settimeofday (2)
-
+.BR settimeofday (2),
+.BR capabilities (7)

@@ -18,8 +18,9 @@
 .\"
 .\"  Davide Libenzi <davidel@xmailserver.org>
 .\"
+.\" Modified 2004-06-17 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH EPOLL_CREATE 2 "2002-10-23" Linux "Linux Programmer's Manual"
+.TH EPOLL_CREATE 2 "2004-06-17" "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 epoll_create \- open an epoll file descriptor
 .SH SYNOPSIS
@@ -55,6 +56,9 @@ is set appropriately.
 .TP
 .B ENOMEM
 There was insufficient memory to create the kernel object.
+.TP
+.B ENFILE
+The system limit on the total number of open files has been reached.
 .SH CONFORMING TO
 .BR epoll_create (2)
 is a new API introduced in Linux kernel 2.5.44.

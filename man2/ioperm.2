@@ -29,8 +29,10 @@
 .\"                              <cip307@cip.physik.uni-wuerzburg.de>
 .\" Modified Tue Oct 22 08:11:14 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Mon Feb 15 17:28:41 CET 1999 by Andries E. Brouwer <aeb@cwi.nl>
+.\" Modified, 27 May 2004, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"     Added notes on capability requirements
 .\"
-.TH IOPERM 2 1993-01-21 "Linux" "Linux Programmer's Manual"
+.TH IOPERN 2 2004-05-27 "Linux 2.6.6" "Linux Programmer's Manual"
 .SH NAME
 ioperm \- set port input/output permissions
 .SH SYNOPSIS
@@ -69,7 +71,11 @@ or
 .IR num .
 .TP
 .B EPERM
-Caller does not have the CAP_SYS_RAWIO privileges.
+The calling process has insufficient privilege to call 
+.BR ioperm ;
+the
+.B CAP_SYS_RAWIO
+capability is required.
 .TP
 .B EIO
 (on ppc) This call is not supported.
@@ -85,4 +91,5 @@ and in
 .IR <sys/perm.h> .
 Avoid the latter, it is available on i386 only.
 .SH "SEE ALSO"
-.BR iopl (2)
+.BR iopl (2),
+.BR capabilities (7)

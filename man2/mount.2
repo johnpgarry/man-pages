@@ -23,17 +23,18 @@
 .\" 
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
-.\" "
-.\" Modified Mon Nov  4 20:23:39 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified 13 Oct 2001 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\"	Added note on historical behaviour of MS_NOSUID
-.\" Modified 16 May 2002 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\"	Extensive changes and additions
-.\" Some corrections, aeb, 27 May 2002
-.\" Modified 11 Jun 2002 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\"	Enhanced descriptions of MS_MOVE, MS_BIND, and MS_REMOUNT
 .\"
-.TH MOUNT 2 2002-06-11 "Linux 2.5" "Linux Programmer's Manual"
+.\" Modified 1996-11-04 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2001-10-13 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"	Added note on historical behaviour of MS_NOSUID
+.\" Modified 2002-05-16 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"	Extensive changes and additions
+.\" Modified 2002-05-27 by aeb
+.\" Modified 2002-06-11 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"	Enhanced descriptions of MS_MOVE, MS_BIND, and MS_REMOUNT
+.\" Modified 2004-06-17 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"
+.TH MOUNT 2 2004-06-17 "Linux 2.6" "Linux Programmer's Manual"
 .SH NAME
 mount, umount \- mount and unmount filesystems
 .SH SYNOPSIS
@@ -58,7 +59,10 @@ or a dummy) to the directory specified by
 remove the attachment of the (topmost) filesystem mounted on
 .IR target .
 
-Only the super-user may mount and unmount filesystems.
+Appropriate privilege (Linux: the
+.B CAP_SYS_ADMIN
+capability) is required to mount and unmount filesystems.
+
 Since Linux 2.4 a single filesystem can be visible at
 multiple mount points, and multiple mounts can be stacked
 on the same mount point.
@@ -208,7 +212,7 @@ own special behavior.  See the kernel source code for details.
 
 .TP
 .B EPERM
-The user is not the super-user.
+The caller does not have the required privileges.
 .TP
 .B ENODEV
 .I Filesystemtype
@@ -268,7 +272,8 @@ is a descendant of
 .IR source .
 .TP
 .B EACCES
-A component of a path was not searchable.
+A component of a path was not searchable. (See also
+.BR path_resolution (2).)
 .br
 Or, mounting a read-only filesystem was attempted without giving the
 MS_RDONLY flag.
@@ -276,6 +281,8 @@ MS_RDONLY flag.
 Or, the block device
 .I Source
 is located on a filesystem mounted with the MS_NODEV option.
+.\" mtk: Probably: write permission is required for MS_BIND, with
+.\" the error EPERM if not present; CAP_DAC_OVERRIDE is required.
 .TP
 .B ENXIO
 The major number of the block device
@@ -311,5 +318,6 @@ Since Linux 2.4 the set-UID and set-GID bits are just silently ignored
 in this case.
 .\" The change is in patch-2.4.0-prerelease.
 .SH "SEE ALSO"
+.BR path_resolution (2),
 .BR mount (8),
 .BR umount (8)

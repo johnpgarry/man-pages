@@ -23,22 +23,24 @@
 .\" This replaces an earlier man page written by Walter Harms
 .\" <walter.harms@informatik.uni-oldenburg.de>.
 .\"
-.TH ECVT_R 3  2002-08-25 "GNU" "Linux Programmer's Manual"
+.\" Corrected return types; from Fabian; 2004-10-05
+.\"
+.TH ECVT_R 3  2004-10-05 "GNU" "Linux Programmer's Manual"
 .SH NAME
 ecvt_r, fcvt_r, qecvt_r, qfcvt_r \- convert a floating-point number to a string
 .SH SYNOPSIS
 .B #include <stdlib.h>
 .sp
-.BI "char *ecvt_r(double " number ", int " ndigits ", int *" decpt ,
+.BI "int ecvt_r(double " number ", int " ndigits ", int *" decpt ,
 .BI "int *" sign ", char *" buf ", size_t " len );
 .sp
-.BI "char *fcvt_r(double " number ", int " ndigits ", int *" decpt ,
+.BI "int fcvt_r(double " number ", int " ndigits ", int *" decpt ,
 .BI "int *" sign ", char *" buf ", size_t " len );
 .sp
-.BI "char *qecvt_r(long double " number ", int " ndigits ", int *" decpt ,
+.BI "int qecvt_r(long double " number ", int " ndigits ", int *" decpt ,
 .BI "int *" sign ", char *" buf ", size_t " len );
 .sp
-.BI "char *qfcvt_r(long double " number ", int " ndigits ", int *" decpt ,
+.BI "int qfcvt_r(long double " number ", int " ndigits ", int *" decpt ,
 .BI "int *" sign ", char *" buf ", size_t " len );
 .SH DESCRIPTION
 The functions
@@ -62,6 +64,8 @@ See
 .BR ecvt (3)
 and
 .BR qecvt (3).
+.SH "RETURN VALUE"
+These functions return 0 on success, and \-1 otherwise.
 .SH NOTES
 These functions are obsolete. Instead,
 .IR sprintf ()

@@ -347,7 +347,7 @@ struct vt_mode {
 };
 .fi
 
-...which is set to the mode of the active vt.  
+\&...which is set to the mode of the active vt.  
 \fImode\fP is set to one of these values: 
 
     VT_AUTO       auto vt switching 
@@ -511,17 +511,18 @@ On success, 0 is returned. On error \-1 is returned, and \fIerrno\fP is set.
 
 .TP
 .B EBADF
-file descriptor is invalid.
+The file descriptor is invalid.
 .TP
 .B
 ENOTTY
-file descriptor is not associated with a character special device, or the specified request does not apply to it.
+The file descriptor is not associated with a character special device,
+or the specified request does not apply to it.
 .TP
 .B EINVAL
-file descriptor or \fIargp\fP is invalid.
+The file descriptor or \fIargp\fP is invalid.
 .TP
 .B EPERM
-permission violation.
+Insufficient permission.
 .SH WARNING
 Do not regard this man page as documentation of the Linux console ioctl's.
 This is provided for the curious only, as an alternative to reading the
@@ -542,28 +543,28 @@ on future versions of Linux.
 Use POSIX functions.
 
 .SH "SEE ALSO"
+.BR dumpkeys (1),
 .BR kbd_mode (1),
 .BR loadkeys (1),
-.BR dumpkeys (1),
 .BR mknod (1),
 .BR setleds (1),
 .BR setmetamode (1),
-.BR ioperm (2),
 .BR execve (2),
 .BR fcntl (2),
+.BR ioperm (2),
 .BR termios (3),
 .BR console (4),
 .BR console_codes (4),
 .BR mt (4),
 .BR sd (4),
 .BR tty (4),
-.BR ttys (4),
 .BR tty_ioctl (4),
+.BR ttys (4),
 .BR vcs (4),
 .BR vcsa (4),
 .BR charsets (7),
 .BR mapscrn (8),
-.BR setfont (8),
 .BR resizecons (8),
+.BR setfont (8),
 .IR /usr/include/linux/kd.h ,
 .I /usr/include/linux/vt.h

@@ -28,7 +28,7 @@
 .\" Modified 2002-07-25 by Walter Harms
 .\" 	(walter.harms@informatik.uni-oldenburg.de)
 .\"
-.TH ACOS 3  2002-07-25 "" "Linux Programmer's Manual"
+.TH ACOS 3  2004-10-06 "" "Linux Programmer's Manual"
 .SH NAME
 acos, acosf, acosl \- arc cosine function
 .SH SYNOPSIS
@@ -39,6 +39,8 @@ acos, acosf, acosl \- arc cosine function
 .BI "float acosf(float " x );
 .BI "long double acosl(long double " x );
 .fi
+.sp
+Link with \-lm.
 .SH DESCRIPTION
 The \fBacos()\fP function calculates the arc cosine of \fIx\fP; that is
 the value whose cosine is \fIx\fP.  If \fIx\fP falls outside the range

@@ -26,8 +26,9 @@
 .\" Slightly rephrased, aeb.
 .\" Modified 1 Feb 2003 - added CLONE_SIGHAND restriction, aeb.
 .\" Modified 1 Jan 2004 - various updates, aeb
+.\" Modified 2004-09-10 - added CLONE_PARENT_SETTID etc - aeb.
 .\"
-.TH CLONE 2 2001-12-31 "Linux 2.4" "Linux Programmer's Manual"
+.TH CLONE 2 2004-09-10 "Linux 2.6" "Linux Programmer's Manual"
 .SH NAME
 clone \- create a child process
 .SH SYNOPSIS
@@ -35,8 +36,13 @@ clone \- create a child process
 .sp
 .BI "int clone(int (*" "fn" ")(void *), void *" "child_stack" ", int " "flags" ", void *" "arg" );
 .sp
-.BI "_syscall2(int, " "clone" ", int, " "flags" ", void *, " "child_stack" )
-
+.BI "_syscall2(int, " clone ", int, " flags ", void *, " child_stack )
+.sp
+.BI "_syscall5(int, " clone ", int, " flags ", void *, " child_stack ,
+.br
+.BI "     int *, " parent_tidptr ", struct user_desc *, " newtls ,
+.br
+.BI "     int *, " child_tidptr )
 .SH DESCRIPTION
 .B clone 
 creates a new process, just like
@@ -133,8 +139,8 @@ constants, in order to specify what is shared between the calling process
 and the child process:
 
 .TP
-.B CLONE_PARENT
-(Linux 2.4 onwards) If
+.BR CLONE_PARENT " (since Linux 2.3.12)"
+If
 .B CLONE_PARENT
 is set, then the parent of the new child (as returned by
 .BR getppid (2))
@@ -200,8 +206,7 @@ Operations on file descriptors performed later by either the calling process or
 the child process do not affect the other process.
 
 .TP
-.B CLONE_NEWNS
-(Linux 2.4.19 onwards)
+.BR CLONE_NEWNS " (since Linux 2.4.19)
 Start the child in a new namespace.
 
 Every process lives in a namespace. The
@@ -229,10 +234,10 @@ where the
 flag is set, the cloned child is started in a new namespace,
 initialized with a copy of the namespace of the parent.
 
-Only a privileged process may specify the
+Only a privileged process (one having the CAP_SYS_ADMIN capability)
+may specify the
 .B CLONE_NEWNS
 flag.
-.\" The required capability is CAP_SYS_ADMIN. -- MTK, 15 Oct 02
 It is not permitted to specify both
 .B CLONE_NEWNS
 and
@@ -314,8 +319,7 @@ processes do not affect the other, as with
 .BR fork (2).
 
 .TP
-.B CLONE_PID
-(Obsolete)
+.BR CLONE_PID " (obsolete)"
 If
 .B CLONE_PID
 is set, the child process is created with the same process ID as 
@@ -325,8 +329,7 @@ specified only by the system boot process (PID 0).
 It disappeared in Linux 2.5.16.
 
 .TP 
-.B CLONE_THREAD
-(Linux 2.4 onwards)  
+.BR CLONE_THREAD " (since Linux 2.4.0-test8)"
 If
 .B CLONE_THREAD
 is set, the child is placed in the same thread group as the calling process.
@@ -341,9 +344,41 @@ thread group, whose ID is the same as the process ID.
 
 (Thread groups are feature added in Linux 2.4 to support the
 POSIX threads notion of a set of threads sharing a single PID.  In Linux
-2.4, calls to 
+since 2.4, calls to 
 .BR getpid (2)
 return the thread group ID of the caller.)
+
+.TP
+.BR CLONE_SETTLS " (since Linux 2.5.32)"
+The
+.I newtls
+parameter is the new TLS (Thread Local Storage) descriptor.
+(See
+.BR set_thread_area (2).)
+
+.TP
+.BR CLONE_PARENT_SETTID " (since Linux 2.5.49)"
+Store child thread ID at location
+.I parent_tidptr
+in parent and child memory.
+(In Linux 2.5.32-2.5.48 there was a flag CLONE_SETTID that did this.)
+
+.TP
+.BR CLONE_CHILD_SETTID " (since Linux 2.5.49)"
+Store child thread ID at location
+.I child_tidptr
+in child memory.
+
+.TP
+.BR CLONE_CHILD_CLEARTID " (since Linux 2.5.49)"
+Erase child thread ID at location
+.I child_tidptr
+in child memory when the child exits, and do a wakeup on the futex
+at that address.
+The address involved may be changed by the
+.BR set_tid_address (2)
+system call. This is used by threading libraries.
+
 
 .SS "sys_clone"
 The
@@ -372,10 +407,22 @@ the stack.  In this case, for correct operation, the
 .B CLONE_VM
 option should not be specified.
 
+Since Linux 2.5.49 the system call has five parameters (one unused).
+The additional two parameters are
+.I parent_tidptr
+which points to the location (in parent and child memory) where
+the parent thread ID will be written in case CLONE_PARENT_SETTID
+was specified, and
+.I child_tidptr
+which points to the location (in child memory) where the child thread ID
+will be written in case CLONE_CHILD_SETTID was specified.
+
 .SH "RETURN VALUE"
-On success, the PID of the child process is returned in the caller's thread
-of execution.  On failure, a \-1 will be returned in the caller's
-context, no child process will be created, and
+.\" gettid() returns current->pid;
+.\" getpid() returns current->tgid;
+On success, the thread ID of the child process is returned
+in the caller's thread of execution.  On failure, a \-1 will be returned
+in the caller's context, no child process will be created, and
 .I errno
 will be set appropriately.
 
@@ -430,10 +477,10 @@ was specified by a non-root process (process without CAP_SYS_ADMIN).
 .B CLONE_PID
 was specified by a process other than process 0.
 
-.SH BUGS
+.SH AVAILABILITY
 There is no entry for
 .B clone
-in libc version 5.  libc 6 (a.k.a. glibc 2) provides
+in libc5.  glibc2 provides
 .B clone
 as described in this manual page.
 
@@ -447,14 +494,11 @@ The
 and
 .B sys_clone
 calls are Linux-specific and should not be used in programs
-intended to be portable.  For programming threaded applications
-(multiple threads of control in the same memory space), it is better
-to use a library implementing the POSIX 1003.1c thread API, such as
-the LinuxThreads library (included in glibc2).  See
-.BR pthread_create (3).
-.\" NPTL
+intended to be portable.
 
 .SH "SEE ALSO"
 .BR fork (2),
+.BR getpid (2),
+.BR gettid (2),
 .BR wait (2),
-.BR pthread_create (3)
+.BR capabilities (7)

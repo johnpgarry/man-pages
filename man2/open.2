@@ -23,19 +23,18 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Wed Jul 21 22:42:16 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sun Aug 21 18:18:14 1994: Michael Haardt's NFS diffs were
-.\"          applied by hand (faith@cs.unc.edu).
-.\" Modified Sat Apr 13 16:25:28 1996 by Andries Brouwer (aeb@cwi.nl)
-.\" Modified Mon May 13 00:53:52 1996: added symbolic constants
-.\"          as sent by Thomas Koenig
-.\" Modified Fri Dec 20 16:06:45 1996 by Michael Haardt: More NFS details
-.\" Modified Fri Feb 19 15:08:34 1999 by Andries Brouwer (aeb@cwi.nl)
-.\" Modified 981128 by Joseph S. Myers <jsm28@hermes.cam.ac.uk>
-.\" Modified Thu Jun  3 19:29:06 1999 by Michael Haardt: NFS lock optimisation
-.\" Modified, 7 May 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 1993-07-21 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1994-08-21 by Michael Haardt
+.\" Modified 1996-04-13 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 1996-05-13 by Thomas Koenig
+.\" Modified 1996-12-20 by Michael Haardt
+.\" Modified 1999-02-19 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 1998-11-28 by Joseph S. Myers <jsm28@hermes.cam.ac.uk>
+.\" Modified 1999-06-03 by Michael Haardt
+.\" Modified 2002-05-07 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2004-06-23 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH OPEN 2 1999-06-03 "Linux" "System calls"
+.TH OPEN 2 2004-06-23 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 open, creat \- open and possibly create a file or device
 .SH SYNOPSIS
@@ -193,8 +192,12 @@ sockets. See
 for further details.
 .TP
 .B O_LARGEFILE
-On 32-bit systems that support the Large Files System, allow files
-whose sizes cannot be represented in 31 bits to be opened.
+(LFS)
+Allow files whose sizes cannot be represented in an
+.B off_t
+(but can be represented in an
+.BR off64_t )
+to be opened.
 .PP
 Some of these optional flags can be altered using
 .B fcntl
@@ -308,14 +311,19 @@ or
 is set).
 .TP
 .B EACCES
-The requested access to the file is not allowed, or one of the
-directories in
-.IR pathname
-did not allow search (execute) permission, or the file did not exist
-yet and write access to the parent directory is not allowed.
+The requested access to the file is not allowed, or search permission
+is denied for one of the directories in the path prefix of
+.IR pathname ,
+or the file did not exist yet and write access to the parent directory
+is not allowed.
+(See also
+.BR path_resolution (2).)
 .TP
 .B ENAMETOOLONG
 .IR pathname " was too long."
+.TP
+.B ENFILE
+The system limit on the total number of open files has been reached.
 .TP
 .B ENOENT
 O_CREAT is not set and the named file does not exist.
@@ -339,6 +347,10 @@ Or, the file is a device special file and no corresponding device exists.
 .I pathname
 refers to a device special file and no corresponding device exists.
 (This is a Linux kernel bug - in this situation ENXIO must be returned.)
+.TP
+.B EOVERFLOW
+.I pathname
+refers to a regular file, too large to be opened - see O_LARGEFILE above.
 .TP
 .B EROFS
 .I pathname
@@ -371,10 +383,6 @@ Insufficient kernel memory was available.
 .TP
 .B EMFILE
 The process already has the maximum number of files open.
-.TP
-.B ENFILE
-The limit on the total number of files open on the system has been
-reached.
 .SH NOTE
 Under Linux, the O_NONBLOCK flag indicates that one wants to open
 but does not necessarily have the intention to read or write.
@@ -424,16 +432,17 @@ POSIX provides for three different variants of synchronised I/O,
 corresponding to the flags \fBO_SYNC\fR, \fBO_DSYNC\fR and
 \fBO_RSYNC\fR.  Currently (2.1.130) these are all synonymous under Linux.
 .SH "SEE ALSO"
-.BR read (2),
-.BR write (2),
-.BR fcntl (2),
 .BR close (2),
+.BR fcntl (2),
 .BR link (2),
 .BR mknod (2),
 .BR mount (2),
+.BR path_resolution (2),
+.BR read (2),
+.BR socket (2),
 .BR stat (2),
 .BR umask (2),
 .BR unlink (2),
-.BR socket (2),
+.BR write (2),
 .BR fopen (3),
 .BR fifo (4)

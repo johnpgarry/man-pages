@@ -31,13 +31,13 @@ in the usual way: the permissions of the created directory are
 Other mode bits of the created directory depend on the operating system.
 For Linux, see below.
 
-The newly created directory will be owned by the effective uid of the
-process.  If the directory containing the file has the set group id
+The newly created directory will be owned by the effective user ID of the
+process.  If the directory containing the file has the set group ID
 bit set, or if the filesystem is mounted with BSD group semantics, the
 new directory will inherit the group ownership from its parent;
-otherwise it will be owned by the effective gid of the process.
+otherwise it will be owned by the effective group ID of the process.
 
-If the parent directory has the set group id bit set then so will the
+If the parent directory has the set group ID bit set then so will the
 newly created directory.
 
 .SH "RETURN VALUE"
@@ -66,7 +66,9 @@ is a symbolic link, dangling or not.
 The parent directory does not allow write permission to the process,
 or one of the directories in
 .IR pathname
-did not allow search (execute) permission.
+did not allow search permission.
+(See also
+.BR path_resolution (2).)
 .TP
 .B ENAMETOOLONG
 .IR pathname " was too long."
@@ -118,9 +120,8 @@ of these affect
 .BR chmod (2),
 .BR mknod (2),
 .BR mount (2),
+.BR path_resolution (2),
 .BR rmdir (2),
 .BR stat (2),
 .BR umask (2),
 .BR unlink (2)
-
-

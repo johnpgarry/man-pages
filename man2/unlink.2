@@ -23,13 +23,13 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Sat Jul 24 13:00:50 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified Sun Sep  8 18:59:01 1996 by aeb following remarks by
-.\"     Arnt Gulbrandsen <agulbra@troll.no>
-.\" Modified Fri Jan 31 23:49:15 1997 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Thu May 17 12:15:26 2001 by aeb
+.\" Modified 1993-07-24 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1996-09-08 by Arnt Gulbrandsen <agulbra@troll.no>
+.\" Modified 1997-01-31 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2001-05-17 by aeb
+.\" Modified 2004-06-23 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH UNLINK 2 1997-08-21 "Linux 2.0.30" "Linux Programmer's Manual"
+.TH UNLINK 2 2004-06-23 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 unlink \- delete a name and possibly the file it refers to
 .SH SYNOPSIS
@@ -60,18 +60,23 @@ is set appropriately.
 .B EACCES
 Write access to the directory containing
 .I pathname
-is not allowed for the process's effective uid, or one of the
+is not allowed for the process's effective UID, or one of the
 directories in
 .IR pathname
-did not allow search (execute) permission.
+did not allow search permission.
+(See also
+.BR path_resolution (2).)
 .TP
 .BR EPERM " or " EACCES
 The directory containing
 .I pathname
-has the sticky-bit
+has the sticky bit
 .RB ( S_ISVTX )
-set and the process's effective uid is neither the uid of the file to
-be deleted nor that of the directory containing it.
+set and the process's effective UID is neither the UID of the file to
+be deleted nor that of the directory containing it, and
+the process is not privileged (Linux: does not have the
+.B CAP_FOWNER
+capability).
 .TP
 .BR EPERM " (Linux only)"
 The filesystem does not allow unlinking of files.
@@ -132,11 +137,13 @@ conditions EINTR, EMULTIHOP, ETXTBSY, ENOLINK.
 Infelicities in the protocol underlying NFS can cause the unexpected
 disappearance of files which are still being used.
 .SH "SEE ALSO"
+.BR rm (1),
+.BR chmod (2),
 .BR link (2),
-.BR rename (2),
-.BR open (2),
-.BR rmdir (2),
 .BR mknod (2),
+.BR open (2),
+.BR path_resolution (2),
+.BR rename (2),
+.BR rmdir (2),
 .BR mkfifo (3),
-.BR remove (3),
-.BR rm (1)
+.BR remove (3)

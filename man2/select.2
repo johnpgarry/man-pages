@@ -170,7 +170,7 @@ with the desired
 .IR sigmask ,
 avoiding the race.)
 Since Linux today does not have a
-.IR pselect ()
+.BR pselect ()
 system call, the current glibc2 routine still contains this race.
 .SS "The timeout"
 The time structures involved are defined in
@@ -231,8 +231,12 @@ On success,
 .B select
 and
 .B pselect
-return the number of descriptors contained in the descriptor sets, which
-may be zero if the timeout expires before anything interesting happens.
+return the number of descriptors contained in the three returned
+descriptor sets (that is, the total number of one bits in
+.IR readfds ,
+.IR writefds ,
+.IR exceptfds )
+which may be zero if the timeout expires before anything interesting happens.
 On error, \-1 is returned, and
 .I errno
 is set appropriately; the sets and
@@ -358,6 +362,23 @@ is defined, under glibc 2.2.2-2.2.4 it gives it when
 .B _XOPEN_SOURCE
 is defined and has a value of 600 or larger.
 No doubt, since POSIX 1003.1-2001, it should give the prototype by default.
+.SH BUGS
+.B pselect
+is currently emulated with a user-space wrapper that has a race condition.
+For reliable (and more portable) signal trapping, use the self-pipe trick.
+(Where a signal handler writes to a pipe whose other end is read by the
+main loop.)
+
+Under Linux,
+.B select
+may report a socket file descriptor as "ready for reading", while
+nevertheless a subsequent read blocks. This could for example
+happen when data has arrived but upon examination has wrong
+checksum and is discarded. There may be other circumstances.
+.\" Stevens discusses a case where accept can block after select
+.\" returns successfully because of an intervening RST from the client.
+Thus it may be safer to use O_NONBLOCK on sockets that should not block.
+.\" Maybe the kernel should have returned EIO in such a situation?
 .SH "SEE ALSO"
 For a tutorial with discussion and examples, see
 .BR select_tut (2).

@@ -27,8 +27,10 @@
 .\" Modified Tue Oct 22 22:03:17 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified, 8 Jan 2003, Michael Kerrisk, <mtk16@ext.canterbury.ac.nz>
 .\"	Removed EIDRM from errors - that can't happen...
+.\" Modified, 27 May 2004, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"     Added notes on capability requirements
 .\"
-.TH SHMGET 2 1993-11-28 "Linux 0.99.11" "Linux Programmer's Manual"
+.TH SHMGET 2 2004-06-17 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 shmget \- allocates a shared memory segment
 .SH SYNOPSIS
@@ -82,6 +84,7 @@ used with \fBIPC_CREAT\fP to ensure failure if the segment already exists.
 .B mode_flags (lowest 9 bits)
 specifying the permissions granted to the owner, group, and world.
 Presently, the execute permissions are not used by the system.
+.\" FIXME -- document SHM_HUGETLB
 .PP
 If a new segment is created, the access permissions from
 .I shmflg
@@ -184,11 +187,17 @@ On failure,
 .B errno
 is set to one of the following:
 .TP 12
+.\" FIXME -- SHM_HUGETLB requires CAP_IPC_LOCK, or the error EPERM
+.\" results
 .B EINVAL
 if a new segment was to be created and \fIsize\fP < \fBSHMMIN\fP
 or \fIsize\fP > \fBSHMMAX\fP, or no new segment was to be created,
 a segment with given key existed, but \fIsize\fP is greater than the size
 of that segment.
+.TP
+.B ENFILE
+.\" [2.6.7] shmem_zero_setup()-->shmem_file_setup()-->get_empty_filp()
+The system limit on the total number of open files has been reached.
 .TP
 .B EEXIST
 if 
@@ -210,7 +219,9 @@ was not specified.
 .TP
 .B EACCES
 if the user does not have permission to access the 
-shared memory segment.
+shared memory segment, and does not have the
+.B CAP_IPC_OWNER
+capability.
 .TP
 .B ENOMEM
 if no memory could be allocated for segment overhead.
@@ -258,8 +269,9 @@ Until version 2.3.30 Linux would return EIDRM for a
 .B shmget
 on a shared memory segment scheduled for deletion.
 .SH "SEE ALSO"
+.BR shmat (2),
+.BR shmctl (2),
+.BR shmdt (2),
 .BR ftok (3),
 .BR ipc (5),
-.BR shmctl (2),
-.BR shmat (2),
-.BR shmdt (2)
+.BR capabilities (7)

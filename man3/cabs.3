@@ -9,10 +9,11 @@ cabs, cabsf, cabsl \- absolute value of a complex number
 .sp
 .BI "double cabs(double complex " z );
 .sp
-.BI "float cabsf(float double complex " z );
+.BI "float cabsf(float complex " z );
 .sp
 .BI "long double cabsl(long double complex " z );
 .sp
+Link with \-lm.
 .SH DESCRIPTION
 The cabs() function returns the absolute value of the complex number z. The
 result is a real number. 
@@ -22,6 +23,6 @@ The function is actually an alias for hypot(a,b) = sqrt(a*a+b*b).
 C99
 .SH "SEE ALSO"
 .BR abs (3),
-.BR hypot (3),
 .BR cimag (3),
+.BR hypot (3),
 .BR complex (5)

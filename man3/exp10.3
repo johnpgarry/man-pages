@@ -33,6 +33,8 @@
 exp10, exp10f, exp10l \- base-10 exponential function
 .SH SYNOPSIS
 .nf
+.B #define _GNU_SOURCE
+.br
 .B #include <math.h>
 .sp
 .BI "double exp10(double " x );
@@ -41,13 +43,15 @@ exp10, exp10f, exp10l \- base-10 exponential function
 .sp
 .BI "long double exp10l(long double " x );
 .fi
+.sp
+Link with \-lm.
 .SH DESCRIPTION
 The \fBexp10()\fP function returns the value of 10
 raised to the power of \fIx\fP.
 .SH "CONFORMING TO"
 The function is a GNU extension.
 .SH "SEE ALSO"
-.BR sqrt (3),
 .BR cbrt (3),
 .BR exp (3),
-.BR exp2 (3)
+.BR exp2 (3),
+.BR sqrt (3)

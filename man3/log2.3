@@ -42,8 +42,10 @@ log2, log2f, log2l \- base-2 logarithmic function
 .sp
 .BI "long double log2l(long double " x );
 .fi
+.sp
+Link with \-lm.
 .SH DESCRIPTION
-The \fBlog2()\fP function returns the natural logarithm of \fIx\fP.
+The \fBlog2()\fP function returns the base 2 logarithm of \fIx\fP.
 .SH ERRORS
 The \fBlog2()\fP function can return the following error:
 .TP
@@ -53,5 +55,5 @@ The argument \fIx\fP is negative.
 SVID 3, POSIX, BSD 4.3, ISO 9899.
 The float and the long double variants are C99 requirements.
 .SH "SEE ALSO"
-.BR sqrt (3),
-.BR cbrt (3)
+.BR cbrt (3),
+.BR sqrt (3)

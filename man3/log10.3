@@ -42,6 +42,8 @@ log10, log10f, log10l \-  base-10 logarithmic function
 .sp
 .BI "long double log10l(long double " x );
 .fi
+.sp
+Link with \-lm.
 .SH DESCRIPTION
 The \fBlog10()\fP function returns the base 10 logarithm of \fIx\fP.
 .SH ERRORS
@@ -56,5 +58,5 @@ The argument \fIx\fP is zero.  The log of zero is not defined.
 SVID 3, POSIX, BSD 4.3, ISO 9899.
 The float and the long double variants are C99 requirements.
 .SH "SEE ALSO"
-.BR sqrt (3),
-.BR cbrt (3)
+.BR cbrt (3),
+.BR sqrt (3)

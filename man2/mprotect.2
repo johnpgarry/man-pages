@@ -25,6 +25,7 @@
 .\" Modified 1996-10-22 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified 1997-05-31 by Andries Brouwer <aeb@cwi.nl>
 .\" Modified 2003-08-24 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 2004-08-16 by Andi Kleen <ak@muc.de>
 .\"
 .TH MPROTECT 2 2003-08-24 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
@@ -134,9 +135,21 @@ main(void)
 .SH "CONFORMING TO"
 SVr4, POSIX.1b (formerly POSIX.4).  SVr4 defines an additional error
 code EAGAIN. The SVr4 error conditions don't map neatly onto Linux's.
-POSIX.1b says that
+POSIX says that
 .B mprotect
 can be used only on regions of memory obtained from
 .BR mmap (2).
+.SH NOTES
+On Linux it is always legal to call
+.B mprotect
+on any address in a process' address space (except for the
+kernel vsyscall area). In particular it can be used
+to change existing code mappings to be writable.
+
+Whether
+.B PROT_EXEC
+has any effect different from
+.B PROT_READ
+is architecture and kernel version dependent.
 .SH "SEE ALSO"
 .BR mmap (2)

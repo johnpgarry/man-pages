@@ -22,12 +22,13 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified 22 July 1995 by Michael Chastain <mec@duracef.shout.net>:
+.\" Modified 1995-07-22 by Michael Chastain <mec@duracef.shout.net>:
 .\"   'gethostname' is real system call on Linux/Alpha.
-.\" Modified Fri Jan 31 16:30:53 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1997-01-31 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified 2000-06-04, 2001-12-15 by aeb
+.\" Modified 2004-06-17 by mtk
 .\"
-.TH GETHOSTNAME 2 2001-12-15 "Linux 2.5.0" "Linux Programmer's Manual"
+.TH GETHOSTNAME 2 2004-06-17 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 gethostname, sethostname \- get/set host name
 .SH SYNOPSIS
@@ -53,6 +54,10 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
+.B EFAULT
+.I name
+is an invalid address.
+.TP
 .B EINVAL
 .I len
 is negative or, for
@@ -69,11 +74,9 @@ is smaller than the actual size.
 .B EPERM
 For
 .BR sethostname ,
-the caller was not the superuser.
-.TP
-.B EFAULT
-.I name
-is an invalid address.
+the caller did not have the
+.B CAP_SYS_ADMIN
+capability.
 .SH "CONFORMING TO"
 SVr4, 4.4BSD  (this function first appeared in 4.2BSD).
 POSIX 1003.1-2001 specifies

@@ -23,10 +23,12 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified by Michael Haardt <michael@moria.de>
-.\" Modified Sat Jul 24 13:03:05 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified 10 June 1995 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 1993-07-24 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1995-06-10 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 2004-06-23 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2004-10-10 by Andries Brouwer <aeb@cwi.nl>
 .\"
-.TH UTIME 2 1995-06-10 "Linux" "Linux Programmer's Manual"
+.TH UTIME 2 2004-10-10 "Linux 2.6.8" "Linux Programmer's Manual"
 .SH NAME
 utime, utimes \- change access and/or modification times of an inode
 .SH SYNOPSIS
@@ -39,7 +41,7 @@ utime, utimes \- change access and/or modification times of an inode
 .sp 2
 .B #include <sys/time.h>
 .sp
-.BI "int utimes(char *" filename ", struct timeval *" tvp );
+.BI "int utimes(const char *" filename ", const struct timeval " tv [2]);
 .fi
 .SH DESCRIPTION
 .B utime
@@ -49,12 +51,22 @@ to the
 .IR actime " and " modtime
 fields of 
 .I buf
-respectively.  If
+respectively.
+
+If
 .I buf
-is
-.BR NULL ,
-then the access and modification times of the file are set to the current
-time.  The
+is NULL, then the access and modification times of the file are set
+to the current time.
+
+Changing time stamps is permitted when: either
+the process has appropriate privileges (Linux: has the
+.B CAP_FOWNER
+capability), or the effective user ID equals the user ID
+of the file, or
+.I buf
+must is NULL and the process has write permission to the file.
+
+The
 .I utimbuf
 structure is:
 
@@ -67,17 +79,18 @@ struct utimbuf {
 .fi
 .RE
 
-In the Linux DLL 4.4.1 libraries,
+The function
+.B utime
+allows specification of time stamps with a resolution of 1 second.
+The function
 .B utimes
-is just a wrapper for
-.BR utime :
-.IR tvp [0]. tv_sec
-is
-.IR actime ,
-and
-.IR tvp [1]. tv_sec
-is
-.IR modtime .
+is similar, but allows a resolution of 1 microsecond.
+Here
+.IR tv [0]
+refers to access time, and
+.IR tv [1]
+to modification time.
+
 The
 .I timeval
 structure is:
@@ -95,22 +108,54 @@ On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-Other errors may occur.
-
 .TP
 .B EACCES
-Permission to write the file is denied.
+Search permission is denied for one of the directories in
+the path prefix of
+.I path
+(see also
+.BR path_resolution (2)),
+or
+.I buf
+is NULL and the process does not have permission to change the time stamps
+(see above).
 .TP
 .B ENOENT
 .I filename
 does not exist.
+.TP
+.B EPERM
+.I buf
+is not NULL and the process does not have permission to change the time stamps.
+.TP
+.B EROFS
+.I path
+resides on a read-only file system.
+.SH NOTES
+Linux does not allow changing the time stamps on an immutable file,
+or setting the time stamps to something other than the current time
+on an append-only file.
+
+In libc4 and libc5,
+.B utimes
+is just a wrapper for
+.B utime
+and hence does not allow a subsecond resolution.
+
+POSIX calls
+.B utimes
+legacy.
+.SH BUGS
+Linux is not careful to distinguish between the EACCES and EPERM error returns.
+On the other hand, POSIX 1003.1-2003 is buggy in its error description for
+.BR utimes .
 .SH "CONFORMING TO"
 .BR utime :
 SVr4, SVID, POSIX.  SVr4 documents additional error conditions EFAULT,
-EINTR, ELOOP, EMULTIHOP, ENAMETOOLONG, ENOLINK, ENOTDIR,
-ENOLINK, ENOTDIR, EPERM, EROFS.
+EINTR, ELOOP, EMULTIHOP, ENAMETOOLONG, ENOLINK, ENOLINK, ENOTDIR.
 .br
 .BR utimes :
 BSD 4.3
 .SH "SEE ALSO"
+.BR chattr (1),
 .BR stat (2)

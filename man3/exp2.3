@@ -42,6 +42,8 @@ exp2, exp2f, exp2l \- base-2 exponential function
 .sp
 .BI "long double exp2l(long double " x );
 .fi
+.sp
+Link with \-lm.
 .SH DESCRIPTION
 The \fBexp2()\fP function returns the value of 2
 raised to the power of \fIx\fP.
@@ -49,7 +51,7 @@ raised to the power of \fIx\fP.
 SVID 3, POSIX, BSD 4.3, ISO 9899.
 The float and the long double variants are C99 requirements.
 .SH "SEE ALSO"
-.BR sqrt (3),
 .BR cbrt (3),
 .BR exp (3),
-.BR exp10 (3)
+.BR exp10 (3),
+.BR sqrt (3)

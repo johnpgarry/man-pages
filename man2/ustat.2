@@ -62,7 +62,7 @@ char	f_fpack[6];	/* Filsys pack name */
 .PP
 
 The last two fields, f_fname and f_fpack, are not implemented and will
-always be filled with null characters.
+always be filled with NUL characters.
 .SH "RETURN VALUE"
 On success, zero is returned and the ustat structure pointed to by
 .I ubuf
@@ -105,5 +105,5 @@ Such file systems will return -1 in the field
 For some file systems, inodes are dynamically allocated.
 Such file systems will return the current number of free inodes.
 .SH "SEE ALSO"
-.BR statfs (2),
-.BR stat (2)
+.BR stat (2),
+.BR statfs (2)

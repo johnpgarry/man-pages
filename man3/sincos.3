@@ -1,20 +1,21 @@
 .\" Copyright 2002 Walter Harms (walter.harms@informatik.uni-oldenburg.de)
 .\" Distributed under GPL, 2002-07-27 Walter Harms
 .\"
-.TH sincos 3  2002-07-27 "GNU" "Linux Programmer's Manual"
+.TH sincos 3  2004-10-05 "GNU" "Linux Programmer's Manual"
 .SH NAME
 sincos, sincosf, sincosl \- calculate sin and cos simultaneously
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
 .sp
-.BI "double sincos(double " x ", double *" sin ", double *" cos );
+.BI "void sincos(double " x ", double *" sin ", double *" cos );
 .sp
-.BI "float sincosf(float " x ", float *" sin ", float *" cos );
+.BI "void sincosf(float " x ", float *" sin ", float *" cos );
 .sp
-.B "long double"
-.BI "sincosl(long double " x ", long double *" sin ", long double *" cos );
+.BI "void sincosl(long double " x ", long double *" sin ", long double *" cos );
 .fi
+.sp
+Link with \-lm.
 .SH DESCRIPTION
 Several applications need sine and cosine of the same angle
 .IR x .
@@ -23,6 +24,6 @@ via the given pointers.
 .SH "CONFORMING TO"
 This function is a GNU extension.
 .SH "SEE ALSO"
-.BR sin (3),
 .BR cos (3),
+.BR sin (3),
 .BR tan (3)

@@ -680,18 +680,18 @@ It was updated for 2.4 by Nivedita Singhvi with input from
 Alexey Kuznetsov's Documentation/networking/ip-sysctls.txt
 document.
 .SH "SEE ALSO"
-.BR socket (7),
-.BR socket (2),
-.BR ip (7),
-.BR bind (2), 
-.BR listen (2),
 .BR accept (2),
+.BR bind (2),
 .BR connect (2),
-.BR sendmsg (2),
+.BR getsockopt (2),
+.BR listen (2),
 .BR recvmsg (2),
 .BR sendfile (2),
+.BR sendmsg (2),
+.BR socket (2),
 .BR sysctl (2),
-.BR getsockopt (2).
+.BR ip (7),
+.BR socket (7)
 .sp
 RFC793 for the TCP specification.
 .br
@@ -709,4 +709,3 @@ Notification.
 RFC2581 for TCP congestion control algorithms.
 .br
 RFC2018 and RFC2883 for SACK and extensions to SACK.
-

@@ -23,21 +23,22 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Wed Jul 21 19:36:29 1993, Rik Faith (faith@cs.unc.edu)
-.\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
+.\" Modified 1993-07-21 Rik Faith (faith@cs.unc.edu)
+.\" Modified 1994-08-21 by Michael Chastain (mec@shell.portal.com):
 .\"   Removed note about old kernel (pre-1.1.44) using wrong id on path.
-.\" Modified 18 Mar 1996 by Martin Schulze (joey@infodrom.north.de):
+.\" Modified 1996-03-18 by Martin Schulze (joey@infodrom.north.de):
 .\"   Stated more clearly how it behaves with symbolic links.
 .\" Added correction due to Nick Duffek (nsd@bbc.com), aeb, 960426
-.\" Modified Sat Sep 07 18:17:26 MET DST 1996 by Michael Haardt:
+.\" Modified 1996-09-07 by Michael Haardt:
 .\"   Restrictions for NFS
-.\" Modified by Joseph S. Myers <jsm28@cam.ac.uk>, 970909
-.\" Modified Tue Jan 13 21:21:03 MET 1998 by Michael Haardt:
+.\" Modified 1997-09-09 by Joseph S. Myers <jsm28@cam.ac.uk>
+.\" Modified 1998-01-13 by Michael Haardt:
 .\"   Using access is often insecure
-.\" Modified Tue Oct 16 02:40:48 CEST 2001 by aeb
-.\" Modified Tue Apr 23 19:51:15 CEST 2002 by Roger Luethi <rl@hellgate.ch>
+.\" Modified 2001-10-16 by aeb
+.\" Modified 2002-04-23 by Roger Luethi <rl@hellgate.ch>
+.\" Modified 2004-06-23 by Michael Kerrisk
 .\"
-.TH ACCESS 2 2002-04-23 "Linux" "Linux Programmer's Manual"
+.TH ACCESS 2 2004-06-23 "Linux" "Linux Programmer's Manual"
 .SH NAME
 access \- check user's permissions for a file
 .SH SYNOPSIS
@@ -75,7 +76,7 @@ links encountered on the way.
 
 The check is done with the process's
 .I real
-uid and gid, rather than with the effective ids as is done when
+UID and GID, rather than with the effective IDs as is done when
 actually attempting an operation.  This is to allow set-UID programs to
 easily determine the invoking user's authority.
 
@@ -104,8 +105,10 @@ shall fail if:
 .TP
 .B EACCES
 The requested access would be denied to the file or search permission
-is denied to one of the directories in
+is denied for one of the directories in the path prefix of
 .IR pathname .
+(See also
+.BR path_resolution (2).)
 .TP
 .B ELOOP
 Too many symbolic links were encountered in resolving
@@ -169,9 +172,10 @@ interval between checking and opening the file to manipulate it.
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH "SEE ALSO"
-.BR stat (2),
-.BR open (2),
 .BR chmod (2),
 .BR chown (2),
+.BR open (2),
+.BR path_resolution (2),
+.BR setgid (2),
 .BR setuid (2),
-.BR setgid (2)
+.BR stat (2)

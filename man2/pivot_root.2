@@ -1,4 +1,10 @@
-.TH PIVOT_ROOT 2 2000-02-23 "Linux" "System Calls"
+.\" Copyright (C) 2000 by Werner Almesberger
+.\" May be distributed under GPL
+.\"
+.\" Written 2000-02-23 by Werner Almesberger
+.\" Modified 2004-06-17 Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"
+.TH PIVOT_ROOT 2 2004-06-17 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 pivot_root \- change the root file system
 .SH SYNOPSIS
@@ -11,6 +17,10 @@ pivot_root \- change the root file system
 \fBpivot_root\fP moves the root file system of the current process to the
 directory \fIput_old\fP and makes \fInew_root\fP the new root file system
 of the current process.
+.\"
+.\" The
+.\" .B CAP_SYS_ADMIN
+.\" capability is required.
 
 The typical use of \fBpivot_root\fP is during system startup, when the
 system mounts a temporary root file system (e.g. an \fBinitrd\fP), then
@@ -80,7 +90,9 @@ or a file system is already mounted on \fIput_old\fP.
 \fInew_root\fP or \fIput_old\fP is not a directory.
 .TP
 .B EPERM
-The current process does not have the administrator capability.
+The current process does not have the
+.B CAP_SYS_ADMIN
+capability.
 .SH BUGS
 \fBpivot_root\fP should not have to change root and cwd of all other
 processes in the system.
@@ -94,6 +106,6 @@ insanity.
 .SH "SEE ALSO"
 .BR chdir (2),
 .BR chroot (2),
+.BR stat (2),
 .BR initrd (4),
-.BR pivot_root (8),
-.BR stat (2)
+.BR pivot_root (8)

@@ -23,6 +23,7 @@
 .\" Modified 1996-10-22, Eric S. Raymond <esr@thyrsus.com>
 .\" Modified 2002-01-08, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\" Modified 2003-04-28, Ernie Petrides <petrides@redhat.com>
+.\" Modified 2004-05-27, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
 .TH SEMOP 2 2003-04-28 "Linux 2.4" "Linux Programmer's Manual" 
 .SH NAME
@@ -309,8 +310,11 @@ the maximum number of operations allowed per system
 call.
 .TP
 .B EACCES
-The calling process has no access permissions on the
-semaphore set as required by one of the specified operations.
+The calling process does not have the permissions required
+to perform the specified semaphore operations,
+and does not have the
+.B CAP_IPC_OWNER
+capability.
 .TP
 .B EAGAIN
 An operation could not proceed immediately and either
@@ -442,7 +446,8 @@ termination to proceed immediately.
 SVr4, SVID.  SVr4 documents additional error conditions EINVAL, EFBIG,
 ENOSPC.
 .SH "SEE ALSO"
-.BR ipc (5),
 .BR semctl (2),
 .BR semget (2),
-.BR sigaction (2)
+.BR sigaction (2),
+.BR ipc (5),
+.BR capabilities (7)

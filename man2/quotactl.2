@@ -24,7 +24,7 @@
 .\"
 .TH QUOTACTL 2 1996-04-14 "Linux 1.3.88" "Linux Programmer's Manual"
 .SH NAME
-quotactl \- manipulate disk quotas
+quotactl \- manipulate disk quota
 .SH SYNOPSIS
 .B #include <sys/types.h>
 .br
@@ -67,7 +67,7 @@ It must be mounted.
 
 The third argument
 .I id
-is the user or group id these quota apply to (when relevant).
+is the user or group ID these quota apply to (when relevant).
 
 The fourth argument
 .I addr
@@ -78,13 +78,13 @@ The
 is one of
 .TP 1.1i
 .B Q_QUOTAON
-Enable quotas. The
+Enable quota. The
 .I addr
 argument is the pathname of the file containing
-the quotas for the filesystem.
+the quota for the filesystem.
 .TP
 .B Q_QUOTAOFF
-Disable quotas.
+Disable quota.
 .TP
 .B Q_GETQUOTA
 Get limits and current usage of disk space. The
@@ -106,7 +106,7 @@ is as before.
 Set usage.
 .TP
 .B Q_SYNC
-Sync disk copy of a filesystems quotas.
+Sync disk copy of a filesystem's quota.
 .TP
 .B Q_GETSTATS
 Get collected stats.

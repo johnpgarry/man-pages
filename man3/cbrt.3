@@ -33,11 +33,13 @@ cbrt, cbrtf, cbrtl \- cube root function
 .B #include <math.h>
 .sp
 .BI "double cbrt(double " x );
-.sp 
+.br
 .BI "float cbrtf(float " x );
-.sp
+.br
 .BI "long double cbrtl(long double " x );
 .fi
+.sp
+Link with \-lm.
 .SH DESCRIPTION
 The \fBcbrt()\fP function returns the (real) cube root of \fIx\fP.
 This function cannot fail; every representable real value has a
@@ -46,5 +48,5 @@ representable real cube root.
 .B cbrt()
 was a GNU extension. It is now a C99 requirement.
 .SH "SEE ALSO"
-.BR sqrt (3),
-.BR pow (3)
+.BR pow (3),
+.BR sqrt (3)

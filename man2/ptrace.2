@@ -32,9 +32,10 @@
 .\" Modified Fri Jul 23 23:47:18 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Fri Jan 31 16:46:30 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Thu Oct  7 17:28:49 1999 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified, 27 May 2004, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"     Added notes on capability requirements
 .\"
-.\"
-.TH PTRACE 2 1999-11-07 "Linux 2.2.10" "Linux Programmer's Manual"
+.TH PTRACE 2 2004-05-27 "Linux 2.6.6" "Linux Programmer's Manual"
 .SH NAME
 ptrace \- process trace
 .SH SYNOPSIS
@@ -229,8 +230,10 @@ after such requests to determine whether or not an error occurred.
 .SH ERRORS
 .TP
 .B EPERM
-The specified process cannot be traced.  This could be because the parent has
-insufficient privileges; non-root processes cannot trace processes that they
+The specified process cannot be traced.  This could be because the 
+parent has insufficient privileges (the required capability is
+.BR CAP_SYS_PTRACE );
+non-root processes cannot trace processes that they
 cannot send signals to or those running setuid/setgid programs, for obvious
 reasons.  Alternatively, the process may already be being traced, or be
 .BR init 
@@ -262,4 +265,5 @@ SVr4, SVID EXT, AT&T, X/OPEN, BSD 4.3
 .BR fork (2),
 .BR signal (2),
 .BR wait (2),
-.BR exec (3)
+.BR exec (3),
+.BR capabilities (7)

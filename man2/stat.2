@@ -25,18 +25,16 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified by Michael Haardt <michael@moria.de>
-.\" Modified Sat Jul 24 10:54:27 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified Thu May 18 11:00:31 1995 by Rik Faith <faith@cs.unc.edu>
-.\"          to add comments suggested by Todd Larason <jtl@molehill.org>
-.\" Modified Fri Jan 31 17:43:02 1997 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Thu Jan 9 10:20:31 1995 by Martin Schulze (joey@infodrom.north.de)
-.\"          to add more error codes suggested by Richard Kettlewell (richard@greenend.org.uk)
-.\" Modified Wed May 13 18:46:44 1998 by Michael Haardt <michael@cantor.informatik.rwth-aachen.de>
-.\" Modified 990706 by aeb; much of the info under `Other Systems' was
-.\"          taken from a net post by Albert Cahalan.
-.\" Modified 000107 by aeb: added <sys/types.h> include.
+.\" Modified 1993-07-24 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1995-05-18 by Todd Larason <jtl@molehill.org>
+.\" Modified 1997-01-31 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1995-01-09 by Richard Kettlewell <richard@greenend.org.uk>
+.\" Modified 1998-05-13 by Michael Haardt <michael@cantor.informatik.rwth-aachen.de>
+.\" Modified 1999-07-06 by aeb & Albert Cahalan
+.\" Modified 2000-01-07 by aeb
+.\" Modified 2004-06-23 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\" 
-.TH STAT 2 1998-05-13 "Linux" "System calls"
+.TH STAT 2 2004-06-23 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 stat, fstat, lstat \- get file status
 .SH SYNOPSIS
@@ -227,14 +225,15 @@ S_IXOTH	00001	others have execute permission
 The set GID bit (S_ISGID) has several special uses:
 For a directory it indicates that BSD semantics is to be used
 for that directory: files created there inherit their group ID from
-the directory, not from the effective gid of the creating process,
+the directory, not from the effective group ID of the creating process,
 and directories created there will also get the S_ISGID bit set.
 For a file that does not have the group execution bit (S_IXGRP) set,
 it indicates mandatory file/record locking.
 .P
 The `sticky' bit (S_ISVTX) on a directory means that a file
 in that directory can be renamed or deleted only by the owner
-of the file, by the owner of the directory, and by root.
+of the file, by the owner of the directory, and by a privileged
+process.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -260,7 +259,11 @@ Too many symbolic links encountered while traversing the path.
 Bad address.
 .TP
 .B EACCES
-Permission denied.
+Search permission is denied for one of the directories
+in the path prefix of
+.IR file_name .
+(See also
+.BR path_resolution (2).)
 .TP
 .B ENOMEM
 Out of memory (i.e. kernel memory).
@@ -282,7 +285,7 @@ documents additional
 .B stat
 and
 .B lstat
-error conditions EACCES, EINTR, EMULTIHOP, ENOLINK, and EOVERFLOW.
+error conditions EINTR, EMULTIHOP, ENOLINK, and EOVERFLOW.
 Use of the
 .I st_blocks
 and
@@ -344,4 +347,5 @@ A sticky command appeared in Version 32V AT&T UNIX.
 .BR chmod (2),
 .BR chown (2),
 .BR readlink (2),
-.BR utime (2)
+.BR utime (2),
+.BR capabilities (7)

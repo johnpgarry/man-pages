@@ -33,6 +33,8 @@
 .\"
 .\" Converted for Linux, Mon Nov 29 11:12:48 1993, faith@cs.unc.edu
 .\" Updated more for Linux, Tue Jul 15 11:54:18 1997, pacman@cqc.com
+.\" Modified, 24 Jun 2004, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"     Added note on casting NULL
 .\"
 .TH EXEC 3  1993-11-29 "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
@@ -85,7 +87,8 @@ with the file being executed.  The list of arguments
 .I must
 be terminated by a
 .B NULL
-pointer.
+pointer, and, since these are variadic functions, this pointer must be cast
+.BR "(char *) NULL" .
 .PP
 The
 .B execv
@@ -164,8 +167,8 @@ for any of the errors specified for the library function
 .BR sh (1),
 .BR execve (2),
 .BR fork (2),
-.BR environ (5),
-.BR ptrace (2)
+.BR ptrace (2),
+.BR environ (5)
 .SH COMPATIBILITY
 On some other systems the default path (used when the environment
 does not contain the variable \fBPATH\fR) has the current working

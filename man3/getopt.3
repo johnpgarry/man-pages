@@ -31,8 +31,11 @@
 .\"  says; moreover, EOF is not defined in <unistd.h>.
 .\" Modified 2002-02-16, joey: added information about non-existing
 .\"  option character and colon as first option character
+.\" Modified 2004-07-28, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"	Added text to explain how to order both '[-+]' and ':' at
+.\"		the start of optstring
 .\"
-.TH GETOPT 3  2002-02-16 "GNU" "Linux Programmer's Manual"
+.TH GETOPT 3  2004-07-28 "GNU" "Linux Programmer's Manual"
 .SH NAME
 getopt \- Parse command line options
 .SH SYNOPSIS
@@ -67,9 +70,10 @@ and
 are the argument count and array as passed to the
 .B main()
 function on program invocation.
-An element of \fIargv\fP that starts with `\-' (and is not exactly "\-" or "\-\-")
+An element of \fIargv\fP that starts with '\-'
+(and is not exactly "\-" or "\-\-")
 is an option element.  The characters of this element
-(aside from the initial `\-') are option characters.  If \fBgetopt()\fP
+(aside from the initial '\-') are option characters.  If \fBgetopt()\fP
 is called repeatedly, it returns successively each of the option characters
 from each of the option elements.
 .PP
@@ -109,26 +113,28 @@ GNU libc 2.
 By default, \fBgetopt()\fP permutes the contents of \fIargv\fP as it
 scans, so that eventually all the non-options are at the end.  Two
 other modes are also implemented.  If the first character of
-\fIoptstring\fP is `+' or the environment variable POSIXLY_CORRECT is
+\fIoptstring\fP is '+' or the environment variable POSIXLY_CORRECT is
 set, then option processing stops as soon as a non-option argument is
-encountered.  If the first character of \fIoptstring\fP is `\-', then
+encountered.  If the first character of \fIoptstring\fP is '\-', then
 each non-option \fIargv\fP-element is handled as if it were the argument of
 an option with character code 1.  (This is used by programs that were
 written to expect options and other \fIargv\fP-elements in any order
 and that care about the ordering of the two.)
-The special argument `\-\-' forces an end of option-scanning regardless
+The special argument "\-\-" forces an end of option-scanning regardless
 of the scanning mode.
 .PP
 If \fBgetopt()\fP does not recognize an option character, it prints an
 error message to stderr, stores the character in \fIoptopt\fP, and
-returns `?'.  The calling program may prevent the error message by
+returns '?'.  The calling program may prevent the error message by
 setting \fIopterr\fP to 0.
 .PP
 If \fBgetopt()\fP finds an option character in \fIargv\fP that was not
 included in \fIoptstring\fP, or if it detects a missing option argument,
-it returns `?'  and sets the external variable \fIoptopt\fP to the
-actual option character.  If the first character of \fIoptstring\fP
-is a colon (`:'), then \fBgetopt()\fP returns `:' instead of `?' to
+it returns '?'  and sets the external variable \fIoptopt\fP to the
+actual option character.  If the first character
+(following any optional '+'or '\-' described above)
+of \fIoptstring\fP
+is a colon (':'), then \fBgetopt()\fP returns ':' instead of '?' to
 indicate a missing option argument.  If an error was detected, and
 the first character of \fIoptstring\fP is not a colon, and
 the external variable \fIopterr\fP is nonzero (which is the default),
@@ -194,22 +200,22 @@ If \fIlongindex\fP is not \fBNULL\fP, it
 points to a variable which is set to the index of the long option relative to
 .IR longopts .
 .PP
-\fBgetopt_long_only()\fP is like \fBgetopt_long()\fP, but `\-' as well 
-as `\-\-' can indicate a long option.  If an option that starts with `\-'
-(not `\-\-') doesn't match a long option, but does match a short option,
+\fBgetopt_long_only()\fP is like \fBgetopt_long()\fP, but '\-' as well 
+as '\-\-' can indicate a long option.  If an option that starts with '\-'
+(not '\-\-') doesn't match a long option, but does match a short option,
 it is parsed as a short option instead.  
 .SH "RETURN VALUE"
 The
 .B getopt()
 function returns the option character if the option was found
-successfully, `:' if there was a missing parameter for one of the
-options, `?' for an unknown option character, or \-1
+successfully, ':' if there was a missing parameter for one of the
+options, '?' for an unknown option character, or \-1
 for the end of the option list.
 .PP
 \fBgetopt_long()\fP and \fBgetopt_long_only()\fP also return the option
 character when a short option is recognized.  For a long option, they
 return \fIval\fP if \fIflag\fP is \fBNULL\fP, and 0 otherwise.  Error
-and \-1 returns are the same as for \fBgetopt()\fP, plus `?' for an
+and \-1 returns are the same as for \fBgetopt()\fP, plus '?' for an
 ambiguous match or an extraneous parameter.
 .SH "ENVIRONMENT VARIABLES"
 .TP
@@ -286,11 +292,11 @@ main (int argc, char **argv) {
             break;
 
         case 'c':
-            printf ("option c with value `%s'\\n", optarg);
+            printf ("option c with value '%s'\\n", optarg);
             break;
 
         case 'd':
-            printf ("option d with value `%s'\\n", optarg);
+            printf ("option d with value '%s'\\n", optarg);
             break;
 
         case '?':
@@ -324,4 +330,3 @@ POSIX.2, provided the environment variable POSIXLY_CORRECT is set.
 Otherwise, the elements of \fIargv\fP aren't really const, because we
 permute them.  We pretend they're const in the prototype to be
 compatible with other systems.
-

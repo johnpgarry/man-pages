@@ -80,6 +80,8 @@ The named file does not exist.
 .TP
 .B EACCES
 Search permission is denied for a component of the path prefix.
+(See also
+.BR path_resolution (2).)
 .TP
 .B ELOOP
 Too many symbolic links were encountered in translating the pathname.
@@ -101,6 +103,7 @@ X/OPEN, 4.4BSD (the
 .B readlink
 function call appeared in 4.2BSD).
 .SH "SEE ALSO"
-.BR stat (2),
 .BR lstat (2),
+.BR path_resolution (2),
+.BR stat (2),
 .BR symlink (2)

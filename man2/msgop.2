@@ -28,8 +28,10 @@
 .\"	Added note on restart behaviour of msgsnd and msgrcv
 .\"	Formatting clean-ups (argument and field names marked as .I 
 .\"		instead of .B)
+.\" Modified, 27 May 2004, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"     Added notes on capability requirements
 .\"
-.TH MSGOP 2 2002-06-01 "Linux 2.4.18" "Linux Programmer's Manual" 
+.TH MSGOP 2 2004-05-27 "Linux 2.6.6" "Linux Programmer's Manual"
 .SH NAME
 msgop \- message operations
 .SH SYNOPSIS
@@ -299,7 +301,10 @@ was asserted in
 .IR mgsflg .
 .TP
 .B EACCES
-The calling process has no write permission on the message queue.
+The calling process does not have write permission on the message queue,
+and does not have the
+.BR CAP_IPC_OWNER
+capability.
 .TP
 .B EFAULT
 The address pointed to by
@@ -342,7 +347,10 @@ isn't asserted in
 .IR msgflg .
 .TP
 .B EACCES
-The calling process does not have read permission on the message queue.
+The calling process does not have read permission on the message queue,
+and does not have the
+.BR CAP_IPC_OWNER
+capability.
 .TP
 .B EFAULT
 The address pointed to by
@@ -399,8 +407,9 @@ The pointer argument is declared as \fIstruct msgbuf *\fP with
 libc4, libc5, glibc 2.0, glibc 2.1. It is declared as \fIvoid *\fP
 (\fIconst void *\fP for \fImsgsnd()\fP) with glibc 2.2, following the SUSv2.
 .SH "SEE ALSO"
-.BR ipc (5),
 .BR msgctl (2),
 .BR msgget (2),
 .BR msgrcv (2),
-.BR msgsnd (2)
+.BR msgsnd (2),
+.BR ipc (5),
+.BR capabilities (7)

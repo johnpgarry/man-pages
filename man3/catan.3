@@ -13,6 +13,7 @@ catan, catanf, catanl \- complex arc tangents
 .sp
 .BI "long double complex catanl(long double complex " z ); 
 .sp
+Link with \-lm.
 .SH DESCRIPTION
 The catan() function calculates the complex atan().
 If y = catan(z), then z = ctan(y).
@@ -23,5 +24,6 @@ catan(z) = 1/2i clog((1+iz)/(1-iz)).
 .SH "CONFORMING TO"
 C99
 .SH "SEE ALSO"
+.BR ccos (3),
 .BR clog (3),
-.BR ccos (3)
+.BR complex (5)

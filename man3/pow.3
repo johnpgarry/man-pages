@@ -41,6 +41,8 @@ pow, powf, powl \- power functions
 .sp
 .BI "long double powl(long double " x ", long double " y );
 .fi
+.sp
+Link with \-lm.
 .SH DESCRIPTION
 The \fBpow()\fP function  returns the value of \fIx\fP raised to the
 power of \fIy\fP. 
@@ -54,5 +56,5 @@ This would result in a complex number.
 SVID 3, POSIX, BSD 4.3, ISO 9899.
 The float and the long double variants are C99 requirements.
 .SH "SEE ALSO"
-.BR sqrt (3),
-.BR cbrt (3)
+.BR cbrt (3),
+.BR sqrt (3)

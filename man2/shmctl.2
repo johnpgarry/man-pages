@@ -20,15 +20,17 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Wed Jul 28 11:03:24 1993, Rik Faith <faith@cs.unc.edu>
-.\" Modified Sun Nov 28 16:43:30 1993, Rik Faith <faith@cs.unc.edu>
-.\"          with material from Giorgio Ciucci <giorgio@crcc.it>
+.\" Modified 1993-07-28, Rik Faith <faith@cs.unc.edu>
+.\" Modified 1993-11-28, Rik Faith <faith@cs.unc.edu>
+.\"    with material from Giorgio Ciucci <giorgio@crcc.it>
 .\" Portions Copyright 1993 Giorgio Ciucci <giorgio@crcc.it>
-.\" Modified Fri Jan 31 17:24:31 1997 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Sun Feb 18 01:59:29 2001 by Andries Brouwer <aeb@cwi.nl>
-.\" Modified 5 Jan 2002 Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 1997-01-31, Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2001-02-18, Andries Brouwer <aeb@cwi.nl>
+.\" Modified 2002-01-05, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2004-05-27, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2004-06-17, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH SHMCTL 2 2002-01-05 "Linux 2.4.1" "Linux Programmer's Manual"
+.TH SHMCTL 2 2004-06-17 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 shmctl \- shared memory control
 .SH SYNOPSIS
@@ -127,16 +129,19 @@ control calls are used by the
 program to provide information on allocated resources.  In the future,
 these may be modified as needed or moved to a proc file system interface.
 .SH "RETURN VALUE"
-0 is returned on success, \-1 on error.
+On success, zero is returned.
+On error, \-1 is returned, and
+.I errno
+is set appropriately.
 .SH ERRORS
-On error,
-.B errno
-will be set to one of the following:
-.TP 12
+.TP
 .B EACCES
-is returned if \fBIPC_STAT\fP is requested and
+\fBIPC_STAT\fP or \fBSHM_STAT\fP is requested and
 \fIshm_perm.modes\fP does not allow read access for
-.IR shmid .
+.IR shmid ,
+and the calling process does not have the
+.BR CAP_IPC_OWNER
+capability.
 .TP
 .B EFAULT
 The argument
@@ -149,32 +154,42 @@ but the address pointed to by
 .I buf
 isn't accessible.
 .TP
+.B EIDRM
+\fIshmid\fP points to a removed identifier.
+.TP
 .B EINVAL
-is returned if \fIshmid\fP is not a valid identifier, or \fIcmd\fP
+\fIshmid\fP is not a valid identifier, or \fIcmd\fP
 is not a valid command.
 .TP
-.B EIDRM
-is returned if \fIshmid\fP points to a removed identifier.
-.TP
 .B EPERM
-is returned if \fBIPC_SET\fP or \fBIPC_RMID\fP is attempted, and the
-effective user ID of the calling process is not the creator
+\fBIPC_SET\fP or \fBIPC_RMID\fP is attempted, and the
+effective user ID of the calling process is not that of the creator
 (as found in
 .IR shm_perm.cuid ),
-the owner
+or the owner
 (as found in
 .IR shm_perm.uid ),
-or the super-user.
+and the process was not privileged (did not have the
+.B CAP_SYS_ADMIN
+capability).
+Or,
+.B SHM_LOCK
+or
+.B SHM_UNLOCK
+was specified, but the process was not privileged
+(did not have the
+.B CAP_IPC_LOCK
+capability).
 .TP
 .B EOVERFLOW
-is returned if \fBIPC_STAT\fP is attempted, and the gid or uid value
+\fBIPC_STAT\fP is attempted, and the gid or uid value
 is too large to be stored in the structure pointed to by
 .IR buf . 
 .SH NOTE
 Various fields in a \fIstruct shmid_ds\fP were shorts under Linux 2.2
 and have become longs under Linux 2.4. To take advantage of this,
 a recompilation under glibc-2.1.91 or later should suffice.
-(The kernel distinguishes old and new calls by a IPC_64 flag in
+(The kernel distinguishes old and new calls by an IPC_64 flag in
 .IR cmd .)
 .SH "CONFORMING TO"
 SVr4, SVID.  SVr4 documents additional error conditions EINVAL,
@@ -182,4 +197,5 @@ ENOENT, ENOSPC, ENOMEM, EEXIST.  Neither SVr4 nor SVID documents
 an EIDRM error condition.
 .SH "SEE ALSO"
 .BR shmget (2),
-.BR shmop (2)
+.BR shmop (2),
+.BR capabilities (7)

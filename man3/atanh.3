@@ -42,6 +42,7 @@ atanh, atanhf, atanhl \- inverse hyperbolic tangent function
 .BI "long double atanhl(long double " x );
 .sp 
 .fi
+Link with \-lm.
 .SH DESCRIPTION
 The \fBatanh()\fP function calculates the inverse hyperbolic tangent of 
 \fIx\fP; that is the value whose hyperbolic tangent is \fIx\fP.  If the
@@ -55,8 +56,8 @@ not-a-number (NaN) and \fIerrno\fP is set.
 SVID 3, POSIX, BSD 4.3, ISO 9899.
 The float and long double variants are C99 requirements.
 .SH "SEE ALSO"
-.BR asinh (3),
 .BR acosh (3),
+.BR asinh (3),
 .BR cosh (3),
 .BR sinh (3),
 .BR tanh (3)

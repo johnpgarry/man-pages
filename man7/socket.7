@@ -10,8 +10,14 @@
 .\" 2002-10-30, Michael Kerrisk, mtk16@ext.canterbury.ac.nz
 .\"	Added description of SO_ACCEPTCONN
 .\" 2004-05-20, aeb, added SO_RCVTIMEO/SO_SNDTIMEO text.
+.\" Modified, 27 May 2004, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"     Added notes on capability requirements
+.\"	A few small grammar fixes
+.\" 
+.\" FIXME: probably all PF_* shouls be AF_* in this page, since
+.\"        POSIX only specifies the latter values.
 .\"
-.TH SOCKET  7 1999-05-07 "Linux Man Page" "Linux Programmer's Manual" 
+.TH SOCKET 7 2004-05-27 "Linux 2.6.6" "Linux Programmer's Manual"
 .SH NAME
 socket - Linux socket interface
 .SH SYNOPSIS
@@ -198,7 +204,7 @@ for all sockets:
 .TP
 .B SO_KEEPALIVE
 Enable sending of keep-alive messages on connection-oriented sockets. Expects
-a integer boolean flag. 
+an integer boolean flag. 
 .TP
 .B SO_OOBINLINE
 If this option is enabled, out-of-band data is directly placed into the receive
@@ -293,8 +299,8 @@ call should allow reuse of local addresses. For
 .B PF_INET
 sockets this
 means that a socket may bind, except when there
-is an active listening socket bound to the address. When the listening
-socket is bound to
+is an active listening socket bound to the address.
+When the listening socket is bound to
 .B INADDR_ANY
 with a specific port then it is not possible
 to bind to this port for any local address.
@@ -384,6 +390,9 @@ priority may be processed first depending on the selected device queueing
 discipline. For
 .BR ip (7),
 this also sets the IP type-of-service (TOS) field for outgoing packets.  
+Setting a priority outside the range 0 to 6 requires the
+.B CAP_NET_ADMIN
+capability.
 .TP
 .B SO_ERROR
 Get and clear the pending socket error. Only valid as a 
@@ -515,7 +524,7 @@ signal or the signal set with
 .B F_SETSIG
 is raised when a new I/O event occurs.
 .IP
-Argument is a integer boolean flag. 
+Argument is an integer boolean flag. 
 .\"
 .TP
 .BR SIOCGPGRP
@@ -538,6 +547,14 @@ The same as the SIOCSPGRP ioctl
 Linux assumes that half of the send/receive buffer is used for internal
 kernel structures; thus the sysctls are twice what can be observed
 on the wire.
+
+Linux will only allow port re-use with the SO_REUSEADDR option
+when this option was set both in the previous program that performed
+a bind() to the port and in the program that wants to re-use the port.
+This differs from some implementations (e.g., FreeBSD)
+where only the later program needs to set the SO_REUSEADDR option.
+Typically this difference is invisible, since, for example, a server
+program is designed to always set this option.
 .SH BUGS
 The 
 .B CONFIG_FILTER 
@@ -562,9 +579,10 @@ a protocol specific setting, and could not be read or written.
 .\" .SH AUTHORS
 .\" This man page was written by Andi Kleen.
 .SH "SEE ALSO"
-.BR socket (2),
-.BR ip (7),
-.BR setsockopt (2),
 .BR getsockopt (2),
-.BR packet (7),
-.BR ddp (7)
+.BR setsockopt (2),
+.BR socket (2),
+.BR capabilities (7),
+.BR ddp (7),
+.BR ip (7),
+.BR packet (7)

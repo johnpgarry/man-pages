@@ -31,13 +31,14 @@
 .\"
 .\"     @(#)truncate.2	6.9 (Berkeley) 3/10/91
 .\"
-.\" Modified Sat Jul 24 12:46:33 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified Tue Oct 22 22:36:33 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Mon Dec 21 13:37:05 1998 by Andries Brouwer <aeb@cwi.nl>
-.\" Modified 7 Jan 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\" Modified 2002-04-06, aeb
+.\" Modified 1993-07-24 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1996-10-22 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1998-12-21 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 2002-01-07 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2002-04-06 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 2004-06-23 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH TRUNCATE 2 1998-12-21 "" "Linux Programmer's Manual"
+.TH TRUNCATE 2 2004-06-23 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 truncate, ftruncate \- truncate a file to a specified length
 .SH SYNOPSIS
@@ -86,6 +87,8 @@ For
 .B EACCES
 Search permission is denied for a component of the path prefix,
 or the named file is not writable by the user.
+(See also
+.BR path_resolution (2).)
 .TP
 .B EFAULT
 .I Path
@@ -178,4 +181,5 @@ either returning an error, or extending the file.
 (Most Unices follow the XSI requirement.)
 .\" At the very least: OSF/1, Solaris 7, and FreeBSD conform, mtk, Jan 2002
 .SH "SEE ALSO"
-.BR open (2)
+.BR open (2),
+.BR path_resolution (2)

@@ -31,8 +31,9 @@
 .\"	Corrected description of queue placement by sched_setparam() and 
 .\"		sched_setscheduler()
 .\"	A couple of grammar clean-ups
+.\" Modified 2004-05-27 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH SETSCHEDULER 2 2002-06-25 "Linux 2.4.18" "Linux Programmer's Manual"
+.TH SETSCHEDULER 2 2004-05-27 "Linux 2.6.6" "Linux Programmer's Manual"
 .SH NAME
 sched_setscheduler, sched_getscheduler \-
 set and get scheduling algorithm/parameters
@@ -214,23 +215,23 @@ is set appropriately.
 The process whose ID is \fIpid\fP could not be found.
 .TP
 .B EPERM
-The calling process does not have appropriate privileges. Only root
-processes are allowed to activate the \fISCHED_FIFO\fP and \fISCHED_RR\fP
-policies. The process calling 
+The calling process does not have appropriate privileges
+(Linux: does not have the
+.B CAP_SYS_NICE
+capability). Only privileged processes are allowed to
+activate the \fISCHED_FIFO\fP and \fISCHED_RR\fP
+policies. A process calling 
 .BR sched_setscheduler
-needs an effective uid equal to the euid or uid of the process identified
-by
+needs an effective user ID equal to the user ID or effective user ID
+of the process identified by
 .IR pid ,
-or it must be a superuser process.
+or it must be privileged.
 .TP
 .B EINVAL
 The scheduling \fIpolicy\fP is not one of the recognized policies,
 or the parameter \fIp\fP does not make sense for the \fIpolicy\fP.
 .SH "CONFORMING TO"
 POSIX.1b (formerly POSIX.4)
-.SH BUGS
-As of linux-1.3.81, \fISCHED_RR\fP has not yet been tested carefully
-and might not behave exactly as described or required by POSIX.1b.
 .SH NOTE
 Standard Linux is a general-purpose operating system
 and can handle background processes,
@@ -259,21 +260,22 @@ RTLinux (http://www.rtlinux.org) or RTAI (http://www.rtai.org)
 or use a different operating system
 designed specifically for hard real-time applications.
 .SH "SEE ALSO"
-.BR sched_setaffinity (2),
-.BR sched_getaffinity (2),
-.BR sched_setparam (2),
-.BR sched_getparam (2),
-.BR sched_yield (2),
+.BR getpriority (2),
+.BR mlock (2),
+.BR mlockall (2),
+.BR munlock (2),
+.BR munlockall (2),
+.BR nice (2),
 .BR sched_get_priority_max (2),
 .BR sched_get_priority_min (2),
+.BR sched_getaffinity (2),
+.BR sched_getparam (2),
 .BR sched_rr_get_interval (2),
-.BR nice (2),
+.BR sched_setaffinity (2),
+.BR sched_setparam (2),
+.BR sched_yield (2),
 .BR setpriority (2),
-.BR getpriority (2),
-.BR mlockall (2),
-.BR munlockall (2),
-.BR mlock (2),
-.BR munlock (2)
+.BR capabilities (7)
 .PP
 .I Programming for the real world \- POSIX.4
 by Bill O. Gallmeister, O'Reilly & Associates, Inc., ISBN 1-56592-074-0

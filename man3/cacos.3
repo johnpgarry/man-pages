@@ -13,6 +13,7 @@ cacos, cacosf, cacosl \- complex arc cosine
 .sp
 .BI "long double complex cacosl(long double complex " z ); 
 .sp
+Link with \-lm.
 .SH DESCRIPTION
 The cacos() function calculates the complex acos().
 If y = cacos(z), then z = ccos(y).
@@ -22,5 +23,6 @@ One has cacos(z) = -i clog(z+csqrt(z*z-1)).
 .SH "CONFORMING TO"
 C99
 .SH "SEE ALSO"
+.BR ccos (3),
 .BR clog (3),
-.BR ccos (3)
+.BR complex (5)

@@ -42,6 +42,8 @@ exp, expf, expl \- base-e exponential function
 .sp
 .BI "long double expl(long double " x );
 .fi
+.sp
+Link with \-lm.
 .SH DESCRIPTION
 The \fBexp()\fP function returns the value of e (the base of natural
 logarithms) raised to the power of \fIx\fP.
@@ -49,7 +51,7 @@ logarithms) raised to the power of \fIx\fP.
 SVID 3, POSIX, BSD 4.3, ISO 9899.
 The float and the long double variants are C99 requirements.
 .SH "SEE ALSO"
-.BR sqrt (3),
-.BR cbrt (3)
+.BR cbrt (3),
 .BR exp10 (3),
-.BR exp2 (3)
+.BR exp2 (3),
+.BR sqrt (3)

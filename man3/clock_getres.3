@@ -25,6 +25,7 @@
 .\"
 .\" 2003-08-23 Martin Schulze <joey@infodrom.org> improvements
 .\" 2003-08-24 aeb, large parts rewritten
+.\" 2004-08-06 Christoph Lameter <clameter@sgi.com>, SMP note
 .\"
 .TH CLOCK_GETRES 3 2003-08-24 "" "Linux Programmer's Manual"
 .SH NAME
@@ -138,6 +139,34 @@ points outside the accessible address space.
 .SH NOTE
 Most systems require the program be linked with the librt
 library to use these functions.
+.SH NOTE for SMP systems
+The
+.B CLOCK_PROCESS_CPUTIME_ID
+and
+.B CLOCK_THREAD_CPUTIME_ID
+clocks are realized on many platforms using timers from the CPUs
+(TSC on i386, AR.ITC on Itanium).
+These registers may differ between CPUs and as a consequence
+these clocks may return
+.B bogus results
+if a process is migrated to another CPU.
+.PP
+If the CPUs in an SMP system have different clock sources then
+there is no way to maintain a correlation between the timer registers since
+each CPU will run at a slightly different frequency. If that is the case then
+.I clock_getcpuclockid(0)
+will return
+.B ENOENT
+to signify this condition. The two clocks will then only be useful if it
+can be ensured that a process stays on a certain CPU.
+.PP
+The processors in an SMP system do not start all at exactly the same
+time and therefore the timer registers are typically running at an offset.
+Some architectures include code that attempts to limit these offsets on bootup.
+However, the code cannot guarantee to accurately tune the offsets.
+Glibc contains no provisions to deal with these offsets (unlike the Linux
+Kernel). Typically these offsets are small and therefore the effects may be
+negligible in most cases.
 .SH AVAILABILITY
 On POSIX systems on which these functions are available, the symbol
 .B _POSIX_TIMERS
@@ -151,7 +180,8 @@ indicate that
 .BR CLOCK_PROCESS_CPUTIME_ID ,
 .B CLOCK_THREAD_CPUTIME_ID
 are available.
-(See also .BR sysconf (3).)
+(See also
+.BR sysconf (3).)
 .SH "CONFORMING TO"
 SUSv2, POSIX 1003.1-2001.
 .SH "SEE ALSO"

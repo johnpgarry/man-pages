@@ -22,6 +22,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Historical remark, aeb, 2004-06-05
 .TH GETUID 2 1993-07-23 "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 getuid, geteuid \- get user identity
@@ -46,6 +47,9 @@ corresponds to the set ID bit on the file being executed.
 These functions are always successful.
 .SH "CONFORMING TO"
 POSIX, BSD 4.3.
+.SH HISTORY
+In Unix V6 the \fBgetuid()\fP call returned (euid << 8) + uid.
+Unix V7 introduced separate calls \fBgetuid()\fP and \fBgeteuid()\fP.
 .SH "SEE ALSO"
 .BR setreuid (2),
 .BR setuid (2)

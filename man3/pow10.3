@@ -1,4 +1,4 @@
-.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" Copyright 2004 Andries Brouwer (aeb@cwi.nl)
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -20,15 +20,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" References consulted:
-.\"     Linux libc source code
-.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
-.\"     386BSD man pages
-.\" Modified 1993-07-24 by Rik Faith (faith@cs.unc.edu)
-.\" Modified 1995-08-14 by Arnt Gulbrandsen <agulbra@troll.no>
-.\" Modified 2002-07-27 by Walter Harms
-.\" 	(walter.harms@informatik.uni-oldenburg.de)
-.TH POW10 3  2002-07-27 "" "Linux Programmer's Manual"
+.TH POW10 3  2004-10-05 "" "Linux Programmer's Manual"
 .SH NAME
 pow10, pow10f, pow10l \- base-10 power functions
 .SH SYNOPSIS
@@ -36,24 +28,22 @@ pow10, pow10f, pow10l \- base-10 power functions
 .B #define _GNU_SOURCE
 .B #include <math.h>
 .sp
-.BI "double pow10(double " x ", double " y );
+.BI "double pow10(double " x );
 .sp
-.BI "float pow10f(float " x ", float " y );
+.BI "float pow10f(float " x );
 .sp
-.BI "long double pow10l(long double " x ", long double " y );
+.BI "long double pow10l(long double " x );
 .fi
+.sp
+Link with \-lm.
 .SH DESCRIPTION
-The \fBpow10()\fP function  returns the value of \fIx\fP raised to the
-power of \fIy\fP. 
-.SH ERRORS
-The \fBpow10()\fP function can return the following error:
-.TP
-.B EDOM
-The argument \fIx\fP is negative and \fIy\fP is not an integral value.
-This would result in a complex number.
+The \fBpow10()\fP function  returns the value of 10 raised to the
+power \fIx\fP.
 .SH "CONFORMING TO"
 This is a GNU extension.
+.SH NOTE
+These functions are identical to the functions listed under
+.BR exp10 (3).
 .SH "SEE ALSO"
-.BR sqrt (3),
-.BR cbrt (3),
+.BR exp10 (3),
 .BR pow (3)

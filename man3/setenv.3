@@ -26,7 +26,11 @@
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:20:58 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Fri Feb 14 21:47:50 1997 by Andries Brouwer (aeb@cwi.nl)
-.TH SETENV 3  1993-04-04 "BSD" "Linux Programmer's Manual"
+.\" Modified 9 Jun 2004, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"     Changed unsetenv() prototype; added EINVAL error
+.\"     Noted non-standard behaviour of setenv() if name contains '='
+.\"
+.TH SETENV 3  2004-05-09 "BSD" "Linux Programmer's Manual"
 .SH NAME
 setenv \- change or add an environment variable
 .SH SYNOPSIS
@@ -35,7 +39,7 @@ setenv \- change or add an environment variable
 .sp
 .BI "int setenv(const char *" name ", const char *" value ", int " overwrite );
 .sp
-.BI "void unsetenv(const char *" name );
+.BI "int unsetenv(const char *" name );
 .fi
 .SH DESCRIPTION
 The \fBsetenv()\fP function adds the variable \fIname\fP to the
@@ -50,11 +54,33 @@ the environment.
 .SH "RETURN VALUE"
 The \fBsetenv()\fP function returns zero on success, or \-1 if there
 was insufficient space in the environment.
+The \fBunsetenv()\fP function returns zero on success,
+or \-1 on error, with
+.I errno
+set to indicate the cause of the error.
+.SH "ERRORS"
+.TP
+.B EINVAL
+.I name
+contained an '=' character.
 .SH "CONFORMING TO"
 BSD 4.3
+.SH "NOTES"
+Prior to glibc 2.2.2, \fBunsetenv()\fP was prototyped
+as returning \fIvoid\fP; more recent glibc versions follow the
+SUSv3-compliant prototype shown in the SYNOPSIS.
+.SH BUGS
+SUSv3 specifies that if
+.I name
+contains an '=' character, then
+.BR setenv ()
+should fail with the error
+.BR EINVAL ;
+however, glibc currently (v2.3.3) allows an '=' sign in
+.IR name .
+Portable applications should avoid this!
 .SH "SEE ALSO"
 .BR clearenv (3),
 .BR getenv (3),
 .BR putenv (3),
 .BR environ (5)
-

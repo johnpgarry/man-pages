@@ -23,14 +23,14 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified by Michael Haardt <michael@moria.de>
-.\" Modified Wed Jul 21 22:18:17 1993 by  Rik Faith <faith@cs.unc.edu>
-.\" Modified 21 Aug 1994 by Michael Chastain <mec@shell.portal.com>
-.\"   Fixed typoes.
-.\" Modified 13 Jun 1996 by aeb - Added a warning: . may be outside / tree.
-.\" Modified Wed Nov  6 03:50:45 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified by Joseph S. Myers <jsm28@cam.ac.uk>, 970821
+.\" Modified 1993-07-21 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1994-08-21 by Michael Chastain <mec@shell.portal.com>
+.\" Modified 1996-06-13 by aeb
+.\" Modified 1996-11-06 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1997-08-21 by Joseph S. Myers <jsm28@cam.ac.uk>
+.\" Modified 2004-06-23 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH CHROOT 2 1997-08-21 "Linux 2.0.30" "Linux Programmer's Manual"
+.TH CHROOT 2 2004-06-23 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 chroot \- change root directory
 .SH SYNOPSIS
@@ -44,7 +44,10 @@ changes the root directory to that specified in
 This directory will be used for path names beginning with /.  The root
 directory is inherited by all children of the current process.
 
-Only the super-user may change the root directory.
+Only a privileged process (Linux: one with the
+.B CAP_SYS_CHROOT
+capability) may call
+.BR chroot (2).
 
 Note that this call does not change the current working directory,
 so that `.' can be outside the tree rooted at `/'.
@@ -57,10 +60,9 @@ is set appropriately.
 .SH ERRORS
 Depending on the file system, other errors can be returned.  The more
 general errors are listed below:
-
 .TP
 .B EPERM
-The effective UID is not zero.
+The caller has insufficient privilege.
 .TP
 .B EFAULT
 .I path
@@ -83,6 +85,10 @@ is not a directory.
 .TP
 .B EACCES
 Search permission is denied on a component of the path prefix.
+(See also
+.BR path_resolution (2).)
+.\" Also search permission is required on the final component,
+.\" maybe just to guarantee that it is a directory?
 .TP
 .B ELOOP
 Too many symbolic links were encountered in resolving
@@ -100,4 +106,5 @@ FreeBSD has a stronger
 .I jail()
 system call.
 .SH "SEE ALSO"
-.BR chdir (2)
+.BR chdir (2),
+.BR path_resolution (2)

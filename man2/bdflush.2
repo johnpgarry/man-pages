@@ -22,9 +22,10 @@
 .\" Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
 .\" USA.
 .\"
-.\" Modified Fri Jan 31 16:14:33 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1997-01-31 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2004-06-17 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH BDFLUSH 2 1995-04-15 "Linux 1.2.4" "Linux Programmer's Manual"
+.TH BDFLUSH 2 2004-06-17 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 bdflush \- start, flush, or tune buffer-dirty-flush daemon
 .SH SYNOPSIS
@@ -35,7 +36,9 @@ bdflush \- start, flush, or tune buffer-dirty-flush daemon
 .SH DESCRIPTION
 .B bdflush
 starts, flushes, or tunes the buffer-dirty-flush daemon.
-Only the super-user may call
+Only a privileged process (one with the
+.B CAP_SYS_ADMIN
+capability) may call
 .BR bdflush .
 .PP
 If
@@ -82,7 +85,9 @@ set to indicate the error.
 .SH ERRORS
 .TP
 .B EPERM
-Caller is not super-user.
+Caller does not have the
+.B CAP_SYS_ADMIN
+capability.
 .TP
 .B EFAULT
 .I address
@@ -101,5 +106,5 @@ intended to be portable.
 .SH "SEE ALSO"
 .BR fsync (2),
 .BR sync (2),
-.BR update (8),
-.BR sync (8)
+.BR sync (8),
+.BR update (8)

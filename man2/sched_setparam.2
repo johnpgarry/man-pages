@@ -26,8 +26,9 @@
 .\"            First version written
 .\" 1996-04-10 Markus Kuhn <mskuhn@cip.informatik.uni-erlangen.de>
 .\"            revision
+.\" Modified 2004-05-27 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH SCHED_SETPARAM 2 1996-04-10 "Linux 1.3.81" "Linux Programmer's Manual"
+.TH SCHED_SETPARAM 2 2004-05-27 "Linux 2.6.6" "Linux Programmer's Manual"
 .SH NAME
 sched_setparam, sched_getparam \- set and get scheduling parameters
 .SH SYNOPSIS
@@ -92,13 +93,15 @@ is set appropriately.
 The process whose ID is \fIpid\fR could not be found.
 .TP
 .B EPERM
-The calling process does not have appropriate privileges. The process
-calling
+The calling process does not have appropriate privileges.
+A process calling
 .BR sched_setparam
-needs an effective uid equal to the euid or uid of the process
-identified by
+needs an effective user ID equal to the user ID or effective user ID
+of the process identified by
 .IR pid ,
-or it must be a superuser process.
+or it must have the
+CAP_SYS_NICE
+capability.
 .TP
 .B EINVAL
 The parameter \fIp\fR does not make sense for the current
@@ -106,15 +109,16 @@ scheduling policy.
 .SH "CONFORMING TO"
 POSIX.1b (formerly POSIX.4)
 .SH "SEE ALSO"
-.BR sched_setaffinity (2),
-.BR sched_getaffinity (2),
-.BR sched_setscheduler (2),
-.BR sched_getscheduler (2),
+.BR getpriority (2),
+.BR nice (2),
 .BR sched_get_priority_max (2),
 .BR sched_get_priority_min (2),
-.BR nice (2),
+.BR sched_getaffinity (2),
+.BR sched_getscheduler (2),
+.BR sched_setaffinity (2),
+.BR sched_setscheduler (2),
 .BR setpriority (2),
-.BR getpriority (2),
+.BR capabilities (7)
 .PP
 .BR sched_setscheduler (2)
 has a description of the Linux scheduling scheme.

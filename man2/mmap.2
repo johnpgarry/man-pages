@@ -22,14 +22,16 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Fri Jan 31 16:38:25 1997 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Sat Mar 25 08:11:16 2000 by Jim Van Zandt <jrv@vanzandt.mv.com>
-.\" Modified Thu Oct  4 03:09:44 2001 by John Levon <moz@compsoc.man.ac.uk>
-.\" Modified Sun Feb  2 16:00    2003 by Andi Kleen <ak@muc.de>
-.\" Modified 21 May 2003, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\"	MAP_LOCKED workks from 2.5.37
+.\" Modified 1997-01-31 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2000-03-25 by Jim Van Zandt <jrv@vanzandt.mv.com>
+.\" Modified 2001-10-04 by John Levon <moz@compsoc.man.ac.uk>
+.\" Modified 2003-02-02 by Andi Kleen <ak@muc.de>
+.\" Modified 2003-05-21 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"	MAP_LOCKED works from 2.5.37
+.\" Modified 2004-06-17 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2004-09-11 by aeb
 .\"
-.TH MMAP 2 2003-05-21 "Linux 2.5.37" "Linux Programmer's Manual"
+.TH MMAP 2 2004-09-11 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 mmap, munmap \- map or unmap files or devices into memory
 .SH SYNOPSIS
@@ -240,10 +242,6 @@ or not. Portable programs should always set
 if they intend to execute code in the new mapping.
 .SH ERRORS
 .TP
-.B EBADF
-.I fd
-is not a valid file descriptor (and MAP_ANONYMOUS was not set).
-.TP
 .B EACCES
 A file descriptor refers to a non-regular file.
 Or MAP_PRIVATE was requested, but
@@ -254,6 +252,10 @@ Or MAP_SHARED was requested and PROT_WRITE is set, but
 is not open in read/write (O_RDWR) mode.
 Or PROT_WRITE is set, but the file is append-only.
 .TP
+.B EBADF
+.I fd
+is not a valid file descriptor (and MAP_ANONYMOUS was not set).
+.TP
 .B EINVAL
 We don't like
 .I start
@@ -263,9 +265,23 @@ or
 .IR offset .
 (E.g., they are too large, or not aligned on a PAGESIZE boundary.)
 .\" jbl - not sure this actually happens ? see generic_file_mmap
+.TP
+.B ENFILE
+.\" This is for shared anonymous segments
+.\" [2.6.7] shmem_zero_setup()-->shmem_file_setup()-->get_empty_filp()
+The system limit on the total number of open files has been reached.
 .\" .TP
 .\" .B ENOEXEC
 .\" A file could not be mapped for reading.
+.TP
+.B EPERM
+The
+.I prot
+argument asks for
+.B PROT_EXEC
+but the mapped area belongs to a file on a filesystem that
+was mounted no-exec.
+.\" (Since 2.4.25 / 2.6.0.)
 .TP
 .B ETXTBSY
 MAP_DENYWRITE was set but the object specified by
@@ -318,7 +334,8 @@ is a Linux extension.
 .BR mmap2 (2),
 .BR mremap (2),
 .BR msync (2),
-.BR shm_open (2),
+.BR shm_open (2)
+.br
 B.O. Gallmeister, POSIX.4, O'Reilly, pp. 128-129 and 389-391.
 .\"
 .\" Repeat after me: private read-only mappings are 100% equivalent to shared

@@ -20,9 +20,10 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" With contributions from Walter Harms, 2003-08-17
+.\" Modified 2003-08-17 by Walter Harms
+.\" Modified 2004-06-23 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH STATFS 2 2003-08-22 "Linux 2.6.0" "Linux Programmer's Manual"
+.TH STATFS 2 2004-06-23 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 statfs, fstatfs \- get file system statistics
 .SH SYNOPSIS
@@ -128,6 +129,8 @@ is not a valid open file descriptor.
 (statfs)
 Search permission is denied for a component of the path prefix of
 .IR path .
+(See also
+.BR path_resolution (2).)
 .TP
 .B ELOOP
 (statfs)
@@ -235,5 +238,6 @@ and tells us to use
 .I [f]statvfs()
 instead.
 .SH "SEE ALSO"
+.BR path_resolution (2),
 .BR stat (2),
 .BR statvfs (2)

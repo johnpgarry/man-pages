@@ -119,11 +119,11 @@ The correct syntax is:
 .fi
 .RE
 .TP
-.B SIOCINQ
+.BR FIONREAD " (" SIOCINQ )
 Gets a pointer to an integer as argument. Returns the size of the next
 pending datagram in the integer in bytes, or 0 when no datagram is pending.
 .TP
-.B SIOCOUTQ
+.BR TIOCOUTQ " (" SIOCOUTQ )
 Returns the number of data bytes in the local send queue. Only supported
 with Linux 2.4 and above.
 .PP
@@ -151,8 +151,8 @@ This man page was written by Andi Kleen.
 
 .SH "SEE ALSO"
 .BR ip (7),
-.BR socket (7),
-.BR raw (7)
+.BR raw (7),
+.BR socket (7)
 
 RFC768 for the User Datagram Protocol.
 .br

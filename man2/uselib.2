@@ -23,9 +23,11 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified by Michael Haardt <michael@moria.de>
-.\" Modified Sat Jul 24 14:34:48 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified Tue Oct 22 22:59:17 1996 by Eric S. Raymond <esr@thyrsus.com>
-.TH USELIB 2 1993-07-24 "Linux 0.99.11" "Linux Programmer's Manual"
+.\" Modified 1993-07-24 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1996-10-22 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2004-06-23 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"
+.TH USELIB 2 2004-06-23 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 uselib \- select shared library
 .SH SYNOPSIS
@@ -55,7 +57,12 @@ is not executable, or does not have the correct magic numbers.
 .B EACCES
 The library specified by
 .I library
-is not readable.
+is not readable, or the caller does not have search permission
+for one of the directories in the path prefix. (See also
+.BR path_resolution (2).)
+.TP
+.B ENFILE
+The system limit on the total number of open files has been reached.
 .SH "CONFORMING TO"
 \fBuselib()\fP is Linux specific, and should not be used in programs
 intended to be portable.
@@ -66,4 +73,5 @@ intended to be portable.
 .BR ldd (1),
 .BR mmap (2),
 .BR open (2),
+.BR capability (7),
 .BR ld.so (8)

@@ -1,7 +1,7 @@
 .\" Copyright 2002 Walter Harms (walter.harms@informatik.uni-oldenburg.de)
 .\" Distributed under GPL
 .\"
-.TH CARG 3 2002-07-28 "" "complex math routines"
+.TH CPROJ 3 2002-07-28 "" "complex math routines"
 .SH NAME
 cproj, cprojf, cprojl \- project into Riemann Sphere
 .SH SYNOPSIS
@@ -13,13 +13,17 @@ cproj, cprojf, cprojl \- project into Riemann Sphere
 .sp
 .BI "long double complex cprojl(long double complex " z ");"
 .sp
+Link with \-lm.
 .SH DESCRIPTION
-With this function you can project a point in the plane onto the surface of a 
+This function projects a point in the plane onto the surface of a 
 Riemann Sphere, the one-point compactification of the complex plane.
 Each finite point z projects to z itself.
-Every complex infinite values is projected to a single infinite value,
+Every complex infinite value is projected to a single infinite value,
 namely to positive infinity on the real axis.
 .SH "CONFORMING TO"
 C99
+.SH NOTE
+The glibc implementation is broken and does something entirely different.
 .SH "SEE ALSO"
-.BR cabs (3)
+.BR cabs (3),
+.BR complex (5)

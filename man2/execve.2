@@ -23,13 +23,13 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified by Michael Haardt <michael@moria.de>
-.\" Modified Wed Jul 21 22:47:01 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified 21 Aug 1994 by Michael Chastain <mec@shell.portal.com>:
-.\"   Fixed typoes.
-.\" Modified Fri Jan 31 16:24:28 1997 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Fri Nov 12 22:57:27 1999 by Urs Thuermann <urs@isnogud.escape.de>
+.\" Modified 1993-07-21 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1994-08-21 by Michael Chastain <mec@shell.portal.com>:
+.\" Modified 1997-01-31 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1999-11-12 by Urs Thuermann <urs@isnogud.escape.de>
+.\" Modified 2004-06-23 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz
 .\"
-.TH EXECVE 2 1997-09-03 "Linux 2.0.30" "Linux Programmer's Manual"
+.TH EXECVE 2 2004-06-23 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 execve \- execute program
 .SH SYNOPSIS
@@ -89,6 +89,13 @@ is set appropriately.
 .SH ERRORS
 .TP
 .B EACCES
+Search permission is denied on a component of the path prefix of
+.I filename
+or the name of a script interpreter.
+(See also
+.BR path_resolution (2).)
+.TP
+.B EACCES
 The file or a script interpreter is not a regular file.
 .TP
 .B EACCES
@@ -137,11 +144,6 @@ A component of the path prefix of
 .I filename
 or a script or ELF interpreter is not a directory.
 .TP
-.B EACCES
-Search permission is denied on a component of the path prefix of
-.I filename
-or the name of a script interpreter.
-.TP
 .B ELOOP
 Too many symbolic links were encountered in resolving
 .I filename
@@ -154,7 +156,7 @@ Executable was open for writing by one or more processes.
 An I/O error occurred.
 .TP
 .B ENFILE
-The limit on the total number of files open on the system has been reached.
+The system limit on the total number of open files has been reached.
 .TP
 .B EMFILE
 The process has the maximum number of files open.
@@ -207,6 +209,7 @@ Since Unix V7 both are NULL.
 .SH "SEE ALSO"
 .BR chmod (2),
 .BR fork (2),
+.BR path_resolution (2),
 .BR execl (3),
 .BR environ (5),
 .BR ld.so (8)

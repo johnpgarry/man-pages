@@ -22,12 +22,13 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified by Michael Haardt (michael@moria.de)
-.\" Modified Wed Jul 21 20:18:11 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sun Jan 12 14:31:17 MET 1997 by Michael Haardt
-.\"   (michael@cantor.informatik.rwth-aachen.de): NFS details
+.\" Modified by Michael Haardt <michael@moria.de>
+.\" Modified 1993-07-21 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1997-01-12 by Michael Haardt
+.\"   <michael@cantor.informatik.rwth-aachen.de>: NFS details
+.\" Modified 2004-06-23 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH CHMOD 2 1997-12-10 "Linux 2.0.32" "Linux Programmer's Manual"
+.TH CHMOD 2 2004-06-23 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 chmod, fchmod \- change permissions of a file
 .SH SYNOPSIS
@@ -89,17 +90,26 @@ S_IXOTH
 .sp
 .RE
 
-The effective UID of the process must be zero or must match the owner of
-the file.
+The effective UID of the calling process must match the owner of the file,
+or the process must be privileged (Linux: it must have the
+.B CAP_FOWNER
+capability).
 
-If the effective UID of the process is not zero and the group of the file
-does not match the effective group ID of the process or one of its
+If the calling process is not privileged (Linux: does not have the
+.B CAP_FSETID
+capability), and the group of the file does not match
+the effective group ID of the process or one of its
 supplementary group IDs, the S_ISGID bit will be turned off,
 but this will not cause an error to be returned.
 
-Depending on the file system, set user ID and set group ID execution bits
-may be turned off if a file is written.  On some file systems, only the
-super-user can set the sticky bit, which may have a special meaning.
+As a security measure, depending on the file system,
+the set user ID and set group ID execution bits
+may be turned off if a file is written.
+(On Linux this occurs if the writing process does not have the
+.B CAP_FSETID
+capability.)
+On some file systems, only the super-user can set the sticky bit,
+which may have a special meaning.
 For the sticky bit, and for set user ID and set group ID bits on
 directories, see
 .BR stat (2).
@@ -120,7 +130,10 @@ are listed below:
 
 .TP
 .B EPERM
-The effective UID does not match the owner of the file, and is not zero.
+The effective UID does not match the owner of the file,
+and the process is not privileged (Linux: it does not have the
+.B CAP_FOWNER
+capability).
 .TP
 .B EROFS
 The named file resides on a read-only file system.
@@ -144,6 +157,8 @@ A component of the path prefix is not a directory.
 .TP
 .B EACCES
 Search permission is denied on a component of the path prefix.
+(See also
+.BR path_resolution (2).)
 .TP
 .B ELOOP
 Too many symbolic links were encountered in resolving
@@ -189,10 +204,9 @@ and
 .B _POSIX_SHARED_MEMORY_OBJECTS
 is defined, and documents additional ENOSYS and EINVAL error
 conditions, but does not document EIO.
-.PP
-POSIX and X/OPEN do not document the sticky bit.
 .SH "SEE ALSO"
-.BR open (2),
 .BR chown (2),
 .BR execve (2),
+.BR open (2),
+.BR path_resolution (2),
 .BR stat (2)

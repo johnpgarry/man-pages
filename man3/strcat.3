@@ -43,8 +43,10 @@ The \fBstrcat()\fP function appends the \fIsrc\fP string to the
 strings may not overlap, and the \fIdest\fP string must have
 enough space for the result.
 .PP
-The \fBstrncat()\fP function is similar, except that only the first
-\fIn\fP characters of \fIsrc\fP are appended to \fIdest\fP.
+The \fBstrncat()\fP function is similar, except that it will use
+at most \fIn\fP characters from \fIsrc\fP.
+Since the result is always terminated with `\\0', at most \fIn\fP+1
+characters are written.
 .SH "RETURN VALUE"
 The \fBstrcat()\fP and \fBstrncat()\fP functions return a pointer
 to the resulting string \fIdest\fP.

@@ -45,7 +45,7 @@ terminal attributes, line control, get and set baud rate
 .sp
 .BI "int tcgetattr(int " fd ", struct termios *" termios_p );
 .sp
-.BI "int tcsetattr(int " fd ", int " optional_actions ", struct termios *" termios_p );
+.BI "int tcsetattr(int " fd ", int " optional_actions ", const struct termios *" termios_p );
 .sp
 .BI "int tcsendbreak(int " fd ", int " duration );
 .sp
@@ -57,9 +57,9 @@ terminal attributes, line control, get and set baud rate
 .sp
 .BI "int cfmakeraw(struct termios *" termios_p );
 .sp
-.BI "speed_t cfgetispeed(struct termios *" termios_p );
+.BI "speed_t cfgetispeed(const struct termios *" termios_p );
 .sp
-.BI "speed_t cfgetospeed(struct termios *" termios_p );
+.BI "speed_t cfgetospeed(const struct termios *" termios_p );
 .sp
 .BI "int cfsetispeed(struct termios *" termios_p ", speed_t " speed );
 .sp

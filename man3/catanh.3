@@ -9,19 +9,21 @@ catanh, catanhf, catanhl \- complex arc tangents hyperbolic
 .sp
 .BI "double complex catanh(double complex " z ); 
 .sp
-.BI "float complex catanhf(float complex double " z );
+.BI "float complex catanhf(float complex " z );
 .sp
 .BI "long double complex catanhl(long double complex " z );
 .sp
+Link with \-lm.
 .SH DESCRIPTION
 The catanh() function calculates the complex atanh().
 If y = catanh(z), then z = ctanh(y).
-The imaginary part of y is chosen in the interval [-pi/2*i,pi/2*i].
+The imaginary part of y is chosen in the interval [-pi/2,pi/2].
 .LP
 One has catanh(z) = 0.5*clog((1+z)/(1-z)).
 .SH "CONFORMING TO"
 C99
 .SH "SEE ALSO"
+.BR atanh (3),
 .BR cabs (3),
 .BR cimag (3),
-.BR atanh (3)
+.BR complex (5)

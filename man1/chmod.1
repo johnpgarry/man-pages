@@ -4,7 +4,9 @@
 .\" in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998
 .\" that should have been distributed together with this file.
 .\" 
-.TH CHMOD 1 2000-08 "GNU fileutils 4.0"
+.\" Modified 2004-06-17, Michael Kerrisk
+.\"
+.TH CHMOD 1 2004-06-17 "GNU fileutils 4.0"
 .SH NAME
 chmod \- change access permissions of files
 .SH SYNOPSIS
@@ -58,8 +60,7 @@ other users not in the file's group have for it (o).
 \&`chmod ug+s file' sets both the suid and sgid bits, while
 \&`chmod o+s file' does nothing.)
 .PP
-The `sticky bit' is not described by POSIX.
-The name derives from the original meaning:
+The name of the `sticky bit' derives from the original meaning:
 keep program text on swap device.
 These days, when set for a directory, it means that
 only the owner of the file and the owner of that directory
@@ -150,8 +151,6 @@ This page describes
 .B chmod
 as found in the fileutils-4.0 package;
 other versions may differ slightly.
-Mail corrections and additions to aeb@cwi.nl.
-Report bugs in the program to fileutils-bugs@gnu.ai.mit.edu.
 .SH "SEE ALSO"
 .BR chattr (1),
 .BR chown (1),

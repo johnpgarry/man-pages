@@ -13,6 +13,7 @@ casin, casinf, casinl \- complex arc sine
 .sp
 .BI "long double complex casinl(long double complex " z ); 
 .sp
+Link with \-lm.
 .SH DESCRIPTION
 The casin() function calculates the complex asin().
 If y = casin(z), then z = csin(y).
@@ -23,5 +24,6 @@ casin(z) = -i clog(iz+csqrt(1-z*z)).
 .SH "CONFORMING TO"
 C99
 .SH "SEE ALSO"
+.BR ccos (3),
 .BR clog (3),
-.BR ccos (3)
+.BR complex (5)

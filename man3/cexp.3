@@ -13,6 +13,7 @@ cexp, cexpf, cexpl \- complex exponential function
 .sp
 .BI "long double complex cexpl(long double complex " z ");"
 .sp
+Link with \-lm.
 .SH DESCRIPTION
 The function calculates e (2.71828..., the base of natural logarithms)
 raised to the power of z.
@@ -22,5 +23,6 @@ One has cexp(I*z) = ccos(z) + I*csin(z).
 C99
 .SH "SEE ALSO"
 .BR cabs (3),
+.BR clog (3),
 .BR cpow (3),
-.BR clog (3)
+.BR complex (5)

@@ -21,18 +21,24 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH TKILL 2 "2003-02-01" "Linux 2.4.20" "Linux Programmer's Manual"
+.\" 2004-05-31, added tgkill, ahu, aeb
+.\"
+.TH TKILL 2 "2004-05-31" "Linux 2.6.6" "Linux Programmer's Manual"
 .SH NAME
-tkill \- send a signal to a single process
+tkill, tgkill \- send a signal to a single process
 .SH SYNOPSIS
 .nf
 .B #include <sys/types.h>
 .br
 .B #include <linux/unistd.h>
 .sp
-.B "_syscall2(int, tkill, pid_t, tid, int, sig)"
+.B "_syscall2(int, tkill, int, tid, int, sig)"
 .sp
-.B int tkill(pid_t tid, int sig);
+.B int tkill(int tid, int sig);
+.sp
+.B "_syscall3(int, tkill, int, tgid, int, tid, int, sig)"
+.sp
+.B int tgkill(int tgid, int tid, int sig);
 .fi
 .SH DESCRIPTION
 The \fBtkill\fP system call is analogous to
@@ -43,6 +49,14 @@ Since all the processes in a thread group have the same PID,
 they cannot be individually signalled with \fBkill\fP.
 With \fBtkill\fP, however, one can address each process
 by its unique TID.
+.PP
+The \fBtgkill\fP call improves on \fBtkill\fP by allowing the caller to
+specify the thread group ID of the thread to be signalled, protecting
+against TID reuse. If the tgid is specified as \-1, \fBtgkill\fP degenerates
+into \fBtkill\fP.
+.PP
+These are the raw system call interfaces, meant for internal
+thread library use.
 .SH "RETURN VALUE"
 On success, zero is returned. On error, \-1 is returned, and \fIerrno\fP
 is set appropriately.
@@ -52,16 +66,16 @@ is set appropriately.
 An invalid TID or signal was specified.
 .TP
 .B ESRCH
-No process with the specified TID exists.
+No process with the specified thread ID (and thread group ID) exists.
 .TP
 .B EPERM
-The caller did not have permission to send the signal to the specified
-process. For a process to be allowed to send a signal, it must either
-have root privileges, or its real or effective user ID must be equal to
-the real or saved set-user-ID of the receiving process.
+Permission denied. For the required permissions, see
+.BR kill (2).
 .SH "CONFORMING TO"
-\fBtkill\fP is Linux specific and should not be used in programs that
-are intended to be portable.
+\fBtkill\fP and \fBtgkill\fP are Linux specific and should not be used
+in programs that are intended to be portable.
+\fBtkill\fP is supported since Linux 2.4.19 / 2.5.4.
+\fBtgkill\fP was added in Linux 2.5.75.
 .SH "SEE ALSO"
 .BR gettid (2),
 .BR kill (2)

@@ -37,11 +37,13 @@ cosh, coshf, coshl \- hyperbolic cosine function
 .B #include <math.h>
 .sp
 .BI "double cosh(double " x );
-.sp
+.br
 .BI "float coshf(float " x );
-.sp
+.br
 .BI "long double coshl(long double " x );
 .fi
+.sp
+Link with \-lm.
 .SH DESCRIPTION
 The \fBcosh()\fP function returns the hyperbolic cosine of \fIx\fP, which 
 is defined mathematically as (exp(x) + exp(-x)) / 2.

@@ -38,7 +38,7 @@ These macros are used to create and access control messages (also called
 ancillary data) that are not a part of the socket payload.
 This control information may 
 include the interface the packet was received on, various rarely used header 
-fields, an extended error description, a set of file descriptors or unix
+fields, an extended error description, a set of file descriptors or Unix
 credentials.  For instance, control messages can be used to send 
 additional header fields such as IP options. 
 Ancillary data is sent by calling 
@@ -213,7 +213,7 @@ the IPv6 advanced API described in RFC2292 and the Single Unix specification v2.
 CMSG_ALIGN 
 is a Linux extension. 
 .SH "SEE ALSO"
-.BR sendmsg (2),
-.BR recvmsg (2)
+.BR recvmsg (2),
+.BR sendmsg (2)
 .PP
 RFC 2292

@@ -27,8 +27,10 @@
 .\" Modified Thu Jul 15 12:43:28 1999 by aeb
 .\"  [todo: split this into man.7 describing the macros
 .\"   and manpage.7 describing the Linux man page conventions]
+.\" Modified Sun Jan  6 18:26:25 2002 by Martin Schulze <joey@infodrom.org>
+.\" Modified Tue Jul 27 20:12:02 2004 by Colin Watson <cjwatson@debian.org>
 .\"
-.TH MAN 7 1999-06-16 "Linux" "Linux Programmer's Manual"
+.TH MAN 7 2004-07-27 "Linux" "Linux Programmer's Manual"
 .SH NAME
 man \- macros to format man pages
 .SH SYNOPSIS
@@ -455,46 +457,36 @@ its results are like those of the
 .B \&.IP
 command.
 .SS "Hypertext Link Macros"
+(Feature supported with groff only.)
+In order to use hypertext link macros, it is necessary to load the
+.B www.tmac
+macro package.
+Use the request
+.B .mso www.tmac
+to do this.
 .TP 9m
-.BI \&.UR " u"
-Begins a hypertext link to the URI (URL)
-.IR u ;
-it will end with the corresponding
-.B UE
-command.
+.BI \&.URL " url link trailer"
+Inserts a hypertext link to the URI (URL)
+.IR url ,
+with
+.I link
+as the text of the link.
+The
+.I trailer
+will be printed immediately afterwards.
 When generating HTML this should translate into the HTML command
-\fB<A HREF="\fP\fIu\fP\fB">\fP.
-There is an exception: if
-.I u
-is the special value ":", then no hypertext link of any kind
-will be generated until after the closing
-.B UE
-(this permits disabling hypertext links in phrases like
-.UR ":"
-LALR(1)
-.UE
-when linking is not appropriate).
-These hypertext link "macros" are new, and
+\fB<A HREF="\fP\fIurl\fP\fB">\fIlink\fP\fB</A>\fP\fItrailer\fP.
+.\" The following is a kludge to get a paragraph into the listing.
+.TP
+.B " "
+This and other related macros are new, and
 many tools won't do anything with them, but
 since many tools (including troff) will simply ignore undefined macros
 (or at worst insert their text) these are safe to insert.
-.TP
-.BI \&.UE
-Ends the corresponding
-.B UR
-command;
-when generating HTML this should translate into
-\fB</A>\fP.
-.TP
-.BI \&.UN " u"
-Creates a named hypertext location named
-.IR u ;
-do not include a corresponding
-.B UE
-command.
-When generating HTML this should translate into the HTML command
-\fB<A NAME="\fP\fIu\fP\fB" id="\fP\fIu\fP\fB">&nbsp;</A>\fP
-(the &nbsp; is optional if support for Mosaic is unneeded).
+.PP
+A number of other link macros are available.  See
+.BR groff_www (7)
+for more details.
 .SS "Miscellaneous Macros"
 .TP 9m
 .B \&.DT
@@ -638,7 +630,7 @@ some tools such as
 .BR man2html (1)
 can automatically turn them into hypertext links.
 You can also use the new
-.B UR
+.B URL
 macro to identify links to related information.
 If you include URLs, use the full URL
 (e.g., <http://www.kernelnotes.org>) to ensure that tools
@@ -718,4 +710,5 @@ manual page, such as adding detailed information on sections and macros.
 .BR man2html (1),
 .BR mdoc (7),
 .BR mdoc.samples (7),
+.BR groff_www (7),
 .BR whatis (1)

@@ -27,7 +27,7 @@
 .\"
 .\" Modified 1993-07-24 by Rik Faith (faith@cs.unc.edu)
 .\" Modified 2002-08-10 Walter Harms (walter.harms@informatik.uni-oldenburg.de)
-.\" Modified 2003-11-18 aeb
+.\" Modified 2003-11-18, 2004-10-05 aeb
 .\"
 .TH REMAINDER 3  2003-11-18 "" "Linux Programmer's Manual"
 .SH NAME
@@ -62,7 +62,7 @@ where
 is the value
 .IR x " / " y ,
 rounded to the nearest integer.
-If this quotient is 1/2, it is rounded to the nearest even number
+If this quotient is 1/2 (mod 1), it is rounded to the nearest even number
 (independent of the current rounding mode).
 If the return value is 0, it has the sign of
 .IR x .

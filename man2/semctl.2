@@ -25,7 +25,12 @@
 .\" Modified Sun Feb 18 01:59:29 2001 by Andries Brouwer <aeb@cwi.nl>
 .\" Modified 20 Dec 2001, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\" Modified 21 Dec 2001, aeb
-.TH SEMCTL 2 2001-12-21 "Linux 2.4.1" "Linux Programmer's Manual" 
+.\" Modified 27 May 2004, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"     Added notes on CAP_IPC_OWNER requirement
+.\" Modified 17 Jun 2004, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"     Added notes on CAP_SYS_ADMIN requirement for IPC_SET and IPC_RMID
+.\"
+.TH SEMCTL 2 2004-06-17 "Linux 2.6.7" "Linux Programmer's Manual" 
 .SH NAME
 semctl \- semaphore control operations
 .SH SYNOPSIS
@@ -255,8 +260,23 @@ On failure,
 will be set to one of the following:
 .TP 11
 .B EACCES
-The calling process has no access permissions needed to execute
-.IR cmd .
+The argument
+.I cmd
+has one of the values
+.BR GETALL ,
+.BR GETPID ,
+.BR GETVAL ,
+.BR GETNCNT ,
+.BR GETZCNT ,
+.BR IPC_STAT ,
+.BR SEM_STAT ,
+.BR SETALL ,
+or
+.B SETVAL
+and the calling process does not have the required
+permissions on the semaphore set and does not have the
+.B CAP_IPC_OWNER
+capability.
 .TP
 .B EFAULT
 The address pointed to by
@@ -281,7 +301,16 @@ has value
 .B IPC_SET
 or
 .B IPC_RMID
-but the calling process has insufficient privileges to execute the command.
+but the but the effective user ID of the calling process is not the creator
+(as found in
+.IR sem_perm.cuid )
+or the owner
+(as found in
+.IR sem_perm.uid )
+of the semaphore set,
+and the process does not have the
+.B CAP_SYS_ADMIN
+capability.
 .TP
 .B ERANGE
 The argument
@@ -336,4 +365,5 @@ SVr4, SVID.  SVr4 documents more error conditions EINVAL and EOVERFLOW.
 .BR ipc (2),
 .BR semget (2),
 .BR semop (2),
-.BR ipc (5)
+.BR ipc (5),
+.BR capabilities (7)

@@ -887,7 +887,7 @@ and a value of 1 enables it.
 .I /proc/sys/fs/dquot-max
 This file shows the maximum number of cached disk quota entries.
 On some (2.4) systems, it is not present.
-If the number of free cached disk quotas is very low and
+If the number of free cached disk quota entries is very low and
 you have some awesome number of simultaneous system users,
 you might want to raise the limit.
 .TP
@@ -1408,7 +1408,8 @@ Linux version 1.0.9 (quinlan@phaze) #1 Sat May 14 01:51:54 EDT 1994
 .BR lspci (8),
 .BR netstat (8),
 .BR procinfo (8),
-.BR route (8),
+.BR route (8)
+.br
 .I /usr/src/linux/Documentation/filesystems/proc.txt
 .SH CAVEATS
 Note that many strings (i.e., the environment and command line) are in
@@ -1422,4 +1423,3 @@ of thing that needs to be updated very often.
 .SH ACKNOWLEDGEMENTS
 The material on /proc/sys/fs and /proc/sys/kernel is closely based on
 kernel source documentation files written by Rik van Riel.
-

@@ -22,8 +22,9 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Modified 2004-06-17 Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH LOOKUP_DCOOKIE 2 2003-02-09 "Linux 2.5.43" "Linux Programmer's Manual"
+.TH LOOKUP_DCOOKIE 2 2004-06-17 "Linux 2.6.7" "Linux Programmer's Manual"
 .SH NAME
 lookup_dcookie \- return a directory entry's path
 .SH SYNOPSIS
@@ -58,8 +59,11 @@ On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
+.TP
 .B EPERM
-The process does not have the capability to look up cookie values.
+The process does not have the capability 
+.B CAP_SYS_ADMIN
+required to look up cookie values.
 .TP
 .B EINVAL
 The kernel has no registered cookie/directory entry mappings at the
@@ -84,4 +88,3 @@ is Linux-specific.
 .SH AVAILABILITY
 Since Linux 2.5.43.
 The ENAMETOOLONG error return was added in 2.5.70.
-

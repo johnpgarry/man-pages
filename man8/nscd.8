@@ -27,7 +27,7 @@ requests. The default configuration file,
 determines the behavior of the cache daemon. See
 .BR nscd.conf (5).
 
-Nscd provides cacheing for the
+Nscd provides cacheing for accesses of the
 .BR passwd (5),
 .BR group (5),
 and
@@ -38,11 +38,13 @@ databases through standard libc interfaces, such as
 .BR getgrnam (3),
 .BR getgrgid (3),
 .BR gethostbyname (3),
-and others. Each cache has a separate TTL (time-to-live) for its data;
-modifying the local database
-.RI ( /etc/passwd ,
-and so forth) causes the cache to become invalidated within fifteen
-seconds. Note that the shadow file is specifically not cached.
+and others.
+
+There are two caches for each database:
+a positive one for items found, and a negative one
+for items not found. Each cache has a separate TTL (time-to-live)
+period for its data.
+Note that the shadow file is specifically not cached.
 .BR getspnam (3)
 calls remain uncached as a result.
 

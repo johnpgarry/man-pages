@@ -6,8 +6,10 @@
 .\"
 .\" Modified, 2003-12-02, Michael Kerrisk, mtk16@ext.canterbury.ac.nz
 .\" Modified, 2003-09-23, Adam Langley
+.\" Modified, 2004-05-27, Michael Kerrisk, mtk16@ext.canterbury.ac.nz
+.\"	Added SOCK_SEQPACKET
 .\"
-.TH UNIX  7 2002-12-02 "Linux Man Page" "Linux Programmer's Manual" 
+.TH UNIX  7 2004-05-27 "Linux Man Page" "Linux Programmer's Manual" 
 .SH NAME
 unix, PF_UNIX, AF_UNIX, PF_LOCAL, AF_LOCAL \- Sockets for local interprocess communication
 .SH SYNOPSIS
@@ -31,18 +33,23 @@ or associated with a file of type socket.
 Linux also supports an abstract namespace which is independent of the
 file system.
 
-Valid types are 
-.B SOCK_STREAM 
-for a stream oriented socket and 
-.B SOCK_DGRAM
-for a datagram oriented socket that preserves message boundaries. Unix
-sockets are always reliable and don't reorder datagrams.
+Valid types are:
+.BR SOCK_STREAM ,
+for a stream-oriented socket and
+.BR SOCK_DGRAM ,
+for a datagram-oriented socket that preserves message boundaries
+(as on most Unix implementations, Unix domain datagram
+sockets are always reliable and don't reorder datagrams);
+and (since kernel 2.6.4)
+.BR SOCK_SEQPACKET ,
+for a connection-oriented socket that preserves message boundaries
+and delivers messages in the order that they were sent. 
 
 Unix sockets support passing file descriptors or process credentials to other
 processes using ancillary data.
 
 .SH "ADDRESS FORMAT"
-A unix address is defined as a filename in the filesystem or 
+A Unix address is defined as a filename in the filesystem or 
 as a unique string in the abstract namespace. Sockets created by 
 .BR socketpair (2)
 are anonymous. For non-anonymous sockets the target address can be set 
@@ -118,7 +125,7 @@ The passed file descriptors behave as though they have been created with
 
 .TP
 .B SCM_CREDENTIALS
-Send or receive unix credentials.  This can be used for authentication.
+Send or receive Unix credentials.  This can be used for authentication.
 The credentials are passed as a 
 .B struct ucred
 ancillary message.
@@ -136,7 +143,7 @@ struct ucred {
  
 The credentials which the sender specifies are checked by the kernel.
 A process with effective user ID 0 is allowed to specify values that do 
-not match his own. 
+not match its own. 
 The sender must specify its own process ID (unless it has the capability
 .BR CAP_SYS_ADMIN ),
 its user ID, effective user ID or set user ID (unless it has
