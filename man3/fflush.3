@@ -86,7 +86,7 @@ for any of the errors specified for the routine
 .BR write (2).
 .SH NOTES
 Note that
-.B fflush
+.B fflush()
 only flushes the user space buffers provided by the C library.
 To ensure that the data is physically stored on disk
 the kernel buffers must be flushed too, e.g. with

@@ -1,0 +1,141 @@
+.\" Copyright (C) 2001 Andries Brouwer <aeb@cwi.nl>
+.\"
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
+.\"
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one
+.\" 
+.\" Since the Linux kernel and libraries are constantly changing, this
+.\" manual page may be incorrect or out-of-date.  The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\" 
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
+.\"
+.TH UNITS 7 2001-12-22 "Linux" "Linux Programmer's Manual"
+.SH NAME
+units, kilo, kibi, mega, mebi, giga, gibi \- decimal and binary prefixes
+.SH DESCRIPTION
+.SS Decimal prefixes
+The SI system of units uses prefixes that indicate powers of ten.
+A kilometer is 1000 meter, and a megawatt is 1000000 watt.
+Below the standard prefixes.
+
+.RS
+.TS
+l l l.
+Prefix	Name	Value
+y	yocto	10^-24 = 0.000000000000000000000001
+z	zepto	10^-21 = 0.000000000000000000001
+a	atto	10^-18 = 0.000000000000000001
+f	femto	10^-15 = 0.000000000000001
+p	pico	10^-12 = 0.000000000001
+n	nano	10^-9  = 0.000000001
+u	micro	10^-6  = 0.000001
+m	milli	10^-3  = 0.001
+c	centi	10^-2  = 0.01
+d	deci	10^-1  = 0.1
+da	deka	10^ 1  = 10
+h	hecto	10^ 2  = 100
+k	kilo	10^ 3  = 1000
+M	mega	10^ 6  = 1000000
+G	giga	10^ 9  = 1000000000
+T	tera	10^12  = 1000000000000
+P	peta	10^15  = 1000000000000000
+E	exa	10^18  = 1000000000000000000
+Z	zetta	10^21  = 1000000000000000000000
+Y	yotta	10^24  = 1000000000000000000000000
+.TE
+.RE
+
+The symbol for micro is the Greek letter mu, often written u
+in an ASCII context where this Greek letter is not available.
+See also
+.sp
+.RS
+http://physics.nist.gov/cuu/Units/prefixes.html
+.RE
+.SS Binary prefixes
+The binary prefixes resemble the decimal ones, but have an additional 'i'
+(and "Ki" starts with a capital 'K'). The names are formed by taking the
+first syllable of the names of the decimal prefix with roughly the same
+size, followed by "bi" for "binary".
+
+.RS
+.TS
+l l l.
+Prefix	Name	Value
+Ki	kibi	2^10 = 1024
+Mi	mebi	2^20 = 1048576
+Gi	gibi	2^30 = 1073741824
+Ti	tebi	2^40 = 1099511627776
+Pi	pebi	2^50 = 1125899906842624
+Ei	exbi	2^60 = 1152921504606846976
+.TE
+.RE
+
+See also
+.sp
+.RS
+http://physics.nist.gov/cuu/Units/binary.html
+.RE
+.SS Discussion
+Everybody knows that k means 1000 and M means 1000000.
+This usage is old and very standard, at least in countries
+using the metric system. There are no doubts about the
+meaning of terms like kilometer or megawatt.
+However, at the end of the twentieth century
+great confusion arose over the meaning of words like
+kilobit and megabyte.
+
+In the computer world one sometimes needs powers of two,
+mainly when talking about the size of (parts of) the internal memory.
+Given a memory of 4096 12-bit words, one would call it a 4K memory,
+since 4K is shorter and more convenient than 4096 (and the 12-bit
+part could be suppressed if one knew that the machine was a PDP-8).
+
+Giving an approximate value is reasonable in two cases:
+firstly, when higher precision is unnecessary (or unavailable),
+and secondly, when the precise value is immediately clear from
+the approximate value.
+
+Thus, for a while everybody was happy and talked about
+16K buffers, and 256K hard disks, and it was clear what was
+meant because such things always came in power-of-two sizes.
+Then disk technology changed and sizes of hard disks became arbitrary numbers.
+After a period of uncertainty all disk manufacturers settled on the
+standard, namely M = 1000000.
+
+This created a new situation: earlier the word "megabyte" as used
+in memory sizes and disk sizes (but not file sizes) always meant
+1048576 bytes, and now one didn't know any more. In memory sizes
+M is 1048576, in disk sizes M is 1000000, in program output nobody knows.
+In some contexts M is 1000K and K=1024 so that M=1024000.
+
+Thus, today, one can use M for 1000000, 1024000 or 1048576
+when precision is unnecessary, and one can use it for 1048576
+when one discusses memory modules that only come in power-of-two sizes,
+but in all other contexts, when precision is required, M is 1000000,
+and if one needs a prefix with meaning 1048576 some new abbreviation
+is required. In 1998 the IEC approved the standard that defines the
+binary prefixes given above (and thus abbreviates 1048576 as Mi).
+
+Scientists and engineers like precision, and adopted these new units
+in many contexts. In the free software world programs are slowly
+being changed to conform. When the Linux kernel boots and says
+
+.RS
+.nf
+hda: 120064896 sectors (61473 MB) w/2048KiB Cache
+.fi
+.RE
+
+the MB are megabytes and the KiB are kibibytes.

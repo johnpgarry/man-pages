@@ -110,8 +110,7 @@ ESC (0x1B, ^[) starts an escape sequence;
 DEL (0x7F) is ignored;
 .HP
 CSI (0x9B) is equivalent to ESC [.
-.LP
-
+.\" .LP
 .SS "ESC- but not CSI-sequences"
 .TS
 l l l.
@@ -124,8 +123,8 @@ ESC Z	DECID	DEC private identification. The kernel
 		returns the string  ESC [ ? 6 c, claiming
 		that it is a VT102.
 ESC 7	DECSC	Save current state (cursor coordinates,
-		attributes, character sets).
-ESC 8	DECRC	Restore most recently saved state.
+		attributes, character sets pointed at by G0, G1).
+ESC 8	DECRC	Restore state most recently saved by ESC 7.
 ESC [	CSI	Control sequence introducer
 ESC %		Start sequence selecting character set
 ESC % @		\0\0\0Select default (ISO 646 / ISO 8859-1)
@@ -263,8 +262,9 @@ DECIM (default off): Set insert mode.
 .TP
 ESC [ 20 h
 LF/NL (default off): Automatically follow echo of LF, VT or FF with CR.
-.LP
+.\"
 .SS ECMA-48 Status Report Commands
+.\"
 .TP
 ESC [ 5 n
 Device status report (DSR): Answer is ESC [ 0 n (Terminal OK).
@@ -272,9 +272,9 @@ Device status report (DSR): Answer is ESC [ 0 n (Terminal OK).
 ESC [ 6 n
 Cursor position report (CPR): Answer is ESC [ \fIy\fP ; \fIx\fP R,
 where \fIx,y\fP is the cursor location.
-
+.\"
 .SS DEC Private Mode (DECSET/DECRST) sequences.
-
+.\"
 These are not described in ECMA-48.  We list the Set Mode sequences;
 the Reset Mode sequences are obtained by replacing the final `h'
 by `l'.
@@ -315,9 +315,9 @@ DECCM (default on): Make cursor visible.
 ESC [ ? 1000 h
 X11 Mouse Reporting (default off): Set reporting mode to 2 (or reset
 to 0) \- see below.
-
+.\"
 .SS Linux Console Private CSI Sequences
-
+.\"
 The following sequences are neither ECMA-48 nor native VT102.  They
 are native to the Linux console driver.  Colors are in SGR parameters:
 0 = black, 1 = red, 2 = green, 3 = brown, 4 = blue, 5 = magenta, 6 =
@@ -409,7 +409,7 @@ Many different terminal types are described, like the Linux console,
 as being `VT100-compatible'.  Here we discuss differences vbetween the
 Linux console an the two most important others, the DEC VT102 and
 .BR xterm (1).
-
+.\"
 .SS Control-character handling
 The vt102 also recognized the following control characters:
 .HP
@@ -428,7 +428,7 @@ The
 .I xterm
 program (in vt100 mode) recognizes the control characters 
 BEL, BS, HT, LF, VT, FF, CR, SO, SI, ESC.
-
+.\"
 .SS Escape sequences
 VT100 console sequences not implemented on the Linux console:
 .LP
@@ -495,7 +495,7 @@ ESC ~	LS1R	Invoke the G1 character set as GR.
 .TE
 
 It does not recognize ESC % ...
-
+.\"
 .SS CSI Sequences
 The 
 .I xterm

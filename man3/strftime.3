@@ -83,6 +83,9 @@ zero is replaced by a space. (SU)
 .B %E
 Modifier: use alternative format, see below. (SU)
 .TP
+.B %F
+Equivalent to %Y-%m-%d (the ISO 8601 date format). (C99)
+.TP
 .B %G
 The ISO 8601 year with century as a decimal number.
 The 4-digit year corresponding to the ISO week number (see %V).
@@ -244,6 +247,7 @@ POSIX.1 only refers to ANSI C; POSIX.2 describes under
 several extensions that could apply to
 .B strftime
 as well.
+The %F conversion is in C99 and POSIX 1003.1-2001.
 .SH "SEE ALSO"
 .BR date (1),
 .BR time (2),

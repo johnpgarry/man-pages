@@ -1,8 +1,4 @@
-.\" Hey Emacs! This file is -*- nroff -*- source.
-.\"
-.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
-.\" Portions from /usr/include/unistd.h are
-.\"               Copyright (C) 1991, 1992 Free Software Foundation, Inc.
+.\" Copyright (C) 2001 Andries Brouwer <aeb@cwi.nl>
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -24,35 +20,66 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Tue Oct 22 00:22:35 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
-.TH GETPAGESIZE 2 1993-07-23 "Linux 0.99.11" "Linux Programmer's Manual"
+.TH GETPAGESIZE 2 2001-12-21 "Linux 2.5.0" "Linux Programmer's Manual"
 .SH NAME
-getpagesize \- get system page size
+getpagesize \- get memory page size
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
-.B size_t getpagesize(void);
+.B int getpagesize(void);
 .SH DESCRIPTION
-Return the number of bytes in a page.  This is the system's page size,
-which is not necessarily the same as the hardware page size.
+The function
+.B getpagesize()
+returns the number of bytes in a page, where a "page" is the thing
+used where it says in the description of
+.BR mmap (2)
+that files are mapped in page-sized units.
+
+The size of the kind of pages that
+.B mmap
+uses, is found using
+
+.RS
+.nf
+#include <unistd.h>
+long sz = sysconf(_SC_PAGESIZE);
+.fi
+.RE
+
+(where some systems also allow the synonym _SC_PAGE_SIZE for _SC_PAGESIZE),
+or
+
+.RS
+.nf
+#include <unistd.h>
+int sz = getpagesize();
+.fi
+.RE
+.SH HISTORY
+This call first appeared in 4.2BSD.
+.SH CONFORMING TO
+SVr4, 4.4BSD, SUSv2.
+In SUSv2 the
+.B getpagesize()
+call is labeled "legacy", and in POSIX 1003.1-2001
+it has been dropped.
+HPUX does not have this call.
 .SH NOTES
-.B getpagesize
-is implemented as a library function in DLL 4.4.1.  Depending on what is
-defined when the library is compiled, this function returns
-.B EXEC_PAGESIZE
-(set to 4096 in Linux 0.99.11),
-.B NBPG
-(set to 4096 in Linux 0.99.11), or
-.B NBPC
-(not defined in Linux 0.99.11 or DLL 4.4.1 libraries).
-.SH BUGS
-Depending on architecture and library version, this library call
-may do a system call or not. It may return a value different
-from that of the system call. For example, on a sun4 with libc5
-this routine returns EXEC_PAGESIZE, which is 8192, and not
-PAGE_SIZE, which is 4096, or the result of the system call,
-which also is 4096.
-.SH "CONFORMING TO"
-SVr4, 4.4BSD (this call first appeared in 4.2BSD).
+Whether
+.B getpagesize()
+is present as a Linux system call depends on the architecture.
+If it is, it returns the kernel symbol PAGE_SIZE,
+which is architecture and machine model dependent.
+Generally, one uses binaries that are architecture but not
+machine model dependent, in order to have a single binary
+distribution per architecture. This means that a user program
+should not find PAGE_SIZE at compile time from a header file,
+but use an actual system call, at least for those architectures
+(like sun4) where this dependency exists.
+Here libc4, libc5, glibc 2.0 fail because their
+.B getpagesize()
+returns a statically derived value, and does not use a system call.
+Things are OK in glibc 2.1.
 .SH "SEE ALSO"
-.BR sbrk (2)
+.BR mmap (2),
+.BR sysconf (3)

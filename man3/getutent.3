@@ -80,10 +80,9 @@ uses \fBgetutid\fP() to search for the proper place in the file to insert
 the new entry.  If it cannot find an appropriate slot for \fIut\fP,
 \fBpututline\fP() will append the new entry to the end of the file.
 .SH "RETURN VALUE"
-\fBgetutent\fP(), \fBgetutid\fP(), and \fBgetutline\fP() return a pointer to
-a \fBstatic struct utmp\fP.
-.SH ERRORS
-On error, \fB(struct utmp*)0\fP will be returned.
+\fBgetutent\fP(), \fBgetutid\fP(), \fBgetutline\fP() and \fBpututline\fP()
+return a pointer to a \fBstatic struct utmp\fP on success, and NULL
+on failure.
 .SH EXAMPLE
 The following example adds and removes a utmp record, assuming it is run
 from within a pseudo terminal.  For usage in a real application, you

@@ -27,28 +27,28 @@
 .\" Modified 13 Oct 2001 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"	Added note on historical behaviour of MS_NOSUID
 .\"
-.TH MOUNT 2 2001-10-13 "Linux 2.4" "Linux Programmer's Manual"
+.TH MOUNT 2 2001-12-20 "Linux 2.5" "Linux Programmer's Manual"
 .SH NAME
 mount, umount \- mount and unmount filesystems.
 .SH SYNOPSIS
 .B "#include <sys/mount.h>"
 .sp
-.BI "int mount(const char *" specialfile ", const char *" dir
+.BI "int mount(const char *" source ", const char *" target
 .BI ", const char *" filesystemtype ", unsigned long " mountflags
 .BI ", const void *" data );
 .sp
-.BI "int umount(const char *" dir );
+.BI "int umount(const char *" target );
 .SH DESCRIPTION
 .B mount
 attaches the filesystem specified by
-.I specialfile
-(which is often a device name)
-to the directory specified by
-.IR dir .
+.I source
+(which is often a device name, but can also be a directory name
+or a dummy) to the directory specified by
+.IR target .
 
 .B umount
 removes the attachment of the (topmost) filesystem mounted on
-.IR dir .
+.IR target .
 
 Only the super-user may mount and unmount filesystems.
 
@@ -74,6 +74,7 @@ and in <sys/mount.h> for glibc2) in the low order 16 bits:
 #define MS_NOATIME    1024 /* do not update access times */
 #define MS_NODIRATIME 2048 /* do not update dir access times */
 #define MS_BIND       4096 /* bind subtree elsewhere */
+#define MS_MOVE       8192 /* atomically move subtree */
 .fi
 
 The
@@ -98,30 +99,37 @@ The user is not the super-user.
 not configured in the kernel.
 .TP
 .B ENOTBLK
-.I Specialfile
-is not a block device (if a device was required).
+.I Source
+is not a block device (and a device was required).
 .TP
 .B EBUSY
-.I Specialfile
+.I Source
 is already mounted. Or, it cannot be remounted read-only,
 because it still holds files open for writing.
 Or, it cannot be mounted on
-.I dir
+.I target
 because
-.I dir
+.I target
 is still busy (it is the working directory of some task,
 the mount point of another device, has open files, etc.).
 .TP
 .B EINVAL
-.I Specialfile
+.I Source
 had an invalid superblock.
 Or, a remount was attempted, while
-.I specialfile
+.I source
 was not already mounted on
-.IR dir .
+.IR target .
+Or, a move was attempted, while
+.I source
+was not a mount point, or was '/'.
 Or, an umount was attempted, while
-.I dir
+.I target
 was not a mount point.
+.TP
+.B ENOTDIR
+The second argument, or a prefix of the first argument, is not
+a directory.
 .TP
 .B EFAULT
 One of the pointer arguments points outside the user address space.
@@ -135,9 +143,12 @@ A pathname was longer than MAXPATHLEN.
 .B ENOENT
 A pathname was empty or had a nonexistent component.
 .TP
-.B ENOTDIR
-The second argument, or a prefix of the first argument, is not
-a directory.
+.B ELOOP
+Too many link encountered during pathname resolution.
+Or, a move was attempted, while
+.I target
+is a descendant of
+.IR source .
 .TP
 .B EACCES
 A component of a path was not searchable.
@@ -146,12 +157,12 @@ Or, mounting a read-only filesystem was attempted without giving the
 MS_RDONLY flag.
 .br
 Or, the block device
-.I Specialfile
+.I Source
 is located on a filesystem mounted with the MS_NODEV option.
 .TP
 .B ENXIO
 The major number of the block device
-.I specialfile
+.I source
 is out of range.
 .TP
 .B EMFILE

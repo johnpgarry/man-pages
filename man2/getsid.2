@@ -21,7 +21,8 @@
 .\" USA.
 .\"
 .\" Modified Thu Oct 31 14:18:40 1996 by Eric S. Raymond <esr@y\thyrsus.com>
-.TH GETSID 2 1996-04-11 "Linux 1.3.85" "Linux Programmer's Manual"
+.\" Modified 2001-12-17, aeb
+.TH GETSID 2 2001-12-17 "Linux 2.5.0" "Linux Programmer's Manual"
 .SH NAME
 getsid \- get session ID
 .SH SYNOPSIS
@@ -34,13 +35,34 @@ returns the session ID of the calling process.
 .BI getsid( p )
 returns the session ID of the process with process ID
 .IR p .
+(The session ID of a process is the process group ID of the
+session leader.)
+On error, (pid_t) \-1 will be returned, and
+.I errno
+is set appropriately.
 .SH ERRORS
-On error, \-1 will be returned.  The only error which can happen is
-.BR ESRCH ,
-when no process with process ID
+.TP
+.B EPERM
+A process with process ID
+.I p
+exists, but it is not in the same session as the current process,
+and the implementation considers this an error.
+.TP
+.B ESRCH
+No process with process ID
 .I p
 was found.
 .SH "CONFORMING TO"
-SVr4, which documents an additional EPERM error condition.
+SVr4, POSIX 1003.1-2001.
+.SH NOTES
+Linux does not return EPERM.
+.LP
+Linux has this system call since Linux 1.3.44.
+There is libc support since libc 5.2.19.
+.LP
+To get the prototype under glibc, define both _XOPEN_SOURCE and
+_XOPEN_SOURCE_EXTENDED, or use "#define _XOPEN_SOURCE \fIn\fP"
+for some integer \fIn\fP larger than or equal to 500.
 .SH "SEE ALSO"
+.BR getpgid (2),
 .BR setsid (2)

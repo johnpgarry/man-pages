@@ -168,7 +168,7 @@ gaps in the numbers of arguments specified using `$'; for example, if
 arguments 1 and 3 are specified, argument 2 must also be specified
 somewhere in the format string.
 
-For some numeric conversion a radix character (`decimal point') or
+For some numeric conversions a radix character (`decimal point') or
 thousands' grouping character is used. The actual character used
 depends on the LC_NUMERIC part of the locale. The POSIX locale
 uses `.' as radix character, and does not have a grouping character.
@@ -265,7 +265,7 @@ overrides a
 .B \&0
 if both are given.
 .TP
-.B \' \'
+.B ' '
 (a space) A blank should be left before a positive number
 (or empty string) produced by a signed conversion.
 .TP
@@ -782,13 +782,6 @@ make_message(const char *fmt, ...) {
 .fi
 .RE
 
-.SH "SEE ALSO"
-.BR printf (1),
-.BR wcrtomb (3),
-.BR wprintf (3),
-.BR scanf (3),
-.BR locale (5)
-
 .SH "CONFORMING TO"
 The
 .BR fprintf ,
@@ -870,6 +863,11 @@ and
 .IR vasprintf ,
 that allocate a buffer large enough for
 .BR sprintf .
+In glibc there are functions
+.I dprintf
+and
+.I vdprintf
+that print to a file descriptor instead of a stream.
 .SH BUGS
 Because
 .B sprintf
@@ -912,3 +910,12 @@ call to write to memory and creating a security hole.
 .PP
 Some floating point conversions under early libc4
 caused memory leaks.
+
+.SH "SEE ALSO"
+.BR printf (1),
+.BR asprintf (3),
+.BR dprintf (3),
+.BR wcrtomb (3),
+.BR wprintf (3),
+.BR scanf (3),
+.BR locale (5)

@@ -29,8 +29,9 @@
 .\" means enough.
 .\"
 .\" added _XOPEN_SOURCE, aeb, 970705
-.\" "
-.TH CRYPT 3 1994-09-03 "" "Library functions"
+.\" added GNU MD5 stuff, aeb, 011223
+.\"
+.TH CRYPT 3 2001-12-23 "" "Library functions"
 .SH NAME
 crypt \- password and data encryption
 .SH SYNOPSIS
@@ -53,7 +54,7 @@ is a two-character string chosen from the set
 [\fBa\fP\(en\fBzA\fP\(en\fBZ0\fP\(en\fB9./\fP].  This string is used to
 perturb the algorithm in one of 4096 different ways.
 .PP
-By taking the lowest 7 bit of each character of the
+By taking the lowest 7 bits of each of the first eight characters of the
 .IR key ,
 a 56-bit key is obtained.  This 56-bit key is used to encrypt repeatedly a
 constant string (usually a string consisting of all zeros).  The returned
@@ -99,8 +100,8 @@ function was not implemented, probably because of U.S.A. export restrictions.
 .\" text C'.
 .\" .PP
 .\" Weak keys are keys which stay invariant under the DES key transformation.
-.\" The four known weak keys 0101010101010101, fefefefefefefefe, 1f1f1f1f0e0e0e0e
-.\" and e0e0e0e0f1f1f1f1 must be avoided.
+.\" The four known weak keys 0101010101010101, fefefefefefefefe,
+.\" 1f1f1f1f0e0e0e0e and e0e0e0e0f1f1f1f1 must be avoided.
 .\" .PP
 .\" There are six known half weak key pairs, which keys lead to the same
 .\" encrypted data.  Keys which are part of such key clusters should be
@@ -115,7 +116,7 @@ function was not implemented, probably because of U.S.A. export restrictions.
 .\" implements.  The
 .\" .BR crypt (3)
 .\" interface should be used only for its intended purpose of password
-.\" verification, and should not be used at part of a data encryption tool.
+.\" verification, and should not be used as part of a data encryption tool.
 .\" .PP
 .\" The first and last three output bits of the fourth S-box can be
 .\" represented as function of their input bits.  Empiric studies have
@@ -125,8 +126,23 @@ function was not implemented, probably because of U.S.A. export restrictions.
 .\" .PP
 .\" Making encrypted data computed using crypt() publically available has
 .\" to be considered insecure for the given reasons.
+.SH "GNU EXTENSION"
+The glibc2 version of this function has the following additional features.
+If
+.I salt
+is a character string starting with the three characters "$1$"
+followed by at most eight characters, and optionally terminated by "$",
+then instead of using the DES machine, the glibc crypt function
+uses an MD5-based algorithm, and outputs up to 34 bytes,
+namely "$1$<string>$", where "<string>" stands for the up to 8
+characters following "$1$" in the salt, followed by 22 bytes chosen
+from the set [\fBa\fP\(en\fBzA\fP\(en\fBZ0\fP\(en\fB9./\fP].
+The entire key is significant here (instead of only the first
+8 bytes).
+.LP
+Programs using this function must be linked with -lcrypt.
 .SH "CONFORMING TO"
-SVID, X/OPEN, BSD 4.3
+SVID, X/OPEN, BSD 4.3, POSIX 1003.1-2001
 .SH "SEE ALSO"
 .BR login (1),
 .BR passwd (1),

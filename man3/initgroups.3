@@ -56,6 +56,13 @@ Insufficient memory to allocate group information structure.
 .fi
 .SH "CONFORMING TO"
 SVID 3, BSD 4.3
+.SH NOTES
+The prototype for
+.B initgroups
+is only available if
+.B _BSD_SOURCE
+is defined (either explicitly, or implicitly, by not defining
+_POSIX_SOURCE or compiling with the -ansi flag).
 .SH "SEE ALSO"
 .BR getgroups (2),
 .BR setgroups (2)

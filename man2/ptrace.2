@@ -165,7 +165,7 @@ the parent of the child process for most purposes (e.g., it will receive
 notification of child events and appears in
 .BR ps (1)
 output as the child's parent), but a
-.BR getpid (2)
+.BR getppid (2)
 by the child will still return the pid of the original parent.  The child is
 sent a SIGSTOP, but will not necessarily have stopped by the completion of
 this call; use

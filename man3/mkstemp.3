@@ -28,7 +28,7 @@
 .\" Modified 980310, aeb
 .\" Modified 990328, aeb
 .\"
-.TH MKSTEMP 3  1993-04-03 "GNU" "Linux Programmer's Manual"
+.TH MKSTEMP 3  2001-12-23 "GNU" "Linux Programmer's Manual"
 .SH NAME
 mkstemp \- create a unique temporary file
 .SH SYNOPSIS
@@ -61,12 +61,17 @@ Now \fItemplate\fP is unchanged.
 .B EEXIST
 Could not create a unique temporary filename.
 Now the contents of \fItemplate\fP are undefined.
-.SH BUGS
+.SH NOTES
 The old behaviour (creating a file with mode 0666) may be
 a security risk, especially since other Unix flavours use 0600,
 and somebody might overlook this detail when porting programs.
+
+More generally, the POSIX specification does not say anything
+about file modes, so the application should make sure its umask
+is set appropriately before calling
+.BR mkstemp .
 .SH "CONFORMING TO"
-BSD 4.3
+BSD 4.3, POSIX 1003.1-2001
 .SH NOTE
 The prototype is in
 .I <unistd.h>

@@ -225,7 +225,7 @@ debug-level message
 The function
 .BR setlogmask (3)
 can be used to restrict logging to specified levels only.
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 The functions
 .BR openlog() ,
 .BR closelog() ,
@@ -253,7 +253,6 @@ value for
 .I option
 is not specified by POSIX 1003.1-2001, but is available
 in most versions of Unix.
-
 .SH HISTORY
 A
 .B syslog
@@ -270,6 +269,17 @@ Of course early v* functions used the
 .I <varargs.h>
 mechanism, which is not compatible with
 .IR <stdarg.h> .
+.SH NOTES
+The parameter
+.I ident
+in the call of
+.B openlog()
+is probably stored as-is. Thus, if the string it points to
+is changed,
+.B syslog()
+may start prepending the changed string, and if the string
+it points to ceases to exist, the results are undefined.
+Most portable is to use a string constant.
 .SH "SEE ALSO"
 .BR logger (1),
 .BR setlogmask (3),

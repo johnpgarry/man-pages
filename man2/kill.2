@@ -32,8 +32,9 @@
 .\"  [added some polishing contributed by Mike Battersby (mib@deakin.edu.au)]
 .\" Modified Sun Jul 21 21:25:26 1996 by Andries Brouwer (aeb@cwi.nl)
 .\" Modified Fri Jan 17 23:49:46 1997 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Tue Dec 18 10:53:02 2001 by Andries Brouwer (aeb@cwi.nl)
 .\"
-.TH KILL 2 1997-09-14 "Linux 2.0.30" "Linux Programmer's Manual"
+.TH KILL 2 2001-12-18 "Linux 2.5.0" "Linux Programmer's Manual"
 .SH NAME
 kill \- send signal to a process
 .SH SYNOPSIS
@@ -56,7 +57,7 @@ If \fIpid\fP equals 0, then \fIsig\fP is sent to every process in the
 process group of the current process.
 .PP
 If \fIpid\fP equals \-1, then \fIsig\fP is sent to every process except
-for process 1 (init).
+for process 1 (init), but see below.
 .PP
 If \fIpid\fP is less than \-1, then \fIsig\fP is sent to every process
 in the process group \fI\-pid\fP.
@@ -88,12 +89,18 @@ user ID of the sending process must equal the real or
 saved set-user-ID of the receiving process.
 In the case of SIGCONT it suffices when the sending and receiving
 processes belong to the same session.
-.SH BUGS
+.SH NOTES
 It is impossible to send a signal to task number one, the init process, for
 which it has not installed a signal handler.  This is done to assure the
 system is not brought down accidentally.
+.LP
+POSIX 1003.1-2001 requires that \fIkill(-1,sig)\fP send \fIsig\fP
+to all processes that the current process may send signals to,
+except possibly for some implementation-defined system processes.
+Linux allows a process to signal itself, but on Linux the call
+\fIkill(-1,sig)\fP does not signal the current process.
 .SH "CONFORMING TO"
-SVr4, SVID, POSIX.1, X/OPEN, BSD 4.3
+SVr4, SVID, POSIX.1, X/OPEN, BSD 4.3, POSIX 1003.1-2001
 .SH "SEE ALSO"
 .BR _exit (2),
 .BR exit (3),

@@ -32,11 +32,7 @@
 .SH NAME
 iopl \- change I/O privilege level
 .SH SYNOPSIS
-.B #include <unistd.h>
-/* for libc5 */
-.br
 .B #include <sys/io.h>
-/* for glibc */
 .sp
 .BI "int iopl(int " level );
 .SH DESCRIPTION
@@ -68,11 +64,6 @@ is greater than 3.
 .TP
 .B EPERM
 The current user is not the super-user.
-.SH "NOTES FROM THE KERNEL SOURCE"
-.B iopl
-has to be used when you want to access the I/O ports beyond the 0x3ff
-range: to get the full 65536 ports bitmapped you'd need 8kB of
-bitmaps/process, which is a bit excessive.
 .SH "CONFORMING TO"
 \fBiopl\fP is Linux specific and should not be used in processes
 intended to be portable.
