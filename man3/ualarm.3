@@ -37,7 +37,7 @@ ualarm \- schedule signal after given number of microseconds
 .br
 .B "#include <unistd.h>"
 .sp
-.BI "useconds_t usleep(useconds_t " usecs ", useconds_t " interval );
+.BI "useconds_t ualarm(useconds_t " usecs ", useconds_t " interval );
 .fi
 .SH DESCRIPTION
 The \fBualarm()\fP function causes the signal SIGALRM to be sent
@@ -67,8 +67,8 @@ EINVAL
 \fIusecs\fP or \fIinterval\fP is not smaller than 1000000.
 (On systems where that is considered an error.)
 .SH "CONFORMING TO"
-BSD 4.3.
-BSD 4.3 and SUSv2 do not define any errors.
+BSD 4.3, POSIX 1003.1-2003.
+BSD 4.3, SUSv2 and POSIX do not define any errors.
 .SH NOTES
 The type
 .B useconds_t

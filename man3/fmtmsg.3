@@ -10,14 +10,17 @@
 .SH NAME
 fmtmsg \- print formatted error messages
 .SH SYNOPSIS
+.nf
 .sp
 .B #include <fmtmsg.h>
 .sp
-.BI "int fmtmsg(long " classification ", const char *" label ", int " severity ,
+.BI "int fmtmsg(long " classification ", const char *" label ,
 .br
-.in 18
-.BI "const char *" text ", const char *" action ", const char *" tag );
+.BI "           int " severity ", const char *" text ,
+.br
+.BI "           const char *" action ", const char *" tag );
 .sp
+.fi
 .SH DESCRIPTION
 This function displays a message described by its parameters on the device(s)
 specified in the

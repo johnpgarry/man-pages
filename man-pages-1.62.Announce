@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.61.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.62.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,21 +12,12 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.60:
+Differences from version 1.61:
 
     The man pages
 
-	brk.2 fcntl.2 mlock.2 munlock.2 recv.2 send.2
-
-	atexit.3 basename.3 bsearch.3 cosf.3 coshf.3 coshl.3 cosl.3
-	ctime.3 div.3 endaliasent.3 fmtmsg.3 getaliasbyname.3
-	getaliasbyname_r.3 getaliasent.3 getaliasent_r.3
-	gethostbyname.3 imaxdiv.3 log10.3 mempcpy.3 on_exit.3 printf.3
-	setaliasent.3 sinhf.3 sinhl.3 strtoimax.3 strtoumax.3
-	tanhf.3 tanhl.3 wcstoimax.3 wcstoumax.3 wmempcpy.3
-	wordexp.3 wordfree.3
-
-	random.4
+	addseverity.3 aio_cancel.3 aio_error.3 aio_fsync.3 aio_read.3
+	aio_return.3 aio_suspend.3 aio_write.3
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.
