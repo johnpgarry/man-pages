@@ -63,7 +63,7 @@ or
 .SH LINUX CONSOLE CONTROLS
 
 This section describes all the control characters and escape sequences
-that invoke special funnctions (i.e. anything other than writing a
+that invoke special functions (i.e. anything other than writing a
 glyph at the current cursor location) on the Linux console. 
 .SS "Control characters"
 A character is a control character if (before transformation
@@ -358,7 +358,7 @@ but there is no guarantee that G0 points at table a).
 In some distributions there is a program
 .BR reset (1)
 that just does "echo ^[c".
-If your terminfo entry for the console is correct (and has an entry rs1=\Ec),
+If your terminfo entry for the console is correct (and has an entry rs1=\\Ec),
 then "tput reset" will also work.
 
 The user-defined mapping table can be set using

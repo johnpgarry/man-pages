@@ -61,7 +61,7 @@ If \fIendptr\fP is not NULL, \fBstrtoul()\fP stores the address of the
 first invalid character in \fI*endptr\fP.  If there were no digits at
 all, \fBstrtoul()\fP stores the original value of \fInptr\fP in
 \fI*endptr\fP.  (Thus, if \fI*nptr\fP is not `\\0' but \fI**endptr\fP
-is `\\0' on return, the entire string is invalid.)
+is `\\0' on return, the entire string is valid.)
 .SH "RETURN VALUE"
 The \fBstrtoul()\fP function returns either the result of the conversion
 or, if there was a leading minus sign, the negation of the result of the

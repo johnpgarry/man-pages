@@ -29,8 +29,9 @@
 .\" Modified Wed May 17 15:54:12 1995 by Rik Faith <faith@cs.unc.edu>
 .\"           To remove *'s from status in macros (Thanks to Michael Shields).
 .\" Modified as suggested by Nick Duffek <nsd@bbc.com>, aeb, 960426
+.\" Modified Mon Jun 23 14:09:52 1997 by aeb - add EINTR.
 .\"
-.TH WAIT 2  "24 July 1993" "Linux" "Linux Programmer's Manual"
+.TH WAIT 2  "23 June 1997" "Linux" "Linux Programmer's Manual"
 .SH NAME
 wait, waitpid \- wait for process termination
 .SH SYNOPSIS
@@ -70,9 +71,6 @@ can be one of:
 .IP "< \-1"
 which means to wait for any child process whose process group ID is
 equal to the absolute value of
-.IP \-1
-which means to wait for any child process whose process group ID is
-equal to the absolute value of
 .IR pid .
 .IP \-1
 which means to wait for any child process; this is the same
@@ -106,13 +104,14 @@ is not
 or
 .B waitpid
 store status information in the location pointed to by
-.IR statloc .
+.IR status .
 
 This status can be evaluated with the following macros (these macros take
-the stat buffer as an argument \(em not a pointer to the buffer!):
+the stat buffer (an \fBint\fR) as an argument \(em not a pointer to the
+buffer!):
 .TP 0.8i
 .BI WIFEXITED( status )
-is non \-zero if the child exited normally.
+is non\-zero if the child exited normally.
 .TP
 .BI WEXITSTATUS( status )
 evaluates to the least significant eight bits of the return code of
@@ -154,21 +153,25 @@ is set to an appropriate value).
 .SH "ERRORS"
 .TP 0.8i
 .B ECHILD
-if the child process specified in
+if the process specified in
 .I pid
-does not exist.
+does not exist or is not a child of the calling process.
 .TP
-.B EPERM
-if the effective userid of the calling process does not match that of
-the process being waited for, and the effective userid of the calling
-process it not that of the superuser.
+.B EINVAL
+if the
+.I options
+argument was invalid.
 .TP
 .B ERESTARTSYS
 if
 .B WNOHANG
 was not set and an unblocked signal or a
 .B SIGCHLD
-was caught; this is an extension to the POSIX.1 standard and SVr4.
+was caught. This error is returned by the system call.
+The library interface is not allowed to return
+.BR ERESTARTSYS ,
+but will return
+.BR EINTR .
 .SH "CONFORMING TO"
 SVr4, POSIX.1
 .SH "SEE ALSO"

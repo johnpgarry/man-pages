@@ -28,12 +28,12 @@ localeconv \- get numeric formatting information
 .nf
 .B #include <locale.h>
 .sp
-.B struct lconv *localeconf(void);
+.B struct lconv *localeconv(void);
 .fi
 .SH DESCRIPTION
 The
-.B localeconf()
-function returns a string to a
+.B localeconv()
+function returns a pointer to a
 .B struct lconv
 for the current locale.
 .SH "CONFORMING TO"

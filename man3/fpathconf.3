@@ -47,7 +47,7 @@ for the file name
 .PP
 The corresponding macros defined in
 .B <unistd.h>
-minimum values; if an application wants to take advantage of values
+are minimum values; if an application wants to take advantage of values
 which may change, a call to
 .B fpathconf()
 or
@@ -92,7 +92,8 @@ returns the maximum length of a filename in the directory
 or
 .IR filedes .
 the process is allowed to create.
-.BR _POSIX_MAX_ .
+The corresponding macro is
+.BR _POSIX_NAME_MAX .
 .TP
 .B _PC_PATH_MAX
 returns the maximum length of a relative pathname when
@@ -100,7 +101,7 @@ returns the maximum length of a relative pathname when
 or
 .I filedes
 is the current working directory.  The corresponding macro is
-_POSIX_PATH_MAX.
+.BR _POSIX_PATH_MAX .
 .TP
 .B _PC_PIPE_BUF
 returns the size of the pipe buffer, where
@@ -142,6 +143,7 @@ is unchanged.  If there is an error, \-1 is returned, and
 is set to reflect the nature of the error.
 .SH "CONFORMING TO"
 POSIX.1
+.SH NOTES
 Files with name lengths longer than the value returned for
 .I name
 equal to

@@ -21,6 +21,7 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\" Modified Sat Jul 24 18:20:12 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Tue Jul 15 16:49:10 1997 by Andries Brouwer (aeb@cwi.nl)
 .TH SETLOCALE 3  "April 18, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 setlocale \- set the current locale.
@@ -91,16 +92,28 @@ for locale \- dependent information and by using
 or 
 .B strxfrm()
 to compare strings.
+.SH "RETURN VALUE"
+A successful call to
+.B setlocale()
+returns a string that corresponds to the locale set.
+The string returned is such that a subsequent call with that string
+and its associated category will restore that part of the process's
+locale.
 .SH "CONFORMING TO"
 ANSI C, POSIX.1
 .PP
-Linux supports the portable locales
-.BR """C""" " and " """POSIX"""
-and also the European Latin-1 
+Linux (that is, libc) supports the portable locales
+.BR """C""" " and " """POSIX""" .
+In the good old days there used to be support for
+the European Latin-1 
 .B """ISO-8859-1"""
-, and Russian
+locale (e.g. in libc-4.5.21 and libc-4.6.27), and the Russian
 .B """KOI-8"""
-locales.
+(more precisely, "koi-8r") locale (e.g. in libc-4.6.27),
+so that having an environment variable LC_CTYPE=ISO-8859-1
+sufficed to make isprint() return the right answer.
+These days non-English speaking Europeans have to work a bit harder,
+and must install actual locale files.
 .PP
 The
 .B printf()

@@ -24,8 +24,9 @@
 .\" License.
 .\"
 .\" Modified Sat Jul 24 13:32:44 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Mon Jun 23 14:09:52 1997 by aeb - add EINTR.
 .\"
-.TH WAIT4 2  "24 July 1993" "Linux" "Linux Programmer's Manual"
+.TH WAIT4 2  "23 June 1997" "Linux" "Linux Programmer's Manual"
 .SH NAME
 wait3, wait4 \- wait for process termination, BSD style
 .SH SYNOPSIS
@@ -85,8 +86,8 @@ value of
 .PP
 The value of
 .I options
-is an exclusive OR of zero or more of the following constants:
-.TP
+is a bitwise OR of zero or more of the following constants:
+.TP 0.8i
 .B WNOHANG
 which means to return immediately if no child is there to be waited
 for.
@@ -103,40 +104,42 @@ is not
 or
 .B wait4
 store status information in the location pointed to by
-.IR statloc .
+.IR status .
 .PP
-This status can be evaluated with the following macros:
-.TP
-.BI WIFEXITED(* status )
+This status can be evaluated with the following macros (these macros take
+the stat buffer (an \fBint\fR) as an argument \(em not a pointer to the
+buffer!):
+.TP 0.8i
+.BI WIFEXITED( status )
 is non\-zero if the child exited normally.
 .TP
-.BI WEXITSTATUS(* status )
+.BI WEXITSTATUS( status )
 evaluates to the least significant eight bits of the return code of
 the child which terminated, which may have been set as the argument to
 a call to
-.B exit
+.B exit()
 or as the argument for a
 .B return
 statement in the main program.  This macro can only be evaluated if
 .B WIFEXITED
 returned non\-zero.
 .TP
-.BI WIFSIGNALED(* status )
+.BI WIFSIGNALED( status )
 returns true if the child process exited because of a signal which was
 not caught.
 .TP
-.BI WTERMSIG(* status )
+.BI WTERMSIG( status )
 returns the number of the signal that caused the child process to
 terminate. This macro can only be evaluated if
 .B WIFSIGNALED
 returned non\-zero.
 .TP
-.BI WIFSTOPPED(* status )
+.BI WIFSTOPPED( status )
 returns true if the child process which caused the return is currently
 stopped; this is only possible if the call was done using
 .BR WUNTRACED .
 .TP
-.BI WSTOPSIG(* status )
+.BI WSTOPSIG( status )
 returns the number of the signal which caused the child to stop.  This
 macro can only be evaluated if
 .B WIFSTOPPED
@@ -166,17 +169,16 @@ if the child process specified in
 .I pid
 does not exist.
 .TP
-.B EPERM
-if the effective userid of the calling process does not match that of
-the process being waited for, and the effective userid of the calling
-process it not that of the superuser.
-.TP
 .B ERESTARTSYS
 if
 .B WNOHANG
 was not set and an unblocked signal or a
 .B SIGCHLD
-was caught; this is an extension to the POSIX.1 standard and SVr4.
+was caught. This error is returned by the system call.
+The library interface is not allowed to return
+.BR ERESTARTSYS ,
+but will return
+.BR EINTR .
 .SH "CONFORMING TO"
 SVr4, POSIX.1
 .SH "SEE ALSO"

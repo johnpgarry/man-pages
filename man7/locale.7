@@ -19,8 +19,9 @@
 .\" 
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
-.\" License.
+.\"
 .\" Modified Sat Jul 24 17:28:34 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sun Jun 01 17:16:34 1997 by Jochen Hein (jochen.hein@delphi.central.de)
 .TH LOCALE 7  "April 24, 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
 locale \- Description of multi-language support
@@ -59,7 +60,7 @@ and
 which are used to compare strings in the local alphabet.  For example,
 the German sharp s is sorted as "ss".
 .TP
-.B L_CTYPE
+.B LC_CTYPE
 This changes the behaviour of the character handling and
 classification functions, such as
 .B isupper()
@@ -71,13 +72,28 @@ or
 .BR wctomb() .
 .TP
 .B LC_MONETARY
-changes the behaviour of the information returned by
+changes the information returned by
 .B localeconv()
 which describes the way numbers are usually printed, with details such
-as decimal point versus decimal comma.
+as decimal point versus decimal comma.  This information is internally
+used by the functions
+.B strfmon() .
 .TP
 .B LC_MESSAGES
-changes the language messages are displayed in.
+changes the language messages are displayed in and how an affirmative or
+negative answer looks like.  The GNU C-library contains the
+.B rpmatch()
+function to ease the use of these information. 
+.TP
+.B LC_NUMERIC
+changes the informations used by the
+.B printf()
+and
+.B scanf()
+family of functions, when they are advised to use the
+locale-settings.  This information can also be read with the 
+.B localeconv()
+function.
 .TP
 .B LC_TIME
 changes the behaviour of the
@@ -162,15 +178,7 @@ struct lconv
 .fi
 .SH "CONFORMS TO"
 POSIX.1
-.PP
-At the moment, the only locales supported by Linux are the portable
-.B """C"""
-,
-.B """POSIX"""
-(identical to the "C" locale),
-.B """ISO-8859-1"""
-(european latin-1) and
-.B """KOI-8"""
-(russian) locales.
 .SH "SEE ALSO"
-.BR setlocale "(3), " localeconv "(3), " locale "(1), " localedef (1)
+.BR setlocale "(3), " localeconv "(3), " locale "(1), " localedef "(1) ,"
+.BR rpmatch "(3), " strfmon "(3), " strcoll "(3), " strxfrm "(3), "
+.BR strftime "(3)"

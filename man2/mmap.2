@@ -90,6 +90,8 @@ Share this mapping with all other processes that map this object
 .B MAP_PRIVATE
 Create a private copy-on-write mapping.
 .LP
+You must specify exactly one of MAP_SHARED and MAP_PRIVATE.
+.LP
 The above three flags are described in POSIX.1b (formerly POSIX.4).
 Linux also knows about MAP_DENYWRITE, MAP_EXECUTABLE and
 MAP_ANON(YMOUS).

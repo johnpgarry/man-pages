@@ -68,7 +68,8 @@ On error, \-1 is returned, and \fIerrno\fR is set appropriately.
 .B EINVAL
 An invalid argument was given. For instance \fIcount\fR might be 
 greater than \fBMAX_IOVEC\fR, or zero.  \fIfd\fR could also be attached 
-to an object  which  is  unsuitable for reading.
+to an object  which  is  unsuitable for reading (for \fBreadv\fR) or
+writing (for \fBwritev\fR).
 .TP
 .B EFAULT
 "Segmentation fault." Most likely \fIvector\fR or some of the 

@@ -9,7 +9,7 @@ compress the pages, and copy them to /usr/man/man[1-8].
 
 Note that sometimes these pages are duplicates of pages
 also distributed in other packages. This has been reported
-about modules.2, exports.5, passwd.5 and mailaddr.7.
+about *_module.2, exports.5, passwd.5 and mailaddr.7.
 Be careful not to overwrite more up-to-date versions.
 (Probably I'll remove these pages one of these days.
 Reports on further duplicates are welcome.)

@@ -128,14 +128,7 @@ before
 .PP
 Failure to execute the shell is indistinguishable from the shell's failure
 to execute command, or an immediate exit of the command.  The only hint is
-an exit status of 127.  (Is this true under Linux?)
-.PP
-The function
-.B popen()
-always calls
-.BR sh ,
-never calls
-.BR csh .
+an exit status of 127.
 .SH HISTORY
 A
 .B popen()

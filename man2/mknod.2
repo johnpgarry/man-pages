@@ -69,10 +69,12 @@ the caller is not the superuser; also returned if the filesystem
 containing
 .I pathname
 does not support the type of node requested.
+.TP
 .B EINVAL
 .I mode
 requested creation of something other than a normal file, device
 special file or FIFO.
+.TP
 .B EEXIST
 .I pathname
 already exists.
@@ -104,8 +106,7 @@ Insufficient kernel memory was available.
 .TP
 .B EROFS
 .I pathname
-refers to a file on a read-only filesystem and write access was
-requested.
+refers to a file on a read-only filesystem.
 .TP
 .B ELOOP
 .I pathname

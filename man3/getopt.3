@@ -85,7 +85,7 @@ Two colons mean an option takes
 an optional arg; if there is text in the current \fIargv\fP-element,
 it is returned in \fIoptarg\fP, otherwise \fIoptarg\fP is set to zero.
 .PP
-By default, \fBgetargs()\fP permutes the contents of \fIargv\fP as it
+By default, \fBgetopt()\fP permutes the contents of \fIargv\fP as it
 scans, so that eventually all the non-options are at the end.  Two
 other modes are also implemented.  If the first character of
 \fIoptstring\fP is `+' or the environment variable POSIXLY_CORRECT is

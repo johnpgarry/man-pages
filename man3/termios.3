@@ -155,7 +155,7 @@ vertical tab delay mask.  Values are \fBVT0\fP or \fBVT1\fP.
 .IP \fBFFDLY\fP
 form feed delay mask.  Values are \fBFF0\fP or \fBFF1\fP.
 .PP
-\fBc_cflag\fP flag constants:
+\fIc_cflag\fP flag constants:
 .IP \fBCSIZE\fP
 character size mask.  Values are \fBCS5\fP, \fBCS6\fP, \fBCS7\fP, or \fBCS8\fP.
 .IP \fBCSTOPB\fP
@@ -175,7 +175,7 @@ mask for input speeds (not used).
 .IP \fBCRTSCTS\fP
 flow control.
 .PP
-\fBc_lflag\fP flag constants:
+\fIc_lflag\fP flag constants:
 .IP \fBISIG\fP
 when any of the characters INTR, QUIT, SUSP, or DSUSP are received,
 generate the corresponding signal.
@@ -199,8 +199,8 @@ if \fBICANON\fP is also set, the KILL character erases the current line.
 if \fBICANON\fP is also set, echo the NL character even if ECHO is not set.
 .IP \fBECHOCTL\fP
 if \fBECHO\fP is also set, ASCII control signals other than TAB, NL, START, and STOP
-are echoed as ^X, where X is the character with ASCII code 0x10 greater
-than the control signal.  For example, character 0x28 (BS) is echoed as ^H.
+are echoed as ^X, where X is the character with ASCII code 0x40 greater
+than the control signal.  For example, character 0x08 (BS) is echoed as ^H.
 .IP \fBECHOPRT\fP
 if \fBICANON\fP and \fBIECHO\fP are also set, characters are printed as they
 are being erased.

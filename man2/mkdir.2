@@ -75,8 +75,7 @@ Insufficient kernel memory was available.
 .TP
 .B EROFS
 .I pathname
-refers to a file on a read-only filesystem and write access was
-requested.
+refers to a file on a read-only filesystem.
 .TP
 .B ELOOP
 .I pathname
@@ -87,6 +86,7 @@ whose expansion contains a reference to itself.
 The device containing
 .I pathname
 has no room for the new directory.
+.TP
 .B ENOSPC
 The new directory cannot be created because the user's disk quota is
 exhausted.

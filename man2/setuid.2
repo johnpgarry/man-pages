@@ -21,6 +21,8 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Fri Jul 29th 12:56:44 BST 1994  Wilf. <G.Wilford@ee.surrey.ac.uk> 
+.\" Changes inspired by patch from Richard Kettlewell <richard@greenend.org.uk>,
+.\"  aeb 970616.
 .\"
 .TH SETUID 2 "29 July 1994" "Linux 1.1.36" "Linux Programmer's Manual"
 .SH NAME
@@ -31,16 +33,17 @@ setuid \- set user identity
 .BI "int setuid(uid_t " uid )
 .SH DESCRIPTION
 .B setuid
-sets the effective user ID of the current process. If the caller is the
-superuser, the real and saved user ID's are also set.
-
+sets the effective user ID of the current process.
+If the effective userid of the caller is root,
+the real and saved user ID's are also set.
+.PP
 Under Linux, 
 .B setuid
 is implemented like the POSIX version with the _POSIX_SAVED_IDS feature.
 This allows a setuid (other than root) program to drop all of its user
 privileges, do some un-privileged work, and then re-engage the original
 effective user ID in a secure manner.
-
+.PP
 If the user is root or the program is setuid root, special care must be
 taken. The 
 .B setuid
@@ -49,7 +52,7 @@ all process related user ID's are set to
 .IR uid . 
 After this has occurred, it is impossible for the program to regain root
 privileges.
-
+.PP
 Thus, a setuid-root program wishing to temporarily drop root
 privileges, assume the identity of a non-root user, and then regain
 root privileges afterwards cannot use 
@@ -70,5 +73,20 @@ does not match the effective or saved user ID of the calling process.
 SVr4, SVID, POSIX.1.  Not quite compatible with the 4.4BSD call, which
 sets all of the real, saved, and effective user IDs.  SVr4 documents an
 additional EINVAL error condition.
+.SH "LINUX-SPECIFIC REMARKS"
+Linux has the concept of filesystem user ID, normally equal to the
+effective user ID.  The
+.B setuid
+call also sets the filesystem user ID of the current process.
+See
+.BR setfsuid (2).
+.PP
+If
+.I uid
+is different from the old effective uid, the process will
+be forbidden from leaving core dumps.
 .SH "SEE ALSO"
-.BR getuid "(2), " setreuid "(2), " seteuid (2)
+.BR getuid (2),
+.BR setreuid (2),
+.BR seteuid (2),
+.BR setfsuid (2)

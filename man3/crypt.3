@@ -27,11 +27,15 @@
 .\" Is a simple repetition using ECB used, or something more advanced?  I hope
 .\" the presented explanations are at least better than nothing, but by no
 .\" means enough.
+.\"
+.\" added _XOPEN_SOURCE, aeb, 970705
 .\" "
 .TH CRYPT 3 "September 3, 1994" "" "Library functions"
 .SH NAME
 crypt \- password and data encryption
 .SH SYNOPSIS
+.B #define _XOPEN_SOURCE
+.br
 .B #include <unistd.h>
 .sp
 .BI "char *crypt(const char *" key ", const char *" salt );

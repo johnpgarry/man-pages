@@ -48,23 +48,23 @@ printf, fprintf, sprintf, snprintf, vprintf, vfprintf, vsprintf, vsnprintf \- fo
 .SH SYNOPSIS
 .B #include <stdio.h>
 .sp
-.BI "int printf( const char *" format ", ...);"
+.BI "int printf(const char *" format ", ...);"
 .br
-.BI "int fprintf( FILE *" stream ", const char *" format ", ...);"
+.BI "int fprintf(FILE *" stream ", const char *" format ", ...);"
 .br
-.BI "int sprintf( char *" str ", const char *" format ", ...);"
+.BI "int sprintf(char *" str ", const char *" format ", ...);"
 .br
-.BI "int snprintf( char *" str ", size_t " size ", const char *" format ", ...);"
+.BI "int snprintf(char *" str ", size_t " size ", const char *" format ", ...);"
 .sp
 .B #include <stdarg.h>
 .sp
-.BI "int vprintf( const char *" format ", va_list " ap );
+.BI "int vprintf(const char *" format ", va_list " ap );
 .br
-.BI "int vfprintf( FILE *" stream ", const char *" format ", va_list " ap );
+.BI "int vfprintf(FILE *" stream ", const char *" format ", va_list " ap );
 .br
-.BI "int vsprintf( char *" str ", char *" format ", va_list " ap );
+.BI "int vsprintf(char *" str ", char *" format ", va_list " ap );
 .br
-.BI "int vsnprintf( char *" str ", size_t " size ", char *" format ", va_list " ap );
+.BI "int vsnprintf(char *" str ", size_t " size ", char *" format ", va_list " ap );
 .SH DESCRIPTION
 The
 .B printf

@@ -39,13 +39,11 @@
 .\"
 .TH FFLUSH 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
-fflush, fpurge \- flush a stream
+fflush \- flush a stream
 .SH SYNOPSIS
 .B #include <stdio.h>
 .sp
-.BI "int fflush( FILE *" stream );
-.br
-.BI "int fpurge( FILE *" stream );
+.BI "int fflush(FILE *" stream );
 .SH DESCRIPTION
 The function
 .B fflush
@@ -61,18 +59,7 @@ argument is
 .B fflush
 flushes
 .I all
-open output streams. (Does this happen under Linux?)
-.PP
-The function
-.B fpurge
-erases any input or output buffered in the given
-.IR stream .
-For output streams this discards any unwritten output.  For input streams
-this discards any input read from the underlying object but not yet
-obtained via
-.BR getc (3);
-this includes any text pushed back via
-.BR ungetc .
+open output streams.
 .SH "RETURN VALUES"
 Upon successful completion 0 is returned.  Otherwise,
 .B EOF
@@ -83,9 +70,7 @@ is set to indicate the error.
 .TP
 .B EBADF
 .I Stream
-is not an open stream, or, in the case of
-.BR fflush ,
-not a stream open for writing.
+is not an open stream, or is not open for writing.
 .PP
 The function
 .B fflush
@@ -93,9 +78,6 @@ may also fail and set
 .I errno
 for any of the errors specified for the routine
 .BR write (2).
-.SH BUGS
-Linux may not support
-.BR fpurge .
 .SH "SEE ALSO"
 .BR write "(2), " fopen "(3), " fclose "(3), " setbuf (3)
 .SH STANDARDS

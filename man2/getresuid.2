@@ -1,4 +1,6 @@
-.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright (C) 1997 Andries Brouwer (aeb@cwi.nl)
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -20,32 +22,36 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" References consulted:
-.\"     Linux libc source code
-.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
-.\"     386BSD man pages
-.\" Modified Sat Jul 24 19:07:26 1993 by Rik Faith (faith@cs.unc.edu)
-.TH ISINF 3  "June 2, 1993" "GNU" "Linux Programmer's Manual"
+.TH GETRESUID 2 "16 July 1997" "Linux 2.1.44" "Linux Programmer's Manual"
 .SH NAME
-isinf, isnan, finite \- test for infinity or not-a-number (NaN)
+getresuid, getresgid \- get real, effective and saved user or group ID
 .SH SYNOPSIS
-.nf
-.B #include <math.h>
+.B #include <unistd.h>
 .sp
-.BI "int isinf(double " value );
-.sp
-.BI "int isnan(double " value );
-.sp
-.BI "int finite(double " value );
-.fi
+.BI "int getresuid(uid_t *" ruid ", uid_t *" euid ", uid_t *" suid );
+.br
+.BI "int getresgid(gid_t *" rgid ", gid_t *" egid ", gid_t *" sgid ); 
 .SH DESCRIPTION
-The \fBisinf()\fP function returns \-1 if \fIvalue\fP represents negative
-infinity, 1 if \fIvalue\fP represents positive infinity, and 0 otherwise.
-.PP
-The \fBisnan()\fP function returns a non-zero value if \fIvalue\fP is
-"not-a-number" (NaN), and 0 otherwise.
-.PP
-The \fBfinite()\fP function returns a non-zero value if \fIvalue\fP is
-neither infinite nor a "not-a-number" (NaN) value, and 0 otherwise.
+.B getresuid
+and
+.B getresgid
+(both introduced in Linux 2.1.44)
+get the real, effective and saved user ID's (resp. group ID's)
+of the current process.
+
+.SH "RETURN VALUE"
+On success, zero is returned.  On error, \-1 is returned, and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP
+.B EFAULT
+One of the arguments specified an address outside the calling program's
+address space.
 .SH "CONFORMING TO"
-BSD 4.3
+This call is Linux-specific.
+.SH "SEE ALSO"
+.BR getuid (2),
+.BR setuid (2),
+.BR getreuid (2),
+.BR setreuid (2)

@@ -21,10 +21,14 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" 
+.\" Added _GNU_SOURCE, aeb, Sat Jul  5 23:10:04 MET 1997
+.\"
 .TH SNPRINTF 3  "16 September 1995" "GNU" "Linux Programmer's Manual"
 .SH NAME
 snprintf, vsnprintf \- formatted output conversion
 .SH SYNOPSIS
+.B #define _GNU_SOURCE
+.br
 .B #include <stdio.h>
 .sp
 .BI "int snprintf ( char *" str ", size_t " n ", "
@@ -47,10 +51,8 @@ allocate at least \fIn\fP characters for the string \fIstr\fP.
 \fBvsnprintf\fP is the equivalent of \fBsnprintf\fP with the variable
 argument list specified directly as for \fBvprintf\fP.
 .SH "RETURN VALUE"
-The return value is the number of characters stored, not including
-the terminating null.  If this value equals \fIn\fP, then there was
-not enough space in \fIstr\fP for all the output.  You should try again
-with a bigger output string.
+If the output was truncated, the return value is -1, otherwise it is the number
+of characters stored, not including the terminating null.
 .SH EXAMPLES
 .br
 Here is an example program which dynamically enlarges its output buffer.
@@ -72,11 +74,11 @@ Here is an example program which dynamically enlarges its output buffer.
           int nchars = snprintf (buffer, size,
                         "value of %s is %s", name, value);
           /* If that worked, return the string. */
-          if (nchars < size)
+          if (nchars > -1)
             return buffer;
           /* Else try again with twice as much space. */
           size *= 2;
-          buffer = (char *) xrealloc (size, buffer);
+          buffer = (char *) xrealloc (buffer, size);
         }
     }
 .fi
@@ -85,4 +87,3 @@ Here is an example program which dynamically enlarges its output buffer.
 These are GNU extensions.
 .SH "SEE ALSO"
 .BR printf "(3), " sprintf "(3), " vsprintf "(3), " stdarg (3)
-

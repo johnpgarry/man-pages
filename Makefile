@@ -8,6 +8,8 @@ GZIP=gzip -9
 all: remove gz install
 
 remove:
+	rm -f $(MANDIR)/man2/modules.2 $(MANDIR)/man2/modules.2.gz
+	rm -f $(MANDIR)/man3/exect.3 $(MANDIR)/man3/exect.3.gz
 	for i in man?; do for j in $$i/*; do \
 		rm -f $(MANDIR)/$$j $(MANDIR)/$$j.gz; done; done
 

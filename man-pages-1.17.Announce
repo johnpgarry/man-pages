@@ -1,25 +1,28 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.16.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.17.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 
-Differences from version 1.15:
+Differences from version 1.16:
     
     The man pages
 
-	_exit.2 chown.2 fcntl.2 getpid.2 msgctl.2 mprotect.2 ptrace.2
-	readv.2 semctl.2 semop.2 shmctl.2 shmop.2 socket.2 utime.2
+	chdir.2 chroot.2 connect.2 create_module.2 delete_module.2
+	get_kernel_syms.2 getresgid.2 getresuid.2 getsockname.2
+	init_module.2 mkdir.2 mknod.2 mmap.2 poll.2 query_module.2
+	read.2 readv.2 setregid.2 setresgid.2 setresuid.2 setuid.2
+	vm86.2 wait.2 wait4.2
 
-	catgets.3 catopen.3 confstr.3 gethostbyname.3 glob.3 isalpha.3
-	longjmp.3 putenv.3 setjmp.3 siglongjmp.3 sigsetjmp.3 system.3
-	ttyname.3 usleep.3
+	crypt.3 exec.3 fflush.3 fmod.3 fpathconf.3 ftime.3 ftw.3
+	getopt.3 getpass.3 isinf.3 localeconv.3 mkstemp.3
+	rewinddir.3 setlocale.3 snprintf.3 strtoul.3 system.3
+	tempnam.3 termios.3
 
-	charmap.5 environ.5 locale.5
+	locale.7
 
-	bootparam.7
-
-    and possibly others have been updated.
+    are new or have been updated.  Typographical or grammatical errors
+    have been corrected in many other places.
 
 Here is a breakdown of what this distribution contains:
 
@@ -45,6 +48,7 @@ wrote, edited, or otherwise contributed to this project:
 
     Alain Knaff (Alain.Knaff@imag.fr)
     Alan Cox (iialan@iifeak.swan.ac.uk)
+    Alan Curry (pacman@cqc.com)
     Andries E. Brouwer (aeb@cwi.nl)
     Arnt Gulbrandsen (agulbra@nvg.unit.no)
     Bjorn Ekwall (bj0rn@blox.se)

@@ -99,7 +99,7 @@ returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-This lists is general socket errors only.  There may be other
+The following are general socket errors only.  There may be other
 domain-specific error codes. 
 .TP
 .B EBADF
@@ -109,7 +109,7 @@ Bad descriptor.
 The socket structure address is outside your address space.
 .TP
 .B ENOTSOCK
-The descriptor is not associated with file which is not a socket.
+The descriptor is not associated with a socket.
 .TP
 .B EISCONN
 The socket is already connected.
@@ -125,6 +125,22 @@ Network is unreachable.
 .TP
 .B EADDRINUSE
 Address is already in use.
+.TP
+.B EINPROGRESS
+The socket is non-blocking and the connection cannot be completed
+immediately.  It is possible to
+.BR select (2)
+for completion by selecting the socket for writing. After \fBselect\fR
+indicates writability, use
+.BR getsockopt (2)
+to read the \fBSO_ERROR\fR option at level \fBSOL_SOCKET\fR to determine
+whether \fBconnect\fR completed successfully (\fBSO_ERROR\fR is zero) or
+unsuccessfully (\fBSO_ERROR\fR is one of the usual error codes listed
+above, explaining the reason for the failure).
+.TP
+.B EALREADY
+The socket is non-blocking and a previous connection attempt has not yet
+been completed.
 .SH CONFORMING TO
 SVr4, 4.4BSD (the
 .B connect

@@ -66,6 +66,43 @@ does not affect the wait status of any other children.
 ANSI C, POSIX.1, proposed POSIX.2, BSD 4.3
 .SH "BUGS"
 .PP
+It is extremely unfortunate that the libc version of
+.B system()
+ignores interrupts.  This makes programs that call it
+from a loop uninterruptable.  This means that for such
+purposes one should not use
+.B system()
+but a private version like (warning: untested code!)
+.br
+.nf
+
+int my_system (const char *command) {
+    int pid, status;
+
+    if (command == 0)
+        return 1;
+    pid = fork();
+    if (pid == -1)
+        return -1;
+    if (pid == 0) {
+        char *argv[4];
+        argv[0] = "sh";
+        argv[1] = "-c";
+        argv[2] = command;
+        argv[3] = 0;
+        execve("/bin/sh", argv, environ);
+        exit(127);
+    }
+    do {
+        if (waitpid(pid, &status, 0) == -1) {
+            if (errno != EINTR)
+                return -1;
+        } else
+            return status;
+    } while(1);
+}
+.fi
+.PP
 Do not use
 .B system()
 from a program with suid or sgid privileges, because strange values for

@@ -32,10 +32,11 @@
 .\"     @(#)exec.3	6.4 (Berkeley) 4/19/91
 .\"
 .\" Converted for Linux, Mon Nov 29 11:12:48 1993, faith@cs.unc.edu
+.\" Updated more for Linux, Tue Jul 15 11:54:18 1997, pacman@cqc.com
 .\"
 .TH EXEC 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
-execl, execlp, execle, exect, execv, execvp \- execute a file
+execl, execlp, execle, execv, execvp \- execute a file
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
@@ -47,8 +48,6 @@ execl, execlp, execle, exect, execv, execvp \- execute a file
 .br
 .BI "int execle( const char *" path ", const char *" arg
 .BI ", ..., char * const " envp "[]);"
-.br
-.BI "int exect( const char *" path ", char *const " argv "[]);"
 .br
 .BI "int execv( const char *" path ", char *const " argv "[]);"
 .br
@@ -89,8 +88,7 @@ be terminated by a
 pointer.
 .PP
 The
-.BR exect ,
-.BR execv ,
+.B execv
 and
 .B execvp
 functions provide an array of pointers to null-terminated strings that
@@ -104,9 +102,7 @@ pointer.
 .PP
 The
 .B execle
-and
-.B exect
-functions also specify the environment of the executed process by following
+function also specifies the environment of the executed process by following
 the
 .B NULL
 pointer that terminates the list of arguments in the parameter list or the
@@ -131,7 +127,7 @@ if the specified file name does not contain a slash (/) character.  The
 search path is the path specified in the environment by the
 .B PATH
 variable.  If this variable isn't specified, the default path
-``/bin:/usr/bin:'' is used (is this true for Linux?).  In addition, certain
+``:/bin:/usr/bin'' is used.  In addition, certain
 errors are treated specially.
 .PP
 If permission is denied for a file (the attempted
@@ -150,18 +146,6 @@ returned
 .BR ENOEXEC ),
 these functions will execute the shell with the path of the file as its
 first argument.  (If this attempt fails, no further searching is done.)
-.PP
-If the file is currently busy (the attempted
-.B execve
-returned
-.BR ETXTBUSY ),
-these functions will sleep for several seconds, periodically re-attempting
-to execute the file. (Is this true for Linux?)
-.PP
-The function
-.B exect
-executes a file with the program tracing facilities enabled (see
-.BR ptrace (2)).
 .SH "RETURN VALUES"
 If any of the
 .B exec
@@ -172,22 +156,7 @@ will be set to indicate the error.
 .SH FILES
 .I /bin/sh
 .SH ERRORS
-.BR Execl ,
-.BR execle ,
-.BR execlp
-and
-.B execvp
-may fail and set
-.I errno
-for any of the errors specified for the library functions
-.BR execve (2)
-and
-.BR malloc (3).
-.PP
-.B Exect
-and
-.B execv
-may fail and set
+All of these functions may fail and set
 .I errno
 for any of the errors specified for the library function
 .BR execve (2).
@@ -195,16 +164,16 @@ for any of the errors specified for the library function
 .BR sh (1),
 .BR execve (2),
 .BR fork (2),
-.BR trace (2),
 .BR environ (5),
 .BR ptrace (2)
 .SH COMPATIBILITY
-Historically, the default path for the
-.B execlp
+On some other systems the default \fBPATH\fR has the current working
+directory listed after
+.I /bin
 and
-.B execvp
-functions was ``:/bin:/usr/bin''.  This was changed to place the current
-directory last to enhance system security.
+.IR /usr/bin ,
+as an anti-Trojan-horse measure. As of libc 5.4.7, Linux still uses the
+traditional "current directory first" default \fBPATH\fR.
 .PP
 The behavior of
 .B execlp
@@ -212,7 +181,9 @@ and
 .B execvp
 when errors occur while attempting to execute the file is historic
 practice, but has not traditionally been documented and is not specified by
-the POSIX standard.
+the POSIX standard. BSD (and possibly other systems) do an automatic
+sleep and retry if ETXTBSY is encountered. Linux treats it as a hard
+error and returns immediately.
 .PP
 Traditionally, the functions
 .B execlp

@@ -55,13 +55,13 @@ is exceeded, \fBftw\fP() will become slower because directories have to
 be closed and reopened.
 .PP
 To stop the tree walk, \fIfuncptr\fP returns a non-zero value; this
-value will become the return value of \fBftp\fP().  Otherwise,
+value will become the return value of \fBftw\fP().  Otherwise,
 \fBftw\fP() will continue until it has traversed the entire tree, in
 which case it will return zero, or until it hits an error such as a
 .BR malloc (3)
 failure, in which case it will return \-1.
 .PP
-Because \fBftp()\fP uses dynamic data structures, the only safe way to
+Because \fBftw()\fP uses dynamic data structures, the only safe way to
 exit out of a tree walk is to return a non-zero value.  To handle
 interrupts, for example, mark that the interrupt occurred and return a
 non-zero value\(emdon't use

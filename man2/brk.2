@@ -35,7 +35,7 @@ brk, sbrk \- change data segment size
 .sp
 .BI "int brk(void *" end_data_segment );
 .sp
-.BI "void *sbrk(ptrdiff_t" increment );
+.BI "void *sbrk(ptrdiff_t " increment );
 .SH DESCRIPTION
 .B brk
 sets the end of the data segment to the value specified by
@@ -67,4 +67,4 @@ BSD 4.3
 are not defined in the C Standard and are deliberately excluded from the
 POSIX.1 standard (see paragraphs B.1.1.1.3 and B.8.3.3).
 .SH "SEE ALSO"
-.BR execve "(2), " getrlimit "(2), " malloc "(3), " end (3)
+.BR execve "(2), " getrlimit "(2), " malloc (3)
