@@ -32,7 +32,7 @@
 .\" Modified 2000-07-22 by Nicolás Lichtmaier <nick@debian.org>
 .\"   added note about close(2) not guaranteeing that data is safe on close.
 .\"
-.TH CLOSE 2 1996-04-14 "" "Linux Programmer's Manual"
+.TH CLOSE 2 2001-12-13 "" "Linux Programmer's Manual"
 .SH NAME
 close \- close a file descriptor
 .SH SYNOPSIS
@@ -77,23 +77,25 @@ SVr4, SVID, POSIX, X/OPEN, BSD 4.3.  SVr4 documents an additional
 ENOLINK error condition.
 .SH NOTES
 Not checking the return value of close is a common but nevertheless
-serious programming error.  File system implementations which use
-techniques as ``write-behind'' to increase performance may lead to
+serious programming error.  It is quite possible that errors on a
+previous
 .BR write (2)
-succeeding, although the data has not been written yet.  The error
-status may be reported at a later write operation, but it is guaranteed
-to be reported on closing the file.  Not checking the return value when
-closing the file may lead to silent loss of data.  This can especially
-be observed with NFS and disk quotas.
+operation are first reported at the final
+.BR close .
+Not checking the return value when closing the file may lead to
+silent loss of data.  This can especially be observed with NFS
+and disk quotas.
 .PP
 A successful close does not guarantee that the data has been successfully
 saved to disk, as the kernel defers writes. It is not common for a filesystem
 to flush the buffers when the stream is closed. If you need to be sure that
-the data is physically stored use fsync(2) or sync(2), they will get you
-closer to that goal (it will depend on the disk hardware at this point).
+the data is physically stored use
+.BR fsync (2).
+(It will depend on the disk hardware at this point.)
 .SH "SEE ALSO"
 .BR open (2),
 .BR fcntl (2),
 .BR shutdown (2),
 .BR unlink (2),
-.BR fclose (3)
+.BR fclose (3),
+.BR fsync (2)

@@ -36,6 +36,12 @@
 .SH NAME
 select, pselect, FD_CLR, FD_ISSET, FD_SET, FD_ZERO \- synchronous I/O multiplexing
 .SH SYNOPSIS
+/* According to POSIX 1003.1-2001 */
+.br
+.B #include <sys/select.h>
+.sp
+/* According to earlier standards */
+.br
 .B #include <sys/time.h>
 .br
 .B #include <sys/types.h>
@@ -48,7 +54,7 @@ struct timeval *\fItimeout\fB);
 .sp
 \fBint pselect(int \fIn\fB, fd_set *\fIreadfds\fB,
 fd_set *\fIwritefds\fB, fd_set *\fIexceptfds\fB,
-const struct timespec *\fItimeout\fB, sigset_t * \fIsigmask\fB);
+const struct timespec *\fItimeout\fB, const sigset_t *\fIsigmask\fB);
 .sp
 .BI "FD_CLR(int " fd ", fd_set *" set );
 .br
@@ -194,6 +200,30 @@ is negative.
 .B select
 was unable to allocate memory for internal tables.
 .SH NOTES
+The time structures involved are defined in
+.I <sys/time.h>
+and look like
+
+.RS
+.nf
+struct timeval { 
+    long    tv_sec;         /* seconds */
+    long    tv_usec;        /* microseconds */
+};
+.fi
+.RE
+
+and
+
+.RS
+.nf
+struct timespec {
+    long    tv_sec;         /* seconds */
+    long    tv_nsec;        /* nanoseconds */
+};
+.fi
+.RE
+.PP
 Some code calls
 .B select
 with all three sets empty,
@@ -202,11 +232,12 @@ zero, and a non-null
 .I timeout
 as a fairly portable way to sleep with subsecond precision.
 .PP
-On Linux,
+On Linux, the function
+.B select
+modifies
 .I timeout
-is modified to reflect the amount of time not slept; most other
-implementations do not do this.  This causes problems both when Linux
-code which reads
+to reflect the amount of time not slept; most other implementations
+do not do this.  This causes problems both when Linux code which reads
 .I timeout
 is ported to other operating systems, and when code is ported to Linux
 that reuses a struct timeval for multiple
@@ -249,7 +280,7 @@ main(void) {
     else
         printf("No data within five seconds.\\n");
 
-    exit(0);
+    return 0;
 }
 .fi
 .SH "CONFORMING TO"
@@ -262,11 +293,37 @@ sets the timeout variable before exit, but the BSD variant does not.
 .PP
 The
 .B pselect
-function is defined in IEEE Std 1003.1g-2000 (POSIX.1g).
+function is defined in IEEE Std 1003.1g-2000 (POSIX.1g), and part of
+POSIX 1003.1-2001.
 It is found in glibc2.1 and later.
 Glibc2.0 has a function with this name, that however does not take a
 .I sigmask
 parameter.
+.SH NOTES
+Concerning prototypes, the classical situation is that one should
+include
+.I <time.h>
+for
+.BR select .
+The POSIX 1003.1-2001 situation is that one should include
+.I <sys/select.h>
+for
+.B select
+and
+.BR pselect .
+Libc4 and libc5 do not have a
+.I <sys/select.h>
+header; under glibc 2.0 and later this header exists.
+Under glibc 2.0 it unconditionally gives the wrong prototype for
+.BR pselect ,
+under glibc 2.1-2.2.1 it gives
+.B pselect
+when
+.B _GNU_SOURCE
+is defined, under glibc 2.2.2-2.2.4 it gives it when
+.B _XOPEN_SOURCE
+is defined and has a value of 600 or larger.
+No doubt, since POSIX 1003.1-2001, it should give the prototype by default.
 .SH "SEE ALSO"
 .BR accept (2),
 .BR connect (2),

@@ -37,12 +37,10 @@ strptime \- convert a string representation of time to a time tm structure
 .BI "char *strptime(const char *" s ", const char *" format ,
 .BI "struct tm *" tm );
 .SH DESCRIPTION
-.LP
-.IX  "strptime function"  ""  "\fLstrptime()\fP \(em date and time conversion"
 The
-.B strptime(\|)
+.B strptime()
 function is the converse function to
-.B strftime(\|)
+.B strftime()
 and converts the character string pointed to by
 .I s
 to values which are stored in the
@@ -263,7 +261,7 @@ byte at the end of the string.  If \fBstrptime()\fP fails to match all
 of the format string and therefore an error occurred the function
 returns \fBNULL\fP.
 .SH "CONFORMING TO"
-XPG4, SUSv2, Austin draft.
+XPG4, SUSv2, POSIX 1003.1-2001.
 .SH EXAMPLE
 The following example demonstrates the use of \fBstrptime()\fP
 and \fBstrftime()\fP.

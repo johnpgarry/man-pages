@@ -56,7 +56,7 @@ If \fIpid\fP equals 0, then \fIsig\fP is sent to every process in the
 process group of the current process.
 .PP
 If \fIpid\fP equals \-1, then \fIsig\fP is sent to every process except
-for the first one.
+for process 1 (init).
 .PP
 If \fIpid\fP is less than \-1, then \fIsig\fP is sent to every process
 in the process group \fI\-pid\fP.

@@ -20,118 +20,152 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH CATOPEN 3 1993-11-30 
+.\" Modified Thu Dec 13 22:51:19 2001 by Martin Schulze <joey@infodrom.org>
+.\" Modified 2001-12-14 aeb
+.\"
+.TH CATOPEN 3 2001-12-14
 .SH NAME
 catopen, catclose \- open/close a message catalog
 .SH SYNOPSIS
-.B #include <features.h>
-.br
 .B #include <nl_types.h>
-.LP
-.nf
-.ft B
-nl_catd catopen(name, flag)
-char *name;
-int flag;
-.ft R
-.fi
-.LP
-.nf
-.ft B
-void catclose(catalog)
-nl_catd catalog;
-.ft R
-.fi
+.sp
+.BI "nl_catd catopen(const char *" name ", int " flag );
+.br
+.BI "int catclose(nl_catd " catalog );
 .SH DESCRIPTION
-.IX "catopen" "" "\fLcatopen\fR \(em open a message catalog" ""
-.IX "catclose" "" "\fLcatclose\fR \(em close a message catalog" ""
-.LP
-.B catopen(\|)
+The function
+.B catopen()
 opens a message catalog and returns a catalog descriptor.
+The descriptor remains valid until catclose() or exec().
+If a file descriptor is used to implement catalog descriptors
+then the FD_CLOEXEC flag will be set.
+.LP
+The argument
 .I name
 specifies the name of the message catalog to be opened.
 If
 .I name
-specifies and absolute path, (i.e. contains a
-.RB ` / ' )
+specifies and absolute path (i.e., contains a '/'),
 then
 .I name
 specifies a pathname for the message catalog.
 Otherwise, the environment variable
-.SB NLSPATH
+.B NLSPATH
 is used with
 .I name
 substituted for
 .B %N
 (see
 .BR locale (7)).
+It is unspecified whether
+.B NLSPATH
+will be used when the process has root privileges.
 If
-.SB NLSPATH
+.B NLSPATH
 does not exist in the environment,
 or if a message catalog cannot be opened
-in any of the paths specified by
-.BR \s-1NLSPATH\s0 ,
-then the following paths are searched in order
-
-.RS
-.B /etc/locale/LC_MESSAGES
-.br
-.B /usr/lib/locale/LC_MESSAGES
-.br
-.B /usr/lib/locale/name/LC_MESSAGES
-.RE
-
-In all cases
-.I LC_MESSAGES
-stands for the current setting of the
-.B \s-1LC_MESSAGES\s+1
-category of locale from a previous call to
-.BR setlocale ()
-and defaults to the "C" locale. In the last search path
-.I name
-refers to the catalog name.
+in any of the paths specified by it,
+then an implementation defined path is used.
+This latter default path may depend on the
+.B LC_MESSAGES
+locale setting when the
+.I flag
+argument is
+.B NL_CAT_LOCALE
+and on the
+.B LANG
+environment variable when the
+.I flag
+argument is 0.
+Changing the LC_MESSAGES part of the locale may invalidate
+open catalog descriptors.
 .LP
 The
 .I flag
-argument to catopen is used to indicate the type of loading desired. This
-should be either
-.B MCLoadBySet
-or
-.BR MCLoadAll .
-The former value indicates that only the required set from the catalog is
-loaded into memory when needed, whereas the latter causes the
-initial call to
-.BR catopen ()
-to load the entire catalog into memory.
+argument to
+.B catopen()
+is used to indicate the source for the language to use.
+If it is set to
+.B NL_CAT_LOCALE
+then it will use the current locale setting for
+.BR LC_MESSAGES .
+Otherwise it will use the
+.B LANG
+environment variable.
 .LP
-.B catclose(\|)
+The function
+.B catclose()
 closes the message catalog identified by
 .IR catalog .
-It invalidates any subsequent references to the message catalog defined
-by
+It invalidates any subsequent references to the message catalog
+defined by
 .IR catalog .
 .LP
 .SH "RETURN VALUE"
-.LP
-.B catopen(\|)
+The function
+.B catopen()
 returns a message catalog descriptor of type
 .I nl_catd
 on success.
-On failure,
-it returns
-\-1.
-.\"and sets
-.\".B errno
-.\"to indicate the error.
+On failure, it returns (nl_catd) \-1
+and sets
+.B errno
+to indicate the error. The possible error values include all
+possible values for the
+.I open()
+call.
 .LP
-.B catclose(\|)
+The function
+.B catclose()
 returns 0 on success, or \-1 on failure.
+.SH ENVIRONMENT
+.TP
+.B LC_MESSAGES
+May be the source of the LC_MESSAGES locale setting, and thus
+determine the language to use if
+.I flag
+is set to
+.BR NL_CAT_LOCALE .
+.TP
+.B LANG
+The language to use if
+.I flag
+is 0.
 .SH NOTES
-These functions are only available in libc.so.4.4.4c and above. In the case
-of linux, the catalog descriptor
+The above is the POSIX 1003.1-2001 description.
+The glibc value for NL_CAT_LOCALE is 1.
+(Compare MCLoadAll below.)
+The default path varies, but usually looks at a number of places below
+.IR /usr/share/locale .
+.SH "NOTES FOR LIBC4 AND LIBC5"
+These functions are available for Linux since libc 4.4.4c.
+In the case of linux libc4 and libc5, the catalog descriptor
 .I nl_catd
-is actually a mmap()'ed area of memory and not a file descriptor, thus
-allowing catalogs to be shared.
+is a mmap()'ed area of memory and not a file descriptor.
+The
+.I flag
+argument to
+.B catopen()
+should be either
+.B MCLoadBySet
+(=0) or
+.B MCLoadAll
+(=1).
+The former value indicates that a set from the catalog is to be
+loaded when needed, whereas the latter causes the initial call to
+.BR catopen ()
+to load the entire catalog into memory.
+The default search path varies, but usually looks at a number of places below
+.I /etc/locale
+and
+.IR /usr/lib/locale .
+.SH "CONFORMING TO"
+POSIX 1003.1-2001.
+In XPG 1987, Vol. 3 it says:
+.I "The flag argument of catopen is reserved for future use"
+.IR "and should be set to 0" .
+It is unclear what the source was for the constants MCLoadBySet
+and MCLoadAll.
 .SH "SEE ALSO"
 .BR catgets (3),
 .BR setlocale (3)

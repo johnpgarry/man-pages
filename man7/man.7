@@ -499,24 +499,6 @@ When generating HTML this should translate into the HTML command
 Reset tabs to default tab values (every 0.5 inches);
 does not cause a break.
 .TP
-.BI \&.IX " \&..."
-Inserts index information (for a search system or printed index list).
-Index information is not normally displayed in the page itself.
-If followed by a single parameter, the parameter is added as
-a standalone index term pointing to this location in the man page.
-If it's two parameters, it's probably in Perl manpage format; the first
-parameter identifies the type of name
-(one of Name, Title, Header, Subsection, or Item)
-and the second parameter the name itself to be indexed.
-Otherwise, it's in the long index format:
-each parameter gives an index term, subordinate index term,
-subsubordinate index term, and so on until terminated by an empty parameter,
-then a parameter with the name of the program, \eem, and short description;
-this may be followed by another empty parameter and possibly by
-page control messages (e.g. PAGE START).
-An example of this would be
-"programming tools" "make" "" "\efLmake\efP \e(em build programs".
-.TP
 .BI \&.PD " d"
 Set inter-paragraph vertical distance to d
 (if omitted, d=0.4v);
@@ -695,7 +677,7 @@ tbl(1)
 .B v
 vgrind(1)
 .SH FILES
-.I /usr/share/groff/tmac/tmac.an
+.IR /usr/share/groff/ [*/] tmac/tmac.an
 .br
 .I /usr/man/whatis
 .SH BUGS

@@ -25,23 +25,29 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 17:52:15 1993 by Rik Faith (faith@cs.unc.edu)
-.TH SWAB 3  1993-04-13 "GNU" "Linux Programmer's Manual"
+.\" Modified 2001-12-15, aeb
+.TH SWAB 3  2001-12-15 "" "Linux Programmer's Manual"
 .SH NAME
 swab \- swap adjacent bytes
 .SH SYNOPSIS
 .nf
-.B #include <string.h>
+.B #include <unistd.h>
 .sp
-.BI "void swab(const void *" from ", void *" to ", size_t " n );
+.BI "void swab(const void *" from ", void *" to ", ssize_t " n );
 .fi
 .SH DESCRIPTION
 The \fBswab()\fP function copies \fIn\fP bytes from the array pointed
 to by \fIfrom\fP to the array pointed to by \fIto\fP, exchanging
 adjacent even and odd bytes.  This function is used to exchange data
 between machines that have different low/high byte ordering.
+.LP
+This function does nothing when \fIn\fP is negative.
+When \fIn\fP is positive and odd, it handles \fIn\fP-1 bytes
+as above, and does something unspecified with the last byte.
+(In other words, \fIn\fP should be even.)
 .SH "RETURN VALUE"
 The \fBswab()\fP function returns no value.
 .SH "CONFORMING TO"
-SVID 3, BSD 4.3
+SVID 3, BSD 4.3, POSIX 1003.1-2001
 .SH "SEE ALSO"
 .BR bstring (3)

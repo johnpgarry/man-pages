@@ -24,12 +24,12 @@
 .\" Modified Tue Oct 22 23:44:11 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH ASSERT 3  1993-04-04 "GNU" "Linux Programmer's Manual"
 .SH NAME
-assert \- Abort the program if assertion is false.
+assert \- abort the program if assertion is false.
 .SH SYNOPSIS
 .nf
 .B #include <assert.h>
 .sp
-.BI "void assert(int " "expression" );
+.BI "void assert(int " expression );
 .fi
 .SH DESCRIPTION
 .B assert()
@@ -37,7 +37,7 @@ prints an error message to standard output and terminates the program
 by calling
 .B abort()
 if
-.B expression
+.I expression
 is false (i.e., compares equal to zero).  This only happens when the macro
 .B NDEBUG
 was undefined when
@@ -47,7 +47,7 @@ was last included.
 No value is returned.
 .SH "CONFORMING TO"
 ISO9899 (ANSI C).  In the 1990 standard,
-.B expression
+.I expression
 is required to be of type
 .B int
 and undefined behavior results if it is not, but in the 1999 standard
@@ -55,10 +55,11 @@ it may have any scalar type.
 .\" See Defect Report 107 for more details.
 .SH BUGS
 .B assert()
-is implemented as a macro; if the expression tested has side - effects,
+is implemented as a macro; if the expression tested has side-effects,
 program behaviour will be different depending on whether
 .B NDEBUG
-is defined. This may create Heisenbugs which go away when debugging is turned on.
+is defined.  This may create Heisenbugs which go away when debugging
+is turned on.
 .SH "SEE ALSO"
 .BR exit (3),
 .BR abort (3)

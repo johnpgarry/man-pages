@@ -28,6 +28,7 @@
 .\"	Added brief description of facility and option arguments
 .\"	Added CONFORMING TO section
 .\" 2001-10-13, aeb, minor changes
+.\" Modified Thu Dec 13 17:18:13 CET 2001 by Martin Schulze <joey@infodrom.org>
 .\"
 .TH SYSLOG 3 2001-10-13 "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -35,7 +36,7 @@ closelog, openlog, syslog \- send messages to the system logger
 .SH SYNOPSIS
 .B #include <syslog.h>
 .sp
-.BI "void openlog(char *" ident ", int " option ", int " facility );
+.BI "void openlog(const char *" ident ", int " option ", int " facility );
 .br
 .BI "void syslog(int " priority ", char " *format ", ...);"
 .br
@@ -108,7 +109,6 @@ with the difference that it takes a set of arguments which have
 been obtained using the
 .BR stdarg (3)
 variable argument list macros.
-
 .SH PARAMETERS
 This section lists the parameters used to set the values of 
 .IR option , " facility" ", and " priority .
@@ -225,7 +225,6 @@ debug-level message
 The function
 .BR setlogmask (3)
 can be used to restrict logging to specified levels only.
-
 .SH CONFORMING TO
 The functions
 .BR openlog() ,
@@ -234,8 +233,8 @@ and
 .BR syslog()
 (but not
 .BR vsyslog() )
-are specified in SUSv2 and SUSv3 ("Austin draft").
-SUSv3 specifies only the
+are specified in SUSv2 and POSIX 1003.1-2001.
+POSIX 1003.1-2001 specifies only the
 .B LOG_USER
 and
 .BR LOG_LOCAL*
@@ -252,7 +251,8 @@ The
 .B LOG_PERROR
 value for
 .I option
-is not specified by SUSv3, but is available in most versions of Unix.
+is not specified by POSIX 1003.1-2001, but is available
+in most versions of Unix.
 
 .SH HISTORY
 A

@@ -71,11 +71,13 @@ except in the case of a symbolic link, where the link itself is stat-ed,
 not the file that it refers to.
 
 .B fstat
-is identical to stat, only the open file pointed to by 
+is identical to
+.BR stat ,
+only the open file pointed to by 
 .I filedes
 (as returned by
 .IR open (2))
-is stated in place of 
+is stat-ed in place of 
 .IR file_name .
 
 .PP

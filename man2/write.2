@@ -28,8 +28,9 @@
 .\" Modified Sat Jan 13 12:58:08 1996 by Michael Haardt
 .\"   <michael@cantor.informatik.rwth-aachen.de>
 .\" Modified Sun Jul 21 18:59:33 1996 by Andries Brouwer <aeb@cwi.nl>
+.\" 2001-12-13 added remark by Zack Weinberg
 .\"
-.TH WRITE 2 1996-01-13 "Linux 2.0.32" "Linux Programmer's Manual"
+.TH WRITE 2 2001-12-13 "Linux 2.0.32" "Linux Programmer's Manual"
 .SH NAME
 write \- write to a file descriptor
 .SH SYNOPSIS
@@ -104,13 +105,22 @@ SVr4, SVID, POSIX, X/OPEN, 4.3BSD.  SVr4 documents additional error
 conditions EDEADLK, ENOLCK, ENOLNK, ENOSR, ENXIO, EPIPE, or ERANGE.
 Under SVr4 a write may be interrupted and return EINTR at any point,
 not just before any data is written. 
+.SH NOTES
+A successful return from
+.B write
+does not make any guarantee that data has been committed to disk.
+In fact, on some buggy implementations, it does not even guarantee
+that space has successfully been reserved for the data.
+The only way to be sure is to call
+.BR fsync (2)
+after you are done writing all your data.
 .SH "SEE ALSO"
+.BR close (2),
+.BR fcntl (2),
+.BR fsync (2),
+.BR ioctl (2),
+.BR lseek (2),
 .BR open (2),
 .BR read (2),
-.BR fcntl (2),
-.BR close (2),
-.BR lseek (2),
 .BR select (2),
-.BR ioctl (2),
-.BR fsync (2),
 .BR fwrite (3)

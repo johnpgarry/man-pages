@@ -48,7 +48,7 @@ Unless the argument
 .I nochdir
 is non-zero,
 .BR daemon ()
-changes the current working directory to the root (``/'').
+changes the current working directory to the root ("/").
 .PP
 Unless the argument
 .I noclose
@@ -56,7 +56,13 @@ is non-zero,
 .BR daemon ()
 will redirect standard input, standard output and standard error
 to \fI/dev/null\fP.
-.SH ERRORS
+.SH "RETURN VALUE"
+(This function forks, and if the
+.I fork()
+succeeds, the father does
+.IR _exit (0),
+so that further errors are seen by the child only.)
+On success zero will be returned.
 If an error occurs,
 .BR daemon ()
 returns \-1 and sets the global variable
@@ -68,6 +74,13 @@ and
 .SH "SEE ALSO"
 .BR fork (2),
 .BR setsid (2)
+.SH NOTES
+The glibc implementation can also return \-1 when
+.I /dev/null
+exists but is not a character device with the expected
+major and minor numbers. In this case
+.I errno
+need not be set.
 .SH HISTORY
 The
 .BR daemon ()

@@ -31,9 +31,9 @@ shmop \- shared memory operations
 .SH SYNOPSIS
 .nf
 .B
-# include <sys/types.h>
+#include <sys/types.h>
 .B
-# include <sys/shm.h>
+#include <sys/shm.h>
 .fi
 .sp
 .BI "void *shmat(int " shmid ,
@@ -195,7 +195,7 @@ Could not allocate memory for the descriptor or for the page tables.
 .PP
 The function
 .B shmdt
-can fails only if there is no shared memory segment attached at
+can fail only if there is no shared memory segment attached at
 .IR shmaddr ,
 in such a case at return
 .B errno

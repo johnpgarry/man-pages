@@ -24,8 +24,9 @@
 .\" USA.
 .\"
 .\" Modified by David A. Wheeler <dwheeler@dwheeler.com> 2000-11-28.
+.\" Applied patch by Terran Melconian, aeb, 2001-12-14
 .\"
-.TH DLOPEN 3 2000-11-28 "Linux" "Linux Programmer's Manual"
+.TH DLOPEN 3 2001-12-14 "Linux" "Linux Programmer's Manual"
 .SH NAME
 dlclose, dlerror, dlopen, dlsym \- Programming interface to dynamic linking loader.
 .SH SYNOPSIS
@@ -134,6 +135,17 @@ It is also necessary to save the results of
 into a variable because if
 .B dlerror
 is called again, it will return NULL.
+.PP
+There are two special pseudo-handles,
+.B RTLD_DEFAULT
+and
+.BR RTLD_NEXT .
+The former will find the first occurrence of the desired symbol
+using the default library search order. The latter,
+which is usable only from within a dynamic library, will find the
+next occurrence of a function in the search order after the current
+library.  This allows one to provide a wrapper around a function
+in another shared library.
 .PP
 .B dlclose
 decrements the reference count on the dynamic library handle

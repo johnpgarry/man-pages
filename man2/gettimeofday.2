@@ -46,12 +46,14 @@ gettimeofday, settimeofday \- get / set time
 .BI "int settimeofday(const struct timeval *" tv
 .BI ", const struct timezone *" tz );
 .SH DESCRIPTION
+The functions
 .B gettimeofday
 and
 .B settimeofday
-can set the time as well as a timezone.      
+can get and set the time as well as a timezone.
+The    
 .I tv
-is a 
+argument is a 
 .B timeval 
 struct, as specified  in /usr/include/sys/time.h:
 .sp
@@ -63,11 +65,12 @@ long	tv_usec;	/* microseconds */
 .in -8
 };
 .fi
-.PP
 .sp
-and 
+and gives the number of seconds and microseconds since the Epoch (see
+.BR time (2)).
+The 
 .I tz
-is a 
+argument is a 
 .B timezone 
 :
 .sp

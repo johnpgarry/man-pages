@@ -27,7 +27,7 @@
 .\" Modified Sat Jul 24 14:23:14 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Oct 18 17:31:43 1998 by Andries Brouwer (aeb@cwi.nl)
 .\"
-.TH FTIME 3 1993-07-24 "Linux" "Linux Programmer's Manual"
+.TH FTIME 3 2001-12-14 "Linux" "Linux Programmer's Manual"
 .SH NAME
 ftime \- return date and time
 .SH SYNOPSIS
@@ -37,7 +37,7 @@ ftime \- return date and time
 .SH DESCRIPTION
 Return current date and time in
 .IR tp ,
-which is declared as following:
+which is declared as follows:
 .sp
 .in +1i
 .nf
@@ -50,25 +50,36 @@ struct timeb {
 .fi
 .in -1i
 .LP
-The structure contains the time since the epoch in seconds, up to 1000
-milliseconds of more-precise interval, the local time zone (measured in
-minutes of time westward from Greenwich), and a flag that, if nonzero,
-indicates that Daylight Saving time applies locally during the
-appropriate part of the year.
+Here \fItime\fP is the number of seconds since the epoch,
+\fImillitm\fP is the number of milliseconds since \fItime\fP
+seconds since the epoch, \fItimezone\fP is the local time zone
+measured in minutes of time west of Greenwich, and \fIdstflag\fP
+is a flag that, if nonzero, indicates that Daylight Saving time
+applies locally during the appropriate part of the year.
+.LP
+These days the contents of the \fItimezone\fP and \fIdstflag\fP
+fields are undefined.
 .SH "RETURN VALUE"
 This function always returns 0.
 .SH BUGS
-Under libc4 and libc5 the millitm field is meaningful.
-But glibc2 is buggy and returns 0 there;
+This function is obsolete. Don't use it. If the time in seconds
+suffices,
+.BR time (2)
+can be used;
+.BR gettimeofday (2)
+gives microseconds;
+.BR clock_gettime (3)
+gives nanoseconds but is not yet widely available.
+.LP
+Under libc4 and libc5 the \fImillitm\fP field is meaningful.
+But early glibc2 is buggy and returns 0 there;
 glibc 2.1.1 is correct again.
 .SH HISTORY
 The
-.I ftime
+.B ftime()
 function appeared in 4.2BSD.
 .SH "CONFORMING TO"
-BSD 4.2
-.SH NOTE
-This call is obsoleted by
-.BR gettimeofday (2).
+BSD 4.2, POSIX 1003.1-2001.
 .SH "SEE ALSO"
+.BR gettimeofday (2),
 .BR time (2)
