@@ -20,8 +20,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Fri Jul 29th 12:56:44 BST 1994  Wilf. <G.Wilford@ee.surrey.ac.uk> 
-.\" Modified Fri Jan 31 17:06:56 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Fri Jul 29th 12:56:44 BST 1994  Wilf. (G.Wilford@ee.surrey.ac.uk) 
 .\"
 .TH SETGID 2 "29 July 1994" "Linux 1.1.36" "Linux Programmer's Manual"
 .SH NAME
@@ -37,8 +36,8 @@ superuser, the real and saved group ID's are also set.
 
 Under Linux, 
 .B setgid
-is implemented like the POSIX version with the _POSIX_SAVED_IDS feature.
-This allows a setgid (other than root) program to drop all of its group
+is implemented like SYSV with SAVED_IDS.
+This allows a setgid (other than root) program to drop all of it's group
 privileges, do some un-privileged work, and then re-engage the original
 effective group ID in a secure manner.
 
@@ -50,13 +49,6 @@ all process related group ID's are set to
 .IR gid . 
 After this has occurred, it is impossible for the program to regain root
 privileges.             
-
-Thus, a setgid-root program wishing to temporarily drop root
-privileges, assume the identity of a non-root group, and then regain
-root privileges afterwards cannot use 
-.BR setgid .
-You can accomplish this with the (non-POSIX, BSD) call
-.BR setegid .
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -68,6 +60,6 @@ The user is not the super-user, and
 .I gid
 does not match the effective or saved group ID of the calling process.
 .SH "CONFORMING TO"
-SVr4, SVID.
+System V
 .SH "SEE ALSO"
 .BR getgid "(2), " setregid "(2), " setegid (2)
