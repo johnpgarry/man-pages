@@ -377,7 +377,7 @@ specified the
 flag.
 .PP
 When requested with the 
-.B FIOSETOWN 
+.B FIOCSETOWN 
 fcntl or 
 .B SIOCSPGRP 
 ioctl,
@@ -504,10 +504,10 @@ when none is set.
 .PP
 Valid fcntls:
 .TP
-.BR FIOGETOWN 
+.BR FIOCGETOWN 
 The same as the SIOCGPGRP ioctl.
 .TP
-.BR FIOSETOWN
+.BR FIOCSETOWN
 The same as the SIOCSPGRP ioctl
 .SH NOTES
 Linux assumes that half of the send/receive buffer is used for internal
