@@ -28,13 +28,12 @@
 .\"   Fixed necessary '#include' lines.
 .\" Modified 15 Apr 1995 by Michael Chastain (mec@shell.portal.com):
 .\"   Added reference to adjtimex.
-.\" Removed some nonsense lines pointed out by Urs Thuermann,
-.\"   (urs@isnogud.escape.de), aeb, 950722.
+.\" Removed some nonsense lines pointed out by urs@isnogud.escape.de (Urs Thuermann),
+.\"   aeb, 950722.
 .\" Modified 14 Jan 1997 by Austin Donnelly (and1000@debian.org):
 .\"   Added return values section, and bit on EFAULT
-.\" Added clarification on timezone, aeb, 971210.
 .\"
-.TH GETTIMEOFDAY 2 "10 December 1997" "Linux 2.0.32" "Linux Programmer's Manual"
+.TH GETTIMEOFDAY 2 "14 January 1997" "Linux 2.0.21" "Linux Programmer's Manual"
 .SH NAME
 gettimeofday, settimeofday \- get / set time
 .SH SYNOPSIS
@@ -58,11 +57,11 @@ struct, as specified  in /usr/include/sys/time.h:
 .sp
 .nf
 struct timeval {
-.in +8
+.in 22
 long	tv_sec;		/* seconds */
 long	tv_usec;	/* microseconds */
-.in -8
 };
+.in 10
 .fi
 .PP
 .sp
@@ -74,93 +73,64 @@ is a
 .sp
 .nf
 struct timezone {
-.in +8
-int	tz_minuteswest; /* minutes W of Greenwich */
-int	tz_dsttime;     /* type of dst correction */
-.in -8
+.in 23
+int	tz_minuteswest;
+/* minutes west of Greenwich */
+int	tz_dsttime;
+/* type of dst correction */
 };
+.in 10
 .fi
 .PP
-The use of the timezone struct is obsolete; the
-.I tz_dsttime
-field has never been used under Linux - it has not
-been and will not be supported by libc or glibc.
-Each and every occurrence of this field in the kernel source
-(other than the declaration) is a bug. Thus, the following
-is purely of historic interest.
-
-The field
-.I tz_dsttime
-contains a symbolic constant (values are given below)
-that indicates in which part of the year Daylight Saving Time
-is in force. (Note: its value is constant throughout the year -
-it does not indicate that DST is in force, it just selects an
-algorithm.)
-The daylight saving time algorithms defined are as follows : 
+With daylight savings times defined as follows : 
 .PP
-.ta 14
-\fB DST_NONE\fP	/* not on dst */
+.B DST_NONE
+/* not on dst */
 .br
-\fB DST_USA\fP	/* USA style dst */
+.B DST_USA	
+/* USA style dst */
 .br
-\fB DST_AUST\fP	/* Australian style dst */
+.B DST_AUST	
+/* Australian style dst */
 .br
-\fB DST_WET\fP	/* Western European dst */
+.B DST_WET
+/* Western European dst */
 .br
-\fB DST_MET\fP	/* Middle European dst */
+.B DST_MET
+/* Middle European dst */
 .br
-\fB DST_EET\fP	/* Eastern European dst */
+.B DST_EET
+/* Eastern European dst */
 .br
-\fB DST_CAN\fP	/* Canada */
+.B DST_CAN
+/* Canada */
 .br
-\fB DST_GB\fP	/* Great Britain and Eire */
+.B DST_GB	
+/* Great Britain and Eire */
 .br
-\fB DST_RUM\fP	/* Rumania */
+.B DST_RUM
+/* Rumania */
 .br
-\fB DST_TUR\fP	/* Turkey */
+.B  DST_TUR
+/* Turkey */
 .br
-\fB DST_AUSTALT\fP	/* Australian style with shift in 1986 */
+.B DST_AUSTALT	
+/* Australian style with shift in 1986 */
 .PP
-Of course it turned out that the period in which
-Daylight Saving Time is in force cannot be given
-by a simple algorithm, one per country; indeed,
-this period is determined by unpredictable political
-decisions. So this method of representing time zones
-has been abandoned. Under Linux, in a call to
-.B settimeofday
-the
-.I tz_dsttime
-field should be zero.
-.PP
-Under Linux there is some peculiar `warp clock' semantics associated
-to the
-.B settimeofday
-system call if on the very first call (after booting)
-that has a non-NULL
-.I tz
-argument, the
-.I tv
-argument is NULL and the
-.I tz_minuteswest
-field is nonzero. In such a case it is assumed that the CMOS clock
-is on local time, and that it has to be incremented by this amount
-to get UTC system time.
-No doubt it is a bad idea to use this feature.
-.PP
-The following macros are defined to operate on a struct timeval :
+And the following macros are defined to operate on this :
 .br
 .nf
 #define	timerisset(tvp)\\
-.ti +8
+.ti 18
 ((tvp)->tv_sec || (tvp)->tv_usec)
 #define	timercmp(tvp, uvp, cmp)\\
-.in +8
+.in 18
 ((tvp)->tv_sec cmp (uvp)->tv_sec ||\\
 (tvp)->tv_sec == (uvp)->tv_sec &&\\
 (tvp)->tv_usec cmp (uvp)->tv_usec)
-.in -8
-#define	timerclear(tvp)\\
-.ti +8
+.in 10
+#define timerclear(tvp)
+.ti 18
 ((tvp)->tv_sec = (tvp)->tv_usec = 0)
 .fi
 .PP
@@ -173,7 +143,7 @@ is null, the corresponding structure is not set or returned.
 Only the super user may use
 .BR settimeofday .
 .SH "RETURN VALUES"
-.B gettimeofday
+.B getimeofday
 and
 .B settimeofday
 return 0 for success, or -1 for failure (in which case
