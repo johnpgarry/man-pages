@@ -25,7 +25,6 @@
 .\"
 .\" Modified Sat Jul 24 13:32:44 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Mon Jun 23 14:09:52 1997 by aeb - add EINTR.
-.\" Modified Tue Jul  7 12:26:42 1998 by aeb - changed return value wait3
 .\"
 .TH WAIT4 2  "23 June 1997" "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -158,19 +157,17 @@ it points to will be filled with accounting information.  See
 .BR getrusage (2)
 for details.
 .SH "RETURN VALUE"
-The process ID of the child which exited, \-1 on error
-(in particular, when no unwaited-for child processes
-of the specified kind exist)
-or zero if
+The process ID of the child which exited, \-1 on error or zero if
 .B WNOHANG
-was used and no child was available yet.
-In the latter two cases
+was used and no child was available (in which case,
 .I errno
-will be set appropriately.
+will be set appropriately).
 .SH "ERRORS"
 .TP
 .B ECHILD
-No unwaited-for child process as specified does exist.
+if the child process specified in
+.I pid
+does not exist.
 .TP
 .B ERESTARTSYS
 if
