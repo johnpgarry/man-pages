@@ -92,147 +92,135 @@ cc_t \fIc_cc\fP[\fBNCCS\fP];       /* control chars */
 .PP
 \fIc_iflag\fP flag constants:
 .IP \fBIGNBRK\fP
-Ignore BREAK condition on input.
+ignore BREAK condition on input
 .IP \fBBRKINT\fP
-If \fBIGNBRK\fP is set, a BREAK is ignored. If it is not set
-but \fBBRKINT\fP is set, then a BREAK causes the input and output
-queues to be flushed, and if the terminal is the controlling
-terminal of a foreground process group, it will cause a
-\fBSIGINT\fP to be sent to this foreground process group.
-When neither \fBIGNBRK\fP nor \fBBRKINT\fP are set, a BREAK
-reads as a NUL character, except when \fBPARMRK\fP is set,
-in which case it reads as the sequence \\377 \\0 \\0.
+If \fBIGNBRK\fP is not set, generate \fBSIGINT\fP on BREAK condition,
+else read BREAK as character \\0.
 .IP \fBIGNPAR\fP
-Ignore framing errors and parity errors.
+ignore framing errors and parity errors.
 .IP \fBPARMRK\fP
-If \fBIGNPAR\fP is not set, prefix a character with a parity error or 
+if \fBIGNPAR\fP is not set, prefix a character with a parity error or 
 framing error with \\377 \\0.  If neither \fBIGNPAR\fP nor \fBPARMRK\fP
 is set, read a character with a parity error or framing error
 as \\0.
 .IP \fBINPCK\fP
-Enable input parity checking.
+enable input parity checking
 .IP \fBISTRIP\fP
-Strip off eighth bit.
+strip off eighth bit
 .IP \fBINLCR\fP
-Translate NL to CR on input.
+translate NL to CR on input
 .IP \fBIGNCR\fP
-Ignore carriage return on input.
+ignore carriage return on input
 .IP \fBICRNL\fP
-Translate carriage return to newline on input (unless \fBIGNCR\fP is set).
+translate carriage return to newline on input (unless \fBIGNCR\fP is set)
 .IP \fBIUCLC\fP
-Map uppercase characters to lowercase on input.
+map uppercase characters to lowercase on input
 .IP \fBIXON\fP
-Enable XON/XOFF flow control on output.
+enable XON/XOFF flow control on output
 .IP \fBIXANY\fP
-Enable any character to restart output.
+enable any character to restart output
 .IP \fBIXOFF\fP
-Enable XON/XOFF flow control on input.
+enable XON/XOFF flow control on input
 .IP \fBIMAXBEL\fP
-(Not in POSIX) Ring bell when input queue is full.
-Linux does not implement this bit, and acts as if it is always set.
+ring bell when input queue is full
 .PP
 \fIc_oflag\fP flag constants:
 .IP \fBOPOST\fP
-Enable implementation-defined output processing.
+enable implementation-defined output processing
 .IP \fBOLCUC\fP
-Map lowercase characters to uppercase on output.
+map lowercase characters to uppercase on output
 .IP \fBONLCR\fP
-Map NL to CR-NL on output.
+map NL to CR-NL on output
 .IP \fBOCRNL\fP
-Map CR to NL on output.
+map CR to NL on output
 .IP \fBONOCR\fP
-Don't output CR at column 0.
+don't output CR at column 0
 .IP \fBONLRET\fP
-Don't output CR.
+don't output CR
 .IP \fBOFILL\fP
-Send fill characters for a delay, rather than using a timed delay.
+send fill characters for a delay, rather than using a timed delay
 .IP \fBOFDEL\fP
-Fill character is ASCII DEL (0177).  If unset, fill character is ASCII NUL.
+fill character is ASCII DEL.  If unset, fill character is ASCII NUL
 .IP \fBNLDLY\fP
-Newline delay mask.  Values are \fBNL0\fP and \fBNL1\fP.
+newline delay mask.  Values are \fBNL0\fP and \fBNL1\fP.
 .IP \fBCRDLY\fP
-Carriage return delay mask.
-Values are \fBCR0\fP, \fBCR1\fP, \fBCR2\fP, or \fBCR3\fP.
+carriage return delay mask.  Values are \fBCR0\fP, \fBCR1\fP, \fBCR2\fP, or \fBCR3\fP.
 .IP \fBTABDLY\fP
-Horizontal tab delay mask.
-Values are \fBTAB0\fP, \fBTAB1\fP, \fBTAB2\fP, \fBTAB3\fP, or \fBXTABS\fP.
-A value of TAB3 or XTABS expands tabs to spaces
-(with tab stops every eight columns).
+horizontal tab delay mask.  Values are \fBTAB0\fP, \fBTAB1\fP, \fBTAB2\fP, \fBTAB3\fP, or \fBXTABS\fP.
+A value of XTABS expands tabs to spaces (with tab stops every eight columns).
 .IP \fBBSDLY\fP
-Backspace delay mask.  Values are \fBBS0\fP or \fBBS1\fP.
+backspace delay mask.  Values are \fBBS0\fP or \fBBS1\fP.
 .IP \fBVTDLY\fP
-Vertical tab delay mask.  Values are \fBVT0\fP or \fBVT1\fP.
+vertical tab delay mask.  Values are \fBVT0\fP or \fBVT1\fP.
 .IP \fBFFDLY\fP
-Form feed delay mask.  Values are \fBFF0\fP or \fBFF1\fP.
+form feed delay mask.  Values are \fBFF0\fP or \fBFF1\fP.
 .PP
 \fIc_cflag\fP flag constants:
 .IP \fBCSIZE\fP
-Character size mask.
-Values are \fBCS5\fP, \fBCS6\fP, \fBCS7\fP, or \fBCS8\fP.
+character size mask.  Values are \fBCS5\fP, \fBCS6\fP, \fBCS7\fP, or \fBCS8\fP.
 .IP \fBCSTOPB\fP
-Set two stop bits, rather than one.
+set two stop bits, rather than one.
 .IP \fBCREAD\fP
-Enable receiver.
+enable receiver.
 .IP \fBPARENB\fP
-Enable parity generation on output and parity checking for input.
+enable parity generation on output and parity checking for input.
 .IP \fBPARODD\fP
-Parity for input and output is odd.
+parity for input and output is odd.
 .IP \fBHUPCL\fP
-Lower modem control lines after last process closes the device (hang up).
+lower modem control lines after last process closes the device (hang up).
 .IP \fBCLOCAL\fP
-Ignore modem control lines.
+ignore modem control lines
 .IP \fBCIBAUD\fP
-Mask for input speeds (not used).
+mask for input speeds (not used).
 .IP \fBCRTSCTS\fP
-Enable RTS/CTS (hardware) flow control.
+flow control.
 .PP
 \fIc_lflag\fP flag constants:
 .IP \fBISIG\fP
-When any of the characters INTR, QUIT, SUSP, or DSUSP are received,
+when any of the characters INTR, QUIT, SUSP, or DSUSP are received,
 generate the corresponding signal.
 .IP \fBICANON\fP
-Enable canonical mode.  This enables the special characters
+enable canonical mode.  This enables the special characters
 EOF, EOL, EOL2, ERASE, KILL, REPRINT, STATUS, and WERASE, and
 buffers by lines.  
 .IP \fBXCASE\fP
-If \fBICANON\fP is also set, terminal is uppercase only.
+if \fBICANON\fP is also set, terminal is uppercase only.
 Input is converted to lowercase, except for characters preceded by \\.
 On output, uppercase characters are preceded by \\ and lowercase
 characters are converted to uppercase.
 .IP \fBECHO\fP
-Echo input characters.
+echo input characters.
 .IP \fBECHOE\fP
-If \fBICANON\fP is also set, the ERASE character erases the preceding
+if \fBICANON\fP is also set, the ERASE character erases the preceding
 input character, and WERASE erases the preceding word.
 .IP \fBECHOK\fP
-If \fBICANON\fP is also set, the KILL character erases the current line.
+if \fBICANON\fP is also set, the KILL character erases the current line.
 .IP \fBECHONL\fP
-If \fBICANON\fP is also set, echo the NL character even if ECHO is not set.
+if \fBICANON\fP is also set, echo the NL character even if ECHO is not set.
 .IP \fBECHOCTL\fP
-If \fBECHO\fP is also set, ASCII control signals other than TAB, NL, START,
-and STOP are echoed as ^X, where X is the character with ASCII code 0x40
-greater than the control signal.  For example, character 0x08 (BS) is echoed
-as ^H.
+if \fBECHO\fP is also set, ASCII control signals other than TAB, NL, START, and STOP
+are echoed as ^X, where X is the character with ASCII code 0x40 greater
+than the control signal.  For example, character 0x08 (BS) is echoed as ^H.
 .IP \fBECHOPRT\fP
-If \fBICANON\fP and \fBIECHO\fP are also set, characters are printed as they
+if \fBICANON\fP and \fBIECHO\fP are also set, characters are printed as they
 are being erased.
 .IP \fBECHOKE\fP
-If \fBICANON\fP is also set, KILL is echoed by erasing each character on
-the line, as specified by \fBECHOE\fP and \fBECHOPRT\fP.
+if \fBICANON\fP is also set, KILL is echoed by erasing each character on the line,
+as specified by \fBECHOE\fP and \fBECHOPRT\fP.
 .IP \fBFLUSHO\fP
-Output is being flushed.  This flag is toggled by typing the DISCARD character.
+output is being flushed.  This flag is toggled by typing the DISCARD character.
 .IP \fBNOFLSH\fP
-Disable flushing the input and output queues when generating the SIGINT
+disable flushing the input and output queues when generating the SIGINT
 and SIGQUIT signals, and flushing the input queue when generating
 the SIGSUSP signal.
 .IP \fBTOSTOP\fP
-Send the SIGTTOU signal to the process group of a background process
+send the SIGTTOU signal to the process group of a background process
 which tries to write to its controlling terminal.
 .IP \fBPENDIN\fP
-All characters in the input queue are reprinted when the next character is
+all characters in the input queue are reprinted when the next character is
 read.  (\fBbash\fP handles typeahead this way.)
 .IP \fBIEXTEN\fP
-Enable implementation-defined input processing.
+enable implementation-defined input processing.
 .PP
 The \fIc_cc\fP array defines the special control characters.
 The symbolic indices (and meaning: initial values) are:

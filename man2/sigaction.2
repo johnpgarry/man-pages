@@ -348,13 +348,15 @@ and then suspends the process until a signal is received.
 The functions
 .BR sigaction ,
 .BR sigprocmask ,
-and
 .B sigpending
-return 0 on success and \-1 on error.
-The function
+and
 .B sigsuspend
-always returns \-1, normally with the error
-.BR EINTR .
+return 0 on success and \-1 on error.
+(In the case of
+.B sigsuspend
+there will be no success, and only the error return with
+.B EINTR
+is possible.)
 
 .SH ERRORS
 .TP
@@ -365,9 +367,9 @@ is made to change the action for
 which cannot be caught.
 .TP
 .B EFAULT
-.IR act ", " oldact ", " set ", " oldset
+.IR act ", " oldact ", " set 
 or 
-.I mask
+.I oldset
 point to memory which is not a valid part of the process address space.
 .TP
 .B EINTR

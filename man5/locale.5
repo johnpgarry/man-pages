@@ -25,13 +25,13 @@ locale \- Describes a locale definition file
 The 
 .B locale
 definition files contains all the information that the
-.BR localedef (1) 
+.B localedef(1) 
 command needs to convert it into the binary locale database.
 
 The definition files consist of sections which each describe a
 locale category in detail.
 .SH SYNTAX
-The locale definition file starts with a header that may consist
+The locale definition file starts with a header, that may consist
 of the following keywords:
 .TP
 .I <escape_char>
@@ -45,11 +45,13 @@ the backslash (
 .I <comment_char>
 is followed by a character that will be used as the
 comment-character for the rest of the file. It defaults to the
-number sign (#).
+number sign (
+.B #
+).
 
 .PP
-The locale definition has one part for each locale category.
-Each part can be copied from another existing locale or
+The locale definitions is divided it one part for each locale
+category. Each part can be copied from another existing locale or
 can be defined from scratch. If the category should be copied,
 the only valid keyword in the definition is
 .B copy
@@ -71,9 +73,7 @@ followed by a list of uppercase letters. The letters
 trough
 .B Z
 are included automatically. Characters also specified as
-.BR cntrl ,
-.BR digit ,
-.BR punct ,
+.B cntrl, digit, punct,
 or
 .B space
 are not allowed.
@@ -85,9 +85,7 @@ followed by a list of lowercase letters. The letters
 trough
 .B z
 are included automatically. Characters also specified as
-.BR cntrl ,
-.BR digit ,
-.BR punct ,
+.B cntrl, digit, punct,
 or
 .B space
 are not allowed.
@@ -99,9 +97,7 @@ followed by a list of letters. All character specified as either
 or 
 .B lower
 are automatically included. Characters also specified as
-.BR cntrl ,
-.BR digit ,
-.BR punct ,
+.B cntrl, digit, punct,
 or
 .B space
 are not allowed.
@@ -119,19 +115,11 @@ are allowed. They are included by default in this class.
 .I space
 followed by a list of characters defined as white-space
 characters. Characters also specified as
-.BR upper ,
-.BR lower ,
-.BR alpha ,
-.BR digit ,
-.BR graph ,
+.B upper, lower, alpha, digit, graph,
 or
 .B xdigit
 are not allowed. The characters
-.BR <space> ,
-.BR <form-feed> ,
-.BR <newline> ,
-.BR <carriage-return> ,
-.BR <tab> ,
+.B <space>, <form-feed>, <newline>, <carriage-return>, <tab>,
 and
 .B <vertical-tab>
 are automatically included.
@@ -140,13 +128,7 @@ are automatically included.
 .I cntrl
 followed by a list of control characters.
 Characters also specified as
-.BR upper ,
-.BR lower ,
-.BR alpha ,
-.BR digit ,
-.BR punct ,
-.BR graph ,
-.BR print ,
+.B upper, lower, alpha, digit, punct, graph, print
 or
 .B xdigit
 are not allowed.
@@ -154,12 +136,7 @@ are not allowed.
 .I punct
 followed by a list of punctuation characters. Characters also
 specified as
-.BR upper ,
-.BR lower ,
-.BR alpha ,
-.BR digit ,
-.BR cntrl ,
-.BR xdigit ,
+.B upper, lower, alpha, digit, cntrl, xdigit
 or the
 .B <space>
 character are not allowed.
@@ -169,11 +146,7 @@ character are not allowed.
 followed by a list of printable characters, not including the
 .B <space>
 character. The characters defined as
-.BR upper ,
-.BR lower ,
-.BR alpha ,
-.BR digit ,
-.BR xdigit ,
+.B upper, lower, alpha, digit, xdigit
 and
 .B punct 
 are automatically included.
@@ -186,12 +159,7 @@ are not allowed.
 followed by a list of printable characters, including the
 .B <space>
 character. The characters defined as
-.BR upper ,
-.BR lower ,
-.BR alpha ,
-.BR digit ,
-.BR xdigit ,
-.BR punct ,
+.B upper, lower, alpha, digit, xdigit, punct
 and the
 .B <space>
 character are automatically included.
@@ -207,18 +175,18 @@ more set of six characters in ascending order. The following
 characters are included by default:
 .B 0
 trough
-.BR 9 ,
+.B 9,
 .B a
 trough
-.BR f ,
+.B f,
 .B A
 trough
-.BR F .
+.B F.
 
 .TP
 .I blank
 followed by a list of characters classified as 
-.BR blank .
+.B blank.
 The characters
 .B <space>
 and 
@@ -270,7 +238,7 @@ The order-definition starts with a line:
 .PP
 followed by a list of keywords out of
 .B forward,
-.B backward,
+.B backward
 or
 .B position.
 The order definition consists of lines that describe the order
@@ -302,8 +270,8 @@ There are the following keywords allowed:
 
 .TP
 .I int_curr_symbol
-followed by the international currency symbol. This must be a
-4-character string containing the international currency symbol as
+followed by the international currency symbol. This must be a four
+character string containing the international currency symbol as
 defined by the ISO 4217 standard (three characters) followed by a
 separator.
 .TP
@@ -372,10 +340,10 @@ sign string, if adjacent.
 .RS
 .TP
 .B 0 
-- the symbol succeeds the value.
+- the symbol succeeds the value
 .TP
 .B 1
-- the symbol precedes the value.
+- the symbol precedes the value
 .RE
 .TP
 .I n_sep_by_space
@@ -469,7 +437,7 @@ The definition starts with the string
 .B LC_NUMERIC
 in the first column.
 
-The following keywords are allowed:
+There are the following keywords allowed:
 
 .TP
 .I decimal_point
@@ -494,15 +462,15 @@ The definition starts with the string
 .B LC_TIME
 in the first column.
 
-The following keywords are allowed:
+There are the following keywords allowed:
 
 .TP
 .I abday
 followed by a list of abbreviated weekday names. The list starts with
-Sunday or its translation.
+the Sunday or it's translation.
 .TP
 .I day
-followed by a list of weekday names. The list starts with Sunday.
+followed by a list of weekday names. The list starts with the Sunday.
 .TP
 .I abmon
 followed by a list of abbreviated month names.
@@ -539,7 +507,7 @@ The definition starts with the string
 .B LC_MESSAGES
 in the first column.
 
-The following keywords are allowed:
+There are the following keywords allowed:
 
 .TP
 .I yesexpr
@@ -560,12 +528,11 @@ See the POSIX.2 standard for details.
 .SH FILES
 /usr/lib/locale/
 \- database for the current locale setting of that category
-.br
 /usr/lib/nls/charmap/* \- charmap-files
 .SH BUGS
 The manpage isn't complete.
-.\" .SH AUTHOR
-.\" Jochen Hein (Hein@Student.TU-Clausthal.de)
+.SH AUTHOR
+Jochen Hein (Hein@Student.TU-Clausthal.de)
 .SH "CONFORMING TO"
 POSIX.2
 .SH "SEE ALSO"
