@@ -21,21 +21,21 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\" Modified Sat Jul 24 19:35:54 1993 by Rik Faith (faith@cs.unc.edu)
-.TH FNMATCH 3  "April 19, 1993" "GNU" "Linux Programmer's Manual"
+.TH FNMATCH 3  "17 April 1998" "GNU" "Linux Programmer's Manual"
 .SH NAME
 fnmatch \- match filename or pathname
 .SH SYNOPSIS
 .nf
 .B #include <fnmatch.h>
 .sp
-.BI "int fnmatch(const char *" "pattern" ", const char *" strings ", int "flags ");"
+.BI "int fnmatch(const char *" "pattern" ", const char *" string ", int "flags ");"
 .fi
 .SH DESCRIPTION
 The
 .B fnmatch()
-checks the
-.I strings
-argument and checks if it matches
+function checks whether the
+.I string
+argument matches the
 .I pattern
 argument, which is a shell wildcard pattern.
 .PP
@@ -56,7 +56,7 @@ only with a slash in
 and not, for example, with a [] \- sequence containing a slash.
 .TP
 .B FNM_PERIOD
-If flag this is set, a leading period in
+If this flag is set, a leading period in
 .I string
 has to be matched exactly by a period in
 .IR pattern .
@@ -65,17 +65,29 @@ A period is considered to be leading if it is the first character in
 or if both
 .B FNM_PATHNAME 
 is set and the period immediately follows a slash.
+.TP
+.B FNM_FILE_NAME
+This is a GNU synonym for \fBFNM_PATHNAME\fR.
+.TP
+.B FNM_LEADING_DIR
+If this flag (a GNU extension) is set, the pattern is considered to be
+matched if it matches an initial segment of
+.I string
+which is followed by a slash.
+.TP
+.B FNM_CASEFOLD
+If this flag (a GNU extension) is set, the pattern is matched
+case-insensitively.
 .SH "RETURN VALUE"
 Zero if
 .I string
 matches
 .IR pattern ,
 .B FNM_NOMATCH
-if there is no match or another value if there is an error.
+if there is no match or another non-zero value if there is an error.
 .SH "CONFORMING TO"
-proposed POSIX.2
-.SH BUGS
-POSIX.2 is not yet an approved standard; the information in this
-manpage is subject to change.
+ISO/IEC 9945-2: 1993 (POSIX.2).  The
+.BR FNM_FILE_NAME ", " FNM_LEADING_DIR ", and " FNM_CASEFOLD
+flags are GNU extensions.
 .SH "SEE ALSO"
 .BR sh "(1), " glob "(3), " glob (7)

@@ -26,6 +26,8 @@
 .\" Modified Tue Aug  1 16:47    1995 by Jochen Karrer 
 .\"                              <cip307@cip.physik.uni-wuerzburg.de>
 .\" Modified Tue Oct 22 08:11:14 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Fri Nov 27 14:50:36 CET 1998 by Andries Brouwer <aeb@cwi.nl>
+.\"
 .TH IOPL 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 iopl \- change I/O privilege level
@@ -62,6 +64,13 @@ is greater than 3.
 .TP
 .B EPERM
 The current user is not the super-user.
+.SH "GLIBC NOTE"
+Under libc5, the prototype for
+.IR iopl ()
+is given in
+.IR <unistd.h> ,
+but glibc2 has this prototype in
+.IR <sys/io.h> .
 .SH "NOTES FROM THE KERNEL SOURCE"
 .B iopl
 has to be used when you want to access the I/O ports beyond the 0x3ff

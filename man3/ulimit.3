@@ -35,6 +35,10 @@ ulimit \- get and set user limits
 Warning: This routine is obsolete. The include file is no longer
 provided by glibc.  Use getrlimit(2), setrlimit(2) and sysconf(3)
 instead.
+For the shell command
+.BR ulimit ,
+see
+.BR bash (1).
 
 The
 .B ulimit
@@ -71,6 +75,7 @@ A non-root process tried to increase a limit.
 .SH "CONFORMING TO"
 SVID.
 .SH "SEE ALSO"
+.BR bash (1),
 .BR getrlimit (2),
 .BR setrlimit (2),
 .BR sysconf (3)

@@ -1,28 +1,36 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.21.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.22.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-3.16 utilities.
 
 
-Differences from version 1.20:
+[GNU seems to dislike man pages, and either ships no man page at all,
+as e.g. for diff, or ships very ugly man pages, mechanically generated
+from some other format, like a help text. In a few cases otherwise
+good man pages have been spoilt by inserting the message that one
+should rather read the info file, even in cases where in fact
+the info file is less informative and less correct.
+As long as this situation lasts we also ship some Section 1 man pages here.]
 
-    The man page
 
-	phys.2
+Differences from version 1.21:
 
-    have been removed since phys will never be implemented.
-    
     The man pages
 
-	chgrp.1 chmod.1 chown.1 cp.1 dd.1 df.1 dircolors.1
-	du.1 install.1 ln.1 ls.1 mkdir.1 mkfifo.1 mknod.1
-	mv.1 rm.1 rmdir.1 touch.1
+	df.1 diff.1 dircolors.1 du.1 ls.1 mknod.1 rmdir.1 touch.1
 
-	accept.2 fcntl.2 lchown.2 semctl.2 syscalls.2 umask.2 wait4.2
+	acct.2 getgid.2 getrlimit.2 getrusage.2 getuid.2 reboot.2
+	rename.2 setrlimit.2 sigaction.2 signal.2 stat.2 swapon.2
+	syslog.2 wait.2
 
-	catgets.3 errno.3
+	fclose.3 fnmatch.3 ftime.3 gethostbyname.3 malloc.3 scanf.3
+	ulimit.3
+
+	mouse.4
+
+	environ.5
 
 	suffixes.7
 
@@ -98,6 +106,7 @@ wrote, edited, or otherwise contributed to this project:
     Thomas K. Dyas (tdyas@eden.rutgers.edu)
     Thomas Koenig (ig25@rz.uni-karlsruhe.de)
     Thorsten Kukuk (kukuk@vt.uni-paderborn.de)
+    Tigran A. Aivazian (tigran@sco.com)
     Tom Bjorkholm (tomb@tomb.mydata.se)
     Ulrich Drepper (drepper@ipd.info.uni-karlsruhe.de)
     Urs Thuermann (urs@isnogud.escape.de)

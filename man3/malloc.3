@@ -122,6 +122,21 @@ ANSI-C
 .SH "SEE ALSO"
 .BR brk (2)
 .SH NOTES
+The Unix98 standard requires
+.BR malloc() ,
+.BR calloc() ,
+and
+.BR realloc ()
+to set
+.I errno
+to ENOMEM upon failure. Glibc assumes that this is done
+(and the glibc versions of these routines do this); if you
+use a private malloc implementation that does not set
+.IR errno ,
+then certain library routines may fail without having
+a reason in
+.IR errno .
+.LP
 Crashes in
 .BR malloc() ,
 .BR free()

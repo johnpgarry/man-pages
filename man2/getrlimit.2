@@ -127,6 +127,12 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
+.B EFAULT
+.I rlim
+or
+.I usage
+points outside the accessible address space.
+.TP
 .B EINVAL
 .BR getrlimit " or " setrlimit
 is called with a bad \fIresource\fP, or \fBgetrusage\fP is called with a

@@ -209,6 +209,8 @@ the next pointer must be a pointer to
 Equivalent to
 .BR ld ;
 this exists only for backwards compatibility.
+(Note: thus only in libc4. In libc5 and glibc the %D is
+silently ignored, causing old programs to fail mysteriously.)
 .TP
 .B i
 Matches an optionally signed integer; the next pointer must be a pointer to

@@ -30,7 +30,7 @@ If
 .I directory
 includes more than one pathname component, remove it, then strip
 the last component and remove the resulting directory, etc., until
-all components have been removed. Thus, `rmdir -p a/b/c' is
+all components have been removed. Thus, `rmdir \-p a/b/c' is
 equivalent to `rmdir a/b/c; rmdir a/b; rmdir a'.
 .SH GNU OPTIONS
 .TP
@@ -51,6 +51,10 @@ The variables LANG, LC_ALL, LC_CTYPE and LC_MESSAGES have the
 usual meaning.
 .SH "CONFORMING TO"
 POSIX 1003.2
+.SH "EXAMPLE OF USE"
+The command `\fIrmdir foo\fP' will remove the directory \fIfoo\fP
+if it is empty. To remove a nonempty directory, together with everything
+below, use `\fIrm -r foo\fP'.
 .SH NOTES
 This page describes
 .B rmdir

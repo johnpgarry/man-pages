@@ -25,6 +25,7 @@
 .\" Modified Sun Jul 25 10:45:30 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Jul 21 21:25:26 1996 by Andries Brouwer (aeb@cwi.nl)
 .\" Modified Mon Oct 21 17:47:19 1996 by Eric S. Raymond (esr@thyrsus.com)
+.\" Modified Mon Sep 21 00:00:26 1998 by Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH ENVIRON 5 "October 21, 1996" "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -32,15 +33,24 @@ environ \- user environment
 .SH SYNOPSIS
 .ad l
 .nf
-.B #include <unistd.h>
-.sp
 .B extern char **environ;
+.br
 .fi
 .ad b
 .SH DESCRIPTION
-An array of strings called the `environment' is made available by
-\fBexec\fP(2) when a process begins.  By convention these strings have
-the form `\fIname\fP\fB=\fP\fIvalue\fP'.  Common examples are:
+The variable
+.I environ
+points to an array of strings called the `environment'.
+(This variable must be declared in the user program,
+but is declared in the header file
+.I unistd.h
+in case the header files came from libc4 or libc5, and
+in case they came from glibc and
+.B _GNU_SOURCE
+was defined.)
+This array of strings is made available to the process by the
+\fBexec\fP(2) call that started the process.  By convention these strings
+have the form `\fIname\fP\fB=\fP\fIvalue\fP'.  Common examples are:
 .TP
 .B USER
 The name of the logged-in user (used by some BSD-derived programs).

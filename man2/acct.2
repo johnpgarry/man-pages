@@ -26,8 +26,9 @@
 .\"
 .\" Modified Thu Jul 22 14:00:08 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Aug 10 1993 by Alan Cox <iiitac@pyramid.swansea.ac.uk>
+.\" Modified Wed Nov 4  1998 by Tigran Aivazian <tigran@sco.com>
 .\"
-.TH ACCT 2 "10 August 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH ACCT 2 "4 November 1998" "Linux 2.1.126" "Linux Programmer's Manual"
 .SH NAME
 acct \- switch process accounting on or off
 .SH SYNOPSIS
@@ -50,7 +51,28 @@ is set appropriately.
 .SH ERRORS
 .TP 0.8i
 .B ENOSYS
-The accounting kit has not been installed.
+BSD process accounting has not been enabled when the operating system
+kernel was compiled.
+The kernel configuration parameter controlling this feature is
+CONFIG_BSD_PROCESS_ACCT.
+.TP 0.8i
+.B ENOMEM
+Out of memory.
+.TP 0.8i
+.B EPERM
+The calling process has no permission to enable process accounting.
+.TP 0.8i
+.B EACCESS
+The argument
+.I filename
+is not a regular file.
+.TP 0.8i
+.B EIO
+Error writing to the file
+.IR filename .
+.TP 0.8i
+.B EUSERS
+There are no more free file structures or we run out of memory.
 .SH "CONFORMING TO"
 SVr4 (but not POSIX).  SVr4 documents EACCES, EBUSY, EFAULT,
 ELOOP, ENAMETOOLONG, ENOTDIR, ENOENT, EPERM and EROFS error
@@ -58,4 +80,5 @@ conditions, but no ENOSYS.
 .SH NOTES
 No accounting is produced for programs running when a crash occurs.  In
 particular, nonterminating processes are never accounted for.
+
 

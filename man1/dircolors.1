@@ -33,7 +33,7 @@ is specified,
 .B dircolors
 reads it to determine which colors to use for which file types and
 extensions.  Otherwise, a precompiled database is used.  For details
-on the format of these files, run `dircolors --print-database'.
+on the format of these files, run `dircolors \-\-print\-database'.
 .PP
 The output is a shell command to set the
 .B LS_COLORS
@@ -44,7 +44,7 @@ will guess it from the value of the
 .B SHELL
 environment variable.
 .PP
-After execution of this command, `ls --color' (which one might alias to ls)
+After execution of this command, `ls \-\-color' (which one might alias to ls)
 will list files in the desired colors.
 .PP
 .SH OPTIONS
@@ -80,6 +80,8 @@ Print version information on standard output, then exit successfully.
 .B "\-\-"
 Terminate option list.
 .SH ENVIRONMENT
+The variables SHELL and TERM are used to find the proper form
+of the shell command.
 The variables LANG, LC_ALL, LC_CTYPE and LC_MESSAGES have the
 usual meaning.
 The variable LS_COLORS is used to transfer information to

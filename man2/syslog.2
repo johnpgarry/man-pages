@@ -65,7 +65,8 @@ Only function 3 is allowed to non-root processes.
 
 .B The kernel log buffer
 .br
-The kernel has a cyclic buffer of length LOG_BUF_LEN (4096) in
+The kernel has a cyclic buffer of length LOG_BUF_LEN
+(4096, since 1.3.54: 8192, since 2.1.113: 16384) in
 which messages given as argument to the kernel function \fIprintk\fP()
 are stored (regardless of their loglevel).
 

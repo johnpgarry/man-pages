@@ -88,7 +88,7 @@ Print sizes in 1024-byte blocks.
 .B "\-m, \-\-megabytes"
 Print sizes in megabyte (that's 1,048,576 bytes) blocks.
 .TP
-.B "\-\-no-sync"
+.B "\-\-no\-sync"
 Do not invoke the
 .B sync
 system call before getting any usage data.
@@ -153,6 +153,9 @@ Print version information on standard output, then exit successfully.
 Terminate option list.
 .SH ENVIRONMENT
 The variable POSIXLY_CORRECT determines the choice of unit.
+If it is not set, and the variable BLOCKSIZE has a value starting
+with `HUMAN', then behaviour is as for the \-h option,
+unless overridden by \-k or \-m options.
 The variables LANG, LC_ALL, LC_CTYPE and LC_MESSAGES have the
 usual meaning.
 .SH "CONFORMING TO"

@@ -121,6 +121,9 @@ affects the HP-UX
 program.
 .SH ENVIRONMENT
 The variable POSIXLY_CORRECT determines the choice of unit.
+If it is not set, and the variable BLOCKSIZE has a value starting
+with `HUMAN', then behaviour is as for the \-h option,
+unless overridden by \-k or \-m options.
 The variables LANG, LC_ALL, LC_CTYPE and LC_MESSAGES have the
 usual meaning.
 .SH "CONFORMING TO"

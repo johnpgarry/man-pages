@@ -27,7 +27,7 @@ an octal number representing the bit pattern for the new permissions.
 .PP
 The format of a symbolic mode change argument is
 .br
-\&`[ugoa...][[+-=][rwxXstugo...]...][,...]'.
+\&`[ugoa...][[+\-=][rwxXstugo...]...][,...]'.
 .PP
 Such an argument is a list of symbolic mode change commands,
 separated by commas.
@@ -40,7 +40,7 @@ If none of these are given, the effect is as if `a' were
 given, but bits that are set in the umask are not affected.
 .PP
 The operator `+' causes the permissions selected to be added to the
-existing permissions of each file; `-' causes them to be removed;
+existing permissions of each file; `\-' causes them to be removed;
 and `=' causes them to be the only permissions that the file has.
 .PP
 The letters `rwxXstugo' select the new permissions for the affected
@@ -51,7 +51,7 @@ sticky bit (t), the permissions that the user
 who owns the file currently has for it (u), the permissions that other
 users in the file's group have for it (g), and the permissions that
 other users not in the file's group have for it (o).
-(Thus, `chmod g-s file' removes the set-group-ID (sgid) bit,
+(Thus, `chmod g\-s file' removes the set-group-ID (sgid) bit,
 \&`chmod ug+s file' sets both the suid and sgid bits, while
 \&`chmod o+s file' does nothing.)
 .PP
@@ -97,7 +97,7 @@ whose permissions actually changes.
 .B "\-f, \-\-silent, \-\-quiet"
 Do not print error messages about files whose permissions cannot bechanged.
 .TP
-.B "-v, \-\-verbose"
+.B "\-v, \-\-verbose"
 Verbosely describe the action or non-action taken for every
 .IR file .
 .TP

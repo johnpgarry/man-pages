@@ -25,6 +25,7 @@
 .\" USA.
 .\"
 .\" Modified Sat Jul 24 14:23:14 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sun Oct 18 17:31:43 1998 by Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH FTIME 3 "24 July 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -48,13 +49,20 @@ struct timeb {
 };
 .fi
 .in -1i
+.LP
+The structure contains the time since the epoch in seconds, up to 1000
+milliseconds of more-precise interval, the local time zone (measured in
+minutes of time westward from Greenwich), and a flag that, if nonzero,
+indicates that Daylight Saving time applies locally during the
+appropriate part of the year.
 .SH "RETURN VALUE"
 This function always returns 0.
-.SH NOTES
-Under Linux, this function is implemented in a compatibility library
-instead of in the kernel.
+.SH HISTORY
+The
+.I ftime
+function appeared in 4.2BSD.
 .SH "CONFORMING TO"
-V7, BSD 4.3
+BSD 4.2
 .br
 Under BSD 4.3, this call is obsoleted by
 .BR gettimeofday (2).

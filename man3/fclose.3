@@ -57,8 +57,11 @@ Upon successful completion 0 is returned.  Otherwise,
 .B EOF
 is returned and the global variable
 .I errno
-is set to indicate the error.  In either case no further access to the
-stream is possible.
+is set to indicate the error.  In either case any further access
+(including another call to
+.BR fclose "())"
+to the stream results in undefined behaviour.
+
 .SH ERRORS
 .TP
 .B EBADF

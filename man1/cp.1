@@ -150,7 +150,7 @@ last argument given to
 must be the name of an existing directory.  For example, the command:
 .br
 .nf
-    cp --parents a/b/c existing_dir
+    cp \-\-parents a/b/c existing_dir
 .br
 .fi
 copies the file `a/b/c' to `existing_dir/a/b/c', creating any
@@ -172,8 +172,8 @@ Copy directories recursively, preserving non-directories (see
 just above).
 .TP
 .BI "\-\-sparse=" "WHEN"
-A `sparse file' contains `holes'--a sequence of zero bytes that
-does not occupy any physical disk blocks; the `read' system call
+A `sparse file' contains `holes' - sequences of zero bytes that
+do not occupy any physical disk blocks; the `read' system call
 reads these as zeroes.  This can both save considerable disk space
 and increase speed, since many binary files contain lots of
 consecutive zero bytes.  By default, `cp' detects holes in input

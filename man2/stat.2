@@ -238,7 +238,15 @@ is set appropriately.
 is bad.
 .TP
 .B ENOENT
-File does not exist.
+A component of the path
+.I file_name
+does not exist, or the path is an empty string.
+.TP
+.B ENOTDIR
+A component of the path is not a directory.
+.TP
+.B ELOOP
+Too many symbolic links encountered while traversing the path.
 .TP
 .B EFAULT
 Bad address.
@@ -261,12 +269,14 @@ calls conform to SVr4, SVID, POSIX, X/OPEN, BSD 4.3.  The
 call conforms to 4.3BSD and SVr4.
 SVr4 documents additional
 .B fstat
-error conditions EFAULT, EINTR, ENOLINK, and EOVERFLOW.  SVr4
+error conditions EINTR, ENOLINK, and EOVERFLOW.  SVr4
 documents additional
 .B stat
 and
 .B lstat
-error conditions EACCES, EFAULT, EINTR, ELOOP, EMULTIHOP, ENAMETOOLONG,
-ENOTDIR, ENOLINK, and EOVERFLOW.
+error conditions EACCES, EINTR, EMULTIHOP, ENOLINK, and EOVERFLOW.
 .SH "SEE ALSO"
-.BR chmod "(2), " chown "(2), " readlink "(2), " utime (2)
+.BR chmod (2),
+.BR chown (2),
+.BR readlink (2),
+.B utime (2)
