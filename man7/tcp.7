@@ -105,9 +105,9 @@ When urgent data is received, the kernel sends a
 .B SIGURG
 signal to the reading process or the process or process
 group that has been set for the socket using the
-.B FIOCSPGRP
+.B SIOCSPGRP
 or 
-.B FIOCSETOWN 
+.B FIOSETOWN 
 ioctls. When the 
 .B SO_OOBINLINE
 socket option is enabled, urgent data is put into the normal

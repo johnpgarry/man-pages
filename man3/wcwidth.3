@@ -17,7 +17,7 @@ wcwidth \- determine columns needed for a wide character
 .nf
 .B #include <wchar.h>
 .sp
-.BI "int wcwidth(wint_t " c );
+.BI "int wcwidth(wchar_t " c );
 .fi
 .SH DESCRIPTION
 The \fBwcwidth\fP function returns the number of columns needed to represent
@@ -26,7 +26,12 @@ is at least 0. If \fIc\fP is L'\\0', the value is 0. Otherwise \-1 is returned.
 .SH "RETURN VALUE"
 The \fBwcwidth\fP function returns the number of column positions for \fIc\fP.
 .SH "CONFORMING TO"
-UNIX98
+UNIX98. POSIX.1-2001.
+Note that glibc before 2.2.5 used the prototype
+.br
+.nf
+.BI "int wcwidth(wint_t " c );
+.fi
 .SH "SEE ALSO"
 .BR wcswidth (3),
 .BR iswprint (3)

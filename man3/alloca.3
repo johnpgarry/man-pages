@@ -33,12 +33,13 @@
 .\"
 .\" Converted Mon Nov 29 11:05:55 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 23:41:56 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2002-07-17, aeb
 .\"
-.TH ALLOCA 3  1993-11-29 "GNU" "Linux Programmer's Manual"
+.TH ALLOCA 3  2002-07-17 "GNU" "Linux Programmer's Manual"
 .SH NAME
 alloca \- memory allocator
 .SH SYNOPSIS
-.B #include <stdlib.h>
+.B #include <alloca.h>
 .sp
 .BI "void *alloca(size_t " size );
 .SH DESCRIPTION
@@ -53,20 +54,43 @@ returns to its caller.
 .SH "RETURN VALUE"
 The
 .B alloca
-function returns a pointer to the beginning of the allocated space.  If the
-allocation failed, a
-.B NULL
-pointer is returned.
+function returns a pointer to the beginning of the allocated space.
+If the allocation causes stack overflow, program behaviour is undefined.
 .SH "CONFORMING TO"
 There is evidence that the
 .B alloca
 function appeared in 32v, pwb, pwb.2, 3bsd, and 4bsd.  There is a man page
 for it in BSD 4.3.  Linux uses the GNU version.
 This function is not in POSIX or SUSv3.
+.SH "NOTES ON THE GNU VERSION"
+Normally,
+.B gcc
+translates calls to
+.B alloca
+by inlined code. This is not done when either the \-ansi or
+the \-fno\-builtin option is given. But beware! By default
+the glibc version of
+.I <stdlib.h>
+includes
+.I <alloca.h>
+and that contains the line
+.RS
+# define alloca(size)   __builtin_alloca (size)
+.RE
+with messy consequences if one has a private version of this function.
+.LP
+The fact that the code is inlined, means that it is impossible
+to take the address of this function, or to change its behaviour
+by linking with a different library.
+.LP
+The inlined code often consists of a single instruction adjusting
+the stack pointer, and does not check for stack overflow.
+Thus, there is no NULL error return.
 .SH BUGS
 The
 .B alloca
-function is machine and compiler dependent. Its use is discouraged.
+function is machine and compiler dependent. On many systems
+its implementation is buggy. Its use is discouraged.
 .LP
 On many systems
 .B alloca

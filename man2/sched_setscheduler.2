@@ -27,8 +27,12 @@
 .\" 1996-04-10 Markus Kuhn <mskuhn@cip.informatik.uni-erlangen.de>
 .\"            revision
 .\" 1999-08-18 David A. Wheeler <dwheeler@ida.org> added Note.
+.\" Modified, 25 Jun 2002, Michael Kerrisk <mtk16.ext.canterbury.ac.nz>
+.\"	Corrected description of queue placement by sched_setparam() and 
+.\"		sched_setscheduler()
+.\"	A couple of grammar clean-ups
 .\"
-.TH SETSCHEDULER 2 1999-08-18 "Linux 2.2.11" "Linux Programmer's Manual"
+.TH SETSCHEDULER 2 2002-06-25 "Linux 2.4.18" "Linux Programmer's Manual"
 .SH NAME
 sched_setscheduler, sched_getscheduler \-
 set and get scheduling algorithm/parameters
@@ -60,7 +64,7 @@ following three scheduling policies are supported under Linux:
 .IR SCHED_RR ,
 and 
 .IR SCHED_OTHER ;
-their respective semantics is described below.
+their respective semantics are described below.
 
 .B sched_getscheduler
 queries the scheduling policy currently applied to the process
@@ -105,7 +109,7 @@ priority.
 
 .SS SCHED_FIFO: First In-First Out scheduling
 \fISCHED_FIFO\fP can only be used with static priorities higher than
-0, that means that when a \fISCHED_FIFO\fP processes becomes runnable,
+0, which means that when a \fISCHED_FIFO\fP processes becomes runnable,
 it will always preempt immediately any currently running normal
 \fISCHED_OTHER\fP process. \fISCHED_FIFO\fP is a simple scheduling
 algorithm without time slicing. For processes scheduled under the
@@ -116,8 +120,15 @@ will resume execution as soon as all processes of higher priority are
 blocked again. When a \fISCHED_FIFO\fP process becomes runnable, it
 will be inserted at the end of the list for its priority. A call to
 \fBsched_setscheduler\fP or \fBsched_setparam\fP will put the
-\fISCHED_FIFO\fP process identified by \fIpid\fP at the end of the
-list if it was runnable. A process calling \fBsched_yield\fP will be
+\fISCHED_FIFO\fP (or \fISCHED_RR\fP) process identified by
+\fIpid\fP at the start of the list if it was runnable.
+As a consequence, it may preempt the currently running process if
+it has the same priority.
+(POSIX 1003.1 specifies that the process should go to the end
+of the list.)
+.\" In 2.2.x and 2.4.x, the process is placed at the front of the queue
+.\" In 2.0.x, the Right Thing happened: the process went to the back -- MTK
+A process calling \fBsched_yield\fP will be
 put at the end of the list. No other events will move a process
 scheduled under the \fISCHED_FIFO\fP policy in the wait list of
 runnable processes with equal static priority. A \fISCHED_FIFO\fP
@@ -136,6 +147,8 @@ been preempted by a higher priority process and subsequently resumes
 execution as a running process will complete the unexpired portion of
 its round robin time quantum. The length of the time quantum can be
 retrieved by \fBsched_rr_get_interval\fP.
+.\" On Linux 2.4, the length of the RR interval is influenced
+.\" by the process nice value -- MTK
 
 .SS SCHED_OTHER: Default Linux time-sharing scheduling
 \fISCHED_OTHER\fP can only be used at static priority 0.

@@ -21,8 +21,10 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
-.\" (minor polishing, aeb)
-.TH HOSTS 5 2000-03-12 "Debian" "Debian GNU/Linux manual"
+.\" Minor polishing, aeb
+.\" Modified, 2002-06-16, Mike Coleman
+.\"
+.TH HOSTS 5 2002-06-16 "Debian" "Debian GNU/Linux manual"
 .SH NAME
 hosts \- The static table lookup for host names
 .SH SYNOPSIS
@@ -40,15 +42,16 @@ IP_address canonical_hostname aliases
 .PP
 Fields of the entry are separated by any number of blanks and/or
 tab characters. Text from a "#" character until the end of the line is
-a comment, and is ignored. Host names may contain any printable
-character other than a field delimiter, newline, or comment
-character. Aliases provide for name changes, alternate spellings,
+a comment, and is ignored.  Host names may contain only alphanumeric
+characters, minus signs ("-"), and periods (".").  They must begin with an
+alphabetic character and end with an alphanumeric character.
+Aliases provide for name changes, alternate spellings,
 shorter hostnames, or generic hostnames (for example,
-.I localhost
-). The format of the host table is described in RFC 952. 
+.IR localhost ).
+The format of the host table is described in RFC 952. 
 .PP
 The Berkeley Internet Name Domain (BIND) Server implements the
-Internet name server for UNIX systems. It replaces the
+Internet name server for UNIX systems. It augments or replaces the
 .I /etc/hosts
 file or host name lookup, and frees a host from relying on
 .I /etc/hosts

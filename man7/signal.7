@@ -29,8 +29,10 @@
 .\" Modified 10 Apr 2002, by Michael Kerrisk (mtk16@ext.canterbury.ac.nz)
 .\" Modified  7 Jun 2002, by Michael Kerrisk (mtk16@ext.canterbury.ac.nz)
 .\"	Added information on real-time signals
+.\" Modified 13 Jun 2002, by Michael Kerrisk (mtk16@ext.canterbury.ac.nz)
+.\"	Noted that SIGSTKFLT is in fact unused
 .\"
-.TH SIGNAL 7  2002-06-07 "Linux 2.4.18" "Linux Programmer's Manual"
+.TH SIGNAL 7  2002-06-13 "Linux 2.4.18" "Linux Programmer's Manual"
 .SH NAME
 signal \- list of available signals
 .SH DESCRIPTION
@@ -132,7 +134,7 @@ lB c c l.
 Signal	Value	Action	Comment
 SIGIOT	6	Core	IOT trap. A synonym for SIGABRT
 SIGEMT	7,\-,7	Term
-SIGSTKFLT	\-,16,\-	Term	Stack fault on coprocessor
+SIGSTKFLT	\-,16,\-	Term	Stack fault on coprocessor (unused)
 SIGIO	23,29,22	Term	I/O now possible (4.2 BSD)
 SIGCLD	\-,\-,18	Ign	A synonym for SIGCHLD
 SIGPWR	29,30,19	Term	Power failure (System V)

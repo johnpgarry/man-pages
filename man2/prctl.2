@@ -23,8 +23,14 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Thu Nov 11 04:19:42 MET 1999, aeb: added PR_GET_PDEATHSIG
+.\" Modified 27 Jun 02, Michael Kerrisk
+.\" 	Added PR_SET_DUMPABLE, PR_GET_DUMPABLE, 
+.\"	PR_SET_KEEPCAPS, PR_GET_KEEPCAPS
 .\"
-.TH PRCTL 2 1998-02-03 "Linux 2.3.15" "Linux Programmer's Manual"
+.\" FIXME: The following (applicable only on IA-64) are not currently
+.\" described: PR_SET_UNALIGN, PR_GET_UNALIGN, PR_SET_FPEMU, PR_GET_FPEMU
+.\"
+.TH PRCTL 2 2002-06-27 "Linux 2.4.18" "Linux Programmer's Manual"
 .SH NAME
 prctl \- operations on a process
 .SH SYNOPSIS
@@ -51,8 +57,44 @@ parent dies. This value is cleared upon a fork().
 (since Linux 2.3.15)
 Read the current value of the parent process death signal
 into the (int *) \fIarg2\fP.
+.TP
+.B PR_SET_DUMPABLE
+(Since Linux 2.4)
+Set the state of the flag determining whether core dumps are produced
+for this process upon delivery of a signal whose default behaviour is
+to produce a core dump.
+(Normally this flag is set for a process by default, but it is cleared
+when a set-UID or set-GID program is executed and also by various system
+calls that manipulate process UIDs and GIDs).
+.I arg2
+must be either 0 (process is not dumapable) or 1 (process is dumpable).
+.TP
+.B PR_GET_DUMPABLE
+(Since Linux 2.4)
+Return (as the function result) the current state of the calling
+process's dumpable flag.
+.TP
+.B PR_SET_KEEPCAPS
+Set the state of the process's "keep capabilities" flag,
+which determines whether the process's effective and permitted
+capability sets are cleared when a change is made to the process's user IDs
+such that all of the process's real, effective, and saved set user IDs
+become non-zero when at least one of them previously had the value 0.
+(By default, these credential sets are cleared).
+.I arg2
+must be either 0 (capabilities are cleared) or 1 (capabilities are kept).
+.TP
+.B PR_GET_KEEPCAPS
+Return (as the function result) the current state of the calling process's
+"keep capabilities" flag.
 .SH "RETURN VALUE"
-On success, zero is returned.
+.B PR_GET_DUMPABLE
+and
+.B PR_GET_KEEPCAPS
+return 0 or 1 on success.
+All other
+.I option
+values return 0 on success.
 On error, \-1 is returned, and
 .I errno
 is set appropriately.

@@ -28,8 +28,9 @@
 .\" Sat Apr 13 02:32:45 1996: aeb@cwi.nl, added sys, various fixes.
 .\" Mon Jul 22 17:14:44 1996: aeb@cwi.nl, minor fix.
 .\" Sun Dec 16 11:39:19 2001: rwhron@earthlink.net, update for 2.4.
+.\" Sat Jul 13 14:00:00 2002: jbelton@shaw.ca, added to sys/fs and sys/kernel.
 .\"
-.TH PROC 5 2001-12-16 "" "Linux Programmer's Manual"
+.TH PROC 5 2002-07-13 "" "Linux Programmer's Manual"
 .SH NAME
 proc \- process information pseudo-filesystem
 
@@ -775,34 +776,66 @@ These variables can be read and sometimes modified using
 the \fIproc\fP file system, and the
 .BR sysctl (2)
 system call. Presently, there are subdirectories
-.IR abi ", " debug ", " dev ", " fs ", " kernel ", " net ", " proc " and " vm
+.IR abi ", " debug ", " dev ", " fs ", " kernel ", " net ", " proc ", " sunrpc " and " vm
 that each contain more files and subdirectories.
 .RS
 .TP
 .I abi
-This directory may be empty.
+This directory may be empty.  On some systems, it is not present.
 .TP
 .I debug
 This directory may be empty.
 .TP
 .I dev
-This directory may be empty.
+This directory contains device specific information (eg dev/cdrom/info).  On
+some systems, it may be empty.
 .TP
 .I fs
-This contains files
+This contains the subdirectory
+.IR binfmt_misc
+and files
 .IR dentry-state ", " dir-notify-enable ", " dquot-nr ", " file-max ", " 
-.IR file-nr ", " inode-nr ", " inode-state ", " lease-break-time ", " 
-.IR leases-enable ", " overflowgid " and " overflowuid
+.IR file-nr ", " inode-max ", " inode-nr ", " inode-state ", " 
+.IR lease-break-time ", " leases-enable ", " overflowgid ", " overflowuid
+.IR super-max " and " super-nr
 with function fairly clear from the name.
 .LP
-The (read-only) file
-.I file-nr
-gives the number of files presently opened.
+Documentation for the files in /proc/sys/binfmt_misc is in the kernel sources
+in Documentation/binfmt_misc.txt.
+.LP
+The file
+.I dentry-state
+contains six numbers, 
+.IR nr_dentry ", " nr_unused ", " age_limit " (age in seconds), " want_pages
+(pages requested by system) and two dummy values.
+nr_dentry seems to be 0 all the time.
+nr_unused seems to be the number of unused dentries.
+age_limit is the age in seconds after which dcache entries
+can be reclaimed when memory is short and want_pages is
+nonzero when the kernel has called shrink_dcache_pages() and the
+dcache isn't pruned yet.
+.LP
+The file
+.I dquot-max
+shows the maximum number of cached disk quota entries.
+On some (2.4) systems, it is not present.
+If the number of free cached disk quotas is very low and
+you have some awesome number of simultaneous system users,
+you might want to raise the limit.
+.LP
+The file
+.I dquot-nr
+shows the number of allocated disk quota
+entries and the number of free disk quota entries.
 .LP
 The file
 .I file-max
 gives the maximum number of open files the kernel is willing
-to handle. If 1024 is not enough for you, try
+to handle.  If you get lots
+of error messages about running out of file handles (eg 1024 is not enough for
+you), try increasing the value:
+.br
+
 .br
 .nf
 .ft CW
@@ -810,33 +843,268 @@ echo 4096 > /proc/sys/kernel/file-max
 .fi
 .ft
 .LP
-Similarly, the files
-.I inode-nr
-and
+If you increase 
+.IR file-max ","
+be sure to increase
 .I inode-max
-indicate the present and the maximum number of inodes.
-.RE
+to 3-4 times the new
+value of 
+.IR file-max ","
+or you will run out of inodes.
+.LP
+The (read-only) file
+.I file-nr
+gives the number of files presently opened.
+It contains three numbers: The number of allocated
+file handles, the number of free file handles and the maximum
+number of file handles.  The kernel allocates file handles dynamically, but it
+doesn't free them again.  If the number of allocated files is close to the 
+maximum, you should consider increasing the maximum.
+When the number of free file handles is
+large, you've encountered a peak in your usage of file
+handles and you probably don't need to increase the maximum.
+.LP
+The file
+.I inode-max 
+contains the maximum number of inodes. On some (2.4) systems, it may not be
+present. This value should be 3-4 times larger
+than the value in file-max, since stdin, stdout and network sockets also
+need an inode to handle them. When you regularly run
+out of inodes, you need to increase this value.
+.LP
+The file
+.I inode-nr
+contains the first two values from inode-state.
+.LP
+The file
+.I inode-state
+contains seven numbers: nr_inodes, nr_free_inodes, preshrink and four dummy
+values.
+nr_inodes is the number of inodes the system has
+allocated.  This can be slightly more than inode-max because
+Linux allocates them one pageful at a time.
+nr_free_inodes represents the number of free inodes.
+preshrink is nonzero when the nr_inodes > inode-max and the
+system needs to prune the inode list instead of allocating
+more.
+.LP
+The files
+.IR overflowgid " and "
+.I overflowuid
+allow you to change the value of the fixed UID and GID.
+The default is 65534.
+Some filesystems only support 16-bit UIDs and GIDs, although in Linux
+UIDs and GIDs are 32 bits. When one of these filesystems is mounted
+with writes enabled, any UID or GID that would exceed 65535 is translated
+to the overflow value before being written to disk.  
+.LP
+The file
+.I super-max 
+controls the maximum number of superblocks, and
+thus the maximum number of mounted filesystems the kernel
+can have. You only need to increase super-max if you need to
+mount more filesystems than the current value in super-max
+allows you to.
+The file
+.I super-nr
+contains the number of filesystems currently mounted.
 .TP
 .I kernel
-This contains files
-.IR cad_pid "," cap-bound  ","  core_uses_pid  "," ctrl-alt-del  
-.IR domainname "," hostname ", " modprobe ", " msgmax ", " msgmnb ", " 
+This directory contains files
+.IR acct ", " cad_pid ", " cap-bound  ", "  core_uses_pid  ", "
+.IR ctrl-alt-del ", " dentry-state ", " domainname ", " hostname ", " 
+.IR htab-reclaim " (PowerPC only), "
+.IR java-appletviewer " (binfmt_java, obsolete), "
+.IR java-interpreter " (binfmt_java, obsolete), " l2cr " (PowerPC only), "
+.IR modprobe ", " msgmax ", " msgmnb ", " 
 .IR msgmni ", " osrelease ", " ostype ", " overflowgid ", " overflowuid ", " 
-.IR panic ", " printk ", " random ", " rtsig-max ", " rtsig-nr ", " sem ", " 
-.IR shmall ", " shmmax ", " shmmni ", " sysrq ", " tainted ", " threads-max " and "
-.IR version
+.IR panic ", " powersave-nap " (PowerPC only), " printk ", " random ", "
+.IR real-root-dev ", " reboot-cmd " (SPARC only), " rtsig-max ", " 
+.IR rtsig-nr ", " sem ", " sg-big-buff ", "
+.IR shmall ", " shmmax ", " shmmni ", " sysrq ", " tainted ", " threads-max ", "
+.IR version " and " zero-paged " (PowerPC only) "
 with function fairly clear from the name.
+.LP
+The file
+.I acct
+contains three numbers: highwater, lowwater and frequency.
+If BSD-style process accounting is enabled these values control
+its behaviour. If free space on filesystem where the log lives
+goes below lowwater percent accounting suspends. If free space gets
+above highwater percent accounting resumes.  Frequency determines
+how often the kernel checks the amount of free space (value is in
+seconds). Default values are 4, 2 and 30.
+That is, suspend accounting if <= 2% of space is free; resume it
+if >= 4% of space is free; consider information about amount of free space
+valid for 30 seconds.
+.LP
+The file
+.I ctrl-alt-del
+controls the handling of Ctrl-Alt-Del from the keyboard.
+When the value in this file is 0, Ctrl-Alt-Del is trapped and
+sent to the init(1) program to handle a graceful restart.
+When the value is > 0, Linux's reaction to a Vulcan
+Nerve Pinch (tm) will be an immediate reboot, without even
+syncing its dirty buffers.
+Note: when a program (like dosemu) has the keyboard in 'raw'
+mode, the ctrl-alt-del is intercepted by the program before it
+ever reaches the kernel tty layer, and it's up to the program
+to decide what to do with it.
+.LP
 The files
-.IR ostype ", " osrelease ", and " version
-give substrings of
+.IR domainname " and "
+.I hostname
+can be used to set the NIS/YP domainname and the
+hostname of your box in exactly the same way as the commands
+domainname and hostname, i.e.:
+.br
+
+.br
+# echo "darkstar" > /proc/sys/kernel/hostname
+.br
+# echo "mydomain" > /proc/sys/kernel/domainname
+.br
+
+.br
+has the same effect as
+.br
+
+.br
+# hostname "darkstar" > /proc/sys/kernel/hostname
+.br
+# domainname "mydomain" > /proc/sys/kernel/domainname
+.br
+
+.br
+Note, however, that the classic darkstar.frop.org has the
+hostname "darkstar" and DNS (Internet Domain Name Server)
+domainname "frop.org", not to be confused with the NIS (Network
+Information Service) or YP (Yellow Pages) domainname. These two
+domain names are in general different. For a detailed discussion
+see the hostname(1) man page.
+.LP
+If the file
+.I htab-reclaim
+(PowerPC only) is set to a non-zero value,
+the PowerPC htab
+(see kernel file Documentation/powerpc/ppc_htab.txt) is pruned
+each time the system hits the idle loop.
+.LP
+The file
+.I l2cr
+(PowerPC only) contains a flag that controls the L2 cache of G3 processor
+boards. If 0, the cache is disabled. Enabled if nonzero.
+.LP
+The file
+.I modprobe
+is described by the kernel source file Documentation/kmod.txt.
+.LP
+The files
+.IR ostype " and " osrelease " give substrings of "
 .IR /proc/version .
+.LP
+The files
+.IR overflowgid " and "
+.I overflowuid
+duplicate the files /proc/sys/fs/overflowgid and /proc/sys/fs/overflowuid.
+.LP
 The file
 .I panic
-gives r/w access to the kernel variable
+gives read/write access to the kernel variable
 .IR panic_timeout .
 If this is zero, the kernel will loop on a panic; if nonzero
 it indicates that the kernel should autoreboot after this number
-of seconds.
+of seconds.  When you use the
+software watchdog device driver, the recommended setting is 60.
+.LP
+The file
+.IR powersave-nap " (PowerPC only)"
+contains a flag.  If set, Linux-PPC will use the 'nap' mode of powersaving,
+otherwise the 'doze' mode will be used.
+.LP
+The four values in the file
+.I printk
+are console_loglevel, default_message_loglevel, minimum_console_level and
+default_console_loglevel.
+These values influence printk() behavior when printing or
+logging error messages. See syslog(2) for more info on
+the different loglevels.
+Messages with a higher priority than
+console_loglevel will be printed to the console.
+Messages without an explicit priority
+will be printed with priority default_message_level.
+minimum_console_loglevel is the minimum (highest) value to which
+console_loglevel can be set.
+default_console_loglevel is the default value for console_loglevel.
+.LP
+The file
+.I real-root-dev
+is documented in the kernel source file Documentation/initrd.txt.
+.LP
+The file
+.IR reboot-cmd " (Sparc only) "
+seems to be a way to give an argument to the SPARC
+ROM/Flash boot loader. Maybe to tell it what to do after
+rebooting?
+.LP
+The file
+.I rtsig-max
+can be used to tune the maximum number
+of POSIX realtime (queued) signals that can be outstanding
+in the system.
+.LP
+The file
+.I rtsig-nr
+shows the number POSIX realtime signals currently queued.
+.LP
+The file
+.I sg-big-buff
+shows the size of the generic SCSI device (sg) buffer.
+You can't tune it just yet, but you could change it on
+compile time by editing include/scsi/sg.h and changing
+the value of SG_BIG_BUFF.  However, there shouldn't be any reason to change
+this value.
+.LP
+The file
+.I shmmax
+can be used to query and set the run time limit
+on the maximum (System V IPC) shared memory segment size that can be created.
+Shared memory segments up to 1Gb are now supported in the 
+kernel.  This value defaults to SHMMAX.
+.LP
+The file
+.I version
+contains a string like:
+.br
+
+.br
+#5 Wed Feb 25 21:49:24 MET 1998.TP
+.br
+
+.br
+The '#5' means that
+this is the fifth kernel built from this source base and the
+date behind it indicates the time the kernel was built.
+.LP
+The file
+.IR zero-paged " (PowerPC only) "
+contains a flag. When enabled (non-zero), Linux-PPC will pre-zero pages in
+the idle loop, possibly speeding up get_free_pages.
+.TP
+The
+.I net
+This directory contains networking stuff.
+.TP
+.I proc
+This directory may be empty.
+.TP
+.I sunrpc
+This directory supports Sun remote procedure call for network file system
+(NFS).  On some systems, it is not present.
+.TP
+.I vm
+This directory contains files for memory management tuning, buffer and cache
+management.
 .RE
 .TP
 .I sysvipc
@@ -853,8 +1121,9 @@ This file contains two numbers: the uptime of the system (seconds),
 and the amount of time spent in idle process (seconds).
 .TP
 .I version
-This strings identifies the kernel version that is currently running.
-For instance,
+This string identifies the kernel version that is currently running.
+It includes the contents of /proc/sys/ostype, /proc/sys/osrelease and 
+/proc/sys/version.  For example:
 .nf
 .in -2
 .ft CW
@@ -899,6 +1168,7 @@ Note that many strings (i.e., the environment and command line) are in
 the internal format, with sub-fields terminated by NUL bytes, so you
 may find that things are more readable if you use \fIod -c\fP or \fItr
 "\\000" "\\n"\fP to read them.
+Alternatively, \fIecho `cat <file>`\fP works well.
 
 This manual page is incomplete, possibly inaccurate, and is the kind
 of thing that needs to be updated very often.
@@ -919,4 +1189,6 @@ will return to the original root of the file system.  This may be
 considered a feature instead of a bug, since Linux does not yet support the
 .BR fchroot (2)
 call.
-
+.SH ACKNOWLEDGEMENTS
+The material on /proc/sys/fs and /proc/sys/kernel is closely based on
+kernel source documentation files written by Rik van Riel.

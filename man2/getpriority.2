@@ -36,7 +36,10 @@
 .\" Modified Wed Nov  6 03:55:47 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified, 21 Oct 01, Michael Kerrisk, <mtk16@ext.canterbury.ac.nz>
 .\"    Corrected statement under EPERM to clarify privileges required
-.TH GETPRIORITY 2 2001-06-19 "BSD Man Page" "Linux Programmer's Manual"
+.\" Modified, 21 Jun 02, Michael Kerrisk, <mtk16@ext.canterbury.ac.nz>
+.\"	Clarified meaning of 0 value for 'who' argument
+.\"
+.TH GETPRIORITY 2 2002-06-21 "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
 getpriority, setpriority \- get/set program scheduling priority
 .SH SYNOPSIS
@@ -75,9 +78,10 @@ identifier for
 .BR PRIO_PGRP ,
 and a user ID for
 .BR PRIO_USER ).
-A zero value of
+A zero value for
 .I who
-denotes the current process, process group, or user.
+denotes (respectively) the calling process, the process group of the
+calling process, or the real user ID of the calling process.
 .I Prio
 is a value in the range \-20 to 20 (but see the Notes below).
 The default priority is 0;

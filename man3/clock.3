@@ -21,7 +21,10 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\" Modified Sat Jul 24 21:27:01 1993 by Rik Faith (faith@cs.unc.edu)
-.TH CLOCK 3  1993-04-21 "GNU" "Linux Programmer's Manual"
+.\" Modified 14 Jun 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" 	Added notes on differences from other Unices with respect to
+.\"	waited-for children.
+.TH CLOCK 3  2002-06-14 "GNU" "Linux Programmer's Manual"
 .SH NAME
 clock \- Determine processor time
 .SH SYNOPSIS
@@ -55,9 +58,24 @@ Note that the time can wrap around.  On a 32bit system where
 CLOCKS_PER_SEC equals 1000000 this function will return the same
 value approximately every 72 minutes.
 .PP
+On several other implementations,
+the value returned by 
+.BR clock ()
+also includes the times of any children whose status has been
+collected via
+.BR wait ()
+(or another wait-type call).
+Linux does not include the times of waited-for children in the
+value returned by
+.BR clock ().
+.\" I have seen this behaviour on Irix 6.3, and the OSF/1, HP/UX, and
+.\" Solaris manual pages say that clock() also does this on those systems.
+.\" POSIX 1003.1-2001 doesn't explicitly allow this, nor is there an
+.\" explicit prohibition. -- MTK
 The
 .B times()
-function call returns more information.
+function, which explicitly returns (separate) information about the 
+caller and its children, may be preferable.
 .SH "SEE ALSO"
 .BR getrusage (2),
 .BR times (2)

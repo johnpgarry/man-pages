@@ -36,6 +36,8 @@
 .\" Modified 26 Jun 01 by Michael Kerrisk
 .\"          Added __WCLONE, __WALL, and __WNOTHREAD descriptions
 .\" Modified 2001-09-25, aeb
+.\" Modified 26 Jun 01 by Michael Kerrisk, <mtk16@ext.canterbury.ac.nz>
+.\"	Updated notes on setting disposition of SIGCHLD to SIG_IGN
 .\"
 .TH WAIT 2  2000-07-24 "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -187,14 +189,26 @@ was caught.
 .SH NOTES
 The Single Unix Specification describes a flag SA_NOCLDWAIT (not supported
 under Linux) such that if either this flag is set, or the action for
-SIGCHLD is set to SIG_IGN (which, by the way, is not allowed by POSIX),
+SIGCHLD is set to SIG_IGN
 then children that exit do not become zombies and a call to
-.I wait()
+.BR wait ()
 or
-.I waitpid()
+.BR waitpid ()
 will block until all children have exited, and then fail with
 .I errno
 set to ECHILD.
+.LP
+The original POSIX standard left the behaviour of setting SIGCHLD to
+SIG_IGN unspecified.
+Later standards, including SUSv2 and POSIX 1003.1-2001 specify the
+behaviour just described as an XSI-compliance option.
+Linux does not conform to the second of the two points just described:
+if a
+.BR wait "() or " waitpid ()
+call is made while SIGCHLD is being ignored,
+the call behaves just as though SIGCHLD were not being igored, that is,
+the call blocks until the next child terminates and then returns the
+PID and status of that child.
 .SH "LINUX NOTES"
 In the Linux kernel, a kernel-scheduled thread is not a distinct
 construct from a process. Instead, a thread is simply a process

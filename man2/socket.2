@@ -35,6 +35,7 @@
 .\" Modified Sat Jul 24 10:36:46 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 22:10:43 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified 1998,1999 by Andi Kleen <ak@muc.de>
+.\" Modified, 17 Jul 02 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
 .TH SOCKET 2 1999-04-24 "Linux Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -150,7 +151,10 @@ The
 .I protocol
 specifies a particular protocol to be used with the socket.  Normally only
 a single protocol exists to support a particular socket type within a given
-protocol family.  However, it is possible that many protocols may exist, in
+protocol family, in which a case
+.I protocol
+can be specified as 0.
+However, it is possible that many protocols may exist, in
 which case a particular protocol must be specified in this manner.  The
 protocol number to use is specific to the \*(lqcommunication domain\*(rq
 in which communication is to take place; see
@@ -241,7 +245,11 @@ Using
 .B F_SETOWN
 is equivalent to an
 .BR ioctl (2)
-call with the SIOSETOWN argument.
+call with the
+.B FIOSETOWN
+or
+.B SIOCSPGRP
+argument.
 .PP
 When the network signals an error condition to the protocol module (e.g.
 using a ICMP message for IP) the pending error flag is set for the socket.
@@ -310,7 +318,8 @@ is not implemented yet.
 .BR accept (2),
 .BR bind (2),
 .BR connect (2),
-.BR getprotoent (3),
+.BR fcntl (2),
+.BR getpeername (2),
 .BR getsockname (2),
 .BR getsockopt (2),
 .BR ioctl (2),
@@ -321,7 +330,13 @@ is not implemented yet.
 .BR send (2),
 .BR shutdown (2),
 .BR socketpair (2),
-.BR write (2)
+.BR write (2),
+.BR getprotoent (3),
+.BR ip (7),
+.BR socket (7),
+.BR tcp (7),
+.BR udp (7),
+.BR unix (7)
 .PP
 \(lqAn Introductory 4.3 BSD Interprocess Communication Tutorial\(rq
 is reprinted in

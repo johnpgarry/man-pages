@@ -18,6 +18,8 @@
 .\"	Added EPERM and EINVAL error codes
 .\"	Renamed "__clone" to "clone" (which is the protype in <sched.h>)
 .\"	various other minor tidy ups and clarifications.
+.\"  Modified 26 Jun 2001 by Michael Kerrisk <mtk16@ext.canterbiry.ac.nz>
+.\"	Updated notes for 2.4.7+ behaviour of CLONE_THREAD
 .\"
 .TH CLONE 2 2001-06-26 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
@@ -294,6 +296,12 @@ POSIX threads notion of a set of threads sharing a single PID.  In Linux
 2.4, calls to 
 .BR getpid (2)
 return the thread group ID of the caller.)
+
+If this flag is specified in Linux 2.4.7 onwards,
+the parent of the child is made the same as the caller's parent
+(i.e., this flag includes the effect of the
+.B CLONE_PARENT
+flag).
 .PP
 The
 .B sys_clone

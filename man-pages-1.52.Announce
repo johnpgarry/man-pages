@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.51.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.52.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,15 +12,24 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.50:
+Differences from version 1.51:
 
     The man pages
 
-	access.2 mount.2 msgctl.2 msgop.2 sigqueue.2
+	clone.2 flock.2 getrlimit.2 mount.2 prctl.2 sched_setscheduler.2
+	sigtimedwait.2 sigwaitinfo.2 socket.2 times.2 umount2.2 wait.2
 
-	clearenv.3 printf.3 shm_open.3 strcasecmp.3
+	alloca.3 clock.3 endttyent.3 ether_aton.3 getttyent.3 getttynam.3
+	key_decryptsession.3 key_encryptsession.3 key_gendes.3
+	key_secretkey_is_set.3 key_setsecret.3 malloc_hook.3 mtrace.3
+	muntrace.3 printf.3 setttyent.3 strstr.3 sysconf.3 ttyname.3
+	ttyname_r.3 ttyslot.3 wcwidth.3
 
-	boot.7 signal.7
+	ttyS.4
+
+	hosts.5 proc.5
+
+	signal.7 socket.7 tcp.7
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.
@@ -95,7 +104,7 @@ wrote, edited, or otherwise contributed to this project:
     Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
     Michael Shields <shields@tembel.org>
     Mike Battersby <mike@starbug.apana.org.au>
-    Mike Coleman <mkc@acm.org>
+    Mike Coleman <mkc@debian.org>
     Mitchum DSouza <m.dsouza@mrc-apu.cam.ac.uk>
     Nick Duffek <nsd@bbc.com>
     Nicolai Langfeldt <janl@ifi.uio.no>

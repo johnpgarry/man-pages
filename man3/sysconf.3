@@ -59,11 +59,14 @@ family of functions; the corresponding macro is
 .B _SC_CHILD_MAX
 The number of simultaneous processes per user id, the corresponding macro
 is
-.BR _POSIX_CHILD_MAX .
+.BR CHILD_MAX .
 .TP
 .B _SC_CLK_TCK
-The number of clock ticks per second; the corresponding macro is
+The number of clock ticks per second; the corresponding macro was
 .BR CLK_TCK .
+This macro is obsolete now. (Note that the macro
+.B CLOCKS_PER_SEC
+does not give information: it must equal 1000000.)
 .TP
 .B _SC_STREAM_MAX
 The maximum number of streams that a process can have open at any
@@ -81,7 +84,7 @@ is
 .B _SC_OPEN_MAX
 The maximum number of files that a process can have open at any time,
 the corresponding macro is
-.BR _POSIX_OPEN_MAX .
+.BR OPEN_MAX .
 .TP
 .B _SC_JOB_CONTROL
 This indicates whether POSIX \- style job control is supported, the
@@ -99,7 +102,9 @@ format
 .BR YYYYMML ; the
 value
 .B 199009L
-indicates the most recent revision, 1990.
+indicates the Sept. 1990 revision.
+The corresponding macro is
+.BR _POSIX_VERSION .
 .PP
 Next, the POSIX.2 values:
 .TP
@@ -208,12 +213,19 @@ to overflow.
 .B _SC_AVPHYS_PAGES
 The number of currently available pages of physical memory.
 .SH "RETURN VALUE"
-The value returned is the value of the system resource, 1 if a queried
-option is available, 0 if it is not, or \-1 on error.  The variable
+If
+.I name
+is invalid, \-1 is returned, and
 .I errno
-is not set.
+is set to
+.BR EINVAL .
+Otherwise, the value returned is the value of the system resource,
+1 if a queried option is available, 0 if it is not, or \-1 on error,
+and the variable
+.I errno
+is not changed.
 .SH "CONFORMING TO"
-POSIX.1, proposed POSIX.2
+POSIX.1.
 .SH BUGS
 It is difficult to use
 .B ARG_MAX

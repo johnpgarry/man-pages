@@ -1,6 +1,7 @@
 .\" Hey Emacs! This file is -*- nroff -*- source.
 .\"
 .\" Copyright (c) 1992 Drew Eckhardt, March 28, 1992
+.\" Copyright (c) 2002 Michael Kerrisk
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -33,8 +34,12 @@
 .\" Modified May  4, 2001 by aeb, following a remark by
 .\"          Håvard Lygre <hklygre@online.no>
 .\" Modified 17 Apr 2001 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 13 Jun 02, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"     Added note on non-standard behaviour when SIGCHLD is ignored.
+.\" Modified  9 Jul 02, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"	Enhanced descriptions of 'resource' values for [gs]etrlimit()
 .\"
-.TH GETRLIMIT 2 2002-04-17 "Linux" "Linux Programmer's Manual"
+.TH GETRLIMIT 2 2002-07-09 "Linux" "Linux Programmer's Manual"
 .SH NAME
 getrlimit, getrusage, setrlimit \- get/set resource limits and usage
 .SH SYNOPSIS
@@ -53,52 +58,131 @@ getrlimit, getrusage, setrlimit \- get/set resource limits and usage
 .B getrlimit
 and
 .B setrlimit
-get and set resource limits respectively.  
-.I resource
-should be one of:
-.PP
-\fBRLIMIT_CPU\fP	/* CPU time in seconds */
-.br
-\fBRLIMIT_FSIZE\fP	/* Maximum filesize */
-.br
-\fBRLIMIT_DATA\fP	/* max data size */
-.br
-\fBRLIMIT_STACK\fP	/* max stack size */
-.br
-\fBRLIMIT_CORE\fP	/* max core file size */
-.br
-\fBRLIMIT_RSS\fP	/* max resident set size */
-.br
-\fBRLIMIT_NPROC\fP	/* max number of processes */
-.br
-\fBRLIMIT_NOFILE\fP	/* max number of open files */
-.br
-\fBRLIMIT_MEMLOCK\fP	/* max locked-in-memory address space*/
-.br
-\fBRLIMIT_AS\fP		/* address space (virtual memory) limit */
-.br
-\fBRLIMIT_LOCKS\fP	/* max number of flock() file locks and 
-.br
-			   fcntl() leases (Linux 2.4 and later) */
-.\" to be precise: Linux 2.4.0-test9 and later
-.PP
-A resource may unlimited if you set the limit to 
-.BR RLIM_INFINITY ". " RLIMIT_OFILE
-is the BSD name for 
-.BR RLIMIT_NOFILE .
-.PP
-The
+get and set resource limits respectively.
+Each resource has an associated soft and hard limit, as defined by the 
 .B rlimit
-structure is defined as follows :
+structure (the
+.I rlim
+argument to both
+.BR getrlimit "() and " setrlimit ()):
 .PP
 .in +0.5i
 .nf
 struct rlimit {
-	rlim_t	rlim_cur;
-	rlim_t	rlim_max;
+    rlim_t rlim_cur;   /* Soft limit */
+    rlim_t rlim_max;   /* Hard limit (ceiling 
+                          for rlim_cur) */
 };
+
 .fi
 .in -0.5i
+The soft limit is the value that the kernel enforces for the
+corresponding resource.
+The hard limit acts as a ceiling for the soft limit:
+an unprivileged process may only set its soft limit to a value in the 
+range from 0 up to the hard limit, and (irreversibly) lower its hard limit.
+A privileged process may make arbitrary changes to either limit value.
+.PP
+The value
+.B RLIM_INFINITY
+denotes no limit on a resource (both in the structure returned by
+.BR getrlimit ()
+and in the structure passed to
+.BR setrlimit ()).
+.PP
+.I resource
+must be one of:
+.TP
+.B RLIMIT_CPU
+CPU time limit in seconds.
+When the process reaches the soft limit, it is sent a
+.B SIGXCPU
+signal.
+The default action for this signal is to terminate the process.
+However, the signal can be caught, and the handler can return control to
+the main program.
+If the process continues to consume CPU time, it will be sent
+.B SIGXCPU
+once per second until the hard limit is reached, at which time
+it is sent
+.BR SIGKILL .
+(This latter point describes Linux 2.2 and 2.4 behaviour.
+Implementations vary in how they treat processes which continue to
+consume CPU time after reaching the soft limit.
+Portable applications that need to catch this signal should
+perform an orderly termination upon first receipt of
+.BR SIGXCPU .)
+.TP
+.B RLIMIT_DATA
+The maximum size of the process's data segment (initialized data,
+uninitialized data, and heap).
+This limit affects calls to
+.BR brk "() and " sbrk (),
+which fail with the error
+.B ENOMEM
+upon encountering the soft limit of this resource.
+.TP
+.B RLIMIT_FSIZE
+The maximum size of files that the process may create.
+Attempts to extend a file beyond this limit result in delivery of a
+.B SIGXFSZ
+signal.
+By default, this signal terminates a process, but a process can 
+catch this signal instead, in which case the relevant system call (e.g., 
+.BR write "(), " truncate ())
+fails with the error
+.BR EFBIG .
+.TP
+.B RLIMIT_LOCKS
+A limit on the combined number of
+.BR flock ()
+locks and 
+.BR fcntl()
+leases that this process may establish
+(Linux 2.4 and later).
+.\" to be precise: Linux 2.4.0-test9 and later
+.TP
+.B RLIMIT_MEMLOCK
+The maximum number of bytes of virtual memory that may be locked
+into RAM using
+.BR mlock "() and " mlockall ().
+.TP
+.B RLIMIT_NOFILE
+Specifies a value one greater than the maximum file descriptor number
+that can be opened by this process.
+Attempts
+.RB ( open "(), " pipe "(), " dup "(), etc.)"
+to exceed this limit yield the error
+.BR EMFILE .
+.TP
+.B RLIMIT_NPROC
+The maximum number of processes that can be created for the real user
+ID of the calling process.
+Upon encountering this limit, 
+.BR fork ()
+fails with the error
+.BR EAGAIN .
+.TP
+.B RLIMIT_RSS
+Specifies the limit (in pages) of the process's resident set
+(the number of virtual pages resident in RAM).
+This limit only has effect in Linux 2.4 onwatrds, and there only
+affects calls to
+.BR madvise ()
+specifying
+.BR MADVISE_WILLNEED .
+.TP
+.B RLIMIT_STACK
+The maximum size of the process stack, in bytes.
+Upon reaching this limit, a
+.B SIGSEGV
+signal is generated.
+To handle this signal, a process must employ an alternate signal stack
+.RB ( sigaltstack (2)).
+.PP
+.B RLIMIT_OFILE
+is the BSD name for 
+.BR RLIMIT_NOFILE .
 .PP
 .B getrusage
 returns the current resource usages, for a \fIwho\fP
@@ -163,6 +247,17 @@ is not required these days, but increases portability.
 .I struct timeval
 is defined in
 .IR <sys/time.h> .)
+.PP
+On Linux, if the disposition of
+.B SIGCHLD
+is set to
+.B SIG_IGN
+then the resource usages of child processes
+are automatically included in the value returned by
+.BR RUSAGE_CHILDREN ,
+although POSIX 1003.1-2001 explicitly prohibits this.
+.\" See the description of getrusage() in XSH.
+.\" A similar statement was also in SUSv2.
 .LP
 The above struct was taken from BSD 4.3 Reno.
 Not all fields are meaningful under Linux.

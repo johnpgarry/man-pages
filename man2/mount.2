@@ -30,8 +30,10 @@
 .\" Modified 16 May 2002 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"	Extensive changes and additions
 .\" Some corrections, aeb, 27 May 2002
+.\" Modified 11 Jun 2002 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"	Enhanced descriptions of MS_MOVE, MS_BIND, and MS_REMOUNT
 .\"
-.TH MOUNT 2 2002-05-17 "Linux 2.5" "Linux Programmer's Manual"
+.TH MOUNT 2 2002-06-11 "Linux 2.5" "Linux Programmer's Manual"
 .SH NAME
 mount, umount \- mount and unmount filesystems.
 .SH SYNOPSIS
@@ -86,16 +88,28 @@ another point within a file system.
 Bind mounts may cross file system boundaries and span
 .BR chroot (2)
 jails.
+The
+.IR filesystemtype ", " mountflags ", and " data
+arguments are ignored.
+.\" with the exception of the "hidden" MS_REC mountflags bit
 .TP
 .B MS_MANDLOCK
-Permit mandatory locking on file in this file system.
+Permit mandatory locking on files in this file system.
 (Mandatory locking must still be enabled on a per-file basis,
 as described in
 .BR fcntl (2).)
 .\" FIXME: More can be said about MS_MOVE
 .TP
 .B MS_MOVE
-Atomically move a subtree.
+Move a subtree.
+.I source
+specifies an existing mount point and
+.I target
+specifies the new location.
+The move is atomic: at no point is the subtree unmounted.
+The
+.IR filesystemtype ", " mountflags ", and " data
+arguments are ignored.
 .TP
 .B MS_NOATIME
 Do not update access times for (all types of) files on this file system.
@@ -124,7 +138,17 @@ Mount file system read-only.
 .B MS_REMOUNT
 Remount an existing mount.  This is allows you to change the
 .I mountflags
+and
+.I data
 of an existing mount without having to unmount and remount the file system.
+.I source
+and
+.I target
+should be the same values specified in the initial
+.BR mount ()
+call;
+.I filesystemtype
+is ignored.
 .TP
 .B MS_SYNCHRONOUS
 Make writes on this file system synchronous (as though
@@ -149,6 +173,7 @@ for details of the options available for each filesystem type.
 .PP
 .\" Note: the kernel naming differs from the glibc naming
 .\" umount2 is the glibc name for what the kernel now calls umount
+.\" and umount is the glibc name for oldumount
 Linux 2.1.116 added the
 .BR umount2 ()
 system call, which, like
