@@ -22,26 +22,41 @@
 .\"
 .\" References consulted:
 .\"     Linux libc source code
-.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:50:48 1993 by Rik Faith (faith@cs.unc.edu)
-.TH MEMMEM 3  "April 11, 1993" "GNU" "Linux Programmer's Manual"
+.\" Interchanged `needle' and `haystack'; added history, aeb, 980113.
+.TH MEMMEM 3  "January 13, 1998" "GNU" "Linux Programmer's Manual"
 .SH NAME
 memmem \- locate a substring
 .SH SYNOPSIS
 .nf
 .B #include <string.h>
 .sp
-.BI "void *memmem(const void *" needle ", size_t " needlelen ,
+.BI "void *memmem(const void *" haystack ", size_t " haystacklen ,
 .RS
-.BI "const void *" haystack ", size_t " haystacklen );
+.BI "const void *" needle ", size_t " needlelen  );
 .fi
 .SH DESCRIPTION
-The \fBmemmem()\fP function finds the first occurrence of the substring
-\fIneedle\fP of length \fIneedlelen\fP in the memory area \fIhaystack\fP
-of length \fIhaystacklen\fP.
+The \fBmemmem()\fP function finds the start of the first occurrence
+of the substring \fIneedle\fP of length \fIneedlelen\fP in the memory
+area \fIhaystack\fP of length \fIhaystacklen\fP.
 .SH "RETURN VALUE"
 The \fBmemmem()\fP function returns a pointer to the beginning of the
 substring, or NULL if the substring is not found.
+.SH "CONFORMING TO"
+This function is a GNU extension.
+.SH BUGS
+This function was broken in Linux libraries up to and including libc 5.0.9;
+there the `needle' and `haystack' arguments were interchanged,
+and a pointer to the end of the first occurrence of \fIneedle\fP
+was returned.  Since libc 5.0.9 is still widely used, this is a
+dangerous function to use.
+.br
+Both old and new libc's have the bug that if \fIneedle\fP is empty
+\fIhaystack\fP-1 (instead of \fIhaystack\fP) is returned.
+And glibc (2.0.5) makes it worse, and returns a pointer to the
+last byte of `haystack'.
+Hopefully this will be fixed. For the time being, \fImemmem\fP()
+should not be used with an empty `needle'.
 .SH "SEE ALSO"
 .BR strstr (3)

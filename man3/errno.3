@@ -20,7 +20,7 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
-.TH ERRNO 3 "21 July 1996" "" "Library functions"
+.TH ERRNO 3 "30 March 1998" "" "Library functions"
 .SH NAME
 errno \- number of last error
 .SH SYNOPSIS
@@ -40,7 +40,19 @@ Sometimes, when \-1 is also a legal return value one has to zero
 .B errno
 before the call in order to detect possible errors.
 
-POSIX lists the following symbolic error names.
+\fBerrno\fR is defined by the ISO C standard to be a modifiable lvalue
+of type \fBint\fR, and must not be explicitly declared; \fBerrno\fR
+may be a macro.  \fBerrno\fR is thread-local; setting it in one thread
+does not affect its value in any other thread.
+
+Valid error numbers are all non-zero; \fBerrno\fR is never set to zero
+by any library function.  All the error names specified by POSIX.1
+must have distinct values.
+
+POSIX.1 (1996 edition) lists the following symbolic error names.  Of
+these, \fBEDOM\fR and \fBERANGE\fR are in the ISO C standard.  ISO C
+Amendment 1 defines the additional error number \fBEILSEQ\fR for
+coding errors in multibyte or wide characters.
 
 .TP
 .B E2BIG
@@ -55,8 +67,14 @@ Resource temporarily unavailable
 .B EBADF
 Bad file descriptor
 .TP
+.B EBADMSG
+Bad message
+.TP
 .B EBUSY
 Resource busy
+.TP
+.B ECANCELED
+Operation canceled
 .TP
 .B ECHILD
 No child processes
@@ -76,6 +94,9 @@ Bad address
 .B EFBIG
 File too large
 .TP
+.B EINPROGRESS
+Operation in progress
+.TP
 .B EINTR
 Interrupted function call
 .TP
@@ -93,6 +114,9 @@ Too many open files
 .TP
 .B EMLINK
 Too many links
+.TP
+.B EMSGSIZE
+Inappropriate message buffer length
 .TP
 .B ENAMETOOLONG
 Filename too long
@@ -127,6 +151,9 @@ Not a directory
 .B ENOTEMPTY
 Directory not empty
 .TP
+.B ENOTSUP
+Not supported
+.TP
 .B ENOTTY
 Inappropriate I/O control operation
 .TP
@@ -151,10 +178,13 @@ Invalid seek
 .B ESRCH
 No such process
 .TP
+.B ETIMEDOUT
+Operation timed out
+.TP
 .B EXDEV
 Improper link
 
 
 .SH "SEE ALSO"
-.BR perror (3)
-
+.BR perror (3),
+.BR strerror (3)

@@ -53,15 +53,15 @@ number sign (
 .PP
 The locale definitions is divided it one part for each locale
 category. Each part can be copied from another existing locale or
-can be defined from scratch. If the categorie sould be copied,
+can be defined from scratch. If the category should be copied,
 the only valid keyword in the definition is
 .B copy
-followed by the name of the locale which chould be copied.
+followed by the name of the locale which should be copied.
 
 .SS LC_CTYPE
 .The definition for the 
 .B LC_CTYPE
-categorie starts with the string 
+category starts with the string 
 .I LC_CTYPE 
 in the first column.
 
@@ -198,9 +198,9 @@ are automatically included.
 .I toupper
 followed by a list of mappings from lowercase to uppercase
 letters. Each mapping is a pair of a lowercase and an uppercase letter
-seperated with a 
+separated with a 
 .B ,
-and enclosed in parentheses. The members of the list are seperated
+and enclosed in parentheses. The members of the list are separated
 with semicolons.
 .TP
 .I tolower
@@ -237,7 +237,7 @@ The order-definition starts with a line:
 .TP
 .I order_start
 .PP
-followed ba a list of keywords out of
+followed by a list of keywords out of
 .B forward,
 .B backward
 or
@@ -274,21 +274,21 @@ There are the following keywords allowed:
 followed by the international currency symbol. This must be a four
 character string containing the international currency symbol as
 defined by the ISO 4217 standard (three characters) followed by a
-seperator.
+separator.
 .TP
 .I currency_symbol
-followed by the local currentcy symbol.
+followed by the local currency symbol.
 .TP
 .I mon_decimal_point
 followed by the string that will be used as the decimal delimiter
 when formatting monetary quantities.
 .TP
 .I mon_thousands_sep
-followed by the string that will be used as a group seperator
+followed by the string that will be used as a group separator
 when formatting monetary quantities.
 .TP
 .I mon_grouping
-followed ba a string that describes the formatting of numeric
+followed by a string that describes the formatting of numeric
 quantities. 
 .TP
 .I positive_sign
@@ -318,7 +318,7 @@ or
 .I int_curr_symbol
  should precede the formatted monetary quantity or set to
 .B 0
-if the symbol sucseeds the value.
+if the symbol succeeds the value.
 .TP
 .I p_sep_by_space
 followed by an integer.
@@ -344,7 +344,7 @@ sign string, if adjacent.
 - the symbol succeeds the value
 .TP
 .B 1
-- the symbol preceeds the value
+- the symbol precedes the value
 .RE
 .TP
 .I n_sep_by_space
@@ -354,11 +354,11 @@ if no space separates the
 .I currency_symbol
 or 
 .I int_curr_symbol
-from the value for a negative monetary qnatity, set to
+from the value for a negative monetary quantity, set to
 .B 1
 if a space separates the symbol from the value and set to
 .B 2
-if a space separates the symbol anf the sign string, if adjacent.
+if a space separates the symbol and the sign string, if adjacent.
 .TP
 .I p_sign_posn
 .RS
@@ -446,11 +446,11 @@ followed by the string that will be used as the decimal delimiter
 when formatting numeric quantities.
 .TP
 .I thousands_sep
-followed by the string that will be used as a group seperator
+followed by the string that will be used as a group separator
 when formatting numeric quantities.
 .TP
 .I grouping
-followed ba a string that describes the formatting of numeric
+followed by a string that describes the formatting of numeric
 quantities. 
 .PP
 The 

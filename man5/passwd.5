@@ -23,77 +23,107 @@
 .\" Modified Sun Jul 25 10:46:28 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Aug 21 18:12:27 1994 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Jun 18 01:53:57 1995 by Andries Brouwer (aeb@cwi.nl)
-.TH PASSWD 5 "24 July 1993" "Linux" "Linux Programmer's Manual"
+.\" Modified Mon Jan  5 20:24:40 MET 1998 by Michael Haardt
+.\"  (michael@cantor.informatik.rwth-aachen.de)
+.TH PASSWD 5 "January 5, 1998" "" "File formats"
 .SH NAME
 passwd \- password file
 .SH DESCRIPTION
 .B Passwd
-is an ASCII file which contains a list of the system's users and the
-passwords they must use for access.  The password file should have
-general read permission (many utilities, like
-.IR ls (1)
+is a text file, that contains a list of the system's accounts,
+giving for each account some useful information like user ID,
+group ID, home directory, shell, etc.
+Often it also contains the encrypted passwords for each account.
+It should have general read permission (many utilities, like
+.BR ls (1)
 use it to map user IDs to user names), but write access only for the
 superuser.
 .PP
 In the good old days there was no great problem with this general
-read permission.  Everybody could read the encrypted passwords,
-but the hardware was too slow to crack a well-chosen password,
-and moreover, the basic assumption used to be that of a friendly
-user-community.  These days many people run some version of the
-shadow password suite, where
+read permission.  Everybody could read the encrypted passwords, but the
+hardware was too slow to crack a well-chosen password, and moreover, the
+basic assumption used to be that of a friendly user-community.  These days
+many people run some version of the shadow password suite, where
 .I /etc/passwd
-has *'s instead of passwords, and the encrypted passwords are in
+has *'s instead of encrypted passwords, and the encrypted passwords are in
 .I /etc/shadow
-which is readable by root only.
+which is readable by the superuser only.
 .PP
-When you create a new login, leave the password field empty and use
-\fBpasswd\fP(1) to fill it.  A star (*) in the password field means
-that this user can not login via \fBlogin\fP(1).
+Regardless of whether shadow passwords are used, many sysadmins
+use a star in the encrypted password field to make sure
+that this user can not authenticate him- or herself using a
+password. (But see the Notes below.)
+.PP
+If you create a new login, first put a star in the password field,
+then use
+.BR passwd (1)
+to set it.
 .PP
 There is one entry per line, and each line has the format:
 .sp
 .RS
-login_name:passwd:UID:GID:user_name:directory:shell
+account:password:UID:GID:GECOS:directory:shell
 .RE
 .sp
 The field descriptions are:
 .sp
 .RS
 .TP 1.0in
-.I login_name
-the name of the user on the system.
+.I account
+the name of the user on the system.  It should not contain capital letters.
 .TP
 .I password
-the encrypted optional user password.
+the encrypted user password or a star.
 .TP
 .I UID
 the numerical user ID.
 .TP
 .I GID
-the numerical group ID for this user.
+the numerical primary group ID for this user.
 .TP
-.I user_name
-the (optional) comment field (often a full user name).
+.I GECOS
+This field is optional and only used for informational purposes.
+Usually, it contains the full user name.  GECOS means General Electric
+Comprehensive Operating System, which has been renamed to GCOS when
+GE's large systems division was sold to Honeywell.  Dennis Ritchie has
+reported: "Sometimes we sent printer output or batch jobs to the GCOS
+machine.  The gcos field in the password file was a place to stash the
+information for the $IDENTcard.  Not elegant."
 .TP
 .I directory
 the user's $HOME directory.
 .TP
 .I shell
 the program to run at login (if empty, use
-.IR /bin/sh ).
+.BR /bin/sh ).
+If set to a non-existing executable, the user will be unable to login
+through
+.BR login (1).
 .RE
 .SH NOTE
-If your root file system is on
-.IR /dev/ram,
-you must save a changed password file to your root file system floppy before
-you shut down the system and check the access rights.  If you want to create
+If you want to create
 user groups, their GIDs must be equal and there must be an entry in
 \fI/etc/group\fP, or no group will exist.
+.PP
+If the encrypted password is set to a star, the user will be unable
+to login using
+.BR login (1),
+but may still login using
+.BR rlogin (1),
+run existing processes and initiate new ones through
+.BR rsh (1)
+or
+.BR cron (1)
+or
+.BR at (1)
+or mail filters etc.  Trying to lock an account by simply changing the
+shell field yields the same result and additionally allows the use of
+.BR su (1).
 .SH FILES
 .I /etc/passwd
 .SH "SEE ALSO"
 .BR passwd (1),
 .BR login (1),
+.BR su (1),
 .BR group (5),
 .BR shadow (5)
-

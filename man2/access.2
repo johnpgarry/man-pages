@@ -32,8 +32,10 @@
 .\" Modified Sat Sep 07 18:17:26 MET DST 1996 by Michael Haardt:
 .\"   Restrictions for NFS
 .\" Modified by Joseph S. Myers <jsm28@cam.ac.uk>, 970909
+.\" Modified Tue Jan 13 21:21:03 MET 1998 by Michael Haardt:
+.\"   Using access is often insecure
 .\"
-.TH ACCESS 2 "9 September 1997" "Linux 2.0.30" "Linux Programmer's Manual"
+.TH ACCESS 2 "January 13, 1998" "Linux" "System calls"
 .SH NAME
 access \- check user's permissions for a file
 .SH SYNOPSIS
@@ -135,11 +137,19 @@ An I/O error occurred.
 .B access
 returns an error if any of the access types in the requested call
 fails, even if other types might be successful.
-.P
+.PP
 .B access
 may not work correctly on NFS file systems with UID mapping enabled,
 because UID mapping is done on the server and hidden from the client,
 which checks permissions.
+.PP
+Using
+.B access
+to check if a user is authorized to e.g. open a file before actually
+doing so using
+.BR open (2)
+creates a security hole, because the user might exploit the short time
+interval between checking and opening the file to manipulate it.
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH "SEE ALSO"

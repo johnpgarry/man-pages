@@ -25,6 +25,7 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:48:48 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 980310, aeb
 .TH MKSTEMP 3  "April 3, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 mkstemp \- create a unique temporary file
@@ -39,7 +40,7 @@ The \fBmkstemp()\fP function generates a unique temporary file name
 from \fItemplate\fP.  The last six characters of \fItemplate\fP must
 be XXXXXX and these are replaced with a string that makes the
 filename unique.  The file is then created with mode read/write and
-permissions 0666.
+permissions 0666 (glibc 2.0.6 and earlier), 0600 (glibc 2.0.7 and later).
 .SH "RETURN VALUE"
 The \fBmkstemp()\fP function returns the file descriptor fd of the
 temporary file.
@@ -50,6 +51,10 @@ The last six characters of \fItemplate\fP were not XXXXXX.
 .TP
 .B EEXIST
 The temporary file is not unique.
+.SH BUGS
+The old behaviour (creating a file with mode 0666) may be
+a security risk, especially since other Unix flavours use 0600,
+and somebody might overlook this detail when porting programs.
 .SH "CONFORMING TO"
 BSD 4.3
 .SH "SEE ALSO"

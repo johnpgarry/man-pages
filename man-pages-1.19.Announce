@@ -1,25 +1,20 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.18.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.19.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 
-Differences from version 1.17:
+Differences from version 1.18:
     
     The man pages
 
-	access.2 adjtimex.2 chdir.2 chroot.2 execve.2 getpeername.2
-	kill.2 link.2 poll.2 readlink.2 stat.2 statfs.2 symlink.2
-	time.2 umask.2
+	access.2 chmod.2 chown.2 getgroups.2 gettimeofday.2 lseek.2
+	mknod.2 prctl.2 sysctl.2
 
-	__setfpucw.3 atexit.3 fdopen.3 fopen.3 fread.3 ftw.3 getopt.3
-	iruserok.3 localeconv.3 logwtmp.3 printf.3 rcmd.3 rresvport.3
-	ruserok.3 setbuf.3 strftime.3 strtok.3 strxfrm.3 sysconf.3
-	updwtmp.3
+	errno.3 inet.3 malloc.3 memmem.3 mkstemp.3 stderr.3
+	stdin.3 stdout.3 strftime.3 strstr.3
 
-	console_ioctl.4 full.4 initrd.4 random.4
-
-	utmp.5
+	nsswitch.5 passwd.5
 
 	suffixes.7
 
@@ -93,9 +88,11 @@ wrote, edited, or otherwise contributed to this project:
     Steven Greenland (stevegr@sugar.neosoft.com)
     Thomas K. Dyas (tdyas@eden.rutgers.edu)
     Thomas Koenig (ig25@rz.uni-karlsruhe.de)
+    Thorsten Kukuk (kukuk@vt.uni-paderborn.de)
     Tom Bjorkholm (tomb@tomb.mydata.se)
     Ulrich Drepper (drepper@ipd.info.uni-karlsruhe.de)
     Urs Thuermann (urs@isnogud.escape.de)
+    Wolfram Gloger (wmglo@dent.med.uni-muenchen.de)
 
 
 Copyright information:

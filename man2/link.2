@@ -27,7 +27,7 @@
 .\" Modified Sun Aug 21 18:18:14 1994: Michael Haardt's NFS diffs were
 .\"          applied by hand <faith@cs.unc.edu>
 .\"
-.TH LINK 2 "21 August 1997" "Linux 2.0.30" "Linux Programmer's Manual"
+.TH LINK 2 "10 December 1997" "Linux 2.0.30" "Linux Programmer's Manual"
 .SH NAME
 link \- make a new name for a file
 .SH SYNOPSIS
@@ -129,9 +129,13 @@ X/OPEN does not document EFAULT, ENOMEM or EIO.
 .SH BUGS
 On NFS file systems, the return code may be wrong in case the NFS server
 performs the link creation and dies before it can say so.  Use
-.IR stat(2)
+.IR stat (2)
 to find out if the link got created.
 .SH "SEE ALSO"
-.BR symlink "(2), " unlink "(2), " rename "(2), " open (2),
-.BR stat "(2), " ln "(1), " link (8).
-.BR stat "(2), " ln (1).
+.BR symlink (2),
+.BR unlink (2),
+.BR rename (2),
+.BR open (2),
+.BR stat (2),
+.BR ln (1)
+

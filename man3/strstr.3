@@ -25,6 +25,8 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 17:56:43 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Added history, aeb, 980113.
+.\"
 .TH STRSTR 3  "April 12, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 strstr \- locate a substring
@@ -41,6 +43,10 @@ characters are not compared.
 .SH "RETURN VALUE"
 The \fBstrstr()\fP function returns a pointer to the beginning of the
 substring, or NULL if the substring is not found.
+.SH BUGS
+Early versions of Linux libc (like 4.5.26) would not allow
+an empty argument. Later versions (like 4.6.27) work correctly,
+and return \fIhaystack\fP when \fIneedle\fP is empty.
 .SH "SEE ALSO"
 .BR index "(3), " memchr "(3), " rindex "(3), " strchr (3),
 .BR strpbrk "(3), " strsep "(3), " strspn "(3), " strtok (3)

@@ -22,6 +22,7 @@
 .\" License.
 .\" Modified Sat Jul 24 19:00:59 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Clarification concerning realloc, iwj10@cus.cam.ac.uk (Ian Jackson), 950701
+.\" Documented MALLOC_CHECK_, Wolfram Gloger (wmglo@dent.med.uni-muenchen.de)
 .\"
 .TH MALLOC 3  "April 4, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -61,6 +62,9 @@ which must have been returned by a previous call to
 .B calloc()
 or
 .BR realloc() .
+Otherwise, or if
+.BI "free(" "ptr" )
+has already been called before, undefined behaviour occurs.
 If
 .I ptr
 is
@@ -73,7 +77,7 @@ changes the size of the memory block pointed to by
 to
 .I size
 bytes.
-The contents will be unchanged to the minimum of the old an new sizes;
+The contents will be unchanged to the minimum of the old and new sizes;
 newly allocated memory will be uninitialized.
 If
 .I ptr
@@ -117,3 +121,32 @@ fails the original block is left untouched - it is not freed or moved.
 ANSI-C
 .SH "SEE ALSO"
 .BR brk (2)
+.SH NOTES
+Crashes in
+.BR malloc() ,
+.BR free()
+or
+.BR realloc()
+are almost always related to heap corruption, such as overflowing
+an allocated chunk or freeing the same pointer twice.
+.PP
+Recent versions of Linux libc (later than 5.4.23) and GNU libc (2.x)
+include a malloc implementation which is tunable via environment
+variables.  When
+.BR MALLOC_CHECK_
+is set, a special (less efficient) implementation is used which
+is designed to be tolerant against simple errors, such as double
+calls of
+.BR free()
+with the same argument, or overruns of a single byte (off-by-one
+bugs).  Not all such errors can be proteced against, however, and
+memory leaks can result.
+If
+.BR MALLOC_CHECK_
+is set to 0, any detected heap corruption is silently ignored;
+if set to 1, a diagnostic is printed on stderr;
+if set to 2,
+.BR abort()
+is called immediately.  This can be useful because otherwise
+a crash may happen much later, and the true cause for the problem
+is then very hard to track down.

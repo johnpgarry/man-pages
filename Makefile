@@ -1,3 +1,5 @@
+# Do "make screen" first, if you want to protect already installed,
+# more up-to-date manual pages than the ones included in this package.
 # Do "make install" to copy the pages to their destination.
 # Do "make gz" before "make install" if you use compressed source pages.
 
@@ -6,7 +8,16 @@ MANDIR=/usr/man
 
 GZIP=gzip -9
 
-all: remove gz install
+all: screen remove gz install
+
+screen:
+	mkdir not_installed
+	for i in man?/*; do \
+		if [ $(MANDIR)/$$i -nt $$i ]; then \
+			diff -q $(MANDIR)/$$i $$i > /dev/null 2>&1; \
+			if [ $$? != 0 ]; then mv $$i not_installed; fi; \
+		fi; \
+	done
 
 remove:
 	rm -f $(MANDIR)/man2/modules.2 $(MANDIR)/man2/modules.2.gz

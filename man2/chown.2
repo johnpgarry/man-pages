@@ -1,6 +1,7 @@
 .\" Hey Emacs! This file is -*- nroff -*- source.
 .\"
 .\" Copyright (c) 1992 Drew Eckhardt (drew@cs.colorado.edu), March 28, 1992
+.\" Copyright (c) 1998 Andries Brouwer (aeb@cwi.nl)
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -28,9 +29,9 @@
 .\" Modified Wed Nov  6 03:49:07 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Sun May 18 10:34:09 1997 by Michael Haardt <michael@cantor.informatik.rwth-aachen.de>
 .\"
-.TH CHOWN 2 "May 18, 1997" "" "System calls"
+.TH CHOWN 2 "May 18, 1997" "Linux 2.1.81" "Linux Programmer's Manual"
 .SH NAME
-chown, fchown \- change ownership of a file
+chown, fchown, lchown \- change ownership of a file
 .SH SYNOPSIS
 .B #include <sys/types.h>
 .br
@@ -39,6 +40,8 @@ chown, fchown \- change ownership of a file
 .BI "int chown(const char *" path ", uid_t " owner ", gid_t " group );
 .br
 .BI "int fchown(int " fd ", uid_t " owner ", gid_t " group );
+.br
+.BI "int lchown(const char *" path ", uid_t " owner ", gid_t " group );
 .SH DESCRIPTION
 The owner of the file specified by
 .I path
@@ -53,6 +56,17 @@ If the
 or
 .I group
 is specified as \-1, then that ID is not changed.
+
+When the owner or group of an executable file are changed by a non-super-user,
+the S_ISUID and S_ISGID mode bits are cleared. POSIX does not specify whether
+this also should happen when root does the
+.IR chown ;
+the Linux behaviour depends on the kernel version.
+In case of a non-group-executable file (with clear S_IXGRP bit)
+the S_ISGID bit indicates mandatory locking, and is not cleared
+by a
+.IR chown .
+
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -117,8 +131,21 @@ See above.
 .B EIO
 A low-level I/O error occurred while modifying the inode.
 .SH NOTES
+In versions of Linux prior to 2.1.81 (and distinct from 2.1.46),
 .B chown
-does not follow symbolic links.
+did not follow symbolic links.
+Since Linux 2.1.81,
+.B chown
+does follow symbolic links, and there is a new system call
+.B lchown
+that does not follow symbolic links.
+Since Linux 2.1.86, this new call (that has the same semantics
+as the old
+.BR chown )
+has got the same syscall number, and
+.B chown
+got the newly introduced number.
+.LP
 The prototype for
 .B fchown
 is only available if
@@ -128,7 +155,7 @@ is defined.
 The
 .B chown
 call conforms to SVr4, SVID, POSIX, X/OPEN.  The 4.4BSD version can only be
-usaed by the superuser (that is, ordinary users cannot give away files).
+used by the superuser (that is, ordinary users cannot give away files).
 SVr4 documents EINVAL, EINTR, ENOLINK and EMULTIHOP returns, but no
 ENOMEM.  POSIX.1 does not document ENOMEM or ELOOP error conditions.
 .PP
