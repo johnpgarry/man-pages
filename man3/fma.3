@@ -3,7 +3,7 @@
 .\"
 .TH FMA 3  2002-07-27 "" "Linux Programmer's Manual"
 .SH NAME
-fma, fmaf, fmal \- floating-point multiply and add
+fma \- floating-point multiply and add
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
@@ -17,12 +17,9 @@ fma, fmaf, fmal \- floating-point multiply and add
 .SH DESCRIPTION
 The  
 .B fma() 
-function computes
-.IR x " * " y " + " z .
-The result is rounded according to the
+function computes x*y+z. The result is rounded according to the
 rounding mode determined by the value of FLT_ROUNDS.
 .SH "CONFORMING TO"
 C99
 .SH "SEE ALSO"
-.BR remainder (3),
-.BR remquo (3)
+.BR drem (3)

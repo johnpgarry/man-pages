@@ -9,10 +9,10 @@ getpt \- open the pseudo-terminal master (PTM)
 .nf
 .B #include <stdlib.h>
 .sp
-.B "int getpt(void)"
+.B "int getpt()"
 .fi
 .SH DESCRIPTION
-.B getpt()
+.IR getpt ()
 opens a pseudo-terminal master and returns its file descriptor.
 It is equivalent to
 .BI "open(" \fI"/dev/ptmx" , O_RDWR|O_NOCTTY ) 
@@ -20,13 +20,13 @@ on Linux systems, though the pseudo-terminal master is located
 elsewhere on some systems that use GNU Libc.
 
 .SH "RETURN VALUE"
-.B getpt()
+.IR getpt ()
 returns an open file descriptor upon successful completion. Otherwise, it
 returns -1 and sets
 .I errno
 to indicate the error.
 .SH CONFORMING TO
-.B getpt()
+.IR getpt ()
 is specific to GNU Libc.
 .SH "SEE ALSO"
 .BR ptmx (4),
