@@ -21,14 +21,15 @@
 .\" USA.
 .\"
 .\" Modified Sun Jul 25 11:06:34 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Corrected Mon Oct 21 17:47:19 EDT 1996 by Eric S. Raymond (esr@thyrsus.com)
 .TH NOLOGIN 5 "December 29 1992" "Linux" "Linux Programmer's Manual"
 .SH NAME
-nologin \- prevent usual users from log into the system
+nologin \- prevent non-root users from log into the system
 .SH DESCRIPTION
-\fB/etc/nologin\fP is used by
-.BR login (1);
-if this file exists, login will allow access only to root; other users are
-given a "System going down" message.
+If the file \fB/etc/nologin\fP exists, 
+.BR login (1)
+will allow access only to root. Other users will
+be shown the contents of this file and their logins refused.
 .SH FILES
 /etc/nologin
 .SH "SEE ALSO"

@@ -49,6 +49,8 @@ Consoles carry a lot of state. I hope to document that some other time.
 The most important fact is that the consoles simulate vt100 terminals.
 In particular, a console is reset to the initial state by printing the two
 characters ESC c.
+All escape sequences can be found in
+.BR console_codes (4).
 
 .LP
 .SH FILES
@@ -56,6 +58,18 @@ characters ESC c.
 .br
 .I /dev/tty*
 .SH "SEE ALSO"
-.BR console_ioctl "(4), " chvt "(1), " loadkeys "(1), " mknod "(1), " open (1),
-.BR tty "(4), " ttys "(4), " disalloc "(8), " getty "(8), " init (8),
-.BR resizecons "(8), " setfont "(8), " mapscrn (8)
+.BR charsets (4),
+.BR console_codes (4),
+.BR console_ioctl (4),
+.BR mknod (1),
+.BR tty (4),
+.BR ttys (4),
+.BR getty (8),
+.BR init (8),
+.BR chvt (1),
+.BR open (1),
+.BR disalloc (8),
+.BR loadkeys (1),
+.BR resizecons (8),
+.BR setfont (8),
+.BR mapscrn (8)

@@ -24,6 +24,8 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Sat Jul 24 13:00:50 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sun Sep  8 18:59:01 1996 by aeb following remarks by
+.\"     Arnt Gulbrandsen (agulbra@troll.no)
 .\"
 .TH UNLINK 2 "24 July 1993" Linux "Linux Programmer's Manual"
 .SH NAME
@@ -70,7 +72,9 @@ The directory containing
 has the sticky-bit
 .RB ( S_ISVTX )
 set and the process's effective uid is neither the uid of the file to
-be deleted nor that of the directory containing it.
+be deleted nor that of the directory containing it, or
+.I pathname
+is a directory.
 .TP
 .B ENAMETOOLONG
 .IR pathname " was too long."

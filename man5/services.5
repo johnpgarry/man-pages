@@ -39,6 +39,14 @@ is a plain ASCII file providing a mapping between friendly textual
 names for internet services, and their underlying assigned port
 numbers and protocol types. Every networking program should look into
 this file to get the port number (and protocol) for its service.
+The C library routines
+.BR getservent (3),
+.BR getservbyname (3),
+.BR getservbyport (3),
+.BR setservent (3),
+and 
+.BR endservent (3)
+support querying this file from programs.
 
 Port numbers are assigned by the IANA (Internet Assigned Numbers
 Authority), and their current policy is to assign both TCP and UDP

@@ -21,17 +21,19 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
-.\" Modified Sat Jul 24 17:35:15 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sun Feb 19 22:02:32 1995 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 17:35:15 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Sun Feb 19 22:02:32 1995 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Tue Oct 22 23:28:12 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH SUFFIXES 7  "April 4, 1996" "Linux" "Linux Programmer's Manual"
 .SH NAME
 suffixes \- list of file suffixes
 .SH DESCRIPTION
-It is customary to mark the contents of a file with the file suffix,
+It is customary to indicate the contents of a file with the file suffix,
 which consists of a period, followed by one or more letters.  Many
-standard utilities such as compilers use this to recognize the type of
-file they are dealing with, and the make(1) utility contains many
-rules for dealing with files based on suffix type.
+standard utilities, such as compilers, use this to recognize the type of
+file they are dealing with.  The 
+.BR make (1)
+utility is driven by rules based on file suffix.
 .PP
 Following is a list of suffixes which are likely to be found on a
 Linux system.
@@ -60,6 +62,7 @@ Suffix	File type
  .bm	Bitmap source
  .c	C source
  .cat	Message catalog files
+ .cc	C++ source
  .cf	configuration file
  .conf	configuration file
  .config	configuration file
@@ -81,11 +84,15 @@ Suffix	File type
  .gz	File compressed using gzip(1)
  .h	C or C++ header files
  .hlp	Help file
+ .htm	HTML file imported without renaming from a brain-damaged OS
+ .html	HTML document used with the World Wide Web
  .i	C source after preprocessing
+ .idx	Reference or datum-index file for hypertext or database system
  .icon	Bitmap source
  .image	Bitmap source
- .in	Input file for some utility
+ .in	Configuration template, especially for GNU autoconf
  .info	Files for the EMACS info browser
+ .java	A Java source file
  .jpg	JPEG compressed picture format
  .l	lex(1) or flex(1) files
  .lib	Common Lisp library
@@ -93,7 +100,7 @@ Suffix	File type
  .lsp	Common Lisp source
  .m4	M4(1) source
  .mac	Macro files for various programs
- .man	Manual page
+ .man	Manual page (usually source rather than formatted)
  .me	Nroff source using the me macro package
  .mf	Metafont (font generator for TeX) source
  .mm	Sources for groff(1) in mm - format
@@ -109,10 +116,11 @@ Suffix	File type
  .pfb	Postscript font definition files, binary format
  .pgp	PGP binary data
  .pid	File to store daemon pid (e.g. crond.pid)
+ .png	Portable Network Graphics file
  .pl	Perl script
  .pr	Bitmap source
  .ps	Postscript file
- .r	RATFOR source
+ .r	RATFOR source (obsolete)
  .rej	Patches that patch(1) couldn't apply
  .rules	Rules for something
  .s	Assembler source
@@ -121,6 +129,7 @@ Suffix	File type
  .sh	sh(1) scripts
  .shar	archive created by the shar(1) utility
  .so	DLL dynamic library
+ .sqml	SQML schema or query program
  .sty	LaTeX style files
  .sym	Modula-2 compiled definition modules
  .tar	archive created by the tar(1) utility
@@ -140,10 +149,10 @@ Suffix	File type
  .z	File compressed using pack(1) (or an old gzip(1))
  .zoo	ZOO archive
  ~	EMACS or patch backup file
- rc	Startup file, e.g. .newsrc
+ rc	Startup (`run control') file, e.g. .newsrc
 .TE
 .SH "CONFORMS TO"
-General UNIX conventions
+General UNIX conventions.
 .SH BUGS
 This list is not exhaustive.
 .SH "SEE ALSO"

@@ -51,11 +51,11 @@ pin	name	used for
 5	GND	Ground
 .TE
 
-This is the specification, in fact 9 V suffice with most mice.
+This is the specification, in fact 9 V suffices with most mice.
 .PP
 The mouse driver can recognize a mouse by dropping RTS to low.  About 14
-ms later the mouse will send 0x4D on the data line.  After further 63
-ms, Microsoft compatible mice will send 0x33.  Other mice send different
+ms later the mouse will send 0x4D on the data line.  After a further 63
+ms, Microsoft-compatible mice will send 0x33.  Other mice send different
 values.
 .PP
 The relative mouse movement is sent as \fIdx\fP (positive means right)
@@ -75,8 +75,7 @@ bit/s	string
 1200	*n
 .TE
 
-As you will note, the first byte of a data packet can be used to
-synchronisation purposes.
+The first byte of a data packet can be used to synchronisation purposes.
 .\"}}}
 .\"{{{ Microsoft protocol
 .SS "Microsoft protocol"

@@ -29,18 +29,26 @@ passwd \- password file
 .SH DESCRIPTION
 .B Passwd
 is an ASCII file which contains a list of the system's users and the
-passwords they must use for access.  The password file should have read
-access for everyone, which is ok because of the encryption, but write
-access only for the superuser.  If you create a new login, leave the
-password field empty and use \fBpasswd\fP(1) to fill it.  A star or
-something like that in the password field means, that this user can not
-login via \fBlogin\fP(1).  If your root file system is on
-.IR /dev/ram,
-you
-must save a changed password file to your root file system floppy, before
-you shutdown the system and check the access rights.  If you want to create
-user groups, their GID's must be equal and there must be an entry in
-\fI/etc/group\fP, or no group will exist.
+passwords they must use for access.  The password file should have
+general read permission (many utilities, like
+.IR ls (1)
+use it to map user IDs to user names), but write access only for the
+superuser.
+.PP
+In the good old days there was no great problem with this general
+read permission.  Everybody could read the encrypted passwords,
+but the hardware was too slow to crack a well-chosen password,
+and moreover, the basic assumption used to be that of a friendly
+user-community.  These days many people run some version of the
+shadow password suite, where
+.I /etc/passwd
+has *'s instead of passwords, and the encrypted passwords are in
+.I /etc/shadow
+which is readable by root only.
+.PP
+When you create a new login, leave the password field empty and use
+\fBpasswd\fP(1) to fill it.  A star (*) in the password field means
+that this user can not login via \fBlogin\fP(1).
 .PP
 There is one entry per line, and each line has the format:
 .sp
@@ -74,7 +82,18 @@ the user's $HOME directory.
 the program to run at login (if empty, use
 .IR /bin/sh ).
 .RE
+.SH NOTE
+If your root file system is on
+.IR /dev/ram,
+you must save a changed password file to your root file system floppy before
+you shut down the system and check the access rights.  If you want to create
+user groups, their GIDs must be equal and there must be an entry in
+\fI/etc/group\fP, or no group will exist.
 .SH FILES
 .I /etc/passwd
 .SH "SEE ALSO"
-.BR passwd "(1), " login "(1), " group (5)
+.BR passwd (1),
+.BR login (1),
+.BR group (5),
+.BR shadow (5)
+

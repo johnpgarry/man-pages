@@ -25,6 +25,7 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:03:44 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Applied fix by Wolfgang Franke, aeb, 961011
 .TH STRFTIME 3  "July 2, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 strftime \- format date and time
@@ -60,7 +61,7 @@ The full month name according to the current locale.
 The preferred date and time representation for the current locale.
 .TP
 .B %d
-The day of the month as a decimal number (range 0 to 31).
+The day of the month as a decimal number (range 01 to 31).
 .TP
 .B %H
 The hour as a decimal number using a 24-hour clock (range 00 to 23).
@@ -72,7 +73,7 @@ The hour as a decimal number using a 12-hour clock (range 01 to 12).
 The day of the year as a decimal number (range 001 to 366).
 .TP
 .B %m
-The month as a decimal number (range 10 to 12).
+The month as a decimal number (range 01 to 12).
 .TP
 .B %M
 The minute as a decimal number.

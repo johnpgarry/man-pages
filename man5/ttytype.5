@@ -20,19 +20,30 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\" 
-.\" Modified Sat Jul 24 17:17:50 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 17:17:50 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Thu Oct 19 21:25:21 MET 1995 by Martin Schulze <joey@infodrom.north.de>
+.\" Modified Mon Oct 21 17:47:19 EDT 1996 by Eric S. Raymond
+ \" <esr@thyrsus.com>xk
+
 .TH TTYTYPE 5 "24 July 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
-ttytype \- terminal name and device list
+ttytype \- terminal device to default terminal type mapping
 .SH DESCRIPTION
-.B Ttytype
-is an ASCII file that lists the names of terminals, as used in termcap,
-in association with the names of the ttys (minus
-.IR /dev/ )
-to which they
-are attached.  It is used by the program tset to set the environment
-variable TERM to the correct terminal name for the user's current tty.
+The 
+.I /etc/ttytype
+file associates termcap/terminfo terminal type names
+with tty lines.  Each line consists of a terminal type, followed by
+whitespace, followed by a tty name (a device name without the
+.IR /dev/ ") prefix."
+
+This association is used by the program 
+.BR tset (1)
+to set the environment variable TERM to the default terminal name for
+the user's current tty.
+
+This facility was designed for a traditional time-sharing environment
+featuring character-cell terminals hardwired to a Unix minicomputer.
+It is little used on modern workstation and personal Unixes.
 .SH EXAMPLE
 A typical
 .I /etc/ttytype
@@ -49,4 +60,9 @@ vt320 ttys0
 .I /etc/ttytype
 the tty definitions file.
 .SH "SEE ALSO"
-.BR getty "(1), " termcap (5)
+.BR getty "(1), " terminfo "(5), " termcap "(5)"
+
+
+
+
+

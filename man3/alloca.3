@@ -31,7 +31,8 @@
 .\"
 .\"     @(#)alloca.3	5.1 (Berkeley) 5/2/91
 .\"
-.\" Converted for Linux, Mon Nov 29 11:05:55 1993, faith@cs.unc.edu
+.\" Converted Mon Nov 29 11:05:55 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Tue Oct 22 23:41:56 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH ALLOCA 3  "29 November 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -54,10 +55,10 @@ function returns a pointer to the beginning of the allocated space.  If the
 allocation failed, a
 .B NULL
 pointer is returned.
-.SH HISTORY
+.SH "CONFORMING TO"
 There is evidence that the
 .B alloca
-function appears in 32v, pwb, pwb.2, 3bsd, and 4bsd.  There is a man page
+function appeared in 32v, pwb, pwb.2, 3bsd, and 4bsd.  There is a man page
 for it in BSD 4.3.  Linux uses the GNU version.
 .SH BUGS
 The
@@ -65,11 +66,3 @@ The
 function is machine dependent.
 .SH SEE ALSO
 .BR brk "(2), " pagesize "(2), " calloc "(3), " malloc "(3), " realloc (3)
-.\" .Sh HISTORY
-.\" The
-.\" .Fn alloca
-.\" function appeared in
-.\" .Bx ?? .
-.\" The function appeared in 32v, pwb and pwb.2 and in 3bsd 4bsd 
-.\" The first man page (or link to a man page that I can find at the
-.\" moment is 4.3...

@@ -1,4 +1,4 @@
-.TH EXPORTS 5 "January 6, 1996" "" "Linux System Administration"
+.TH EXPORTS 5 "October 21, 1996" "" "Linux System Administration"
 .UC 5
 .SH NAME
 exports \- NFS file systems being exported
@@ -23,7 +23,7 @@ ignored, and a # introduces a comment to the end of the line.
 .PP
 .SS General Options
 .TP
-.IR secure "\*d
+.IR secure "\*d"
 This option requires that requests originate on an internet port less
 than IPPORT_RESERVED (1024). This option is on by default. To turn it
 off, specify
@@ -33,7 +33,7 @@ off, specify
 Allow only read-only requests on this NFS volume. The default is to
 allow write requests as well, which can also be made explicit by using
 the
-.IR rw " option.
+.IR rw " option."
 .TP
 .IR link_relative
 Convert absolute symbolic links (where the link contents start with a
@@ -78,7 +78,7 @@ In addition to this,
 lets you specify arbitrary uids and gids that should be mapped to user
 nobody as well. Finally, you can map all user requests to the
 anonymous uid by specifying the
-.IR all_squash " option.
+.IR all_squash " option."
 .PP 
 For the benefit of installations where uids differ between different
 machines, 

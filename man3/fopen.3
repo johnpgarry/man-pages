@@ -98,12 +98,19 @@ Any created files will have mode
 (0666), as modified by the process' umask value (see
 .BR umask (2).
 .PP
-Reads and writes may be intermixed on read/write streams in any order, and
-do not require an intermediate seek as in previous versions of
-.IR stdio .
-This is not portable to other systems, but does work under Linux.
-ANSI C requires that a file positioning function intervene between
-output and input, unless an input operation encounters end-of-file.
+Reads and writes may be intermixed on read/write streams in any order.
+Note that ANSI C requires that a file positioning function intervene
+between output and input, unless an input operation encounters end-of-file.
+(If this condition is not met, then a read is allowed to return the
+result of writes other than the most recent.)
+Therefore it is good practice (and indeed sometimes necessary
+under Linux) to put an
+.B fseek
+or
+.B fgetpos
+operation between write and read operations on such a stream.  This
+operation may be an apparent no-op (as in \fIfseek(..., 0L,
+SEEK_CUR)\fR called for its synchronizing side effect.
 .PP
 The
 .B fdopen
@@ -195,4 +202,4 @@ and
 .B freopen
 functions conform to ANSI C3.159-1989 (``ANSI C'').  The
 .B fdopen
-function conforms to IEEE Std1003.1-1988 (``POSIX'').
+function conforms to IEEE Std1003.1-1988 (``POSIX.1'').

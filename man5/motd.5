@@ -20,14 +20,21 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\" 
-.\" Modified Sat Jul 24 17:08:16 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 17:08:16 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Mon Oct 21 17:47:19 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH MOTD 5 "December 29 1992" "Linux" "Linux Programmer's Manual"
 .SH NAME
 motd \- message of the day
 .SH DESCRIPTION
-\fB/etc/motd\fP is an ASCII file which contents are showed by login(1)
-before it executes the login shell.
+The contents of \fB/etc/motd\fP are displayed by 
+.BR login (1)
+after a successful login but just before it executes the login shell.
+
+The "motd" stands for "message of the day", and this file has been 
+traditionally been used for exactly that (it requires much less disk
+space than mail to all users).
 .SH FILES
 /etc/motd
 .SH "SEE ALSO"
 .BR login (1)
+.BR issue (5)

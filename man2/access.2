@@ -29,6 +29,8 @@
 .\" Modified 18 Mar 1996 by Martin Schulze (joey@infodrom.north.de):
 .\"   Stated more clearly how it behaves with symbolic links.
 .\" Added correction due to Nick Duffek (nsd@bbc.com), aeb, 960426
+.\" Modified Sat Sep 07 18:17:26 MET DST 1996 by Michael Haardt:
+.\"   Restrictions for NFS
 .\"
 .TH ACCESS 2 "17 March 1996" "Linux 1.2.13" "Linux Programmer's Manual"
 .SH NAME
@@ -123,10 +125,15 @@ Insufficient kernel memory was available.
 .I pathname
 contains a reference to a circular symbolic link, i.e., a symbolic link
 containing a reference to itself.
-.SH CAVEAT
+.SH RESTRICTIONS
 .B access
 returns an error if any of the access types in the requested call
 fails, even if other types might be successful.
+.P
+.B access
+may not work correctly on NFS file systems with UID mapping enabled,
+because UID mapping is done on the server and hidden from the client,
+which checks permissions.
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH "SEE ALSO"
