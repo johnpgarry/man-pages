@@ -31,21 +31,21 @@ select, pselect, FD_CLR, FD_ISSET, FD_SET, FD_ZERO \- synchronous I/O multiplexi
 .br
 .B #include <unistd.h>
 .sp
-\fBint select(int \fP\fIn\fP\fB, fd_set *\fP\fIreadfds\fP\fB,
-fd_set *\fP\fIwritefds\fP\fB, fd_set *\fP\fIexceptfds\fP\fB,
-struct timeval *\fP\fIutimeout\fP\fB);\fP
+.BI "int select(int " n ", fd_set *" readfds ,
+.BI "fd_set *" writefds ", fd_set *" exceptfds ,
+.BI "struct timeval *" utimeout );
 .sp
-\fBint pselect(int \fP\fIn\fP\fB, fd_set *\fP\fIreadfds\fP\fB,
-fd_set *\fP\fIwritefds\fP\fB, fd_set *\fP\fIexceptfds\fP\fB,
-const struct timespec *\fP\fIntimeout\fP\fB, sigset_t *\fP\fIsigmask\fP\fB);\fP
+.BI "int pselect(int " n ", fd_set *" readfds ,
+.BI "fd_set *" writefds ", fd_set *" exceptfds ,
+.BI "const struct timespec *" ntimeout ", sigset_t *" sigmask );
 .sp
-\fBFD_CLR(int\fP \fIfd\fP\fB, fd_set *\fP\fIset\fP\fB);\fP
+.BI "FD_CLR(int " fd ", fd_set *" set );
 .br
-\fBFD_ISSET(int\fP \fIfd\fP\fB, fd_set *\fP\fIset\fP\fB);\fP
+.BI "FD_ISSET(int " fd ", fd_set *" set );
 .br
-\fBFD_SET(int\fP \fIfd\fP\fB, fd_set *\fP\fIset\fP\fB);\fP
+.BI "FD_SET(int " fd ", fd_set *" set );
 .br
-\fBFD_ZERO(fd_set *\fP\fIset\fP\fB);\fP
+.BI "FD_ZERO(fd_set *" set );
 .fi
 .SH DESCRIPTION
 
@@ -73,11 +73,9 @@ you are interested in can be added one by one with \fBFD_SET\fP.
 \fBselect\fP modifies the contents of the sets according to the rules
 described below; after calling \fBselect\fP you can test if your file
 descriptor is still present in the set with the \fBFD_ISSET\fP macro.
-\fBFD_ISSET\fP returns zero if the descriptor is present and non-zero if
+\fBFD_ISSET\fP returns non-zero if the descriptor is present and zero if
 it is not. \fBFD_CLR\fP removes a file descriptor from the set although
 I can't see the use for it in a clean program.
-
-
 
 .SH ARGUMENTS
 .TP
@@ -126,15 +124,15 @@ return immediately. The structure \fBstruct timeval\fP is defined as,
 .PP
 .nf
 struct timeval {
-    long tv_sec;    /* seconds */
-    long tv_usec;   /* microseconds */
+    time_t tv_sec;    /* seconds */
+    long tv_usec;     /* microseconds */
 };
 .fi
 .RE
 .TP
 \fIntimeout\fP
 .RS
-This argument has the meaning as \fIutimeout\fP but \fBstruct timespec\fP
+This argument has the same meaning as \fIutimeout\fP but \fBstruct timespec\fP
 has nanosecond precision as follows,
 .PP
 .nf
@@ -161,7 +159,7 @@ call to return with \fBerrno\fP set to \fBEINTR\fP. This behavior is
 essential so that signals can be processed in the main loop of the
 program, otherwise \fBselect\fP would block indefinitely. Now, somewhere
 in the main loop will be a conditional to check the global flag. So we
-must ask: what if a signal arrives after conditional, but before the
+must ask: what if a signal arrives after the conditional, but before the
 \fBselect\fP call? The answer is that \fBselect\fP would block
 indefinitely, even though an event is actually pending. This race
 condition is solved by the \fBpselect\fP call. This call can be used to
@@ -623,22 +621,27 @@ set non-blocking IO, you will not get \fBEAGAIN\fP. Nonetheless
 you should still cope with these errors for completeness.
 .TP
 \fB8.\fP
+Never call \fBread()\fP, \fBrecv()\fP, \fBwrite()\fP, or \fBsend()\fP
+with a buffer length of zero.
+.TP
+\fB9.\fP
 Except as indicated in \fB7.\fP, the functions \fBread()\fP,
 \fBrecv()\fP, \fBwrite()\fP, and \fBsend()\fP never have a return value
 less than 1 except if an error has occurred. For instance, a
 \fBread()\fP on a pipe where the other end has died returns zero (so
-does and end-of-file error), \fIbut\fP only returns zero once. Should
-any of these functions return 0 or \-1, you should \fInot\fP use that
-descriptor again. In the above example, I close the descriptor
-immediately, and then set it to \-1 to prevent it being included in a
-set.
+does an end-of-file error), \fIbut\fP only returns zero
+once (a followup read or write will return \-1). Should
+any of these functions return 0 or \-1, you should \fInot\fP
+pass that descriptor to select ever again. In the above example,
+I close the descriptor immediately, and then set it to \-1
+to prevent it being included in a set.
 .TP
-\fB9.\fP
+\fB10.\fP
 The timeout value must be initialized with each new call to \fBselect\fP,
 since some operating systems modify the structure. \fBpselect\fP
 however does not modify its timeout structure.
 .TP
-\fB10.\fP
+\fB11.\fP
 I have heard that the Windows socket layer does not cope with OOB data
 properly. It also does not cope with \fBselect\fP calls when no file
 descriptors are set at all. Having no file descriptors set is a useful
@@ -702,6 +705,11 @@ many problems in a portable and efficient way that naive programmers try
 to solve with threads, forking, IPCs, signals, memory sharing and other
 dirty methods. \fBpselect\fP is a newer function that is less commonly
 used.
+.PP
+The
+.BR poll (2)
+system call has the same functionality as \fBselect\fP,
+but with less subtle behavior. It is less portable than \fBselect\fP.
 
 .SH CONFORMING TO
 4.4BSD (the \fBselect\fP function first appeared in 4.2BSD).  Generally

@@ -2,6 +2,8 @@
 .\" with networking additions from Alan Cox (A.Cox@swansea.ac.uk)
 .\" and scsi additions from Michael Neuffer (neuffer@mail.uni-mainz.de)
 .\" and sysctl additions from Andries Brouwer (aeb@cwi.nl)
+.\" and System V IPC (as well as various other) additions from
+.\" Michael Kerrisk (mtk16@ext.canterbury.ac.nz)
 .\"
 .\" This is free documentation; you can redistribute it and/or
 .\" modify it under the terms of the GNU General Public License as
@@ -29,6 +31,7 @@
 .\" Mon Jul 22 17:14:44 1996: aeb@cwi.nl, minor fix.
 .\" Sun Dec 16 11:39:19 2001: rwhron@earthlink.net, update for 2.4.
 .\" Sat Jul 13 14:00:00 2002: jbelton@shaw.ca, added to sys/fs and sys/kernel.
+.\" Modified, 22 Jul 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
 .TH PROC 5 2002-07-13 "" "Linux Programmer's Manual"
 .SH NAME
@@ -55,8 +58,9 @@ pseudo-files and directories.
 This holds the complete command line for the process, unless the whole
 process has been swapped out, or unless the process is a zombie.  In
 either of these later cases, there is nothing in this file: i.e. a
-read on this file will return as having read 0 characters.  This file
-is null-terminated, but not newline-terminated.
+read on this file will return 0 characters.
+The command line arguments appear in this file as a set of 
+null-separated strings, with a further null byte after the last string.
 .TP
 .I cwd
 This is a link to the current working directory of the process.  To find out
@@ -478,12 +482,11 @@ The total length of the file is the size of physical memory (RAM) plus
 .I kmsg
 This file can be used instead of the
 .BR syslog (2)
-system call to log kernel messages.  A process must have superuser
-privileges to read this file, and only one process should read this
-file.  This file should not be read if a syslog process is running
-which uses the
+system call to read kernel log messages.  A process must have superuser
+privileges to read this file, and only one process should make use of this
+facility or
 .BR syslog (2)
-system call facility to log kernel messages.
+to read this file.
 
 Information in this file is retrieved with the
 .BR dmesg (8)
@@ -502,7 +505,10 @@ They are the same as the load average numbers given by
 and other programs.
 .TP
 .I locks
-This file shows current file locks.
+This file shows current file locks
+.RB ( flock "(2) and " fcntl (2))
+and leases
+.RB ( fcntl (2)).
 .TP
 .I malloc
 This file is only present if CONFIGDEBUGMALLOC was defined during
@@ -518,6 +524,11 @@ kernel.
 It is in the same format as
 .BR free (1),
 except in bytes rather than KB.
+.TP
+.I mounts
+This is a list of all the file systems currently mounted on the system.
+The format of this file is documented in
+.IR fstab (5).
 .TP
 .I modules
 A text list of the modules that have been loaded by the system.
@@ -816,6 +827,16 @@ nonzero when the kernel has called shrink_dcache_pages() and the
 dcache isn't pruned yet.
 .LP
 The file
+.I dir-notify-enable
+can be used to disable or enable the
+.I dnotify
+interface described in
+.BR fcntl (2)
+on a system-wide basis.
+A value of 0 in this file disables the interface,
+and a value of 1 enables it.
+.LP
+The file
 .I dquot-max
 shows the maximum number of cached disk quota entries.
 On some (2.4) systems, it is not present.
@@ -830,18 +851,28 @@ entries and the number of free disk quota entries.
 .LP
 The file
 .I file-max
-gives the maximum number of open files the kernel is willing
-to handle.  If you get lots
-of error messages about running out of file handles (eg 1024 is not enough for
-you), try increasing the value:
+is a system-wide limit on the number of open files for all processes.
+(See also
+.BR setrlimit (2),
+which can be used by a process to set the per-process limit,
+.BR RLIMIT_NOFILE ,
+on the number of files it may open.)
+If you get lots
+of error messages about running out of file handles,
+try increasing this value:
 .br
 
 .br
 .nf
 .ft CW
-echo 4096 > /proc/sys/kernel/file-max
+echo 100000 > /proc/sys/fs/file-max
 .fi
 .ft
+.LP
+The kernel constant
+.I NR_OPEN
+imposes an upper limit on the value that may be placed in
+.IR file-max .
 .LP
 If you increase 
 .IR file-max ","
@@ -866,7 +897,8 @@ handles and you probably don't need to increase the maximum.
 .LP
 The file
 .I inode-max 
-contains the maximum number of inodes. On some (2.4) systems, it may not be
+contains the maximum number of in-memory inodes.
+On some (2.4) systems, it may not be
 present. This value should be 3-4 times larger
 than the value in file-max, since stdin, stdout and network sockets also
 need an inode to handle them. When you regularly run
@@ -887,6 +919,24 @@ nr_free_inodes represents the number of free inodes.
 preshrink is nonzero when the nr_inodes > inode-max and the
 system needs to prune the inode list instead of allocating
 more.
+.LP
+The file
+.I lease-break-time
+specifies the grace period that the kernel grants to a process
+holding a file lease
+.RB ( fcntl (2))
+after it has sent a signal to that process notifying it
+that another process is waiting to open the file.
+If the lease holder does not remove or downgrade the lease within
+this grace period, the kernel forcibly breaks the lease.
+.LP
+The file
+.I leases-enable
+can be used to enable or disable file leases
+.RB ( fcntl (2))
+on a system-wide basis.
+If this file contains the value 0, leases are disabled.
+A non-zero value enables leases.
 .LP
 The files
 .IR overflowgid " and "
@@ -939,10 +989,29 @@ if >= 4% of space is free; consider information about amount of free space
 valid for 30 seconds.
 .LP
 The file
+.I cap-bound
+holds the value of the kernel
+.IR "capability bounding set"
+(expressed as a signed decimal number).
+This set is ANDed against the capabilities permitted to a process
+during exec.
+.LP
+The file
+.I core_uses_pid
+can be used control the naming of a core dump file on Linux 2.4.
+If this file contains the value 0, then a core dump file is simply named
+.IR core .
+If this file contains a non-zero value, then the core dump file includes
+the process ID in a name of the form
+.IR core.PID .
+.LP
+The file
 .I ctrl-alt-del
 controls the handling of Ctrl-Alt-Del from the keyboard.
 When the value in this file is 0, Ctrl-Alt-Del is trapped and
-sent to the init(1) program to handle a graceful restart.
+sent to the
+.BR init (1)
+program to handle a graceful restart.
 When the value is > 0, Linux's reaction to a Vulcan
 Nerve Pinch (tm) will be an immediate reboot, without even
 syncing its dirty buffers.
@@ -970,9 +1039,9 @@ has the same effect as
 .br
 
 .br
-# hostname "darkstar" > /proc/sys/kernel/hostname
+# hostname "darkstar"
 .br
-# domainname "mydomain" > /proc/sys/kernel/domainname
+# domainname "mydomain"
 .br
 
 .br
@@ -981,7 +1050,9 @@ hostname "darkstar" and DNS (Internet Domain Name Server)
 domainname "frop.org", not to be confused with the NIS (Network
 Information Service) or YP (Yellow Pages) domainname. These two
 domain names are in general different. For a detailed discussion
-see the hostname(1) man page.
+see the
+.BR hostname (1)
+man page.
 .LP
 If the file
 .I htab-reclaim
@@ -998,6 +1069,26 @@ boards. If 0, the cache is disabled. Enabled if nonzero.
 The file
 .I modprobe
 is described by the kernel source file Documentation/kmod.txt.
+.LP
+The file
+.I msgmax
+is a system-wide limit specifying the maximum number of bytes in
+a single message written on a System V message queue.
+.LP
+The file
+.I msgmni
+defines the system-wide limit on the number of message queue identifiers.
+(This file is only present in Linux 2.4 onwards.)
+.LP
+The file
+.I msgmnb
+is a system-wide paramter used to initialise the
+.I msg_qbytes
+setting for subsequenly created message queues.
+The
+.I msg_qbytes
+setting specifies the maximum number of bytes that may be written to the
+message queue.
 .LP
 The files
 .IR ostype " and " osrelease " give substrings of "
@@ -1027,8 +1118,9 @@ The four values in the file
 are console_loglevel, default_message_loglevel, minimum_console_level and
 default_console_loglevel.
 These values influence printk() behavior when printing or
-logging error messages. See syslog(2) for more info on
-the different loglevels.
+logging error messages. See
+.BR syslog (2)
+for more info on the different loglevels.
 Messages with a higher priority than
 console_loglevel will be printed to the console.
 Messages without an explicit priority
@@ -1036,6 +1128,12 @@ will be printed with priority default_message_level.
 minimum_console_loglevel is the minimum (highest) value to which
 console_loglevel can be set.
 default_console_loglevel is the default value for console_loglevel.
+.LP
+The directory
+.\" FIXME say more about random
+.I random
+contains various parameters controlling the operation of the file
+.IR /dev/random .
 .LP
 The file
 .I real-root-dev
@@ -1058,6 +1156,22 @@ The file
 shows the number POSIX realtime signals currently queued.
 .LP
 The file
+.I sem
+(available in Linux 2.4 onwards)
+contains 4 numbers defining limits for System V IPC semaphores.
+These fields are, in order: 
+.IP SEMMSL 8
+The maximum semaphores per semaphore set.
+.IP SEMMNS 8
+A system-wide limit on the number of semaphores in all semaphore sets.
+.IP SEMOPM 8
+The maximum number of operations that may be specified in a
+.BR semop (2)
+call.
+.IP SEMNI 8
+A system-wide limit on the maximum number of semaphore identifiers.
+.LP
+The file
 .I sg-big-buff
 shows the size of the generic SCSI device (sg) buffer.
 You can't tune it just yet, but you could change it on
@@ -1066,11 +1180,22 @@ the value of SG_BIG_BUFF.  However, there shouldn't be any reason to change
 this value.
 .LP
 The file
+.I shmall
+contains the system-wide limit on the total number of pages of
+System V shared memory.
+.LP
+The file
 .I shmmax
 can be used to query and set the run time limit
 on the maximum (System V IPC) shared memory segment size that can be created.
 Shared memory segments up to 1Gb are now supported in the 
 kernel.  This value defaults to SHMMAX.
+.LP
+The file
+.I shmmni
+(available in Linux 2.4 and onwards)
+specifies the system-wide maximum number of System V shared memory
+segments that can be created.
 .LP
 The file
 .I version
@@ -1108,9 +1233,17 @@ management.
 .RE
 .TP
 .I sysvipc
-Subdirectory containing the psuedo-files 
+Subdirectory containing the pseudo-files 
 .IR msg ", "  sem " and "  shm "."
-These files have headers and are formatted for easier understanding.
+These files list the System V Interprocess Communication (IPC) objects 
+(respectively: message queues, semaphores, and shared memory)
+that currently exist on the system,
+providing similar information to that available via
+.BR ipcs (1).
+These files have headers and are formatted (one IPC object per line)
+for easy understanding.
+.BR ipc (5)
+provides further background on the information shown by these files.
 .TP
 .I tty
 Subdirectory containing the psuedo-files and subdirectories for 
@@ -1172,23 +1305,6 @@ Alternatively, \fIecho `cat <file>`\fP works well.
 
 This manual page is incomplete, possibly inaccurate, and is the kind
 of thing that needs to be updated very often.
-.SH BUGS
-The
-.I /proc
-file system may introduce security holes into processes running with
-.BR chroot (2).
-For example, if
-.I /proc
-is mounted in the
-.B chroot
-hierarchy, a
-.BR chdir (2)
-to
-.I /proc/1/root
-will return to the original root of the file system.  This may be
-considered a feature instead of a bug, since Linux does not yet support the
-.BR fchroot (2)
-call.
 .SH ACKNOWLEDGEMENTS
 The material on /proc/sys/fs and /proc/sys/kernel is closely based on
 kernel source documentation files written by Rik van Riel.

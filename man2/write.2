@@ -76,11 +76,11 @@ past than the maximum allowed offset.
 .B EPIPE
 .I fd
 is connected to a pipe or socket whose reading end is closed.  When this
-happens the writing process will receive a
+happens the writing process will also receive a
 .B SIGPIPE
-signal; if it catches, blocks or ignores this the error
-.B EPIPE
-is returned.
+signal.
+(Thus, the write return value is seen only if the program
+catches, blocks or ignores this signal.)
 .TP
 .B EAGAIN
 Non-blocking I/O has been selected using
@@ -102,7 +102,7 @@ Other errors may occur, depending on the object connected to
 .IR fd .
 .SH "CONFORMING TO"
 SVr4, SVID, POSIX, X/OPEN, 4.3BSD.  SVr4 documents additional error
-conditions EDEADLK, ENOLCK, ENOLNK, ENOSR, ENXIO, EPIPE, or ERANGE.
+conditions EDEADLK, ENOLCK, ENOLNK, ENOSR, ENXIO, or ERANGE.
 Under SVr4 a write may be interrupted and return EINTR at any point,
 not just before any data is written. 
 .SH NOTES

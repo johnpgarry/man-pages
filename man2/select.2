@@ -195,6 +195,8 @@ struct timespec {
 };
 .fi
 .RE
+
+(However, see below on the POSIX 1003.1-2001 versions.)
 .PP
 Some code calls
 .B select
@@ -300,6 +302,26 @@ Glibc2.0 has a function with this name, that however does not take a
 .I sigmask
 parameter.
 .SH NOTES
+Concerning the types involved, the classical situation is that
+the two fields of a struct timeval are longs (as shown above),
+and the struct is defined in
+.IR <sys/time.h> .
+The POSIX 1003.1-2001 situation is
+
+.RS
+.nf
+struct timeval {
+    time_t         tv_sec;     /* seconds */
+    suseconds_t    tv_usec;    /* microseconds */
+};
+.fi
+.RE
+
+where the struct is defined in
+.I <sys/select.h>
+and the data types time_t and suseconds_t are defined in
+.IR <sys/types.h> .
+.LP
 Concerning prototypes, the classical situation is that one should
 include
 .I <time.h>

@@ -39,10 +39,10 @@ set and get scheduling algorithm/parameters
 .SH SYNOPSIS
 .B #include <sched.h>
 .sp
-\fBint sched_setscheduler(pid_t \fIpid\fB, int \fIpolicy\fB, 
-const struct sched_param *\fIp\fB);
+.BI "int sched_setscheduler(pid_t " pid ", int " policy ,
+.BI "const struct sched_param *" p );
 .sp
-\fBint sched_getscheduler(pid_t \fIpid\fB);
+.BI "int sched_getscheduler(pid_t " pid );
 .sp
 .nf
 .ta 4n

@@ -33,6 +33,7 @@
 .\"
 .\" Modified Sat Jul 24 10:49:44 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 22:15:39 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified, 22 Jul 02, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
 .TH SOCKETPAIR 2 1993-07-24 "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -45,7 +46,7 @@ socketpair \- create a pair of connected sockets
 .BI "int socketpair(int " d ", int " type ", int " protocol ", int " sv [2]);
 .SH DESCRIPTION
 The
-.N socketpair
+.I socketpair
 call creates an unnamed pair of connected sockets in
 the specified domain
 .IR d ,
@@ -86,7 +87,15 @@ does not specify a valid part of the process address space.
 function call appeared in 4.2BSD). Generally portable to/from
 non-BSD systems supporting clones of the BSD socket layer (including
 System V variants).
+.SH NOTES
+On Linux, the only supported domain for this call is 
+.BR AF_UNIX
+(or synonymously,
+.BR AF_LOCAL ).
+(Most implementations have the same restriction.)
 .SH "SEE ALSO"
 .BR read (2),
 .BR write (2),
-.BR pipe (2)
+.BR pipe (2),
+.BR socket (2),
+.BR unix (7)

@@ -31,21 +31,18 @@
 .\"
 .\"     @(#)ioctl.2	6.4 (Berkeley) 3/10/91
 .\"
-.\" Modified Fri Jul 23 21:38:19 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified Tue Oct 22 00:22:35 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Fri Jun 25 23:51:39 BST 1999 by Rachael Munns <vashti@dream.org.uk>
-.\" Modified Thu Sep 21 20:57:23 MET 2000 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 1993-07-23 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1996-10-22 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1999-06-25 by Rachael Munns <vashti@dream.org.uk>
+.\" Modified 2000-09-21 by Andries Brouwer <aeb@cwi.nl>
 .\"
-.TH IOCTL 2 1993-07-23 "BSD Man Page" "Linux Programmer's Manual"
+.TH IOCTL 2 2000-09-21 "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
 ioctl \- control device
 .SH SYNOPSIS
 .B #include <sys/ioctl.h>
 .sp
 .BI "int ioctl(int " d ", int " request ", ...);"
-.sp
-[The "third" argument is traditionally \fBchar *\fIargp\fR, and will be so
-named for this discussion.]
 .SH DESCRIPTION
 The
 .B ioctl
@@ -56,7 +53,14 @@ particular, many operating characteristics of character special files
 requests.  The argument
 .I d
 must be an open file descriptor.
-
+.PP
+The second argument is a device-dependent request code.  The third
+argument is an untyped pointer to memory.  It's traditionally
+.BI "char *" argp
+(from the days before
+.B "void *"
+was valid C), and will be so named for this discussion.
+.PP
 An ioctl
 .I request
 has encoded in it whether the argument is an

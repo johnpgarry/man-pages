@@ -30,16 +30,16 @@ raise \- send a signal to the current process
 .nf
 .B #include <signal.h>
 .sp
-.BI "int raise(int " "sig" );
+.BI "int raise(int " sig );
 .fi
 .SH DESCRIPTION
 The 
-.B raise
+.B raise()
 function sends a signal to the current process.
 It is equivalent to
 .sp
 .RS
-.BI "kill(getpid()," "sig" );
+.BI "kill(getpid(), " "sig" );
 .RE
 .SH "RETURN VALUE"
 0 on success, nonzero for failure.
