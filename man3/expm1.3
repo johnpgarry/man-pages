@@ -20,16 +20,22 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH EXPM1 3  1995-09-16 "GNU" "Linux Programmer's Manual"
+.\" Modified 2002-07-27 Walter Harms
+.\" 	(walter.harms@informatik.uni-oldenburg.de)
+.\"
+.TH EXPM1 3  2002-07-27 "" "Linux Programmer's Manual"
 .SH NAME
-expm1, log1p \- exponential minus 1, logarithm of 1 plus argument
+expm1  \- exponential minus 1
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
 .sp
 .BI "double expm1(double " x );
 .sp
-.BI "double log1p(double " x );
+.BI "float expm1f(float " x );
+.sp
+.BI "long double expm1l(long double " x );
+.sp
 .fi
 .SH DESCRIPTION
 .BI expm1( x )
@@ -37,12 +43,10 @@ returns a value equivalent to `exp (\fIx\fP) - 1'. It is
 computed in a way that is accurate even if the value of \fIx\fP is near
 zero--a case where `exp (\fIx\fP) - 1' would be inaccurate due to
 subtraction of two numbers that are nearly equal.
-.PP
-.BI log1p( x )
-returns a value equivalent to `log (1 + \fIx\fP)'. It is computed in a way
-that is accurate even if the value of \fIx\fP is near zero.
 .SH "CONFORMING TO"
-BSD
+BSD, C99.
+The float and the long double variants are C99 requirements.
 .SH "SEE ALSO"
 .BR exp (3),
-.BR log (3)
+.BR log (3),
+.BR log1p (3)

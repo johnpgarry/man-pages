@@ -24,8 +24,11 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Sat Jul 24 21:43:44 1993 by Rik Faith (faith@cs.unc.edu)
-.TH ASIN 3  1993-06-08 "" "Linux Programmer's Manual"
+.\" Modified 1993-07-24 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 2002-07-25 by Walter Harms
+.\" 	(walter.harms@informatik.uni-oldenburg.de)
+.\"
+.TH ASIN 3 2002-07-25 "" "Linux Programmer's Manual"
 .SH NAME
 asin \- arc sine function
 .SH SYNOPSIS
@@ -33,6 +36,10 @@ asin \- arc sine function
 .B #include <math.h>
 .sp
 .BI "double asin(double " x );
+.sp
+.BI "float asinf(float " x );
+.sp
+.BI "long double asinl(long double " x );  
 .fi
 .SH DESCRIPTION
 The \fBasin()\fP function calculates the arc sine of \fIx\fP; that is
@@ -47,7 +54,8 @@ value is mathematically defined to be between -PI/2 and PI/2
 .B EDOM
 \fIx\fP is out of range.
 .SH "CONFORMING TO"
-SVID 3, POSIX, BSD 4.3, ISO 9899
+SVID 3, POSIX, BSD 4.3, ISO 9899.
+The float and long double variants are C99 requirements.
 .SH "SEE ALSO"
 .BR acos (3),
 .BR atan (3),

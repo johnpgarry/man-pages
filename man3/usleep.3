@@ -24,23 +24,32 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Sat Jul 24 17:43:05 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sun Apr  1 22:56:49 2001 by aeb
-.TH USLEEP 3  2001-04-02 "" "Linux Programmer's Manual"
+.\" Modified 1993-07-24 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 2001-04-01 by aeb
+.\" Modified 2003-07-23 by aeb
+.\"
+.TH USLEEP 3  2003-07-23 "" "Linux Programmer's Manual"
 .SH NAME
 usleep \- suspend execution for microsecond intervals
 .SH SYNOPSIS
 .nf
-.B #include <unistd.h>
+/* BSD version */
+.B "#include <unistd.h>"
 .sp
 .BI "void usleep(unsigned long " usec );
+.sp
+/* SUSv2 version */
+.B "#define _XOPEN_SOURCE 500"
 .br
-.BI "int usleep(unsigned long " usec "); /* SUSv2 */"
+.B "#include <unistd.h>"
+.sp
+.BI "int usleep(useconds_t " usec ");
 .fi
 .SH DESCRIPTION
 The \fBusleep()\fP function suspends execution of the calling process for
-\fIusec\fP microseconds.  The sleep may be lengthened slightly by any 
-system activity or by the time spent processing the call.
+(at least) \fIusec\fP microseconds.  The sleep may be lengthened slightly
+by any system activity or by the time spent processing the call or by the
+granularity of system timers.
 .SH "RETURN VALUE"
 None (BSD). Or: 0 on success, \-1 on error (SUSv2).
 .SH ERRORS
@@ -57,13 +66,45 @@ The SUSv2 version returns int, and this is also the prototype
 used by glibc 2.2.2.
 Only the EINVAL error return is documented by SUSv2.
 .SH NOTES
-The interaction of this function with SIGALRM and other timer functions
-such as
-.IR sleep (),
+The type
+.B useconds_t
+is an unsigned integer type capable of holding integers
+in the range [0,1000000]. Programs will be more portable
+if they never mention this type explicitly. Use
+.RS
+.nf
+.ta 8
+.sp
+#include <unistd.h>
+\&...
+	unsigned int usecs;
+\&...
+	usleep(usecs);
+.sp
+.fi
+.RE
+This type is defined by
+.I <sys/types.h>
+included by
+.I <unistd.h>
+but glibc defines it only when _XOPEN_SOURCE has a value not less than 500,
+or both _XOPEN_SOURCE and _XOPEN_SOURCE_EXTENDED are defined.
+.\" useconds_t also gives problems on HPUX 10.
+.LP
+The interaction of this function with the SIGALRM signal, and with
+other timer functions such as
 .IR alarm (),
+.IR sleep (),
+.IR nanosleep (),
 .IR setitimer (),
-.IR nanosleep ()
+.IR timer_create (),
+.IR timer_delete (),
+.IR timer_getoverrun (),
+.IR timer_gettime (),
+.IR timer_settime (),
+.IR ualarm ()
 is unspecified.
+.LP
 This function is obsolete. Use
 .BR nanosleep (2)
 or

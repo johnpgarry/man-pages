@@ -24,8 +24,11 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Sat Jul 24 19:14:54 1993 by Rik Faith (faith@cs.unc.edu)
-.TH HYPOT 3  1993-06-25 "" "Linux Programmer's Manual"
+.\" Modified 1993-07-24 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 2002-07-27 by Walter Harms
+.\" 	(walter.harms@informatik.uni-oldenburg.de)
+.\"
+.TH HYPOT 3 2002-07-27 ""  "Linux Programmer's Manual"
 .SH NAME
 hypot \- Euclidean distance function
 .SH SYNOPSIS
@@ -33,11 +36,17 @@ hypot \- Euclidean distance function
 .B #include <math.h>
 .sp
 .BI "double hypot(double " x ", double " y );
+.sp
+.BI "float hypotf(float " x ", float " y );
+.sp
+.BI "long double hypotl (long double " x ", long double " y );
 .fi
 .SH DESCRIPTION
 The \fBhypot()\fP function returns the sqrt(x*x + y*y).  This is the
 length of the hypotenuse of a right-angle triangle with sides of length \fIx\fP and \fIy\fP, or the distance of the point (x, y) from the origin.
 .SH "CONFORMING TO"
-SVID 3, BSD 4.3
+SVID 3, BSD 4.3, C99.
+The float and the long double variants are C99 requirements.
 .SH "SEE ALSO"
-.BR sqrt (3)
+.BR sqrt (3),
+.BR cabs (3)

@@ -24,15 +24,22 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Sat Jul 24 21:44:26 1993 by Rik Faith (faith@cs.unc.edu)
-.TH ACOSH 3  1993-06-13 "" "Linux Programmer's Manual"
+.\" Modified 1993-07-24 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 2002-07-25 by Walter Harms
+.\" 	(walter.harms@informatik.uni-oldenburg.de)
+.\"
+.TH ACOSH 3   2002-07-25 "" "Linux Programmer's Manual"
 .SH NAME
 acosh \- inverse hyperbolic cosine function
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
 .sp
-.BR "double acosh(double " x );
+.BI "double acosh(double " x );
+.sp
+.BI "float acoshf(float " x );
+.sp 
+.BI "long double acoshl(long double " x );
 .fi
 .SH DESCRIPTION
 The \fBacosh()\fP function calculates the inverse hyperbolic cosine of 
@@ -44,7 +51,8 @@ is set.
 .B EDOM
 \fIx\fP is out of range.
 .SH "CONFORMING TO"
-SVID 3, POSIX, BSD 4.3, ISO 9899
+SVID 3, POSIX, BSD 4.3, ISO 9899.
+The float and long double variants are C99 requirements.
 .SH "SEE ALSO"
 .BR asinh (3),
 .BR atanh (3),

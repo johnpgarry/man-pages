@@ -24,8 +24,11 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Sat Jul 24 21:44:59 1993 by Rik Faith (faith@cs.unc.edu)
-.TH ACOS 3  1993-06-08 "" "Linux Programmer's Manual"
+.\" Modified 1993-07-24 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 2002-07-25 by Walter Harms
+.\" 	(walter.harms@informatik.uni-oldenburg.de)
+.\"
+.TH ACOS 3  2002-07-25 "" "Linux Programmer's Manual"
 .SH NAME
 acos \- arc cosine function
 .SH SYNOPSIS
@@ -33,6 +36,8 @@ acos \- arc cosine function
 .B #include <math.h>
 .sp
 .BI "double acos(double " x );
+.BI "float acosf(float " x );
+.BI "long double acosl(long double " x );
 .fi
 .SH DESCRIPTION
 The \fBacos()\fP function calculates the arc cosine of \fIx\fP; that is
@@ -46,7 +51,8 @@ value is mathematically defined to be between 0 and PI (inclusive).
 .B EDOM
 \fIx\fP is out of range.
 .SH "CONFORMING TO"
-SVID 3, POSIX, BSD 4.3, ISO 9899
+SVID 3, POSIX, BSD 4.3, ISO 9899.
+The float and long double variants are C99 requirements.
 .SH "SEE ALSO"
 .BR asin (3),
 .BR atan (3),

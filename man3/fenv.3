@@ -212,7 +212,7 @@ It is only defined if
 is defined.
 The C99 standard does not define a way to set individual bits in the
 floating point mask, e.g. to trap on specific flags.
-glibc 2.2 will support the functions
+glibc 2.2 supports the functions
 .I feenableexcept
 and
 .I fedisableexcept
@@ -221,6 +221,10 @@ to set individual floating point traps, and
 to query the state.
 .sp
 .nf
+.B "#define _GNU_SOURCE"
+.br
+.B "#include <fenv.h>"
+.sp
 .BI "int feenableexcept (int " excepts );
 .br
 .BI "int fedisableexcept (int " excepts );
@@ -240,6 +244,10 @@ and \-1 otherwise.
 The
 .B fegetexcept
 function returns the set of all currently enabled exceptions.
+
+.SH NOTES
+Link with
+.BR \-lm .
 
 .SH "CONFORMING TO"
 IEC 60559 (IEC 559:1989), ANSI/IEEE 854, ISO C99 (ISO/IEC 9899:1999).

@@ -463,9 +463,8 @@ transmits a continuous stream of zero-valued bits for a specific
 duration, if the terminal is using asynchronous serial data
 transmission.  If \fIduration\fP is zero, it transmits zero-valued bits
 for at least 0.25 seconds, and not more that 0.5 seconds.  If
-\fIduration\fP is not zero, it sends zero-valued bits for
-.IB duration * N
-seconds, where \fIN\fP is at least 0.25, and not more than 0.5.
+\fIduration\fP is not zero, it sends zero-valued bits for some
+implementation-defined length of time.
 .LP
 If the terminal is not using asynchronous serial data transmission,
 \fBtcsendbreak()\fP returns without taking any action.
@@ -607,6 +606,26 @@ Unix V7 and several later systems have a list of baud rates
 where after the fourteen values B0, ..., B9600 one finds the
 two constants EXTA, EXTB ("External A" and "External B").
 Many systems extend the list with much higher baud rates.
+.LP
+The effect of a nonzero \fIduration\fP with \fBtcsendbreak\fP varies.
+SunOS specifies a break of 
+.IB duration * N
+seconds, where \fIN\fP is at least 0.25, and not more than 0.5.
+Linux, AIX, DU, Tru64 send a break of
+.I duration
+milliseconds.
+FreeBSD and NetBSD and HP-UX and MacOS ignore the value of
+.IR duration .
+Under Solaris and Unixware,
+.B tcsendbreak
+with nonzero
+.I duration
+behaves like
+.BR tcdrain .
+.\" libc4 until 4.7.5, glibc for sysv: EINVAL for duration > 0.
+.\" libc4.7.6, libc5, glibc for unix: duration in ms.
+.\" glibc for bsd: duration in us
+.\" glibc for sunos4: ignore duration
 .SH "SEE ALSO"
 .BR stty (1),
 .BR setserial (8)

@@ -24,8 +24,10 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Sat Jul 24 19:51:58 1993 by Rik Faith (faith@cs.unc.edu)
-.TH COS 3  1993-06-08 "" "Linux Programmer's Manual"
+.\" Modified 1993-07-24 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 2002-07-27 by Walter Harms
+.\" 	(walter.harms@informatik.uni-oldenburg.de)
+.TH COS 3 2002-07-27 ""   "Linux Programmer's Manual"
 .SH NAME
 cos \- cosine function
 .SH SYNOPSIS
@@ -33,6 +35,10 @@ cos \- cosine function
 .B #include <math.h>
 .sp
 .BI "double cos(double " x );
+.sp
+.BI "float cosf(float " x );
+.sp
+.BI "long double cosl(long double " x );
 .fi
 .SH DESCRIPTION
 The \fBcos()\fP function returns the cosine of \fIx\fP, where \fIx\fP is
@@ -40,7 +46,8 @@ given in radians.
 .SH "RETURN VALUE"
 The \fBcos()\fP function returns a value between \-1 and 1.
 .SH "CONFORMING TO"
-SVID 3, POSIX, BSD 4.3, ISO 9899
+SVID 3, POSIX, BSD 4.3, ISO 9899.
+The float and the long double variants are C99 requirements.
 .SH "SEE ALSO"
 .BR acos (3),
 .BR asin (3),

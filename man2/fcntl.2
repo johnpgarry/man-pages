@@ -564,10 +564,11 @@ Alternatively, if
 is included in
 .IR arg ,
 then notification will remain in effect until explicitly removed.
+
 .\" The following does seem a poor API-design choice...
-A series of calls specifying
-.B DN_MULTISHOT
-is cumulative, with the events in
+A series of
+.B F_NOTIFY
+requests is cumulative, with the events in
 .I arg
 being added to the set already monitored.
 To disable notification of all events, make an

@@ -1,0 +1,92 @@
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.\" Compiled from glibc.info, 2002 Martin Schulze <joey@infodrom.org>
+.\"
+.TH LOGIN 3 2002-01-28 "GNU/Linux" "Linux System Administration"
+.SH NAME
+login, logout \- user accounting functions
+.SH SYNOPSIS
+.B #include <utmp.h>
+.sp
+.BI "void login(const struct utmp *" entry );
+.br
+.BI "int logout(const char *" ut_line );
+.SH DESCRIPTION
+The function
+.BR login ()
+inserts a new entry into the user accounting database (utmp file).
+The element
+.IB ut \->ut_line
+will be set to the name of the terminal on standard input.  If this is
+not a terminal,
+.BR login ()
+will use the standard output or standard error output to determine the
+name of the terminal.  The element
+.IB ut \->ut_type
+.\" (if there is one)
+will be set to
+.BR USER_PROCESS ,
+and
+.IB ut \->ut_pid
+.\" (if it exists)
+will be set to the process ID of the calling process.
+All remaining elements will be copied from
+.IR entry .
+
+A copy of the resulting
+.I entry
+is written to the user accounting log file.
+
+The
+.BR logout ()
+function modifies the user accounting database to indicate that the
+user on terminal
+.I ut_line
+has logged out.
+.SH "RETURN VALUES"
+The
+.BR logout ()
+function returns 1 if the entry was successfully written to the
+database, or 0 if an error occurred.
+.SH NOTE
+These functions are included in libutil, hence you'll need to add
+.B \-lutil
+to your compiler commandline.
+
+Note that the
+member
+.B ut_user
+of struct utmp is called
+.B ut_name
+in BSD.  Therefore,
+.B ut_name
+is defined as an alias for
+.B ut_user
+in
+.IR utmp.h .
+.SH FILES
+.TP
+.I /var/run/utmp
+user accounting database, configured through _PATH_UTMP in
+.I <paths.h>
+.SH "SEE ALSO"
+.BR utmp (5),
+.BR getutent (3)

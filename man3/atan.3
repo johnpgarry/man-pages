@@ -24,8 +24,11 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Sat Jul 24 21:41:58 1993 by Rik Faith (faith@cs.unc.edu)
-.TH ATAN 3  1993-06-08 "" "Linux Programmer's Manual"
+.\" Modified 1993-07-24 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 2002-07-27 by Walter Harms
+.\" 	(walter.harms@informatik.uni-oldenburg.de)
+.\"
+.TH ATAN 3  2002-07-27 "" "Linux Programmer's Manual"
 .SH NAME
 atan \- arc tangent function
 .SH SYNOPSIS
@@ -33,6 +36,11 @@ atan \- arc tangent function
 .B #include <math.h>
 .sp
 .BI "double atan(double " x );
+.sp
+.BI "float atanf(float " x ); 
+.sp
+.BI "long double atanl( long double " x );
+.sp
 .fi
 .SH DESCRIPTION
 The \fBatan()\fP function calculates the arc tangent of \fIx\fP; that is
@@ -42,7 +50,8 @@ The \fBatan()\fP function returns the arc tangent in radians and the
 value is mathematically defined to be between -PI/2 and PI/2
 (inclusive).
 .SH "CONFORMING TO"
-SVID 3, POSIX, BSD 4.3, ISO 9899
+SVID 3, POSIX, BSD 4.3, ISO 9899.
+The float and long double variants are C99 requirements.
 .SH "SEE ALSO"
 .BR acos (3),
 .BR asin (3),

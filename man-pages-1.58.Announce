@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.57.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.58.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,31 +12,28 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.56:
+Differences from version 1.57:
 
     The man pages
 
-	epoll_create.2 epoll_ctl.2 epoll_wait.2 getresuid.2 ioctl_list.2
-	lookup_dcookie.2 mmap.2 open.2 poll.2 semop.2 semtimedop.2
+	fcntl.2 mlock.2
 
-	cabs.3 cabsf.3 cabsl.3 cacos.3 cacosh.3 cacoshf.3 cacoshl.3 carg.3
-	cargf.3 cargl.3 casin.3 casinf.3 casinh.3 casinhf.3 casinhl.3
-	casinl.3 catan.3 catanf.3 catanh.3 catanhf.3 catanhl.3 catanl.3
-	cbrt.3 cbrtf.3 cbrtl.3 ccos.3 ccosf.3 ccosh.3 ccoshf.3 ccoshl.3
-	ccosl.3 cerf.3 cerfc.3 cerfcf.3 cerfcl.3 cerff.3 cerfl.3 cexp2.3
-	cexp2f.3 cexp2l.3 cexp.3 cexpf.3 cexpl.3 cimag.3 cimagf.3 cimagl.3
-	clog10.3 clog10f.3 clog10l.3 clog2.3 clog2f.3 clog2l.3 clog.3
-	clogf.3 clogl.3 conj.3 conjf.3 conjl.3 cpow.3 cpowf.3 cpowl.3
-	cproj.3 cprojf.3 cprojl.3 creal.3 crealf.3 creall.3 csin.3 csinf.3
-	csinh.3 csinhf.3 csinhl.3 csinl.3 csqrt.3 csqrtf.3 csqrtl.3 ctan.3
-	ctanf.3 ctanh.3 ctanhf.3 ctanhl.3 ctanl.3 dlopen.3 encrypt.3 lockf.3
-	mtrace.3 rtime.3
-
-	epoll.4
-
-	complex.5 proc.5
-
-	iso_8859-16.7 ip.7
+	acos.3 acosf.3 acosh.3 acoshf.3 acoshl.3 acosl.3 asin.3 asinf.3
+	asinh.3 asinhf.3 asinhl.3 asinl.3 atan.3 atan2.3 atan2f.3 atan2l.3
+	atanf.3 atanh.3 atanhf.3 atanhl.3 atanl.3 cbc_crypt.3 cos.3 cosh.3
+	des_crypt.3 des_setparity.3 ecb_crypt.3 erf.3 erfcf.3 erfcl.3
+	erff.3 erfl.3 exp.3 exp10.3 exp10f.3 exp10l.3 exp2.3 exp2f.3
+	exp2l.3 expf.3 expl.3 expm1.3 expm1f.3 expm1l.3 fdim.3 fdimf.3
+	fdiml.3 fma.3 fmaf.3 fmal.3 fmax.3 fmaxf.3 fmaxl.3 fmin.3 fminf.3
+	fminl.3 fmod.3 fpclassify.3 frexp.3 getgrnam.3 getpwnam.3 hypot.3
+	hypotf.3 hypotl.3 isfinite.3 isgreater.3 isgreaterequal.3 isinf.3
+	isless.3 islessequal.3 islessgreater.3 isnan.3 isnormal.3 isunordered.3
+	log.3 log10.3 log10f.3 log10l.3 log1p.3 log1pf.3 log1pl.3 log2.3
+	log2f.3 log2l.3 logf.3 login.3 logl.3 logout.3 modf.3 modff.3
+	modfl.3 openpty.3 passwd2des.3 pow10.3 pow10f.3 pow10l.3 pow.3
+	powf.3 powl.3 sin.3 sincos.3 sinf.3 sinh.3 sinl.3 sqrt.3 sqrtf.3
+	sqrtl.3 tan.3 tanf.3 tanh.3 tanl.3 termios.3 ualarm.3 undocumented.3
+	updwtmp.3 usleep.3 xcrypt.3 xdecrypt.3 xencrypt.3
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.
@@ -128,6 +125,7 @@ wrote, edited, or otherwise contributed to this project:
     Sam Varshavchik <mrsam@courier-mta.com>
     Stephen Lee <sl14@cornell.edu>
     Steven Greenland <stevegr@sugar.neosoft.com>
+    Takeo NAKANO <nakano@surf.ap.seikei.ac.jp>
     Thomas K. Dyas <tdyas@eden.rutgers.edu>
     Thomas Koenig <ig25@rz.uni-karlsruhe.de>
     Thorsten Kukuk <kukuk@vt.uni-paderborn.de>

@@ -27,7 +27,9 @@
 .\"
 .\" Converted into a manpage again by Martin Schulze <joey@infodrom.org>
 .\"
-.TH OPENPTY 3  "2001-12-13" "BSD MANPAGE" "Linux Programmer's Manual"
+.\" Added -lutil remark, 030718
+.\"
+.TH OPENPTY 3  "2003-07-18" "BSD" "Linux Programmer's Manual"
 .SH NAME
 openpty, login_tty, forkpty \- tty utility functions
 .SH SYNOPSIS
@@ -134,6 +136,10 @@ will fail if either
 or
 .B fork()
 fails.
+.SH NOTE
+These functions are included in libutil, hence you'll need to add
+.B \-lutil
+to your compiler commandline.
 .SH FILES
 .I /dev/[pt]ty[pqrstuwxyzabcdePQRST][0123456789abcdef]
 .SH "CONFORMING TO"

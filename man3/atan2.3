@@ -24,8 +24,11 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Sat Jul 24 21:41:06 1993 by Rik Faith (faith@cs.unc.edu)
-.TH ATAN2 3  1993-06-08 "" "Linux Programmer's Manual"
+.\" Modified 1993-07-24 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 2002-07-27 by Walter Harms
+.\" 	(walter.harms@informatik.uni-oldenburg.de)
+.\"
+.TH ATAN2 3  2002-07-27 "" "Linux Programmer's Manual"
 .SH NAME
 atan2 \- arc tangent function of two variables
 .SH SYNOPSIS
@@ -33,6 +36,11 @@ atan2 \- arc tangent function of two variables
 .B #include <math.h>
 .sp
 .BI "double atan2(double " y ", double " x );
+.sp
+.BI "float atan2f(float " y ", float " x );
+.sp
+.BI "long double atan2l(long double " y ", long double " x );
+.sp 
 .fi
 .SH DESCRIPTION
 The \fBatan2()\fP function calculates the arc tangent of the two
@@ -43,7 +51,8 @@ arguments are used to determine the quadrant of the result.
 The \fBatan2()\fP function returns the result in radians, which
 is between -PI and PI (inclusive).
 .SH "CONFORMING TO"
-SVID 3, POSIX, BSD 4.3, ISO 9899
+SVID 3, POSIX, BSD 4.3, ISO 9899.
+The float and long double variants are C99 requirements.
 .SH "SEE ALSO"
 .BR acos (3),
 .BR asin (3),

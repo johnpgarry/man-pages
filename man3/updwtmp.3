@@ -17,7 +17,9 @@
 .\" GNU General Public License for more details.
 .\"
 .\" Added info on availability, aeb, 971207
-.TH UPDWTMP 3  1997-07-02 "GNU" "Linux Programmer's Manual"
+.\" Added -lutil remark, 030718
+.\"
+.TH UPDWTMP 3  2003-07-18 "GNU" "Linux Programmer's Manual"
 .SH NAME
 updwtmp, logwtmp \- append an entry to the wtmp file
 .SH SYNOPSIS
@@ -41,7 +43,11 @@ Then it calls \fBupdwtmp\fR() to append the structure to the utmp file.
 Both functions are available under glibc2, but not under libc5.
 However,
 .B logwtmp
-occurs in the old libbsd.
+used to occur in the old libbsd. These days, the
+.B logwtmp
+function is included in libutil. (Hence you'll need to add
+.B \-lutil
+to your compiler commandline to get it.)
 .SH FILES
 .TP
 .I /var/log/wtmp
