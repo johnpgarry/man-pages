@@ -57,7 +57,7 @@ The
 call applies only to sockets of type
 .B SOCK_STREAM
 or
-.B SOCK_SEQPACKET.
+.BR SOCK_SEQPACKET .
 
 The
 .I backlog
@@ -91,10 +91,14 @@ SVr4, 4.4BSD (the
 .B listen
 function call first appeared in 4.2BSD). 
 .SH BUGS
-If the socket is of type af_inet, and the backlog argument is greater
+If the socket is of type af_inet, and the
+.I backlog
+argument is greater
 than the constant SO_MAXCONN (128 in 2.0.23), it is silently truncated
 to SO_MAXCONN. For portable applications don't rely on this value
 since BSD (and at least some BSD derived systems) limit the backlog to
 5.
 .SH "SEE ALSO"
-.BR accept "(2), " connect "(2), " socket (2)
+.BR accept (2),
+.BR connect (2),
+.BR socket (2)

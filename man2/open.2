@@ -59,7 +59,7 @@ respectively.
 may also be
 .RI bitwise- or 'd
 with one or more of the following:
-.TP
+.TP 0.8i
 .B O_CREAT
 If the file does not exist it will be created.
 .TP
@@ -197,7 +197,7 @@ descriptor but e.g. \fBread\fP(2) requests are denied with \fBEACCES\fP.
 This is because the client performs \fBopen\fP by checking the permissions,
 but UID mapping is performed by the server upon read and write requests.
 .SH ERRORS
-.TP
+.TP 0.8i
 .B EEXIST
 .I pathname
 already exists and

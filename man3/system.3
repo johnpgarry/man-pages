@@ -21,7 +21,8 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\" Modified Sat Jul 24 17:51:15 1993 by Rik Faith (faith@cs.unc.edu)
-.TH SYSTEM 3  "April 13, 1993" "GNU" "Linux Programmer's Manual"
+.\" Modified 11 May 1998 by Joseph S. Myers (jsm28@cam.ac.uk)
+.TH SYSTEM 3  "11 May 1998" "GNU" "Linux Programmer's Manual"
 .SH NAME
 system \- execute a shell command
 .SH SYNOPSIS
@@ -63,7 +64,7 @@ returns nonzero if the shell is available, and zero if not.
 .B system()
 does not affect the wait status of any other children.
 .SH "CONFORMING TO"
-ANSI C, POSIX.1, proposed POSIX.2, BSD 4.3
+ANSI C, POSIX.2, BSD 4.3
 .SH "BUGS"
 .PP
 It is extremely unfortunate that the libc version of
@@ -113,10 +114,22 @@ family of functions instead, but not
 .BR execlp (3)
 or
 .BR execvp (3).
+.B system()
+will not, in fact, work properly from programs with suid or sgid
+privileges on systems on which
+.B /bin/sh
+is
+.B bash
+version 2, since bash 2 drops privileges on startup.  (Debian uses a
+modified bash which does not do this when invoked as
+.BR sh .)
 .PP
 The check for the availability of
 .B /bin/sh
-is not actually performed; it is always assumed to be available.
+is not actually performed; it is always assumed to be available.  ISO
+C specifies the check, but POSIX.2 specifies that the return shall
+always be non-zero, since a system without the shell is not
+conforming, and it is this that is implemented.
 .PP
 It is possible for the shell command to return 127, so that code is not a sure
 indication that the

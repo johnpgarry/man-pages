@@ -27,7 +27,7 @@ getsid \- get session ID
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
-.B pid_t getsid(void);
+.BI "pid_t getsid(pid_t" " pid" );
 .SH DESCRIPTION
 .B getsid(0)
 returns the session ID of the calling process.

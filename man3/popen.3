@@ -33,8 +33,9 @@
 .\"
 .\" Converted for Linux, Mon Nov 29 14:45:38 1993, faith@cs.unc.edu
 .\" Modified Sat May 18 20:37:44 1996 by Martin Schulze (joey@linux.de)
+.\" Modified 7 May 1998 by Joseph S. Myers (jsm28@cam.ac.uk)
 .\"
-.TH POPEN 3  "17 May 1996" "BSD MANPAGE" "Linux Programmer's Manual"
+.TH POPEN 3  "7 May 1998" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
 popen, pclose \- process I/O
 .SH SYNOPSIS
@@ -102,18 +103,38 @@ calls fail, or if it cannot allocate memory.
 The
 .B pclose
 function returns \-1 if
-.I stream
-is not associated with a ``popened'' command, if
-.I stream
-already ``pclosed'', or if
+.\" These conditions actually give undefined results, so I commented
+.\" them out.
+.\" .I stream
+.\" is not associated with a ``popened'' command, if
+.\".I stream
+.\" already ``pclosed'', or if
 .B wait4
-returns an error.
+returns an error, or some other error is detected.
 .SH ERRORS
 The
 .B popen
-function does not reliably set
-.IR errno .
-(Is this true for Linux?)
+function does not set
+.I errno
+if memory allocation fails.  If the underlying
+.BR fork() " or " pipe()
+fails,
+.I errno
+is set appropriately.  If the
+.I mode
+argument is invalid, and this condition is detected,
+.I errno
+is set to
+.BR EINVAL .
+.PP
+If
+.B pclose()
+cannot obtain the child status,
+.I errno
+is set to
+.BR ECHILD .
+.SH "CONFORMING TO"
+POSIX.2
 .SH BUGS
 Since the standard input of a command opened for reading shares its seek
 offset with the process that called

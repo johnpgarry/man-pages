@@ -14,10 +14,13 @@ Note that you may have to remove preformatted pages.
 
 Note that sometimes these pages are duplicates of pages
 also distributed in other packages. This has been reported
-about *_module.2, exports.5, fstab.5, nfs.5, passwd.5 and
-mailaddr.7. Be careful not to overwrite more up-to-date versions.
-(Probably I'll remove these pages one of these days.
-Reports on further duplicates are welcome.)
+about passwd.5 and mailaddr.7. Be careful not to
+overwrite more up-to-date versions.
+Reports on further duplicates are welcome.
+Formerly present and now removed duplicates:
+ *_module.2, get_kernel_syms.2 (found in modutils-2.1.*),
+ exports.5 (found in nfs-server-2.2*),
+ fstab.5, nfs.5 (found in mount-2.7*).
 
 Copyrights: These man pages come under various copyrights.
 All are freely distributable when the nroff source is included.

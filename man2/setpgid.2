@@ -102,13 +102,13 @@ return zero.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 
-.I getpgid
+.B getpgid
 returns a process group on success.
 On error, \-1 is returned, and
 .I errno
 is set appropriately.
 
-.I getpgrp
+.B getpgrp
 always returns the current process group.
 .SH ERRORS
 .TP 0.8i
@@ -134,7 +134,10 @@ The function
 .B setpgrp
 is from BSD 4.2.
 The function
-.BR getpgid
+.B getpgid
 conforms to SVr4.
 .SH "SEE ALSO"
-.BR getuid "(2), " setsid "(2), " tcsetpgrp "(3), " termios (4)
+.BR getuid (2),
+.BR setsid (2),
+.BR tcsetpgrp (3),
+.BR termios (4)

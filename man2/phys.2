@@ -26,7 +26,7 @@
 .\"
 .\" Modified Sun Jul 25 10:49:24 1993 by Rik Faith <faith@cs.unc.edu>
 .\"
-.TH PHYS 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH PHYS 2 "24 July 1993" "Linux 2.0" "Linux Programmer's Manual"
 .SH NAME
 phys \- allow a process to access physical addresses [NOT IMPLEMENTED]
 .SH SYNOPSIS
@@ -38,7 +38,7 @@ phys \- allow a process to access physical addresses [NOT IMPLEMENTED]
 .ad b
 .SH DESCRIPTION
 .BR WARNING :
-Since this function is not implemented as of Linux 0.99.11, it will always
+Since this function is not implemented as of Linux 2.0, it will always
 return \-1 and set
 .I errno
 to
@@ -66,4 +66,7 @@ Version 7.
 .SH BUGS
 \fBphys\fP is very machine dependent.
 .SH "SEE ALSO"
-.BR mmap "(2), " munmap (2)
+.BR mmap (2),
+.BR munmap (2),
+.BR unimplemented (2)
+

@@ -22,11 +22,13 @@
 .\" License.
 .\" Modified Sat Jul 24 19:27:50 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Mon Aug 30 22:02:34 1995 by Jim Van Zandt <jrv@vanzandt.mv.com>
-.\" longindex is a pointer, has_arg can take 3 values, using consistent
-.\" names for optstring and longindex, "\n" in formats fixed.  Documenting
-.\" opterr and getopt_long_only.  Clarified explanations (borrowing heavily
-.\" from the source code).
-.TH GETOPT 3  "14 September 1997" "GNU" "Linux Programmer's Manual"
+.\"  longindex is a pointer, has_arg can take 3 values, using consistent
+.\"  names for optstring and longindex, "\n" in formats fixed.  Documenting
+.\"  opterr and getopt_long_only.  Clarified explanations (borrowing heavily
+.\"  from the source code).
+.\" Modified 8 May 1998 by Joseph S. Myers (jsm28@cam.ac.uk)
+.\"
+.TH GETOPT 3  "8 May 1998" "GNU" "Linux Programmer's Manual"
 .SH NAME
 getopt \- Parse command line options
 .SH SYNOPSIS
@@ -84,6 +86,19 @@ character is followed by a colon, the option requires an argument, so
 Two colons mean an option takes
 an optional arg; if there is text in the current \fIargv\fP-element,
 it is returned in \fIoptarg\fP, otherwise \fIoptarg\fP is set to zero.
+This is a GNU extension.  If
+.I optstring
+contains
+.B W
+followed by a semicolon, then
+.B -W foo
+is treated as the long option
+.BR --foo .
+(The
+.B -W
+option is reserved by POSIX.2 for implementation extensions.)
+This behaviour is a GNU extension, not available with libraries before
+GNU libc 2.
 .PP
 By default, \fBgetopt()\fP permutes the contents of \fIargv\fP as it
 scans, so that eventually all the non-options are at the end.  Two
@@ -186,6 +201,16 @@ ambiguous match or an extraneous parameter.
 .B POSIXLY_CORRECT
 If this is set, then option processing stops as soon as a non-option 
 argument is encountered.
+.TP
+.SM
+.B _<PID>_GNU_nonoption_argv_flags_
+This variable was used by
+.B bash
+2.0 to communicate to GNU libc which arguments are the results of
+wildcard expansion and so should not be considered as options.  This
+behaviour was removed in
+.B bash
+version 2.01, but the support remains in GNU libc.
 .SH "EXAMPLE"
 The following example program, from the source code, illustrates the
 use of
@@ -278,6 +303,12 @@ main (argc, argv)
 .fi
 .SH "BUGS"
 This manpage is confusing.
+.PP
+The POSIX.2 specification of
+.B getopt()
+has a technical error described in POSIX.2 Interpretation 150.  The GNU
+implementation (and probably all other implementations) implements the
+correct behaviour rather than that specified.
 .SH "CONFORMING TO"
 .TP
 \fBgetopt()\fP:

@@ -43,6 +43,7 @@ struct sysinfo {
 .B sysinfo
 provides a simple way of getting overall system statistics.  This is more
 portable than reading \fI/dev/kmem\fP.
+For an example of its use, see intro(2).
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -54,6 +55,8 @@ pointer to \fIstruct\ sysinfo\fP is invalid
 .SH "CONFORMING TO"
 This function is Linux-specific, and should not be used in programs
 intended to be portable.
-.SH BUGS
-The Linux DLL 4.4.1 libraries do not contain a proper prototype for this
-function.
+.sp
+The Linux kernel has a sysinfo system call since 0.98.pl6.
+Linux libc contains a sysinfo() routine since 5.3.5, and
+glibc has one since 1.90.
+

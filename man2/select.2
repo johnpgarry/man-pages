@@ -84,9 +84,9 @@ is the highest-numbered descriptor in any of the three sets, plus 1.
 .I timeout
 is an upper bound on the amount of time elapsed before
 .B select
-returns.  It may be zero, causing
+returns. It may be zero, causing
 .B select
-to return immediately.  If
+to return immediately. If
 .I timeout
 is NULL (no timeout),
 .B select
@@ -186,4 +186,4 @@ sets the timeout variable before exit, but the BSD variant does not.
 .BR read (2),
 .BR recv (2),
 .BR send (2),
-.BR write (2).
+.BR write (2)

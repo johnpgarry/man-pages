@@ -25,12 +25,13 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Sat Jul 24 00:35:52 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Thu Jun  4 12:21:13 1998 by Andries Brouwer <aeb@cwi.nl>
 .\"
-.TH RENAME 2 "24 July 1993" "Linux 0.99.7" "Linux Programmer's Manual"
+.TH RENAME 2 "4 June 1998" "Linux 2.0" "Linux Programmer's Manual"
 .SH NAME
 rename \- change the name or location of a file
 .SH SYNOPSIS
-.B #include <unistd.h>
+.B #include <stdio.h>
 .sp
 .BI "int rename(const char *" oldpath ", const char *" newpath );
 .SH DESCRIPTION
@@ -169,4 +170,7 @@ deal with this.  See
 .IR link (2)
 for a similar problem.
 .SH "SEE ALSO"
-.BR link "(2), " unlink "(2), " symlink "(2), " mv "(1), " link (8).
+.BR link (2),
+.BR unlink (2),
+.BR symlink (2),
+.BR mv (1)

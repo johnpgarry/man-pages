@@ -77,9 +77,6 @@ for the decimal character.
 .B LC_TIME
 for 
 .BR strftime() .
-.B NULL
-if the request cannot not be honored.
-This string may be allocated in static storage.
 .PP
 A program may be made portable to all locales by calling
 .B setlocale(LC_ALL, """""")
@@ -96,9 +93,12 @@ to compare strings.
 A successful call to
 .B setlocale()
 returns a string that corresponds to the locale set.
+This string may be allocated in static storage.
 The string returned is such that a subsequent call with that string
 and its associated category will restore that part of the process's
-locale.
+locale. The return value is
+.B NULL
+if the request cannot be honored.
 .SH "CONFORMING TO"
 ANSI C, POSIX.1
 .PP

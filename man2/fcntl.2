@@ -138,20 +138,40 @@ Like
 but instead of returning an error we wait for the lock to be released.
 .TP
 .B F_GETOWN
-Get the process ID (or process group) of the owner of a socket.
-.sp
+Get the process ID or process group currently receiving SIGIO
+and SIGURG signals for events on file descriptor
+.IR fd .
 Process groups are returned as negative values.
 .TP
 .B F_SETOWN
-Set the process or process group that owns a socket.
-.sp
-For these commands, ownership means receiving
-.B SIGIO
-or
-.B SIGURG
-signals.
-.sp
+Set the process ID or process group that will receive SIGIO
+and SIGURG signals for events on file descriptor
+.IR fd .
 Process groups are specified using negative values.
+
+.\" From glibc.info:
+If you set the O_ASYNC status flag on a file descriptor
+(either by providing this flag with the
+.I open
+call, or by using the F_SETFL command of
+.IR fcntl ),
+a SIGIO signal is sent whenever input or output becomes possible
+on that file descriptor.  The process or process group to receive
+the signal can be selected by using the F_SETOWN command to the
+.I fcntl
+function.  If the file descriptor is a socket, this also selects
+the recipient of SIGURG signals that are delivered when out-of-band
+data arrives on that socket. (SIGURG is sent in any situation where
+.I select
+would report the socket as having an "exceptional condition".)
+If the file descriptor corresponds to a terminal device, then SIGIO
+signals are sent to the foreground process group of the terminal.
+
+The use of O_ASYNC, F_GETOWN, F_SETOWN is BSD-specific.
+POSIX has asynchronous I/O and the
+.I aio_sigevent
+structure to achieve similar things.
+
 .SH "RETURN VALUE"
 The return value depends on the operation:
 .TP 0.9i
