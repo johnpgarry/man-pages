@@ -32,11 +32,9 @@ is an ASCII file which contains a list of the system's users and the
 passwords they must use for access.  The password file should have read
 access for everyone, which is ok because of the encryption, but write
 access only for the superuser.  If you create a new login, leave the
-password field empty and use \fBpasswd\fP(1) to fill it.  A star or
+password field empty and use \fBpasswd\fP(2) to fill it.  A star or
 something like that in the password field means, that this user can not
-login via \fBlogin\fP(1).  If your root file system is on
-.IR /dev/ram,
-you
+login via \fBlogin\fP(1).  If your root file system is on /dev/ram, you
 must save a changed password file to your root file system floppy, before
 you shutdown the system and check the access rights.  If you want to create
 user groups, their GID's must be equal and there must be an entry in
@@ -52,29 +50,28 @@ The field descriptions are:
 .sp
 .RS
 .TP 1.0in
-.I login_name
+login_name
 the name of the user on the system.
 .TP
-.I password
+.B password
 the encrypted optional user password.
 .TP
-.I UID
+.B UID
 the numerical user ID.
 .TP
-.I GID
+.B GID
 the numerical group ID for this user.
 .TP
-.I user_name
+.B user_name
 the (optional) comment field (often a full user name).
 .TP
-.I directory
+.B directory
 the user's $HOME directory.
 .TP
-.I shell
-the program to run at login (if empty, use
-.IR /bin/sh ).
+.B shell
+the program to run at login (if empty, use /bin/sh).
 .RE
 .SH FILES
-.I /etc/passwd
+/etc/passwd
 .SH "SEE ALSO"
 .BR passwd "(1), " login "(1), " group (5)

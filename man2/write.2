@@ -25,62 +25,68 @@
 .\"
 .\" Modified Sat Jul 24 13:35:59 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Nov 28 17:19:01 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sat Jan 13 12:58:08 MET 1996 by Michael Haardt (michael@cantor.informatik.rwth-aachen.de)
-.TH WRITE 2 "13 January 1996" "Linux" "System calls"
+.\" "
+.TH WRITE 2 "28 November 1993" Linux "Linux Programmer's Manual"
 .SH NAME
 write \- write to a file descriptor
 .SH SYNOPSIS
+.B #include <sys/types.h>
+.br
 .B #include <unistd.h>
 .sp
-.BI "ssize_t write(int " fd ", const char *" buf ", size_t " count );
+.BI "size_t write(int " fd ", const char *" buf ", size_t " count );
 .SH DESCRIPTION
 .B write
 writes up to
 .I count
-bytes to the file referenced by the file descriptor
+bytes from file descriptor
 .I fd
 from the buffer starting at
 .I buf.
-POSIX requires, that a \fBread()\fP which can be proved to occur after a
-\fBwrite()\fP returned, returns the new data.  Note that not all file
-systems are POSIX conforming.
 .SH "RETURN VALUE"
 On success, the number of bytes written are returned (zero indicates
-nothing was written).  On error, \-1 is returned, and \fIerrno\fP is set
-appropriately.  If \fIcount\fP is zero and the file descriptor refers to
-a regular file, 0 will be returned without causing any other effect.
-For a special file, the results are not portable.
+nothing was written).  On error, \-1 (or MAXINT, as size_t is unsigned) is
+returned, and
+.I errno
+is set appropriately.
 .SH ERRORS
-.IP \fBEBADF\fP
+.TP 0.8i
+.B EBADF
 .I fd
 is not a valid file descriptor or is not open for writing.
-.IP \fBEINVAL\fP
+.TP
+.B EINVAL
 .I fd
 is attached to an object which is unsuitable for writing.
-.IP \fBEFAULT\fP
+.TP
+.B EFAULT
 .I buf
 is outside your accessible address space.
-.IP \fBEPIPE\fP
+.TP
+.B EPIPE
 .I fd
-is connected to a pipe or socket whose reading end is closed.  When this
-happens the writing process will receive a
+is connected to a pipe or socket whose reading end is closed. When
+this happens the writing process will receive a
 .B SIGPIPE
 signal; if it catches, blocks or ignores this the error
 .B EPIPE
 is returned.
-.IP \fBEAGAIN\fP
+.TP
+.B EAGAIN 
 Non-blocking I/O has been selected using
 .B O_NONBLOCK
 and there was no room in the pipe or socket connected to
 .I fd
 to write the data immediately.
-.IP \fBEINTR\fP
+.TP
+.B EINTR
 The call was interrupted by a signal before any data was written.
-.IP \fBENOSPC\fP
+.TP
+.B ENOSPC
 The device containing the file referred to by
 .I fd
 has no room for the data.
-.PP
+
 Other errors may occur, depending on the object connected to
 .IR fd .
 .SH "CONFORMING TO"
