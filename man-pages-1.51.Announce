@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.50.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.51.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,19 +12,15 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.49:
+Differences from version 1.50:
 
     The man pages
 
-	semop.2
+	access.2 mount.2 msgctl.2 msgop.2 sigqueue.2
 
-	a64l.3 argz_add.3 argz_add_sep.3 argz_append.3 argz_count.3
-	argz_create.3 argz_create_sep.3 argz_delete.3 argz_extract.3
-	argz_insert.3 argz_next.3 argz_replace.3 argz_stringify.3
-	envz_add.3 envz_entry.3 envz_get.3 envz_merge.3 envz_remove.3
-	envz_strip.3 ether_aton.3 ether_aton_r.3 ether_hostton.3
-	ether_line.3 ether_ntoa.3 ether_ntoa_r.3 ether_ntohost.3
-	l64a.3 strtol.3 strtoq.3 strtoul.3 strtouq.3 undocumented.3
+	clearenv.3 printf.3 shm_open.3 strcasecmp.3
+
+	boot.7 signal.7
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.

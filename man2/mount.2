@@ -58,7 +58,9 @@ remove the attachment of the (topmost) filesystem mounted on
 
 Only the super-user may mount and unmount filesystems.
 Since Linux 2.4 a single filesystem can be visible at
-multiple mount points.
+multiple mount points, and multiple mounts can be stacked
+on the same mount point.
+.\" Multiple mounts on same mount point: since 2.3.99pre7.
 
 Values for the
 .IR filesystemtype
@@ -144,9 +146,6 @@ understood by this file system.
 See
 .BR mount (8)
 for details of the options available for each filesystem type.
-.\" .P
-.\" Multiple mounts can be stacked on the same mount point. --
-.\" This has always been the case, even in ancient Unix.
 .PP
 .\" Note: the kernel naming differs from the glibc naming
 .\" umount2 is the glibc name for what the kernel now calls umount
@@ -164,7 +163,7 @@ Force unmount even if busy.
 .TP
 .B MNT_DETACH
 Perform a lazy unmount: make the mount point unavailable for
-new accesses, and actaully perform the unmount when the mount point
+new accesses, and actually perform the unmount when the mount point
 ceases to be busy. (Since 2.4.11.)
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and

@@ -92,7 +92,7 @@ Set the close-on-exec flag to the value specified by the
 .B FD_CLOEXEC
 bit of
 .IR arg .
-.SS "The file ststus flags"
+.SS "The file status flags"
 A file descriptor has certain associated flags, initialized by
 .BR open (2)
 .\" or
@@ -523,6 +523,7 @@ sructure as its second argument, and the
 field of this argument will hold the descriptor of the leased file
 that has been accessed by another process.
 (This is useful if the caller holds leases against multiple files).
+.SS "File and directory change notification"
 .TP
 .B F_NOTIFY
 (Linux 2.4 onwards)

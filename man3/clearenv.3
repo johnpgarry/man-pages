@@ -32,11 +32,15 @@ clearenv \- clear the environment
 .fi
 .SH DESCRIPTION
 The \fBclearenv()\fP function clears the environment of all name-value
-pairs.
+pairs and sets the value of the external variable
+.I environ
+to NULL.
 
 .SH "RETURN VALUE"
 The \fBclearenv()\fP function returns zero on success, and a non-zero
 value on failure.
+.\" Most versions of Unix return -1 on error, or do not even have errors.
+.\" Glibc info and the Watcom C library document "a nonzero value".
 
 .SH AVAILABILITY
 Not in libc4, libc5. In glibc since glibc 2.0.
@@ -58,6 +62,19 @@ the assignment
 .fi
 .RE
 will probably do.
+.LP
+The DGUX and Tru64 manpages write: If
+.I environ
+has been modified by anything other than the
+.IR putenv() ,
+.IR getenv() ,
+or
+.IR clearenv()
+functions, then
+.BR clearenv()
+will return an error and the process environment will remain unchanged.
+.\" .LP
+.\" HPUX has a ENOMEM error return.
 .SH "SEE ALSO"
 .BR getenv (3),
 .BR putenv (3),

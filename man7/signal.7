@@ -1,5 +1,6 @@
 '\" t
 .\" Copyright (c) 1993 by Thomas Koenig (ig25@rz.uni-karlsruhe.de)
+.\" Copyright (c) 2002 by Michael Kerrisk (mtk16@ext.canterbury.ac.nz)
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -26,12 +27,17 @@
 .\" Modified Sun Apr 14 12:02:29 1996 by Andries Brouwer (aeb@cwi.nl)
 .\" Modified Sat Nov 13 16:28:23 1999 by Andries Brouwer (aeb@cwi.nl)
 .\" Modified 10 Apr 2002, by Michael Kerrisk (mtk16@ext.canterbury.ac.nz)
+.\" Modified  7 Jun 2002, by Michael Kerrisk (mtk16@ext.canterbury.ac.nz)
+.\"	Added information on real-time signals
 .\"
-.TH SIGNAL 7  1996-04-14 "Linux 1.3.88" "Linux Programmer's Manual"
+.TH SIGNAL 7  2002-06-07 "Linux 2.4.18" "Linux Programmer's Manual"
 .SH NAME
 signal \- list of available signals
 .SH DESCRIPTION
-Linux supports the signals listed below. Several signal numbers
+Linux supports both POSIX reliable signals (hereinafter
+"standard signals") and POSIX real-time signals.
+.SS "Standard Signals"
+Linux supports the standard signals listed below. Several signal numbers
 are architecture dependent, as indicated in the "Value" column.
 (Where three values are given, the first one is usually valid for
 alpha and sparc, the middle one for i386, ppc and sh, and
@@ -151,11 +157,81 @@ the process with a core dump.
 
 .B SIGPWR
 (which is not specified in POSIX 1003.1-2001) is typically ignored
-on those other Unices where it appears.
+by default on those other Unices where it appears.
 
 .B SIGIO
 (which is not specified in POSIX 1003.1-2001) is ignored by default
 on several other Unices.
+.SS "Real-time Signals"
+Linux supports real-time signals as originally defined in the POSIX.4
+real-time extensions (and now included in POSIX 1003.1-2001).
+Linux supports 32 real-time signals, numbered from 32
+.RB ( SIGRTMIN )
+to 63
+.RB ( SIGRTMAX ).
+(Programs should always refer to real-time signals using notation
+.BR SIGRTMIN +n,
+since the range of real-time signal numbers varies across Unices.)
+.PP
+Unlike standard signals, real-time signals have no predefined meanings:
+the entire set of real-time signals can be used for application-defined
+purposes.
+(Note, however, that the LinuxThreads implementation uses the first
+three real-time signals.)
+.PP
+The default action for an unhandled real-time signal is to terminate the
+receiving process.
+.PP
+Real-time signals are distinguished by the following:
+.IP 1. 4
+Multiple instances of real-time signals can be queued.
+By contrast, if multiple instances of a standard signal are delivered
+while that signal is currently blocked, then only one instance is queued.
+.IP 2. 4
+If the signal is sent using
+.BR sigqueue (2),
+an accompanying value (either an integer or a pointer) can be sent
+with the signal.
+If the receiving process establishes a handler for this signal using the
+.B SA_SIGACTION
+flag to
+.BR sigaction (2)
+then it can obtain this data via the
+.I si_value
+field of the
+.I siginfo_t
+structure passed as the second argument to the handler.
+Furthermore, the
+.I si_pid
+and
+.I si_uid
+fields of this structure can be used to obtain the PID
+and real user ID of the process sending the signal.
+.IP 3. 4
+Real-time signals are delivered in a guaranteed order.
+Multiple real-time signals of the same type are delivered in the order
+they were sent.
+If different real-time signals are sent to a process, they are delivered
+starting with the lowest-numbered signal.
+(I.e., low-numbered signals have highest priority.)
+.PP
+If both standard and real-time signals are pending for a process,
+POSIX leaves it unspecified which is delivered first.
+Linux, like many other implementations, gives priority
+to standard signals in this case.
+.PP
+According to POSIX, an implementation should permit at least
+_POSIX_SIGQUEUE_MAX (32) real-time signals to be queued to
+a process.
+However, rather than placing a per-process limit, Linux imposes
+a system-wide limit on the number of queued real-time signals
+for all processes.
+This limit can be viewed (and with privilege) changed via the
+.I /proc/sys/kernel/rtsig-max
+file.
+A related file,
+.IR /proc/sys/kernel/rtsig-max ,
+can be used to find out how many real-time signals are currently queued.
 .SH "CONFORMING TO"
 POSIX.1
 .SH BUGS
@@ -173,5 +249,5 @@ signal 29 is
 .BR setitimer (2),
 .BR sigaction (2),
 .BR signal (2),
-.BR sigprocmask (2)
-
+.BR sigprocmask (2),
+.BR sigqueue (2)

@@ -46,7 +46,9 @@ to
 and the \fIarg\fP argument from \fBon_exit()\fP.
 .SH "RETURN VALUE"
 The \fBon_exit()\fP function returns the value 0 if successful; otherwise
-the value \-1 is returned.
+it returns a non-zero value.
+.SH "CONFORMING TO"
+This function comes from SunOS, but is also present in libc4, libc5 and glibc.
 .SH "SEE ALSO"
 .BR atexit (3),
 .BR exit (3)
