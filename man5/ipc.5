@@ -38,12 +38,12 @@ ipc \- System V interprocess communication mechanisms
 .SH DESCRIPTION
 The manual page refers to the Linux implementation of the System V
 interprocess communication mechanisms:
-message queues, semaphore sets and shared memory segments.
+message queues, semaphore sets, and shared memory segments.
 In the following, the word
 .B resource
 means an instantiation of one among such mechanisms.
 .SS Resource Access Permissions
-For each resource the system uses a common structure of type
+For each resource, the system uses a common structure of type
 .BR "struct ipc_perm"
 to store information needed in determining permissions to perform an
 ipc operation.
@@ -92,18 +92,18 @@ The permissions are interpreted as follows:
 	0002	Write by others.
 .fi
 .PP
-Bits 0100, 0010 and 0001 (the execute bits) are unused by the system.
-Furthermore
+Bits 0100, 0010, and 0001 (the execute bits) are unused by the system.
+Furthermore,
 "write"
 effectively means
 "alter"
 for a semaphore set.
 .PP
-The same system header file defines also the following symbolic
+The same system header file also defines the following symbolic
 constants:
 .TP 14
 .B IPC_CREAT
-Create entry if key doesn't exists.
+Create entry if key doesn't exist.
 .TP
 .B IPC_EXCL
 Fail if key exists.
@@ -127,8 +127,8 @@ Note that
 .B IPC_PRIVATE
 is a
 .B key_t
-type, while all the others symbolic constants are flag fields or-able
-into an
+type, while all the other symbolic constants are flag fields and can
+be OR'ed into an
 .B int
 type variable.
 .SS Message Queues

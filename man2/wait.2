@@ -33,6 +33,9 @@
 .\" Modified Thu Nov 26 02:12:45 1998 by aeb - add SIGCHLD stuff.
 .\" Modified Mon Jul 24 21:37:38 2000 by David A. Wheeler
 .\"          <dwheeler@dwheeler.com> - noted thread issues.
+.\" Modified 26 Jun 01 by Michael Kerrisk
+.\"          Added __WCLONE, __WALL, and __WNOTHREAD descriptions
+.\" Modified 2001-09-25, aeb
 .\"
 .TH WAIT 2  2000-07-24 "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -98,6 +101,8 @@ which means to return immediately if no child has exited.
 .B WUNTRACED
 which means to also return for children which are stopped, and whose
 status has not been reported.
+.PP
+(For Linux-only options, see below.)
 .PP
 If
 .I status
@@ -184,7 +189,7 @@ The library interface is not allowed to return
 but will return
 .BR EINTR .
 .SH NOTES
-The Single Unix Specification describes a flag SA_NOCLDWAIT (not present
+The Single Unix Specification describes a flag SA_NOCLDWAIT (not supported
 under Linux) such that if either this flag is set, or the action for
 SIGCHLD is set to SIG_IGN (which, by the way, is not allowed by POSIX),
 then children that exit do not become zombies and a call to
@@ -194,21 +199,47 @@ or
 will block until all children have exited, and then fail with
 .I errno
 set to ECHILD.
-.PP
+.SH "LINUX NOTES"
 In the Linux kernel, a kernel-scheduled thread is not a distinct
 construct from a process. Instead, a thread is simply a process
-that is created using the Linux-unique clone(2) system call;
-other routines such as the portable
+that is created using the Linux-unique
+.BR clone (2)
+system call; other routines such as the portable
 .BR pthread_create (3)
 call are implemented using
 .BR clone (2).
-Thus, if two threads A and B are siblings, then thread A cannot wait on
-any processes forked by thread B or its descendents,
-because an uncle cannot wait on his nephews.
-In some other Unix-like systems, where multiple threads are implemented
-as belonging to a single process, thread A can wait on any processes
-forked by sibling thread B; you will have to rewrite any code
-that makes this assumption for it to work on Linux.
+Before Linux 2.4, a thread was just a special case of a process,
+and as a consequence one thread could not wait on the children
+of another thread, even when the latter belongs to the same thread group.
+However, POSIX prescribes such functionality, and since Linux 2.4
+a thread can, and by default will, wait on children of other threads
+in the same thread group.
+.LP
+The following Linux-specific
+.I options
+are for use with children created using
+.BR clone (2).
+.TP
+.B __WCLONE
+.\" since 0.99pl10
+Wait for "clone" children only.  If omitted then wait
+for "non-clone" children only.  (A "clone" child is one
+which delivers no signal, or a signal other than
+.B SIGCHLD
+to its parent upon termination.)
+This option is ignored if
+.B __WALL
+is also specified.
+.TP
+.B __WALL
+.\" since patch-2.3.48
+(Since Linux 2.4) Wait for all children, regardless of
+type ("clone" or "non-clone").
+.TP
+.B __WNOTHREAD
+.\" since patch-2.4.0-test8
+(Since Linux 2.4) Do not wait for children of other threads in
+the same thread group. This was the default before Linux 2.4.
 .SH "CONFORMING TO"
 SVr4, POSIX.1
 .SH "SEE ALSO"

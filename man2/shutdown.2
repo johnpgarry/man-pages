@@ -50,17 +50,22 @@ associated with
 .I s
 to be shut down.  If
 .I how
-is 0, further receives will be disallowed.  If
+is
+.BR SHUT_RD ,
+further receptions will be disallowed.  If
 .I how
-is 1, further sends will be disallowed.  If
+is
+.BR SHUT_WR ,
+further transmissions will be disallowed.  If
 .I how
-is 2, further sends and receives will be disallowed.
+is
+.BR SHUT_RDWR ,
+further receptions and transmissions will be disallowed.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-.TP
 .TP
 .B EBADF
 .I s
@@ -72,19 +77,15 @@ is a file, not a socket.
 .TP
 .B ENOTCONN
 The specified socket is not connected.
+.SH NOTES
+The constants SHUT_RD, SHUT_WR, SHUT_RDWR have the value 0, 1, 2,
+respectively, and are defined in
+.I <sys/socket.h>
+since glibc-2.1.91.
 .SH "CONFORMING TO"
 4.4BSD (the
 .B shutdown
 function call first appeared in 4.2BSD).
-.SH BUGS
-The numerical 
-.I how 
-flags should be replaced by the Single Unix-mandated 
-.BR SHUT_RD , 
-.BR SHUT_WR ,
-and 
-.B SHUT_RDWR 
-flags. 
 .SH "SEE ALSO"
 .BR connect (2),
 .BR socket (2)

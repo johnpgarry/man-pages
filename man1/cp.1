@@ -19,6 +19,7 @@ GNU options (shortest form):
 .B [\-abdfilprsuvxPR]
 .BI "[\-S " SUFFIX ]
 .B "[\-V {numbered,existing,simple}]"
+.BI [\-\-backup= CONTROL ]
 .BI [\-\-sparse= WHEN ]
 .B "[\-\-help] [\-\-version] [\-\-]"
 .SH DESCRIPTION
@@ -237,6 +238,9 @@ extended by a suffix, this suffix is specified by the \-S option.
 .TP
 .B "\-b, \-\-backup"
 Make backups of files that are about to be overwritten or removed.
+.TP
+.BI \-\-backup= CONTROL
+(Since fileutils-4.1.)
 .TP
 .BI "\-S " SUFFIX ", \-\-suffix=" SUFFIX
 Append

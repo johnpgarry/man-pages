@@ -22,9 +22,9 @@
 .\" License.
 .\" Modified Sat Jul 24 17:51:15 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified 11 May 1998 by Joseph S. Myers (jsm28@cam.ac.uk)
-.\" Modified 14 May 2001 by aeb
+.\" Modified 14 May 2001, 23 Sep 2001 by aeb
 .\"
-.TH SYSTEM 3  1998-05-11 "GNU" "Linux Programmer's Manual"
+.TH SYSTEM 3  2001-09-23 "" "Linux Programmer's Manual"
 .SH NAME
 system \- execute a shell command
 .SH SYNOPSIS
@@ -73,43 +73,23 @@ returns nonzero if the shell is available, and zero if not.
 does not affect the wait status of any other children.
 .SH "CONFORMING TO"
 ANSI C, POSIX.2, BSD 4.3
-.SH BUGS
+.SH NOTES
 .PP
-It is extremely unfortunate that the libc version of
+As mentioned,
 .B system()
-ignores interrupts.  This makes programs that call it
-from a loop uninterruptable.  This means that for such
-purposes one should not use
-.B system()
-but a private version like (warning: untested code!)
+ignores SIGINT and SIGQUIT.  This may make programs that call it
+from a loop uninterruptable, unless they take care themselves
+to check the exit status of the child. E.g.
 .br
 .nf
 
-int my_system (const char *command) {
-    int pid, status;
+    while(something) {
+        int ret = system("foo");
 
-    if (command == 0)
-        return 1;
-    pid = fork();
-    if (pid == -1)
-        return -1;
-    if (pid == 0) {
-        char *argv[4];
-        argv[0] = "sh";
-        argv[1] = "-c";
-        argv[2] = command;
-        argv[3] = 0;
-        execve("/bin/sh", argv, environ);
-        exit(127);
+        if (WIFSIGNALED(ret) &&
+            (WTERMSIG(ret) == SIGINT || WTERMSIG(ret) == SIGQUIT))
+                break;
     }
-    do {
-        if (waitpid(pid, &status, 0) == -1) {
-            if (errno != EINTR)
-                return -1;
-        } else
-            return status;
-    } while(1);
-}
 .fi
 .PP
 Do not use
@@ -126,10 +106,8 @@ or
 will not, in fact, work properly from programs with suid or sgid
 privileges on systems on which
 .B /bin/sh
-is
-.B bash
-version 2, since bash 2 drops privileges on startup.  (Debian uses a
-modified bash which does not do this when invoked as
+is bash version 2, since bash 2 drops privileges on startup.
+(Debian uses a modified bash which does not do this when invoked as
 .BR sh .)
 .PP
 The check for the availability of
@@ -142,10 +120,9 @@ conforming, and it is this that is implemented.
 It is possible for the shell command to return 127, so that code is not a sure
 indication that the
 .B execve()
-call failed; check
-.I errno
-to make sure.
+call failed.
 .SH "SEE ALSO"
 .BR sh (1),
 .BR signal (2),
+.BR wait (2),
 .BR exec (3)

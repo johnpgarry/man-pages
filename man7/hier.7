@@ -25,7 +25,8 @@
 .\" Modified Mon Jun 16 20:02:00 1997 by Nicolás Lichtmaier <nick@debian.org>
 .\" Modified Mon Feb  6 16:41:00 1999 by Nicolás Lichtmaier <nick@debian.org>
 .\" Modified Tue Feb  8 16:46:45 2000 by Chris Pepper <pepper@tgg.com>
-.TH HIER 7  1997-06-16 "Linux" "Linux Programmer's Manual"
+.\" Modified Fri Sep  7 20:32:45 2001 by Tammy Fox <tfox@redhat.com>
+.TH HIER 7  2001-09-07 "Linux" "Linux Programmer's Manual"
 .SH NAME
 hier \- Description of the file system hierarchy
 .SH DESCRIPTION
@@ -66,24 +67,35 @@ Nevertheless, programs should always look for these files in
 and you may have links for these files to
 .IR /usr/etc .
 .TP
+.I /etc/opt
+Host-specific configuration files for add-on applications installed
+in 
+.I /opt.
+.TP
+.I /etc/sgml
+This directory contains the configuration files for SGML and XML (optional).
+.TP
 .I /etc/skel
 When a new user account is created, files from this directory are
 usually copied into the user's home directory.
 .TP
 .I /etc/X11
-Configuration files for the X11 window system.
+Configuration files for the X11 window system (optional).
 .TP
 .I /home
 On machines with home directories for users, these are usually beneath
 this directory, directly or not.  The structure of this directory
-depends on local admininstration decisions.
+depends on local administration decisions.
 .TP
 .I /lib
 This directory should hold those shared libraries that are necessary
 to boot the system and to run the commands in the root filesystem.
 .TP
 .I /mnt
-is a mount point for temporarily mounted filesystems
+This directory contains mount points for temporarily mounted filesystems
+.TP
+.I /opt
+This directory should contain add-on packages that contain static files.
 .TP
 .I /proc
 This is a mount point for the
@@ -91,6 +103,9 @@ This is a mount point for the
 filesystem, which provides information about running processes and
 the kernel.  This pseudo-file system is described in more detail in
 .BR proc (5).
+.TP
+.I /root
+This directory is usually the home directory for the root user (optional).
 .TP
 .I /sbin
 Like
@@ -103,12 +118,12 @@ This directory contains temporary files which may be deleted with no
 notice, such as by a regular job or at system boot up.
 .TP
 .I /usr
-This directory is usually mounted from a seperate partition.  It
+This directory is usually mounted from a separate partition.  It
 should hold only sharable, read-only data, so that it can be mounted
 by various machines running Linux.
 .TP
 .I /usr/X11R6
-The X-\Window system, version 11 release 6.
+The X-\Window system, version 11 release 6 (optional).
 .TP
 .I /usr/X11R6/bin
 Binaries which belong to the X\-Windows system; often, there is a
@@ -146,8 +161,8 @@ usually is a symbolic link to
 This directory holds files containing word lists for spell checkers.
 .TP
 .I /usr/doc
-You may find documentation about the installed software packages
-in this directory.
+Replaced by
+.IR /usr/share/doc .
 .TP
 .I /usr/etc
 Site-wide configuration files to be shared between several machines
@@ -158,6 +173,9 @@ directory.  Links from files in
 .I /etc
 should point to the appropriate files in
 .IR /usr/etc .
+.TP
+.I /usr/games
+Binaries for games and educational programs (optional).
 .TP
 .I /usr/include
 Include files for the C compiler.
@@ -215,49 +233,50 @@ Files for the GNU groff document formatting system.
 Files for 
 .BR uucp (1).
 .TP
-.I /usr/lib/zoneinfo
-Files for timezone information.
-.TP
 .I /usr/local
 This is where programs which are local to the site typically go.
 .TP
 .I /usr/local/bin
-Binaries for programs local to the site go there.
+Binaries for programs local to the site.
 .TP
 .I /usr/local/doc
-Local documentation
+Local documentation.
 .TP
 .I /usr/local/etc
-Configuration files associated with locally installed programs go there.
+Configuration files associated with locally installed programs.
+.TP
+.I /usr/local/games
+Binaries for locally installed games.
 .TP
 .I /usr/local/lib
-Files associated with locally installed programs go there.
+Files associated with locally installed programs.
+.TP
+.I /usr/local/include
+Header files for the local C compiler.
 .TP
 .I /usr/local/info
-Info pages associated with locally installed programs go there.
+Info pages associated with locally installed programs.
 .TP
 .I /usr/local/man
-Manpages associated with locally installed programs go there.
+Man pages associated with locally installed programs.
 .TP
 .I /usr/local/sbin
-Locally installed programs for system admininstration.
+Locally installed programs for system administration.
+.TP
+.I /usr/local/share
+Local application data that can be shared among different architectures
+of the same OS.
 .TP
 .I /usr/local/src
 Source code for locally installed software.
 .TP
 .I /usr/man
-Manpages traditionally go in there, into their subdirectories.
-.TP
-.I /usr/man/<locale>/man[1-9]
-These directories contain manual pages for the specified locale
-in source code form. Systems which use a unique language and code set
-for all manual pages may omit the
-.I <locale>
-substring.
+Replaced by 
+.IR /usr/share/man .
 .TP
 .I /usr/sbin
-This directory contains program binaries for system admininstration
-which are not essentail for the boot process, for mounting
+This directory contains program binaries for system administration
+which are not essential for the boot process, for mounting
 .IR /usr ,
 or for system repair.
 .TP
@@ -271,16 +290,58 @@ or
 or
 .IR /usr/man .
 .TP
+.I /usr/share/dict
+Contains the word lists used by spell checkers.
+.TP 
+.I /usr/share/doc
+Documentation about installed programs.
+.TP
+.I /usr/share/games
+Static data files for games in
+.IR /usr/games .
+.TP
+.I /usr/share/info
+Info pages go here.
+.TP
+.I /usr/share/locale
+Locale information goes here.
+.TP
+.I /usr/share/man
+Manpages go here in subdirectories according to the man page sections.
+.TP
+.I /usr/share/man/<locale>/man[1-9]
+These directories contain manual pages for the specific locale in source code
+form. Systems which use a unique language and code set for all manual pages 
+may omit the <locale> substring.
+.TP
+.I /usr/share/misc
+Miscellaneous data that can be shared among different architectures of the
+same OS.
+.TP
+.I /usr/share/nls
+The message catalogs for native language support go here.
+.TP
+.I /usr/share/sgml
+Files for SGML and XML.
+.TP
+.I /usr/share/terminfo
+The datebase for terminfo.
+.TP
+.I /usr/share/tmac
+Troff macros that are not distributed with groff.
+.TP
+.I /usr/share/zoneinfo
+Files for timezone information.
+.TP
 .I /usr/src
 Source files for different parts of the system, included with some packages
 for reference purposes. Don't work here with your own projects, as files
 below /usr should be read-only except when installing software.
 .TP
 .I /usr/src/linux
-This has always been the traditional place where kernel sources were
-unpacked. This was important on systems that /usr/include/linux was a
-symlink here. You should probably use another directory for building the
-kernel now.
+This was the traditional place for the kernel source.
+Some distributions put here the source for the default kernel they ship.
+You should probably use another directory when building your own kernel.
 .TP
 .I /usr/tmp
 Obsolete. This should be a link
@@ -299,11 +360,24 @@ and should be a symbolic link to
 .IR /var/log .
 .TP
 .I /var/backups
-This directory is used to save backup copies of important system files.
+Reserved for historical reasons.
+.TP
+.I /var/cache
+Data cached for programs.
 .TP
 .IR /var/catman/cat[1-9] " or " /var/cache/man/cat[1-9]
 These directories contain preformatted manual pages according to their
-manpage section. (The use of preformatted manual pages is deprecated.)
+man page section. (The use of preformatted manual pages is deprecated.)
+.TP
+.I /var/cron
+Reserved for historical reasons.
+.TP
+.I /var/lib
+Variable state information for programs.
+.TP
+.I /var/local
+Variable data for
+.IR /usr/local .
 .TP
 .I /var/lock
 Lock files are placed in this directory.  The naming convention for
@@ -317,12 +391,21 @@ contain a PID as a 10-byte ASCII decimal number, followed by a newline
 character.
 .TP
 .I /var/log
-Miscelanous log files.
+Miscellaneous log files.
+.TP
+.I /var/opt
+Variable data for 
+.IR /opt .
+.TP
+.I /var/mail
+Users' mailboxes. Replaces 
+.IR /var/spool/mail .
+.TP
+.I /var/msgs
+Reserved for historical reasons.
 .TP
 .I /var/preserve
-This is where
-.BR vi (1)
-saves edit sessions so they can be restored later.
+Reserved for historical reasons.
 .TP
 .I /var/run
 Run-time variable files, like files holding process identifiers (PIDs)
@@ -345,7 +428,18 @@ Spooled jobs for
 Spooled files for printing.
 .TP
 .I /var/spool/mail
-Users' mailboxes.
+Replaced by 
+.IR /var/mail .
+.TP
+.I /var/spool/mqueue
+Queued outgoing mail.
+.TP
+.I /var/spool/news
+Spool directory for news.
+.TP
+.I /var/spool/rwho
+Spooled files for 
+.BR rwhod (8).
 .TP
 .I /var/spool/smail
 Spooled files for the
@@ -363,8 +457,11 @@ Spooled files for
 Like
 .IR /tmp ,
 this directory holds temporary files stored for an unspecified duration.
+.TP
+.I /var/yp
+Database files for NIS.
 .SH "CONFORMS TO"
-The Linux filesystem standard, Release 1.2
+The Filesystem Hierarchy Standard, Version 2.2 <http://www.pathname.com/fhs/>
 .SH BUGS
 This list is not exhaustive; different systems may be configured
 differently.
@@ -373,4 +470,4 @@ differently.
 .BR ln (1),
 .BR mount (1),
 .BR proc (5),
-The Linux Filesystem Standard
+The Filesystem Hierarchy Standard

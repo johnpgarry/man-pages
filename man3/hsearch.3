@@ -83,9 +83,12 @@ is \fBFIND\fP and \fIitem\fP cannot be found in the hash table.
 .SH "CONFORMS TO"
 .TP
 SVID, except that in SysV, the hash table cannot grow.
-.SH BUGS
+.SH NOTES
 The implementation can manage only one hash table at a time.  
 Individual hash table entries can be added, but not deleted.
+.LP
+In recent libc versions, there are reentrant versions \fIhsearch_r()\fP,
+\fIhcreate_r()\fP, \fIhdestroy_r()\fP of these routines.
 .SH EXAMPLE
 .PP
 The following program inserts 24 items in to a hash table, then prints

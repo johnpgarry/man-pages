@@ -38,7 +38,7 @@ getutent, getutid, getutline, pututline, setutent, endutent, utmpname \- access 
 .br
 .BI "struct utmp *getutline(struct utmp *" ut ");"
 .sp
-.BI "void pututline(struct utmp *" ut ");"
+.BI "struct utmp *pututline(struct utmp *" ut ");"
 .sp
 .B void setutent(void);
 .br
@@ -80,8 +80,8 @@ uses \fBgetutid\fP() to search for the proper place in the file to insert
 the new entry.  If it cannot find an appropriate slot for \fIut\fP,
 \fBpututline\fP() will append the new entry to the end of the file.
 .SH "RETURN VALUE"
-\fBgetutent\fP(), \fBgetutid\fP(), and \fBgetutline\fP() return a pointer to a \fBstatic struct
-utmp\fP.
+\fBgetutent\fP(), \fBgetutid\fP(), and \fBgetutline\fP() return a pointer to
+a \fBstatic struct utmp\fP.
 .SH ERRORS
 On error, \fB(struct utmp*)0\fP will be returned.
 .SH EXAMPLE
@@ -135,5 +135,40 @@ int main(int argc, char *argv[])
 /var/log/wtmp	database of past user logins
 .SH "CONFORMING TO"
 XPG 2, SVID 2, Linux FSSTND 1.2
+.LP
+In XPG2 and SVID2  the function \fIpututline()\fP is documented
+to return void, and that is what it does on many systems
+(AIX, HPUX, Linux libc5).
+HPUX introduces a new function \fI_pututline()\fP with the prototype
+given above for \fIpututline()\fP (also found in Linux libc5).
+.LP
+All these functions are obsolete now on non-Linux systems.
+The Austin draft ("SUSv3"), following XPG4.2,
+does not have any of these functions, but instead uses
+.sp
+.B #include <utmpx.h>
+.sp
+.B struct utmpx *getutxent(void);
+.br
+.B struct utmpx *getutxid(const struct utmpx *);
+.br
+.B struct utmpx *getutxline(const struct utmpx *);
+.br
+.B struct utmpx *pututxline(const struct utmpx *);
+.br
+.B void setutxent(void);
+.br
+.B void endutxent(void);
+.sp
+The \fIutmpx\fP structure is a superset of the \fIutmp\fP structure,
+with additional fields, and larger versions of the existing fields.
+The corresponding files are often
+.I /var/*/utmpx
+and
+.IR /var/*/wtmpx .
+.LP
+Linux glibc on the other hand does not use \fIutmpx\fP since its
+\fIutmp\fP structure is already large enough. The functions \fIgetutxent\fP
+etc. are aliases for \fIgetutent\fP etc.
 .SH "SEE ALSO"
-\fButmp\fP(5)
+.BR utmp (5)

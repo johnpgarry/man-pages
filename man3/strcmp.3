@@ -25,6 +25,8 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:08:52 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 2001-08-31, aeb
+.\"
 .TH STRCMP 3  1993-04-11 "" "Linux Programmer's Manual"
 .SH NAME
 strcmp, strncmp \- compare two strings
@@ -43,7 +45,7 @@ than zero if \fIs1\fP is found, respectively, to be less than,
 to match, or be greater than \fIs2\fP.
 .PP
 The \fBstrncmp()\fP function is similar, except it only compares
-the first \fIn\fP characters of \fIs1\fP.
+the first (at most) \fIn\fP characters of \fIs1\fP and \fIs2\fP.
 .SH "RETURN VALUE"
 The \fBstrcmp()\fP and \fBstrncmp()\fP functions return an integer 
 less than, equal to, or greater than zero if \fIs1\fP (or the first 

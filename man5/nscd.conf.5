@@ -28,10 +28,11 @@ is read from
 at startup. Each line specifies either an attribute and a value, or an
 attribute, service, and a value. Fields are separated either by SPACE
 or TAB characters. A `#' (number sign) indicates the beginning of a
-comment; characters up to the end of the line are not interpreted by nscd.
+comment; following characters, up to the end of the line,
+are not interpreted by nscd.
 
 
-Valid services are passwd, group or hosts.
+Valid services are passwd, group, or hosts.
 
 .B logfile
 .I debug-file-name
@@ -48,7 +49,7 @@ Sets the desired debug level.
 .B threads
 .I number
 .RS
-This is the number of how many threads are started and waiting for
+This is the number of threads that are started to wait for
 requests. At least five threads will always be created.
 .RE
 
@@ -112,7 +113,7 @@ Enables or disables checking the file belonging to the specified
 .I service
 for changes. The files are
 .IR /etc/passwd ,
-.I /etc/group
+.IR /etc/group ,
 and
 .IR /etc/hosts .
 .RE

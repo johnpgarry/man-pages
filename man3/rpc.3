@@ -725,7 +725,7 @@ out.
 The total time for the call to time out is specified by
 .BR clnt_call(\|) .
 .IP
-This allows the user to specify the maximun packet size for sending and receiving 
+This allows the user to specify the maximum packet size for sending and receiving 
 .SM UDP\s0-based
 .SM RPC
 messages.
@@ -1367,6 +1367,30 @@ authentication parameters.  The routine calls
 .nf
 .sp .5
 \s-1SVCXPRT\s0 *
+svcfd_create(fd, sendsize, recvsize)
+int fd;
+u_int sendsize;
+u_int recvsize;
+.fi
+.ft R
+.IP
+Create a service on top of any open descriptor. Typically,
+this
+descriptor is a connected socket for a stream protocol such
+as
+.SM TCP\s0.
+.I sendsize
+and
+.I recvsize
+indicate sizes for the send and receive buffers.  If they are
+zero, a reasonable default is chosen.
+.br
+.if t .ne 11
+.LP
+.ft B
+.nf
+.sp .5
+\s-1SVCXPRT\s0 *
 svcraw_create(\|)
 .fi
 .ft R
@@ -1431,30 +1455,6 @@ uses buffered
 users may specify the size of buffers; values of zero
 choose suitable defaults.
 .br
-.if t .ne 11
-.LP
-.ft B
-.nf
-.sp .5
-\s-1SVCXPRT\s0 *
-svcfd_create(fd, sendsize, recvsize)
-int fd;
-u_int sendsize;
-u_int recvsize;
-.fi
-.ft R
-.IP
-Create a service on top of any open descriptor. Typically,
-this
-descriptor is a connected socket for a stream protocol such
-as
-.SM TCP\s0.
-.I sendsize
-and
-.I recvsize
-indicate sizes for the send and receive buffers.  If they are
-zero, a reasonable default is chosen.
-.br
 .if t .ne 10
 .LP
 .ft B
@@ -1487,10 +1487,25 @@ This routine returns
 .SM NULL
 if it fails.
 .IP
-This allows the user to specify the maximun packet size for sending and 
+This allows the user to specify the maximum packet size for sending and 
 receiving
 .SM UDP\s0-based
 .SM RPC messages.
+.br
+.if t .ne 5
+.LP
+.ft B
+.nf
+.sp .5
+\s-1SVCXPRT\s0 *
+svcudp_create(sock)
+int sock;
+.fi
+.ft R
+.IP
+This call is equivalent to
+\fIsvcudp_bufcreate(sock,SZ,SZ)\fP
+for some default size \fISZ\fP.
 .br
 .if t .ne 7
 .LP

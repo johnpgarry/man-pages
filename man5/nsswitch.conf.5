@@ -99,7 +99,7 @@ Shadow user passwords, used by
 .LP
 An example
 .B /etc/nsswitch.conf
-file could be look like (This is also the default if
+(namely, the default used when
 .B /etc/nsswitch.conf
 is missing):
 .sp 1n
@@ -134,8 +134,8 @@ services:
 nis [NOTFOUND=return] files
 .PD
 .LP
-The first column is the database as you can guess from the table
-above.  The rest of the line specifies how the lookup process works.
+The first column is the database.
+The rest of the line specifies how the lookup process works.
 You can specify the way it works for each database individually.
 .LP
 The configuration specification for each database can contain two
@@ -147,15 +147,15 @@ different items:
 * The reaction on lookup result like `[NOTFOUND=return]'.
 .PD
 .LP
-For libc5 with NYS, the allowed service specifications are `files', `nis'
+For libc5 with NYS, the allowed service specifications are `files', `nis',
 and `nisplus'. For hosts, you could specify `dns' as extra service, for
 passwd and group `compat', but not for shadow.
 .LP
 For glibc, you must have a file called
 .BI /lib/libnss_SERVICE.so. X
 for every SERVICE you are using. On a standard installation, you could use
-`files', `db', `nis' and `nisplus'. For hosts, you could specify `dns' as
-extra service, for passwd, group and shadow `compat'. These services will not
+`files', `db', `nis', and `nisplus'. For hosts, you could specify `dns' as
+extra service, for passwd, group, and shadow `compat'. These services will not
 be used by libc5 with NYS.
 The version number
 .I X
@@ -205,7 +205,7 @@ allow the user some policy control. In
 .B /etc/passwd
 you could have entries of the form +user or +@netgroup
 (include the specified user from the NIS passwd map),
--user or -@netgroup (exclude the specified user)
+-user or -@netgroup (exclude the specified user),
 and + (include every user, except the excluded ones, from the NIS
 passwd map). Since most people only put a + at the end of
 .B /etc/passwd
@@ -213,7 +213,7 @@ to include everything from NIS, the switch provides a faster
 alternative for this case (`passwd: files nis') which doesn't
 require the single + entry in
 .BR /etc/passwd ,
-.B /etc/group
+.BR /etc/group ,
 and
 .BR /etc/shadow .
 If this is not sufficient, the NSS `compat' service provides full

@@ -31,15 +31,15 @@ The file
 contains configuration information specific to the resolver library.
 It should contain one configuration keyword per line, followed by
 appropriate configuration information.  The keywords recognized are
-.IR order ", " trim ", " multi ", " nospoof " and " reorder .
-Each keyword is described seperately below.
+.IR order ", " trim ", " multi ", " nospoof ", and " reorder .
+These keywords are described below.
 
 .TP
 .I order
 This keyword specifies how host lookups are to be performed.  It
-should be followed by one or more lookup methods, seperated by commas.
+should be followed by one or more lookup methods, separated by commas.
 Valid methods are
-.IR bind ", " hosts " and " nis .
+.IR bind ", " hosts ", and " nis .
 .TP
 .I trim 
 This keyword may be listed more than once.  Each time it should be
@@ -48,7 +48,7 @@ resolv+ library will automatically trim the given domain name from the
 end of any hostname resolved via DNS.  This is intended for use with
 local hosts and domains.  (Related note: trim will not affect host-
 names gathered via NIS or the hosts file.  Care should be taken to
-insure that the first hostname for each entry in the hosts file is
+ensure that the first hostname for each entry in the hosts file is
 fully qualified or non-qualified, as appropriate for the local
 installation.)
 .TP

@@ -103,23 +103,23 @@ of the field.
 The first entries ever created result from \fIinit\fP(8) processing
 \fIinittab\fP(5).  Before an entry is processed, though, \fIinit\fP(8)
 cleans up utmp by setting \fBut_type\fP to \fBDEAD_PROCESS\fP, clearing
-\fBut_user\fP, \fBut_host\fP and \fBut_time\fP with null bytes for each
+\fBut_user\fP, \fBut_host\fP, and \fBut_time\fP with null bytes for each
 record which \fBut_type\fP is not \fBDEAD_PROCESS\fP or \fBRUN_LVL\fP
 and where no process with PID \fBut_pid\fP exists.  If no empty record
 with the needed \fBut_id\fP can be found, init creates a new one.  It
 sets \fBut_id\fP from the inittab, \fBut_pid\fP and \fBut_time\fP to the
-current values and \fBut_type\fP to \fBINIT_PROCESS\fP.
+current values, and \fBut_type\fP to \fBINIT_PROCESS\fP.
 .PP
 \fIgetty\fP(8) locates the entry by the pid, changes \fBut_type\fP to
-\fBLOGIN_PROCESS\fP, changes \fBut_time\fP, sets \fBut_line\fP and waits
+\fBLOGIN_PROCESS\fP, changes \fBut_time\fP, sets \fBut_line\fP, and waits
 for connection to be established.  \fIlogin\fP(8), after a user has been
 authenticated, changes \fBut_type\fP to \fBUSER_PROCESS\fP, changes
-\fBut_time\fP and sets \fBut_host\fP and \fBut_addr\fP.  Depending on
+\fBut_time\fP, and sets \fBut_host\fP and \fBut_addr\fP.  Depending on
 \fIgetty\fP(8) and \fIlogin\fP(8), records may be located by
 \fBut_line\fP instead of the preferable \fBut_pid\fP.
 .PP
 When \fIinit\fP(8) finds that a process has exited, it locates its utmp
-entry by \fBut_pid\fP, sets \fBut_type\fP to \fBDEAD_PROCESS\fP and
+entry by \fBut_pid\fP, sets \fBut_type\fP to \fBDEAD_PROCESS\fP, and
 clears \fBut_user\fP, \fBut_host\fP and \fBut_time\fP with null bytes.
 .PP
 \fIxterm\fP(1) and other terminal emulators directly create a
@@ -128,12 +128,12 @@ two letters of \fB/dev/ttyp\fP\fI%c\fP or by using \fBp\fP\fI%d\fP for
 \fB/dev/pts/\fP\fI%d\fP.  If they find a \fBDEAD_PROCESS\fP for this id,
 they recycle it, otherwise they create a new entry.  If they can, they
 will mark it as \fBDEAD_PROCESS\fP on exiting and it is advised that
-they null \fBut_line\fP, \fBut_time\fP, \fBut_user\fP and \fBut_host\fP
+they null \fBut_line\fP, \fBut_time\fP, \fBut_user\fP, and \fBut_host\fP
 as well.
 .PP
-\fIxdm\fP(8) should not create an utmp record, because there is no
-assigned terminal.  Letting it create one will result in trouble like:
-finger: can not stat /dev/machine.dom.  It should create wtmp entries,
+\fIxdm\fP(8) should not create a utmp record, because there is no
+assigned terminal.  Letting it create one will result in errors, such
+as 'finger: cannot stat /dev/machine.dom'.  It should create wtmp entries,
 though, just like \fIftpd\fP(8) does.
 .PP
 \fItelnetd\fP(8) sets up a \fBLOGIN_PROCESS\fP entry and leaves the rest
@@ -146,19 +146,19 @@ on the associated terminal.  Furthermore, the terminal name \fB"~"\fP
 with user name \fB"shutdown"\fP or \fB"reboot"\fP indicates a system
 shutdown or reboot and the pair of terminal names \fB"|"\fP/\fB"}"\fP
 logs the old/new system time when \fIdate\fP(1) changes it.  \fBwtmp\fP
-is maintained by \fIlogin\fP(1), and \fIinit\fP(1) and some versions of
+is maintained by \fIlogin\fP(1), \fIinit\fP(1), and some versions of
 \fIgetty\fP(1).  Neither of these programs creates the file, so if it is
-removed record-keeping is turned off.
+removed, record-keeping is turned off.
 .SH FILES
 /var/run/utmp
 .br
 /var/log/wtmp
 .SH "CONFORMING TO"
-Linux utmp entries conform neither to v7/BSD nor to SYSV: They are a
+Linux utmp entries conform neither to v7/BSD nor to SYSV; they are a
 mix of the two.  v7/BSD has fewer fields; most importantly it lacks
 \fBut_type\fP, which causes native v7/BSD-like programs to display (for
-example) dead or login entries.  Further there is no configuration file
-which allocates slots to sessions.  BSD does so, because it lacks
+example) dead or login entries.  Further, there is no configuration file
+which allocates slots to sessions.  BSD does so because it lacks
 \fBut_id\fP fields.  In Linux (as in SYSV), the \fBut_id\fP field of a
 record will never change once it has been set, which reserves that slot
 without needing a configuration file.  Clearing \fBut_id\fP may result
@@ -186,7 +186,7 @@ The problem still exists with wtmp since it's accessed directly in
 libc5.
 .SH RESTRICTIONS
 The file format is machine dependent, so it is recommended that it be
-processed only on the machine architecture where it got created.
+processed only on the machine architecture where it was created.
 .SH BUGS
 This manpage is based on the libc5 one, things may work differently now.
 .SH "SEE ALSO"

@@ -22,14 +22,14 @@
 /usr/sbin/nscd - name service cache daemon
 .SH DESCRIPTION
 Nscd is a daemon that provides a cache for the most common name service
-requests. The default configuration file
-.I /etc/nscd.conf
+requests. The default configuration file,
+.IR /etc/nscd.conf ,
 determines the behavior of the cache daemon. See
 .BR nscd.conf (5).
 
 Nscd provides cacheing for the
 .BR passwd (5),
-.BR group (5)
+.BR group (5),
 and
 .BR hosts(5)
 databases through standard libc interfaces, such as
@@ -37,11 +37,11 @@ databases through standard libc interfaces, such as
 .BR getpwuid (3),
 .BR getgrnam (3),
 .BR getgrgid (3),
-.BR gethostbyname (3)
+.BR gethostbyname (3),
 and others. Each cache has a separate TTL (time-to-live) for its data;
-modifying the local database (
-.BR /etc/passwd ,
-and so forth) causes that the cache becomes invalidated within fifteen
+modifying the local database
+.RI ( /etc/passwd ,
+and so forth) causes the cache to become invalidated within fifteen
 seconds. Note that the shadow file is specifically not cached.
 .BR getspnam (3)
 calls remain uncached as a result.
@@ -49,7 +49,7 @@ calls remain uncached as a result.
 .SH OPTIONS
 .TP
 .B "\-\-help"
-Will give you a list with all options and what they do.
+will give you a list with all options and what they do.
 
 .SH NOTES
 Nscd doesn't know anything about the underlaying protocols for a

@@ -34,8 +34,8 @@ The file is designed to be human readable and contains a list of
 keywords with values that provide various types of resolver information.
 .LP
 On a normally configured system this file should not be necessary.
-The only name server to be queried will be on the local machine,
-the domain name is determined from the host name,
+The only name server to be queried will be on the local machine;
+the domain name is determined from the host name
 and the domain search path is constructed from the domain name.
 .LP
 The different configuration options are:
@@ -52,7 +52,7 @@ the default is to use the name server on the local machine.
 (The algorithm used is to try a name server, and if the query times out,
 try the next, until out of name servers,
 then repeat trying all the name servers
-until a maximum number of retries are made).
+until a maximum number of retries are made.)
 .TP
 \fBdomain\fP
 Local domain name.

@@ -33,7 +33,7 @@ passwd \- password file
 is a text file, that contains a list of the system's accounts,
 giving for each account some useful information like user ID,
 group ID, home directory, shell, etc.
-Often it also contains the encrypted passwords for each account.
+Often, it also contains the encrypted passwords for each account.
 It should have general read permission (many utilities, like
 .BR ls (1)
 use it to map user IDs to user names), but write access only for the
@@ -111,12 +111,10 @@ to login using
 but may still login using
 .BR rlogin (1),
 run existing processes and initiate new ones through
-.BR rsh (1)
-or
-.BR cron (1)
-or
-.BR at (1)
-or mail filters etc.  Trying to lock an account by simply changing the
+.BR rsh (1),
+.BR cron (1),
+.BR at (1),
+or mail filters, etc.  Trying to lock an account by simply changing the
 shell field yields the same result and additionally allows the use of
 .BR su (1).
 .SH FILES

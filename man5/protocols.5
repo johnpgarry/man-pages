@@ -43,15 +43,16 @@ Each line is of the following format:
 .I protocol number aliases ...
 .RE
 
-where the fields are delimited by spaces or tabs. Empty lines and
-lines starting with a hash mark (#) are ignored. Remainder of lines
-are also ignored from the occurrence of a hash mark.
+where the fields are delimited by spaces or tabs.
+Empty lines are ignored.
+If a line contains a hash mark (#), the hash mark and the part
+of the line following it are ignored.
 
 The field descriptions are:
 
 .TP
 .I protocol
-the native name for the protocol. For example ip, tcp or udp.
+the native name for the protocol. For example ip, tcp, or udp.
 .TP
 .I number
 the official number for this protocol as it will appear within the ip

@@ -79,7 +79,7 @@ infrequently.
 .B msdos
 is the filesystem used by DOS, Windows, and some OS/2 computers.
 .B msdos
-filenames can be no longer than an 8 character name followed by an
+filenames can be no longer than 8 characters, followed by an
 optional period and 3 character extension.
 .\"----------------------------------------------------------------------
 .TP
@@ -91,8 +91,8 @@ sacrificing compatibility with DOS.
 .\"----------------------------------------------------------------------
 .TP
 .B vfat
-is extended DOS filesystem used by Microsoft Windows95 and Windows NT.
-VFAT adds capability for long filenames under the MSDOS filesystem.
+is an extended DOS filesystem used by Microsoft Windows95 and Windows NT.
+VFAT adds the capability to use long filenames under the MSDOS filesystem.
 .\"----------------------------------------------------------------------
 .TP
 .B proc
@@ -117,7 +117,7 @@ Linux also supports the System Use Sharing Protocol records specified
 by the Rock Ridge Interchange Protocol.  They are used to further
 describe the files in the
 .B iso9660
-filesystem to a UNIX host, and provides information such as long
+filesystem to a UNIX host, and provide information such as long
 filenames, UID/GID, POSIX permissions, and devices.  It is
 automatically recognized within the
 .B iso9660

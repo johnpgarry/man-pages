@@ -131,7 +131,7 @@ with information about the current time zone.
 .PP
 The \fBgmtime()\fP function converts the calendar time \fItimep\fP to
 broken-down time representation, expressed in Coordinated Universal Time
-(UTC).
+(UTC). It may return NULL when the year does not fit into an integer.
 .PP
 The \fBlocaltime()\fP function converts the calendar time \fItimep\fP to
 broken-time representation, expressed relative to the user's specified

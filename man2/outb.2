@@ -37,18 +37,17 @@ outb_p, outw_p, outl_p, inb_p, inw_p, inl_p \- paused I/O
 This family of functions is used to do low level port input and output.
 They are primarily designed for internal kernel use, 
 but can be used from user space, given the following information
-.I in addition
-to that given in
-.I outb(9)
+in addition to that given in
+.BR outb (9).
 .sp
 You compile with \fB\-O\fP or \fB\-O2\fP or similar. The functions
 are defined as inline macros, and will not be substituted in without
 optimization enabled, causing unresolved references at link time.
 .sp
 You use
-.I ioperm(2)
+.BR ioperm (2)
 or alternatively
-.I iopl(2)
+.BR iopl (2)
 to tell the kernel to allow the user space application to access the
 I/O ports in question. Failure to do this will cause the application
 to receive a segmentation fault.
