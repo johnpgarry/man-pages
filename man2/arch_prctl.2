@@ -49,9 +49,7 @@ register to
 .IR addr .
 .TP
 .B ARCH_GET_FS
-Return the 64bit base value for the
-.I FS
-register of the current thread in the 
+Return the 64bit base value for the FS register of the current thread in the 
 .I unsigned long
 pointed to by the 
 .I address 
@@ -59,14 +57,13 @@ parameter
 .TP
 .B ARCH_SET_GS
 Set the 64bit base for the 
-.I GS
+.I FS
 register to
 .IR addr .
 .TP
 .B ARCH_GET_GS
-Return the 64bit base value for the
-.I GS
-register of the current thread in the 
+Return the 64bit base value for the GS register of the current thread 
+in the 
 .I unsigned long
 pointed to by the 
 .I address 
