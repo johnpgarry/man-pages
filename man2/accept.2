@@ -53,13 +53,18 @@ function is used with connection-based socket types
 and
 .BR SOCK_RDM ).
 It extracts the first connection request on the queue of pending
-connections, creates a new connected socket with the same properties as
+connections, creates a new connected socket with mostly the same properties as
 .IR s ,
 and allocates a new file descriptor for the socket, which is returned.
 The newly created socket is no longer in the listening state.
 The original socket
 .I s
-is unaffected by this call.
+is unaffected by this call. Note that any per file descriptor flags 
+(everything that can be set with the 
+.B F_SETFL
+fcntl, like non blocking or async state) are not inherited across
+a 
+.I accept.
 .PP
 The argument
 .I s
@@ -197,7 +202,9 @@ parameter is not in a writable part of the user address space.
 Firewall rules forbid connection.
 .TP
 .B ENOBUFS, ENOMEM
-Not enough free memory. 
+Not enough free memory.  
+This often means that the memory allocation is limited by the socket buffer
+limits, not by the system memory, but this is not 100% consistent.
 .PP
 In addition, network errors for the new socket and as defined
 for the protocol may be returned. Various Linux kernels can

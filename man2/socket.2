@@ -264,7 +264,7 @@ are used to set and get options, respectively.
 \-1 is returned if an error occurs; otherwise the return value is a
 descriptor referencing the socket.
 .SH ERRORS
-.TP 0.8i
+.TP
 .B EPROTONOSUPPORT
 The protocol type or the specified protocol is not
 supported within this domain.
@@ -299,6 +299,9 @@ are PF_UNIX, PF_INET, etc., while AF_UNIX etc. are used for address
 families. However, already the BSD man page promises: "The protocol
 family generally is the same as the address family", and subsequent
 standards use AF_* everywhere.
+.SH BUGS
+.B SOCK_UUCP
+is not implemented yet.
 .SH "SEE ALSO"
 .BR accept (2),
 .BR bind (2),

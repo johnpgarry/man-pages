@@ -116,7 +116,7 @@ general errors for
 .B chmod
 are listed below:
 
-.TP 0.8i
+.TP
 .B EPERM
 The effective UID does not match the owner of the file, and is not zero.
 .TP
@@ -153,7 +153,7 @@ An I/O error occurred.
 The general errors for
 .B fchmod
 are listed below:
-.TP 0.8i
+.TP
 .B EBADF
 The file descriptor
 .I fildes
@@ -192,4 +192,5 @@ POSIX and X/OPEN do not document the sticky bit.
 .SH "SEE ALSO"
 .BR open (2),
 .BR chown (2),
+.BR execve (2),
 .BR stat (2)

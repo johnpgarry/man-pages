@@ -40,12 +40,18 @@ The value returned is the CPU time used so far as a
 to get the number of seconds used, divide by
 .BR CLOCKS_PER_SEC .
 .SH "CONFORMING TO"
-ANSI C
+ANSI C.
+POSIX requires that CLOCKS_PER_SEC equals 1000000 independent
+of the actual resolution.
 .SH "BUGS"
 The C standard allows for arbitrary values at the start of the program; take
 the difference between the value returned from a call to
 .B clock()
 at the start of the program and the end to get maximum portability.
+.PP
+Note that the time can wrap around.  On a 32bit system where
+CLOCKS_PER_SEC equals 1000000 this function will return the same
+value approximately every 72 minutes.
 .PP
 The
 .B times()

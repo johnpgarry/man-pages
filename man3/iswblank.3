@@ -9,6 +9,7 @@
 .\"   GNU glibc-2 source code and manual
 .\"   Dinkumware C library reference http://www.dinkumware.com/
 .\"   OpenGroup's Single Unix specification http://www.UNIX-systems.org/online.html
+.\"   ISO/IEC 9899:1999
 .\"
 .TH ISWBLANK 3  "July 25, 1999" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -28,8 +29,9 @@ The wide character class "blank" is a subclass of the wide character class
 "space".
 .PP
 Being a subclass of the wide character class "space", the wide character class
-"blank" is disjoint from the wide character class "alnum" and therefore also
-disjoint from its subclasses "alpha", "upper", "lower", "digit", "xdigit".
+"blank" is disjoint from the wide character class "graph" and therefore also
+disjoint from its subclasses "alnum", "alpha", "upper", "lower", "digit",
+"xdigit", "punct".
 .PP
 The wide character class "blank" always contains at least the space character
 and the control character '\\t'.

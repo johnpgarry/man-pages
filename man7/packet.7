@@ -98,6 +98,10 @@ and the
 .B sll_ifindex
 address fields are used for purposes of binding.
 
+The
+.BR connect (2)
+operation is not supported on packet sockets.
+
 .SH ADDRESS TYPES
 The sockaddr_ll is a device independent physical layer address.
 
@@ -285,6 +289,8 @@ bind to
 instead and do the protocol multiplex yourself.
 The default for sending is the standard Ethernet DIX 
 encapsulation with the protocol filled in. 
+
+Packet sockets are not subject to the input or output firewall chains.
 
 .SH ERRORS
 .TP

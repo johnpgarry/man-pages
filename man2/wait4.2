@@ -88,7 +88,7 @@ value of
 The value of
 .I options
 is a bitwise OR of zero or more of the following constants:
-.TP 0.8i
+.TP
 .B WNOHANG
 which means to return immediately if no child is there to be waited
 for.
@@ -110,7 +110,7 @@ store status information in the location pointed to by
 This status can be evaluated with the following macros (these macros take
 the stat buffer (an \fBint\fR) as an argument \(em not a pointer to the
 buffer!):
-.TP 0.8i
+.TP
 .BI WIFEXITED( status )
 is non\-zero if the child exited normally.
 .TP

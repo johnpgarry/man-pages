@@ -9,6 +9,7 @@
 .\"   GNU glibc-2 source code and manual
 .\"   Dinkumware C library reference http://www.dinkumware.com/
 .\"   OpenGroup's Single Unix specification http://www.UNIX-systems.org/online.html
+.\"   ISO/IEC 9899:1999
 .\"
 .TH GETWCHAR 3  "July 25, 1999" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -23,7 +24,8 @@ getwchar \- read a wide character from standard input
 The \fBgetwchar\fP function is the wide-character equivalent of the
 \fBgetchar\fP function. It reads a wide character from \fBstdin\fP and returns
 it. If the end of stream is reached, or if \fIferror(stdin)\fP becomes
-true, it returns WEOF.
+true, it returns WEOF. If a wide character conversion error occurs, it sets
+\fBerrno\fP to \fBEILSEQ\fP and returns WEOF.
 .SH "RETURN VALUE"
 The \fBgetwchar\fP function returns the next wide-character from standard input,
 or WEOF.

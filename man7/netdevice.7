@@ -10,6 +10,7 @@
 .SH NAME
 netdevice \- Low level access to Linux network devices.
 .SH SYNOPSIS
+.B "#include <sys/ioctl.h>"
 .B "#include <net/if.h>"
 
 .SH DESCRIPTION
@@ -43,6 +44,15 @@ struct ifreq
 		char *	ifr_data;
 	};
 }
+
+struct ifconf 
+{ 
+  	int ifc_len;		/* size of buffer */
+	union {            
+		char *	ifc_buf; /* buffer address */ 
+		struct ifreq *ifc_req; /* array of structures */
+	};  
+}; 	   
 .ta
 .fi
 
@@ -90,7 +100,7 @@ IFF_DEBUG:Internal debugging flag.
 IFF_LOOPBACK:Interface is a loopback interface.
 IFF_POINTOPOINT:Interface is a point-to-point link.
 IFF_RUNNING:Resources allocated.
-IFF_NOARP:No arp protocol
+IFF_NOARP:No arp protocol, L2 destination address not set.
 IFF_PROMISC:Interface is in promiscuous mode.
 IFF_NOTRAILERS:Avoid use of trailers.
 IFF_ALLMULTI:Receive all multicast packets.
@@ -183,7 +193,31 @@ to
 .BR ifr_newname .
 This is a privileged operation.
 
-.\" XXX Slaving isn't supported in 2.2
+.TP
+.B SIOCGIFCONF
+Return a list of interface (transport layer) addresses. This currently
+means only addresses of the AF_INET family for compatibility. 
+The user passes a 
+.B ifconf
+structure as argument to the ioctl. It contains a pointer to an array of
+.I ifreq
+structures in 
+.B ifc_req
+and its length in bytes in 
+.B ifc_len.
+The kernel fills the ifreqs with all current L3 interface addresses that
+are running: 
+.I ifr_name 
+contains the interface name (eth0:1 etc.),  
+.I ifr_addr
+the address.
+The kernel returns with the actual length in 
+.I ifc_len;
+if it is equal the original length the user should assume that it overflowed
+and retry with a bigger buffer. When no error occurs the ioctl returns 0;
+otherwise -1. Overflow is no error.
+
+\" XXX Slaving isn't supported in 2.2
 .\" .TP
 .\" .BR SIOCGIFSLAVE ", " SIOCSIFSLAVE
 .\" Get or set the slave device using
@@ -196,6 +230,21 @@ This is a privileged operation.
 .PP
 Most protocols support their own ioctls to configure protocol specific 
 interface options. See the protocol man pages for a description.
+For configuring IP addresses see 
+.BR ip (7).
 .PP
 In addition some devices support private ioctls. These are not described here.
+.SH NOTES
+Strictly seen 
+.B SIOCGIFCONF 
+is IP specific and belongs in 
+.BR ip (7).
+.SH NOTES
 
+The names of interfaces with no addresses or that don't have the
+.B IFF_RUNNING 
+flag set can be found via
+.I /proc/net/dev.
+
+.SH SEE ALSO
+.BR ip "(7), " proc "(7)"

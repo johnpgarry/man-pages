@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.27.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.28.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -27,29 +27,24 @@ with these man pages.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM. They are
 copyrighted by Sun Microsystems, Inc., but can be distributed freely.]
 
-Differences from version 1.26:
+Differences from version 1.27:
 
     The man pages
 
-	chgrp.1 chmod.1 chown.1 cp.1 dd.1 df.1 dir.1 dircolors.1 du.1
-	install.1 ls.1 rmdir.1 vdir.1
+	accept.2 capget.2 execve.2 sendfile.2 socket.2 unlink.2 vfork.2
 
-	bind.2 capget.2 capset.2 fork.2 getrlimit.2 idle.2
-	intro.2 prctl.2 ptrace.2 setpgid.2 vfork.2
+	clock.3 fgetwc.3 fputwc.3 fwide.3 fwprintf.3 getwchar.3 iswalnum.3
+	iswalpha.3 iswblank.3 iswdigit.3 iswgraph.3 iswlower.3 iswpunct.3
+	iswspace.3 iswupper.3 iswxdigit.3 printf.3 putwchar.3 snprintf.3
+	swprintf.3 vfwprintf.3 vswprintf.3 vwprintf.3 wprintf.3
 
-	fgetwc.3 glob.3 lsearch.3 putenv.3 stdarg.3 strptime.3
-	ungetwc.3 wcwidth.3
+	hosts.equiv.5
 
-	dir_colors.5
+	ip.7 iso_8859-2.7 netdevice.7 packet.7 signal.7 socket.7 unix.7
 
-	signal.7 suffixes.7 uri.7
+    are new or have been updated.  The page charsets.4 was moved to charsets.7.
+    Typographical or grammatical errors have been corrected in several other places.
 
-	sync.8
-
-    are new or have been updated.  Typographical or grammatical errors
-    have been corrected in several other places.
-
-    Most of the improvements to the *.1 pages are due to James Sneeringer.
 
 Here is a breakdown of what this distribution contains:
 
@@ -116,6 +111,7 @@ wrote, edited, or otherwise contributed to this project:
     Michael Haardt <michael@moria.de>
     Michael Shields <shields@tembel.org>
     Mike Battersby <mike@starbug.apana.org.au>
+    Mike Coleman <mkc@acm.org>
     Mitchum DSouza <m.dsouza@mrc-apu.cam.ac.uk>
     Nick Duffek <nsd@bbc.com>
     Nicolai Langfeldt <janl@ifi.uio.no>

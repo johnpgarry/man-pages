@@ -9,6 +9,7 @@
 .\"   GNU glibc-2 source code and manual
 .\"   Dinkumware C library reference http://www.dinkumware.com/
 .\"   OpenGroup's Single Unix specification http://www.UNIX-systems.org/online.html
+.\"   ISO/IEC 9899:1999
 .\"
 .TH ISWGRAPH 3  "July 25, 1999" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -29,6 +30,12 @@ The wide character class "graph" is a subclass of the wide character class
 .PP
 Being a subclass of the wide character class "print", the wide character class
 "graph" is disjoint from the wide character class "cntrl".
+.PP
+The wide character class "graph" is disjoint from the wide character class
+"space" and therefore also disjoint from its subclass "blank".
+.\" Note: UNIX98 (susv2/xbd/locale.html) says that "graph" and "space" may
+.\" have characters in common, except U+0020. But ISO C99 (ISO/IEC 9899:1999
+.\" section 7.25.2.1.10) says that "space" and "graph" are disjoint.
 .PP
 The wide character class "graph" contains all the wide characters from the
 wide character class "print" except the space character. It therefore contains

@@ -9,6 +9,7 @@
 .\"   GNU glibc-2 source code and manual
 .\"   Dinkumware C library reference http://www.dinkumware.com/
 .\"   OpenGroup's Single Unix specification http://www.UNIX-systems.org/online.html
+.\"   ISO/IEC 9899:1999
 .\"
 .TH ISWXDIGIT 3  "July 25, 1999" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -31,9 +32,12 @@ of the wide character class "print".
 Being a subclass of the wide character class "print", the wide character class
 "xdigit" is disjoint from the wide character class "cntrl".
 .PP
+Being a subclass of the wide character class "graph", the wide character class
+"xdigit" is disjoint from the wide character class "space" and its subclass
+"blank".
+.PP
 Being a subclass of the wide character class "alnum", the wide character class
-"xdigit" is disjoint from the wide character class "punct" and from the wide
-character class "space" and its subclass "blank".
+"xdigit" is disjoint from the wide character class "punct".
 .PP
 The wide character class "xdigit" always contains at least the letters 'A'
 to 'F', 'a' to 'f' and the digits '0' to '9'.

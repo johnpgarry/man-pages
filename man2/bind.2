@@ -122,7 +122,7 @@ On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-.TP 0.8i
+.TP
 .B EBADF
 .I sockfd
 is not a valid descriptor.
@@ -142,7 +142,7 @@ Argument is a descriptor for a file, not a socket.
 The following errors are specific to UNIX domain 
 .RB ( AF_UNIX ) 
 sockets:
-.TP 0.8i
+.TP
 .B EINVAL
 The
 .I addrlen

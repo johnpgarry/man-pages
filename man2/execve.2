@@ -27,6 +27,7 @@
 .\" Modified 21 Aug 1994 by Michael Chastain <mec@shell.portal.com>:
 .\"   Fixed typoes.
 .\" Modified Fri Jan 31 16:24:28 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Fri Nov 12 22:57:27 1999 by Urs Thuermann <urs@isnogud.escape.de>
 .\"
 .TH EXECVE 2 "3 September 1997" "Linux 2.0.30" "Linux Programmer's Manual"
 .SH NAME
@@ -44,15 +45,29 @@ In the latter case, the interpreter must be a valid pathname for an
 executable which is not itself a script, which will be invoked as
 \fBinterpreter\fR [arg] \fIfilename\fR.
 
+\fIargv\fP is an array of argument strings passed to the new program.
+\fIenvp\fP is an array of strings, conventionally of the form
+\fBkey=value\fR, which are passed as environment to the new
+program.  Both, \fIargv\fP and \fIenvp\fP must be terminated by a null
+pointer.  The argument vector and environment can be accessed by the
+called program's main function, when it is defined as \fBint main(int
+argc, char *argv[], char *envp[])\fR.
+
 \fBexecve()\fP does not return on success, and the text, data, bss, and
 stack of the calling process are overwritten by that of the program
 loaded.  The program invoked inherits the calling process's PID, and any
 open file descriptors that are not set to close on exec.  Signals pending
-on the parent process are cleared.  Any signals set to be caught by
+on the calling process are cleared.  Any signals set to be caught by
 the calling process are reset to their default behaviour.
 
 If the current program is being ptraced, a \fBSIGTRAP\fP is sent to it
 after a successful \fBexecve()\fP.
+
+If the set-uid bit is set on the program file pointed to by
+\fIfilename\fP the effective user ID of the calling process is changed
+to that of the owner of the program file.  Similarly, when the set-gid
+bit of the program file is set the effective group ID of the calling
+process is set to the group of the program file.
 
 If the executable is an a.out dynamically-linked binary executable containing
 shared-library stubs, the Linux dynamic linker
@@ -71,7 +86,7 @@ On success, \fBexecve()\fP does not return, on error \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-.TP 0.8i
+.TP
 .B EACCES
 The file or a script interpreter is not a regular file.
 .TP
@@ -165,6 +180,8 @@ a #! executable shell script.
 
 Linux ignores the SUID and SGID bits on scripts.
 .SH "SEE ALSO"
-.BR ld.so (8),
+.BR chmod (2),
+.BR fork (2),
 .BR execl (3),
-.BR fork (2)
+.BR environ (5),
+.BR ld.so (8)

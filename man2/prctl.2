@@ -68,7 +68,7 @@ and
 is not zero or a signal number.
 .SH "CONFORMING TO"
 This call is Linux-specific.
-IRIX has a ptctl system call (also introduced in Linux 2.1.44
+IRIX has a prctl system call (also introduced in Linux 2.1.44
 as irix_prctl on the MIPS architecture),
 with prototype
 .sp
@@ -79,7 +79,7 @@ get the maximum number of processors the calling process can use,
 find out whether a specified process is currently blocked,
 get or set the maximum stack size, etc., etc.
 .SH AVAILABILITY
-The ptctl() systemcall was introduced in Linux 2.1.57.
-There is no ptctl() library call as yet.
+The prctl() systemcall was introduced in Linux 2.1.57.
+There is no prctl() library call as yet.
 .SH "SEE ALSO"
 .BR signal (2)

@@ -55,10 +55,6 @@ On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-.TP 0.8i
-.B EFAULT
-.I pathname
-points outside your accessible address space.
 .TP
 .B EACCES
 Write access to the directory containing
@@ -68,15 +64,22 @@ directories in
 .IR pathname
 did not allow search (execute) permission.
 .TP
-.B EPERM
+.BR EPERM " or " EACCES
 The directory containing
 .I pathname
 has the sticky-bit
 .RB ( S_ISVTX )
 set and the process's effective uid is neither the uid of the file to
-be deleted nor that of the directory containing it, or
+be deleted nor that of the directory containing it.
+.TP
+.B EPERM
+The file
 .I pathname
 is a directory.
+.TP
+.B EFAULT
+.I pathname
+points outside your accessible address space.
 .TP
 .B ENAMETOOLONG
 .IR pathname " was too long."

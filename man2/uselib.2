@@ -34,7 +34,7 @@ uselib \- select shared library
 .BI "int uselib(const char *" library );
 .SH DESCRIPTION
 \fBuselib\fP selects the shared library binary that will be used by
-this processes.
+the calling process.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -58,9 +58,10 @@ is not readable.
 \fBuselib()\fP is Linux specific, and should not be used in programs
 intended to be portable.
 .SH "SEE ALSO"
-.BR open (2),
-.BR mmap (2),
-.BR ldd (1),
-.BR gcc (1),
 .BR ar (1),
-.BR ld (1)
+.BR gcc (1),
+.BR ld (1),
+.BR ldd (1),
+.BR mmap (2),
+.BR open (2),
+.BR ld.so (8)

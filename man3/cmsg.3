@@ -158,7 +158,9 @@ for (cmsg = CMSG_FIRSTHDR(&msgh);
 	}
 }
 if (cmsg == NULL) {
-	/* Error: IP_TTL not enabled or buffer too short or IO error. */ 
+	/* Error: IP_TTL not enabled or small buffer
+	 * or I/O error.
+	 */ 
 } 
 .ta
 .fi
