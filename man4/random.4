@@ -21,14 +21,14 @@ has major device number 1 and minor device number 9.
 The random number generator gathers environmental noise 
 from device drivers and other sources into an entropy pool.  
 The generator also keeps an estimate of the 
-number of bit of the noise in the entropy pool.
+number of bits of noise in the entropy pool.
 From this entropy pool random numbers are created.
 .LP 
 When read, the \fB/dev/random\fP device will only return random bytes 
 within the estimated number of bits of noise in the entropy 
 pool.  \fB/dev/random\fP should be suitable for uses that need very 
 high quality randomness such as one-time pad or key generation.  
-When the entropy pool is empty, reads to \fB/dev/random\fP will block 
+When the entropy pool is empty, reads from \fB/dev/random\fP will block 
 until additional environmental noise is gathered.
 .LP 
 When read, \fB/dev/urandom\fP device will return as many bytes as are

@@ -250,6 +250,9 @@ There was an attempt to read from or write to an invalid area in the parent's
 or child's memory, probably because the area wasn't mapped or accessible.
 Unfortunately, under Linux, different variations of this fault will return EIO
 or EFAULT more or less arbitrarily.
+.TP
+.B EBUSY
+(i386 only) There was an error with allocating or freeing a debug register.
 .SH "CONFORMING TO"
 SVr4, SVID EXT, AT&T, X/OPEN, BSD 4.3
 .SH "SEE ALSO"

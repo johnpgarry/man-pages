@@ -22,7 +22,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH MSYNC 2 1996-04-12 "Linux 1.3.86" "Linux Programmer's Manual"
+.TH MSYNC 2 2003-08-21 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
 msync \- synchronize a file with a memory map
 .SH SYNOPSIS
@@ -73,10 +73,13 @@ is not a multiple of PAGESIZE, or any bit other than
 MS_ASYNC | MS_INVALIDATE | MS_SYNC is set in
 .IR flags.
 .TP
-.B EFAULT
+.B ENOMEM
 The indicated memory (or part of it) was not mapped.
 .SH "CONFORMING TO"
 POSIX.1b (formerly POSIX.4)
+
+This call was introduced in Linux 1.3.21, and then used EFAULT instead of
+ENOMEM. In Linux 2.4.19 this was changed to the POSIX value ENOMEM.
 .SH "SEE ALSO"
 .BR mmap (2),
 B.O. Gallmeister, POSIX.4, O'Reilly, pp. 128-129 and 389-391.

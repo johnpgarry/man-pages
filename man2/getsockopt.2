@@ -151,6 +151,10 @@ is not in a valid part of the process address space.  For
 this error may also be returned if
 .I optlen
 is not in a valid part of the process address space.
+.TP
+.B EINVAL
+.I optlen
+invalid in setsockopt
 .SH "CONFORMING TO"
 SVr4, 4.4BSD (these system calls first appeared in 4.2BSD).
 SVr4 documents additional ENOMEM and ENOSR error codes, but does

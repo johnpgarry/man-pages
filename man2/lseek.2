@@ -32,12 +32,13 @@
 .\"
 .\"     @(#)lseek.2	6.5 (Berkeley) 3/10/91
 .\"
-.\" Modified Fri Jul 23 22:17:00 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified 10 June 1995 by Andries Brouwer <aeb@cwi.nl>
-.\" Modified Thu Oct 31 15:18:33 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Sat Jan 17 13:00:32 MET 1998 by Michael Haardt
+.\" Modified 1993-07-23 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1995-06-10 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 1996-10-31 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 1998-01-17 by Michael Haardt
 .\"   <michael@cantor.informatik.rwth-aachen.de>
-.\" Modified Mon Sep 24 16:18:02 CEST 2001 by Michael Haardt <michael@moria.de>
+.\" Modified 2001-09-24 by Michael Haardt <michael@moria.de>
+.\" Modified 2003-08-21 by Andries Brouwer <aeb@cwi.nl>
 .\"
 .TH LSEEK 2 2001-09-24 "Linux" "System calls"
 .SH NAME
@@ -77,9 +78,10 @@ bytes.
 The
 .B lseek
 function allows the file offset to be set beyond the end of the existing
-end-of-file of the file.  If data is later written at this point, subsequent
-reads of the data in the gap return bytes of zeros (until data is actually
-written into the gap).
+end-of-file of the file (but this does not change the size of the file).
+If data is later written at this point, subsequent reads of the data
+in the gap return bytes of zeros (until data is actually written into
+the gap).
 .SH "RETURN VALUE"
 Upon successful completion,
 .B lseek
@@ -90,16 +92,22 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EBADF
-.I Fildes
+.I fildes
 is not an open file descriptor.
 .TP
 .B ESPIPE
-.I Fildes
+.I fildes
 is associated with a pipe, socket, or FIFO.
 .TP
 .B EINVAL
-.I Whence
-is not a proper value.
+.I whence
+is not one of SEEK_SET, SEEK_CUR, SEEK_END,
+or the resulting file offset would be negative.
+.\" Some systems may allow negative offsets for character devices
+.\" and/or for remote filesystems.
+.TP
+.B EOVERFLOW
+The resulting file offset cannot be represented in an off_t.
 .SH "CONFORMING TO"
 SVr4, POSIX, BSD 4.3
 .SH RESTRICTIONS
@@ -107,10 +115,9 @@ Some devices are incapable of seeking and POSIX does not specify which
 devices must support it.
 
 Linux specific restrictions: using \fBlseek\fP on a tty device returns
-\fBESPIPE\fP.  Other systems return the number of written characters,
-using SEEK_SET to set the counter.  Some devices, e.g. \fB/dev/null\fP
-do not cause the error \fBESPIPE\fP, but return a pointer which value
-is undefined.
+\fBESPIPE\fP.
+.\" Other systems return the number of written characters,
+.\" using SEEK_SET to set the counter. (Of written characters.)
 .SH NOTES
 This document's use of
 .I whence

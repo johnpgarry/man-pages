@@ -85,6 +85,12 @@ is not, in fact, a directory.
 contains entries other than
 .BR . " and " .. " ."
 .TP
+.B EINVAL
+.I pathname
+has
+.B .
+as last component.
+.TP
 .B EBUSY
 .I pathname
 is the current working directory or root directory of some process.

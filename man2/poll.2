@@ -125,6 +125,11 @@ address space.
 .TP
 .B EINTR
 A signal occurred before any requested event.
+.TP
+.B EINVAL
+The
+.I nfds
+value exceeds the RLIMIT_NOFILE value.
 .SH "CONFORMING TO"
 XPG4-UNIX.
 .SH AVAILABILITY

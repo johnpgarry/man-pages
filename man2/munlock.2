@@ -25,7 +25,7 @@
 .\" 1995-11-26  Markus Kuhn <mskuhn@cip.informatik.uni-erlangen.de>
 .\"      First version written
 .\"
-.TH MUNLOCK 2 1995-11-26 "Linux 1.3.43" "Linux Programmer's Manual"
+.TH MUNLOCK 2 2003-08-21 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
 munlock \- reenable paging for some parts of memory
 .SH SYNOPSIS
@@ -82,7 +82,7 @@ pages in the address space of the process.
 .TP
 .B EINVAL
 .I len
-was not a positive number.
+was not a multiple of the page size.
 .SH "CONFORMING TO"
 POSIX.1b, SVr4
 .SH "SEE ALSO"

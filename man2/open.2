@@ -173,8 +173,10 @@ The I/O is synchronous, i.e., at the completion of the
 or
 .BR write (2)
 system call, data is guaranteed to have been transferred.
-Transfer sizes, and the alignment of user buffer and file offset
-must all be multiples of the logical block size of the file system.
+Under Linux 2.4 transfer sizes, and the alignment of user buffer
+and file offset must all be multiples of the logical block size
+of the file system. Under Linux 2.6 alignment to 512-byte boundaries
+suffices.
 .\" There may be coherency problems.
 .br
 A semantically similar interface for block devices is described in
@@ -396,8 +398,8 @@ truncated.
 .LP
 The
 .B O_DIRECT
-flag was introduced in SGI IRIX, where it has similar alignment
-restrictions as what Linux has.  IRIX has also a fcntl(2) call to
+flag was introduced in SGI IRIX, where it has alignment restrictions
+similar to those of Linux 2.4.  IRIX has also a fcntl(2) call to
 query appropriate alignments, and sizes.   FreeBSD 4.x introduced
 a flag of same name, but without alignment restrictions.
 Support was added under Linux in kernel version 2.4.10.

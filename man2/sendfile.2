@@ -85,9 +85,13 @@ is set appropriately.
 The input file was not opened for reading or the output file
 was not opened for writing.
 .TP
+.B EAGAIN
+Non-blocking I/O has been selected using
+.B O_NONBLOCK
+and the write would block.
+.TP
 .B EINVAL
 Descriptor is not valid or locked.
-.\" These two are from do_generic_file_read() in filemap.c
 .TP
 .B ENOMEM
 Insufficient memory to read from
@@ -96,6 +100,9 @@ Insufficient memory to read from
 .B EIO
 Unspecified error while reading from
 .IR in_fd .
+.TP
+.B EFAULT
+Bad address.
 .SH VERSIONS
 .B sendfile
 is a new feature in Linux 2.2.

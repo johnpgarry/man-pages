@@ -102,6 +102,17 @@ and may be
 for the default action, 
 .B SIG_IGN
 to ignore this signal, or a pointer to a signal handling function.
+This function receives the signal number as its only argument.
+.PP
+.I sa_sigaction
+also specifies the action to be associated with
+.IR signum .
+This function receives the signal number as its first argument, a
+pointer to a
+.I siginfo_t
+as its second argument and a pointer to a
+.I ucontext_t
+(cast to void *) as its third argument.
 .PP
 .I sa_mask
 gives a mask of signals which should be blocked during execution of

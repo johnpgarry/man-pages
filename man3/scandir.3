@@ -40,7 +40,7 @@ scandir, alphasort, versionsort \- scan a directory for matching entries
 .sp
 .BI "int scandir(const char *" dir ", struct dirent ***" namelist ,
 .RS
-.BI "int(*" select ")(const struct dirent *),"
+.BI "int(*" filter ")(const struct dirent *),"
 .BI "int(*" compar ")(const struct dirent **, const struct dirent **));"
 .RE
 .sp
@@ -50,12 +50,12 @@ scandir, alphasort, versionsort \- scan a directory for matching entries
 .fi
 .SH DESCRIPTION
 The \fBscandir()\fP function scans the directory \fIdir\fP, calling
-\fIselect()\fP on each directory entry.  Entries for which 
-\fIselect()\fP returns non-zero are stored in strings allocated via
+\fIfilter()\fP on each directory entry.  Entries for which 
+\fIfilter()\fP returns non-zero are stored in strings allocated via
 \fBmalloc()\fP, sorted using \fBqsort()\fP with the comparison
 function \fIcompar()\fP, and collected in array \fInamelist\fP
 which is allocated via \fBmalloc()\fP.
-If \fIselect\fP is NULL, all entries are selected.
+If \fIfilter\fP is NULL, all entries are selected.
 .LP
 The
 .B alphasort()

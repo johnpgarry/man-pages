@@ -52,6 +52,10 @@ will probably crash the system, and is not recommended.
 Permissions are inherited by fork and exec. 
 
 The I/O privilege level for a normal process is 0.
+
+This call is mostly for the i386 architecture.
+On many other architectures it does not exist or will always
+return an error.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -64,6 +68,9 @@ is greater than 3.
 .TP
 .B EPERM
 The current user is not the super-user.
+.TP
+.B ENOSYS
+This call is unimplemented.
 .SH "CONFORMING TO"
 \fBiopl\fP is Linux specific and should not be used in processes
 intended to be portable.

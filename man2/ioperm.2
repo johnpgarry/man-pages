@@ -51,11 +51,28 @@ ports, the
 .B iopl
 function must be used.
 Permissions are not inherited on fork, but on exec they are. This is
-useful for giving port access permissions to non-privileged tasks. 
+useful for giving port access permissions to non-privileged tasks.
+
+This call is mostly for the i386 architecture.
+On many other architectures it does not exist or will always
+return an error.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
+.SH ERRORS 
+.TP
+.B EINVAL
+Invalid values for
+.I from
+or
+.IR num .
+.TP
+.B EPERM
+Caller does not have the CAP_SYS_RAWIO privileges.
+.TP
+.B EIO
+(on ppc) This call is not supported.
 .SH "CONFORMING TO"
 \fBioperm\fP is Linux specific and should not be used in programs
 intended to be portable.

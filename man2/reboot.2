@@ -58,6 +58,7 @@ equals LINUX_REBOOT_MAGIC1 (that is, 0xfee1dead) and
 equals LINUX_REBOOT_MAGIC2 (that is, 672274793).
 However, since 2.1.17 also LINUX_REBOOT_MAGIC2A (that is, 85072278)
 and since 2.1.97 also LINUX_REBOOT_MAGIC2B (that is, 369367448)
+and since 2.5.71 also LINUX_REBOOT_MAGIC2C (that is, 537993216)
 are permitted as value for
 .IR magic2 .
 (The hexadecimal values of these constants are meaningful.)
@@ -131,6 +132,9 @@ Bad magic numbers or \fIflag\fP.
 .B EPERM
 A non-root user attempts to call
 .BR reboot .
+.TP
+.B EFAULT
+Problem with getting userspace data under LINUX_REBOOT_CMD_RESTART2.
 .SH "CONFORMING TO"
 .B reboot
 is Linux specific, and should not be used in programs intended to be portable.

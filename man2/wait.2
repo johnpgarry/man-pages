@@ -123,22 +123,20 @@ the stat buffer (an \fBint\fR) as an argument \(em not a pointer to the
 buffer!):
 .TP
 .BI WIFEXITED( status )
-is non\-zero if the child exited normally.
+returns true if the child terminated normally, that is,
+by calling exit() or _exit(), or by returning from main().
 .TP
 .BI WEXITSTATUS( status )
 evaluates to the least significant eight bits of the return code of
 the child which terminated, which may have been set as the argument to
-a call to
-.B exit()
-or as the argument for a
-.B return
-statement in the main program.  This macro can only be evaluated if
+a call to exit() or _exit() or as the argument for a return statement
+in the main program.  This macro can only be evaluated if
 .B WIFEXITED
-returned non\-zero.
+returned true.
 .TP
 .BI WIFSIGNALED( status )
-returns true if the child process exited because of a signal which was
-not caught.
+returns true if the child process terminated because of a signal
+which was not caught.
 .TP
 .BI WTERMSIG( status )
 returns the number of the signal that caused the child process to

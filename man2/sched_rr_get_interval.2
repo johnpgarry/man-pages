@@ -75,6 +75,12 @@ The process whose ID is \fIpid\fR could not be found.
 .TP
 .B ENOSYS
 The system call is not yet implemented.
+.TP
+.B EINVAL
+Invalid pid.
+.TP
+.B EFAULT
+Problem with copying information to userspace.
 .SH "CONFORMING TO"
 POSIX.1b (formerly POSIX.4)
 .SH BUGS

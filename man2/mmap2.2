@@ -49,6 +49,18 @@ except that the final argument specifies the offset into the
 file in units of the system page size (instead of bytes).
 This enables applications that use a 32-bit off_t to map
 larger files (typically up to 2^44 bytes).
+.SH "RETURN VALUE"
+On success, 
+.B mmap2
+returns a pointer to the mapped area. On error -1 is returned 
+and
+.I errno
+is set appropriately.
+.SH ERRORS
+.TP
+.SH EFAULT
+Problem with getting the
+data from userspace.
 .SH NOTES
 The function
 .B mmap2

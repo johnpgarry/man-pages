@@ -60,6 +60,12 @@ points to a
 structure and
 .I bytecount
 must equal the size of this structure.
+.\" .PP
+.\" The ldt is specific for the calling process. Any attempts to change
+.\" the ldt to include the address space of another process or the kernel
+.\" will result in a segmentation violation when trying to access the memory
+.\" outside of the process address space. The memory protection is enforced
+.\" at the paging layer.
 .SH "RETURN VALUE"
 On success,
 .B modify_ldt

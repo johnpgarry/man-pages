@@ -24,9 +24,10 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Mon Apr 12 13:06:15 1993, David Metcalfe
-.\" Modified Sat Jul 24 21:30:40 1993, Rik Faith (faith@cs.unc.edu)
-.TH BSTRING 3  1993-04-12 "GNU" "Linux Programmer's Manual"
+.\" Modified 1993-04-12, David Metcalfe
+.\" Modified 1993-07-24, Rik Faith (faith@cs.unc.edu)
+.\" Modified 2002-01-20, Walter Harms
+.TH BSTRING 3  2002-01-20 "" "Linux Programmer's Manual"
 .SH NAME
 bcmp, bcopy, bzero, memccpy, memchr, memcmp, memcpy, memfrob, memmem, 
 memmove, memset \- byte string operations
@@ -60,9 +61,22 @@ memmove, memset \- byte string operations
 .BI "void *memset(void *" s ", int " c ", size_t " n );
 .fi
 .SH DESCRIPTION
-The byte string functions perform operations on strings that are
-not NULL-terminated.  See the individual man pages for descriptions
-of each function.
+The byte string functions perform operations on strings (byte arrays)
+that are not necessarily NUL-terminated.  See the individual man pages
+for descriptions of each function.
+.SH NOTE
+The functions
+.BR bcmp (),
+.BR bcopy ()
+and
+.BR bzero ()
+are obsolete. Use
+.BR memcmp (),
+.BR memcpy ()
+and
+.BR memset ()
+instead.
+.\" The old functions are not even available on some non-GNU/Linux systems.
 .SH "SEE ALSO"
 .BR bcmp (3),
 .BR bcopy (3),

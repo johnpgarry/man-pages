@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.58.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.59.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,28 +12,20 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.57:
+Differences from version 1.58:
 
     The man pages
 
-	fcntl.2 mlock.2
+	dup.2 getsockopt.2 gettimeofday.2 ioperm.2 iopl.2 lseek.2
+	msync.2 munlock.2 open.2 pciconfig_iobase.2 pciconfig_read.2
+	pciconfig_write.2 poll.2 ptrace.2 reboot.2 recv.2 rmdir.2
+	sched_rr_get_interval.2 select.2 send.2 sendfile.2 setresuid.2
+	setuid.2 sigaction.2 statfs.2 ustat.2 wait4.2
 
-	acos.3 acosf.3 acosh.3 acoshf.3 acoshl.3 acosl.3 asin.3 asinf.3
-	asinh.3 asinhf.3 asinhl.3 asinl.3 atan.3 atan2.3 atan2f.3 atan2l.3
-	atanf.3 atanh.3 atanhf.3 atanhl.3 atanl.3 cbc_crypt.3 cos.3 cosh.3
-	des_crypt.3 des_setparity.3 ecb_crypt.3 erf.3 erfcf.3 erfcl.3
-	erff.3 erfl.3 exp.3 exp10.3 exp10f.3 exp10l.3 exp2.3 exp2f.3
-	exp2l.3 expf.3 expl.3 expm1.3 expm1f.3 expm1l.3 fdim.3 fdimf.3
-	fdiml.3 fma.3 fmaf.3 fmal.3 fmax.3 fmaxf.3 fmaxl.3 fmin.3 fminf.3
-	fminl.3 fmod.3 fpclassify.3 frexp.3 getgrnam.3 getpwnam.3 hypot.3
-	hypotf.3 hypotl.3 isfinite.3 isgreater.3 isgreaterequal.3 isinf.3
-	isless.3 islessequal.3 islessgreater.3 isnan.3 isnormal.3 isunordered.3
-	log.3 log10.3 log10f.3 log10l.3 log1p.3 log1pf.3 log1pl.3 log2.3
-	log2f.3 log2l.3 logf.3 login.3 logl.3 logout.3 modf.3 modff.3
-	modfl.3 openpty.3 passwd2des.3 pow10.3 pow10f.3 pow10l.3 pow.3
-	powf.3 powl.3 sin.3 sincos.3 sinf.3 sinh.3 sinl.3 sqrt.3 sqrtf.3
-	sqrtl.3 tan.3 tanf.3 tanh.3 tanl.3 termios.3 ualarm.3 undocumented.3
-	updwtmp.3 usleep.3 xcrypt.3 xdecrypt.3 xencrypt.3
+	bstring.3 dirfd.3 ffs.3 ffsl.3 ffsll.3 inet_ntop.3 insque.3
+	stdio.3 va_copy.3
+
+	ip.7
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.

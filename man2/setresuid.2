@@ -63,6 +63,11 @@ is set appropriately.
 .B EPERM
 The current process was not privileged and tried to change
 the IDs is a not allowed way.
+.TP
+.B EAGAIN
+.I uid
+does not match the current uid and this call would
+bring that userID over its NPROC rlimit.
 .SH "CONFORMING TO"
 This call is nonstandard.
 .SH HISTORY

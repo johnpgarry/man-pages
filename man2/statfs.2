@@ -68,9 +68,16 @@ struct statfs {
 };
 
 File system types:
+File system types:
 
+linux/adfs_fs.h:
+   ADFS_SUPER_MAGIC      0xadf5
 linux/affs_fs.h:
    AFFS_SUPER_MAGIC      0xADFF
+linux/coda_psdev.h
+   CODA_SUPER_MAGIC      0x73757245
+linux/devfs_fs_kernel.h
+   DEVFS_SUPER_MAGIC     0x1373
 linux/efs_fs.h:
    EFS_SUPER_MAGIC       0x00414A53
 linux/ext_fs.h:
@@ -78,10 +85,14 @@ linux/ext_fs.h:
 linux/ext2_fs.h:
    EXT2_OLD_SUPER_MAGIC  0xEF51
    EXT2_SUPER_MAGIC      0xEF53
+linux/ext3_fs.h
+   EXT3_SUPER_MAGIC      0xEF53
 linux/hpfs_fs.h:
    HPFS_SUPER_MAGIC      0xF995E849
 linux/iso_fs.h:
    ISOFS_SUPER_MAGIC     0x9660
+linux/jffs2.h
+   JFFS2_SUPER_MAGIC     0x72b6
 linux/minix_fs.h:
    MINIX_SUPER_MAGIC     0x137F /* orig. minix */
    MINIX_SUPER_MAGIC2    0x138F /* 30 char minix */
@@ -93,8 +104,14 @@ linux/ncp_fs.h:
    NCP_SUPER_MAGIC       0x564c
 linux/nfs_fs.h:
    NFS_SUPER_MAGIC       0x6969
+linux/openprom_fs.h
+   OPENPROM_SUPER_MAGIC  0x9fa1
 linux/proc_fs.h:
    PROC_SUPER_MAGIC      0x9fa0
+linux/qnx4_fs.h
+   QNX4_SUPER_MAGIC      0x002f
+linux/reiserfs_fs.h
+   REISERFS_SUPER_MAGIC  0x52654973
 linux/smb_fs.h:
    SMB_SUPER_MAGIC       0x517B
 linux/sysv_fs.h:
@@ -104,6 +121,8 @@ linux/sysv_fs.h:
    COH_SUPER_MAGIC       0x012FF7B7
 linux/ufs_fs.h:
    UFS_MAGIC             0x00011954
+linux/usbdevice_fs.h
+   USBDEVICE_SUPER_MAGIC 0x9fa2
 linux/xfs_fs.h:
    XFS_SUPER_MAGIC       0x58465342
 linux/xia_fs.h:

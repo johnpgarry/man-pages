@@ -202,7 +202,7 @@ would block.
 The output queue for a network interface was full.
 This generally indicates that the interface has stopped sending,
 but may be caused by transient congestion.
-(This cannot occur in Linux, packets are just silently dropped
+(Normally, this does not occur in Linux. Packets are just silently dropped
 when a device queue overflows.)
 .TP
 .B EINTR

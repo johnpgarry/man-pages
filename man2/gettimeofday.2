@@ -35,7 +35,7 @@
 .\" Added clarification on timezone, aeb, 971210.
 .\" Removed "#include <unistd.h>", aeb, 010316.
 .\"
-.TH GETTIMEOFDAY 2 1997-12-10 "Linux 2.0.32" "Linux Programmer's Manual"
+.TH GETTIMEOFDAY 2 2003-08-21 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
 gettimeofday, settimeofday \- get / set time
 .SH SYNOPSIS
@@ -55,13 +55,13 @@ The
 .I tv
 argument is a 
 .B timeval 
-struct, as specified  in /usr/include/sys/time.h:
+struct, as specified  in <sys/time.h>:
 .sp
 .nf
 struct timeval {
 .in +8
-long	tv_sec;		/* seconds */
-long	tv_usec;	/* microseconds */
+time_t		tv_sec;		/* seconds */
+suseconds_t	tv_usec;	/* microseconds */
 .in -8
 };
 .fi
@@ -209,8 +209,11 @@ are (since glibc2.2.2) only available if
 .B _BSD_SOURCE
 is defined (either explicitly, or implicitly, by not defining
 _POSIX_SOURCE or compiling with the -ansi flag).
+.LP
+Traditionally, the fields of struct timeval were longs.
 .SH "CONFORMING TO"
-SVr4, BSD 4.3
+SVr4, BSD 4.3. POSIX 1003.1-2001 describes gettimeofday()
+but not settimeofday().
 .SH "SEE ALSO"
 .BR date (1),
 .BR adjtimex (2),
