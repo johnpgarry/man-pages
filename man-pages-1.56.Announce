@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.55.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.56.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,23 +12,18 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.54:
+Differences from version 1.55:
 
     The man pages
 
-	alloc_hugepages.2 arch_prctl.2 clone.2 free_hugepages.2
-	futex.2 gettid.2 mmap.2 msgget.2 personality.2 recv.2
-	select.2 send.2 setpgid.2 shmget.2 syslog.2 tkill.2
-	undocumented.2
+	fgetxattr.2 flistxattr.2 fremovexattr.2 fsetxattr.2 getpmsg.2
+	getxattr.2 get_thread_area.2 io_cancel.2 io_destroy.2
+	io_getevents.2 io_setup.2 io_submit.2 lgetxattr.2 listxattr.2
+	llistxattr.2 lookup_dcookie.2 lremovexattr.2 lsetxattr.2
+	posix_fadvise.2 putpmsg.2 readahead.2 removexattr.2 security.2
+	setxattr.2 set_thread_area.2
 
-	bcmp.3 bcopy.3 bzero.3 getpt.3 grantpt.3 ptsname.3 remove.3
-	scanf.3 shm_open.3 string.3 tcgetpgrp.3 tcgetsid.3 unlockpt.3
-
-	futex.4 ptmx.4 pts.4
-
-	proc.5
-
-	signal.7
+	ftw.3 openpty.3
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.

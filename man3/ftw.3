@@ -31,12 +31,12 @@ ftw, nftw \- file tree walk
 .sp
 .BI "int ftw(const char *" dir ", int (*" fn ")(const"
 .BI "char *" file ", const struct stat *" sb ", int " flag ),
-.BI "int " depth );
+.BI "int " nopenfd );
 .sp
 .BI "int nftw(const char *" dir ", int (*" fn ")(const"
 .BI "char *" file ", const struct stat *" sb ", int " flag ,
 .BI "struct FTW *" s ),
-.BI "int " depth ", int " flags );
+.BI "int " nopenfd ", int " flags );
 .SH DESCRIPTION
 \fBftw\fP() walks through the directory tree starting from the indicated
 directory \fIdir\fP.  For each found entry in the tree, it calls
@@ -65,11 +65,11 @@ that it is undefined whether FTW_NS or FTW_SL is used.
 .PP
 \fBftw\fP() recursively calls itself for traversing found directories,
 handling a directory before its files or subdirectories.
-To avoid using up all a program's file descriptors, the \fIdepth\fP
-specifies the number of simultaneous open directories.  When the depth
-is exceeded, \fBftw\fP() will become slower because directories have to
-be closed and reopened. \fBftw\fP() uses at most one file descriptor
-for each level in the file hierarchy.
+To avoid using up all a program's file descriptors, \fInopenfd\fP
+specifies the maximum number of simultaneous open directories.  When
+the search depth exceeds this, \fBftw\fP() will become slower because
+directories have to be closed and reopened. \fBftw\fP() uses at most
+one file descriptor for each level in the file hierarchy.
 .PP
 To stop the tree walk, \fIfn\fP() returns a non-zero value; this
 value will become the return value of \fBftw\fP().  Otherwise,

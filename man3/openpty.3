@@ -138,5 +138,15 @@ fails.
 .I /dev/[pt]ty[pqrstuwxyzabcdePQRST][0123456789abcdef]
 .SH "CONFORMING TO"
 These are BSD functions, present in libc5 and glibc2.
+.SH BUGS
+Nobody knows how much space should be reserved for
+.IR name .
+So, calling
+.B openpty()
+or
+.B forkpty()
+with non-NULL
+.I name
+may not be secure.
 .SH "SEE ALSO"
 .BR fork (2)

@@ -1,0 +1,98 @@
+.\" Copyright (C) 2003 Free Software Foundation, Inc.
+.\" This file is distributed according to the GNU General Public License.
+.\" See the file COPYING in the top level source directory for details.
+.\"
+.de Sh \" Subsection
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp \" Vertical space (when we can't use .PP)
+.if t .sp .5v
+.if n .sp
+..
+.de Ip \" List item
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.TH "SET_THREAD_AREA" 2 "2003-02-21" "Linux 2.4" "Linux Programmer's Manual"
+.SH NAME
+set_thread_area \- Set a Thread Local Storage (TLS) area
+.SH "SYNOPSIS"
+.ad l
+.hy 0
+
+#include <linux/unistd.h>
+.sp
+
+#include <asm/ldt.h>
+.sp
+.HP 21
+int\ \fBset_thread_area\fR\ (struct\ user_desc\ \fI*u_info\fR);
+.ad
+.hy
+
+.SH "DESCRIPTION"
+
+.PP
+\fBset_thread_area\fR sets an entry in the current thread's Thread 
+Local Storage (TLS) array. 
+The TLS array entry set by \fBset_thread_area\fR corresponds to the 
+value of \fIu_info->\fR\fIentry_number\fR passed in by the user. 
+If this value is in bounds, \fIset_thread_area\fR copies the TLS 
+descriptor pointed to by \fIu_info\fR into the thread's TLS array.
+
+.PP
+When \fBset_thread_area\fR is passed an \fIentry_number\fR of -1, 
+it uses a free TLS entry. 
+If \fBset_thread_area\fR finds a free TLS entry, the value of 
+\fIu_info->\fR\fIentry_number\fR is set upon return to show which 
+entry was changed.
+
+.SH "RETURN VALUE"
+
+.PP
+\fBset_thread_area\fR returns 0 on success. 
+Otherwise, it returns one of the errors listed in the "Errors" section.
+
+.SH "ERRORS"
+
+.TP
+EINVAL
+\fIu_info->\fR\fIentry_number\fR is out of bounds.
+
+.TP
+EFAULT
+\fIu_info\fR is an invalid pointer.
+
+.TP
+ESRCH
+A free TLS entry could not be located.
+
+.SH "CONFORMING TO"
+
+.PP
+\fBset_thread_area\fR is Linux specific and should not be used in programs that are intended to be portable.
+
+.SH "VERSIONS"
+
+.PP
+A version of \fBset_thread_area\fR first appeared in Linux 2.5 in August, 2002.
+
+.SH "SEE ALSO"
+
+.PP
+\fBget_thread_area\fR(2).
+
+.SH "NOTES"
+
+.PP
+\fBset_thread_area\fR was written by Ingo Molnar.
+
+.SH AUTHOR
+Kent Yoder.
