@@ -22,17 +22,28 @@
 .\"
 .\" Updated 1999.12.19 by Karl M. Hegbloom <karlheg@debian.org>
 .\"
-.TH SYSLOG 3 1999-12-19 "Linux" "Linux Programmer's Manual"
+.\" Updated 13 Oct 2001, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"	Added description of vsyslog
+.\"	Added descriptions of (SUSv3-specified) LOG_ODELAY and LOG_NOWAIT
+.\"	Added brief description of facility and option arguments
+.\"	Added CONFORMING TO section
+.\" 2001-10-13, aeb, minor changes
+.\"
+.TH SYSLOG 3 2001-10-13 "Linux" "Linux Programmer's Manual"
 .SH NAME
 closelog, openlog, syslog \- send messages to the system logger
 .SH SYNOPSIS
 .B #include <syslog.h>
 .sp
-.BI "void openlog( char " *ident ", int " option ", int  " facility )
+.BI "void openlog(char " *ident ", int " option ", int " facility)
+.br
+.BI "void syslog(int " priority ", char " *format ", ...)"
+.br
+.BI "void closelog(void)"
 .sp
-.BI "void syslog( int " priority ", char " *format ", ...)"
+.B #include <stdarg.h>
 .sp
-.BI "void closelog( void )"
+.BI "void vsyslog(int " priority ", char " *format ", va_list " ap ")"
 .sp
 .SH DESCRIPTION
 .B closelog()
@@ -43,14 +54,26 @@ is optional.
 .B openlog()
 opens a connection to the system logger for a program.  The string pointed
 to by
-.I ident 
-is added to each message, and is typically set to the program name.  Values for
+.I ident
+is prepended to every message, and is typically set to the program name.
+The
+.I option
+argument specifies flags which control the operation of
+.B openlog()
+and subsequent calls to
+.BR syslog() .
+The
+.I facility
+argument establishes a default to be used if
+none is specified in subsequent calls to
+.BR syslog() .
+Values for
 .I option
 and
 .I facility
-are given in the next section.  The use of 
+are given below.  The use of 
 .B openlog()
-is optional; It will automatically be called by 
+is optional; it will automatically be called by
 .B syslog()
 if necessary, in which case 
 .I ident
@@ -59,23 +82,32 @@ will default to NULL.
 .B syslog()
 generates a log message, which will be distributed by 
 .BR syslogd (8).
+The
 .I priority
-is a combination of the
+argument is formed by ORing the
 .I facility
 and the 
-.IR level , 
-values for which are given in the next section.  The remaining arguments
+.I level
+values (explained below).  The remaining arguments
 are a 
 .IR format ,
 as in 
 .BR printf (3)
 and any arguments required by the 
 .IR format , 
-except that the two character %m will be replaced by the error message 
-string 
-.RI ( strerror )
-corresponding to the present value of 
-.IR errno .
+except that the two character sequence %m will be replaced by
+the error message string 
+.IR strerror ( errno ).
+A trailing newline is added when needed.
+
+The function
+.B vsyslog()
+performs the same task as
+.B syslog()
+with the difference that it takes a set of arguments which have
+been obtained using the
+.BR stdarg (3)
+variable argument list macros.
 
 .SH PARAMETERS
 This section lists the parameters used to set the values of 
@@ -88,18 +120,30 @@ argument to
 is an OR of any of these:
 .TP
 .B LOG_CONS
-write directly to system console if there is an error while sending to
-system logger
+Write directly to system console if there is an error while sending to
+system logger.
 .TP
 .B LOG_NDELAY
-open the connection immediately (normally, the connection is opened when
-the first message is logged)
+Open the connection immediately (normally, the connection is opened when
+the first message is logged).
+.TP
+.B LOG_NOWAIT
+Don't wait for child processes that may have been created while logging
+the message.  (The GNU C library does not create a child process, so this
+option has no effect on Linux.)
+.TP
+.B LOG_ODELAY
+The converse of
+.BR LOG_NDELAY ;
+opening of the connection is delayed until
+.B syslog()
+is called.  (This is the default, and need not be specified.)
 .TP
 .B LOG_PERROR
-print to stderr as well
+(Not in SUSv3.) Print to stderr as well.
 .TP
 .B LOG_PID
-include PID with each message
+Include PID with each message.
 .SS facility 
 The 
 .I facility
@@ -144,7 +188,7 @@ USENET news subsystem
 messages generated internally by
 .B syslogd 
 .TP
-.BR LOG_USER (default)
+.BR LOG_USER " (default)"
 generic user-level messages 
 .TP
 .B LOG_UUCP
@@ -177,13 +221,57 @@ informational message
 .TP
 .B LOG_DEBUG
 debug-level message
+.LP
+The function
+.BR setlogmask (3)
+can be used to restrict logging to specified levels only.
 
+.SH CONFORMING TO
+The functions
+.BR openlog() ,
+.BR closelog() ,
+and
+.BR syslog()
+(but not
+.BR vsyslog() )
+are specified in SUSv2 and SUSv3 ("Austin draft").
+SUSv3 specifies only the
+.B LOG_USER
+and
+.BR LOG_LOCAL*
+values for
+.IR facility .
+However, with the exception of
+.BR LOG_AUTHPRIV 
+and
+.BR LOG_FTP ,
+the other
+.I facility
+values appear on most Unix systems.
+The
+.B LOG_PERROR
+value for
+.I option
+is not specified by SUSv3, but is available in most versions of Unix.
 
 .SH HISTORY
 A
 .B syslog
 function call appeared in BSD 4.2.
+BSD 4.3 documents
+.IR openlog (),
+.IR syslog (),
+.IR closelog (),
+and
+.IR setlogmask ().
+4.3BSD-Reno also documents
+.IR vsyslog ().
+Of course early v* functions used the
+.I <varargs.h>
+mechanism, which is not compatible with
+.IR <stdarg.h> .
 .SH "SEE ALSO"
 .BR logger (1),
+.BR setlogmask (3),
 .BR syslog.conf (5),
 .BR syslogd (8)

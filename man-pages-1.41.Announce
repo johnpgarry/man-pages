@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.40.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.41.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -27,32 +27,20 @@ with these man pages.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM. They are
 copyrighted by Sun Microsystems, Inc., but can be distributed freely.]
 
-Differences from version 1.39:
+Differences from version 1.40:
 
     The man pages
 
-	cp.1
+	acct.2 getpriority.2 mmap.2 mount.2 open.2 sync.2
 
-	lseek.2 recv.2 shutdown.2 sigaction.2 socket.2 stat.2 wait.2
-
-	byteorder.3 ctime.3 endrpcent.3 getrpcbyname.3 getrpcbynumber.3
-	getutent.3 hsearch.3 rpc.3 setrpcent.3 sigsetops.3 strcmp.3
-	strptime.3 system.3 termios.3 undocumented.3 xdr_accepted_reply.3
-	xdr_array.3 xdr_authunix_parms.3 xdr_bool.3 xdr_bytes.3 xdr_callhdr.3
-	xdr_callmsg.3 xdr_char.3 xdr_destroy.3 xdr_double.3 xdr_enum.3
-	xdr_float.3 xdr_free.3 xdr_getpos.3 xdr_inline.3 xdr_int.3
-	xdr_long.3 xdr_opaque.3 xdr_opaque_auth.3 xdr_pmap.3 xdr_pmaplist.3
-	xdr_pointer.3 xdr_reference.3 xdr_rejected_reply.3 xdr_replymsg.3
-	xdr_setpos.3 xdr_short.3 xdr_string.3 xdr_u_char.3 xdr_u_int.3
-	xdr_u_long.3 xdr_u_short.3 xdr_union.3 xdr_vector.3 xdr_void.3
-	xdr_wrapstring.3 xdrmem_create.3 xdrrec_create.3 xdrrec_endofrecord.3
-	xdrrec_eof.3 xdrrec_skiprecord.3 xdrstdio_create.3 xprt_register.3
-	xprt_unregister.3
-
-	charsets.7 hier.7
+	alloca.3 endutxent.3 getdelim.3 getline.3 getutxent.3
+	getutxid.3 getutxline.3 ldiv.3 lldiv.3 memalign.3
+	mkdtemp.3 posix_memalign.3 pututxline.3 setlogmask.3
+	setutxent.3 stdarg.3 strchr.3 syslog.3 undocumented.3
+	valloc.3
 
     are new or have been updated. Typographical or grammatical errors
-    have been corrected in many other places.
+    have been corrected in several other places.
 
 
 Here is a breakdown of what this distribution contains:

@@ -47,7 +47,9 @@ The
 function allocates
 .I size
 bytes of space in the stack frame of the caller.  This temporary space is
-automatically freed on return.
+automatically freed when the function that called
+.B alloca
+returns to its caller.
 .SH "RETURN VALUE"
 The
 .B alloca
@@ -60,10 +62,19 @@ There is evidence that the
 .B alloca
 function appeared in 32v, pwb, pwb.2, 3bsd, and 4bsd.  There is a man page
 for it in BSD 4.3.  Linux uses the GNU version.
+This function is not in POSIX or SUSv3.
 .SH BUGS
 The
 .B alloca
-function is machine dependent.
+function is machine and compiler dependent. Its use is discouraged.
+.LP
+On many systems
+.B alloca
+cannot be used inside the list of arguments of a function call, because
+the stack space reserved by
+.B alloca
+would appear on the stack in the middle of the space for the
+function arguments.
 .SH "SEE ALSO"
 .BR brk (2),
 .BR pagesize (2),

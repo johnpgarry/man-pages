@@ -42,6 +42,9 @@ of the character \fIc\fP in the string \fIs\fP.
 .PP
 The \fBstrrchr()\fP function returns a pointer to the last occurrence
 of the character \fIc\fP in the string \fIs\fP.
+.PP
+Here "character" means "byte" - these functions do not work with
+wide or multi-byte characters.
 .SH "RETURN VALUE"
 The \fBstrchr()\fP and \fBstrrchr()\fP functions return a pointer to
 the matched character or NULL if the character is not found.

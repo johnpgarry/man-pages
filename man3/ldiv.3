@@ -34,14 +34,18 @@ ldiv \- computes the quotient and remainder of long integer division.
 .B #include <stdlib.h>
 .sp
 .BI "ldiv_t ldiv(long int " numer ", long int " denom );
+.br
+.BI "lldiv_t lldiv(long long int " numer ", long long int " denom );
 .fi
 .SH DESCRIPTION
-The \fBldiv()\fP function computes the value \fInumer\fP/\fIdenom\fP and
+The \fBldiv()\fP function divides \fInumer\fP by \fIdenom\fP and
 returns the quotient and remainder in a structure named \fIldiv_t\fP that
 contains two long integer members named \fIquot\fP and \fIrem\fP.
+The quotient is rounded towards zero.
 .SH "RETURN VALUE"
 The \fIldiv_t\fP structure.
 .SH "CONFORMING TO"
-SVID 3, BSD 4.3, ISO 9899
+SVID 3, BSD 4.3, ISO 9899.
+lldiv() was added in ISO C99.
 .SH "SEE ALSO"
 .BR div (3)
