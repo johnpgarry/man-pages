@@ -37,6 +37,8 @@
 .\"
 .\" Converted for Linux, Mon Nov 29 15:22:01 1993, faith@cs.unc.edu
 .\"
+.\" Modified 2000-07-22 by Nicolás Lichtmaier <nick@debian.org>
+.\"
 .TH FFLUSH 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
 fflush \- flush a stream
@@ -47,7 +49,7 @@ fflush \- flush a stream
 .SH DESCRIPTION
 The function
 .B fflush
-forces a write of all buffered data for the given output or update
+forces a write of all user-space buffered data for the given output or update
 .I stream
 via the stream's underlying write function.  The open status of the stream
 is unaffected.
@@ -78,9 +80,24 @@ may also fail and set
 .I errno
 for any of the errors specified for the routine
 .BR write (2).
-.SH "SEE ALSO"
-.BR write "(2), " fopen "(3), " fclose "(3), " setbuf (3)
+.SH NOTES
+Note that
+.B fflush
+only flushes the user space buffers provided by the C library.
+To ensure that the data is physically stored on disk
+the kernel buffers must be flushed too, e.g. with
+.BR sync (2)
+or
+.BR fsync (2).
 .SH "CONFORMING TO"
 The
 .B fflush
 function conforms to ANSI X3.159-1989 (``ANSI C'').
+.SH "SEE ALSO"
+.BR write (2),
+.BR fclose (3),
+.BR fopen (3),
+.BR fsync (2),
+.BR sync (2),
+.BR write (2),
+.BR setbuf (3)

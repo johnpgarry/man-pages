@@ -47,6 +47,9 @@ time, as specified by the
 .BR tzfile (5)-format
 file \fIlocaltime\fP
 found in the system timezone directory (see below).
+(One also often sees
+.I /etc/localtime
+used here, a symlink to the right file in the system timezone directory.)
 .PP
 If the TZ variable does appear in the environment but its value is NULL
 or its value cannot be interpreted using any of the formats specified
@@ -108,25 +111,45 @@ from a file:
 .RE
 .sp
 If the file specification \fIfilespec\fP is omitted, the time zone
-information is read from \fI/usr/lib/zoneinfo/localtime\fP which is in 
-tzfile(5) format.  If \fIfilespec\fP is given, it specifies another 
-tzfile(5)-format file to read the time zone information from.  If 
+information is read from the file
+.I localtime
+in the system timezone directory, which nowadays usually is
+.IR /usr/share/zoneinfo .
+This file is in
+.BR tzfile (5)
+format.  If \fIfilespec\fP is given, it specifies another
+.BR tzfile (5)-format
+file to read the time zone information from.  If 
 \fIfilespec\fP does not begin with a `/', the file specification is 
-relative to the system time conversion information directory 
-\fI/usr/lib/zoneinfo\fP.
+relative to the system timezone directory.
 .SH FILES
 The system time zone directory used depends on the (g)libc version.
-Libc4 and libc5 use \fI/usr/lib/zoneinfo\fP, and, since libc-5.4.6,
-when this doesn't work, will try \fI/usr/share/zoneinfo\fP.
+Libc4 and libc5 use
+.IR /usr/lib/zoneinfo ,
+and, since libc-5.4.6,
+when this doesn't work, will try
+.IR /usr/share/zoneinfo .
 Glibc2 will use the environment variable TZDIR, when that exists.
+Its default depends on how it was installed, but normally is
+.IR /usr/share/zoneinfo .
+.LP
 This timezone directory contains the files
 .nf
 localtime      local time zone file
 posixrules     rules for POSIX-style TZ's
 .fi
-Often \fI/etc/localtime\fP is a symlink to \fI/usr/lib/zoneinfo/localtime\fP.
+.LP
+Often
+.I /etc/localtime
+is a symlink to the file
+.I localtime
+or to the correct time zone file in the system time zone directory.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3
 .SH "SEE ALSO"
-.BR date "(1), " gettimeofday "(2), " time "(2), " ctime (3),
-.BR getenv "(3), " tzfile (5) 
+.BR date (1),
+.BR gettimeofday (2),
+.BR time (2),
+.BR ctime (3),
+.BR getenv (3),
+.BR tzfile (5) 

@@ -40,11 +40,19 @@ if
 .B expression
 is false (i.e., compares equal to zero).  This only happens when the macro
 .B NDEBUG
-is undefined.
+was undefined when
+.B <assert.h>
+was last included.
 .SH "RETURN VALUE"
 No value is returned.
 .SH "CONFORMING TO"
-ISO9899 (ANSI C)
+ISO9899 (ANSI C).  In the 1990 standard,
+.B expression
+is required to be of type
+.B int
+and undefined behavior results if it is not, but in the 1999 standard
+it may have any scalar type.
+.\" See Defect Report 107 for more details.
 .SH "BUGS"
 .B assert()
 is implemented as a macro; if the expression tested has side - effects,

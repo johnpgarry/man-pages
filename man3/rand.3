@@ -30,7 +30,9 @@
 .\" Modified Thu May 18 10:10:13 1995, Rik Faith (faith@cs.unc.edu) to add
 .\"          better discussion of problems with rand on other systems.
 .\"          (Thanks to Esa Hyyti{ (ehyytia@snakemail.hut.fi).)
-.\" "
+.\" Modified Fri Apr 10 01:47:03 1998, Nicolás Lichtmaier <nick@debian.org>
+.\"          with contribution from Francesco Potorti <F.Potorti@cnuce.cnr.it>
+.\"
 .TH RAND 3  "18 May 1995" "GNU" "Linux Programmer's Manual"
 .SH NAME
 rand, srand \- random number generator.
@@ -68,11 +70,11 @@ higher-order bits.
 In
 .I Numerical Recipes in C: The Art of Scientific Computing
 (William H. Press, Brian P. Flannery, Saul A. Teukolsky, William
-T. Vetterling; New York: Cambridge University Press, 1990 (1st ed,
-p. 207)), the following comments are made:
+T. Vetterling; New York: Cambridge University Press, 1992 (2nd ed.,
+p. 277)), the following comments are made:
 .RS
 "If you want to generate a random integer between 1 and 10, you should
-always do it by
+always do it by using high-order bits, as in
 .RS
 .sp
 j=1+(int) (10.0*rand()/(RAND_MAX+1.0));
@@ -81,7 +83,7 @@ j=1+(int) (10.0*rand()/(RAND_MAX+1.0));
 and never by anything resembling
 .RS
 .sp
-j=1+((int) (1000000.0*rand()) % 10);
+j=1+(rand() % 10);
 .sp
 .RE
 (which uses lower-order bits)."

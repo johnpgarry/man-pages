@@ -58,19 +58,19 @@ to a user allocated char* pointer. This pointer, the
 .I ptrptr
 parameter, must be the same while parsing the same string.
 .SH "BUGS"
-Never use this function. If you do, note that:
+Never use these functions. If you do, note that:
 .PP
 .RS
-This function modifies its first argument.
+These functions modify their first argument.
 .PP
 The identity of the delimiting character is lost.
 .PP
-This functions cannot be used on constant strings.
+These functions cannot be used on constant strings.
 .PP
 The
-.B strtok ()
+.BR strtok ()
 function uses a static buffer while parsing, so it's not thread safe. Use
-.B strtok_r ()
+.BR strtok_r ()
 if this matters to you.
 .RE
 .SH "RETURN VALUE"

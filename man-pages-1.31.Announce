@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.30.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.31.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -27,20 +27,40 @@ with these man pages.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM. They are
 copyrighted by Sun Microsystems, Inc., but can be distributed freely.]
 
-Differences from version 1.29:
+Differences from version 1.30:
 
     The man pages
 
-	ls.1
+	chgrp.1
 
-	getdomainname.2 gethostname.2 mkdir.2 mmap.2 recv.2 sendfile.2
-	setpgid.2 signal.2 statfs.2 sysfs.2 sysinfo.2 truncate.2
+	alarm.2 clone.2 close.2 execve.2 flock.2 getgroups.2 getpid.2
+	intro.2 mkdir.2 mmap.2 msgop.2 setfsgid.2 setfsuid.2
+	setregid.2 setreuid.2 setuid.2 sigaction.2 signal.2
+	stat.2 truncate.2 unlink.2 wait.2
 
-	freeaddrinfo.3 freehostent.3 gai_strerror.3 getaddrinfo.3
-	getipnodebyname.3 getipnodebyaddr.3 getmntent.3 getw.3 inet.3
-	inet_ntop.3 inet_pton.3 printf.3 putenv.3 strptime.3 tzset.3
+	__setfpucw.3 abort.3 assert.3 auth_destroy.3 authnone_create.3
+	authunix_create.3 authunix_create_default.3 callrpc.3
+	clnt_broadcast.3 clnt_call.3 clnt_control.3 clnt_create.3
+	clnt_destroy.3 clnt_freeres.3 clnt_geterr.3 clnt_pcreateerror.3
+	clnt_perrno.3 clnt_perror.3 clnt_sperrno.3 clnt_spcreateerror.3
+	clnt_sperror.3 clntraw_create.3 clnttcp_create.3 clntudp_create.3
+	clntudp_bufcreate.3 encrypt.3 exec.3 fclose.3 feclearexcept.3
+	fegetexceptflag.3 feraiseexcept.3 fesetexceptflag.3
+	fetestexcept.3 fegetenv.3 fegetround.3 feholdexcept.3
+	fesetround.3 fesetenv.3 feupdateenv.3 fflush.3 fopen.3
+	get_myaddress.3 gethostbyname.3 pmap_getmaps.3 pmap_getport.3
+	pmap_rmtcall.3 pmap_set.3 pmap_unset.3 printf.3 registerrpc.3
+	rpc.3 setkey.3 strcasecmp.3 svc_destroy.3 svc_freeargs.3
+	svc_getargs.3 svc_getcaller.3 svc_getreq.3 svc_getreqset.3
+	svc_register.3 svc_run.3 svc_sendreply.3 svc_unregister.3
+	svcerr_auth.3 svcerr_decode.3 svcerr_noproc.3 svcerr_noprog.3
+	svcerr_progvers.3 svcerr_systemerr.3 svcerr_weakauth.3
+	svcfd_create.3 svcraw_create.3 svctcp_create.3 svcudp_bufcreate.3
+	svcudp_create.3 tzset.3
 
-	dsp56k.4
+	charmap.5 hosts.5
+
+	hier.7 man.7
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.
@@ -48,7 +68,7 @@ Differences from version 1.29:
 
 Here is a breakdown of what this distribution contains:
 
-    Section 1 = user commands (intro only)
+    Section 1 = user commands (intro, and pages not maintained by FSF)
     Section 2 = system calls
     Section 3 = libc calls
     Section 4 = devices (e.g., hd, sd)
@@ -60,7 +80,7 @@ Here is a breakdown of what this distribution contains:
     (Usually, there are no section 1, 6 and 8 man pages because these
     should be distributed with the binaries they are written for.)
 
-    Note that only Section 2 is really complete, but Section 3 contains
+    Note that only Section 2 is rather complete, but Section 3 contains
     several hundred man pages.  If you want to write some man pages,
     please do so and mail them to aeb@cwi.nl.
 
@@ -109,6 +129,7 @@ wrote, edited, or otherwise contributed to this project:
     Matthew Wilcox <willy@bofh.ai>
     Michael Elizabeth Chastain <mec@duracef.shout.net>
     Michael Haardt <michael@moria.de>
+    Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
     Michael Shields <shields@tembel.org>
     Mike Battersby <mike@starbug.apana.org.au>
     Mike Coleman <mkc@acm.org>

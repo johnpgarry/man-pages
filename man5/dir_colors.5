@@ -17,10 +17,10 @@ file contains configuration information for the
 program, which in turn provides color information for
 .BR ls (1).
 This file is normally found in
-.IR /etc,
+.IR /etc ,
 though users may maintain their own local copies in their home
 directories as
-.IR .dir_colors.
+.IR .dir_colors .
 .PP
 The configuration file consists of several statements, one per line.
 Anything right of a hash mark (\#) is treated as a comment, if the
@@ -32,7 +32,7 @@ The
 section of the file consists of any statement before the first
 .B TERM
 statement.  Any statement in the global section of the file is
-considered valid for all terminal types  Following the global section
+considered valid for all terminal types.  Following the global section
 is one or more 
 .I terminal-specific
 sections, which are preceded by one or more
@@ -302,7 +302,7 @@ The default
 .B ENDCODE
 is undefined.
 .SH "SEE ALSO"
-.BR dircolors (5),
+.BR dircolors (1),
 .BR ls (1),
 .BR stty (1),
 .BR xterm (1)
@@ -310,7 +310,7 @@ is undefined.
 .TP
 .I /etc/dir_colors
 System-wide configuration file for
-.BR dircolors.
+.BR dircolors .
 .TP
 .I ~/.dir_colors
 Per-user configuration file for

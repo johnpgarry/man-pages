@@ -60,6 +60,15 @@ scheduled alarm.
 .BR alarm " and " setitimer
 share the same timer; calls to one will interfere with use of the
 other.
+.PP
+.B sleep()
+may be implemented using
+.BR SIGALRM ;
+mixing calls to
+.B alarm()
+and
+.B sleep()
+is a bad idea.
 
 Scheduling delays can, as ever, cause the execution of the process to
 be delayed by an arbitrary amount of time.

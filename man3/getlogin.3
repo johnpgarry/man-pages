@@ -68,10 +68,11 @@ precisely because the user can set \fBLOGNAME\fP arbitrarily.
 Insufficient memory to allocate passwd structure.
 .SH FILES
 .nf
-\fI/etc/passwd\fP             password database file
+\fI/etc/passwd\fP	password database file
+.br
+\fI/var/run/utmp\fP	(traditionally \fI/etc/utmp\fP;
+			some libc versions used \fI/var/adm/utmp\fP)
 .fi
-\fI/etc/utmp\fP (or \fI/var/adm/utmp\fP, or wherever your \fIutmp\fP
-file lives these days - the proper location depends on your libc version)
 .SH "CONFORMING TO"
 POSIX.1.  System V has a \fBcuserid\fP function which uses the real
 user ID rather than the effective user ID. The \fBcuserid\fP function
@@ -85,7 +86,8 @@ of our program need not be the user who started it.
 Avoid getlogin() for security-related purposes.
 .LP
 Nobody knows precisely what cuserid() does - avoid it in portable programs -
-avoid it altogether - use getpwuid(geteuid()) instead, if that is what you meant.
+avoid it altogether - use getpwuid(geteuid()) instead, if that is
+what you meant.
 DO NOT USE cuserid().
 .SH "SEE ALSO"
 .BR geteuid "(2), " getuid (2)

@@ -134,10 +134,7 @@ function is exactly equivalent to the call:
 .RS
 setvbuf(stream, (char *)NULL, _IOLBF, 0);
 .RE
-.SH "SEE ALSO"
-.BR fopen "(3), " fclose "(3), " fflush "(3), " fread "(3), " malloc "(3), "
-.BR puts "(3), " printf (3)
-.SH STANDARDS
+.SH "CONFORMING TO"
 The
 .B setbuf
 and
@@ -172,3 +169,11 @@ int main()
 }
 .fi
 .sp
+.SH "SEE ALSO"
+.BR fclose (3),
+.BR fflush (3),
+.BR fopen (3),
+.BR fread (3),
+.BR malloc (3),
+.BR printf (3),
+.BR puts (3)

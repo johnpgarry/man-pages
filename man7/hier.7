@@ -145,6 +145,10 @@ usually is a symbolic link to
 .I /usr/dict
 This directory holds files containing word lists for spell checkers.
 .TP
+.I /usr/doc
+You may find documentation about the installed software packages
+in this directory.
+.TP
 .I /usr/etc
 Site-wide configuration files to be shared between several machines
 may be stored in this directory.  However, commands should always
@@ -242,17 +246,17 @@ Locally installed programs for system admininstration.
 Source code for locally installed software.
 .TP
 .I /usr/man
-Manpages go in there, into their subdirectories.
+Manpages traditionally go in there, into their subdirectories.
 .TP
 .I /usr/man/<locale>/man[1-9]
-These directories contain manual pages which are in source code form.
-Systems which use a unique language and code set for all manual pages
-may omit the
+These directories contain manual pages for the specified locale
+in source code form. Systems which use a unique language and code set
+for all manual pages may omit the
 .I <locale>
 substring.
 .TP
 .I /usr/sbin
-This directories contains program binaries for system admininstration
+This directory contains program binaries for system admininstration
 which are not essentail for the boot process, for mounting
 .IR /usr ,
 or for system repair.
@@ -260,6 +264,12 @@ or for system repair.
 .I /usr/share
 This directory contains subdirectories with specific application data, that
 can be shared among different architectures of the same OS.
+Often one finds stuff here that used to live in
+.I /usr/doc
+or
+.I /usr/lib
+or
+.IR /usr/man .
 .TP
 .I /usr/src
 Source files for different parts of the system, included with some packages
@@ -273,7 +283,7 @@ symlink here. You should probably use another directory for building the
 kernel now.
 .TP
 .I /usr/tmp
-An alternative place to store temporary files; This should be a link
+Obsolete. This should be a link
 to
 .IR /var/tmp .
 This link is present only for compatibility reasons and shouldn't be used.
@@ -291,9 +301,9 @@ and should be a symbolic link to
 .I /var/backups
 This directory is used to save backup copies of important system files.
 .TP
-.I /var/catman/cat[1-9]
+.IR /var/catman/cat[1-9] " or " /var/cache/man/cat[1-9]
 These directories contain preformatted manual pages according to their
-manpage section.
+manpage section. (The use of preformatted manual pages is deprecated.)
 .TP
 .I /var/lock
 Lock files are placed in this directory.  The naming convention for

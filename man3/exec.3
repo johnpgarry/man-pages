@@ -167,13 +167,14 @@ for any of the errors specified for the library function
 .BR environ (5),
 .BR ptrace (2)
 .SH COMPATIBILITY
-On some other systems the default \fBPATH\fR has the current working
+On some other systems the default path (used when the environment
+does not contain the variable \fBPATH\fR) has the current working
 directory listed after
 .I /bin
 and
 .IR /usr/bin ,
-as an anti-Trojan-horse measure. As of libc 5.4.7, Linux still uses the
-traditional "current directory first" default \fBPATH\fR.
+as an anti-Trojan-horse measure. Linux uses here the
+traditional "current directory first" default path.
 .PP
 The behavior of
 .B execlp
@@ -195,8 +196,8 @@ and
 .BR E2BIG ,
 upon which they returned.  They now return if any error other than the ones
 described above occurs.
-.SH STANDARDS
-.BR Execl ,
+.SH "CONFORMING TO"
+.BR execl ,
 .BR execv ,
 .BR execle ,
 .B execlp

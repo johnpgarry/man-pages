@@ -21,7 +21,9 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Tue Oct 22 16:40:11 1996 by Eric S. Raymond <esr@thyrsus.com>
-.TH MSGOP 2 "November 1, 1993" "Linux 0.99.13" "Linux Programmer's Manual" 
+.\" Modified Mon Jul 10 21:09:59 2000 by aeb
+.\"
+.TH MSGOP 2 "10 July 2000" "Linux 0.99.13" "Linux Programmer's Manual" 
 .SH NAME
 msgop \- message operations
 .SH SYNOPSIS
@@ -38,13 +40,13 @@ msgop \- message operations
 .sp
 .BI "int msgsnd ( int " msqid ,
 .BI "struct msgbuf *" msgp ,
-.BI "int " msgsz ,
+.BI "size_t " msgsz ,
 .BI "int " msgflg " )"
 .sp
-.BI "int msgrcv ( int " msqid ,
+.BI "ssize_t msgrcv ( int " msqid ,
 .BI "struct msgbuf *" msgp ,
-.BI "int " msgsz ,
-.BI  "long " msgtyp ,
+.BI "size_t " msgsz ,
+.BI "long " msgtyp ,
 .BI "int " msgflg " )"
 .SH DESCRIPTION
 To send or receive a message, the calling process allocates a structure
@@ -81,11 +83,10 @@ and read access permissions to receive a message on the queue.
 .PP
 The
 .B msgsnd
-system call enqueue a copy of the message pointed to by the
+system call enqueues a copy of the message pointed to by the
 .I msgp
-argument
-on the message queue whose identifier is specified by the value
-of the
+argument on the message queue whose identifier is specified
+by the value of the
 .I msqid
 argument.
 .PP
@@ -374,6 +375,10 @@ and for the system wide maximum size in bytes of the message pool
 .RB ( MSGPOOL ).
 .SH "CONFORMING TO"
 SVr4, SVID.
+.SH NOTE
+The pointer argument is declared as \fIstruct msgbuf *\fP with
+libc4, libc5, glibc 2.0, glibc 2.1. It is declared as \fIvoid *\fP
+(\fIconst void *\fP for \fImsgsnd()\fP) with glibc 2.2, following the SUSv2.
 .SH "SEE ALSO"
 .BR ipc (5),
 .BR msgctl (2),

@@ -37,7 +37,9 @@ atoi \- convert a string to an integer.
 .fi
 .SH DESCRIPTION
 The \fBatoi()\fP function converts the initial portion of the string
-pointed to by \fInptr\fP to int.  The behaviour is the same as
+pointed to by \fInptr\fP to
+.IR int .
+The behaviour is the same as
 .sp
 .RS
 .B strtol(nptr, (char **)NULL, 10);
@@ -49,4 +51,8 @@ The converted value.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3, ISO 9899
 .SH "SEE ALSO"
-.BR atof "(3), " atol "(3), " strtod "(3), " strtol "(3), " strtoul (3)
+.BR atof (3),
+.BR atol (3),
+.BR strtod (3),
+.BR strtol (3),
+.BR strtoul (3)

@@ -28,6 +28,7 @@
 .\" Helmut.Geyer@iwr.uni-heidelberg.de, agulbra@troll.no and Bruno Haible.
 .\"
 .\" 1999-11-25 aeb - Rewritten, using SUSv2 and C99.
+.\" 2000-07-26 jsm28@hermes.cam.ac.uk - three small fixes
 .\"
 .TH PRINTF 3  "25 November 1999" "Linux Manpage" "Linux Programmer's Manual"
 .SH NAME
@@ -157,9 +158,9 @@ and
 .fi
 .RE
 are equivalent. The second style allows repeated references to the
-same argument. The C99 standard does not allow mixing both styles.
+same argument. The C99 standard does not include the style using `$'.
 
-For some numeric conversion a radic character (`decimal point') or
+For some numeric conversion a radix character (`decimal point') or
 thousands' grouping character is used. The actual character used
 depends on the LC_NUMERIC part of the locale. The POSIX locale
 uses `.' as radix character, and does not have a grouping character.
@@ -392,7 +393,7 @@ or
 argument, or a following
 .B n
 conversion corresponds to a pointer to a
-.I long int
+.I long long int
 argument.
 .TP
 .BR L
@@ -402,12 +403,14 @@ A following
 .BR e ,
 .BR E ,
 .BR f ,
+.BR F ,
 .BR g ,
 or
 .B G
 conversion corresponds to a
 .I long double
 argument.
+(C99 allows %LF, but SUSv2 does not.)
 .TP
 .B q
 (`quad'. BSD 4.4 and Linux libc5 only. Don't use.)
@@ -804,9 +807,9 @@ It no longer recognizes FDOU, but adds a new conversion character
 which outputs
 .IR strerror(errno) .
 .PP
-glibc2.0 adds conversion characters C and S.
+glibc 2.0 adds conversion characters C and S.
 .PP
-glibc2.1 adds length modifiers hh,j,t,z and conversion characters a,A.
+glibc 2.1 adds length modifiers hh,j,t,z and conversion characters a,A.
 .SH HISTORY
 Unix V7 defines the three routines 
 .BR printf ,

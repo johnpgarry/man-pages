@@ -13,8 +13,7 @@ mkdir \- create a directory
 .nf
 .B #include <sys/stat.h>
 .B #include <sys/types.h>
-.B #include <fcntl.h>
-.B #include <unistd.h>
+.\" .B #include <unistd.h>
 .sp
 .BI "int mkdir(const char *" pathname ", mode_t " mode );
 .fi
@@ -53,6 +52,9 @@ does not support the creation of directories.
 .B EEXIST
 .I pathname
 already exists (not necessarily as a directory).
+This includes the case where
+.I pathname
+is a symbolic link, dangling or not.
 .TP
 .B EFAULT
 .IR pathname " points outside your accessible address space."
@@ -103,15 +105,13 @@ There are many infelicities in the protocol underlying NFS.  Some
 of these affect
 .BR mkdir .
 .SH "SEE ALSO"
-.BR read (2),
-.BR write (2),
-.BR fcntl (2),
-.BR close (2),
-.BR unlink (2),
-.BR open (2),
+.BR mkdir (1),
+.BR chmod (2),
 .BR mknod (2),
+.BR mount (2),
+.BR rmdir (2),
 .BR stat (2),
 .BR umask (2),
-.BR mount (2),
-.BR socket (2),
-.BR fopen (3)
+.BR unlink (2)
+
+

@@ -37,6 +37,8 @@
 .\"
 .\" Converted for Linux, Mon Nov 29 15:19:14 1993, faith@cs.unc.edu
 .\"
+.\" Modified 2000-07-22 by Nicolás Lichtmaier <nick@debian.org>
+.\"
 .TH FCLOSE 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
 fclose \- close a stream
@@ -65,9 +67,9 @@ to the stream results in undefined behaviour.
 .SH ERRORS
 .TP
 .B EBADF
-The argument
+The filedescriptor underlying
 .I stream
-is not an open stream.
+is not valid.
 .\"  This error cannot occur unless you are mixing ANSI C stdio operations and
 .\"  low-level file operations on the same stream. If you do get this error,
 .\"  you must have closed the stream's low-level file descriptor using
@@ -81,13 +83,22 @@ for any of the errors specified for the routines
 .BR close (2)
 or
 .BR fflush (3).
+.SH NOTES
+Note that
+.B fclose
+only flushes the user space buffers provided by the
+C library. To ensure that the data is physically stored
+on disk the kernel buffers must be flushed too, e.g. with
+.BR sync (2)
+or
+.BR fsync (2).
+.SH "CONFORMING TO"
+The
+.B fclose
+function conforms to ANSI X3.159-1989 (``ANSI C'').
 .SH SEE ALSO
 .BR close (2),
 .BR fcloseall (3),
 .BR fflush (3),
 .BR fopen (3),
 .BR setbuf (3)
-.SH "CONFORMING TO"
-The
-.B fclose
-function conforms to ANSI X3.159-1989 (``ANSI C'').

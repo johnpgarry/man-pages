@@ -26,11 +26,9 @@ Set fpu control word on i386 architecture to
 .br     
      - exceptions on overflow, zero divide and NaN
 .br 
-.SH "SEE ALSO"
-.IR /usr/include/i386/fpu_control.h
 .SH AVAILABILITY
-As of glibc 2.1 (libc6 2.1) this function does not exist anymore.
-There are new functions from ISO C9x, with prototypes in
+As of glibc 2.1 this function does not exist anymore.
+There are new functions from ISO C99, with prototypes in
 .IR /usr/include/fenv.h ,
 to control fpu rounding modes, like
 .IR fegetround ,
@@ -51,3 +49,7 @@ If direct acces to the FPU control word is still needed, the _FPU_GETCW
 and _FPU_SETCW macros from
 .I /usr/include/fpu_control.h
 can be used.
+.SH "SEE ALSO"
+.BR feclearexcept (3)
+.br
+.IR /usr/include/i386/fpu_control.h

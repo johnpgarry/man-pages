@@ -132,6 +132,10 @@ POSIX has
 .I ftruncate
 but not
 .IR truncate .
+.PP
+The POSIX standard does not define what happens if the file
+has fewer bytes than
+.IR length .
 .SH BUGS
 These calls should be generalized to allow ranges of bytes in a file to be
 discarded.

@@ -25,6 +25,8 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 21:46:21 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Fri Aug  4 10:51:53 2000 - patch from Joseph S. Myers
+.\"
 .TH ABORT 3  "April 12, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 abort \- cause abnormal program termination
@@ -36,15 +38,17 @@ abort \- cause abnormal program termination
 .fi
 .SH DESCRIPTION
 The \fBabort()\fP function causes abnormal program termination unless
-the signal SIGABORT is caught and the signal handler does not return.
+the signal SIGABRT is caught and the signal handler does not return.
 If the \fBabort()\fP function causes program termination, all open
 streams are closed and flushed.
 .PP
-If the SIGABORT function is blocked or ignored, the \fBabort()\fP
+If the SIGABRT signal is blocked or ignored, the \fBabort()\fP
 function will still override it.
 .SH "RETURN VALUE"
 The \fBabort()\fP function never returns.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3, ISO 9899
 .SH "SEE ALSO"
-.BR sigaction "(2), " exit (3)
+.BR sigaction (2),
+.BR exit (3),
+.BR raise (3)

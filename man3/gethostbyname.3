@@ -28,11 +28,12 @@
 .\" Modified Sun Jul 25 10:42:30 1993, Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Feb 16 13:23:10 1997, Andries Brouwer (aeb@cwi.nl)
 .\" Modified Mon Dec 21 14:49:33 1998, Andries Brouwer (aeb@cwi.nl)
+.\" Modified Sat Aug 12 18:11:32 2000, Andries Brouwer (aeb@cwi.nl)
 .\"
-.TH GETHOSTBYNAME 3  "April 19, 1993" "BSD" "Linux Programmer's Manual"
+.TH GETHOSTBYNAME 3  "August 12, 2000" "BSD" "Linux Programmer's Manual"
 .SH NAME
-gethostbyname, gethostbyaddr, sethostent, endhostent, herror, hstrerror \- get network 
-host entry
+gethostbyname, gethostbyaddr, sethostent, endhostent, herror, hstrerror \- get
+network host entry
 .SH SYNOPSIS
 .nf
 .B #include <netdb.h>
@@ -41,7 +42,8 @@ host entry
 .BI "struct hostent *gethostbyname(const char *" name );
 .sp
 .B #include <sys/socket.h> "      " /* for AF_INET */
-.BI "struct hostent *gethostbyaddr(const char *" addr ", int " len ", int " type );
+.BI "struct hostent *gethostbyaddr(const char *" addr ,
+.BI "  int " len ", int " type );
 .sp
 .BI "void sethostent(int " stayopen );
 .sp
@@ -74,16 +76,17 @@ field of the returned
 structure.
 If \fIname\fP doesn't end in a dot 
 and the environment variable \fBHOSTALIASES\fP is set, the alias file
-pointed to by \fBHOSTALIASES\fP will first be searched for \fIname\fP.
-(See
+pointed to by \fBHOSTALIASES\fP will first be searched for \fIname\fP
+(see
 .BR hostname (7)
-for the file format.)
+for the file format).
 The current domain and its parents are searched unless \fIname\fP
-ends in a dot.  
+ends in a dot.
 .PP
 The \fBgethostbyaddr()\fP function returns a structure of type \fIhostent\fP
 for the given host address \fIaddr\fP of length \fIlen\fP and address type
-\fItype\fP.  The only valid address type is currently AF_INET.
+\fItype\fP.  The only valid address type is currently
+.BR AF_INET .
 .PP
 The \fBsethostent()\fP function specifies, if \fIstayopen\fP is true (1), 
 that a connected TCP socket should be used for the name server queries and 
@@ -135,7 +138,9 @@ The official name of the host.
 A zero-terminated array of alternative names for the host.
 .TP
 .I h_addrtype
-The type of address; always AF_INET at present.
+The type of address; always
+.B AF_INET
+at present.
 .TP
 .I h_length
 The length of the address in bytes.
@@ -174,12 +179,41 @@ resolver configuration file
 host database file
 .SH "CONFORMING TO"
 BSD 4.3.
-The SUS-v2 declares the
+.SH NOTES
+The SUS-v2 standard is buggy and declares the
 .I len
 parameter to be of type
 .IR size_t .
-.SH RUMOURS
-The future glibc2.2 will follow SUS-v2.
+(That is wrong, because it has to be
+.IR int ,
+and
+.I size_t
+is not. The Austin draft makes it
+.IR socklen_t ,
+which is OK.)
+.PP
+Glibc2 also has a
+.sp
+.nf
+.BI "struct hostent *gethostbyname2(const char *" name ", int " af );
+.fi
+.sp
+that works like
+.BR gethostbyname() ,
+but permits to specify the address family to which the address must belong.
+.PP
+The Austin draft marks
+.B gethostbyaddr()
+and
+.B gethostbyname()
+legacy, and introduces
+.sp
+.nf
+.BI "struct hostent *getipnodebyaddr (const void *restrict " addr ,
+.BI "  socklen_t " len ", int " type ", int *restrict " error_num ");"
+.sp
+.BI "struct hostent *getipnodebyname (const char *" name ,
+.BI "  int " type ", int " flags ", int *" error_num ");"
 .SH "SEE ALSO"
 .BR resolver (3),
 .BR hosts (5),

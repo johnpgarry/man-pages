@@ -27,7 +27,7 @@
 .\" Modified Thu Nov 26 02:12:45 1998 by aeb - add SIGCHLD stuff.
 .\" Modified Sat May  8 17:40:19 1999 by Matthew Wilcox - add POSIX.1b signals
 .\"
-.TH SIGACTION 2 "8 May 1999" "Linux 2.2" "Linux Programmer's Manual"
+.TH SIGACTION 2 "August 2, 2000" "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
 sigaction, sigprocmask, sigpending, sigsuspend \- POSIX signal handling functions.
 .SH SYNOPSIS
@@ -67,7 +67,7 @@ is non\-null, the previous action is saved in
 .PP
 The
 .B sigaction
-structure is defined as
+structure is defined as something like
 .sp
 .RS
 .nf
@@ -80,6 +80,11 @@ struct sigaction {
 }
 .fi
 .RE
+.PP
+On some architectures a union is involved - do not assign to both
+.I sa_handler
+and
+.IR sa_sigaction .
 .PP
 The
 .I sa_restorer
@@ -174,6 +179,8 @@ siginfo_t {
 
 .IR si_signo ", " si_errno " and " si_code
 are defined for all signals.
+The rest of the struct may be a union, so that one should only
+read the fields that are meaningful for the given signal.
 .BR kill (2),
 POSIX.1b signals and SIGCHLD fill in
 .IR si_pid " and " si_uid .
@@ -404,7 +411,7 @@ names for SVr4 compatibility are present only in library versions 3.0.9
 and greater.
 .PP
 The
-.BR SA_SIGINFO
+.B SA_SIGINFO
 flag is specified by POSIX.1b.  Support for it was added in Linux 2.2.
 .PP
 .B sigaction
@@ -417,6 +424,15 @@ See
 for details on manipulating signal sets.
 .SH "CONFORMING TO"
 POSIX, SVr4.  SVr4 does not document the EINTR condition.
+
+.SH UNDOCUMENTED
+Before the introduction of
+.B SA_SIGINFO
+it was also possible to get some additional information,
+namely by using a sa_handler with second argument of type
+.IR "struct sigcontext".
+See the relevant kernel sources for details.
+This use is obsolete now.
 
 .SH "SEE ALSO"
 .BR kill (1),

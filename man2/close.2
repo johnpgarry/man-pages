@@ -29,6 +29,8 @@
 .\"   corrected description of effect on locks (thanks to
 .\"   Tigran Aivazian <tigran@sco.com>).
 .\" Modified Fri Jan 31 16:21:46 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2000-07-22 by Nicolás Lichtmaier <nick@debian.org>
+.\"   added note about close(2) not guaranteeing that data is safe on close.
 .\"
 .TH CLOSE 2 "April 14, 1996" "" "Linux Programmer's Manual"
 .SH NAME
@@ -75,6 +77,12 @@ status may be reported at a later write operation, but it is guaranteed
 to be reported on closing the file.  Not checking the return value when
 closing the file may lead to silent loss of data.  This can especially
 be observed with NFS and disk quotas.
+.PP
+A successful close does not guarantee that the data has been successfully
+saved to disk, as the kernel defers writes. Is not common for a filesystem
+to flush the buffers when the stream is closed. If you need to be sure that
+the data is physically stored use fsync(2) or sync(2), they will get you
+closer to that goal (it will depend on the disk hardware at this point).
 .SH "SEE ALSO"
 .BR open (2),
 .BR fcntl (2),

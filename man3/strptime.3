@@ -244,8 +244,6 @@ the whole input string is consumed the return value points to the NUL
 byte at the end of the string.  If \fBstrptime()\fP fails to match all
 of the format string and therefore an error occurred the function
 returns \fBNULL\fP.
-.SH "SEE ALSO"
-.BR strftime "(3), " time "(2), " setlocale "(3), " scanf (3)
 .SH NOTES
 .LP
 In principle, this function does not initialize \fBtm\fP but
@@ -266,5 +264,10 @@ are defined.
 The E and O locale modifier characters are accepted since libc 5.4.13.
 The 'y' (year in century) specification is taken to specify a year
 in the 20th century by libc4 and libc5. It is taken to be a year
-in the range 1950-2049 by glib2.0. It is taken to be a year in 1969-2068
-by glibc2.1.
+in the range 1950-2049 by glibc 2.0. It is taken to be a year in
+1969-2068 by glibc 2.1.
+.SH "SEE ALSO"
+.BR time (2),
+.BR scanf (3),
+.BR setlocale (3),
+.BR strftime (3)
