@@ -65,27 +65,12 @@ code in
 .IR errno .
 .SH ERRORS
 .TP
-.B EACCES
-Search permission is denied for a component of the path prefix.
-(See also
-.BR path_resolution (2).)
-.TP
-.B EFAULT
-.I buf
-extends outside the process's allocated address space.
+.B ENOTDIR
+A component of the path prefix is not a directory.
 .TP
 .B EINVAL
 .I bufsiz
 is not positive.
-.TP
-.B EINVAL
-The named file is not a symbolic link.
-.TP
-.B EIO
-An I/O error occurred while reading from the file system.
-.TP
-.B ELOOP
-Too many symbolic links were encountered in translating the pathname.
 .TP
 .B ENAMETOOLONG
 A pathname, or a component of a pathname, was too long.
@@ -93,11 +78,26 @@ A pathname, or a component of a pathname, was too long.
 .B ENOENT
 The named file does not exist.
 .TP
+.B EACCES
+Search permission is denied for a component of the path prefix.
+(See also
+.BR path_resolution (2).)
+.TP
+.B ELOOP
+Too many symbolic links were encountered in translating the pathname.
+.TP
+.B EINVAL
+The named file is not a symbolic link.
+.TP
+.B EIO
+An I/O error occurred while reading from the file system.
+.TP
+.B EFAULT
+.I buf
+extends outside the process's allocated address space.
+.TP
 .B ENOMEM
 Insufficient kernel memory was available.
-.TP
-.B ENOTDIR
-A component of the path prefix is not a directory.
 .SH "CONFORMING TO"
 X/OPEN, 4.4BSD (the
 .B readlink

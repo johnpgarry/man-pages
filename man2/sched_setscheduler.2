@@ -211,9 +211,8 @@ On error, \-1 is returned,
 is set appropriately.
 .SH ERRORS
 .TP
-.B EINVAL
-The scheduling \fIpolicy\fP is not one of the recognized policies,
-or the parameter \fIp\fP does not make sense for the \fIpolicy\fP.
+.B ESRCH
+The process whose ID is \fIpid\fP could not be found.
 .TP
 .B EPERM
 The calling process does not have appropriate privileges
@@ -228,8 +227,9 @@ of the process identified by
 .IR pid ,
 or it must be privileged.
 .TP
-.B ESRCH
-The process whose ID is \fIpid\fP could not be found.
+.B EINVAL
+The scheduling \fIpolicy\fP is not one of the recognized policies,
+or the parameter \fIp\fP does not make sense for the \fIpolicy\fP.
 .SH "CONFORMING TO"
 POSIX.1b (formerly POSIX.4)
 .SH NOTE

@@ -46,12 +46,6 @@ On success, zero is returned.  On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
-.B EFAULT
-For
-.BR setdomainname :
-.I name
-pointed outside of user address space.
-.TP
 .B EINVAL
 For
 .BR getdomainname
@@ -74,9 +68,15 @@ was negative or too large.
 .B EPERM
 For
 .BR setdomainname :
-the caller is unprivileged (Linux: does not have the
+the caller did not have the
 .B CAP_SYS_ADMIN
-capability).
+capability.
+.TP
+.B EFAULT
+For
+.BR setdomainname :
+.I name
+pointed outside of user address space.
 .SH "CONFORMING TO"
 POSIX does not specify these calls.
 .SH "SEE ALSO"

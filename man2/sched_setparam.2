@@ -89,9 +89,8 @@ On error, \-1 is returned,
 is set appropriately.
 .SH ERRORS
 .TP
-.B EINVAL
-The parameter \fIp\fR does not make sense for the current
-scheduling policy.
+.B ESRCH
+The process whose ID is \fIpid\fR could not be found.
 .TP
 .B EPERM
 The calling process does not have appropriate privileges.
@@ -100,12 +99,13 @@ A process calling
 needs an effective user ID equal to the user ID or effective user ID
 of the process identified by
 .IR pid ,
-or (Linux) it must have the
+or it must have the
 CAP_SYS_NICE
 capability.
 .TP
-.B ESRCH
-The process whose ID is \fIpid\fR could not be found.
+.B EINVAL
+The parameter \fIp\fR does not make sense for the current
+scheduling policy.
 .SH "CONFORMING TO"
 POSIX.1b (formerly POSIX.4)
 .SH "SEE ALSO"

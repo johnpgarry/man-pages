@@ -119,12 +119,8 @@ returns 0. On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP 0.9i
-.B EACCES
-The quota file is not an ordinary file.
-.TP
-.B EBUSY
-.B Q_QUOTAON
-was asked, but quota were enabled already.
+.B ENOPKG
+The kernel was compiled without quota support.
 .TP
 .B EFAULT
 Bad
@@ -137,22 +133,36 @@ is not a known quota type. Or,
 .I special
 could not be found.
 .TP
+.B ENOTBLK
+.I special
+is not a block special device.
+.TP
+.B ENODEV
+.I special
+cannot be found in the mount table.
+.TP
+.B EACCES
+The quota file is not an ordinary file.
+.TP
 .B EIO
 Cannot read or write the quota file.
 .TP
 .B EMFILE
 Too many open files: cannot open quota file.
 .TP
-.B ENODEV
-.I special
-cannot be found in the mount table.
+.B EBUSY
+.B Q_QUOTAON
+was asked, but quota were enabled already.
 .TP
-.B ENOPKG
-The kernel was compiled without quota support.
-.TP
-.B ENOTBLK
-.I special
-is not a block special device.
+.B ESRCH
+.B Q_GETQUOTA
+or
+.B Q_SETQUOTA
+or
+.B Q_SETUSE
+or
+.B Q_SETQLIM
+was asked for a file system that didn't have quota enabled.
 .TP
 .B EPERM
 The process was not root (for the file system), and
@@ -164,16 +174,6 @@ than that of the process itself, or anything other than
 or
 .B Q_SYNC
 was asked.
-.TP
-.B ESRCH
-.B Q_GETQUOTA
-or
-.B Q_SETQUOTA
-or
-.B Q_SETUSE
-or
-.B Q_SETQLIM
-was asked for a file system that didn't have quota enabled.
 .SH "CONFORMING TO"
 BSD
 .SH "SEE ALSO"
