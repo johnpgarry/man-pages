@@ -22,10 +22,13 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH SETRESUID 2 2001-11-15 "Linux 2.1.44" "Linux Programmer's Manual"
+.\" Modified, 2003-05-26, Michael Kerrisk, <mtk16@ext,canterbury.ac.nz>
+.TH SETRESUID 2 2003-05-26 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
 setresuid, setresgid \- set real, effective and saved user or group ID
 .SH SYNOPSIS
+.B #define _GNU_SOURCE
+.br
 .B #include <unistd.h>
 .sp
 .BI "int setresuid(uid_t " ruid ", uid_t " euid ", uid_t " suid );
@@ -69,9 +72,8 @@ These days it is also found in FreeBSD (for emulation of Linux binaries).
 .SH NOTES
 Under HP-UX and FreeBSD the prototype is found in
 .IR <unistd.h> .
-Under Linux there is so far no include file giving the prototype -
-this is a glibc bug. Programs using this system call must add
-the prototype themselves.
+Under Linux the prototype is given by glibc since version 2.3.2
+provided _GNU_SOURCE is defined.
 .SH "SEE ALSO"
 .BR getuid (2),
 .BR setuid (2),

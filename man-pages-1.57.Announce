@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.56.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.57.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,18 +12,31 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.55:
+Differences from version 1.56:
 
     The man pages
 
-	fgetxattr.2 flistxattr.2 fremovexattr.2 fsetxattr.2 getpmsg.2
-	getxattr.2 get_thread_area.2 io_cancel.2 io_destroy.2
-	io_getevents.2 io_setup.2 io_submit.2 lgetxattr.2 listxattr.2
-	llistxattr.2 lookup_dcookie.2 lremovexattr.2 lsetxattr.2
-	posix_fadvise.2 putpmsg.2 readahead.2 removexattr.2 security.2
-	setxattr.2 set_thread_area.2
+	epoll_create.2 epoll_ctl.2 epoll_wait.2 getresuid.2 ioctl_list.2
+	lookup_dcookie.2 mmap.2 open.2 poll.2 semop.2 semtimedop.2
 
-	ftw.3 openpty.3
+	cabs.3 cabsf.3 cabsl.3 cacos.3 cacosh.3 cacoshf.3 cacoshl.3 carg.3
+	cargf.3 cargl.3 casin.3 casinf.3 casinh.3 casinhf.3 casinhl.3
+	casinl.3 catan.3 catanf.3 catanh.3 catanhf.3 catanhl.3 catanl.3
+	cbrt.3 cbrtf.3 cbrtl.3 ccos.3 ccosf.3 ccosh.3 ccoshf.3 ccoshl.3
+	ccosl.3 cerf.3 cerfc.3 cerfcf.3 cerfcl.3 cerff.3 cerfl.3 cexp2.3
+	cexp2f.3 cexp2l.3 cexp.3 cexpf.3 cexpl.3 cimag.3 cimagf.3 cimagl.3
+	clog10.3 clog10f.3 clog10l.3 clog2.3 clog2f.3 clog2l.3 clog.3
+	clogf.3 clogl.3 conj.3 conjf.3 conjl.3 cpow.3 cpowf.3 cpowl.3
+	cproj.3 cprojf.3 cprojl.3 creal.3 crealf.3 creall.3 csin.3 csinf.3
+	csinh.3 csinhf.3 csinhl.3 csinl.3 csqrt.3 csqrtf.3 csqrtl.3 ctan.3
+	ctanf.3 ctanh.3 ctanhf.3 ctanhl.3 ctanl.3 dlopen.3 encrypt.3 lockf.3
+	mtrace.3 rtime.3
+
+	epoll.4
+
+	complex.5 proc.5
+
+	iso_8859-16.7 ip.7
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.

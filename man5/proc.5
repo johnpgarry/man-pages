@@ -32,8 +32,9 @@
 .\" Sun Dec 16 11:39:19 2001: rwhron@earthlink.net, update for 2.4.
 .\" Sat Jul 13 14:00:00 2002: jbelton@shaw.ca, added to sys/fs and sys/kernel.
 .\" Modified, 22 Jul 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified, 27 May 2003, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH PROC 5 2002-07-13 "" "Linux Programmer's Manual"
+.TH PROC 5 2003-05-27 "" "Linux Programmer's Manual"
 .SH NAME
 proc \- process information pseudo-filesystem
 
@@ -1002,14 +1003,17 @@ contains the number of filesystems currently mounted.
 .TP
 .I kernel
 This directory contains files
-.IR acct ", " cad_pid ", " cap-bound  ", "  core_uses_pid  ", "
-.IR ctrl-alt-del ", " dentry-state ", " domainname ", " hostname ", " 
+.IR acct ", " cad_pid ", " cap-bound  ", "
+.IR core_pattern ", " core_uses_pid  ", "
+.IR ctrl-alt-del ", " dentry-state ", " domainname ", "
+.IR hotplug ", " hostname ", " 
 .IR htab-reclaim " (PowerPC only), "
 .IR java-appletviewer " (binfmt_java, obsolete), "
 .IR java-interpreter " (binfmt_java, obsolete), " l2cr " (PowerPC only), "
 .IR modprobe ", " msgmax ", " msgmnb ", " 
 .IR msgmni ", " osrelease ", " ostype ", " overflowgid ", " overflowuid ", " 
-.IR panic ", " powersave-nap " (PowerPC only), " printk ", " random ", "
+.IR panic ", " panic_on_oops ", " pid_max ", "
+.IR powersave-nap " (PowerPC only), " printk ", " random ", "
 .IR real-root-dev ", " reboot-cmd " (SPARC only), " rtsig-max ", " 
 .IR rtsig-nr ", " sem ", " sg-big-buff ", "
 .IR shmall ", " shmmax ", " shmmni ", " sysrq ", " tainted ", " threads-max ", "
@@ -1038,6 +1042,42 @@ This set is ANDed against the capabilities permitted to a process
 during exec.
 .LP
 The file
+.I core_pattern
+(new in Linux 2.5) provides finer control over the form of
+a core filename than the obsolete
+.IR core_uses_pid
+file described below.
+The name for a core file is controlled by defining a template in
+.IR core_pattern .
+The template can contain % specifiers which are substituted
+by the following values when a core file is created:
+.nf
+    
+  %%  A single % character
+  %p  PID of dumped process
+  %u  real UID of dumped process
+  %g  real GID of dumped process
+  %s  number of signal causing dump
+  %t  time of dump (secs since 0:00h, 1 Jan 1970)
+  %h  hostname (same as the 'nodename' 
+      returned by \fBuname\fP(2))
+  %e  executable filename
+    
+.fi
+A single % at the end of the template is dropped from the 
+core filename, as is the combination of a % followed by any 
+character other than those listed above.
+All other characters in the template become a literal
+part of the core filename.
+The maximum size of the resulting core filename is 64 bytes.
+The default value in this file is "core".
+For backward compatibility, if
+.I core_pattern
+does not include "%p" and
+.I core_uses_pid
+is non-zero, then .PID will be appended to the core filename.
+.LP
+The file
 .I core_uses_pid
 can be used control the naming of a core dump file on Linux 2.4.
 If this file contains the value 0, then a core dump file is simply named
@@ -1060,6 +1100,11 @@ Note: when a program (like dosemu) has the keyboard in 'raw'
 mode, the ctrl-alt-del is intercepted by the program before it
 ever reaches the kernel tty layer, and it's up to the program
 to decide what to do with it.
+.LP
+The file
+.I hotplug
+contains the path for the hotplug policy agent.
+The default value in this file "/sbin/hotplug".
 .LP
 The files
 .IR domainname " and "
@@ -1155,6 +1200,27 @@ If this is zero, the kernel will loop on a panic; if nonzero
 it indicates that the kernel should autoreboot after this number
 of seconds.  When you use the
 software watchdog device driver, the recommended setting is 60.
+.LP
+The file 
+.I panic_on_oops
+(new in Linux 2.5) controls the kernel's behaviour when an oops or
+BUG is encountered.  If this file contains 0, then the system
+tries to continue operation.  If it contains 1, then the system
+delays a few seconds (to give klogd time to record the oops output)
+and then panics. 
+If the
+.I panic
+file is also non-zero then the machine will be rebooted.
+.LP
+The file
+.I pid_max
+(new in Linux 2.5)
+specifies the value at which PIDs wrap around
+(i.e., the value in this file is one greater than the maximum PID).
+The default value for this file, 32768,
+results in the same range of PIDs as on earlier kernels.
+The value in this file can be set to any value up to 2^22
+(PID_MAX_LIMIT, approximately 4 million).
 .LP
 The file
 .IR powersave-nap " (PowerPC only)"

@@ -52,7 +52,7 @@ entry has been removed.
 
 .SH "RETURN VALUE"
 On success,
-.B mincore
+.B lookup_dcookie
 returns the length of the path string copied into the buffer.
 On error, \-1 is returned, and
 .I errno
@@ -72,6 +72,9 @@ the path.
 .B ERANGE
 The buffer was not large enough to hold the path of the directory entry.
 .TP
+.B ENAMETOOLONG
+The name could not fit in the buffer.
+.TP
 .B EFAULT
 The buffer was not valid.
 
@@ -80,4 +83,5 @@ The buffer was not valid.
 is Linux-specific.
 .SH AVAILABILITY
 Since Linux 2.5.43.
+The ENAMETOOLONG error return was added in 2.5.70.
 

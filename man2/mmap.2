@@ -26,8 +26,10 @@
 .\" Modified Sat Mar 25 08:11:16 2000 by Jim Van Zandt <jrv@vanzandt.mv.com>
 .\" Modified Thu Oct  4 03:09:44 2001 by John Levon <moz@compsoc.man.ac.uk>
 .\" Modified Sun Feb  2 16:00    2003 by Andi Kleen <ak@muc.de>
+.\" Modified 21 May 2003, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"	MAP_LOCKED workks from 2.5.37
 .\"
-.TH MMAP 2 2000-03-25 "Linux 2.3.51" "Linux Programmer's Manual"
+.TH MMAP 2 2003-05-21 "Linux 2.5.37" "Linux Programmer's Manual"
 .SH NAME
 mmap, munmap \- map or unmap files or devices into memory
 .SH SYNOPSIS
@@ -135,7 +137,10 @@ when no memory is available.
 .\" at any moment when the system runs out of memory.)
 .TP
 .B MAP_LOCKED
-This flag is ignored.
+(Linux 2.5.37 and later) Lock the pages of the mapped region into
+memory in the manner of
+.BR mlock() .
+This flag is ignored in older kernels.
 .\" If set, the mapped pages will not be swapped out.
 .TP
 .B MAP_GROWSDOWN
@@ -298,6 +303,7 @@ SUSv2 documents additional error codes EMFILE and EOVERFLOW.
 is a Linux extension.
 .SH "SEE ALSO"
 .BR getpagesize (2),
+.BR mlock (2),
 .BR mmap2 (2),
 .BR mremap (2),
 .BR msync (2),

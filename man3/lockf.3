@@ -17,12 +17,13 @@
 .\" GNU General Public License for more details.
 .\"
 .\" Added section stuff, aeb, 2002-04-22.
+.\" Corrected include file, drepper, 2003-06-15.
 .\"
 .TH LOCKF 3 2002-04-22 "Linux 2.0" "Linux Programmer's Manual"
 .SH NAME
 lockf \- apply, test or remove a POSIX lock on an open file
 .SH SYNOPSIS
-.B #include <sys/file.h>
+.B #include <unistd.h>
 .sp
 .BR "int lockf(int " fd ", int " cmd ", off_t " len );
 .SH DESCRIPTION

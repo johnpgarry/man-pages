@@ -22,22 +22,29 @@
 .\"
 .\" changed `square root' into `cube root' - aeb, 950919
 .\"
-.TH CBRT 3  1995-09-16 "" "Linux Programmer's Manual"
+.\" Modified 2002-07-27 Walter Harms
+.\" (walter.harms@informatik.uni-oldenburg.de)
+.\"
+.TH CBRT 3  2002-27-07 "GNU"  "Linux Programmer's Manual"
 .SH NAME
-cbrt \- cube root function
+cbrt, cbrtf, cbrtl \- cube root function
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
 .sp
 .BI "double cbrt(double " x );
+.sp 
+.BI "float cbrtf(float " x );
+.sp
+.BI "long double cbrtl(long double " x );
 .fi
 .SH DESCRIPTION
-The \fBcbrt()\fP function returns the cube root of \fIx\fP.
-This function cannot
-fail; every representable real value has a representable real cube
-root.
+The \fBcbrt()\fP function returns the (real) cube root of \fIx\fP.
+This function cannot fail; every representable real value has a
+representable real cube root.
 .SH "CONFORMING TO"
-\fBcbrt\fP is a GNU extension.
+.B cbrt()
+was a GNU extension. It is now a C99 requirement.
 .SH "SEE ALSO"
 .BR sqrt (3),
 .BR pow (3)

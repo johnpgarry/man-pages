@@ -1,0 +1,31 @@
+.\" Copyright 2002 Walter Harms (walter.harms@informatik.uni-oldenburg.de)
+.\" Distributed under GPL
+.\"
+.TH cerf 3 2002-07-28 "" "complex math routines"
+.SH NAME
+cerf, cerff, cerfl, cerfc, cerfcf, cerfcl \- complex error function
+.SH SYNOPSIS
+.B #include <complex.h>
+.sp
+.BI "double complex cerf(double complex" z );
+.sp
+.BI "float complex cerff(float complex " z );
+.sp
+.BI "long double complex cerfl(long double complex" z );
+.sp
+.BI "double complex cerfc(double complex " x );
+.sp
+.BI "float complex cerfcf(float complex " x );
+.sp
+.BI "long double complex cerfcl(long double complex " x );
+.sp
+.SH DESCRIPTION
+The function cerf() is the complex version of the error function.
+erf(z) = 2/sqrt(pi) * integral from 0 to x of exp(-t*t) dt.
+The function cerfc() is defined as cerfc(z) = 1-cerf(z).
+.\" must check 1/sqrt(2*pi) ?
+.SH "CONFORMING TO"
+C99
+.\" in "future directions" of C99
+.SH "SEE ALSO"
+.BR erf (3)

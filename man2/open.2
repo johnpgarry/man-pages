@@ -119,8 +119,6 @@ If the file already exists and is a regular file and the open mode allows
 writing (i.e., is O_RDWR or O_WRONLY) it will be truncated to length 0.
 If the file is a FIFO or terminal device file, the O_TRUNC
 flag is ignored. Otherwise the effect of O_TRUNC is unspecified.
-(On many Linux versions it will be ignored; on other versions it will
-return an error.)
 .TP
 .B O_APPEND
 The file is opened in append mode. Before each
@@ -178,9 +176,6 @@ system call, data is guaranteed to have been transferred.
 Transfer sizes, and the alignment of user buffer and file offset
 must all be multiples of the logical block size of the file system.
 .\" There may be coherency problems.
-.br
-This flag is supported on a number of Unix-like systems;
-support was added under Linux in kernel version 2.4.10.
 .br
 A semantically similar interface for block devices is described in
 .BR raw (8).
@@ -378,7 +373,7 @@ The process already has the maximum number of files open.
 The limit on the total number of files open on the system has been
 reached.
 .SH "CONFORMING TO"
-SVr4, SVID, POSIX, X/OPEN, BSD 4.3
+SVr4, SVID, POSIX, X/OPEN, BSD 4.3.
 The
 .B O_NOFOLLOW
 and
@@ -387,6 +382,30 @@ flags are Linux-specific.
 One may have to define the
 .B _GNU_SOURCE
 macro to get their definitions.
+.LP
+The (undefined) effect of
+.B O_RDONLY | O_TRUNC
+various among implementations. On many systems the file is actually
+truncated.
+.\" Linux 2.0, 2.5: truncate
+.\" Solaris 5.7, 5.8: truncate
+.\" Irix 6.5: truncate
+.\" Tru64 5.1B: truncate
+.\" HP-UX 11.22: truncate
+.\" FreeBSD 4.7: truncate
+.LP
+The
+.B O_DIRECT
+flag was introduced in SGI IRIX, where it has similar alignment
+restrictions as what Linux has.  IRIX has also a fcntl(2) call to
+query appropriate alignments, and sizes.   FreeBSD 4.x introduced
+a flag of same name, but without alignment restrictions.
+Support was added under Linux in kernel version 2.4.10.
+Older Linux kernels simply ignore this flag.
+.SH BUGS
+"The thing that has always disturbed me about O_DIRECT is that the whole
+interface is just stupid, and was probably designed by a deranged monkey
+on some serious mind-controlling substances." -- Linus
 .SH RESTRICTIONS
 There are many infelicities in the protocol underlying NFS, affecting
 amongst others

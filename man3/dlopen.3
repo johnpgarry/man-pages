@@ -24,9 +24,10 @@
 .\" USA.
 .\"
 .\" Modified by David A. Wheeler <dwheeler@dwheeler.com> 2000-11-28.
-.\" Applied patch by Terran Melconian, aeb, 2001-12-14
+.\" Applied patch by Terran Melconian, aeb, 2001-12-14.
+.\" Modified by Hacksaw <hacksaw@hacksaw.org> 2003-03-13.
 .\"
-.TH DLOPEN 3 2001-12-14 "Linux" "Linux Programmer's Manual"
+.TH DLOPEN 3 2003-03-13 "Linux" "Linux Programmer's Manual"
 .SH NAME
 dlclose, dlerror, dlopen, dlsym \- Programming interface to dynamic linking loader.
 .SH SYNOPSIS
@@ -95,6 +96,10 @@ made available to subsequently loaded libraries.
 If the library exports a routine named
 .BR _init ,
 then that code is executed before dlopen returns.
+In case you need to avoid linking against the system startup files,
+this can be done by giving gcc the "-nostartfiles" parameter
+on the command line.
+.PP
 If the same library is loaded twice with
 .BR dlopen() ,
 the same file handle is returned.  The dl library maintains link
@@ -196,6 +201,13 @@ with the following command:
 .RS
 .LP
 gcc -rdynamic -o foo foo.c -ldl
+.RE
+.PP
+Libraries exporting _init() and _fini() will want to be compiled as
+follows, using bar.c as the example name:
+.RS
+.LP
+gcc -shared -nostartfiles -o bar bar.c
 .RE
 .SH NOTES
 The symbols RTLD_DEFAULT and RTLD_NEXT are defined by

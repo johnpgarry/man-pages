@@ -61,7 +61,7 @@ command line.  This command is passed to
 using the
 .B \-c
 flag; interpretation, if any, is performed by the shell.  The
-.I mode
+.I type
 argument is a pointer to a null-terminated string which must be either `r'
 for reading or `w' for writing.
 .PP
@@ -121,7 +121,7 @@ if memory allocation fails.  If the underlying
 fails,
 .I errno
 is set appropriately.  If the
-.I mode
+.I type
 argument is invalid, and this condition is detected,
 .I errno
 is set to

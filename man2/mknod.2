@@ -7,8 +7,9 @@
 .\" Public Licence. It comes with NO WARRANTY.
 .\"
 .\" Tiny fix by urs - 960818
+.\" Improvements by Michael Kerrisk - 2003-04-23
 .\"
-.TH MKNOD 2 1994-03-29 "Linux 1.0" "Linux Programmer's Manual"
+.TH MKNOD 2 2003-04-23 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
 mknod \- create a special or ordinary file
 .SH SYNOPSIS
@@ -21,14 +22,20 @@ mknod \- create a special or ordinary file
 .BI "int mknod(const char *" pathname ", mode_t " mode ", dev_t " dev );
 .fi
 .SH DESCRIPTION
+The system call
 .B mknod
-attempts to create a filesystem node (file, device special file or
+creates a filesystem node (file, device special file or
 named pipe) named
-.IR pathname ", specified by " mode " and " dev .
-
+.IR pathname ,
+with attributes specified by
 .I mode
-specifies both the permissions to use and the type of node to be created.
+and
+.IR dev .
 
+The
+.I mode
+argument specifies both the permissions to use and the type of node
+to be created.
 It should be a combination (using bitwise OR) of one of the file types
 listed below and the permissions for the new node.
 
@@ -37,11 +44,18 @@ The permissions are modified by the process's
 in the usual way: the permissions of the created node are
 .BR "(mode & ~umask)" .
 
-The file type should be one of
-.BR S_IFREG ", " S_IFCHR ", " S_IFBLK " and " S_IFIFO
+The file type must be one of
+.BR S_IFREG ,
+.BR S_IFCHR ,
+.BR S_IFBLK ,
+.BR S_IFIFO
+or
+.BR S_IFSOCK
+.\" (S_IFSOCK since Linux 1.2.4)
 to specify a normal file (which will be created empty), character
-special file, block special file or FIFO (named pipe), respectively,
-or zero, which will create a normal file.
+special file, block special file, FIFO (named pipe), or Unix domain socket,
+respectively.
+(Zero file type is equivalent to type S_IFREG.)
 
 If the file type is
 .BR S_IFCHR " or " S_IFBLK
@@ -52,7 +66,7 @@ special file; otherwise it is ignored.
 
 If
 .I pathname
-already exists, or is a symlink, this call fails with an EEXIST error.
+already exists, or is a symbolic link, this call fails with an EEXIST error.
 
 The newly created node will be owned by the effective uid of the
 process.  If the directory containing the node has the set group id
@@ -68,8 +82,9 @@ is set appropriately).
 .TP
 .B EPERM
 .I mode
-requested creation of something other than a FIFO (named pipe), and
-the caller is not the superuser; also returned if the filesystem
+requested creation of something other than a regular file,
+FIFO (named pipe), or Unix domain socket, and the caller
+is not the superuser; also returned if the filesystem
 containing
 .I pathname
 does not support the type of node requested.
@@ -77,7 +92,7 @@ does not support the type of node requested.
 .B EINVAL
 .I mode
 requested creation of something other than a normal file, device
-special file or FIFO.
+special file, FIFO or socket.
 .TP
 .B EEXIST
 .I pathname
@@ -136,28 +151,22 @@ is not 0, the behavior of
 .BR mknod ()
 is unspecified."
 
-Under Linux, this call cannot be used to create directories
-or socket files, and cannot be used to create normal files
-by users other than the superuser.
+Under Linux, this call cannot be used to create directories.
 One should make directories with
 .BR mkdir ,
 and FIFOs with
 .BR mkfifo .
+.\" Unix domain sockets with .BR socket " (and " bind ),
 
 There are many infelicities in the protocol underlying NFS.  Some
 of these affect
 .BR mknod .
 .SH "SEE ALSO"
-.BR close (2),
 .BR fcntl (2),
 .BR mkdir (2),
 .BR mount (2),
-.BR open (2),
-.BR read (2),
 .BR socket (2),
 .BR stat (2),
 .BR umask (2),
 .BR unlink (2),
-.BR write (2),
-.BR fopen (3),
 .BR mkfifo (3)

@@ -22,10 +22,13 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH GETRESUID 2 1997-07-16 "Linux 2.1.44" "Linux Programmer's Manual"
+.\" Modified, 2003-05-26, Michael Kerrisk, <mtk16@ext,canterbury.ac.nz>
+.TH GETRESUID 2 2003-05-26 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
 getresuid, getresgid \- get real, effective and saved user or group ID
 .SH SYNOPSIS
+.B #define _GNU_SOURCE
+.br
 .B #include <unistd.h>
 .sp
 .BI "int getresuid(uid_t *" ruid ", uid_t *" euid ", uid_t *" suid );
@@ -50,6 +53,8 @@ One of the arguments specified an address outside the calling program's
 address space.
 .SH "CONFORMING TO"
 This call is Linux-specific.
+The prototype is given by glibc since version 2.3.2
+provided _GNU_SOURCE is defined.
 .SH "SEE ALSO"
 .BR getuid (2),
 .BR setuid (2),

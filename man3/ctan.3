@@ -1,0 +1,23 @@
+.\" Copyright 2002 Walter Harms (walter.harms@informatik.uni-oldenburg.de)
+.\" Distributed under GPL
+.\"
+.TH CTAN 3 2002-07-28 "" "complex math routines"
+.SH NAME
+ctan, ctanf, ctanl \- complex tangent function
+.SH SYNOPSIS
+.B #include <complex.h>
+.sp
+.BR "double complex ctan(double complex " z ");"
+.sp
+.BR "float complex ctanf(float complex " z );
+.sp
+.BR "long double complex ctanl(long double complex " z ");"
+.sp
+.SH DESCRIPTION
+The complex tangent function ctan(z) is defined as ccos(z)/csin(z).
+.SH "CONFORMING TO"
+C99
+.SH "SEE ALSO"
+.BR cabs (3),
+.BR ccos (3),
+.BR csin (3)

@@ -20,12 +20,13 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Tue Oct 22 17:55:06 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified 8 Jan 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 1996-10-22, Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2002-01-08, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2003-04-28, Ernie Petrides <petrides@redhat.com>
 .\"
-.TH SEMOP 2 2002-01-08 "Linux 2.4" "Linux Programmer's Manual" 
+.TH SEMOP 2 2003-04-28 "Linux 2.4" "Linux Programmer's Manual" 
 .SH NAME
-semop \- semaphore operations
+semop, semtimedop \- semaphore operations
 .SH SYNOPSIS
 .nf
 .B
@@ -39,6 +40,11 @@ semop \- semaphore operations
 .BI "int semop(int " semid ,
 .BI "struct sembuf *" sops ,
 .BI "unsigned " nsops );
+.sp
+.BI "int semtimedop(int " semid ,
+.BI "struct sembuf *" sops ,
+.BI "unsigned " nsops ,
+.BI "struct timespec *" timeout );
 .SH DESCRIPTION
 A semaphore is represented by an anonymous structure
 including the following members:
@@ -158,6 +164,15 @@ is decremented and the system call fails, with
 .I errno
 set to
 .BR EINTR .
+.IP \(bu
+The time limit specified by
+.I timeout
+in a
+.B semtimedop
+call expires: the system call fails, with
+.I errno
+set to
+.BR EAGAIN .
 .PP
 If
 .I sem_op
@@ -225,6 +240,15 @@ is decremented and the system call fails with
 .I errno
 set to
 .BR EINTR .
+.IP \(bu
+The time limit specified by
+.I timeout
+in a
+.B semtimedop
+call expires: the system call fails, with
+.I errno
+set to
+.BR EAGAIN .
 .PP
 On successful completion, the
 .I sempid
@@ -236,6 +260,33 @@ In addition, the
 .\" and
 .\" .I sem_ctime
 is set to the current time.
+.PP
+The function
+.B semtimedop
+behaves identically to the function
+.B semop
+except that in those cases were the calling process would sleep,
+the duration of that sleep is limited by the amount of elapsed
+time specified by the
+.B timespec
+structure whose address is passed in the
+.I timeout
+parameter.  If the specified time limit has been reached,
+the system call fails with
+.I errno
+set to
+.B EAGAIN
+(and none of the operations in
+.I sops
+is performed).
+If the
+.I timeout
+parameter is
+.BR NULL ,
+then
+.B semtimedop
+behaves exactly like
+.BR semop .
 .SH "RETURN VALUE"
 If successful the system call returns
 .BR 0 ,
@@ -262,15 +313,20 @@ The calling process has no access permissions on the
 semaphore set as required by one of the specified operations.
 .TP
 .B EAGAIN
-An operation could not proceed immediately and
+An operation could not proceed immediately and either
 .BR IPC_NOWAIT
 was asserted in its
-.IR sem_flg .
+.I sem_flg
+or the time limit specified in
+.I timeout
+expired.
 .TP
 .B EFAULT
-The address pointed to by
+An address specified in either the
 .I sops
-isn't accessible.
+or
+.I timeout
+parameters isn't accessible.
 .TP
 .B EFBIG
 For some operation the value of

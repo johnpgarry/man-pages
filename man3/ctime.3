@@ -189,14 +189,14 @@ Each of these functions returns the value described, or NULL
 (\-1 in case of \fBmktime()\fP) in case an error was detected.
 .SH NOTES
 The four functions
-.BR acstime() ,
+.BR asctime() ,
 .BR ctime() ,
 .B gmtime()
 and
 .B localtime()
 return a pointer to static data and hence are not thread-safe.
 Thread-safe versions
-.BR acstime_r() ,
+.BR asctime_r() ,
 .BR ctime_r() ,
 .B gmtime_r()
 and
