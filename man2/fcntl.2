@@ -696,7 +696,8 @@ covers bytes
 .IR l_start + l_len
 up to and including
 .IR l_start -1.)
-This is supported by Linux since Linux 2.4.21 and 2.5.49.
+However, for current kernels the Linux system call returns EINVAL
+in this situation.
 
 Several systems have more fields in
 .I "struct flock"
