@@ -25,8 +25,7 @@
 .SH NAME
 sd \- Driver for SCSI Disk Drives
 .SH SYNOPSIS
-#include <linux/hdreg.h>        /* for HDIO_GETGEO */
-#include <linux/fs.h>           /* for BLKGETSIZE and BLKRRPART */
+#include <linux/hdreg.h>
 .SH CONFIG
 The block device name has the following form:
 .BI sd lp,
@@ -67,7 +66,7 @@ been implemented.
 .SH DESCRIPTION
 The following ioctl's are provided:
 .TP
-HDIO_GETGEO
+HDIO_REQ
 .RS
 Returns the BIOS disk parameters in the following structure:
 .RS
