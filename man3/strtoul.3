@@ -28,9 +28,9 @@
 .\" Fixed typo, aeb, 950823
 .\" 2002-02-22, joey, mihtjel: Added strtoull()
 .\"
-.TH STRTOUL 3  2002-02-22 "GNU" "Linux Programmer's Manual"
+.TH STRTOUL 3  2002-05-30 "GNU" "Linux Programmer's Manual"
 .SH NAME
-strtoul, strtoull \- convert a string to an unsigned long integer.
+strtoul, strtoull, strtouq \- convert a string to an unsigned long integer
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
@@ -81,7 +81,7 @@ conversion, unless the original (non-negated) value would overflow; in
 the latter case, \fBstrtoul()\fP returns ULONG_MAX and sets the global
 variable \fIerrno\fP to ERANGE.
 Precisely the same holds for
-.BR strtoull()
+.B strtoull()
 (with ULLONG_MAX instead of ULONG_MAX).
 .SH ERRORS
 .TP
@@ -96,8 +96,26 @@ contains an unsupported value.
 .LP
 The implementation may also set \fIerrno\fP to \fBEINVAL\fP in case
 no conversion was performed (no digits seen, and 0 returned).
-.SH NOTE
+.SH NOTES
 In locales other than the "C" locale, also other strings may be accepted.
+(For example, the thousands separator of the current locale may be
+supported.)
+.LP
+BSD also has
+.sp
+.in +4n
+.nf
+.BI "u_quad_t"
+.BI "strtouq(const char *" nptr ", char **" endptr ", int base" );
+.sp
+.in -4n
+.fi
+with completely analogous definition.
+Depending on the wordsize of the current architecture, this
+may be equivalent to
+.B strtoull()
+or to
+.BR strtoul() .
 .SH "CONFORMING TO"
 .B strtoul()
 conforms to SVID 3, BSD 4.3, ISO 9899 (C99) and POSIX, and

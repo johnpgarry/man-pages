@@ -1,48 +1,30 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.49.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.50.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
 
-[The latter were taken from ftp://elsie.nci.nih.gov/pub/tzcode2001a.tar.gz.
-Nowadays the timezone code, data and programs described in these manpages
-come with glibc, but the manpages don't.  Stupid GNUheads.
-GNU seems to strongly dislike man pages, and either ships no man page at all,
-as e.g. for diff, or ships very ugly man pages, mechanically generated
-from some other format, like a help text. In a few cases otherwise
-good man pages have been spoilt by inserting the message that one
-should rather read the info file, even in cases where in fact
-the info file is less informative and less correct.
-In the timezone case the man pages were thrown out, but no info file
-was created: "better a user without docs than a user reading a man page".
-As long as this situation lasts we also ship some Section 1 man pages here.]
-
+[The latter were taken from ftp://elsie.nci.nih.gov/pub/tzcode2001a.tar.gz.]
 [The section 3 man pages for the db routines have been taken from
-ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz. These days glibc2
-includes db routines, but I have not checked whether glibc2 complies
-with these man pages.]
+ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
+[The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
-[The rpc man pages were taken from the 4.4BSD-Lite CDROM. They are
-copyrighted by Sun Microsystems, Inc., but can be distributed freely.]
 
-Differences from version 1.48:
+Differences from version 1.49:
 
     The man pages
 
-	du.1 ls.1
+	semop.2
 
-	accept.2 access.2 fcntl.2 getdtablesize.2 getrlimit.2 madvise.2
-	mmap.2 mmap2.2 mount.2 mremap.2 open.2 readv.2 setgid.2 setpgid.2
-	syscall.2 syscalls.2 truncate.2 unlink.2
-
-	dlopen.3 err.3 errx.3 getcwd.3 getipnodebyname.3 iconv.3 lockf.3
-	queue.3 verr.3 verrx.3 vwarn.3 vwarnx.3 warn.3 warnx.3
-
-	locale.7 raw.7 signal.7 tcp.7
-
-	ld.so.8
+	a64l.3 argz_add.3 argz_add_sep.3 argz_append.3 argz_count.3
+	argz_create.3 argz_create_sep.3 argz_delete.3 argz_extract.3
+	argz_insert.3 argz_next.3 argz_replace.3 argz_stringify.3
+	envz_add.3 envz_entry.3 envz_get.3 envz_merge.3 envz_remove.3
+	envz_strip.3 ether_aton.3 ether_aton_r.3 ether_hostton.3
+	ether_line.3 ether_ntoa.3 ether_ntoa_r.3 ether_ntohost.3
+	l64a.3 strtol.3 strtoq.3 strtoul.3 strtouq.3 undocumented.3
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.
