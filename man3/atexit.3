@@ -24,9 +24,11 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Mon Mar 29 22:36:52 1993, David Metcalfe
-.\" Modified Sat Jul 24 21:40:02 1993, Rik Faith (faith@cs.unc.edu)
-.TH ATEXIT 3  1997-09-14 "GNU" "Linux Programmer's Manual"
+.\" Modified 1993-03-29, David Metcalfe
+.\" Modified 1993-07-24, Rik Faith (faith@cs.unc.edu)
+.\" Modified 2003-10-25, Walter Harms
+.\"
+.TH ATEXIT 3  2003-11-01 "" "Linux Programmer's Manual"
 .SH NAME
 atexit \- register a function to be called at normal program termination.
 .SH SYNOPSIS
@@ -37,16 +39,49 @@ atexit \- register a function to be called at normal program termination.
 .fi
 .SH DESCRIPTION
 The \fBatexit()\fP function registers the given \fIfunction\fP to be
-called at normal program termination, whether via
+called at normal program termination, either via
 .BR exit (3)
-or via return
-from the program's \fBmain\fP.  Functions so registered are called in
+or via return from the program's \fBmain\fP().
+Functions so registered are called in
 the reverse order of their registration; no arguments are passed.
+.LP
+At least ATEXIT_MAX functions can be registered. This value
+is at least 32. It can be obtained using
+.BR sysconf (3).
+.LP
+By a successful call to one of the exec functions,
+all registrations are undone.
 .SH "RETURN VALUE"
 The \fBatexit()\fP function returns the value 0 if successful; otherwise
-it returns a nonzero value; \fIerrno\fP is not set.
+it returns a nonzero value.
+.SH EXAMPLE
+.nf
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+void bye(void) {
+        printf("That was all, folks\en");
+}
+
+int main(){
+        long a;
+        int i;
+
+        a = sysconf(_SC_ATEXIT_MAX);
+        printf("ATEXIT_MAX = %ld\en", a);
+
+        i = atexit(bye);
+        if (i != 0) {
+                fprintf(stderr, "cannot set exit function\en");
+                return EXIT_FAILURE;
+        }
+        return EXIT_SUCCESS;
+}
+.fi
 .SH "CONFORMING TO"
-SVID 3, BSD 4.3, ISO 9899 
+SVID 3, BSD 4.3, ISO 9899, POSIX 1003.1-2001
 .SH "SEE ALSO"
 .BR exit (3),
+.BR _exit (3),
 .BR on_exit (3)

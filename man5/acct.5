@@ -20,21 +20,23 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
-.TH ACCT 5 1995-10-31 "Debian GNU/Linux"
+.TH ACCT 5 2003-11-01 "Linux" "Linux Programmer's Manual"
 .SH NAME
 acct \- execution accounting file
 .SH SYNOPSIS
 .B #include <sys/acct.h>
 .SH DESCRIPTION
-The kernel maintains an accounting information structure for all
-processes. If a process terminates, and accounting is enabled, the kernel
-calls the
-.BR acct (2)
-function to prepare, and then append, a record for this process
-to the accounting file. The accounting structure
+If the kernel was compiled with the process accounting option enabled,
+the system call
+.RS
+acct("/somewhere/accountingfile");
+.RE
+will start the process accounting. Each time a process terminates
+a record for this process is appended to the accounting file.
+The accounting structure
 .B "struct acct"
 is also described in the file
 .IR /usr/include/linux/acct.h .
 .SH "SEE ALSO"
-.BR acct (2),
-.BR sa (1)
+.BR sa (1),
+.BR acct (2)

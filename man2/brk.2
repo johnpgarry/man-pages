@@ -27,7 +27,7 @@
 .\" Modified Wed Jul 21 19:52:58 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Sun Aug 21 17:40:38 1994 by Rik Faith <faith@cs.unc.edu>
 .\"
-.TH BRK 2 1993-07-21 "Linux 0.99.11" "Linux Programmer's Manual"
+.TH BRK 2 2003-11-01 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
 brk, sbrk \- change data segment size
 .SH SYNOPSIS
@@ -35,7 +35,7 @@ brk, sbrk \- change data segment size
 .sp
 .BI "int brk(void *" end_data_segment );
 .sp
-.BI "void *sbrk(ptrdiff_t " increment );
+.BI "void *sbrk(intptr_t " increment );
 .SH DESCRIPTION
 .B brk
 sets the end of the data segment to the value specified by
@@ -70,13 +70,15 @@ BSD 4.3
 .BR brk " and " sbrk
 are not defined in the C Standard and are deliberately excluded from the
 POSIX.1 standard (see paragraphs B.1.1.1.3 and B.8.3.3).
-.\" .SH NOTES
-.\" Various systems use various types for the parameter of
-.\" .BR sbrk ().
-.\" One sees int (e.g. XPGv4, HP-UX 11), ssize_t (e.g. Irix 5.3),
-.\" ptrdiff_t (libc4, libc5, ulibc, glibc2.0, 2.1),
-.\" intptr_t (e.g. XPGv5, AIX, SunOS 5.9, FreeBSD 4.7, Tru64 5.1, glibc2.2).
-.\" XPGv6 obsoletes this function.
+.SH NOTES
+Various systems use various types for the parameter of
+.BR sbrk ().
+One sees \fBint\fP (e.g. XPGv4, DU 4.0, HP-UX 11, FreeBSD 4.0, OpenBSD 3.2),
+\fBssize_t\fP (OSF1 2.0, Irix 5.3, 6.5),
+\fBptrdiff_t\fP (libc4, libc5, ulibc, glibc2.0, 2.1),
+\fBintptr_t\fP (e.g. XPGv5, AIX, SunOS 5.8, 5.9, FreeBSD 4.7, NetBSD 1.6,
+Tru64 5.1, glibc2.2).
+XPGv6 obsoletes this function.
 .SH "SEE ALSO"
 .BR execve (2),
 .BR getrlimit (2),

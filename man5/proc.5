@@ -255,16 +255,14 @@ The number of minor faults the process has made which have not
 required loading a memory page from disk.
 .TP
 \fIcminflt\fP %lu
-The number of minor faults that the process and its children have
-made.
+The number of minor faults that the process' waited-for children have made.
 .TP
 \fImajflt\fP %lu
 The number of major faults the process has made which have
 required loading a memory page from disk.
 .TP
 \fIcmajflt\fP %lu
-The number of major faults that the process and its children have
-made.
+The number of major faults that the process' waited-for children have made.
 .TP
 \fIutime\fP %lu
 The number of jiffies that this process has been scheduled in user
@@ -275,11 +273,12 @@ The number of jiffies that this process has been scheduled in kernel
 mode.
 .TP
 \fIcutime\fP %ld
-The number of jiffies that this process and its children have been
-scheduled in user mode.
+The number of jiffies that this process' waited-for children have been
+scheduled in user mode. (See also
+.BR times (2).)
 .TP
 \fIcstime\fP %ld
-The number of jiffies that this process and its children have been
+The number of jiffies that this process' waited-for children have been
 scheduled in kernel mode.
 .TP
 \fIpriority\fP %ld
@@ -589,7 +588,7 @@ IP address     HW type   Flags     HW address          Mask   Device
 Here 'IP address' is the IPv4 address of the machine and the 'HW type' is the
 hardware type of the address from RFC 826. The flags are the internal flags
 of the ARP structure (as defined in /usr/include/linux/if_arp.h) and the 'HW
-address' is the physical layer mapping for that IP address if it is known.
+address' is the data link layer mapping for that IP address if it is known.
 .TP
 .I dev
 The dev pseudo-file contains network device status information. This gives

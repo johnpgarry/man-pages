@@ -304,12 +304,10 @@ For decimal integer conversion
 .BR "" ( i ,
 .BR d ,
 .BR u )
-the output uses the locale's alternative output digits, if any (for
-example, Arabic digits).  However, it does not include any locale
-definitions with such
-.B outdigits
-defined.
-.\" See http://sources.redhat.com/ml/libc-alpha/2000-08/msg00230.html
+the output uses the locale's alternative output digits, if any.
+For example, since glibc 2.2.3 this will give Arabic-Indic digits
+in the Persian (`fa_IR') locale.
+.\" outdigits keyword in locale file
 .SS "The field width"
 An optional decimal digit string (with nonzero first digit) specifying
 a minimum field width.  If the converted value has fewer characters

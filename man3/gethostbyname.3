@@ -24,14 +24,15 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Sat May 22 18:43:54 1993, David Metcalfe
-.\" Modified Sun Jul 25 10:42:30 1993, Rik Faith (faith@cs.unc.edu)
-.\" Modified Sun Feb 16 13:23:10 1997, Andries Brouwer (aeb@cwi.nl)
-.\" Modified Mon Dec 21 14:49:33 1998, Andries Brouwer (aeb@cwi.nl)
-.\" Modified Sat Aug 12 18:11:32 2000, Andries Brouwer (aeb@cwi.nl)
-.\" Modified Sat May 19 23:37:50 2001, Andries Brouwer (aeb@cwi.nl)
+.\" Modified 1993-05-22, David Metcalfe
+.\" Modified 1993-07-25, Rik Faith (faith@cs.unc.edu)
+.\" Modified 1997-02-16, Andries Brouwer (aeb@cwi.nl)
+.\" Modified 1998-12-21, Andries Brouwer (aeb@cwi.nl)
+.\" Modified 2000-08-12, Andries Brouwer (aeb@cwi.nl)
+.\" Modified 2001-05-19, Andries Brouwer (aeb@cwi.nl)
+.\" Modified 2002-08-05, Michael Kerrisk
 .\"
-.TH GETHOSTBYNAME 3  2000-08-12 "BSD" "Linux Programmer's Manual"
+.TH GETHOSTBYNAME 3  2002-08-05 "" "Linux Programmer's Manual"
 .SH NAME
 gethostbyname, gethostbyaddr, sethostent, endhostent, herror, hstrerror \- get
 network host entry
@@ -98,8 +99,10 @@ ends in a dot.
 .PP
 The \fBgethostbyaddr()\fP function returns a structure of type \fIhostent\fP
 for the given host address \fIaddr\fP of length \fIlen\fP and address type
-\fItype\fP.  The only valid address type is currently
-.BR AF_INET .
+\fItype\fP.  Valid address types are
+.B AF_INET
+and
+.BR AF_INET6 .
 .PP
 The \fBsethostent()\fP function specifies, if \fIstayopen\fP is true (1), 
 that a connected TCP socket should be used for the name server queries and 
@@ -153,6 +156,8 @@ A zero-terminated array of alternative names for the host.
 .I h_addrtype
 The type of address; always
 .B AF_INET
+or
+.B AF_INET6
 at present.
 .TP
 .I h_length
@@ -168,6 +173,7 @@ The first address in \fIh_addr_list\fP for backward compatibility.
 The \fBgethostbyname()\fP and \fBgethostbyaddr()\fP functions return the
 \fIhostent\fP structure or a NULL pointer if an error occurs.  On error,
 the \fIh_errno\fP variable holds an error number.
+When non-NULL, the return value may point at static data, see the Notes below.
 .SH ERRORS
 The variable \fIh_errno\fP can have the following values:
 .TP
@@ -248,15 +254,17 @@ POSIX 1003.1-2001 marks
 .B gethostbyaddr()
 and
 .B gethostbyname()
-legacy, and introduces
-.sp
-.nf
-.BI "struct hostent *getipnodebyaddr (const void *restrict " addr ,
-.BI "  socklen_t " len ", int " type ", int *restrict " error_num );
-.sp
-.BI "struct hostent *getipnodebyname (const char *" name ,
-.BI "  int " type ", int " flags ", int *" error_num );
+obsolescent. See
+.BR getaddrinfo (3),
+.BR getnameinfo (3),
+.BR gai_strerror (3).
 .SH "SEE ALSO"
+.BR getaddrinfo (3),
+.BR getipnodebyaddr (3),
+.BR getipnodebyaddr (3),
+.BR getnameinfo (3),
+.BR inet_ntop (3),
+.BR inet_pton (3),
 .BR resolver (3),
 .BR hosts (5),
 .BR hostname (7),

@@ -7,7 +7,7 @@
 .\"
 .\" Some changes by tytso and aeb.
 .\"
-.TH RANDOM 4 1997-08-01 "Linux" "Linux Programmer's Manual"
+.TH RANDOM 4 2003-10-25 "Linux" "Linux Programmer's Manual"
 .SH NAME
 random, urandom \- kernel random number source devices
 .SH DESCRIPTION
@@ -79,6 +79,48 @@ run during the Linux system shutdown:
  	echo "Saving random seed..."
  	dd if=/dev/urandom of=/var/random-seed count=1
 .fi
+.SH "PROC INTERFACE"
+The files in the directory
+.I /proc/sys/kernel/random
+(present since 2.3.16) provide an additional interface to the
+.B /dev/random
+device.
+.LP
+The read-only file
+.I entropy_avail
+gives the available entropy. Normally, this will be 4096 (bits),
+a full entropy pool.
+.LP
+The file
+.I poolsize
+gives the size of the entropy pool. Normally, this will be 512 (bytes).
+It can be changed to any value for which an algorithm is available.
+Currently the choices are 32, 64, 128, 256, 512, 1024, 2048.
+.LP
+The file
+.I read_wakeup_threshold
+contains the number of bits of entropy required for waking up processes
+that sleep waiting for entropy from
+.BR /dev/random .
+The default is 64.
+The file
+.I write_wakeup_threshold
+contains the number of bits of entropy below which we wake up
+processes that do a
+.I select()
+or
+.I poll()
+for write access to
+.BR /dev/random .
+These values can be changed by writing to the files.
+.LP
+The read-only files
+.I uuid
+and
+.I boot_id
+contain random strings like 6fd5a44b-35f4-4ad4-a9b9-6b9be13e1fe9.
+The former is generated afresh for each read, the latter was
+generated once.
 .SH FILES
 /dev/random
 .br
@@ -90,16 +132,4 @@ Theodore Ts'o (tytso@athena.mit.edu).
 mknod (1)
 .br
 RFC 1750, "Randomness Recommendations for Security"
-
-
-
-
-
-
-
-
-
-
-
-
 

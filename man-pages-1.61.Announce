@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.60.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.61.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,22 +12,21 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.59:
+Differences from version 1.60:
 
     The man pages
 
-	fdatasync.2 fstatvfs.2 get_thread_area.2 getdents.2 mlockall.2
-	mmap.2 mprotect.2 msync.2 sched_setscheduler.2 select_tut.2
-	statfs.2 statvfs.2
+	brk.2 fcntl.2 mlock.2 munlock.2 recv.2 send.2
 
-	asctime_r.3 clock_getres.3 clock_gettime.3 clock_settime.3
-	ctime_r.3 getlogin.3 getlogin_r.3 gmtime_r.3 localtime_r.3
-	posix_memalign.3 sysconf.3
+	atexit.3 basename.3 bsearch.3 cosf.3 coshf.3 coshl.3 cosl.3
+	ctime.3 div.3 endaliasent.3 fmtmsg.3 getaliasbyname.3
+	getaliasbyname_r.3 getaliasent.3 getaliasent_r.3
+	gethostbyname.3 imaxdiv.3 log10.3 mempcpy.3 on_exit.3 printf.3
+	setaliasent.3 sinhf.3 sinhl.3 strtoimax.3 strtoumax.3
+	tanhf.3 tanhl.3 wcstoimax.3 wcstoumax.3 wmempcpy.3
+	wordexp.3 wordfree.3
 
-	host.conf.5
-
-	glob.7 iso-8859-16.7 iso_8859_16.7 latin10.7 latin5.7 latin9.7
-	operator.7 posixoptions.7
+	random.4
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.
@@ -55,6 +54,7 @@ Here is a breakdown of what this distribution contains:
 The following people (listed in alphabetical order by first name)
 wrote, edited, or otherwise contributed to this project:
 
+    Akihiro MOTOKI <amotoki@dd.iij4u.or.jp>
     Alain Knaff <Alain.Knaff@imag.fr>
     Alan Cox <alan@lxorguk.ukuu.org.uk>
     Alan Curry <pacman@cqc.com>

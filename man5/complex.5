@@ -1,19 +1,21 @@
 .\" Copyright 2002 Walter Harms (walter.harms@informatik.uni-oldenburg.de)
 .\" Distributed under GPL
 .\"
-.TH complex 5 2002-07-28 "" "complex math"
+.TH COMPLEX 5 2002-07-28 "" "complex math"
 .SH NAME
 complex \- basics of complex mathematics
 .SH SYNOPSIS
 .B #include <complex.h>
 .SH DESCRIPTION
-Complex numbers are numbers of the form a+b*i, where a and b are
+Complex numbers are numbers of the form z = a+b*i, where a and b are
 real numbers and i = sqrt(-1), so that i*i = -1.
 .br
-There are other ways to represent that number. Because the point z=(a,b) 
-is on a plane you can also define that point with distance and angle (r,phi).
-The number z=r*(cos(phi)+i*sin(phi)) can also be described as exponential
-function z=r*exp(i*phi) as found by Euler.
+There are other ways to represent that number. The pair (a,b) of real
+numbers may be viewed as a point in the plane, given by X- and
+Y-coordinates. This same point may also be described by giving
+the pair of real numbers (r,phi), where r is the distance to the origin O,
+and phi the angle between the X-axis and the line Oz. Now
+z = r*exp(i*phi) = r*(cos(phi)+i*sin(phi)).
 .PP
 The basic operations are defined on z = a+b*i and w = c+d*i as:
 .TP

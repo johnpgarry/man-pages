@@ -65,7 +65,7 @@ usually also switch to a real-time scheduler with
 .BR sched_setscheduler .
 Cryptographic security software often handles critical bytes like
 passwords or secret keys as data structures. As a result of paging,
-these secrets could be transfered onto a persistent swap store medium,
+these secrets could be transferred onto a persistent swap store medium,
 where they might be accessible to the enemy long after the security
 software has erased the secrets in RAM and terminated.
 (But be aware that the suspend mode on laptops and some desktop
@@ -120,8 +120,15 @@ The calling process does not have appropriate privileges. Only root
 processes are allowed to lock pages.
 .TP
 .B EINVAL
+(Not on Linux)
+.I addr
+was not a multiple of the page size.
+.LP
+Linux adds
+.TP
+.B EINVAL
 .I len
-was not a positive number.
+was negative.
 .SH "CONFORMING TO"
 POSIX.1b, SVr4.  SVr4 documents an additional EAGAIN error code.
 .SH "SEE ALSO"

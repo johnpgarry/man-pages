@@ -51,16 +51,19 @@ non-zero otherwise.
 If \fBlsearch()\fP does not find a matching element, then the \fIkey\fP
 object is inserted at the end of the table, and *\fInmemb\fP is
 incremented.
+In particular, one should know that a matching element
+exists, or that more room is available.
 .SH "RETURN VALUE"
 \fBlfind()\fP returns a pointer to a matching member of the array, or
 \fBNULL\fP if no match is found.  \fBlsearch()\fP returns a pointer to
 a matching member of the array, or to the newly added member if no
 match is found.
-.\" .SH "CONFORMING TO"
-.\" SVID 3, BSD 4.3
-.\" Present in libc since libc-4.6.27.
+.SH "CONFORMING TO"
+SVID 1, SVID 3, BSD 4.3, POSIX 1003.1-2003.
+Present in libc since libc-4.6.27.
+.SH BUGS
+The naming is unfortunate.
 .SH "SEE ALSO"
 .BR bsearch (3),
 .BR hsearch (3),
 .BR tsearch (3)
-
