@@ -21,9 +21,7 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Tue Oct 22 17:55:06 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified 8 Jan 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\"
-.TH SEMOP 2 2002-01-08 "Linux 2.4" "Linux Programmer's Manual" 
+.TH SEMOP 2 1993-11-01 "Linux 0.99.13" "Linux Programmer's Manual" 
 .SH NAME
 semop \- semaphore operations
 .SH SYNOPSIS
@@ -40,40 +38,32 @@ semop \- semaphore operations
 .BI "struct sembuf *" sops ,
 .BI "unsigned " nsops );
 .SH DESCRIPTION
-A semaphore is represented by an anonymous structure
-including the following members:
-.sp
-.in +4n
-.nf
-unsigned short  semval;   /* semaphore value */
-unsigned short  semzcnt;  /* # waiting for zero */
-unsigned short  semncnt;  /* # waiting for increase */
-pid_t           sempid;   /* process that did last op */
-.sp
-.in -4n
-.fi
-The function
-.B semop
-performs operations on selected members of the semaphore set indicated by
+The function performs operations on selected members of the semaphore set indicated by
 .IR semid .
 Each of the
 .I nsops
 elements in the array pointed to by
 .I sops
-specifies an operation to be performed on a semaphore by a
+specify an operation to be performed on a semaphore by a
 .B "struct sembuf"
 including the following members:
 .sp
-.in +4n
-.nf
-unsigned short sem_num;	/* semaphore number */
-short sem_op;			/* semaphore operation */
-short sem_flg;			/* operation flags */
+.B
+.br
+.B
+	short sem_num;	
+/* semaphore number: 0 = first */
+.br
+.B
+	short sem_op;	
+/* semaphore operation */
+.br
+.B
+	short sem_flg;	
+/* operation flags */
 .sp
-.in -4n
-.fi
 Flags recognized in
-.I sem_flg
+.B sem_flg
 are
 .B IPC_NOWAIT
 and
@@ -82,173 +72,155 @@ If an operation asserts
 .BR SEM_UNDO ,
 it will be undone when the process exits.
 .PP
-The set of operations contained in
-.I sops
-is performed
-.IR atomically ,
-that is, the operations are performed at the same time, and only
-if they can all be simultaneously performed.
-The behaviour of the system call if not all operations can be
-performed immediately depends on the presence of the
-.B IPC_NOWAIT
-flag in the individual
-.I sem_flg
-fields, as noted below.
-
+The system call semantic assures that the operations will be
+performed if and only if all of them will succeed.
 Each operation is performed on the
-.IR sem_num \-th
-semaphore of the semaphore set, where the first semaphore of the set
+.BR sem_num \-th
+semaphore of the semaphore set \- where the first semaphore of the set
 is semaphore
-.BR 0 .
-There are three types of operation, distinguished by the value of
-.IR sem_op .
+.B 0
+\- and is one among the following three.
 .PP
 If
-.I sem_op
+.B sem_op
 is a positive integer, the operation adds this value to
-the semaphore value
-.RI  ( semval ).
+.BR  semval .
 Furthermore, if
 .B SEM_UNDO
 is asserted for this operation, the system updates the process undo count
-.RI ( semadj )
 for this semaphore.
-This operation can always proceed \- it never forces a process to wait.
-The calling process must have alter permission on the semaphore set.
+The operation always goes through, so no process sleeping can happen.
+The calling process must have alter permissions on the semaphore set.
 .PP
 If
-.I sem_op
-is zero, the process must have read access permission on the semaphore
+.B sem_op
+is zero, the process must have read access permissions on the semaphore
 set.
-This is a "wait-for-zero" operation: if
-.I semval
-is zero, the operation can immediately proceed.
+If
+.B semval
+is zero, the operation goes through.
 Otherwise, if
 .B IPC_NOWAIT
 is asserted in
-.IR sem_flg ,
-the system call fails with
-.I errno
+.BR sem_flg ,
+the system call fails (undoing all previous actions
+performed) with
+.B errno
 set to
-.B EAGAIN
-(and none of the operations in
-.I sops
-is performed).
+.BR EAGAIN .
 Otherwise
-.I semzcnt
-(the count of processes waiting until this semaphore's value becomes zero)
+.B semzcnt
 is incremented by one and the process sleeps until
 one of the following occurs:
+.IP
+.RS
 .IP \(bu
-.I semval
+.B semval
 becomes 0, at which time the value of
-.I semzcnt
+.B semzcnt
 is decremented.
 .IP \(bu
 The semaphore set
-is removed: the system call fails, with
-.I errno
+is removed: the system call fails with
+.B errno
 set to
 .BR EIDRM .
 .IP \(bu
-The calling process catches a signal:
+The calling process receives a signal that has to be caught:
 the value of
-.I semzcnt
-is decremented and the system call fails, with
-.I errno
+.B semzcnt
+is decremented and the system call fails with
+.B errno
 set to
 .BR EINTR .
+.RE
 .PP
 If
-.I sem_op
-is less than zero, the process must have alter permission on the
+.B sem_op
+is less than zero, the process must have alter permissions on the
 semaphore set.
 If
-.I semval
+.B semval
 is greater than or equal to the absolute value of
-.IR sem_op ,
-the operation can proceed immediately:
+.BR sem_op ,
 the absolute value of
-.I sem_op
-is subtracted from
-.IR semval ,
-and, if
+.B sem_op
+is subtracted by
+.BR semval .
+Furthermore, if
 .B SEM_UNDO
 is asserted for this operation, the system updates the process undo count
-.RI ( semadj )
 for this semaphore.
-If the absolute value of
-.I sem_op
-is greater than
-.IR semval ,
-and
+Then the operation goes through.
+Otherwise, if
 .B IPC_NOWAIT
 is asserted in
-.IR sem_flg ,
-the system call fails, with
-.I errno
+.BR sem_flg ,
+the system call fails (undoing all previous actions
+performed) with
+.B errno
 set to
-.B EAGAIN
-(and none of the operations in
-.I sops
-is performed).
+.BR EAGAIN .
 Otherwise
-.I semncnt
-(the counter of processes waiting for this semaphore's value to increase)
+.B semncnt
 is incremented by one and the process sleeps until
 one of the following occurs:
+.IP
+.RS
 .IP \(bu
-.I semval
-becomes greater than or equal to the absolute value of
-.IR sem_op ,
+.B semval
+becomes greater or equal to the absolute value of
+.BR sem_op ,
 at which time the value of
-.I semncnt
+.B semncnt
 is decremented, the absolute value of
-.I sem_op
+.B sem_op
 is subtracted from
-.I semval
+.B semval
 and, if
 .B SEM_UNDO
 is asserted for this operation, the system updates the process undo count
-.RI ( semadj )
 for this semaphore.
 .IP \(bu
 The semaphore set is removed from the system: the system call fails with
-.I errno
+.B errno
 set to
 .BR EIDRM .
 .IP \(bu
-The calling process catches a signal:
+The calling process receives a signal that has to be caught:
 the value of
-.I semncnt
+.B semncnt
 is decremented and the system call fails with
-.I errno
+.B errno
 set to
 .BR EINTR .
+.RE
 .PP
-On successful completion, the
-.I sempid
-value for each semaphore specified in the array pointed to by
+In case of success, the
+.B sempid
+member of the structure
+.B sem
+for each semaphore specified in the array pointed to by
 .I sops
-is set to the process ID of the calling process.
-In addition, the
-.I sem_otime
-.\" and
-.\" .I sem_ctime
-is set to the current time.
+is set to the process\-ID of the calling process.
+Furthermore both
+.B sem_otime
+and
+.B sem_ctime
+are set to the current time.
 .SH "RETURN VALUE"
 If successful the system call returns
 .BR 0 ,
 otherwise it returns
 .B \-1
 with
-.I errno
+.B errno
 indicating the error.
 .SH ERRORS
-On failure,
-.I errno
-is set to one of the following:
-.TP
+For a failing return,
+.B errno
+will be set to one among the following values:
+.TP 11
 .B E2BIG
 The argument
 .I nsops
@@ -262,7 +234,7 @@ The calling process has no access permissions on the
 semaphore set as required by one of the specified operations.
 .TP
 .B EAGAIN
-An operation could not proceed immediately and
+An operation could not go through and
 .BR IPC_NOWAIT
 was asserted in its
 .IR sem_flg .
@@ -274,7 +246,7 @@ isn't accessible.
 .TP
 .B EFBIG
 For some operation the value of
-.I sem_num
+.B sem_num
 is less than 0 or greater than or equal to the number
 of semaphores in the set.
 .TP
@@ -282,7 +254,8 @@ of semaphores in the set.
 The semaphore set was removed.
 .TP
 .B EINTR
-While blocked in this system call, the process caught a signal.
+Sleeping on a wait queue, the process received a signal
+that had to be caught.
 .TP
 .B EINVAL
 The semaphore set doesn't exist, or
@@ -293,66 +266,43 @@ has a non-positive value.
 .TP
 .B ENOMEM
 The
-.I sem_flg
+.B sem_flg
 of some operation asserted
 .B SEM_UNDO
-and the system does not have enough memory to allocate the undo
+and the system has not enough memory to allocate the undo
 structure.
 .TP
 .B ERANGE
 For some operation
-.I sem_op+semval
+.B semop+semval
 is greater than
 .BR SEMVMX ,
 the implementation dependent maximum value for
-.IR semval .
+.BR semval .
 .SH NOTES
 The
-.I sem_undo
-structures of a process aren't inherited across a
+.B sem_undo
+structures of a process aren't inherited by its child
+on execution of a
 .BR fork (2)
-system call, but they are inherited across a
+system call.
+They are instead inherited by the substituting process resulting
+by the execution of the
 .BR execve (2)
 system call.
-.PP
-.B semop
-is never automatically restarted after being interrupted by a signal handler,
-regardless of the setting of the
-.B SA_RESTART
-flags when establishing a signal handler.
-.PP
-.I semadj
-is a per\-process integer which is simply the (negative) count
-of all semaphore operations performed specifying the
-.B SEM_UNDO
-flag.
-When a semaphore's value is directly set using the
-.B SETVAL
-or
-.B SETALL
-request to
-.BR semctl (2),
-the corresponding
-.I semadj
-values in all processes are cleared.
-.PP
-The \fIsemval\fP, \fIsempid\fP, \fIsemzcnt\fP, and \fIsemnct\fP values
-for a semaphore can all be retrieved using appropriate
-.BR semctl (2)
-calls.
 .PP
 The followings are limits on semaphore set resources affecting a
 .B semop
 call:
-.TP
+.TP 11
 .B SEMOPM
 Maximum number of operations allowed for one
 .B semop
-call (32).
+call: policy dependent.
 .TP
 .B SEMVMX
 Maximum allowable value for
-.IR semval :
+.BR semval :
 implementation dependent (32767).
 .PP
 The implementation has no intrinsic limits for
@@ -360,33 +310,30 @@ the adjust on exit maximum value
 .RB ( SEMAEM ),
 the system wide maximum number of undo structures
 .RB ( SEMMNU )
-and the per\-process maximum number of undo entries system parameters.
+and the per process maximum number of undo entries system parameters.
 .SH BUGS
-When a process terminates, its set of associated
-.I semadj
-structures is used to undo the effect of all of the
-semaphore operations it performed with the
-.B SEM_UNDO
-flag.
-This raises a difficulty: if one (or more) of these semaphore adjustments
-would result in an attempt to decrease a semaphore's value below zero,
-what should an implementation do?
-One possible approach would be to block until all the semaphore
-adjustments could be performed.
-This is however undesirable since it could force process termination to
-block for arbitrarily long periods.
-Another possibility is that such semaphore adjustments could be ignored
-altogether (somewhat analogously to failing when
+The system maintains a per process
+.B sem_undo
+structure for each semaphore altered by the process with undo requests.
+Those structures are free at process exit.
+One major cause for unhappiness with the undo mechanism is that it
+does not fit in with the notion of having an atomic set of operations
+an array of semaphores.
+The undo requests for an array and each semaphore therein may have been
+accumulated over many
+.B semop
+calls.
+Should the process sleep when
+exiting, or should all undo operations be applied with the
 .B IPC_NOWAIT
-is specified for a semaphore operation).
-Linux adopts a third approach: decreasing the semaphore value
-as far as possible (i.e., to zero) and allowing process
-termination to proceed immediately.
+flag in effect?
+Currently those undo operations which go through immediately are applied,
+and those that require a wait are ignored silently.
+Thus harmless undo usage is guaranteed with private semaphores only.
 .SH "CONFORMING TO"
 SVr4, SVID.  SVr4 documents additional error conditions EINVAL, EFBIG,
 ENOSPC.
 .SH "SEE ALSO"
 .BR ipc (5),
 .BR semctl (2),
-.BR semget (2),
-.BR sigaction (2)
+.BR semget (2)
