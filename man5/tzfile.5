@@ -1,6 +1,3 @@
-.\" @(#)tzfile.5	7.11
-.\" This file is in the public domain, so clarified as of
-.\" 1996-06-05 by Arthur David Olson <arthur_david_olson@nih.gov>.
 .TH TZFILE 5
 .SH NAME
 tzfile \- time zone information
@@ -9,7 +6,7 @@ tzfile \- time zone information
 #include <tzfile.h>
 .SH DESCRIPTION
 The time zone information files used by
-.BR tzset (3)
+.IR tzset (3)
 begin with the magic characters "TZif" to identify then as
 time zone information files,
 followed by sixteen bytes reserved for future use,
@@ -48,7 +45,7 @@ four-byte values of type
 sorted in ascending order.
 These values are written in ``standard'' byte order.
 Each is used as a transition time (as returned by
-.BR time (2))
+.IR time (2))
 at which the rules for computing local time change.
 Next come
 .I tzh_timecnt
@@ -87,7 +84,7 @@ gives the number of seconds to be added to UTC,
 tells whether
 .I tm_isdst
 should be set by
-.BR localtime (3),
+.IR localtime (3),
 and
 .I tt_abbrind
 serves as an index into the array of time zone abbreviation characters
@@ -100,7 +97,7 @@ Then there are
 pairs of four-byte values, written in standard byte order;
 the first value of each pair gives the time
 (as returned by
-.BR time (2))
+.IR time(2))
 at which a leap second occurs;
 the second gives the
 .I total
@@ -135,4 +132,7 @@ if either
 is zero or the time argument is less than the first transition time recorded
 in the file.
 .SH "SEE ALSO"
-.BR newctime (3)
+newctime(3)
+.\" @(#)tzfile.5	7.11
+.\" This file is in the public domain, so clarified as of
+.\" 1996-06-05 by Arthur David Olson (arthur_david_olson@nih.gov).
