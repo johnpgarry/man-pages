@@ -2,12 +2,32 @@
 .\"
 .\" This manpage is Copyright (C) 1992 Drew Eckhardt;
 .\"                               1993 Michael Haardt, Ian Jackson.
-.\" You may distribute it under the terms of the GNU General
-.\" Public Licence. It comes with NO WARRANTY.
+.\"
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
+.\"
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one
+.\" 
+.\" Since the Linux kernel and libraries are constantly changing, this
+.\" manual page may be incorrect or out-of-date.  The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\" 
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Wed Jul 21 19:36:29 1993, Rik Faith (faith@cs.unc.edu)
+.\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
+.\"   Removed note about old kernel (pre-1.1.44) using wrong id on path.
 .\"
-.TH ACCESS 2 "21 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH ACCESS 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
 .SH NAME
 access \- check user's permissions for a file
 .SH SYNOPSIS
@@ -41,7 +61,6 @@ The check is done with the process's
 uid and gid, rather than with the effective ids as is done when
 actually attempting an operation. This is to allow set-UID programs to
 easily determine the invoking user's authority.
-.I See BUGS below regarding this !
 
 Only access bits are checked, not the file type or contents.  Therefore, if
 a directory is found to be "writable," it probably means that files can be
@@ -89,13 +108,6 @@ contains a reference to a circular symbolic link, i.e., a symbolic link
 containing a reference to itself.
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
-.SH BUGS
-.IR Important! " Currently (as of Linux 0.99pl11) the " real
-uid and gid are only used when checking access to the final component of
-.IR pathname ;
-the checks on any intervening directories are made using the
-.I effective
-ids.
 .SH "SEE ALSO"
 .BR stat "(2), " open "(2), " chmod "(2), " chown "(2), "
 .BR setuid "(2), " setgid (2).

@@ -40,7 +40,7 @@ sigpause \- atomically release blocked signals and wait for interrupt
 .B #include <signal.h>
 .sp
 .BI "int sigpause(int sigmask );
-.Sh DESCRIPTION
+.SH DESCRIPTION
 This interface is made obsolete by
 .BR sigsuspend (2).
 
@@ -56,7 +56,7 @@ always terminates by being interrupted, returning \-1 with
 .I errno
 set to
 .B EINTR
-.Sh HISTORY
+.SH HISTORY
 The
 .B sigpause
 function call appeared in BSD 4.3 and has been deprecated.

@@ -2,19 +2,38 @@
 .\"
 .\" This manpage is Copyright (C) 1992 Drew Eckhardt;
 .\"                               1993 Michael Haardt, Ian Jackson.
-.\" You may distribute it under the terms of the GNU General
-.\" Public Licence. It comes with NO WARRANTY.
+.\"
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
+.\"
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one
+.\" 
+.\" Since the Linux kernel and libraries are constantly changing, this
+.\" manual page may be incorrect or out-of-date.  The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\" 
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Wed Jul 21 22:42:16 1993 by Rik Faith (faith@cs.unc.edu)
-.\"
+.\" Modified Sun Aug 21 18:18:14 1994: Michael Haardt's NFS diffs were
+.\"          applied by hand (faith@cs.unc.edu).
 .TH OPEN 2 "21 July 1993" "Linux 0.99.7" "Linux Programmer's Manual"
 .SH NAME
 open, creat \- open and possibly create a file or device
 .SH SYNOPSIS
 .nf
 .B #include <sys/types.h>
+.B #include <sys/stat.h>
 .B #include <fcntl.h>
-.B #include <unistd.h>
 .sp
 .BI "int open(const char *" pathname ", int " flags );
 .BI "int open(const char *" pathname ", int " flags ", mode_t " mode );
@@ -176,20 +195,26 @@ has no room for the new file.
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH BUGS
-Currently (as of Linux 0.99pl7) all the normal filesystems sometime
-allow the creation of two files in the same directory with the same
-name. This occurs only rarely and only on a heavily loaded system. It
-is believed that this bug is fixed in the Minix filesystem in Linux
-0.99pl8 pre-release, and it is hoped that it will be fixed in the
-other filesystems soon.
-
 .B O_SYNC
 is not currently implemented (as of Linux 0.99pl7).
 
 There are many infelicities in the protocol underlying NFS, affecting
 amongst others
-.BR O_SYNC ", " O_EXCL ", " O_NDELAY " and " O_APPEND .
+.BR O_SYNC ", " O_NDELAY ", and " O_APPEND .
+
+.B O_EXCL
+is broken on NFS file systems, programs which rely on it for performing
+locking tasks will contain a race condition.  The solution for performing
+atomic file locking using a lockfile is to create a unique file on the same
+fs (e.g., incorporating hostname and pid), use
+.BR link (2)
+to make a link to the lockfile and use
+.BR stat (2)
+on the unique file to check if its link count has increased to 2.  Do not
+use the return value of the \fBlink()\fP call.
+
 .SH "SEE ALSO"
 .BR read "(2), " write "(2), " fcntl "(2), " close (2),
 .BR unlink "(2), " mknod "(2), " stat "(2), " umask (2),
-.BR mount "(2), " socket "(2), " socket "(2), " fopen (3).
+.BR mount "(2), " socket "(2), " socket "(2), " fopen (3),
+.BR link (2).

@@ -1,41 +1,54 @@
-.\" Hey Emacs! This file is -*- nroff -*- source.
+.\" Copyright (C), 1994, Graeme W. Wilford. (Wilf.)
 .\"
-.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
-.\" Portions extracted from linux/kernel/sys.c:
-.\"             Copyright (C) 1991, 1992  Linus Torvalds
-.\" May be distributed under the GNU General Public License
-.TH SETUID 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
+.\"
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one
+.\" 
+.\" Since the Linux kernel and libraries are constantly changing, this
+.\" manual page may be incorrect or out-of-date.  The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\" 
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
+.\"
+.\" Fri Jul 29th 12:56:44 BST 1994  Wilf. (G.Wilford@ee.surrey.ac.uk) 
+.\"
+.TH SETUID 2 "29 July 1994" "Linux 1.1.36" "Linux Programmer's Manual"
 .SH NAME
-setuid, seteuid \- get user identity
+setuid \- set user identity
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
-.BI int setuid(uid_t " uid )
-.br
-.BI int seteuid(uid_t uid )
+.BI "int setuid(uid_t " uid )
 .SH DESCRIPTION
 .B setuid
-sets the real user ID of the current process.
+sets the effective user ID of the current process. If the caller is the
+superuser, the real and saved user ID's are also set.
 
-.B seteuid
-sets the effective user ID of the current process.
-
-The real ID corresponds to the ID of the calling process.  The effective ID
-corresponds to the set ID bit on the file being executed.
-.SH "NOTES FROM THE KERNEL SOURCE"
-Under Linux 0.99.11,
+Under Linux, 
 .B setuid
-is implemented like SysV w/ SAVED_IDS 
+is implemented like SYSV with SAVED_IDS.
+This allows a setuid (other than root) program to drop all of it's user
+privileges, do some un-privileged work, and then re-engage the original
+effective user ID in a secure manner.
 
-Note that SAVED_ID's is deficient in that a setuid root program like
-sendmail, for example, cannot set its uid to be a normal user and then
-switch back, because if you're root,
+If the user is root or the program is setuid root, special care must be
+taken. The 
 .B setuid
-sets the saved uid too.  If you don't like this, blame the bright people in
-the POSIX committee and/or USG.  Note that the BSD-style
-.B setreuid
-will allow a root program to temporarily drop privileges and be able to
-regain them by swapping the real and effective uid.
+function checks the effective uid of the caller and if it is the superuser,
+all process related user ID's are set to
+.IR uid . 
+After this has occurred, it is impossible for the program to regain root
+privileges.             
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -45,8 +58,8 @@ is set appropriately.
 .B EPERM
 The user is not the super-user, and
 .I uid
-does not match the real or effective user ID of the calling process.
+does not match the effective or saved user ID of the calling process.
 .SH "CONFORMING TO"
-POSIX, System V
+System V
 .SH "SEE ALSO"
-.BR getuid "(2), " setreuid (2)
+.BR getuid "(2), " setreuid "(2), " seteuid (2)

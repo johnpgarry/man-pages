@@ -2,12 +2,32 @@
 .\"
 .\" This manpage is Copyright (C) 1992 Drew Eckhardt;
 .\"                               1993 Michael Haardt, Ian Jackson.
-.\" You may distribute it under the terms of the GNU General
-.\" Public Licence. It comes with NO WARRANTY.
+.\"
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
+.\"
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one
+.\" 
+.\" Since the Linux kernel and libraries are constantly changing, this
+.\" manual page may be incorrect or out-of-date.  The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\" 
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Wed Jul 21 22:45:39 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
+.\"   Fixed typoes.
 .\"
-.TH DUP 2 "21 July 1993" Linux "Linux Programmer's Manual"
+.TH DUP 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
 .SH NAME
 dup, dup2 \- duplicate a file descriptor
 .SH SYNOPSIS
@@ -18,7 +38,7 @@ dup, dup2 \- duplicate a file descriptor
 .BI "int dup2(int " oldfd ", int " newfd );
 .fi
 .SH DESCRIPTION
-.B dup " and " dup2
+.BR dup " and " dup2
 create a copy of the file descriptor
 .IR oldfd .
 
@@ -43,7 +63,7 @@ return the new descriptor, or \-1 if an error occurred (in which case,
 is set appropriately).
 .SH ERRORS
 .TP
-BADF
+.B EBADF
 .I oldfd
 isn't an open file descriptor, or
 .I newfd
@@ -68,4 +88,4 @@ like
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH "SEE ALSO"
-.BR F_DUPFD "(2), " fcntl "(2), " open "(2), " close (2).
+.BR " fcntl "(2), " open "(2), " close "(2).

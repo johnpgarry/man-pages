@@ -1,13 +1,35 @@
 .\"
 .\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
-.\" This file may be distributed under the GNU General Public License.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
 .\"
 .\" Tue Jul  6 12:42:46 MDT 1993 (dminer@nyx.cs.du.edu)
 .\" Added "Calling Directly" and supporting paragraphs
 .\"
 .\" Modified Sat Jul 24 15:19:12 1993 by Rik Faith (faith@cs.unc.edu)
 .\"
-.TH INTRO 2
+.\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
+.\"   Added explanation of arg stacking when 6 or more args.
+.\"
+.TH INTRO 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
 .SH NAME
 intro \- Introduction to system calls
 .SH DESCRIPTION
@@ -103,8 +125,10 @@ System calls are not required to return only positive or negative error
 codes.  You need to read the source to be sure how it will return errors.
 Usually, it is the negative of a standard error code.  i.e., \-EPERM.
 .sp
-Some system calls require more than six arguments, these are handle
-differently.  And at this moment I don't know how... *smile*
+Some system calls, such as
+.BR mmap ,
+require more than five arguments.  These are handled by pushing the
+arguments on the stack and passing a pointer to the block of arguments.
 .sp
 When defining a system call, the arguments types MUST be passed by-value
 or by-pointer (for aggregates like structs).

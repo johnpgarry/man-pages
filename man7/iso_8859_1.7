@@ -1,0 +1,171 @@
+.\" t
+.\" Copyright 1993-1994 Daniel Quinlan (quinlan@yggdrasil.com)
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.TH ISO_8859-1 7 "11 May 1994" "" "Linux Programmer's Manual"
+.SH NAME
+iso_8859_1 \- map of character set
+
+.SH SYNOPSIS
+Characters specified according to the
+.I ISO 8859 Latin-1
+encoding for European languages.
+
+.SH DESCRIPTION
+ISO 8859 includes several 8-bit ASCII extensions. Especially
+.I ISO 8859-1,
+the "Latin alphabet No. 1", which has become widely implemented and
+may already be seen as the de-facto standard ASCII replacement.  The
+full set of ISO 8859 alphabets includes:
+
+.TS
+tab(@);
+l l.
+ISO 8859-1@west European languages (Latin-1)
+ISO 8859-2@east European languages (Latin-2)
+ISO 8859-3@other Latin languages (Latin-3)
+ISO 8859-4@north European languages (Latin-4)
+ISO 8859-5@Latin/Cyrillic
+ISO 8859-6@Latin/Arabic
+ISO 8859-7@Latin/Greek
+ISO 8859-8@Latin/Hebrew
+ISO 8859-9@Latin-1 modification for Turkey (Latin-5)
+ISO 8859-10@Baltic countries (under preparation)
+.TE
+
+.LP
+.I "ISO 8859 Latin-1 Character Set"
+
+The following table displays the
+.I ISO 8859 Latin-1
+character set.
+
+The first field is the octal code for the character, the second is the
+name (patterned after the GNU Emacs naming scheme in the iso-insert.el
+library), the third is the equivalent TeX command, and the fourth is
+the character itself (as best your system can display it).
+
+.TS
+tab(@);
+l l l l.
+Octal@Description@TeX@Character
+_
+240@no-break-space@@ 
+241@inverted-exclamation-mark@!`@¡
+242@cent-sign@@¢
+243@pound-sign@\\pounds@£
+244@general-currency-sign@@¤
+245@yen-sign@@¥
+246@broken-vertical-line@@¦
+247@section-sign@\\S@§
+250@diaeresis@@¨
+251@copyright-sign@\\copyright@©
+252@ordinal-indicator-feminine@@ª
+253@angle-quotation-mark-left@@«
+254@not-sign@\\neg@¬
+255@soft-hyphen@@­
+256@registered-sign@@®
+257@macron@@¯
+260@degree-sign@@°
+261@plus-or-minus-sign@\\pm@±
+262@superscript-two@@²
+263@superscript-three@@³
+264@acute-accent@\\'@´
+265@micro-sign@\\mu@µ
+266@pilcrow@\\P@¶
+267@middle-dot@\\cdot@·
+270@cedilla@\\c@¸
+271@superscript-one@@¹
+272@ordinal-indicator-masculine@@º
+273@angle-quotation-mark-right@@»
+274@fraction-one-quarter@@¼
+275@fraction-one-half@@½
+276@fraction-three-quarters@@¾
+277@inverted-question-mark@?`@¿
+300@A-grave@\\`{A}@À
+301@A-acute@\\'{A}@Á
+302@A-circumflex@\\^{A}@Â
+303@A-tilde@\\~{A}@Ã
+304@A-umlaut@\\"{A}@Ä
+305@A-ring@\\AA@Å
+306@AE@\\AE@Æ
+307@C-cedilla@\\c{C}@Ç
+310@E-grave@\\`{E}@È
+311@E-acute@\\'{E}@É
+312@E-circumflex@\\^{E}@Ê
+313@E-umlaut@\\"{E}@Ë
+314@I-grave@\\`{I}@Ì
+315@I-acute@\\'{I}@Í
+316@I-circumflex@\\^{I}@Î
+317@I-umlaut@\\"{I}@Ï
+320@D-stroke@@Ð
+321@N-tilde@\\~{N}@Ñ
+322@O-grave@\\`{O}@Ò
+323@O-acute@\\'{O}@Ó
+324@O-circumflex@\\^{O}@Ô
+325@O-tilde@\\~{O}@Õ
+326@O-umlaut@\\"{O}@Ö
+327@multiplication-sign@\\times@×
+330@O-slash@@Ø
+331@U-grave@\\`{U}@Ù
+332@U-acute@\\'{U}@Ú
+333@U-circumflex@\\^{U}@Û
+334@U-umlaut@\\"{U}@Ü
+335@Y-acute@\\'{Y}@Ý
+336@THORN@@Þ
+337@ss@\\ss@ß
+340@a-grave@\\`{a}@à
+341@a-acute@\\'{a}@á
+342@a-circumflex@\\^{a}@â
+343@a-tilde@\\~{a}@ã
+344@a-umlaut@\\"{a}@ä
+345@a-ring@\\.{a}@å
+346@ae@\\ae@æ
+347@c-cedilla@\\c{c}@ç
+350@e-grave@\\`{e}@è
+351@e-acute@\\'{e}@é
+352@e-circumflex@\\^{e}@ê
+353@e-umlaut@\\"{e}@ë
+354@i-grave@\\`{i}@ì
+355@i-acute@\\'{i}@í
+356@i-circumflex@\\^{i}@î
+357@i-umlaut@\\"{i}@ï
+360@d-stroke@@ð
+361@n-tilde@\\~{n}@ñ
+362@o-grave@\\`{o}@ò
+363@o-acute@\\'{o}@ó
+364@o-circumflex@\\^{o}@ô
+365@o-tilde@\\~{o}@õ
+366@o-umlaut@\\"{o}@ö
+367@division-sign@\\div@÷
+370@o-slash@@ø
+371@u-grave@\\`{u}@ù
+372@u-acute@\\'{u}@ú
+373@u-circumflex@\\^{u}@û
+374@u-umlaut@\\"{u}@ü
+375@y-acute@\\'{y}@ý
+376@thorn@@þ
+377@y-umlaut@\\"{y}@ÿ
+.TE
+
+.SH SEE ALSO
+.BR ascii (7)

@@ -35,36 +35,47 @@
 .\" Portions extracted from linux/kernel/sys.c:
 .\"             Copyright (C) 1991, 1992  Linus Torvalds
 .\"             May be distributed under the GNU General Public License
-.\" 
+.\" Changes: Fri Jul 29 10:56:01 BST 1994 by Wilf. (G.Wilford@ee.surrey.ac.uk)
+.\"          Tue Aug  2 14:56:48 BST 1994 by Wilf due to changes in kernel.
 .\"
-.TH SETREGID 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH SETREGID 2 "2nd August 1994" "Linux 1.1.38" "Linux Programmer's Manual"
 .SH NAME
-setregid \- set real and effective group ID
+setregid, setegid \- set real and / or effective group ID
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
-.BI "int setregid(gid_t rgid ", gid_t " egid );
+.BI "int setregid(gid_t " rgid ", gid_t " egid );
+.br
+.BI "int setegid(gid_t " egid );
 .SH DESCRIPTION
-The real and effective group ID's of the current process are set to the
-arguments.  Unprivileged users may change the real group ID to the
-effective group ID and vice-versa; only the super-user may make other
+.B setregid
+sets real and effective group ID's of the current process.
+Un-privileged users may change the real group ID to the
+effective group ID and vice-versa.
+
+Prior to Linux 1.1.38, the saved ID paradigm, when used with 
+.B setregid 
+or
+.B setegid
+was broken.
+Starting at 1.1.38, it is also possible to set the effective group ID from
+the saved user ID.
+
+Only the super-user may make other
 changes.
 
 Supplying a value of \-1 for either the real or effective group ID forces
-the system to substitute the current ID in place of the \-1 parameter.
-.SH "NOTES FROM KERNEL SOURCE"
-.B setregid
-is done BSD-style, with no consideration of the saved gid, except
-that if you set the effective gid, it sets the saved gid too.  This 
-makes it possible for a setgid program to completely drop its privileges,
-which is often a useful assertion to make when you are doing a security
-audit over a program.
+the system to 
+leave that ID unchanged.
 
-The general idea is that a program which uses just
-.B setregid
-will be 100% compatible with BSD.  A program which uses just
-.B setgid
-will be 100% compatible with POSIX w/ Saved ID's. 
+Currently (libc-4.x.x),
+.BI setegid( egid )       
+is functionally equivalent to 
+.BI setregid(  -1  , " egid" ).
+
+If the real group ID is changed or the effective group ID is set to a value 
+not equal to the previous real group ID, the saved group ID will be set to the
+new effective group ID.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -73,8 +84,10 @@ is set appropriately.
 .TP 0.8i
 .TP
 .B EPERM
-The current process is not the super-user and a change other than
-changing the effective group-id to the real group-id was specified.
+The current process is not the super-user and changes other than (i)
+swapping the effective group ID with the real group ID or (ii) setting one to 
+the value of the other or (iii) setting the effective group ID to the value
+of the saved group ID was specified.
 .SH HISTORY
 The
 .B setregid

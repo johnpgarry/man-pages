@@ -35,37 +35,48 @@
 .\" Portions extracted from linux/kernel/sys.c:
 .\"             Copyright (C) 1991, 1992  Linus Torvalds
 .\"             May be distributed under the GNU General Public License
-.\" 
+.\" Changes: Fri Jul 29 10:56:01 BST 1994 by Wilf. (G.Wilford@ee.surrey.ac.uk)
+.\"          Tue Aug  2 14:56:48 BST 1994 by Wilf due to change in kernel.
 .\"
-.TH SETREUID 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH SETREUID 2 "2nd August 1994" "Linux 1.1.38" "Linux Programmer's Manual"
 .SH NAME
-setreuid \- set real and effective user ID
+setreuid, seteuid \- set real and / or effective user ID
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
-.BI "int setreuid(uid_t ruid ", uid_t " euid );
+.BI "int setreuid(uid_t " ruid ", uid_t " euid );
+.br
+.BI "int seteuid(uid_t " euid );
 .SH DESCRIPTION
-The real and effective user ID's of the current process are set to the
-arguments.  Unprivileged users may change the real user ID to the
-effective user ID and vice-versa; only the super-user may make other
+.B setreuid
+sets real and effective user ID's of the current process.
+Un-privileged users may change the real user ID to the
+effective user ID and vice-versa.
+
+Prior to Linux 1.1.37, the saved ID paradigm, when used with 
+.B setreuid 
+or
+.B seteuid
+was broken.
+
+Starting at 1.1.37, it is also possible to set the effective user ID from
+the saved user ID.
+
+Only the super-user may make other
 changes.
 
 Supplying a value of \-1 for either the real or effective user ID forces
-the system to substitute the current ID in place of the \-1 parameter.
-.SH "NOTES FROM KERNEL SOURCE"
-In Linux 0.99.11, unprivileged users may change the real user ID to the
-effective uid or vice versa.  (BSD-style)
+the system to 
+leave that ID unchanged.
 
-When you set the effective uid, it sets the saved uid too.  This makes it
-possible for a setuid program to completely drop its privileges, which is
-often a useful assertion to make when you are doing a security audit over a
-program.
+Currently (libc-4.x.x),
+.BI seteuid( euid )
+is functionally equivalent to 
+.BI setreuid(  -1  , " euid" ).
 
-The general idea is that a program which uses just
-.B setreuid
-will be 100% compatible with BSD.  A program which uses just
-.B setuid
-will be 100% compatible with POSIX w/ Saved ID's.
+If the real user ID is changed or the effective user ID is set to a value 
+not equal to the previous real user ID, the saved user ID will be set to the
+new effective user ID.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -74,8 +85,10 @@ is set appropriately.
 .TP 0.8i
 .TP
 .B EPERM
-The current process is not the super-user and a change other than
-changing the effective user-id to the real user-id was specified.
+The current process is not the super-user and changes other than (i)
+swapping the effective user ID with the real user ID or (ii) setting one to 
+the value of the other or (iii) setting the effective user ID to the value
+of the saved user ID was specified.
 .SH HISTORY
 The
 .B setreuid

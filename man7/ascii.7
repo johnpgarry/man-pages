@@ -1,80 +1,107 @@
 .\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
-.\" This file may be distributed under the GNU General Public License.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
 .\" Modified Sat Jul 24 17:20:55 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sun May 15 19:47:23 1994 by Daniel Quinlan (quinlan@yggdrasil.com)
 .TH ASCII 7 "" "Linux" "Linux Programmer's Manual"
 .SH NAME
 ascii \- the ASCII character set
 .SH DESCRIPTION
 The following table contains the 128 ASCII characters.
+.sp
 C program '\eX' escapes are noted.
 .LP
 .if t .in 1i
-.if t .ta 1.5i 2i 2.5i 3.5i 4i 4.5i 5i
-.nf
-\0Oct	Dec	Hex	Char	\0Oct	Dec	Hex	Char
-\0\0\00	\0\00	0x00	NUL \e0	0100	\064	0x40	@
-\0\001	\0\01	0x01	SOH	0101	\065	0x41	A
-\0\002	\0\02	0x02	STX	0102	\066	0x42	B
-\0\003	\0\03	0x03	ETX	0103	\067	0x43	C
-\0\004	\0\04	0x04	EOT	0104	\068	0x44	D
-\0\005	\0\05	0x05	ENQ	0105	\069	0x45	E
-\0\006	\0\06	0x06	ACK	0106	\070	0x46	F
-\0\007	\0\07	0x07	BEL	0107	\071	0x47	G
-\0010	\0\08	0x08	BS \eb	0110	\072	0x48	H
-\0011	\0\09	0x09	HT \et	0111	\073	0x49	I
-\0012	\010	0x0A	LF \en	0112	\074	0x4A	J
-\0013	\011	0x0B	VT	0113	\075	0x4B	K
-\0014	\012	0x0C	FF \ef	0114	\076	0x4C	L
-\0015	\013	0x0D	CR \er	0115	\077	0x4D	M
-\0016	\014	0x0E	SO	0116	\078	0x4E	N
-\0017	\015	0x0F	SI	0117	\079	0x4F	O
-\0020	\016	0x10	DLE	0120	\080	0x50	P
-\0021	\017	0x11	DC1	0121	\081	0x51	Q
-\0022	\018	0x12	DC2	0122	\082	0x52	R
-\0023	\019	0x13	DC3	0123	\083	0x53	S
-\0024	\020	0x14	DC4	0124	\084	0x54	T
-\0025	\021	0x15	NAK	0125	\085	0x55	U
-\0026	\022	0x16	SYN	0126	\086	0x56	V
-\0027	\023	0x17	ETB	0127	\087	0x57	W
-\0030	\024	0x18	CAN	0130	\088	0x58	X
-\0031	\025	0x19	EM	0131	\089	0x59	Y
-\0032	\026	0x1A	SUB	0132	\090	0x5A	Z
-\0033	\027	0x1B	ESC	0133	\091	0x5B	[
-\0034	\028	0x1C	FS	0134	\092	0x5C	\\
-\0035	\029	0x1D	GS	0135	\093	0x5D	]
-\0036	\030	0x1E	RS	0136	\094	0x5E	^
-\0037	\031	0x1F	US	0137	\095	0x5F	_
-\0040	\032	0x20	SPACE	0140	\096	0x60	`
-\0041	\033	0x21	!	0141	\097	0x61	a
-\0042	\034	0x22	"	0142	\098	0x62	b
-\0043	\035	0x23	#	0143	\099	0x63	c
-\0044	\036	0x24	$	0144	100	0x64	d
-\0045	\037	0x25	%	0145	101	0x65	e
-\0046	\038	0x26	&	0146	102	0x66	f
-\0047	\039	0x27	'	0147	103	0x67	g
-\0050	\040	0x28	(	0150	104	0x68	h
-\0051	\041	0x29	)	0151	105	0x69	i
-\0052	\042	0x2A	*	0152	106	0x6A	j
-\0053	\043	0x2B	+	0153	107	0x6B	k
-\0054	\044	0x2C	,	0154	108	0x6C	l
-\0055	\045	0x2D	\-	0155	109	0x6D	m
-\0056	\046	0x2E	.	0156	110	0x6E	n
-\0057	\047	0x2F	/	0157	111	0x6F	o
-\0060	\048	0x30	0	0160	112	0x70	p
-\0061	\049	0x31	1	0161	113	0x71	q
-\0062	\050	0x32	2	0162	114	0x72	r
-\0063	\051	0x33	3	0163	115	0x73	s
-\0064	\052	0x34	4	0164	116	0x74	t
-\0065	\053	0x35	5	0165	117	0x75	u
-\0066	\054	0x36	6	0166	118	0x76	v
-\0067	\055	0x37	7	0167	119	0x77	w
-\0070	\056	0x38	8	0170	120	0x78	x
-\0071	\057	0x39	9	0171	121	0x79	y
-\0072	\058	0x3A	:	0172	122	0x7A	z
-\0073	\059	0x3B	;	0173	123	0x7B	{
-\0074	\060	0x3C	<	0174	124	0x7C	|
-\0075	\061	0x3D	=	0175	125	0x7D	}
-\0076	\062	0x3E	>	0176	126	0x7E	~
-\0077	\063	0x3F	?	0177	127	0x7F	DEL
+.TS
+l l l l l l l l l.
+Oct	Dec	Hex	Char		Oct	Dec	Hex	Char
+_
+000	0	00	NUL \e0		100	64	40	@
+001	1	01	SOH		101	65	41	A
+002	2	02	STX		102	66	42	B
+003	3	03	ETX		103	67	43	C
+004	4	04	EOT		104	68	44	D
+005	5	05	ENQ		105	69	45	E
+006	6	06	ACK		106	70	46	F
+007	7	07	BEL		107	71	47	G
+010	8	08	BS \eb		110	72	48	H
+011	9	09	HT \et		111	73	49	I
+012	10	0A	LF \en		112	74	4A	J
+013	11	0B	VT		113	75	4B	K
+014	12	0C	FF \ef		114	76	4C	L
+015	13	0D	CR \er		115	77	4D	M
+016	14	0E	SO		116	78	4E	N
+017	15	0F	SI		117	79	4F	O
+020	16	10	DLE		120	80	50	P
+021	17	11	DC1		121	81	51	Q
+022	18	12	DC2		122	82	52	R
+023	19	13	DC3		123	83	53	S
+024	20	14	DC4		124	84	54	T
+025	21	15	NAK		125	85	55	U
+026	22	16	SYN		126	86	56	V
+027	23	17	ETB		127	87	57	W
+030	24	18	CAN		130	88	58	X
+031	25	19	EM		131	89	59	Y
+032	26	1A	SUB		132	90	5A	Z
+033	27	1B	ESC		133	91	5B	[
+034	28	1C	FS		134	92	5C	\\ 
+035	29	1D	GS		135	93	5D	]
+036	30	1E	RS		136	94	5E	^
+037	31	1F	US		137	95	5F	_ 
+040	32	20	SPACE		140	96	60	`
+041	33	21	!		141	97	61	a
+042	34	22	"		142	98	62	b
+043	35	23	#		143	99	63	c
+044	36	24	$		144	100	64	d
+045	37	25	%		145	101	65	e
+046	38	26	&		146	102	66	f
+047	39	27	'		147	103	67	g
+050	40	28	(		150	104	68	h
+051	41	29	)		151	105	69	i
+052	42	2A	*		152	106	6A	j
+053	43	2B	+		153	107	6B	k
+054	44	2C	,		154	108	6C	l
+055	45	2D	\-		155	109	6D	m
+056	46	2E	.		156	110	6E	n
+057	47	2F	/		157	111	6F	o
+060	48	30	0		160	112	70	p
+061	49	31	1		161	113	71	q
+062	50	32	2		162	114	72	r
+063	51	33	3		163	115	73	s
+064	52	34	4		164	116	74	t
+065	53	35	5		165	117	75	u
+066	54	36	6		166	118	76	v
+067	55	37	7		167	119	77	w
+070	56	38	8		170	120	78	x
+071	57	39	9		171	121	79	y
+072	58	3A	:		172	122	7A	z
+073	59	3B	;		173	123	7B	{
+074	60	3C	<		174	124	7C	|
+075	61	3D	= 		175	125	7D	}
+076	62	3E	>		176	126	7E	~
+077	63	3F	?		177	127	7F	DEL
+.TE
 .fi
 .if t .in
+
+.SH SEE ALSO
+.BR iso_8859_1 (7)
