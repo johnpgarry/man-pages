@@ -34,6 +34,8 @@ screen:
 	done; fi
 
 remove:
+	rm -f $(MANDIR)/man2/modules.2 $(MANDIR)/man2/modules.2.gz
+	rm -f $(MANDIR)/man3/exect.3 $(MANDIR)/man3/exect.3.gz
 	files=man?/*; \
 	if [ "$$files" != "man?/*" ]; then for i in $$files; do \
 		rm -f $(MANDIR)/$$i $(MANDIR)/$$i.gz $(MANDIR)/$$i.bz2; \

@@ -1,4 +1,3 @@
-.\" t
 .\" Copyright (c) 1983, 1991 The Regents of the University of California.
 .\" All rights reserved.
 .\"
@@ -55,62 +54,40 @@ parameter specifies a communication domain; this selects the protocol
 family which will be used for communication.  These families are defined in 
 .BR <sys/socket.h> .
 The currently understood formats include:
-.PP
-.TS
-tab(:);
-l l l.
-Name:Purpose:Man page
-T{
-.B PF_UNIX,PF_LOCAL
-T}:T{
-Local communication
-T}:T{
-.BR unix (7)
-T}
-T{
+.TP
+.BR PF_UNIX ", " PF_LOCAL
+UNIX protocols for local communication
+.TP
 .B PF_INET
-T}:IPv4 Internet protocols:T{
+IPv4 Internet protocols; see
 .BR ip (7)
-T}
-T{
+.TP
 .B PF_INET6
-T}:IPv6 Internet protocols:
-T{
+IPv6 Internet protocols
+.TP
 .B PF_IPX
-T}:IPX \- Novell protocols:
-T{
+IPX \- Novell protocols
+.TP
 .B PF_NETLINK
-T}:T{
 Kernel user interface device
-T}:T{
-.BR netlink (7)
-T}
-T{
+.TP
 .B PF_X25
-T}:ITU-T X.25 / ISO-8208 protocol:T{
-.BR x25 (7)
-T}
-T{
+ITU-T X.25 / ISO-8208 protocol
+.TP
 .B PF_AX25
-T}:T{
 Amateur radio AX.25 protocol
-T}:
-T{
+.TP
 .B PF_ATMPVC
-T}:Access to raw ATM PVCs:
-T{
+Access to raw ATM PVCs
+.TP
 .B PF_APPLETALK
-T}:Appletalk:T{
+Appletalk; see
 .BR ddp (7)
-T}
-T{
-.B PF_PACKET
-T}:T{
-Low level packet interface
-T}:T{
+.TP
+.B
+PF_PACKET
+Low level packet interface; see
 .BR packet (7)
-T}
-.TE
 .PP
 The socket has the indicated
 .IR type ,
@@ -143,7 +120,7 @@ see
 .PP
 Some socket types may not be implemented by all protocol families; for example,
 .B SOCK_SEQPACKET
-is not implemented for 
+is currently not implemented in Linux for 
 .BR AF_INET .
 .PP
 The
@@ -161,8 +138,7 @@ on how to map protocol name strings to protocol numbers.
 .PP
 Sockets of type
 .B SOCK_STREAM
-are full-duplex byte streams, similar to pipes.  They do not preserve
-record boundaries. A stream socket must be in
+are full-duplex byte streams, similar to pipes.  A stream socket must be in
 a
 .I connected
 state before any data may be sent or received on it.  A connection to
