@@ -73,14 +73,16 @@ is set appropriately.
 The file is locked an the
 .B LOCK_NB
 flag was selected.
-.SH NOTES
-Under Linux,
-.B flock
-is implemented as a call to
-.BR fcntl .
-Please see
-.BR fcntl (2)
-for more details on errors.
 .SH "SEE ALSO"
-.BR open "(2), " close "(2), " dup "(2), " execve "(2), " fcntl "(2), "
-.BR fork "(2), "
+.BR open (2),
+.BR close (2),
+.BR dup (2),
+.BR execve (2),
+.BR fcntl (2),
+.BR fork (2).
+There are also
+.I locks.txt
+and
+.I mandatory.txt
+in
+.IR /usr/src/linux/Documentation .

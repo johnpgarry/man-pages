@@ -29,7 +29,8 @@
 .\" Modified Sat Apr 13 16:25:28 1996 by Andries Brouwer (aeb@cwi.nl)
 .\" Modified Mon May 13 00:53:52 1996: added symbolic constants
 .\"          as sent by Thomas Koenig
-.TH OPEN 2 "21 July 1993" "Linux 0.99.7" "Linux Programmer's Manual"
+.\" Modified Fri Dec 20 16:06:45 1996 by Michael Haardt: More NFS details
+.TH OPEN 2 "December 20, 1996" "" "System calls"
 .SH NAME
 open, creat \- open and possibly create a file or device
 .SH SYNOPSIS
@@ -68,7 +69,16 @@ When used with
 if the file already exists it is an error and the
 .B open
 will fail.
-.I See BUGS below, though.
+.B O_EXCL
+is broken on NFS file systems, programs which rely on it for performing
+locking tasks will contain a race condition.  The solution for performing
+atomic file locking using a lockfile is to create a unique file on the same
+fs (e.g., incorporating hostname and pid), use
+.BR link (2)
+to make a link to the lockfile and use
+.BR stat (2)
+on the unique file to check if its link count has increased to 2.  Do not
+use the return value of the \fBlink()\fP call.
 .TP
 .B O_NOCTTY
 If
@@ -87,6 +97,10 @@ The file is opened in append mode. Initially, and before each
 the file pointer is positioned at the end of the file, as if
 with
 .BR lseek .
+.B O_APPEND
+may lead to corrupted files on NFS file systems if more than one process appends data to a
+file at once.  This is because NFS does not support appending to a file, so the
+client kernel has to simulate it, which can't be done without a race condition.
 .TP
 .BR O_NONBLOCK " or " O_NDELAY
 The file is opened in non-blocking mode. Neither the
@@ -99,7 +113,7 @@ The file is opened for synchronous I/O. Any
 .BR write s
 on the resulting file descriptor will block the calling process until
 the data has been physically written to the underlying hardware.
-.I See BUGS below, though.
+.I See RESTRICTIONS below, though.
 .PP
 Some of these optional flags can be altered using
 .B fcntl
@@ -177,6 +191,11 @@ can open device special files, but
 cannot create them - use
 .BR mknod (2)
 instead.
+.LP
+On NFS file systems with UID mapping enabled, \fBopen\fP may return a file
+descriptor but e.g. \fBread\fP(2) requests are denied with \fBEACCES\fP.
+This is because the client performs \fBopen\fP by checking the permissions,
+but UID mapping is performed by the server upon read and write requests.
 .SH ERRORS
 .TP
 .B EEXIST
@@ -243,25 +262,13 @@ was to be created but the device containing
 has no room for the new file.
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
-.SH BUGS
+.SH RESTRICTIONS
 .B O_SYNC
 is not currently implemented (as of Linux 0.99pl7).
-
+.LP
 There are many infelicities in the protocol underlying NFS, affecting
 amongst others
-.BR O_SYNC ", " O_NDELAY ", and " O_APPEND .
-
-.B O_EXCL
-is broken on NFS file systems, programs which rely on it for performing
-locking tasks will contain a race condition.  The solution for performing
-atomic file locking using a lockfile is to create a unique file on the same
-fs (e.g., incorporating hostname and pid), use
-.BR link (2)
-to make a link to the lockfile and use
-.BR stat (2)
-on the unique file to check if its link count has increased to 2.  Do not
-use the return value of the \fBlink()\fP call.
-
+.BR O_SYNC " and " O_NDELAY .
 .SH "SEE ALSO"
 .BR read "(2), " write "(2), " fcntl "(2), " close (2),
 .BR unlink "(2), " mknod "(2), " stat "(2), " umask (2),

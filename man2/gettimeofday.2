@@ -30,8 +30,10 @@
 .\"   Added reference to adjtimex.
 .\" Removed some nonsense lines pointed out by urs@isnogud.escape.de (Urs Thuermann),
 .\"   aeb, 950722.
+.\" Modified 14 Jan 1997 by Austin Donnelly (and1000@debian.org):
+.\"   Added return values section, and bit on EFAULT
 .\"
-.TH GETTIMEOFDAY 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
+.TH GETTIMEOFDAY 2 "14 January 1997" "Linux 2.0.21" "Linux Programmer's Manual"
 .SH NAME
 gettimeofday, settimeofday \- get / set time
 .SH SYNOPSIS
@@ -140,6 +142,13 @@ is null, the corresponding structure is not set or returned.
 .PP
 Only the super user may use
 .BR settimeofday .
+.SH "RETURN VALUES"
+.B getimeofday
+and
+.B settimeofday
+return 0 for success, or -1 for failure (in which case
+.I errno
+is set appropriately).
 .SH ERRORS
 .TP
 .B EPERM 
@@ -148,6 +157,13 @@ is called by someone other than the superuser.
 .TP
 .B EINVAL
 Timezone (or something else) is invalid.
+.TP
+.B EFAULT
+One of 
+.I tv
+or
+.I tz
+pointed outside your accessible address space.
 .SH "CONFORMING TO"
 BSD 4.3
 .SH "SEE ALSO"

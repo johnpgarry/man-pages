@@ -25,6 +25,8 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 21:46:57 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 961109, aeb
+.\"
 .TH GETMNTENT 3  "June 27, 1993" "" "Linux Programmer's Manual"
 .SH NAME
 getmntent, setmntent, addmntent, endmntent, hasmntopt \- get file system
@@ -34,7 +36,7 @@ descriptor file entry
 .B #include <stdio.h>
 .B #include <mntent.h>
 .sp
-.BI "FILE *setmntent(const char *" filep ", const char *" type );
+.BI "FILE *setmntent(const char *" filename ", const char *" type );
 .sp
 .BI "struct mntent *getmntent(FILE *" filep );
 .sp

@@ -26,10 +26,16 @@
 .\" Modified Sun May 15 19:47:23 1994 by Daniel Quinlan (quinlan@yggdrasil.com)
 .\" Modified Tue Nov 22 13:01:59 1994 by Daniel Quinlan (quinlan@yggdrasil.com)
 .\" Modified Tue Jul 11 13:36:31 1995 by Daniel Quinlan (quinlan@yggdrasil.com)
-.TH ASCII 7 "" "Linux" "Linux Programmer's Manual"
+.\" Modified Wed Dec 18 by Michael Haardt and aeb
+.TH ASCII 7 "December 18, 1996" "Linux" "Linux Programmer's Manual"
 .SH NAME
 ascii \- the ASCII character set encoded in octal, decimal, and hexadecimal
 .SH DESCRIPTION
+ASCII is the American Standard Code for Information Interchange.
+It is a 7-bit code. Many 8-bit codes (such as ISO 8859-1, the
+Linux default character set) contain ASCII as their lower half.
+The international counterpart of ASCII is known as ISO 646.
+.LP
 The following table contains the 128 ASCII characters.
 .LP
 C program \f(CW'\eX'\fP escapes are noted.
@@ -116,6 +122,26 @@ _
 An
 .B ascii
 manual page appeared in Version 7 AT&T UNIX.
+.LP
+On older terminals, the underscore code is displayed as a left arrow,
+called backarrow, the caret is displayed as an up-arrow and the vertical
+bar has a hole in the middle.
+.LP
+The ASCII standard was published by the United States of America
+Standards Institute (USASI) in 1968.
+.\"
+.\" ASA was the American Standards Association and X3 was an ASA sectional
+.\" committee on computers and data processing.  Its name changed to
+.\" American National Standards Committee X3 (ANSC-X3) and now it is known
+.\" as Accredited Standards Committee X3 (ASC X3).  It is accredited by ANSI
+.\" and administered by ITI.  The subcommittee X3.2 worked on coded
+.\" character sets; the task group working on ASCII appears to have been
+.\" designated X3.2.4.  In 1966, ASA became the United States of America
+.\" Standards Institute (USASI) and published the seven-bit version of ASCII
+.\" <rubbish: ASCII *is* 7-bit>
+.\" in 1968.  It became the American National Standards Institute (ANSI) in
+.\" 1969 and is the U.S. member body of ISO; private and non-profit.
+.\"
 .SH SEE ALSO
 .BR iso_8859_1 (7)
 .\" Local Variables:

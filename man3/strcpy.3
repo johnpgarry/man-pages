@@ -26,6 +26,8 @@
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:06:49 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Fri Aug 25 23:17:51 1995 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Wed Dec 18 00:47:18 1996 by Andries Brouwer (aeb@cwi.nl)
+.\"
 .TH STRCPY 3  "April 11, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 strcpy, strncpy \- copy a string
@@ -58,6 +60,11 @@ will be padded with nulls.
 .SH "RETURN VALUE"
 The \fBstrcpy()\fP and \fBstrncpy()\fP functions return a pointer to
 the destination string \fIdest\fP.
+.SH BUGS
+If the destination string of a \fBstrcpy()\fP is not large enough
+(that is, if the programmer was stupid/lazy, and failed to check
+the size before copying) then anything might happen.
+Overflowing fixed length strings is a favourite cracker technique.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3, ISO 9899
 .SH "SEE ALSO"

@@ -31,6 +31,7 @@
 .\" Modified Sun Apr 14 17:04:32 1996 by Andries Brouwer (aeb@cwi.nl)
 .\"  [added some polishing contributed by Mike Battersby (mib@deakin.edu.au)]
 .\" Modified Sun Jul 21 21:25:26 1996 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Fri Jan 17 23:49:46 1997 by Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH KILL 2 "November 1, 1995" "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -76,12 +77,13 @@ a process which already committed termination, but
 has not yet been \fBwait()\fPed for.
 .TP
 .B EPERM
-The effective userid of the process calling 
-.B kill()
-is not equal to the effective userid of    
-\fIpid\fP,
-unless the superuser called
-\fBkill()\fP.
+The process does not have permission to send the signal
+to any of the receiving processes.
+For a process to have permission to send a signal to process
+.I pid
+it must either have root privileges, or the real or effective
+user ID of the sending process must equal the real or
+saved set-user-ID of the receiving process.
 .SH "BUGS"
 It is impossible to send a signal to task number one, the init process, for
 which it has not installed a signal handler.  This is done to assure the

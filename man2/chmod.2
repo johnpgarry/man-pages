@@ -24,8 +24,9 @@
 .\"
 .\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
 .\" Modified Wed Jul 21 20:18:11 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sun Jan 12 14:31:17 MET 1997 by Michael Haardt (michael@cantor.informatik.rwth-aachen.de): NFS details
 .\"
-.TH CHMOD 2 "21 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH CHMOD 2 "January 12, 1997" "" "System calls"
 .SH NAME
 chmod, fchmod \- change permissions of a file
 .SH SYNOPSIS
@@ -97,6 +98,10 @@ may be turned off if a file is written.  On some file systems, only the
 super-user can set the sticky bit, which may have a special meaning (i.e.,
 for directories, a file can only be deleted by the owner or the super-user).
 
+On NFS file systems, restricting the permissions will immediately influence
+already open files, because the access control is done on the server, but
+open files are maintained by the client.  Widening the permissions may be
+delayed for other clients if attribute caching is enabled on them.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -153,5 +158,11 @@ See above.
 .TP
 .B EROFS
 See above.
+.SH "CONFORMING TO"
+\fBchmod\fP conforms to POSIX, but \fBS_ISVTX\fP (the sticky bit) does not,
+neither do the macros \fBS_IREAD\fP, \fBS_IWRITE\fP and \fBS_IEXEC\fP.
+POSIX specifies that some implementations may ignore \fBS_ISUID\fP and
+\fBS_ISGID\fP.  Further according to POSIX, you should not attempt to
+set any bits which are not listed above.
 .SH "SEE ALSO"
 .BR open "(2), " chown "(2), " stat "(2) "

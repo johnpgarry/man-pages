@@ -24,6 +24,7 @@
 .\"
 .\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
 .\" Modified Sat Jul 24 14:29:17 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 961203 by aeb@cwi.nl
 .\"
 .TH TIMES 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
@@ -44,10 +45,10 @@ is as defined in
 .nf
 struct  tms  {
 .in 20
-time_t tms_utime;  /* user time */
-time_t tms_stime;  /* system time */
-time_t tms_cutime; /* user time of children */
-time_t tms_cstime; /* system time of children */
+clock_t tms_utime;  /* user time */
+clock_t tms_stime;  /* system time */
+clock_t tms_cutime; /* user time of children */
+clock_t tms_cstime; /* system time of children */
 };
 .in 10
 .fi

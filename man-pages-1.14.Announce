@@ -1,33 +1,25 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.13.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.14.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 
-Differences from version 1.12:
+Differences from version 1.13:
     
     The following man pages are new or have been updated:
 
-	access.2 getsockopt.2 unlink.2
+	chmod.2 flock.2 gettimeofday.2 kill.2 open.2 times.2
 
-	fopen.3 hcreate.3 hdestroy.3 hsearch.3 insque.3 lsearch.3
-	lfind.3 remque.3 strftime.3 undocumented.3
+	endutent.3 getmntent.3 getpass.3 getutend.3 getutid.3 getutline.3
+	inet_aton.3 putenv.3 pututline.3 setutent.3 strcpy.3 strsep.3
+	undocumented.3 utmpname.3
 
-	charsets.4 console.4 console_codes.4 console_ioctl.4 hd.4
+	console_codes.4 wavelan.4
 
-	environ.5 issue.5 motd.5 nologin.5 passwd.5
-	services.5 shells.5 termcap.5 ttytype.5 utmp.5
+	ascii.7 bootparam.7
 
-	bootparam.7 suffixes.7
-
-    many others were updated trivially (layout change or spelling
+    some others were updated trivially (layout change or spelling
     correction only).
-
-    Pages ax25.5, netrom.5 and setuid.7 were not yet included:
-    their copyright status is unclear.
-
-    Section 9 has been removed.  There was extremely little there,
-    and most was outdated or wrong.
 
 Here is a breakdown of what this distribution contains:
 

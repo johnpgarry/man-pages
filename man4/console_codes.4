@@ -13,6 +13,8 @@
 .\" Substantial portions of this text are derived from a write-up
 .\" by Eric S. Raymond <esr@thyrsus.com>.
 .\"
+.\" Tiny correction, aeb, 961107.
+.\"
 .TH CONSOLE_CODES 4 "October 31, 1996" "Linux" "Linux Programmer's Manual"
 .SH NAME
 console_codes \- Linux console escape and control sequences
@@ -328,9 +330,9 @@ ESC [ 8 ]       	Make the current color pair the default attributes.
 ESC [ 9 ; \fIn\fP ]	Set screen blank timeout to \fIn\fP minutes.
 ESC [ 10 ; \fIn\fP ]	Set bell frequency in Hz.
 ESC [ 11 ; \fIn\fP ]	Set bell duration in msec.
-ESC [ 12 ; \fIn\fP ]	Bring specified console to the front
-ESC [ 13 ]      	Unblank the screen
-ESC [ 14 ]      	Set the VESA powerdown interval
+ESC [ 12 ; \fIn\fP ]	Bring specified console to the front.
+ESC [ 13 ]      	Unblank the screen.
+ESC [ 14 ; \fIn\fP ]   	Set the VESA powerdown interval in minutes.
 .TE
 
 .SH "CHARACTER SETS"

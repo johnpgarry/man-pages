@@ -25,6 +25,7 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:00:10 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Mon Jan 20 12:04:18 1997 by Andries Brouwer (aeb@cwi.nl)
 .TH STRSEP 3  "April 12, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 strsep \- extract token from string
@@ -42,8 +43,12 @@ point past the token.
 .SH "RETURN VALUE"
 The \fBstrsep()\fP function returns a pointer to the token, or NULL
 if \fIdelim\fP is not found in \fIstringp\fP.
+.SH NOTES
+The \fBstrsep()\fP function was introduced as a replacement for
+\fBstrtok()\fP, since the latter cannot handle empty fields.
+(However, \fBstrtok()\fP conforms to ANSI-C and hence is more portable.)
 .SH "CONFORMING TO"
-BSD 4.3
+BSD 4.4
 .SH "SEE ALSO"
 .BR index "(3), " memchr "(3), " rindex "(3), " strchr (3),
 .BR strpbrk "(3), " strspn "(3), " strstr "(3), " strtok (3)
