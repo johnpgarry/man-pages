@@ -154,9 +154,9 @@ also define a macro
 to test whether the child process dumped core. Only use this
 enclosed in #ifdef WCOREDUMP ... #endif.
 .SH "RETURN VALUE"
-The process ID of the child which exited, \-1 on error or zero if
+The process ID of the child which exited, or zero if
 .B WNOHANG
-was used and no child was available (in which case,
+was used and no child was available, or \-1 on error (in which case
 .I errno
 is set to an appropriate value).
 .SH "ERRORS"

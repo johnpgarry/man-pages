@@ -30,6 +30,7 @@
 .\" Modified Fri Feb 14 21:47:50 1997 by Andries Brouwer (aeb@cwi.nl)
 .\" Modified Mon Oct 11 11:11:11 1999 by Andries Brouwer (aeb@cwi.nl)
 .\" Modified Wed Nov 10 00:02:26 1999 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Sun May 20 22:17:20 2001 by Andries Brouwer (aeb@cwi.nl)
 .TH PUTENV 3  "April 8, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 putenv \- change or add an environment variable
@@ -37,7 +38,8 @@ putenv \- change or add an environment variable
 .nf
 .B #include <stdlib.h>
 .sp
-.BI "int putenv(const char *" string );
+.BI "int putenv(char *" string );
+.\" Not: const char *
 .fi
 .SH DESCRIPTION
 The \fBputenv()\fP function adds or changes the value of environment

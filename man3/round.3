@@ -20,21 +20,23 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH FLOOR 3  "2001-05-31" "" "Linux Programmer's Manual"
+.TH ROUND 3  "2001-05-31" "" "Linux Programmer's Manual"
 .SH NAME
-floor, floorf, floorl \- largest integral value not greater than argument
+round, roundf, roundl \- round to nearest integer, away from zero
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
 .sp
-.BI "double floor(double " x );
+.BI "double round(double " x );
 .br
-.BI "float floorf(float " x );
+.BI "float roundf(float " x );
 .br
-.BI "long double floorl(long double " x );
+.BI "long double roundl(long double " x );
 .fi
 .SH DESCRIPTION
-These functions round \fIx\fP down to the nearest integer.
+These functions round \fIx\fP to the nearest integer, but
+round halfway cases away from zero (regardless of the current rounding
+direction), instead of to the nearest even integer like rint().
 .SH "RETURN VALUE"
 The rounded integer value. If \fIx\fP is integral or infinite,
 \fIx\fP itself is returned.
@@ -44,7 +46,7 @@ If \fIx\fP is NaN, then NaN is returned and
 .I errno
 may be set to EDOM.
 .SH NOTES
-The SUSv2 and Austin draft contain text about overflow (which might set
+The Austin draft contains text about overflow (which might set
 .I errno
 to ERANGE, or raise an exception).
 In practice, the result cannot overflow on any current machine,
@@ -55,14 +57,11 @@ For the IEEE-754 standard 32-bit and 64-bit floating point numbers
 the maximum value of the exponent is 128 (resp. 1024), and the number
 of mantissa bits is 24 (resp. 53).)
 .SH "CONFORMING TO"
-The
-.B floor()
-function conforms to SVID 3, POSIX, BSD 4.3, ISO 9899.
-The other functions are from C99.
+C99.
 .SH "SEE ALSO"
 .BR ceil (3),
-.BR lrint (3),
+.BR floor (3),
+.BR lround (3),
 .BR nearbyint (3),
 .BR rint (3),
-.BR round (3),
 .BR trunc (3)

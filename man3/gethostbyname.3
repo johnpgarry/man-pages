@@ -29,6 +29,7 @@
 .\" Modified Sun Feb 16 13:23:10 1997, Andries Brouwer (aeb@cwi.nl)
 .\" Modified Mon Dec 21 14:49:33 1998, Andries Brouwer (aeb@cwi.nl)
 .\" Modified Sat Aug 12 18:11:32 2000, Andries Brouwer (aeb@cwi.nl)
+.\" Modified Sat May 19 23:37:50 2001, Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH GETHOSTBYNAME 3  "August 12, 2000" "BSD" "Linux Programmer's Manual"
 .SH NAME
@@ -180,6 +181,15 @@ host database file
 .SH "CONFORMING TO"
 BSD 4.3.
 .SH NOTES
+The functions
+.BR gethostbyname ()
+and
+.BR gethostbyaddr ()
+may return pointers to static data, which may be overwritten by
+later calls. Copying the
+.I struct hostent
+does not suffice, since it contains pointers - a deep copy is required.
+.LP
 The SUS-v2 standard is buggy and declares the
 .I len
 parameter to be of type

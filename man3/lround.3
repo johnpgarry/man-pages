@@ -20,49 +20,45 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH FLOOR 3  "2001-05-31" "" "Linux Programmer's Manual"
+.TH LROUND 3  "2001-05-31" "" "Linux Programmer's Manual"
 .SH NAME
-floor, floorf, floorl \- largest integral value not greater than argument
+lround, lroundf, lroundl, llround, llroundf, llroundl \- round to nearest integer, away from zero
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
 .sp
-.BI "double floor(double " x );
+.BI "long int lround(double " x );
 .br
-.BI "float floorf(float " x );
+.BI "long int lroundf(float " x );
 .br
-.BI "long double floorl(long double " x );
+.BI "long int lroundl(long double " x );
+.sp
+.BI "long long int llround(double " x );
+.br
+.BI "long long int llroundf(float " x );
+.br
+.BI "long long int llroundl(long double " x );
 .fi
 .SH DESCRIPTION
-These functions round \fIx\fP down to the nearest integer.
+These functions round their argument to the nearest integer value,
+rounding away from zero, regardless of the current rounding direction.
+If \fIx\fP is infinite or NaN, or if the rounded value is outside
+the range of the return type, the numeric result is unspecified.
+A domain error may occur if the magnitude of \fIx\fP is too large.
 .SH "RETURN VALUE"
-The rounded integer value. If \fIx\fP is integral or infinite,
-\fIx\fP itself is returned.
+The rounded integer value.
 .SH ERRORS
-No errors other than EDOM and ERANGE can occur.
-If \fIx\fP is NaN, then NaN is returned and
-.I errno
-may be set to EDOM.
-.SH NOTES
-The SUSv2 and Austin draft contain text about overflow (which might set
-.I errno
-to ERANGE, or raise an exception).
-In practice, the result cannot overflow on any current machine,
-so this error-handling stuff is just nonsense.
-(More precisely, overflow can happen only when the maximum value
-of the exponent is smaller than the number of mantissa bits.
-For the IEEE-754 standard 32-bit and 64-bit floating point numbers
-the maximum value of the exponent is 128 (resp. 1024), and the number
-of mantissa bits is 24 (resp. 53).)
+.TP
+.B EDOM
+The magnitude of \fIx\fP is too large and
+.I "(math_errhandling & MATH_ERRNO)"
+is non-zero.
 .SH "CONFORMING TO"
-The
-.B floor()
-function conforms to SVID 3, POSIX, BSD 4.3, ISO 9899.
-The other functions are from C99.
+C99.
 .SH "SEE ALSO"
 .BR ceil (3),
+.BR floor (3),
 .BR lrint (3),
 .BR nearbyint (3),
 .BR rint (3),
-.BR round (3),
-.BR trunc (3)
+.BR round (3)

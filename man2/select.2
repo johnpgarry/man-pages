@@ -216,6 +216,10 @@ in a loop without reinitializing it.  Consider
 to be undefined after
 .B select
 returns.
+.\" .PP - it is rumoured that:
+.\" On BSD, when a timeout occurs, the file descriptor bits are not changed.
+.\" - it is certainly true that:
+.\" Linux follows SUSv2 and sets the bit masks to zero upon a timeout.
 .SH EXAMPLE
 .nf
 #include <stdio.h>
@@ -224,8 +228,7 @@ returns.
 #include <unistd.h>
 
 int
-main(void)
-{
+main(void) {
     fd_set rfds;
     struct timeval tv;
     int retval;

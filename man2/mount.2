@@ -31,7 +31,7 @@ mount, umount \- mount and unmount filesystems.
 .B "#include <sys/mount.h>"
 .sp
 .BI "int mount(const char *" specialfile ", const char * " dir
-.BI ", const char * " filesystemtype ", unsigned long " rwflag
+.BI ", const char * " filesystemtype ", unsigned long " mountflags
 .BI ", const void * " data );
 .sp
 .BI "int umount(const char *" dir );
@@ -55,20 +55,23 @@ argument may take one of the values listed in /proc/filesystems
 (like "minix", "ext2", "msdos", "proc", "nfs", "iso9660" etc.).
 
 The
-.IR rwflag
-argument has the magic number 0xC0ED in the top 16 bits,
+.IR mountflags
+argument may have the magic number 0xC0ED in the top 16 bits,
 and various mount flags (as defined in <linux/fs.h> for libc4 and libc5
 and in <sys/mount.h> for glibc2) in the low order 16 bits:
+
 .nf
-#define MS_RDONLY    1 /* mount read-only */
-#define MS_NOSUID    2 /* ignore suid and sgid bits */
-#define MS_NODEV     4 /* disallow access to device special files */
-#define MS_NOEXEC    8 /* disallow program execution */
-#define MS_SYNC     16 /* writes are synced at once */
-#define MS_REMOUNT  32 /* alter flags of a mounted FS */
-#define MS_MGC_VAL 0xC0ED0000
+#define MS_RDONLY        1 /* mount read-only */
+#define MS_NOSUID        2 /* ignore suid and sgid bits */
+#define MS_NODEV         4 /* no access to device special files */
+#define MS_NOEXEC        8 /* no program execution */
+#define MS_SYNCHRONOUS  16 /* writes are synced at once */
+#define MS_REMOUNT      32 /* alter flags of a mounted fs */
+#define MS_MANDLOCK     64 /* allow mandatory locks */
+#define MS_NOATIME    1024 /* do not update access times */
+#define MS_NODIRATIME 2048 /* do not update dir access times */
+#define MS_BIND       4096 /* bind subtree elsewhere */
 .fi
-If the magic number is absent, then the last two arguments are not used.
 
 The
 .IR data
@@ -164,6 +167,9 @@ support anonymous devices.
 In Linux 2.3.99-pre7 the call \fIumount(device)\fP was removed,
 leaving only \fIumount(dir)\fP (since now devices can be mounted
 in more than one place, so specifying the device does not suffice).
+.LP
+The original MS_SYNC flag was renamed MS_SYNCHRONOUS in 1.1.69
+when a different MS_SYNC was added to <mman.h>.
 .SH "SEE ALSO"
 .BR mount (8),
 .BR umount (8)
