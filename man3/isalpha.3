@@ -23,10 +23,13 @@
 .\"
 .\" Modified Sat Jul 24 19:10:00 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Aug 21 17:51:50 1994 by Rik Faith (faith@cs.unc.edu)
-.TH ISALPHA 3  "April 4, 1993" "GNU" "Linux Programmer's Manual"
+.\" Modified Sat Sep  2 21:52:01 1995 by Jim Van Zandt <jrv@vanzandt.mv.com>
+.\"
+.TH ISALPHA 3  "September 2, 1995" "GNU" "Linux Programmer's Manual"
 .SH NAME
-isalnum, isalpha, iscntrl, isdigit, isgraph, islower, isprint, ispunct,
-isspace, isupper, isxdigit \- character classification routines
+isalnum, isalpha, isascii, isblank, iscntrl, isdigit, isgraph, islower, 
+isprint, ispunct, isspace, isupper, isxdigit \- character 
+classification routines
 .SH SYNOPSIS
 .nf
 .B #include <ctype.h>
@@ -34,6 +37,10 @@ isspace, isupper, isxdigit \- character classification routines
 .BI "int isalnum (int " "c" ");"
 .nl
 .BI "int isalpha (int " "c" ");"
+.nl
+.BI "int isascii (int " "c" ");"
+.nl
+.BI "int isblank (int " "c" ");"
 .nl
 .BI "int iscntrl (int " "c" ");"
 .nl
@@ -67,14 +74,27 @@ checks for an alphanumeric character; it is equivalent to
 .BI "(isalpha(" c ") || isdigit(" c "))" . 
 .TP
 .B "isalpha()"
-checks for an alphabetic character; it is equivalent to
-.BI "(isupper(" c ") || islower(" c "))" .
+checks for an alphabetic character; in the standard \fB"C"\fP 
+locale, it is equivalent to
+.BI "(isupper(" c ") || islower(" c "))" .  
+In some locales, there may be additional characters for which
+`isalpha' is true--letters which are neither upper case nor lower
+case.  
+.TP
+.B "isascii()"
+checks whether \fIc\fP is a 7-bit `unsigned char' value that fits into
+the ASCII character set.  This function is a BSD extension
+and is also an SVID extension.
+.TP
+.B "isblank()"
+checks for a blank character; that is, a space or a tab.
+This function is a GNU extension.
 .TP
 .B "iscntrl()"
 checks for a control character.
 .TP
 .B "isdigit()"
-checks for a digit.
+checks for a digit (0 through 9).
 .TP
 .B "isgraph()"
 checks for any printable character except space.
@@ -118,7 +138,10 @@ The values returned are nonzero if the character
 falls into the tested class, and a zero value 
 if not.
 .SH "CONFORMS TO"
-ANSI - C, BSD 4.3
+ANSI - C, BSD 4.3.
+\fBisascii()\fP is a BSD extension
+and is also an SVID extension.
+\fBisblank()\fP is a GNU extension.
 .SH "BUGS"
 The details of what characters belong into which class depend on the current
 locale.  For example,
@@ -127,4 +150,5 @@ will not recognize an A - umlaut as an uppercase letter in the default
 .B "C"
 locale.
 .SH "SEE ALSO"
-.BR toupper "(3), " setlocale "(3), " ascii "(7), " locale (7)
+.BR tolower "(3), " toupper "(3), " setlocale "(3), " ascii "(7), " locale (7)
+

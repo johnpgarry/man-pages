@@ -1,13 +1,13 @@
 Begin3
 Title:          Section 2, 3, 4, 5, 7, and 9 man pages for Linux
-Version:        1.8
-Entered-date:   Sat Jul 22 14:41:06 MET DST 1995
-Description:    Over 600 man pages for Linux
+Version:        1.9
+Entered-date:   Tue Sep 19 01:43:16 MET DST 1995
+Description:    Over 650 man pages for Linux
 Keywords:       man pages
 Author:         several
 Maintained-by:  Andries E. Brouwer (aeb@cwi.nl)
 Primary-site:   ftp.win.tue.nl:/pub/linux/man
-                311k man-pages-1.8.tar.gz
+                329k man-pages-1.9.tar.gz
 Alternate-site: tsx-11.mit.edu /pub/linux/docs/LDP
 Alternate-site: sunsite.unc.edu /pub/Linux/docs/linux-doc-project/man-pages
 Copying-policy: several; all freely distributable if nroff source included

@@ -25,6 +25,8 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sun Jul 25 10:54:03 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Fixed typo, aeb , 950823
+.\"
 .TH STRTOUL 3  "March 29, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 strtoul \- convert a string to an unsigned long integer.
@@ -32,8 +34,8 @@ strtoul \- convert a string to an unsigned long integer.
 .nf
 .B #include <stdlib.h>
 .sp
-.BI "unsigned long int strtol(const char *" nptr ", char **" endptr ,
-.BR int base )
+.BI "unsigned long int strtoul(const char *" nptr ", char **" endptr ,
+.BR int " base" )
 .fi
 .SH DESCRIPTION
 The \fBstrtoul()\fP function converts the string in \fInptr\fP to an

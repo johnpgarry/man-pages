@@ -1,0 +1,138 @@
+.\"
+.\" Copyright (c) 1995 Jochen Karrer <cip307.cip.physik.uni-wuerzburg.de>
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.\" fixed typo, aeb, 950825
+.\"
+.TH REQUEST_REGION 9 "AUGUST 1995" "Linux 1.2.13" "Kernel Reference Guide"
+.SH NAME
+get_ioport_list, find_gap, request_region, snarf_region, release_region,
+check_region, reserve_setup
+\- Kernel io-region resource management
+.SH SYNOPSIS
+.nf  
+.B #include <linux/ioport.h>
+.B #include <linux/types.h>
+
+.B int get_ioport_list(char *buf);
+
+.B "static resource_entry_t *find_gap(resource_entry_t *root, 
+.B "                                  u_long from, 
+.B "                                  u_long num);
+
+.B "void request_region(unsigned int from, 
+.B "                    unsigned int num, 
+.B "                    const char *name);
+
+.B void snarf_region(unsigned int from, unsigned int num);
+
+.B void release_region(unsigned int from, unsigned int num);
+
+.B int check_region(unsigned int from, unsigned int num);
+
+.B void reserve_setup(char *str, int *ints);
+
+.fi
+.SH DESCRIPTION
+.B get_ioport_list() 
+.RI "fills  the memory pointed to by " "buf" " with a string containing
+.RB "a list of all ioports allocated with " "request_reqion()".
+The size of the string is limited to 4kB (one Page). This
+.RI "is used for " /proc/ioports
+
+.B find_gap()
+.RI "searches a resource list starting with the " root " entry for availability
+.RI "of " num "  resources starting at " from ".
+If  the resources  are available a pointer to
+the previous resource_entry is returned, else NULL will be returned.
+This is currently 
+only used for searching in the iolist for availability of ioports
+( See check_region() ).
+A member of a resource list is of the following type:
+
+.nf
+.B "typedef struct resource_entry_t {
+.B "	u_long from,               /* first reserved resource	    */ 
+.B "	u_long num;                /* number of reserved resources  */	
+.B "	const char *name;          /* name of the reserver          */
+.B "	struct resource_entry_t *next;	
+.B } resource_entry_t;
+.fi
+
+.B request_region()
+.RI "registers an ioport region of the size " num " starting at " from.
+.IR name " points to a string which should contain the name of the
+driver which requested the ioports. (Try cat /proc/ioports).
+If request_region fails, nothing will be registered, but no error
+will be returned, because request_region is void. Availability of
+.RB "an ioport region should be checked with " check_region() " before
+requesting.
+
+.B snarf_region()
+is the same as request_region(), but the ioport region will be
+registered with the  name "No name given".
+This should not be used in new drivers.
+
+.B release_region()
+Searches the iolist for an entry for 
+.I num
+ioports, starting at 
+.I from.
+If the entry is found, it will be removed from the list. 
+
+.B check_region()
+checks the ioport region with a size of 
+.I num
+bytes for availability. If not available -EBUSY is returned, else 0. 
+
+.B reserve_setup()
+reserves some io regions which should not be used. 
+.I ints[0]
+has to contain the number of arguments, and the pairs
+.I ints[1]
+and
+.IR "ints[2]" " ... have to contain the start and the size of the
+io region to reserve. 
+.I char *str 
+is a dummy.
+This function is called on initialisation of the kernel
+.RI "from /init/main.c, if at the bootprompt the option " reserve " is used.
+So it is possible to exclude an area of ioports from autoprobing
+of devicedrivers. 
+
+.SH SOURCES
+.nf
+.B linux/kernel/resource.c
+.B linux/init/main.c
+.fi
+.SH FILES
+.B /proc/ioports
+
+.SH BUGS/LIMITATIONS
+Permissions for access to ioports are not checked by the i386 if
+in Kernelmode because of privilege level 0. So maintaining an
+ioport list is only useful if all drivers call check_region() and
+request_region() before
+accessing an ioport for the first time.
+
+.SH AUTHOR
+Linus Torvalds, David Hinds

@@ -21,6 +21,7 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\" Modified Wed Jul 28 11:12:07 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Fri Sep  8 15:48:13 1995 by Andries Brouwer (aeb@cwi.nl)
 .TH GETS 3  "April 4, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 fgetc, fgets, getc, getchar, gets, ungetc \- input of characters and strings
@@ -117,7 +118,7 @@ return
 .I s
 on success, and
 .B NULL
-on end of file or error.
+on error or when end of file occurs while no characters have been read.
 .PP
 .B ungetc()
 returns 

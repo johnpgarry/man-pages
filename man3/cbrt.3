@@ -1,6 +1,4 @@
-.\" Hey Emacs! This file is -*- nroff -*- source.
-.\"
-.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" Copyright 1995 Jim Van Zandt <jrv@vanzandt.mv.com>
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -9,7 +7,7 @@
 .\" Permission is granted to copy and distribute modified versions of this
 .\" manual under the conditions for verbatim copying, provided that the
 .\" entire resulting derived work is distributed under the terms of a
-.\" permission notice identical to this one
+.\" permission notice identical to this one.
 .\" 
 .\" Since the Linux kernel and libraries are constantly changing, this
 .\" manual page may be incorrect or out-of-date.  The author(s) assume no
@@ -22,37 +20,23 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
-.\"   Removed note about old libc (pre-4.5.26) translating to 'sync'.
-.\" Modified 15 Apr 1995 by Michael Chastain (mec@shell.portal.com):
-.\"   Added 'see also' section.
+.\" changed `square root' into `cube root' - aeb, 950919
 .\"
-.TH FSYNC 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
+.TH CBRT 3  "September 16, 1995" "" "Linux Programmer's Manual"
 .SH NAME
-fsync \- synchronize a file's in-core state with that on disk
+cbrt \- cube root function
 .SH SYNOPSIS
-.B #include <unistd.h>
+.nf
+.B #include <math.h>
 .sp
-.BI "int fsync(int " fd );
+.BI "double cbrt ( double " x " );"
+.fi
 .SH DESCRIPTION
-.B fsync
-copies all in-core parts of a file to disk.
-.SH "RETURN VALUE"
-On success, zero is returned.  On error, \-1 is returned, and
-.I errno
-is set appropriately.
-.SH ERRORS
-.TP 0.8i
-.B EBADF
-.B fd
-is not a valid open file descriptor.
-.TP
-.B EROFS
-.B EINVAL
-.B fd
-is bound to a special file which doesn't support synchronization.
-.TP
-.B EIO
-An error occurred during synchronization.
+The \fBcbrt()\fP function returns the cube root of \fIx\fP.
+This function cannot
+fail; every representable real value has a representable real cube
+root.
+.SH "CONFORMING TO"
+\fBcbrt\fP is a GNU extension.
 .SH "SEE ALSO"
-.BR bdflush "(2), " fsync "(2), " update "(8), " sync "(8)"
+.BR sqrt "(3), " pow (3)

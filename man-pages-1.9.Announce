@@ -1,30 +1,34 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.8.tar.gz - section 2, 3, 4, 5, 7, and 9 man pages for Linux
+    man-pages-1.9.tar.gz - section 2, 3, 4, 5, 7, and 9 man pages for Linux
 
 
-Differences from version 1.7:
+Differences from version 1.8:
     
     The following man pages are new or have been updated:
 
-	cacheflush.2 listen.2 setfsgid.2 setfsuid.2 sigblock.2
-	siggetmask.2 sigmask.2 sigsetmask.2 sysfs.2 undocumented.2
-	unimplemented.2 ustat.2
+	access.2 fsync.2 personality.2 signal.2 sigreturn.2 undocumented.2
 
-	exp.3 re_comp.3 re_exec.3 regcomp.3 regerror.3 regexec.3
-	regfree.3
+	cbrt.3 cuserid.3 execlp.3 expm1.3 getlogin.3 getopt.3
+	getopt_long_only.3 getpwent.3 gets.3 getw.3 inet.3 isalpha.3
+	isascii.3 isblank.3 log1p.3 mkfifo.3 putw.3 snprintf.3 stpcpy.3
+	strcpy.3 strtoul.3 termios.3 toascii.3 undocumented.3 vsnprintf.3
 
-	fstab.5 lilo.conf.5
+	console_ioctl.4
+
+	exports.5 nfs.5
 
 	bootparam.7
 
 	lilo.8
 
-	kmalloc.9 memcpy_tofs.9 request_irq.9 vremap.9
+	kstat.9 request_region.9 vremap.9
 
-    (Yes, lilo.8 doesn't really belong here, but I think it is useful.
-    It will be removed again as soon as lilo comes with a manpage.)
+    The termios related pages (for cfgetispeed, cfgetospeed, cfsetispeed,
+	cfsetospeed, tcdrain, tcflow, tcflush, tcgetattr, tcgetpgrp,
+	tcsendbreak, tcsetattr, tcsetpgrp, termios) have been moved
+	from Section 2 to Section 3.
 
 Here is a breakdown of what this distribution contains:
 
@@ -74,7 +78,7 @@ wrote, edited, or otherwise contributed to this project:
     Jochen Karrer (cip307.cip.physik.uni-wuerzburg.de)
     Luigi P. Bai (lpb@neosoft.com)
     Mark D. Roth (roth@uiuc.edu)
-    Michael Elizabeth Chastain (mec@shell.portal.com)
+    Michael Elizabeth Chastain (mec@duracef.shout.net)
     Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
     Michael Shields (shields@tembel.org)
     Mike Battersby (mike@starbug.apana.org.au)

@@ -1,6 +1,5 @@
 .\" Hey Emacs! This file is -*- nroff -*- source.
-.\"
-.\" Copyright 1993 Rickard E. Faith (faith@cs.unc.edu)
+.\" (c) 1995 by Jim Van Zandt <jrv@vanzandt.mv.com>
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -21,38 +20,29 @@
 .\" 
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
+.\" License.
 .\"
-.\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
-.\"   Removed note about old libc (pre-4.5.26) translating to 'sync'.
-.\" Modified 15 Apr 1995 by Michael Chastain (mec@shell.portal.com):
-.\"   Added 'see also' section.
+.\" Added BUGS section, aeb, 950919
 .\"
-.TH FSYNC 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
+.TH TOASCII 3  "September 16, 1995" "GNU" "Linux Programmer's Manual"
 .SH NAME
-fsync \- synchronize a file's in-core state with that on disk
+toascii \- convert character to ASCII
 .SH SYNOPSIS
-.B #include <unistd.h>
+.nf
+.B #include <ctype.h>
 .sp
-.BI "int fsync(int " fd );
+.BI "int toascii (int " "c" ");"
+.fi
 .SH DESCRIPTION
-.B fsync
-copies all in-core parts of a file to disk.
+\fBtoascii\fP() converts \fIc\fP to a 7-bit \fBunsigned char\fP value
+that fits into the ASCII character set, by clearing the
+high-order bits.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, \-1 is returned, and
-.I errno
-is set appropriately.
-.SH ERRORS
-.TP 0.8i
-.B EBADF
-.B fd
-is not a valid open file descriptor.
-.TP
-.B EROFS
-.B EINVAL
-.B fd
-is bound to a special file which doesn't support synchronization.
-.TP
-.B EIO
-An error occurred during synchronization.
+The value returned is that of the converted character.
+.SH "CONFORMS TO"
+SVID, BSD
+.SH BUGS
+Many people will be unhappy if you use this function.
+This function will convert accented letters into random characters.
 .SH "SEE ALSO"
-.BR bdflush "(2), " fsync "(2), " update "(8), " sync "(8)"
+.BR isascii "(3), " toupper "(3), " tolower (3)

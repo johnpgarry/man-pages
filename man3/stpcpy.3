@@ -1,4 +1,6 @@
-.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" Copyright 1995 James R. Van Zandt <jrv@vanzandt.mv.com>
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -20,45 +22,43 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" References consulted:
-.\"     Linux libc source code
-.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
-.\"     386BSD man pages
-.\" Modified Sat Jul 24 18:06:49 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Fri Aug 25 23:17:51 1995 by Andries Brouwer (aeb@cwi.nl)
-.TH STRCPY 3  "April 11, 1993" "GNU" "Linux Programmer's Manual"
+.TH STPCPY 3  "September 3, 1995" "GNU" "Linux Programmer's Manual"
 .SH NAME
-strcpy, strncpy \- copy a string
+stpcpy \- copy a string returning a pointer to its end
 .SH SYNOPSIS
 .nf
 .B #include <string.h>
 .sp
-.BI "char *strcpy(char *" dest ", const char *" src );
-.sp
-.BI "char *strncpy(char *" dest ", const char *" src ", size_t " n );
+.BI "char *stpcpy(char *" dest ", const char *" src );
 .fi
 .SH DESCRIPTION
-The \fBstrcpy()\fP function copies the string pointed to be \fIsrc\fP
+The \fBstpcpy()\fP function copies the string pointed to by \fIsrc\fP
 (including the terminating `\\0' character) to the array pointed to by 
 \fIdest\fP.  The strings may not overlap, and the destination string 
 \fIdest\fP must be large enough to receive the copy.
-.PP
-The \fBstrncpy()\fP function is similar, except that not more than
-\fIn\fP bytes of \fIsrc\fP are copied. Thus, if there is no null byte
-among the first \fIn\fP bytes of \fIsrc\fP, the result wil not be
-null-terminated.
-.PP
-In the case where the length of
-.I src
-is less than that of
-.IR n ,
-the remainder of
-.I dest
-will be padded with nulls.
 .SH "RETURN VALUE"
-The \fBstrcpy()\fP and \fBstrncpy()\fP functions return a pointer to
-the destination string \fIdest\fP.
+\fBstpcpy()\fP returns a pointer to the \fBend\fP of the string
+\fIdest\fP (that is, the address of the terminating null character)
+rather than the beginning.
+.SH EXAMPLE
+For example, this program uses \fBstpcpy\fP to concatenate \fBfoo\fP and
+\fBbar\fP to produce \fBfoobar\fP, which it then prints.
+.nf
+
+          #include <string.h>
+
+          int
+          main (void)
+          {
+            char *to = buffer;
+            to = stpcpy (to, "foo");
+            to = stpcpy (to, "bar");
+            printf ("%s\\n", buffer);
+          }
+.fi
 .SH "CONFORMING TO"
-SVID 3, POSIX, BSD 4.3, ISO 9899
+This function is not part of the ANSI or POSIX standards, and is
+not customary on Unix systems, but is not a GNU invention either.
+Perhaps it comes from MS-DOS.
 .SH "SEE ALSO"
-.BR bcopy "(3), " memccpy "(3), " memcpy "(3), " memmove (3)
+.BR strcpy "(3), " bcopy "(3), " memccpy "(3), " memcpy "(3), " memmove (3)

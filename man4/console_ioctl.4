@@ -23,8 +23,9 @@
 .\"
 .\" Modified, Sun Feb 26 15:04:20 1995, faith@cs.unc.edu
 .\" Modified, Thu Apr 20 22:08:17 1995, jrv@vanzandt.mv.com
+.\" Modified, Mon Sep 18 22:32:47 1995, hpa@storm.net (H. Peter Anvin)
 .\" "
-.TH CONSOLE_IOCTLS 4 "April 20, 1995" "Linux" "Linux Programmer's Manual"
+.TH CONSOLE_IOCTLS 4 "September 18, 1995" "Linux" "Linux Programmer's Manual"
 .SH NAME
 console ioctl's \- ioctl's for console terminal and virtual consoles
 .SH DESCRIPTION
@@ -50,7 +51,7 @@ Set the LEDs.  The LEDs are set to correspond to the lower three bits of
 the LEDs revert to normal: displaying the state of the
 keyboard functions of caps lock, num lock, and scroll lock.
 .LP
-Before 1.1.54, the leds just reflected the state of the corresponding
+Before 1.1.54, the LEDs just reflected the state of the corresponding
 keyboard flags, and KDGETLED/KDSETLED would also change the keyboard
 flags. Since 1.1.54 the leds can be made to display arbitrary
 information, but by default they display the keyboard flags.
@@ -111,24 +112,91 @@ Start or stop sound generation.  The lower 16 bits of
 \fIargp\fP = 0 turns sound off.
 In either case, control returns immediately.
 
+.IP \fBGIO_CMAP\fP
+Get the current default colour map from kernel.  \fIargp\fP points to
+a 48-byte array.  (Since 1.3.3.)
+
+.IP \fBPIO_CMAP\fP
+Change the default text-mode colour map.  \fIargp\fP points to a
+48-byte array which contains, in order, the Red, Green, and Blue
+values for the 16 available screen colours: 0 is off, and 255 is full
+intensity.  The default colours are, in order: black, dark red, dark
+green, brown, dark blue, dark purple, dark cyan, light grey, dark
+grey, bright red, bright green, yellow, bright blue, bright purple,
+bright cyan and white.  (Since 1.3.3.)
+
 .IP \fBGIO_FONT\fP
-Gets screen font in expanded form.  \fIargp\fP points to an 8192 byte array.
+Gets 256-character screen font in expanded form.  \fIargp\fP points to
+an 8192 byte array.  Fails with error code \fBEINVAL\fP if the
+currently loaded font is a 512-character font, or if the console is
+not in text mode.
+
+.IP \fBGIO_FONTX\fP
+Gets screen font and associated information.  \fIargp\fP points to a
+struct consolefontdesc (see \fBPIO_FONTX\fP).  On call, the
+\fIcharcount\fP field should be set to the maximum number of
+characters that would fit in the buffer pointed to by \fIchardata\fP.
+On return, the \fIcharcount\fP and \fIcharheight\fP are filled with
+the respective data for the currently loaded font, and the
+\fIchardata\fP array contains the font data if the initial value of
+\fIcharcount\fP indicated enough space was available; otherwise the
+buffer is untouched and \fIerrno\fP is set to \fBENOMEM\fP.  (Since
+1.3.1.)
 
 .IP \fBPIO_FONT\fP
-Sets screen font.  Load font into the EGA/VGA character generator. 
-\fIargp\fP points to a 8192 byte map, with 32 bytes per character.  
-Only first \fIN\fP of them are used for an 8x\fIN\fP font (0 < \fIN\fP <= 32).
+Sets 256-character screen font.  Load font into the EGA/VGA character
+generator.  \fIargp\fP points to a 8192 byte map, with 32 bytes per
+character.  Only first \fIN\fP of them are used for an 8x\fIN\fP font
+(0 < \fIN\fP <= 32).  This call also invalidates the Unicode mapping.
+
+.IP \fBPIO_FONTX\fP
+Sets screen font and associated rendering information.  \fIargp\fP
+points to a
+
+.nf
+struct consolefontdesc {
+        u_short \fIcharcount\fP;      /* characters in font (256 or 512) */
+        u_short \fIcharheight\fP;     /* scan lines per character (1-32) */
+        char *\fIchardata\fP;         /* font data in expanded form */
+};
+.fi
+
+If necessary, the screen will be appropriately resized, and
+\fBSIGWINCH\fP sent to the appropriate processes.  This call also
+invalidates the Unicode mapping.  (Since 1.3.1.)
+
+.IP \fBPIO_FONTRESET\fP
+Resets the screen font, size and Unicode mapping to the bootup
+defaults.  \fIargp\fP is unused, but should be set to \fBNULL\fP to
+ensure compatibility with future versions of Linux.  (Since 1.3.28.)
 
 .IP \fBGIO_SCRNMAP\fP
-Get screen mapping from kernel.
-\fIargp\fP points to an area of size E_TABSZ.
+Get screen mapping from kernel.  \fIargp\fP points to an area of size
+E_TABSZ, which is loaded with the font positions used to display each
+character.  This call is likely to return useless information if the
+currently loaded font is more than 256 characters.
+
+.IP \fBGIO_UNISCRNMAP\fP
+Get full Unicode screen mapping from kernel.  \fIargp\fP points to an
+area of size E_TABSZ*sizeof(unsigned short), which is loaded with the
+Unicodes each character represent.  A special set of Unicodes,
+starting at U+F000, are used to represent ``direct to font'' mappings.
+(Since 1.3.1.)
 
 .IP \fBPIO_SCRNMAP\fP
-Loads the "user definable" (fourth) table in the kernel which maps bytes into console
-screen symbols.  \fIargp\fP points to an area of size E_TABSZ.
+Loads the ``user definable'' (fourth) table in the kernel which maps
+bytes into console screen symbols.  \fIargp\fP points to an area of
+size E_TABSZ.
+
+.IP \fBPIO_UNISCRNMAP
+Loads the ``user definable'' (fourth) table in the kernel which maps
+bytes into Unicodes, which are then translated into screen symbols
+according to the currently loaded Unicode-to-font map.  Special
+Unicodes starting at U+F000 can be used to map directly to the font
+symbols.  (Since 1.3.1.)
 
 .IP \fBGIO_UNIMAP\fP
-Get unicode-to-font mapping from kernel.  \fIargp\fP points to a
+Get Unicode-to-font mapping from kernel.  \fIargp\fP points to a
 
 .nf
 struct unimapdesc {
@@ -322,7 +390,7 @@ Deallocate the memory associated with vt \fIargp\fP.
 (Since 1.1.54.)
 
 .IP \fBVT_RESIZE\fP
-Set kernel's idea of screensize.  \fIargp\fP points to a
+Set the kernel's idea of screensize.  \fIargp\fP points to a
 
 .nf
 struct vt_sizes {
@@ -332,8 +400,28 @@ struct vt_sizes {
 };
 .fi
 
-(Since 1.1.54.) Note that this does not change the videomode.
-See resizecons(8).
+Note that this does not change the videomode.
+See resizecons(8).  (Since 1.1.54.) 
+
+.IP \fBVT_RESIZEX\fP
+Set the kernel's idea of various screen parameters.  \fIargp\fP
+points to a
+
+.nf
+struct vt_consize {
+        ushort \fIv_rows\fP;          /* number of rows */
+        ushort \fIv_cols\fP;          /* number of columns */
+        ushort \fIv_vlin\fP;          /* number of pixel rows on screen */
+        ushort \fIv_clin\fP;          /* number of pixel rows per character */
+        ushort \fIv_vcol\fP;          /* number of pixel columns on screen */
+        ushort \fIv_ccol\fP;          /* number of pixel columns per character */
+};
+.fi
+
+Any parameter may be set to zero, indicating ``no change'', but if
+multiple parameters are set, they must be self-consistent.  Note that
+this does not change the videomode.  See resizecons(8).  (Since 1.3.3.)
+
 .PP
 The action of the following ioctls depends on the first byte in the struct 
 pointed to by \fIargp\fP, referred to here as the \fIsubcode\fP.
