@@ -54,7 +54,7 @@ function dissociates the named
 from its underlying file or set of functions.  If the stream was being used
 for output, any buffered data is written first, using
 .BR fflush (3).
-.SH "RETURN VALUES"
+.SH "RETURN VALUE"
 Upon successful completion 0 is returned.  Otherwise,
 .B EOF
 is returned and the global variable
@@ -63,7 +63,6 @@ is set to indicate the error.  In either case any further access
 (including another call to
 .BR fclose "())"
 to the stream results in undefined behaviour.
-
 .SH ERRORS
 .TP
 .B EBADF

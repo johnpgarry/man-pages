@@ -13,7 +13,7 @@ cp \- copy files and directories
 .BI "cp [" "options" "] " "file... directory"
 .sp
 POSIX options:
-.B [\-fipRr]
+.B "[\-fipRr] [\-\-]"
 .sp
 GNU options (shortest form):
 .B [\-abdfilprsuvxPR]
@@ -93,6 +93,9 @@ a synonym for \-R. However, silly behaviour, like that of the
 present GNU version of
 .BR cp
 (see below) is not forbidden.)
+.TP
+.B "\-\-"
+Terminate option list.
 .SH "GNU DETAILS"
 .PP
 Generally, files are written just as they are read.  For exceptions,

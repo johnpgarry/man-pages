@@ -11,7 +11,7 @@ df \- report filesystem disk space usage
 .BI "df [" options "] [" file... ]
 .sp
 POSIX options:
-.B [\-kP]
+.B "[\-kP] [\-\-]"
 .sp
 GNU options (shortest form):
 .B [\-ahHiklmPv]
@@ -64,6 +64,9 @@ Use 1024-byte units instead of the default 512-byte units.
 Output in six columns, with heading `Filesystem N-blocks
 Used Available Capacity Mounted on' (with N=512, but N=1024
 when the \-k option is given).
+.TP
+.B "\-\-"
+Terminate option list.
 .SH "GNU OPTIONS"
 .TP
 .B "\-a, \-\-all"

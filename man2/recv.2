@@ -39,6 +39,8 @@
 .SH NAME
 recv, recvfrom, recvmsg \- receive a message from a socket
 .SH SYNOPSIS
+.\" .B #include <sys/uio.h>
+.\" .br
 .B #include <sys/types.h>
 .br
 .B #include <sys/socket.h>
@@ -131,16 +133,39 @@ This flag turns off raising of
 .B SIGPIPE
 on stream sockets when the other end disappears.
 .TP
+.B MSG_TRUNC
+Return the real length of the packet, even when it was longer than
+the passed buffer. Only valid for packet sockets.
+.TP
 .B MSG_ERRQUEUE
 This flag
 specifies that queued errors should be received from the socket error queue.
 The error is passed in
 an ancillary message with a type dependent on the protocol (for IPv4
-.BR IP_RECVERR 
-). The user should supply a buffer of sufficient size.
-See 
+.BR IP_RECVERR ).
+The user should supply a buffer of sufficient size. See 
 .BR cmsg (3)
-for more information on ancillary messages.
+and
+.BR ip (7)
+for more information.
+The payload of the original packet that caused the error
+is passed as normal data via
+.BR msg_iovec .
+The original destination address of the datagram that caused the error
+is supplied via
+.BR msg_name .
+.IP
+For local errors, no address is passed (this can be checked with the
+.I cmsg_len
+member of the
+.BR cmsghdr ).
+For error receives, the
+.B MSG_ERRQUEUE
+is set in the
+.BR msghdr .
+After an error has been passed, the pending socket error
+is regenerated based on the next queued error and will be passed
+on the next socket operation.
 
 The error is supplied in a 
 .B sock_extended_err
@@ -280,23 +305,39 @@ errors, IP options or file descriptors over Unix sockets.
 .PP
 The
 .I msg_flags
-field is set on return according to the message received.
+field in the msghdr is set on return of
+.BR recvmsg ().
+It can contain several flags:
+.TP
 .B MSG_EOR
 indicates end-of-record; the data returned completed a record (generally
 used with sockets of type
 .BR SOCK_SEQPACKET ).
+.TP
 .B MSG_TRUNC
 indicates that the trailing portion of a datagram was discarded because the
 datagram was larger than the buffer supplied.
+.TP
 .B MSG_CTRUNC
 indicates that some control data were discarded due to lack of space in the
 buffer for ancillary data.
+.TP
 .B MSG_OOB
 is returned to indicate that expedited or out-of-band data were received.
+.TP
 .B MSG_ERRQUEUE
 indicates that no data was received but an extended error from the socket
-error queue.  
-.SH "RETURN VALUES"
+error queue.
+.TP
+.B MSG_DONTWAIT
+Enables non-blocking operation; if the operation would block,
+.B EAGAIN
+is returned (this can also be enabled using the
+.B O_NONBLOCK
+with the
+.B F_SETFL
+.BR fcntl (2)).
+.SH "RETURN VALUE"
 These calls return the number of bytes received, or \-1
 if an error occurred.
 .SH ERRORS

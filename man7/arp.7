@@ -5,7 +5,7 @@
 .\" and in case of nontrivial modification author and date
 .\" of the modification is added to the header.
 .\" Modified June 1999 Andi Kleen
-.\" $Id: arp.7,v 1.7 1999/06/03 09:15:14 freitag Exp $
+.\" $Id: arp.7,v 1.10 2000/04/27 19:31:38 ak Exp $
 .TH ARP 7 "3 Jun 1999" "Linux Man Page" "Linux Programmer's Manual" 
 .SH NAME
 arp \- Linux ARP kernel module. 
@@ -36,10 +36,16 @@ as permanent are never deleted by the garbage-collector.  The cache can
 be directly manipulated by the use of ioctls and its behaviour can be
 tuned by the sysctls defined below.  
 
-When there is no positive feedback for a existing mapping after some
+When there is no positive feedback for an existing mapping after some
 time (see the sysctls below) a neighbour cache entry is considered stale.
-To send data to the target again
-ARP first tries to ask a local arp daemon
+Positive feedback can be gotten from a higher layer; for example from
+a successful TCP ACK. Other protocols can signal forward progress
+using the
+.B MSG_CONFIRM
+flag to
+.BR sendmsg (2).
+When there is no forward progress ARP tries to reprobe.
+It first tries to ask a local arp daemon
 .B app_solicit 
 times for an updated MAC address.
 If that fails and an old MAC address is known an unicast probe is send
@@ -49,7 +55,7 @@ request to the network. Requests are only send when there is data queued
 for sending. 
 
 Linux will automatically add a non-permanent proxy arp entry when it receives
-an request for a address it forwards to and proxy arp is enabled on the 
+a request for an address it forwards to and proxy arp is enabled on the 
 receiving interface. When there is a reject route for the target
 no proxy arp entry is added.
 
@@ -227,13 +233,12 @@ is 1/100s.
 There is no way to signal positive feedback from user space. This means
 connection oriented protocols implemented in user space will generate 
 excessive ARP traffic, because ndisc will regularly reprobe the MAC address.
-The same problem applies for the kernel NFS implementation. 
+The same problem applies for some kernel protocols (e.g. NFS over UDP).
 
 This man page mashes IPv4 specific and shared between IPv4 and IPv6 
 functionality together.
 
 .SH VERSIONS
-
 The
 .B struct arpreq
 changed in Linux 2.0 to include the
@@ -246,12 +251,14 @@ was dropped in Linux 2.2. It is replaced by automatic proxy arp setup by
 the kernel for all reachable hosts on other interfaces (when forwarding and 
 proxy arp is enabled for the interface).
 
-
+The neigh/* sysctls did not exist before Linux 2.2.
 
 .SH SEE ALSO
 .BR ip (7)
 .PP
 RFC826 for a description of ARP.
 .br
-RFC2461 for a description of IPv6 neighbour discovery and the base algorithms
-used.
+RFC2461 for a description of IPv6 neighbour discovery and the base
+algorithms used.
+.LP
+Linux 2.2+ IPv4 ARP uses the IPv6 algorithms when applicable.

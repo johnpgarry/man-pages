@@ -1,4 +1,4 @@
-.\" Copyright 2000 Sam Varshavchik <mrsam@stop.mail-abuse.org>
+.\" Copyright 2000 Sam Varshavchik <mrsam@courier-mta.com>
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -21,69 +21,69 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" References: RFC 2553
-.TH getipnodebyname 3 "May 22, 2000" "Linux Man Page" "Linux Programmer's Manual"
+.TH getipnodebyname 3 "Dec 18, 2000" "Linux Man Page" "Linux Programmer's Manual"
 .SH NAME
 getipnodebyname, getipnodebyaddr, freehostent \- get network host names and addresses
 .SH SYNOPSIS
 .nf
-.B "#include <sys/types.h>
-.B "#include <sys/socket.h>
-.B "#include <netdb.h>
+.B #include <sys/types.h>
+.B #include <sys/socket.h>
+.B #include <netdb.h>
 .sp
-.BI "struct hostent *ip=getipnodebyname(const char *" "name" ","
-.BI "                         int " "af" ", int " "flags" ",
+.BI "struct hostent *getipnodebyname(const char *" "name" ","
+.BI "                         int " "af" ", int " "flags" ","
 .BI "                         int *" "error_num" ");"
 .sp
-.BI "struct hostent *ip=getipnodebyaddr(const void *" "addr" ","
-.BI "                         size_t " "len" ", int " "af" ",
-.BI "                         int " "flags" ", int *" "error_num" ");"
+.BI "struct hostent *getipnodebyaddr(const void *" "addr" ","
+.BI "                         size_t " "len" ", int " "af" ","
+.BI "                         int *" "error_num" ");"
 .sp
 .BI "void freehostent(struct hostent *" "ip" ");"
 .fi
 .SH DESCRIPTION
 The
-.BR "getipnodebyname" "(3)
+.BR getipnodebyname (3)
 and
-.BR "getipnodebyaddr" "(3)
+.BR getipnodebyaddr (3)
 functions return the names and addresses of a network host.
 These functions return a pointer to the
 following structure:
 .sp
 .nf
-.B "struct  hostent {
-.BI "        char    *" "h_name" ";
-.BI "        char    **" "h_aliases" ";
-.BI "        int     " "h_addrtype" ";
-.BI "        int     " "h_length" ";
-.BI "        char    **" "h_addr_list" ";
-.BI "};
+.B struct  hostent {
+.BI "        char    *" "h_name" ";"
+.BI "        char    **" "h_aliases" ";"
+.BI "        int     " "h_addrtype" ";"
+.BI "        int     " "h_length" ";"
+.BI "        char    **" "h_addr_list" ";"
+.BI "};"
 .fi
 .PP
 These functions replace the
-.BR "gethostbyname" "(3)
+.BR gethostbyname (3)
 and
-.BR "gethostbyaddr" "(3)
+.BR gethostbyaddr (3)
 functions, which could only access the IPv4 network address family.
 The
-.BR "getipnodebyname" "(3)
+.BR getipnodebyname (3)
 and
-.BR "getipnodebyaddr" "(3)
+.BR getipnodebyaddr (3)
 functions can access multiple network address families.
-
+.PP
 Unlike the
-.B "gethostby
+.B gethostby
 functions,
 these
 functions return pointers to dynamically allocated memory.
 The
-.BR "freehostent" "(3)
+.BR freehostent (3)
 function is used to release the dynamically allocated memory
 after the caller no longer needs the
-.B "hostent
+.B hostent
 structure.
 .SS getipnodebyname parameters
 The
-.BR "getipnodebyname" "(3)
+.BR getipnodebyname (3)
 function
 looks up network addresses for the host
 specified by the
@@ -92,13 +92,13 @@ parameter.
 The
 .I af
 parameter specifies one of the following values:
-.TP 14
+.TP
 .B AF_INET
 The
 .I name
 parameter points to a dotted-quad IPv4 address or a name
 of an IPv4 network host.
-.TP 14
+.TP
 .B AF_INET6
 The
 .I name
@@ -113,20 +113,20 @@ them together.
 .I flags
 should be set to 0
 if no options are desired.
-.TP 14
+.TP
 .B AI_V4MAPPED
 This flag is used with
 .B AF_INET6
 to request a query for IPv4 addresses instead of
 IPv6 addresses; the IPv4 addresses will
 be mapped to IPv6 addresses.
-.TP 14
+.TP
 .B AI_ALL
 This flag is used with
 .B AI_V4MAPPED
 to request a query for both IPv4 and IPv6 addresses.
 Any IPv4 address found will be mapped to an IPv6 address.
-.TP 14
+.TP
 .B AI_ADDRCONFIG
 This flag is used with
 .B AF_INET6
@@ -138,13 +138,13 @@ system has at least one IPv4 address assigned to a network interface.
 This flag may be used by itself or with the
 .B AI_V4MAPPED
 flag.
-.TP 14
+.TP
 .B AI_ALL
 This flag is equivalent to 
-.BR "(AI_ADDRCONFIG | AI_V4MAPPED)" ".
+.BR "(AI_ADDRCONFIG | AI_V4MAPPED)" .
 .SS getipnodebyaddr parameters
 The
-.BR "getipnodebyaddr" "(3)
+.BR getipnodebyaddr (3)
 function
 looks up the name of the host whose
 network address is
@@ -154,43 +154,43 @@ parameter.
 The
 .I af
 parameter specifies one of the following values:
-.TP 14
+.TP
 .B AF_INET
 The
 .I addr
 parameter points to a
-.B "struct in_addr"
+.B struct in_addr
 and
 .I len
 must be set to
-.BR "sizeof(struct in_addr)" ".
-.TP 14
+.BR "sizeof(struct in_addr)" .
+.TP
 .B AF_INET6
 The
 .I addr
 parameter points to a
-.B "struct in6_addr"
+.B struct in6_addr
 and
 .I len
 must be set to
-.BR "sizeof(struct in6_addr)" ".
-.SH "RETURN VALUES
+.BR "sizeof(struct in6_addr)" .
+.SH "RETURN VALUE"
 A null pointer is returned if an error occurred, and
 .I error_num
 will contain an error code from the following list:
-.TP 14
+.TP
 .B HOST_NOT_FOUND
 The host name or network address was not found.
-.TP 14
+.TP
 .B NO_ADDRESS
 The domain name server recognized the network address or name,
 but no answer was returned.
 This can happen if the network host has only IPv4 addresses and
 a request has been made for IPv6 information only, or vice versa.
-.TP 14
+.TP
 .B NO_RECOVERY
 The domain name server returned a permanent failure response.
-.TP 14
+.TP
 .B TRY_AGAIN
 The domain name server returned a temporary failure response.
 You might have better luck next time.
@@ -198,19 +198,21 @@ You might have better luck next time.
 A successful query returns a pointer to a
 .B hostent
 structure that contains the following fields:
-.TP 14
+.TP
 .B h_name
 This is the official name of this network host.
+.TP
 .B h_aliases
 This is an array of pointers to unofficial aliases for the same host.
 The array is terminated by a null pointer.
+.TP
 .B h_addrtype
 This is a copy of the
 .I af
 parameter to
-.BR "getipnodebyname" "(3)
+.BR getipnodebyname (3)
 or
-.BR "getipnodebyaddr" "(3).
+.BR getipnodebyaddr (3).
 .I h_addrtype
 will always be
 .B AF_INET
@@ -225,23 +227,23 @@ if the
 .I af
 parameter was
 .BR AF_INET6 .
-.TP 14
+.TP
 .B h_length
 This field will be set to
-.B "sizeof(struct in_addr)
+.B sizeof(struct in_addr)
 if
 .I h_addrtype
 is AF_INET, and to
-.B "sizeof(struct in6_addr)
+.B sizeof(struct in6_addr)
 if
 .I h_addrtype
 is AF_INET6.
-.TP 14
+.TP
 .B h_addr_list
 This is an array of one or more pointers to network address structures for the
 network host.
 The array is terminated by a null pointer.
-.SH "SEE ALSO
+.SH "SEE ALSO"
 .BR getaddrinfo (3),
 .BR inet_ntop (3),
 .BR inet_pton (3)

@@ -23,7 +23,9 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
-.TH DLOPEN 3 "16 May 1995" "Linux" "Linux Programmer's Manual"
+.\" Modified by David A. Wheeler <dwheeler@dwheeler.com> 2000-11-28.
+.\"
+.TH DLOPEN 3 "28 Nov 2000" "Linux" "Linux Programmer's Manual"
 .SH NAME
 dlclose, dlerror, dlopen, dlsym \- Programming interface to dynamic linking loader.
 .SH SYNOPSIS
@@ -141,31 +143,11 @@ symbols in it, then the dynamic library is unloaded.  If the dynamic
 library exports a routine named
 .BR _fini ,
 then that routine is called just before the library is unloaded.
-.SH EXAMPLES
+.SH "RETURN VALUE"
+.B dlclose
+returns 0 on success, and non-zero on error.
+.SH EXAMPLE
 .B Load the math library, and print the cosine of 2.0:
-.RS
-.nf
-.if t .ft CW
-#include <dlfcn.h>
-
-int main(int argc, char **argv) {
-    void *handle = dlopen ("/lib/libm.so", RTLD_LAZY);
-    double (*cosine)(double) = dlsym(handle, "cos");
-    printf ("%f\\n", (*cosine)(2.0));
-    dlclose(handle);
-}
-.if t .ft P
-.fi
-.PP
-If this program were in a file named "foo.c", you would build the program
-with the following command:
-.RS
-.LP
-gcc -rdynamic -o foo foo.c -ldl
-.RE
-.RE
-.LP
-.B Do the same thing, but check for errors at every step:
 .RS
 .nf
 .if t .ft CW
@@ -185,15 +167,22 @@ int main(int argc, char **argv) {
 
     cosine = dlsym(handle, "cos");
     if ((error = dlerror()) != NULL)  {
-        fprintf (stderr, "%s\n", error);
+        fprintf (stderr, "%s\en", error);
         exit(1);
     }
 
-    printf ("%f\\n", (*cosine)(2.0));
+    printf ("%f\en", (*cosine)(2.0));
     dlclose(handle);
 }
 .if t .ft P
 .fi
+.RE
+.PP
+If this program were in a file named "foo.c", you would build the program
+with the following command:
+.RS
+.LP
+gcc -rdynamic -o foo foo.c -ldl
 .RE
 .SH ACKNOWLEDGEMENTS
 The dlopen interface standard comes from Solaris.

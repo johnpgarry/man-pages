@@ -39,7 +39,9 @@ including attributes, and prefixed with four bytes giving the screen
 dimensions and cursor position: \fIlines\fP, \fIcolumns\fP, \fIx\fP, \fIy\fP.
 (\fIx\fP = \fIy\fP = 0 at the top left corner of the screen.)
 .PP
-These replace the screendump ioctls of \fBconsole\fP(4), so the system
+These replace the screendump
+.IR ioctl s
+of \fBconsole\fP(4), so the system
 administrator can control access using file system permissions.
 .PP
 The devices for the first eight virtual consoles may be created by:
@@ -52,7 +54,9 @@ The devices for the first eight virtual consoles may be created by:
 	chown root:tty /dev/vcs*
 .fi
 
-No \fBioctl()\fP requests are supported.  
+No
+.IR ioctl ()
+requests are supported.  
 .SH EXAMPLES
 You may do a screendump on vt3 by switching to vt1 and typing 
 \fIcat /dev/vcs3 >foo\fP. Note that the output does not contain
@@ -71,8 +75,8 @@ there:
 	#include <stdio.h>
 	#include <fcntl.h>
 
-	void main()
-	{	int fd;
+	int main() {
+		int fd;
 		struct {char lines, cols, x, y;} scrn;
 		char ch, attrib;
 
@@ -85,6 +89,7 @@ there:
 		attrib ^= 0x10;
 		(void)lseek(fd, -1, 1);
 		(void)write(fd, &attrib, 1);
+		return 0;
 	}
 .fi
 

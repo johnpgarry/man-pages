@@ -344,13 +344,19 @@ given by
 .I mask
 and then suspends the process until a signal is received.
 
-.SH "RETURN VALUES"
+.SH "RETURN VALUE"
+The functions
 .BR sigaction ,
 .BR sigprocmask ,
 .B sigpending
 and
 .B sigsuspend
 return 0 on success and -1 on error.
+(In the case of
+.B sigsuspend
+there will be no success, and only the error return with
+.B EINTR
+is possible.)
 
 .SH ERRORS
 .TP

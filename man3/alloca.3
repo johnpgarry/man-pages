@@ -48,7 +48,7 @@ function allocates
 .I size
 bytes of space in the stack frame of the caller.  This temporary space is
 automatically freed on return.
-.SH "RETURN VALUES"
+.SH "RETURN VALUE"
 The
 .B alloca
 function returns a pointer to the beginning of the allocated space.  If the
@@ -64,5 +64,9 @@ for it in BSD 4.3.  Linux uses the GNU version.
 The
 .B alloca
 function is machine dependent.
-.SH SEE ALSO
-.BR brk "(2), " pagesize "(2), " calloc "(3), " malloc "(3), " realloc (3)
+.SH "SEE ALSO"
+.BR brk (2),
+.BR pagesize (2),
+.BR calloc (3),
+.BR malloc (3),
+.BR realloc (3)

@@ -1,4 +1,4 @@
-.\" Copyright 2000 Sam Varshavchik <mrsam@stop.mail-abuse.org>
+.\" Copyright 2000 Sam Varshavchik <mrsam@courier-mta.com>
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -21,14 +21,14 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" References: RFC 2553
-.TH inet_pton 3  "May 18, 2000" "Linux Man Page" "Linux Programmer's Manual"
+.TH inet_pton 3  "Dec 18, 2000" "Linux Man Page" "Linux Programmer's Manual"
 .SH NAME
-inet_pton - Create a network address structure
+inet_pton \- Create a network address structure
 .SH SYNOPSIS
 .nf
-.B "#include <sys/types.h>
-.B "#include <sys/socket.h>
-.B "#include <arpa/inet.h>
+.B #include <sys/types.h>
+.B #include <sys/socket.h>
+.B #include <arpa/inet.h>
 .sp
 .BI "int inet_pton(int " "af" ", const char *" "src" ", void *" "dst" ");
 .SH DESCRIPTION
@@ -40,7 +40,7 @@ address family, then
 copies
 the network address structure to
 .IR dst .
-
+.PP
 .BR inet_pton (3)
 extends the
 .BR inet_addr (3)
@@ -49,31 +49,31 @@ function to support multiple address families,
 is now considered to be deprecated in favor of
 .BR inet_pton (3).
 The following address families are currently supported:
-.TP 14
+.TP
 .B AF_INET
 .I src
 points to a character string containing an IPv4 network address in
 the dotted-quad format, "\fIddd.ddd.ddd.ddd\fP".
 The address is converted
 to a
-.I "struct in_addr"
+.I struct in_addr
 and copied to
 .IR dst,
 which must be
-.I "sizeof(struct in_addr)"
+.I sizeof(struct in_addr)
 bytes long.
-.TP 14
+.TP
 .B AF_INET6
 .I src
 points to a character string containing an IPv6 network address in
 any allowed IPv6 address format.
 The address is converted
 to a
-.I "struct in6_addr"
+.I struct in6_addr
 and copied to
 .IR dst,
 which must be
-.I "sizeof(struct in6_addr)"
+.I sizeof(struct in6_addr)
 bytes long.
 .PP
 Certain legacy hex and octal formats of
@@ -81,7 +81,7 @@ Certain legacy hex and octal formats of
 addresses are not supported by
 .IR inet_pton ,
 which rejects them.
-.SH RETURN VALUES
+.SH "RETURN VALUE"
 .B inet_pton
 returns a negative value and sets
 .I errno
@@ -94,7 +94,7 @@ does not contain a valid address family.
 .I src
 does not contain a character string representing a valid network
 address in the specified address family.
-A positive value is returned if the network address was succesfully
+A positive value is returned if the network address was successfully
 converted.
 .SH "SEE ALSO"
 .BR inet_ntop (3)

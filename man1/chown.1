@@ -11,7 +11,7 @@ chown \- change file owner and group
 .BI "chown [" options "] " user "[:" group "] " file...
 .sp
 POSIX options:
-.B [\-R]
+.B "[\-R] [\-\-]"
 .sp
 GNU options (shortest form):
 .B "[\-cfhvR] [\-\-dereference]"
@@ -43,6 +43,9 @@ performs the same function as
 .TP
 .B "\-R"
 Recursively change ownership of directories and their contents.
+.TP
+.B "\-\-"
+Terminate option list.
 .SH "GNU OPTIONS"
 .TP
 .B "\-c, \-\-changes"

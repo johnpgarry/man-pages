@@ -1,4 +1,4 @@
-.\" Copyright 2000 Sam Varshavchik <mrsam@stop.mail-abuse.org>
+.\" Copyright 2000 Sam Varshavchik <mrsam@courier-mta.com>
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -21,17 +21,17 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" References: RFC 2553
-.TH inet_ntop 3  "May 18, 2000" "Linux Man Page" "Linux Programmer's Manual"
+.TH inet_ntop 3  "Dec 18, 2000" "Linux Man Page" "Linux Programmer's Manual"
 .SH NAME
-inet_ntop - Parse network address structures
+inet_ntop \- Parse network address structures
 .SH SYNOPSIS
 .nf
-.B "#include <sys/types.h>
-.B "#include <sys/socket.h>
-.B "#include <arpa/inet.h>
+.B #include <sys/types.h>
+.B #include <sys/socket.h>
+.B #include <arpa/inet.h>
 .sp
-.BI "const char *" "p" "=inet_ntop(int " "af" ", const void *" "src" ",
-.BI "                        char *" "dst" ", size_t " "cnt" ");
+.BI "const char *inet_ntop(int " "af" ", const void *" "src" ","
+.BI "                      char *" "dst" ", size_t " "cnt" ");"
 .SH DESCRIPTION
 This function converts the network address structure
 .I src
@@ -42,7 +42,7 @@ address family into a character string, which is copied to a character buffer
 which is
 .I cnt
 bytes long.
-
+.PP
 .BR inet_ntop (3)
 extends the
 .BR inet_ntoa (3)
@@ -51,36 +51,36 @@ function to support multiple address families,
 is now considered to be deprecated in favor of
 .BR inet_ntop (3).
 The following address families are currently supported:
-.TP 14
+.TP
 .B AF_INET
 .I src
 points to a
-.I "struct in_addr"
+.I struct in_addr
 (network byte order format)
 which is converted to an IPv4 network address in
 the dotted-quad format, "\fIddd.ddd.ddd.ddd\fP".
 The buffer
-.I buf
+.I dst
 must be at least
 .B INET_ADDRSTRLEN
 bytes long.
-.TP 14
+.TP
 .B AF_INET6
 .I src
 points to a
-.IR "struct in6_addr"
+.I struct in6_addr
 (network byte order format)
 which is converted to a representation of this address in the
 most appropriate IPv6 network address format for this address.
 The buffer
-.I buf
+.I dst
 must be at least
 .B INET6_ADDRSTRLEN
 bytes long.
-.SH RETURN VALUES
+.SH "RETURN VALUE"
 .B inet_ntop
 returns a non-null pointer to
-.IR buf .
+.IR dst .
 NULL is returned if there was an error, with
 .I errno
 set to
@@ -91,7 +91,7 @@ was not set to a valid address family,
 or to
 .B ENOSPC
 if the converted address string would exceed the size of
-.IR buf ,
+.IR dst
 given by the
 .I cnt
 argument.

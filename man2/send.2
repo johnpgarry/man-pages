@@ -29,7 +29,7 @@
 .\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 .\" SUCH DAMAGE.
 .\"
-.\"     $Id: send.2,v 1.5 1999/06/12 10:11:39 freitag Exp $
+.\"     $Id: send.2,v 1.9 2000/12/20 18:10:31 ak Exp $
 .\"
 .\" Modified Sat Jul 24 01:15:33 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 17:55:49 1996 by Eric S. Raymond <esr@thyrsus.com>
@@ -127,12 +127,42 @@ on errors on stream oriented sockets when the other end breaks the
 connection. The 
 .B EPIPE
 error is still returned.
+.TP
+.BR MSG_CONFIRM " (Linux 2.3+ only)"
+Tell the link layer that forward process happened: you got a successful
+reply from the other side. If the link layer doesn't get this 
+it'll regularly reprobe the neighbour (e.g. via a unicast ARP).
+Only valid on 
+.B SOCK_DGRAM
+and
+.B SOCK_RAW
+sockets and currently only implemented for IPv4 and IPv6. See
+.BR arp (7)
+for details.
 .PP
-See 
-.BR recv (2)
-for a description of the
+The definition of the
 .I msghdr
-structure. You may send control information using the 
+structure follows. See 
+.BR recv (2)
+and below for an exact description of its fields.
+.IP
+.RS
+.nf
+.ta 4n 17n 33n
+struct msghdr {
+	void	* msg_name;	/* optional address */
+	socklen_t	msg_namelen;	/* size of address */
+	struct iovec	* msg_iov;	/* scatter/gather array */
+	size_t	msg_iovlen;	/* # elements in msg_iov */
+	void	* msg_control;	/* ancillary data, see below */
+	socklen_t	msg_controllen;	/* ancillary data buffer len */
+	int	msg_flags;	/* flags on received message */
+};
+.ta
+.fi
+.RE
+.PP
+You may send control information using the 
 .I msg_control 
 and 
 .I msg_controllen 
@@ -141,7 +171,7 @@ per socket by the
 .B net.core.optmem_max 
 sysctl; see
 .BR socket (7).
-.SH "RETURN VALUES"
+.SH "RETURN VALUE"
 The calls return the number of characters sent, or \-1
 if an error occurred.
 .SH ERRORS
@@ -194,6 +224,9 @@ unless
 is set.
 .SH "CONFORMING TO"
 4.4BSD, SVr4, POSIX 1003.1g draft (these function calls appeared in 4.2BSD).
+
+.B MSG_CONFIRM 
+is a Linux extension.
 .SH NOTE
 The prototypes given above follow the Single Unix Specification,
 as glibc2 also does; the

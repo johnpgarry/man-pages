@@ -11,7 +11,7 @@ chmod \- change access permissions of files
 .BI "chmod [" options "] " "mode file..."
 .sp
 POSIX options:
-.B [\-R]
+.B "[\-R] [\-\-]"
 .sp
 Austin draft options:
 .B [\-R]
@@ -93,6 +93,9 @@ ignores symbolic links encountered during recursive directory traversals.
 .TP
 .B "\-R"
 Recursively change permissions of directories and their contents.
+.TP
+.B "\-\-"
+Terminate option list.
 .SH "ADDITIONAL GNU DESCRIPTION"
 A GNU extension (new in fileutils 4.0) allows one to use
 .BI "\-\-reference=" "rfile"
@@ -106,7 +109,7 @@ Verbosely describe the action for each
 whose permissions actually changes.
 .TP
 .B "\-f, \-\-silent, \-\-quiet"
-Do not print error messages about files whose permissions cannot bechanged.
+Do not print error messages about files whose permissions cannot be changed.
 .TP
 .B "\-v, \-\-verbose"
 Verbosely describe the action or non-action taken for every
@@ -152,3 +155,10 @@ as found in the fileutils-4.0 package;
 other versions may differ slightly.
 Mail corrections and additions to aeb@cwi.nl.
 Report bugs in the program to fileutils-bugs@gnu.ai.mit.edu.
+.SH "SEE ALSO"
+.BR chattr (1),
+.BR chown (1),
+.BR install (1),
+.BR chmod (2),
+.BR stat (2),
+.BR umask (2)

@@ -9,7 +9,7 @@
 touch \- change file timestamps
 .SH SYNOPSIS
 .B touch
-.BI "[\-acm][\-r " ref_file "|\-t " time "] " file...
+.BI "[\-acm][\-r " ref_file "|\-t " time "] [\-\-] " file...
 .sp
 Obsolescent version:
 .br
@@ -74,6 +74,9 @@ in the range 0-61 so that it is possible to refer to leap seconds.
 The resulting time is taken as a time for the time zone specified by
 the environment variable TZ. It is an error if the resulting time
 precedes 1 January 1970.
+.TP
+.B "\-\-"
+Terminate option list.
 .SH "POSIX DETAILS"
 The second form of invocation has the disadvantage that there is
 some ambiguity as to whether

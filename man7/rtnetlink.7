@@ -7,7 +7,7 @@
 .\" of the modification is added to the header.
 .\" Based on the original comments from Alexey Kuznetsov, writen with
 .\" help from Matthew Wilcox. 
-.\" $Id: rtnetlink.7,v 1.5 1999/05/14 16:57:24 freitag Exp $
+.\" $Id: rtnetlink.7,v 1.8 2000/01/22 01:55:04 freitag Exp $
 .TH RTNETLINK  7 "30 Apr 1999" "Linux Man Page" "Linux Programmer's Manual" 
 .SH NAME
 rtnetlink, NETLINK_ROUTE \- Linux IPv4 routing socket.
@@ -57,7 +57,6 @@ see
 .SH MESSAGES
 Rtnetlink consists of these message types
 (in addition to standard netlink messages):
-
 .TP
 .BR RTM_NEWLINK ", " RTM_DELLINK ", " RTM_GETLINK
 Create, remove or get information about a specific network interface. 
@@ -72,7 +71,6 @@ structures.
 struct ifinfomsg
 {
 	unsigned char	ifi_family;	/* AF_UNSPEC */
-	unsigned char	__ifi_pad;	/* unused */
 	unsigned short	ifi_type;	/* Device type */ 
 	int	ifi_index;		/* Interface index   */
 	unsigned int	ifi_flags;	/* Device flags  */
@@ -108,7 +106,6 @@ IFLA_STATS:T{
 struct net_device_stats
 T}:Interface Statistics.
 .TE
-
 .TP	
 .BR RTM_NEWADDR ", " RTM_DELADDR ", " RTM_GETADDR	
 Add, remove or receive information about an IP address associated with 
@@ -168,7 +165,6 @@ IFA_CACHEINFO:struct ifa_cacheinfo:Address information.
 .TE
 
 .\" XXX struct ifa_cacheinfo
-
 .TP	
 .BR RTM_NEWROUTE ", " RTM_DELROUTE ", " RTM_GETROUTE	
 Create, remove or receive information about a network route.
@@ -176,7 +172,18 @@ These messages contain an
 .B rtmsg
 structure with an optional sequence of 
 .B rtattr
-structures following. 
+structures following. For
+.B RTM_GETROUTE
+setting 
+.B rtm_dst_len 
+and 
+.B rtm_src_len 
+to 0 means you get all entries for the specified routing table.
+For the other fields except 
+.B rtm_table 
+and 
+.B rtm_protocol
+0 is the wildcard.
 
 .nf
 .ta 4 19 32
@@ -319,7 +326,6 @@ RTA_CACHEINFO::
 .TE
 
 .B Fill these values in!
-
 .TP	
 .BR RTM_NEWNEIGH ", " RTM_DELNEIGH  ", " RTM_GETNEIGH	
 Add, remove or receive information about a neighbour table entry (e.g. an ARP
@@ -332,8 +338,6 @@ structure.
 struct ndmsg
 {
 	unsigned char	ndm_family;
-	unsigned char	ndm_pad1;
-	unsigned short	ndm_pad2;
 	int	ndm_ifindex;	/* Interface index */
 	__u16	ndm_state;	/* State */ 
 	__u8	ndm_flags;	/* Flags */
@@ -400,12 +404,10 @@ field is
 then a
 .B struct nda_cacheinfo
 header follows
-
 .TP
 .BR RTM_NEWRULE ", " RTM_DELRULE ", " RTM_GETRULE
 Add, delete or retrieve a routing rule. Carries a 
 .B struct rtmsg
-
 .TP
 .BR RTM_NEWQDISC ", " RTM_DELQDISC ", " RTM_GETQDISC
 Add, remove or get a queueing discipline.  The message contains a
@@ -418,8 +420,6 @@ attributes.
 struct tcmsg
 {
 	unsigned char	tcm_family;
-	unsigned char	tcm__pad1;
-	unsigned short	tcm__pad2;
 	int	tcm_ifindex;	/* interface index */
 	__u32	tcm_handle;	/* Qdisc handle */ 
 	__u32	tcm_parent;	/* Parent qdisc */
@@ -444,25 +444,20 @@ TCA_RATE:struct tc_estimator:Rate limit.
 
 In addition various other qdisc module specific attributes are allowed.
 For more information see the appropiate include files.
-
 .TP
 .BR RTM_NEWTCLASS ", " RTM_DELTCLASS ", " RTM_GETTCLASS
 Add, remove or get a traffic class.  These messages contain a
 .B struct tcmsg
 as described above.
-
 .TP
 .BR RTM_NEWTFILTER ", " RTM_DELTFILTER ", " RTM_GETTFILTER
 Add, remove or receive information about a traffic filter.  These
 messages contain a
 .B struct tcmsg
 as described above.
-
 .SH VERSIONS
-
 .B rtnetlink 
 is a new feature of Linux 2.2.
-
 .SH BUGS
 This manual page is lacking and incomplete.
 

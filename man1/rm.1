@@ -11,7 +11,7 @@ rm \- remove files or directories
 .BI "rm [" options "] " file...
 .sp
 POSIX options:
-.B [\-fiRr]
+.B "[\-fiRr] [\-\-]"
 .sp
 GNU options (shortest form):
 .B [\-dfirvR]
@@ -50,6 +50,9 @@ Prompt for confirmation.
 .TP
 .BR "\-r" " or " "\-R"
 Recursively remove directory trees.
+.TP
+.B "\-\-"
+Terminate option list.
 .SH "SVID DETAILS"
 The System V Interface Definition forbids removal of the
 last link to an executable binary file that is being executed.

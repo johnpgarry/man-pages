@@ -11,7 +11,7 @@ rmdir \- remove empty directories
 .BI "rmdir [" options "] " directory...
 .sp
 POSIX options:
-.B "[\-p]"
+.B "[\-p] [\-\-]"
 .sp
 GNU options (shortest form):
 .B [\-p]
@@ -33,6 +33,9 @@ includes more than one pathname component, remove it, then strip
 the last component and remove the resulting directory, etc., until
 all components have been removed. Thus, `rmdir \-p a/b/c' is
 equivalent to `rmdir a/b/c; rmdir a/b; rmdir a'.
+.TP
+.B "\-\-"
+Terminate option list.
 .SH GNU OPTIONS
 .TP
 .B "\-\-ignore\-fail\-on\-non\-empty"

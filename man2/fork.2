@@ -26,14 +26,15 @@
 .\" Modified Sat Jul 24 13:22:07 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
 .\"   Referenced 'clone(2)'.
-.\" Modified 10 June 1995 by Andries Brouwer (aeb@cwi.nl)
-.\" Modified 18 Apr 1996 by Andries Brouwer (aeb@cwi.nl)
-.\" Modified 1 Nov 1999 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified 1995-06-10, 1996-04-18, 1999-11-01, 2000-12-24
+.\"   by Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH FORK 2 "10 June 1995" "Linux 1.2.9" "Linux Programmer's Manual"
 .SH NAME
 fork \- create a child process
 .SH SYNOPSIS
+.B #include <sys/types.h>
+.br
 .B #include <unistd.h>
 .sp
 .B pid_t fork(void);

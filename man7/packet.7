@@ -3,7 +3,7 @@
 .\" of this page provided the header is included verbatim,
 .\" and in case of nontrivial modification author and date
 .\" of the modification is added to the header.
-.\" $Id: packet.7,v 1.7 1999/06/12 10:11:38 freitag Exp $
+.\" $Id: packet.7,v 1.13 2000/08/14 08:03:45 ak Exp $
 .TH PACKET  7 "29 Apr 1999" "Linux Man Page" "Linux Programmer's Manual" 
 .SH NAME
 packet, PF_PACKET \- packet interface on device level. 
@@ -102,14 +102,22 @@ The
 .BR connect (2)
 operation is not supported on packet sockets.
 
+When the
+.B MSG_TRUNC
+flag is passed to
+.BR recvmsg (2),
+.BR recv (2),
+.BR recvfrom (2)
+the real length of the packet on the wire is always returned, even when it
+is longer than the buffer.
+
 .SH ADDRESS TYPES
 The sockaddr_ll is a device independent physical layer address.
 
 .RS
 .nf
 .ta 4n 20n 35n
-struct sockaddr_ll
-{
+struct sockaddr_ll {
 	unsigned short	sll_family;	/* Always AF_PACKET */
 	unsigned short	sll_protocol;	/* Physical layer protocol */
 	int	sll_ifindex;	/* Interface number */
@@ -126,12 +134,12 @@ struct sockaddr_ll
 is the standard ethernet protocol type in network order as defined
 in the
 .B linux/if_ether.h   
-include file. 
+include file.  It defaults to the socket's protocol.
 .B sll_ifindex 
 is the interface index of the interface
 (see
-.BR netdevice (2)
-); 0 matches any interface (only legal for binding). 
+.BR netdevice (2));
+0 matches any interface (only legal for binding). 
 .B sll_hatype 
 is a ARP type as defined in the 
 .B linux/if_arp.h 
@@ -156,8 +164,23 @@ and
 contain the physical layer (e.g. IEEE 802.3) address and its length. The 
 exact interpretation depends on the device.
 
-.SH SOCKET OPTIONS
+When you send packets it is enough to specify
+.BR sll_family ,
+.BR sll_addr ,
+.BR sll_halen ,
+.BR sll_ifindex .
+The other fields should be 0.
+.B sll_hatype
+and
+.B sll_pkttype
+are set on received packets for your information.
+For bind only
+.B sll_protocol
+and
+.B sll_ifindex
+are used.
 
+.SH SOCKET OPTIONS
 Packet sockets can be used to configure physical layer multicasting 
 and promiscuous mode. It works by calling 
 .BR setsockopt (2) 
@@ -359,6 +382,12 @@ This is fixed in later glibc versions and also does not occur on libc5 systems.
 The IEEE 802.2/803.3 LLC handling could be considered as a bug. 
 
 Socket filters are not documented.
+
+The
+.I MSG_TRUNC
+recvmsg extension is an ugly hack and should be replaced by a control message.
+There is currently no way to get the original destination address of
+packets via SOCK_DGRAM.
 
 .SH CREDITS
 This man page was writen by Andi Kleen with help from Matthew Wilcox.

@@ -11,7 +11,7 @@ du \- estimate file space usage
 .BI "du [" options "] [" file... ]
 .sp
 POSIX options:
-.B [\-askx]
+.B "[\-askx] [\-\-]"
 .sp
 GNU options (shortest form):
 .B [\-abcDhHklLmsSxX]
@@ -52,6 +52,9 @@ not for their subdirectories.
 .TP
 .B "\-x"
 Only count space on the same device as the argument given.
+.TP
+.B "\-\-"
+Terminate option list.
 .SH "GNU OPTIONS"
 .TP
 .B "\-a, \-\-all"

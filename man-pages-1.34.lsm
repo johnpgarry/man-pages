@@ -1,13 +1,13 @@
 Begin3
 Title:          Section 2, 3, 4, 5 and 7 man pages for Linux
-Version:        1.33
-Entered-date:   2000-12-12
+Version:        1.34
+Entered-date:   2000-12-24
 Description:    Over 950 man pages for Linux
 Keywords:       man pages
 Author:         several
 Maintained-by:  Andries E. Brouwer (aeb@cwi.nl)
 Primary-site:   ftp.win.tue.nl:/pub/linux-local/manpages
-                687k man-pages-1.33.tar.gz
+                694k man-pages-1.34.tar.gz
 Alternate-site: ftp.xx.kernel.org /pub/linux/docs/manpages
 Copying-policy: several; all freely distributable if nroff source included
 End

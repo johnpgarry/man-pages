@@ -13,7 +13,7 @@ mv \- move (rename) files
 .BI "mv [" "option..." "] " "source... target"
 .sp
 POSIX options:
-.B [\-fi]
+.B "[\-fi] [\-\-]"
 .sp
 GNU options (shortest form):
 .BI "[\-bfiuv] [\-S " suffix "] [\-V {numbered,existing,simple}] "
@@ -68,6 +68,9 @@ Prompt for confirmation when
 .I destination
 exists.
 (In case both \-f and \-i are given, the last one given takes effect.)
+.TP
+.B "\-\-"
+Terminate option list.
 .SH "GNU DETAILS"
 The GNU implementation (in fileutils-3.16) is broken in the sense that
 .B mv

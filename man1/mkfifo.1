@@ -11,7 +11,7 @@ mkfifo \- make FIFOs (named pipes)
 .BI "mkfifo [" options "] " file...
 .sp
 POSIX options:
-.BI "[\-m " mode ]
+.BI "[\-m " mode "] [\-\-]"
 .sp
 GNU options (shortest form):
 .BI "[\-m " mode "] [\-\-help] [\-\-version] [\-\-]"
@@ -35,6 +35,9 @@ Set the mode of created FIFOs to
 which can be symbolic as in
 .BR chmod (1)
 and uses the default mode as the point of departure.
+.TP
+.B "\-\-"
+Terminate option list.
 .SH "GNU STANDARD OPTIONS"
 .TP
 .B "\-\-help"

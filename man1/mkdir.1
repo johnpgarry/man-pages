@@ -11,7 +11,7 @@ mkdir \- make directories
 .BI "mkdir [" options "] " directory...
 .sp
 POSIX options:
-.BI "[\-p] [\-m " mode ]
+.BI "[\-p] [\-m " mode "] [\-\-]"
 .sp
 GNU options (shortest form):
 .BI "[\-p] [\-m " mode "] [\-\-verbose]"
@@ -44,6 +44,9 @@ but `mkdir \-p /a' is not.)
 Print a message for each created directory.  This is most useful
 with
 .BR "\-\-parents" .
+.TP
+.B "\-\-"
+Terminate option list.
 .SH "GNU STANDARD OPTIONS"
 .TP
 .B "\-\-help"

@@ -15,7 +15,7 @@ ls, dir, vdir \- list directory contents
 .BI "vdir [" file... ]
 .sp
 POSIX options:
-.BI "[\-CFRacdilqrtu1]"
+.BI "[\-CFRacdilqrtu1] [\-\-]"
 .sp
 GNU options (shortest form):
 .B [\-1abcdfghiklmnopqrstuvwxABCDFGHLNQRSUX]
@@ -122,6 +122,9 @@ for sorting (with \-t) or listing (with \-l).
 .TP
 .B "\-1"
 For single-column output.
+.TP
+.B "\-\-"
+Terminate option list.
 .SH "GNU DETAILS"
 If standard output is a terminal, the output is in columns (sorted vertically).
 .PP

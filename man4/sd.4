@@ -65,7 +65,9 @@ partition on the second SCSI drive in the system.
 At this time, only block devices are provided.  Raw devices have not yet
 been implemented.
 .SH DESCRIPTION
-The following ioctl's are provided:
+The following
+.IR ioctl s
+are provided:
 .TP
 HDIO_GETGEO
 .RS
@@ -110,10 +112,11 @@ Forces a re-read of the SCSI disk partition tables.  No parameter is needed.
 
 The
 .BR scsi (4)
-ioctls are also supported.  If the
+.IR ioctl s
+are also supported.  If the
 .BR ioctl (2)
 parameter is required, and it is NULL, then
-.BR ioctl (2)
+.IR ioctl ()
 will return -EINVAL.
 .SH FILES
 /dev/sd[a-h]: the whole device

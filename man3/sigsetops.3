@@ -69,8 +69,7 @@ tests whether
 .I signum
 is a member of 
 .I set.
-
-.SH "RETURN VALUES"
+.SH "RETURN VALUE"
 .BR sigemptyset ", " sigfullset ", " sigaddset
 and
 .B sigdelset 
@@ -84,16 +83,15 @@ is a member of
 0 if
 .I signum
 is not a member, and -1 on error.
-
 .SH ERRORS
 .TP
 .B EINVAL
 .I sig
 is not a valid signal.
-
 .SH "CONFORMING TO"
 POSIX
-
 .SH "SEE ALSO"
-.BR sigaction "(2), " sigpending "(2), " sigprocmask "(2), " 
-.BR sigsuspend "(2)"
+.BR sigaction (2),
+.BR sigpending (2),
+.BR sigprocmask (2),
+.BR sigsuspend (2)

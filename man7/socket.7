@@ -6,7 +6,7 @@
 .\" of this page provided the header is included verbatim,
 .\" and in case of nontrivial modification author and date
 .\" of the modification is added to the header.
-.\" $Id: socket.7,v 1.6 1999/06/12 10:11:40 freitag Exp $
+.\" $Id: socket.7,v 1.12 2000/09/15 13:15:26 ak Exp $
 .TH SOCKET  7 "7 May 1999" "Linux Man Page" "Linux Programmer's Manual" 
 .SH NAME
 socket - Linux socket interface
@@ -103,19 +103,18 @@ It is possible to do non-blocking IO on sockets by setting the
 .B O_NONBLOCK
 flag on a socket file descriptor using
 .BR fcntl (2).
-.B O_NONBLOCK
-is inherited through an accept. 
-Then all operations that would normally block will (usually)
+Then all operations that would block will (usually)
 return with
-.BR EAGAIN ;
+.B EAGAIN 
+(operation should be retried later);
 .BR connect (2) 
-returns an
+will return 
 .B EINPROGRESS
-error in this case.
+error. 
 The user can then wait for various events via
 .BR poll (2)
 or
-.BR select (2).
+.BR select (2). 
 .PP
 .TS
 tab(:) allbox;
@@ -257,12 +256,17 @@ structure. Only valid as a
 .B SO_BINDTODEVICE
 Bind this socket to a particular device like \(lqeth0\(rq,
 as specified in the passed interface name. If the
-name is an empty string or the option length is zero, the socket device binding is removed.
-The passed option is a variable-length null terminated interface name string 
-with the maximum size of 
-.BR IFNAMSIZ . 
+name is an empty string or the option length is zero, the socket device
+binding is removed. The passed option is a variable-length null terminated
+interface name string with the maximum size of 
+.BR IFNAMSIZ .
 If a socket is bound to an interface,
-only packets received from that particular interface are processed by the socket.
+only packets received from that particular interface are processed by the 
+socket. Note that this only works for some socket types, particularly
+.B AF_INET
+sockets. It is not supported for packet sockets (use normal 
+.BR bind (8)
+there).
 .TP
 .B SO_DEBUG 
 Enable socket debugging. Only allowed for processes with the
@@ -341,9 +345,10 @@ When enabled, a
 .BR close (2)
 or
 .BR shutdown (2)
-will not return until all queued messages for the socket have been successfully 
-sent or the linger timeout has been reached. Otherwise, the call returns immediately
-and the closing is done in the background. When the socket is closed as part of
+will not return until all queued messages for the socket have been
+successfully sent or the linger timeout has been reached. Otherwise,
+the call returns immediately and the closing is done in the background.
+When the socket is closed as part of
 .BR exit (2),
 it always lingers in the background.
 .TP
@@ -506,7 +511,7 @@ The same as the SIOCGPGRP ioctl.
 The same as the SIOCSPGRP ioctl
 .SH NOTES
 Linux assumes that half of the send/receive buffer is used for internal
-kernel structures; thus the sysctls are twice than what can be observed
+kernel structures; thus the sysctls are twice what can be observed
 on the wire.
 .SH BUGS
 The 

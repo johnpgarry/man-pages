@@ -167,7 +167,7 @@ on the same line as
 .BR \&.SH ,
 then place the heading in double quotes.  Traditional or suggested
 headings include:
-NAME, SYNOPSIS, DESCRIPTION, RETURN VALUE (or RETURN VALUES),
+NAME, SYNOPSIS, DESCRIPTION, RETURN VALUE,
 EXIT STATUS, ERROR HANDLING, ERRORS,
 OPTIONS, USAGE, FILES, ENVIRONMENT, DIAGNOSTICS, SECURITY,
 CONFORMING TO, NOTES,
@@ -226,16 +226,14 @@ section (and just place an overview in the
 .B DESCRIPTION
 section).
 .TP
-.B RETURN VALUES
+.B RETURN VALUE
 gives a
-list of the values the program or library routine will return to the caller
+list of the values the library routine will return to the caller
 and the conditions that cause these values to be returned.
 .TP
 .B EXIT STATUS
 lists the possible exit status values or a program and
-the conditions that cause these values to be returned
-(some man pages use RETURN VALUES instead of EXIT STATUS,
-which is fine).
+the conditions that cause these values to be returned.
 .TP
 .B OPTIONS
 describes the options accepted by the program and how they change
