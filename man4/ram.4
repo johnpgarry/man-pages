@@ -30,7 +30,8 @@ ram \- ram disk device
 It is typically created by:
 .RS
 .sp
-mknod -m 660 /dev/ram b 1 0
+mknod -m 660 /dev/ram b 1 1
+.br
 chown root.disk /dev/ram
 .sp
 .RE

@@ -24,8 +24,9 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Wed Jul 21 22:40:25 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Feb 18 15:27:48 1995 by Michael Haardt
 .\"
-.TH CLOSE 2 "21 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH CLOSE 2 "February 18, 1995" "" "Linux Programmer's Manual"
 .SH NAME
 close \- close a file descriptor
 .SH SYNOPSIS
@@ -38,7 +39,7 @@ close \- close a file descriptor
 .B close
 closes a file descriptor, so that it no longer refers to any file and
 may be reused.
-
+.PP
 If
 .I fd
 is the last copy of a particular file descriptor the resources
@@ -57,6 +58,16 @@ returns zero on success, or \-1 if an error occurred.
 isn't a valid open file descriptor.
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+.SH "NOTES"
+Not checking the return value of close is a common but nevertheless
+serious programming error.  File system implementations which use
+techniques as ``write-behind'' to increase performance may lead to
+.IR write (2)
+succeeding, although the data has not been written yet.  The error
+status may be reported at a later write operation, but it is guaranteed
+to be reported on closing the file.  Not checking the return value when
+closing the file may lead to silent loss of data.  This can especially
+be observed with NFS and disk quotas.
 .SH "SEE ALSO"
 .BR open "(2), " fcntl "(2), " shutdown (2),
-.BR unlink "(2), " fclose "(3).
+.BR unlink "(2), " fclose (3).

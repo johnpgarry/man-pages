@@ -1,5 +1,5 @@
-.\" t
-.\" Copyright 1993-1994 Daniel Quinlan (quinlan@yggdrasil.com)
+'\" t
+.\" Copyright 1993-1995 Daniel Quinlan (quinlan@yggdrasil.com)
 .\"
 .\" This is free documentation; you can redistribute it and/or
 .\" modify it under the terms of the GNU General Public License as
@@ -21,15 +21,13 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
-.TH ISO_8859-1 7 "11 May 1994" "" "Linux Programmer's Manual"
+.TH ISO_8859-1 7 "19 Jan 1995" "" "Linux Programmer's Manual"
 .SH NAME
 iso_8859_1 \- map of character set
-
 .SH SYNOPSIS
 Characters specified according to the
 .I ISO 8859 Latin-1
 encoding for European languages.
-
 .SH DESCRIPTION
 ISO 8859 includes several 8-bit ASCII extensions. Especially
 .I ISO 8859-1,
@@ -42,16 +40,21 @@ tab(@);
 l l.
 ISO 8859-1@west European languages (Latin-1)
 ISO 8859-2@east European languages (Latin-2)
-ISO 8859-3@other Latin languages (Latin-3)
-ISO 8859-4@north European languages (Latin-4)
+ISO 8859-3@southeast European and miscellaneous languages (Latin-3)
+ISO 8859-4@Scandinavia/Baltic languages (Latin-4)
 ISO 8859-5@Latin/Cyrillic
 ISO 8859-6@Latin/Arabic
 ISO 8859-7@Latin/Greek
 ISO 8859-8@Latin/Hebrew
 ISO 8859-9@Latin-1 modification for Turkey (Latin-5)
-ISO 8859-10@Baltic countries (under preparation)
+ISO 8859-10@Lappish/Nordic/Eskimo languages (Latin-6)
 .TE
 
+.I ISO 8859-1
+supports the following languages: Afrikaans, Basque, Catalan, Danish,
+Dutch, English, Faeroese, Finnish, French, Galician, German,
+Icelandic, Irish, Italian, Norwegian, Portuguese, Spanish, and
+Swedish.
 .LP
 .I "ISO 8859 Latin-1 Character Set"
 
@@ -62,7 +65,7 @@ character set.
 The first field is the octal code for the character, the second is the
 name (patterned after the GNU Emacs naming scheme in the iso-insert.el
 library), the third is the equivalent TeX command, and the fourth is
-the character itself (as best your system can display it).
+the character itself (however your terminal may display it).
 
 .TS
 tab(@);
@@ -166,6 +169,5 @@ _
 376@thorn@@þ
 377@y-umlaut@\\"{y}@ÿ
 .TE
-
 .SH SEE ALSO
 .BR ascii (7)

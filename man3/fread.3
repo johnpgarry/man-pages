@@ -36,6 +36,7 @@
 .\"     @(#)fread.3	6.6 (Berkeley) 6/29/91
 .\"
 .\" Converted for Linux, Mon Nov 29 15:37:33 1993, faith@cs.unc.edu
+.\" Sun Feb 19 21:26:54 1995 by faith, return values
 .\"
 .TH FREAD 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
@@ -75,10 +76,10 @@ The functions
 .B fread
 and
 .B fwrite
-advance the file position indicator for the stream by the number of
-characters successfully read or written and return that number.  If an
-error occurs, or the end-of-file is reached, the return value is a short
-character count (or zero).
+advance the file position indicator for the stream by the number of items
+(i.e., not the number of characters) successfully read or written and
+return that number.  If an error occurs, or the end-of-file is reached, the
+return value is a short item count (or zero).
 .PP
 The function
 .B fread

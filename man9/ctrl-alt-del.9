@@ -7,11 +7,11 @@
 .\"  If you modify this file, please put a date stamp and HOW you
 .\"  changed this file.  Thanks.   -DM
 .\"
+.\" Modified typesetting, Sun Feb 26 15:11:19 1995, faith@cs.unc.edu
+.\"
 .TH CTRL_ALT_DEL 9 "July 6, 1993" "Linux 0.99.10" "Kernel Reference Guide"
 .SH NAME
-ctrl_alt_del \- routes the keyboard interrupt
-.B ctrl-alt-del 
-key sequence
+ctrl_alt_del \- routes the keyboard interrupt ctrl-alt-del key sequence
 .SH SYNOPSIS
 .B linux/kernel/sys.c
 
@@ -31,4 +31,4 @@ The default of this function is to do hard resets immediately.
 .SH AUTHOR
 Linus Torvalds
 .SH "SEE ALSO"
-.IR reboot "(2), " reset_hard_now "(9), " sync "(2)"
+.BR reboot "(2), " reset_hard_now "(9), " sync "(2)"

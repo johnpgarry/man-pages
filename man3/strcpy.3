@@ -44,6 +44,14 @@ The \fBstrcpy()\fP function copies the string pointed to be \fIsrc\fP
 .PP
 The \fBstrncpy()\fP function is similar, except that only the first
 \fIn\fP bytes of \fIsrc\fP are copied.
+.PP
+In the case where the length of
+.I src
+is less than that of
+.IR n ,
+the remainder of
+.I dest
+will be padded with nulls.
 .SH "RETURN VALUE"
 The \fBstrcpy()\fP and \fBstrncpy()\fP functions return a pointer to
 the destination string \fIdest\fP.

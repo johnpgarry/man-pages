@@ -25,7 +25,7 @@
 .\"
 .\" Modified Sat Jul 24 13:35:59 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Nov 28 17:19:01 1993 by Rik Faith (faith@cs.unc.edu)
-.\"
+.\" "
 .TH WRITE 2 "28 November 1993" Linux "Linux Programmer's Manual"
 .SH NAME
 write \- write to a file descriptor
@@ -45,7 +45,7 @@ from the buffer starting at
 .I buf.
 .SH "RETURN VALUE"
 On success, the number of bytes written are returned (zero indicates end of
-file).  On error, \-1 is returned, and
+file).  On error, \-1 (or MAXINT, as size_t is unsigned) is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS

@@ -27,7 +27,7 @@
 .\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
 .\"   Added text about calling restriction (new in kernel 1.1.20 I believe).
 .\"   N.B. calling "idle" from user process used to hang process!
-.\"
+.\" "
 .TH IDLE 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
 .SH NAME
 idle \- make process 0 idle
@@ -47,7 +47,7 @@ Only process 0 may call
 .BR idle .
 Any user process, even a process with super-user permission,
 will receive
-+.BR EPERM .
+.BR EPERM .
 .SH "RETURN VALUE"
 .B idle
 never returns for process 0, and always returns \-1 for a user process.

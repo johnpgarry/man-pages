@@ -1,6 +1,7 @@
 .\" Hey Emacs! This file is -*- nroff -*- source.
 .\"
 .\" Copyright (c) 1992 Drew Eckhardt (drew@cs.colorado.edu), March 28, 1992
+.\" Parts Copyright (c) 1995 Nicolai Langfeldt (janl@ifi.uio.no), 1/1/95
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -25,7 +26,7 @@
 .\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
 .\" Modified Sat Jul 24 10:54:27 1993 by Rik Faith (faith@cs.unc.edu)
 .\" 
-.TH STAT 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH STAT 2 "1 January 1995" "Linux 1.1.75" "Linux Programmer's Manual"
 .SH NAME
 stat, fstat, lstat \- get file status
 .SH SYNOPSIS
@@ -39,8 +40,34 @@ stat, fstat, lstat \- get file status
 .br
 .BI "int lstat(const char *" file_name ", struct stat *" buf );
 .SH DESCRIPTION
-.BR stat ", " fstat ", and " lstat
-return a
+.PP
+These functions return information about the specified file.  You do
+not need any access rights to the file to get this information but you
+need search rights to all directories named in the path leading to the
+file.
+.PP
+.B stat
+stats the file pointed to by 
+.I file_name
+and fills in
+.IR buf .
+
+.B lstat
+is identical to
+.BR stat ,
+only the link itself is stated, not the file that is obtained by tracing
+the links.
+
+.B fstat
+is identical to stat, only the open file pointed to by 
+.I filedes
+(as returned by
+.I fopen(3)
+) is stated in place of 
+.IR file_name .
+
+.PP
+They all return a
 .I stat
 structure, which is declared as follows:
 .PP
@@ -85,17 +112,41 @@ Traditionally,
 .I st_ctime
 is changed by writing or by setting inode information (i.e., owner, group,
 link count, mode, etc.).
-
+.PP
+The following macros are defined to check the file type:
+.RS
+.TP 1.2i
+S_ISLNK(m)
+is it a symbolic link?
+.TP
+S_ISREG(m)
+regular file?
+.TP
+S_ISDIR(m)
+directory?
+.TP
+S_ISCHR(m)
+character device?
+.TP
+S_ISBLK(m)
+block device?
+.TP
+S_ISFIFO(m)
+fifo?
+.TP
+S_ISSOCK(m)
+socket?
+.RE
+.PP
 The following flags are defined for the
 .I st_mode
 field:
-
 .RS
-.TP 0.8i
+.TP 0.9i
 S_IFMT
-0170000 type of file
+00170000 bitmask for the file type bitfields
 .TP
-S_IFSOCK
+S_IFSOCK 
 0140000 socket
 .TP
 S_IFLNK
@@ -117,71 +168,50 @@ S_IFIFO
 0010000 fifo
 .TP
 S_ISUID
-04000 set user ID on execution
+0004000 set UID bit
 .TP
 S_ISGID
-02000 set group ID on execution
+0002000 set GID bit
 .TP
 S_ISVTX
-01000 sticky bit
+0001000 sticky bit
+.TP
+S_IRWXU
+00700 user (file owner) has read, write and execute permission
 .TP
 S_IRUSR (S_IREAD)
-00400 read by owner
+00400 user has read permission
 .TP
 S_IWUSR (S_IWRITE)
-00200 write by owner
+00200 user has write permission
 .TP
 S_IXUSR (S_IEXEC)
-00100 execute/search by owner
+00100 user has execute permission
+.TP
+S_IRWXG
+00070 group has read, write and execute permission
 .TP
 S_IRGRP
-00040 read by group
+00040 group has read permission
 .TP
 S_IWGRP
-00020 write by group
+00020 group has write permission
 .TP
 S_IXGRP
-00010 execute/search by group
+00010 group has execute permission
+.TP
+S_IRWXO
+00007 others have read, write and execute permission
 .TP
 S_IROTH
-00004 read by others
+00004 others have read permission
 .TP
 S_IWOTH
-00002 write by others
+00002 others have write permisson
 .TP
 S_IXOTH
-00001 execute/search by others
+00001 others have execute permission
 .RE
-.PP
-And the following macros are defined to utilize those fields:
-.sp
-.nf
-#define S_ISLNK(m)	(((m) & S_IFMT) == S_IFLNK)
-#define S_ISREG(m)	(((m) & S_IFMT) == S_IFREG)
-#define S_ISDIR(m)	(((m) & S_IFMT) == S_IFDIR)
-#define S_ISCHR(m)	(((m) & S_IFMT) == S_IFCHR)
-#define S_ISBLK(m)	(((m) & S_IFMT) == S_IFBLK)
-#define S_ISFIFO(m)	(((m) & S_IFMT) == S_IFIFO)
-#define S_ISSOCK(m)	(((m) & S_IFMT) == S_IFSOCK)
-.fi
-.PP
-.B stat
-stats the file pointed to by 
-.I file_name
-and fills in
-.IR buf .
-
-.B lstat
-is identical to
-.BR stat ,
-only the link itself is stated, not the file that is obtained by tracing
-the links.
-
-.B fstat
-is identical to stat, only the open file pointed to by 
-.I filedes
-is stated in place of 
-.IR file_name .
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno

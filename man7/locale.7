@@ -23,7 +23,7 @@
 .\" Modified Sat Jul 24 17:28:34 1993 by Rik Faith (faith@cs.unc.edu)
 .TH LOCALE 7  "April 24, 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
-locale \- Description of multi\-language support
+locale \- Description of multi-language support
 .SH SYNOPSIS
 .nf
 .B #include <locale.h>
@@ -162,15 +162,15 @@ struct lconv
 .fi
 .SH "CONFORMS TO"
 POSIX.1
-.SH BUGS
-At the moment, the only locales supported by Linux are the portable
-(and identical)
-.B """C"""
-and
-.B """POSIX"""
-locales.
 .PP
-There is no support for what is probably the most important thing of
-all, a message catalog.
+At the moment, the only locales supported by Linux are the portable
+.B """C"""
+,
+.B """POSIX"""
+(identical to the "C" locale),
+.B """ISO-8859-1"""
+(european latin-1) and
+.B """KOI-8"""
+(russian) locales.
 .SH "SEE ALSO"
 .BR setlocale "(3), " localeconf "(3), " locale "(1), " localedef (1)

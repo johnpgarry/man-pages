@@ -42,7 +42,7 @@ sigblock, sigmask \- block signals
 .BI "int sigblock(int " mask );
 ..br
 .BI "int sigmask( " signum );
-.Sh DESCRIPTION
+.SH DESCRIPTION
 This interface is made obsolete by:
 .BR sigprocmask (2).
 
@@ -64,7 +64,7 @@ or
 this restriction is silently imposed by the system.
 .SH "RETURN VALUES"
 The previous set of masked signals is returned.
-.Sh HISTORY
+.SH HISTORY
 These function calls appeared in BSD 4.3 and have been deprecated.
 .SH "SEE ALSO"
 .BR kill "(2), " sigprocmask "(2), " sigsetmask "(2), " siggetops (3)

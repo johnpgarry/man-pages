@@ -1,3 +1,4 @@
+'\" t
 .\" (c) 1993 by Thomas Koenig (ig25@rz.uni-karlsruhe.de)
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
@@ -21,6 +22,7 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\" Modified Sat Jul 24 17:35:15 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sun Feb 19 22:02:32 1995 by Rik Faith (faith@cs.unc.edu)
 .TH SUFFIXES 7  "April 25, 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
 suffixes \- list of file suffixes
@@ -74,6 +76,7 @@ Suffix	File type
  .fi	FORTRAN include files
  .gif	Graphics Interchange Format
  .gsf	Ghostscript fonts
+ .gz	File compressed using gzip(1)
  .h	C or C++ header files
  .hlp	Help file
  .i	C source after preprocessing
@@ -113,7 +116,7 @@ Suffix	File type
  .sym	Modula-2 compiled definition modules
  .tar	archive created by the tar(1) utility
  .tar.Z	tar archive compressed with compress(1)
- .tar.z	tar archive compressed with gzip(1)
+ .tar.gz	tar archive compressed with gzip(1)
  .taz	Tar archive compressed with compress(1)
  .tex	TeX or LaTeX source
  .texi	equivalent to \fI.texinfo\fR
@@ -125,7 +128,7 @@ Suffix	File type
  .uue	Binary file encoded with uuencode(1)
  .web	Donald Knuth's WEB
  .y	yacc(1) or bison(1) (parser generator) files
- .z	File compressed using gzip(1)
+ .z	File compressed using pack(1) (or an old gzip(1))
  .zoo	ZOO archive
  ~	EMACS or patch backup file
  rc	Startup file, e.g. .newsrc

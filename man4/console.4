@@ -1,41 +1,61 @@
-.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" Copyright (c) 1994 Andries Brouwer (aeb@cwi.nl), Mon Oct 31 21:03:19 MET 1994
 .\"
 .\" This is free documentation; you can redistribute it and/or
 .\" modify it under the terms of the GNU General Public License as
 .\" published by the Free Software Foundation; either version 2 of
 .\" the License, or (at your option) any later version.
 .\"
-.\" The GNU General Public License's references to "object code"
-.\" and "executables" are to be interpreted as the output of any
-.\" document formatting or typesetting system, including
-.\" intermediate and printed output.
-.\"
-.\" This manual is distributed in the hope that it will be useful,
-.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
-.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-.\" GNU General Public License for more details.
-.\"
-.\" You should have received a copy of the GNU General Public
-.\" License along with this manual; if not, write to the Free
-.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
-.\" USA.
-.\" 
-.\" Modified Sat Jul 24 16:53:39 1993 by Rik Faith (faith@cs.unc.edu)
-.TH CONSOLE 4 "January 21, 1992" "Linux" "Linux Programmer's Manual"
+.\" Modified, Sun Feb 26 14:58:45 1995, faith@cs.unc.edu
+.\" "
+.TH CONSOLE 4 "October 31, 1994" "Linux" "Linux Programmer's Manual"
 .SH NAME
-console \- console terminal
+console \- console terminal and virtual consoles
 .SH DESCRIPTION
-\fB/dev/console\fP is a character device with major number 4 and minor number
-0, usually of mode 0622 and owner root.tty.  It refers to the currently
-displayed virtual console terminal.
+A Linux system has up to 63 \fIvirtual consoles\fP
+(character devices with major number 4 and minor number 1 to 63),
+usually called \fB/dev/tty\fP\fIn\fP with 1 \(<= \fIn\fP \(<= 63.
+The current console is also addressed by
+\fB/dev/console\fP or \fB/dev/tty0\fP, the character device with
+major number 4 and minor number 0.
+The device files /dev/* are usually created using the script MAKEDEV,
+or using mknod(1), usually with mode 0622 and owner root.tty.
 .LP
-\fB/dev/tty[1-8]\fP are character devices for virtual console terminals,
-they have major number 4 and minor number 1 to 8, usually mode 0622 and owner
-root.tty.
+Before kernel version 1.1.54 the number of virtual consoles was
+compiled into the kernel (in tty.h: #define NR_CONSOLES 8)
+and could be changed by editing and recompiling.
+Since version 1.1.54 virtual consoles are created on the fly,
+as soon as they are needed.
+.LP
+Common ways to start a process on a console are: (a) tell init(8)
+(in inittab(5)) to start a getty(8) on the console; (b) ask open(1)
+to start a process on the console; (c) start X - it will find the
+first unused console, and display its output there.
+(There is also the ancient doshell(8).)
+.LP
+Common ways to switch consoles are: (a) use Alt+F\fIn\fP or
+Ctrl+Alt+F\fIn\fP to switch to console \fIn\fP; AltGr+F\fIn\fP
+might bring you to console \fIn\fP+12 [here Alt and AltGr refer
+to the left and right Alt keys, respectively];
+(b) use Alt+RightArrow or Alt+LeftArrow to cycle through
+the presently allocated consoles; (c) use the program chvt(1).
+(The key mapping is user settable, see loadkeys(1); the above mentioned
+key combinations are according to the default settings.)
+.LP
+The command \fBdisalloc\fP(8) will free the memory taken by the
+screen buffers for consoles that no longer have any associated process.
+
+.SH PROPERTIES
+Consoles carry a lot of state. I hope to document that some other time.
+The most important fact is that the consoles simulate vt100 terminals.
+In particular, a console is reset to the initial state by printing the two
+characters ESC c.
+
+.LP
 .SH FILES
-/dev/console
+.I /dev/console
 .br
-/dev/tty[1-8]
+.I /dev/tty*
 .SH "SEE ALSO"
-.BR mknod "(1), " chown "(1), " getty "(1), " termios "(2), "
-.BR tty "(4), " ttys (4)
+.BR console_ioctl "(4), " chvt "(1), " loadkeys "(1), " mknod "(1), " open (1),
+.BR tty "(4), " ttys "(4), " disalloc "(8), " getty "(8), " init (8),
+.BR resizecons "(8), " setfont "(8), " mapscrn (8)

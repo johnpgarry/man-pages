@@ -1,1 +1,201 @@
-.so man2/signal.2
+.\" Copyright (c) 1994 Mike Battersby <mike@starbug.apana.org.au>
+.\" based on work by faith@cs.unc.edu
+.\"
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
+.\"
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one
+.\" 
+.\" Since the Linux kernel and libraries are constantly changing, this
+.\" manual page may be incorrect or out-of-date.  The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\" 
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
+.\"
+.TH SIGACTION 2 "24 September 1994" "Linux 1.0" "Linux Programmer's Manual"
+
+.SH NAME
+sigaction, sigprocmask, sigpending, sigsuspend \- POSIX signal handling
+functions.
+
+.SH SYNOPSIS
+.B #include <signal.h>
+.sp 2
+.BI "int sigaction(int " signum ", const struct sigaction *" act ","
+.BI "struct sigaction *" oldact );
+.sp
+.BI "int sigprocmask(int " how ", const sigset_t *" set ", "
+.BI "sigset_t *" oldset );
+.sp
+.BI "int sigpending(sigset_t *" set );
+.sp
+.BI "int sigsuspend(const sigset_t *" mask );
+
+.SH DESCRIPTION
+The
+.B sigaction
+system call is used to change the action for a signal.  If
+.I act
+is non\-null, the new action for signal
+.I signum
+is installed from
+.IR act .
+If
+.I oldact
+is non\-null, the previous action is saved in
+.IR oldact .
+.PP
+The
+.B sigaction
+structure is defined as
+.sp
+.RS
+.nf
+struct sigaction {
+    void (*sa_handler)();
+    sigset_t sa_mask;
+    int sa_flags;
+    void (*sa_restorer)(void);
+}
+.fi
+.RE
+.PP
+.I sa_handler
+may be
+.B SIG_DFL
+for the default action, 
+.B SIG_IGN
+to ignore this signal, or a pointer to a signal handling function.
+.PP
+.I sa_mask
+gives a mask of signals which should be blocked during execution of
+the signal handler.
+.PP
+.I sa_flags
+is the bitwise OR of zero or more of the following flags
+.RS
+.TP
+.B SA_NOCLDSTOP
+Do not generate SIGCHLD signals when child processes terminate.
+.TP
+.B SA_ONESHOT
+Restore the signal action to the default state once the signal handler
+has been called.  This is the default behavior.
+.TP
+.B SA_RESTART
+The opposite to 
+.BR SA_ONESHOT ,
+do not restore the signal action.  This provides behavior compatible
+with BSD signal semantics.
+.TP
+.B SA_NOMASK
+Do not prevent the signal from being received from within its own signal
+handler.
+.RE
+.PP
+The
+.I sa_restorer
+element is obsolete and should not be used.
+.PP
+The
+.B sigprocmask
+call is used to change the list of currently blocked signals. The 
+behavior of the call is dependent on the value of
+.IR how ,
+as follows.
+.RS
+.TP
+.B SIG_BLOCK
+The set of blocked signals is the union of the current set and the
+.I set
+argument.
+.TP
+.B SIG_UNBLOCK
+The signals in
+.I set
+are removed from the current set of blocked signals.  It is legal to
+attempt to unblock a signal which is not blocked.
+.TP
+.B SIG_SETMASK
+The set of blocked signals is set to the argument
+.IR set .
+.RE
+.PP
+If
+.I oldset
+is non\-null, the previous value of the signal mask is stored in
+.IR oldset .
+.PP
+The
+.B sigpending
+call allows the examination of pending signals (ones which have been
+raised while blocked).  The signal mask of pending signals is stored
+in
+.IR set .
+.PP
+The
+.B sigsuspend
+call temporarily replaces the signal mask for the process with that
+given by 
+.I mask
+and then suspends the process until a signal is received.
+
+.SH "RETURN VALUES"
+.BR sigaction ,
+.BR sigprocmask ,
+.B sigpending
+and
+.B sigsuspend
+return 0 on success and -1 on error.
+
+.SH ERRORS
+.TP
+.B EINVAL
+An invalid signal was specified.  This will also be generated if an attempt
+is made to change the action for SIGKILL or SIGSTOP, which cannot be caught.
+.TP
+.B EFAULT
+.IR act ,
+.I oldact
+or the signal handler point to memory which is not a valid part of
+the process address space.
+.TP
+.B EINTR
+System call was interrupted.
+
+.SH NOTES
+It is not possible to block SIGKILL or SIGSTOP with the sigprocmask
+call.  Attempts to do so will be silently ignored.
+.PP
+The POSIX spec only defines
+.BR SA_NOCLDSTOP .
+Use of
+.B SA_ONESHOT
+and
+.B SA_RESTART
+is non\-portable.
+.PP
+.B sigaction
+can be called with a null second argument to query the current signal
+handler. It can also be used to check whether a given signal is valid for
+the current machine by calling it with null second and third arguments.
+.PP
+See
+.BR sigsetops (3)
+for details on manipulating signal sets.
+.SH "CONFORMING TO"
+POSIX
+
+.SH "SEE ALSO"
+.BR kill "(1), " kill "(2), " killpg "(2), " pause "(2), " raise "(3), " 
+.BR siginterrupt "(3) ," signal "(2), " signal "(7), " sigsetops "(3), "
+.BR sigvec (2) 

@@ -93,13 +93,14 @@ or
 to compare strings.
 .SH "CONFORMS TO"
 ANSI C, POSIX.1
-.SH "BUGS"
-At the moment, the only supported locales are the portable
+.PP
+Linux supports the portable locales
 .BR """C""" " and " """POSIX"""
-locales, which makes calling
-.B setlocale()
-almost useless.
-Support for other locales will be there Real Soon Now.
+and also the European Latin-1 
+.B """ISO-8859-1"""
+, and Russian
+.B """KOI-8"""
+locales.
 .PP
 The
 .B printf()

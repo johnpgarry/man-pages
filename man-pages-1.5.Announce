@@ -1,0 +1,111 @@
+
+The Linux Documentation Project proudly announces. . .
+
+    man-pages-1.5.tar.gz - section 2, 3, 4, 5, 7, and 9 man pages for Linux
+
+
+
+Differences from version 1.4:
+    
+    The following files have been updated:
+
+    accept.2 cfgetispeed.2 cfgetospeed.2 cfsetispeed.2 cfsetospeed.2
+    close.2 ftime.2 getpeername.2 getsockopt.2 idle.2 killpg.2 mmap.2
+    modules.2 mount.2 readdir.2 readlink.2 rename.2 semop.2 shutdown.2
+    sigaction.2 sigblock.2 signal.2 sigpending.2 sigprocmask.2 sigsuspend.2
+    socket.2 socketpair.2 stat.2 statfs.2 tcdrain.2 tcflow.2 tcflush.2
+    tcgetattr.2 tcgetpgrp.2 tcsendbreak.2 tcsetattr.2 tcsetpgrp.2 termios.2
+    umask.2 vhangup.2 write.2
+
+    assert.3 bzero.3 catgets.3 catopen.3 clock.3 crypt.3 drand48.3 exec.3
+    fread.3 fread.3 getmntent.3 hcreate.3 hdestroy.3 hsearch.3 intro.3
+    localeconv.3 longjmp.3 printf.3 realpath.3 remove.3 setjmp.3
+    setlocale.3 sigaddset.3 sigdelset.3 sigemptyset.3 sigfillset.3
+    sigismember.3 sigsetops.3 strcoll.3 strftime.3 strncpy.3 strptime.3
+    strptime.3 strstr.3 strxfrm.3 va_arg.3 va_end.3 va_start.3
+
+    console.4 console_ioctl.4 fd.4 mem.4 ram.4 st.4 vcs.4 vcsa.4
+
+    proc.5 utmp.5
+
+    ascii.7 iso_8859_1.7 latin1.7 locale.7 signal.7 suffixes.7
+
+    ctrl-alt-del.9 kernel_mktime.9
+
+
+
+Here is a breakdown of what this distribution contains:
+
+    Section 1 = user commands (intro only)
+    Section 2 = system calls
+    Section 3 = libc calls
+    Section 4 = devices (e.g., hd, sd)
+    Section 5 = file formats (e.g., wtmp, /etc/passwd)
+    Section 6 = games (intro only)
+    Section 7 = macro packages, etc. (e.g., nroff, ascii)
+    Section 8 = system administration (intro only)
+    Section 9 = internal kernel routines (for kernel hackers)
+
+    (There are no section 1, 6 and 8 man pages because these should be
+    distributed with the binaries they are written for.)
+
+    Note that only Section 2 is really complete, but Section 3 contains
+    several hundred man pages.  I have included all completed man pages in
+    this distribution to give people an idea of what is available.  If you
+    want to write some man pages, please join the linux-doc mailing list on
+    the vger.rutgers.edu server.
+
+
+
+To install this distribution, do something like:
+
+    cd /usr/man; zcat man-pages-1.5.tar.gz | tar xvpf -
+
+
+
+The following people (listed in alphabetical order by first name) who
+wrote, edited, or otherwise contributed to this project:
+
+    Alain Knaff (Alain.Knaff@imag.fr)
+    Alan Cox (iialan@iifeak.swan.ac.uk)
+    Andries E. Brouwer (aeb@cwi.nl)
+    Arnt Gulbrandsen (agulbra@nvg.unit.no)
+    Bjorn Ekwall (bj0rn@blox.se)
+    Christopher Oliver (oliver@fritz.co.traverse.com)
+    Dan Miner (dminer@nyx.cs.du.edu)
+    Daniel Quinlan (quinlan@yggdrasil.com)
+    Darren Senn (sinster@scintilla.santa-clara.ca.us)
+    David Metcalfe (david@prism.demon.co.uk)
+    Drew Eckhardt (drew@cs.colorado.edu)
+    Giorgio Ciucci (giorgio@crcc.it)
+    Graeme W. Wilford (G.Wilford@ee.surrey.ac.uk)
+    Ian Jackson (iwj10@cus.cam.ac.uk)
+    Jens Schweikhardt (Jens.Schweikhardt@rus.uni-stuttgart.de)
+    Jim Van Zandt (jrv@vanzandt.mv.com)
+    Jochen Hein (Hein@Student.TU-Clausthal.de)
+    Luigi P. Bai (lpb@neosoft.com)
+    Michael Edward Chastain (mec@shell.portal.com)
+    Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
+    Mike Battersby (mike@starbug.apana.org.au)
+    Mitchum DSouza (m.dsouza@mrc-apu.cam.ac.uk)
+    Nicolai Langfeldt (janl@ifi.uio.no)
+    Niel Charley (N.Charley-CSSE93@computer-science.birmingham.ac.uk)
+    Rik Faith (faith@cs.unc.edu)
+    Robert K. Nichols (Robert.K.Nichols@att.com)
+    Steven Greenland (stevegr@sugar.neosoft.com)
+    Thomas Koenig (ig25@rz.uni-karlsruhe.de)
+    Ulrich Drepper (drepper@ipd.info.uni-karlsruhe.de)
+
+
+
+Copyright information:
+
+    Please note that these man pages are distributed under a variety of
+    copyright licenses.  Although these licenses permit free distribution
+    of the nroff sources contained in this package, commercial distribution
+    may impose other requirements (e.g., acknowledgement of copyright or
+    inclusion of the raw nroff sources with the commercial distribution).
+    If you distribute these man pages commercially, it is your
+    responsibility to figure out your obligations.  Each file that contains
+    nroff source for a man page also contains the author(s) name, email
+    address, and copyright notice.

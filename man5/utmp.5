@@ -1,4 +1,4 @@
-.\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
+.\" Copyright (c) 1993 Michael Haardt (michael@cantor.informatik.rwth-aachen.de), Fri Apr  2 11:32:09 MET DST 1993
 .\"
 .\" This is free documentation; you can redistribute it and/or
 .\" modify it under the terms of the GNU General Public License as
@@ -21,7 +21,11 @@
 .\" USA.
 .\" 
 .\" Modified Sun Jul 25 10:44:50 1993 by Rik Faith (faith@cs.unc.edu)
-.TH UTMP 5 "January 21, 1992" "Linux" "Linux Programmer's Manual"
+.\" Modified Thu Feb 23 16:08:49 MET 1995 by Michael Haardt
+.\" Modified Sun Feb 26 14:18:22 1995 by Rik Faith (faith@cs.unc.edu)
+.\"          based on patches from Michael Haardt
+.\" "
+.TH UTMP 5 "February 23, 1995" "Linux" "Linux Programmer's Manual"
 .SH NAME
 utmp, wtmp \- login records
 .SH SYNOPSIS
@@ -46,14 +50,18 @@ declared in the include file:
 #define USER_PROCESS	7
 #define DEAD_PROCESS	8
 
+#define UT_LINESIZE	12
+#define UT_NAMESIZE	8
+#define UT_HOSTSIZE	16
+
 struct utmp {
   short ut_type;	/* type of login */
   pid_t ut_pid;		/* pid of process */
-  char ut_line[12];	/* device name of tty -"/dev/" */
+  char ut_line[UT_LINESIZE];	/* device name of tty \- "/dev/" */
   char ut_id[2];	/* init id or abbrev. ttyname */
   time_t ut_time;	/* login time */
-  char ut_user[8];	/* user name, not null-term */
-  char ut_host[16];	/* host name for remote login */
+  char ut_user[UT_NAMESIZE];	/* user name */
+  char ut_host[UT_HOSTSIZE];	/* host name for remote login */
   long ut_addr;	/* IP addr of remote host */
 };
 .sp
@@ -62,25 +70,40 @@ struct utmp {
 This structure gives the name of the special file associated with the
 user's terminal, the user's login name, and the time of login in the form
 of
-.BR time (2).
-String fields are terminated by \fB\e0\fP if they are short than the size
+.IR time (2).
+String fields are terminated by \fB'\e0'\fP if they are shorter than the size
 of the field.
 .LP
 The
 .B wtmp
 file records all logins and logouts.  Its format is exactly like
 .B utmp
-except that a null user name indicates a logout on the associated
-terminal.  Furthermore, the terminal name ``~'' with user name
-``shutdown'' or ``reboot'' indicates a system shutdown or reboot.
+except that a null user name indicates a logout on the associated terminal.
+Furthermore, the terminal name ``~'' with user name ``shutdown'' or
+``reboot'' indicates a system shutdown or reboot and the pair of terminal
+names ``|'' and ``}'' logs the old/new system time when \fBdate\fP(1)
+changes it.
 .LP
 .B Wtmp
-is maintained by \fBlogin\fP(1), and \fBinit\fP(1) and some very of
+is maintained by \fBlogin\fP(1), and \fBinit\fP(1) and some variants of
 \fBgetty\fP(1).  Neither of these programs creates the file, so if it is
 removed record-keeping is turned off.
 .SH FILES
-/etc/utmp
+.I /var/run/utmp
+(or
+.I /var/adm/utmp
+on older systems)
 .br
-/etc/wtmp
+.I /var/log/wtmp
+(or
+.I /var/adm/wtmp
+on older systems)
+.SH NOTES
+The v7/BSD-like file format lacks some fields, most importantly it lacks
+\fBut_type\fP, which causes native v7/BSD-like programs to display, for
+example, dead or login entries.
+.SH RESTRICTIONS
+The file format is machine dependent, so it is recommended that it is
+processed only on the machine architecture where it was created.
 .SH "SEE ALSO"
 .BR last "(1), " login "(1), " who (1)
