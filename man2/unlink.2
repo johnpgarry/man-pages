@@ -27,6 +27,7 @@
 .\" Modified Sun Sep  8 18:59:01 1996 by aeb following remarks by
 .\"     Arnt Gulbrandsen <agulbra@troll.no>
 .\" Modified Fri Jan 31 23:49:15 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Thu May 17 12:15:26 2001 by aeb
 .\"
 .TH UNLINK 2 "21 August 1997" "Linux 2.0.30" "Linux Programmer's Manual"
 .SH NAME
@@ -72,13 +73,25 @@ has the sticky-bit
 set and the process's effective uid is neither the uid of the file to
 be deleted nor that of the directory containing it.
 .TP
-.B EPERM
-The file
-.I pathname
-is a directory.
-.TP
 .BR EPERM " (Linux only)"
 The filesystem does not allow unlinking of files.
+.TP
+.B EPERM
+The system does not allow unlinking of directories,
+or unlinking of directories requires privileges that the
+current process doesn't have.
+(This is the POSIX prescribed error return.)
+.TP
+.B EISDIR
+.I pathname
+refers to a directory.
+(This is the non-POSIX value returned by Linux since 2.1.132.)
+.TP
+.BR EBUSY " (not on Linux)"
+The file
+.I pathname
+cannot be unlinked because it is being used by the system
+or another process and the implementation considers this an error.
 .TP
 .B EFAULT
 .I pathname
@@ -97,10 +110,6 @@ A component used as a directory in
 .I pathname
 is not, in fact, a directory.
 .TP
-.B EISDIR
-.I pathname
-refers to a directory.
-.TP
 .B ENOMEM
 Insufficient kernel memory was available.
 .TP
@@ -116,7 +125,7 @@ Too many symbolic links were encountered in translating
 An I/O error occurred.
 .SH "CONFORMING TO"
 SVr4, SVID, POSIX, X/OPEN, 4.3BSD.  SVr4 documents additional error
-conditions EBUSY, EINTR, EMULTIHOP, ETXTBSY, ENOLINK.
+conditions EINTR, EMULTIHOP, ETXTBSY, ENOLINK.
 .SH BUGS
 Infelicities in the protocol underlying NFS can cause the unexpected
 disappearance of files which are still being used.

@@ -37,8 +37,9 @@
 .\"
 .\"
 .\" Converted for Linux, Mon Nov 29 14:24:40 1993, faith@cs.unc.edu
+.\" Added remark on EBADF for fileno, aeb, 2001-03-22
 .\"
-.TH FERROR 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
+.TH FERROR 3  "22 March 2001" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
 clearerr, feof, ferror, fileno \- check and reset stream status
 .SH SYNOPSIS
@@ -82,6 +83,13 @@ and returns its integer descriptor.
 .SH ERRORS
 These functions should not fail and do not set the external variable
 .IR errno .
+(However, in case
+.B fileno
+detects that its argument is not a valid stream, it must
+return \-1 and set
+.I errno
+to
+.BR EBADF .)
 .SH "CONFORMING TO"
 The functions
 .BR clearerr ,

@@ -99,6 +99,13 @@ is not a valid file descriptor.
 .B EACCES
 Search permission was denied on the directory open on
 .IR fd .
+.SH NOTES
+The prototype for
+.B fchdir
+is only available if
+.B _BSD_SOURCE
+is defined (either explicitly, or implicitly, by not defining
+_POSIX_SOURCE or compiling with the -ansi flag).
 .SH "CONFORMING TO"
 The 
 .B chdir

@@ -136,9 +136,10 @@ is set (probably to EINVAL).
 is not a valid file descriptor (and MAP_ANONYMOUS was not set).
 .TP
 .B EACCES
-MAP_PRIVATE was asked, but
+MAP_PRIVATE was requested, but
 .I fd
-is not open for reading.  Or MAP_SHARED was asked and PROT_WRITE is set,
+is not open for reading.  Or MAP_SHARED was requested and PROT_WRITE is set,
+but
 .I fd
 is not open in read/write (O_RDWR) mode.
 .TP

@@ -1658,7 +1658,11 @@ section.
 .Ql \&.Rv -std atexit
 will generate the following text:
 .Pp
+.\" fake chapter 3 to avoid error message from Rv
+.ds cH 3
 .Rv -std atexit
+.\" and back to 7 again
+.ds cH 7
 .Pp
 The
 .Fl std

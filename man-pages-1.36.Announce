@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.35.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.36.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -27,32 +27,25 @@ with these man pages.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM. They are
 copyrighted by Sun Microsystems, Inc., but can be distributed freely.]
 
-Differences from version 1.34:
+Differences from version 1.35:
 
     The man pages
 
-	cp.1 dd.1 dircolors.1
+	chdir.2 chown.2 execve.2 fsync.2 getgroups.2 getrlimit.2
+	listen.2 mknod.2 mount.2 setegid.2 seteuid.2 setregid.2 setreuid.2
+	times.2 unlink.2 ustat.2 wait.2
 
-	adjtimex.2 chroot.2 close.2 gettimeofday.2 msgctl.2 open.2
-	pselect.2 select.2 semctl.2 shmctl.2 shmget.2 stat.2 statfs.2
-	stime.2 times.2 write.2
+	atexit.3 clock.3 crypt.3 fileno.3 ferror.3 getaddrinfo.3
+	malloc.3 nl_langinfo.3 setbuf.3 system.3 usleep.3
 
-	basename.3 dirname.3 setlocale.3 strptime.3 strsep.3 strtol.3
+	nscd.conf.5 proc.5
 
-	dir_colors.5 environ.5 proc.5
+	charsets.7 tcp.7 unicode.7 utf-8.7
 
-	LDP.7 ip.7 suffixes.7
-
-	zic.8
+	ldconfig.8 nscd.8
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.
-
-    The man pages
-
-	lilo.conf.5 lilo.8
-
-    have been deleted. These days they are found in the lilo distribution.
 
 
 Here is a breakdown of what this distribution contains:
@@ -66,8 +59,9 @@ Here is a breakdown of what this distribution contains:
     Section 7 = conventions, macro packages, etc.
     Section 8 = system administration (intro only)
 
-    (Usually, there are no section 1, 6 and 8 man pages because these
-    should be distributed with the binaries they are written for.)
+    Usually, there are no section 1, 6 and 8 man pages because these
+    should be distributed with the binaries they are written for.
+    Sometimes Section 9 is used for man pages describing parts of the kernel.
 
     Note that only Section 2 is rather complete, but Section 3 contains
     several hundred man pages.  If you want to write some man pages,

@@ -38,7 +38,9 @@
 .\" Converted for Linux, Mon Nov 29 14:55:24 1993, faith@cs.unc.edu
 .\" Added section to BUGS, Sun Mar 12 22:28:33 MET 1995,
 .\"                   Thomas.Koenig@ciw.uni-karlsruhe.de
-.\" Correction,  Sun, 11 Apr 1999 15:55:18, Martin Vicente <martin@netadmin.dgac.fr>
+.\" Correction,  Sun, 11 Apr 1999 15:55:18,
+.\"     Martin Vicente <martin@netadmin.dgac.fr>
+.\" Correction,  2000-03-03, Andreas Jaeger <aj@suse.de>
 .\"
 .TH SETBUF 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
@@ -79,7 +81,7 @@ is always unbuffered by default.
 .PP
 The
 .B setvbuf
-function may be used at any time on any open stream to change its buffer.
+function may be used on any open stream to change its buffer.
 The
 .I mode
 parameter must be one of the following three macros:
@@ -107,10 +109,8 @@ is
 only the mode is affected; a new buffer will be allocated on the next read
 or write operation.  The
 .I setvbuf
-function may be used at any time, but can only change the mode of a stream
-when it is not ``active'': that is, before any I/O, or immediately after a
-call to
-.BR fflush .
+function may only be used after opening a stream and before any other
+operations have been performed on it.
 .PP
 The other three calls are, in effect, simply aliases for calls to
 .BR setvbuf .

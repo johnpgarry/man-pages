@@ -10,7 +10,7 @@
 .\"
 .TH MKNOD 2 "29 March 1994" "Linux 1.0" "Linux Programmer's Manual"
 .SH NAME
-mknod \- create a directory or special or ordinary file
+mknod \- create a special or ordinary file
 .SH SYNOPSIS
 .nf
 .B #include <sys/types.h>
@@ -49,6 +49,10 @@ then
 .I dev
 specifies the major and minor numbers of the newly created device
 special file; otherwise it is ignored.
+
+If
+.I pathname
+already exists, or is a symlink, this call fails with an EEXIST error.
 
 The newly created node will be owned by the effective uid of the
 process.  If the directory containing the node has the set group id
@@ -121,16 +125,39 @@ SVr4 (but the call requires privilege and is thus not in POSIX),
 4.4BSD.  The Linux version differs from the SVr4 version in that it
 does not require root permission to create pipes, also in that no
 EMULTIHOP, ENOLINK, or EINTR error is documented.
-.SH BUGS
-The
-.B mknod
-call cannot be used to create directories or socket files, and cannot be
-used to create normal files by users other than the superuser.
+.SH NOTES
+The Austin draft says: "The only portable use of
+.BR mknod ()
+is to create a FIFO-special file. If
+.I mode
+is not S_IFIFO or
+.I dev
+is not 0, the behavior of
+.BR mknod ()
+is unspecified."
+
+Under Linux, this call cannot be used to create directories
+or socket files, and cannot be used to create normal files
+by users other than the superuser.
+One should make directories with
+.BR mkdir ,
+and FIFOs with
+.BR mkfifo .
 
 There are many infelicities in the protocol underlying NFS.  Some
 of these affect
 .BR mknod .
 .SH SEE ALSO
-.BR read "(2), " write "(2), " fcntl "(2), " close (2),
-.BR unlink "(2), " open "(2), " mkdir "(2), " stat "(2), " umask (2),
-.BR mount "(2), " socket "(2), " fopen (3).
+.BR close (2),
+.BR fcntl (2),
+.BR mkdir (2),
+.BR mount (2),
+.BR open (2),
+.BR read (2),
+.BR socket (2),
+.BR stat (2),
+.BR umask (2),
+.BR unlink (2),
+.BR write (2),
+.BR fopen (3),
+.BR mkfifo (3)

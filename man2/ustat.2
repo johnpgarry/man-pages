@@ -22,6 +22,7 @@
 .\"
 .\" Created   Wed Aug  9 1995      Thomas K. Dyas <tdyas@eden.rutgers.edu>
 .\" Modified Fri Jan 31 23:52:21 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Thu Mar 22 11:48:05 2001 by aeb
 .\"
 .TH USTAT 2 "9 August 1995" "Linux 1.3.16" "Linux Programmer's Manual"
 .SH NAME
@@ -29,6 +30,10 @@ ustat \- get file system statistics
 .SH SYNOPSIS
 .nf
 .B #include <sys/types.h>
+.br
+.BR "#include <unistd.h>" "    /* libc[45] */"
+.br
+.BR "#include <ustat.h>" "     /* glibc2 */"
 .sp
 .BI "int ustat(dev_t " dev ", struct ustat * " ubuf );
 .SH DESCRIPTION

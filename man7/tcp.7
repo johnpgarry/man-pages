@@ -263,7 +263,7 @@ and other normal network conditions.
 When an error occurs doing a connection setup occuring in a socket write
 .B SIGPIPE
 is only raised when the
-.B SO_KEEPOPEN 
+.B SO_KEEPALIVE
 socket option is set.
 .PP
 TCP has no real out-of-band data; it has urgent data. In Linux this means

@@ -82,6 +82,15 @@ authentication.  If you are planning on using the
 .BR crypt (3)
 interface for a cryptography project, don't do it: get a good book on
 encryption and one of the widely available DES libraries.
+.SH "RETURN VALUE"
+A pointer to the encrypted password is returned.
+On error, NULL is returned.
+.SH ERRORS
+.TP
+.B ENOSYS
+The 
+.B crypt
+function was not implemented, probably because of U.S.A. export restrictions.
 .\" This level of detail is not necessary in this man page. . .
 .\" .PP
 .\" When encrypting a plain text P using DES with the key K results in the

@@ -59,6 +59,7 @@ loaded.  The program invoked inherits the calling process's PID, and any
 open file descriptors that are not set to close on exec.  Signals pending
 on the calling process are cleared.  Any signals set to be caught by
 the calling process are reset to their default behaviour.
+The SIGCHLD signal (when set to SIG_IGN) may or may not be reset to SIG_DFL.
 
 If the current program is being ptraced, a \fBSIGTRAP\fP is sent to it
 after a successful \fBexecve()\fP.

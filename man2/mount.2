@@ -34,8 +34,6 @@ mount, umount \- mount and unmount filesystems.
 .BI ", const char * " filesystemtype ", unsigned long " rwflag
 .BI ", const void * " data );
 .sp
-.BI "int umount(const char *" specialfile );
-.sp
 .BI "int umount(const char *" dir );
 .SH DESCRIPTION
 .B mount
@@ -46,9 +44,7 @@ to the directory specified by
 .IR dir .
 
 .B umount
-removes the attachment of the filesystem specified by
-.IR specialfile
-or
+removes the attachment of the (topmost) filesystem mounted on
 .IR dir .
 
 Only the super-user may mount and unmount filesystems.
@@ -158,6 +154,16 @@ Table of dummy devices is full.
 .SH "CONFORMING TO"
 These functions are Linux-specific and should not be used in
 programs intended to be portable.
+.SH HISTORY
+The original
+.B umount
+function was called as \fIumount(device)\fP and would return ENOTBLK
+when called with something other than a block device.
+In Linux 0.98p4 a call \fIumount(dir)\fP was added, in order to
+support anonymous devices.
+In Linux 2.3.99-pre7 the call \fIumount(device)\fP was removed,
+leaving only \fIumount(dir)\fP (since now devices can be mounted
+in more than one place, so specifying the device does not suffice).
 .SH "SEE ALSO"
 .BR mount (8),
 .BR umount (8)

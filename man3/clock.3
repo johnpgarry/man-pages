@@ -39,15 +39,17 @@ The value returned is the CPU time used so far as a
 .BR clock_t ;
 to get the number of seconds used, divide by
 .BR CLOCKS_PER_SEC .
+If the processor time used is not available or its value cannot
+be represented, the function returns the value (clock_t)-1. 
 .SH "CONFORMING TO"
 ANSI C.
 POSIX requires that CLOCKS_PER_SEC equals 1000000 independent
 of the actual resolution.
-.SH "BUGS"
-The C standard allows for arbitrary values at the start of the program; take
-the difference between the value returned from a call to
+.SH NOTES
+The C standard allows for arbitrary values at the start of the program;
+subtract the value returned from a call to
 .B clock()
-at the start of the program and the end to get maximum portability.
+at the start of the program to get maximum portability.
 .PP
 Note that the time can wrap around.  On a 32bit system where
 CLOCKS_PER_SEC equals 1000000 this function will return the same
@@ -57,4 +59,5 @@ The
 .B times()
 function call returns more information.
 .SH "SEE ALSO"
+.BR getrusage (2),
 .BR times (2)

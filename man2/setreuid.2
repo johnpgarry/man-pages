@@ -40,7 +40,7 @@
 .\"
 .TH SETREUID 2 "2nd August 1994" "Linux 1.1.38" "Linux Programmer's Manual"
 .SH NAME
-setreuid, seteuid \- set real and / or effective user ID
+setreuid, setregid \- set real and/or effective user or group ID
 .SH SYNOPSIS
 .B #include <sys/types.h>
 .br
@@ -48,37 +48,27 @@ setreuid, seteuid \- set real and / or effective user ID
 .sp
 .BI "int setreuid(uid_t " ruid ", uid_t " euid );
 .br
-.BI "int seteuid(uid_t " euid );
+.BI "int setregid(gid_t " rgid ", gid_t " egid );
 .SH DESCRIPTION
 .B setreuid
-sets real and effective user ID's of the current process.
-Un-privileged users may change the real user ID to the
-effective user ID and vice-versa.
-
-Prior to Linux 1.1.37, the saved ID paradigm, when used with 
-.B setreuid 
-or
-.B seteuid
-was broken.
-
-Starting at 1.1.37, it is also possible to set the effective user ID from
-the saved user ID.
-
-Only the super-user may make other
-changes.
+sets real and effective user IDs of the current process.
+Unprivileged users may only set the real user ID to
+the real user ID or the effective user ID, and may only set
+the effective user ID to the real user ID, the effective user ID
+or the saved user ID.
 
 Supplying a value of \-1 for either the real or effective user ID forces
-the system to 
-leave that ID unchanged.
+the system to leave that ID unchanged.
 
-Currently
-.BI seteuid( euid )
-is functionally equivalent to 
-.BI setreuid(  -1  , " euid" ) \fR.
-
-If the real user ID is changed or the effective user ID is set to a value 
+If the real user ID is set or the effective user ID is set to a value 
 not equal to the previous real user ID, the saved user ID will be set to the
 new effective user ID.
+
+Completely analogously,
+.B setregid
+sets real and effective group ID's of the current process,
+and all of the above holds with "group" instead of "user".
+
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -87,13 +77,23 @@ is set appropriately.
 .TP
 .B EPERM
 The current process is not the super-user and changes other than (i)
-swapping the effective user ID with the real user ID or (ii) setting one to 
-the value of the other or (iii) setting the effective user ID to the value
-of the saved user ID was specified.
+swapping the effective user (group) ID with the real user (group) ID,
+or (ii) setting one to the value of the other or (iii) setting the
+effective user (group) ID to the value of the saved user (group) ID
+was specified.
+.SH NOTES
+Setting the effective user (group) ID to the saved user ID is
+possible since Linux 1.1.37 (1.1.38).
 .SH "CONFORMING TO"
 BSD 4.3 (the
 .B setreuid
-function call first appeared in 4.2BSD.)
+and
+.B setregid
+function calls first appeared in 4.2BSD).
 .SH "SEE ALSO"
 .BR getuid (2),
-.BR setuid (2)
+.BR getgid (2),
+.BR setuid (2),
+.BR setgid (2),
+.BR seteuid (2),
+.BR setresuid (2)

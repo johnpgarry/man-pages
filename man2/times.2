@@ -24,7 +24,7 @@
 .\"
 .\" Modified by Michael Haardt (michael@moria.de)
 .\" Modified Sat Jul 24 14:29:17 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified 961203 and 001211 by aeb@cwi.nl
+.\" Modified 961203 and 001211 and 010326 by aeb@cwi.nl
 .\" Modified 001213 by Michael Haardt (michael@moria.de)
 .\"
 .TH TIMES 2 "11 December 2000" "Linux" "Linux Programmer's Manual"
@@ -88,6 +88,8 @@ or
 .BR waitpid(2)
 returns their process ID. In particular, times of grandchildren
 that the children did not wait for are never seen.
+.LP
+All times reported are in clock ticks.
 .SH "RETURN VALUE"
 The function
 .B times
@@ -98,7 +100,7 @@ This return value may overflow the possible range of type clock_t.
 On error, (clock_t) \-1 is returned, and
 .I errno
 is set appropriately.
-.NOTE
+.SH NOTE
 The number of clock ticks per second can be obtained using
 .RS
 sysconf(_SC_CLK_TCK);
@@ -106,6 +108,11 @@ sysconf(_SC_CLK_TCK);
 In POSIX-1996 the symbol CLK_TCK (defined in
 .IR <time.h> )
 is mentioned as obsolescent. It is obsolete now.
+.LP
+Note that
+.BR clock (3)
+returns values of type clock_t that are not measured in clock ticks
+but in CLOCKS_PER_SEC.
 .SH "CONFORMING TO"
 SVr4, SVID, POSIX, X/OPEN, BSD 4.3
 .SH "HISTORICAL NOTES"
@@ -125,4 +132,5 @@ by the variable HZ.
 .BR time (1),
 .BR getrusage (2),
 .BR wait (2),
+.BR clock (3),
 .BR sysconf (3)

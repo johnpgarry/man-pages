@@ -147,6 +147,12 @@ returns the number of the signal which caused the child to stop.  This
 macro can only be evaluated if
 .B WIFSTOPPED
 returned non\-zero.
+.LP
+Some versions of Unix (e.g. Linux, Solaris, but not AIX, SunOS)
+also define a macro
+.BI WCOREDUMP( status )
+to test whether the child process dumped core. Only use this
+enclosed in #ifdef WCOREDUMP ... #endif.
 .SH "RETURN VALUE"
 The process ID of the child which exited, \-1 on error or zero if
 .B WNOHANG

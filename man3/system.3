@@ -22,6 +22,8 @@
 .\" License.
 .\" Modified Sat Jul 24 17:51:15 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified 11 May 1998 by Joseph S. Myers (jsm28@cam.ac.uk)
+.\" Modified 14 May 2001 by aeb
+.\"
 .TH SYSTEM 3  "11 May 1998" "GNU" "Linux Programmer's Manual"
 .SH NAME
 system \- execute a shell command
@@ -47,12 +49,18 @@ and
 .B SIGQUIT
 will be ignored.
 .SH "RETURN VALUE"
-The value returned is 127 if the
-.B execve()
-call for
-.B /bin/sh
-fails, \-1 if there was another error and the return code of the
-command otherwise.
+The value returned is \-1 on error (e.g. fork failed),
+and the return status of the command otherwise.
+This latter return status is in the format
+specified in
+.BR wait (2).
+Thus, the exit code of the command will be
+.IR WEXITSTATUS(status) .
+In case
+.B "/bin/sh"
+could not be executed, the exit status will be that of
+a command that does
+.IR exit(127) .
 .PP
 If the value of
 .I string
