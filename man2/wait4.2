@@ -173,16 +173,12 @@ will be set appropriately.
 .B ECHILD
 No unwaited-for child process as specified does exist.
 .TP
-.B ERESTARTSYS
+.B EINTR
 if
 .B WNOHANG
 was not set and an unblocked signal or a
 .B SIGCHLD
-was caught. This error is returned by the system call.
-The library interface is not allowed to return
-.BR ERESTARTSYS ,
-but will return
-.BR EINTR .
+was caught.
 .SH NOTE
 Including
 .I <sys/time.h>

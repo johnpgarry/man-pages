@@ -25,21 +25,28 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sun Jul 25 11:01:58 1993 by Rik Faith (faith@cs.unc.edu)
-.TH TZSET 3  1993-07-02 "BSD" "Linux Programmer's Manual"
+.\" Modified 2001-11-13, aeb
+.TH TZSET 3  2001-11-13 "" "Linux Programmer's Manual"
 .SH NAME
-tzset \- initialize time conversion information
+tzset, tzname, timezone, daylight \- initialize time conversion information
 .SH SYNOPSIS
 .nf
 .B #include <time.h>
 .sp
 .B void tzset (void);
 .sp
-.BI "extern char *" tzname [2]
+.BI "extern char *" tzname [2];
+.BI "extern long " timezone ;
+.BI "extern int " daylight ;
 .fi
 .SH DESCRIPTION
 The \fBtzset()\fP function initializes the \fItzname\fP variable from the
 TZ environment variable.  This function is automatically called by the
 other time conversion functions that depend on the time zone.
+In a SysV-like environment it will also set the variables \fItimezone\fP
+(seconds West of GMT) and \fIdaylight\fP (0 if this time zone does not
+have any daylight savings time rules, nonzero if there is a time during
+the year when daylight savings time applies).
 .PP
 If the TZ variable does not appear in the environment, the \fItzname\fP
 variable is initialized with the best approximation of local wall clock
@@ -146,6 +153,17 @@ is a symlink to the file
 or to the correct time zone file in the system time zone directory.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3
+.SH NOTES
+Note that the variable \fIdaylight\fP does not indicate that daylight
+savings time applies right now. It used to give the number of some
+algorithm (see the variable \fItz_dsttime\fP in
+.BR gettimeofday (2)).
+It has been obsolete for many years but is required by SUSv2.
+.LP
+BSD4.3 had a routine \fIchar *timezone(zone,dst)\fP that returned the
+name of the time zone corresponding to its first argument (minutes
+West of GMT). If the second argument was 0, the standard name was used,
+otherwise the daylight savings time version.
 .SH "SEE ALSO"
 .BR date (1),
 .BR gettimeofday (2),

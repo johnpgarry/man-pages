@@ -21,13 +21,21 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Written 11 June 1995 by Andries Brouwer <aeb@cwi.nl>
-.TH SYSLOG 2  1995-06-11 "Linux 1.2.9" "Linux Programmer's Manual"
+.TH SYSLOG 2  2001-11-25 "Linux 1.2.9" "Linux Programmer's Manual"
 .SH NAME
-syslog \- read and/or clear kernel message ring buffer; set console_loglevel
+syslog, klogctl \- read and/or clear kernel message ring buffer; set console_loglevel
 .SH SYNOPSIS
 .nf
-.B #include <unistd.h>
+/* The glibc interface */
+.br
+.B "#include <sys/klog.h>"
 .sp
+.BI "int klogctl(int " type ", char *" bufp ", int " len );
+.sp
+/* The handcrafted system call */
+.br
+.B #include <unistd.h>
+.br
 .B #include <linux/unistd.h>
 .sp
 .B _syscall3(int, syslog, int, type, char *, bufp, int, len);
@@ -35,13 +43,18 @@ syslog \- read and/or clear kernel message ring buffer; set console_loglevel
 .BI "int syslog(int " type ", char *" bufp ", int " len );
 .fi
 .SH DESCRIPTION
-This is probably not the function you are interested in. Look at
-.BR syslog (3)
-for the C library interface. This page only documents the bare
-kernel system call interface.
+If you need the libc function
+.BR syslog() ,
+(that talks to
+.BR syslogd (8)),
+then look at
+.BR syslog (3).
+The system call of this name is about controlling the kernel
+.I printk()
+buffer, and the glibc version is called
+.BR klogctl() .
 
-The \fItype\fP argument determines the action taken by
-.BR syslog .
+The \fItype\fP argument determines the action taken by this function.
 
 Quoting from
 .IR kernel/printk.c :
@@ -149,8 +162,18 @@ Bad parameters.
 .TP
 .B ERESTARTSYS
 System call was interrupted by a signal - nothing was read.
+(This can be seen only during a trace.)
 .SH "CONFORMING TO"
 This system call is Linux specific and should not be used in programs
 intended to be portable.
+.SH NOTES
+From the very start people noted that it is unfortunate that
+kernel call and library routine of the same name are entirely
+different animals.
+In libc4 and libc5 the number of this call was defined by
+.BR SYS_klog .
+In glibc 2.0 the syscall is baptised
+.BR klogctl .
+
 .SH "SEE ALSO"
 .BR syslog (3)

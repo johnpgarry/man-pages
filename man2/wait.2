@@ -178,16 +178,12 @@ if the
 .I options
 argument was invalid.
 .TP
-.B ERESTARTSYS
+.B EINTR
 if
 .B WNOHANG
 was not set and an unblocked signal or a
 .B SIGCHLD
-was caught. This error is returned by the system call.
-The library interface is not allowed to return
-.BR ERESTARTSYS ,
-but will return
-.BR EINTR .
+was caught.
 .SH NOTES
 The Single Unix Specification describes a flag SA_NOCLDWAIT (not supported
 under Linux) such that if either this flag is set, or the action for

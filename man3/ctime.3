@@ -26,8 +26,9 @@
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 19:49:27 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Fri Apr 26 12:38:55 MET DST 1996 by Martin Schulze (joey@linux.de)
+.\" Modified 2001-11-13, aeb
 .\"
-.TH CTIME 3  1996-04-26 "BSD" "Linux Programmer's Manual"
+.TH CTIME 3  2001-11-13 "" "Linux Programmer's Manual"
 .SH NAME
 asctime, ctime, gmtime, localtime, mktime \- transform binary date and time
 to ASCII
@@ -36,18 +37,22 @@ to ASCII
 .B #include <time.h>
 .sp
 .BI "char *asctime(const struct tm *" timeptr );
+.br
+.BI "char *asctime_r(const struct tm *" timeptr ", char *" buf );
 .sp
 .BI "char *ctime(const time_t *" timep );
+.br
+.BI "char *ctime_r(const time_t *" timep ", char *" buf );
 .sp
 .BI "struct tm *gmtime(const time_t *" timep );
+.br
+.BI "struct tm *gmtime_r(const time_t *" timep ", struct tm *" result );
 .sp
 .BI "struct tm *localtime(const time_t *" timep );
+.br
+.BI "struct tm *localtime_r(const time_t *" timep ", struct tm *" result );
 .sp
 .BI "time_t mktime(struct tm *" timeptr );
-.sp
-.BI "extern char *" tzname [2];
-.BI "long int " timezone ;
-.BI "extern int " daylight ;
 .fi
 .SH DESCRIPTION
 The \fBctime()\fP, \fBgmtime()\fP and \fBlocaltime()\fP functions all take
@@ -63,10 +68,9 @@ in the structure \fItm\fP which is defined in \fI<time.h>\fP as follows:
 .sp
 .RS
 .nf
-.ne 12
+.ne 11
 .ta 8n 16n 32n
-struct tm
-{
+struct tm {
 	int	tm_sec;			/* seconds */
 	int	tm_min;			/* minutes */
 	int	tm_hour;		/* hours */
@@ -126,30 +130,47 @@ The abbreviations for the days of the week are `Sun', `Mon', `Tue', `Wed',
 `Feb', `Mar', `Apr', `May', `Jun', `Jul', `Aug', `Sep', `Oct', `Nov', and
 `Dec'.  The return value points to a statically allocated string which
 might be overwritten by subsequent calls to any of the date and time
-functions.  The function also sets the external variable \fItzname\fP
+functions.  The function also sets the external variable \fItzname\fP (see
+.BR tzset (3))
 with information about the current time zone.
+The re-entrant version \fBctime_r()\fP does the same, but stores the
+string in a user-supplied buffer of length at least 26. It need not
+set \fItzname\fP.
 .PP
 The \fBgmtime()\fP function converts the calendar time \fItimep\fP to
 broken-down time representation, expressed in Coordinated Universal Time
 (UTC). It may return NULL when the year does not fit into an integer.
+The return value points to a statically allocated struct which might be
+overwritten by subsequent calls to any of the date and time functions.
+The \fBgmtime_r()\fP function does the same, but stores the data in a
+user-supplied struct.
 .PP
 The \fBlocaltime()\fP function converts the calendar time \fItimep\fP to
 broken-time representation, expressed relative to the user's specified
-time zone.    The function sets the external variables \fItzname\fP with 
+time zone.    The function acts as if it called
+.BR tzset (3)
+and sets the external variables \fItzname\fP with 
 information about the current time zone, \fItimezone\fP with the difference
 between Coordinated Universal Time (UTC) and local standard time in
-seconds, and \fIdaylight\fP to a non-zero value if standard US daylight
-savings time rules apply.
+seconds, and \fIdaylight\fP to a non-zero value if daylight savings
+time rules apply during some part of the year.
+The return value points to a statically allocated struct which might be
+overwritten by subsequent calls to any of the date and time functions.
+The \fBlocaltime_r()\fP function does the same, but stores the data in a
+user-supplied struct. It need not set \fItzname\fP.
 .PP
 The \fBasctime()\fP function converts the broken-down time value
 \fItimeptr\fP into a string with the same format as \fBctime()\fP.
 The return value points to a statically allocated string which might be 
 overwritten by subsequent calls to any of the date and time functions.
+The \fBasctime_r()\fP function does the same, but stores the string in
+a user-supplied buffer of length at least 26.
 .PP
 The \fBmktime()\fP function converts a broken-down time structure, expressed
 as local time, to calendar time representation.  The function ignores
 the specified contents of the structure members \fItm_wday\fP and \fItm_yday\fP
-and recomputes them from the other information in the broken-down time structure.
+and recomputes them from the other information in the broken-down time
+structure.
 If structure members are outside their legal interval, they will be
 normalized (so that, e.g., 40 October is changed into 9 November).
 Calling \fBmktime()\fP also sets the external variable \fItzname\fP with
@@ -157,14 +178,25 @@ information about the current time zone.  If the specified broken-down
 time cannot be represented as calendar time (seconds since the epoch),
 \fBmktime()\fP returns a value of (time_t)(\-1) and does not alter the
 \fItm_wday\fP and \fItm_yday\fP members of the broken-down time structure.
-
+.SH "RETURN VALUE"
+Each of these functions returns the value described, or NULL
+(\-1 in case of \fBmktime()\fP) in case an error was detected.
+.SH NOTES
+The four functions \fBacstime()\fP, \fBctime()\fP, \fBgmtime()\fP and
+\fBlocaltime()\fP return a pointer to static data and hence are not
+thread-safe. Thread-safe versions \fBacstime_r()\fP, \fBctime_r()\fP,
+\fBgmtime_r()\fP and \fBlocaltime_r()\fP are specified by SUSv2,
+and available since libc 5.2.5.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3, ISO 9899
 .SH "SEE ALSO"
 .BR date (1),
 .BR gettimeofday (2),
+.BR newctime (3),
 .BR time (2),
-.BR tzset (3),
+.BR utime (2),
+.BR clock (3),
 .BR difftime (3),
 .BR strftime (3),
-.BR newctime (3)
+.BR strptime (3),
+.BR tzset (3)

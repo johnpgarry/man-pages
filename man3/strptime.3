@@ -24,8 +24,9 @@
 .\" Modified, aeb, 2000-04-07
 .\" Updated from glibc docs, C. Scott Ananian, 2001-08-25
 .\" Modified, aeb, 2001-08-31
+.\" Modified, wharms 2001-11-12, remark on white space and example
 .\"
-.TH STRPTIME 3 2001-08-31 "GNU" "Linux Programmer's Manual"
+.TH STRPTIME 3 2001-11-12 "GNU" "Linux Programmer's Manual"
 .SH NAME
 strptime \- convert a string representation of time to a time tm structure
 .SH SYNOPSIS
@@ -64,6 +65,8 @@ All other characters in the
 string must have a matching character in the input string,
 except for whitespace, which matches zero or more
 whitespace characters in the input string.
+There should be white\%space or other alphanumeric characters
+between any two field descriptors.
 .PP
 The \fBstrptime()\fP function processes the input string from left
 to right.  Each of the three possible input elements (whitespace,
@@ -261,6 +264,27 @@ of the format string and therefore an error occurred the function
 returns \fBNULL\fP.
 .SH "CONFORMING TO"
 XPG4, SUSv2, Austin draft.
+.SH EXAMPLE
+The following example demonstrates the use of \fBstrptime()\fP
+and \fBstrftime()\fP.
+.sp
+.nf
+.ne 12
+.ta 8n 16n
+#include <stdio.h>
+#include <time.h>
+
+int main() {
+	struct tm tm;
+	char buf[255];
+
+	strptime("2001-11-12 18:31:01", "%Y-%m-%d %H:%M:%S", &tm);
+	strftime(buf, sizeof(buf), "%d %b %Y %H:%M", &tm);
+	puts(buf);
+	return 0;
+}
+.ta
+.fi
 .SH "GNU EXTENSIONS"
 For reasons of symmetry, glibc tries to support for
 .B strptime
@@ -303,6 +327,9 @@ Finally
 .B %s
 The number of seconds since the epoch, i.e., since 1970-01-01 00:00:00 UTC.
 Leap seconds are not counted unless leap second support is available.
+.LP
+The GNU libc implementation does not require whitespace between
+two field descriptors.
 .SH NOTES
 .LP
 In principle, this function does not initialize \fBtm\fP but
@@ -333,6 +360,7 @@ in the range 1950-2049 by glibc 2.0. It is taken to be a year in
 .\" %OI was fixed in glibc 2.2.4).
 .SH "SEE ALSO"
 .BR time (2),
+.\" .BR getdate (3),
 .BR scanf (3),
 .BR setlocale (3),
 .BR strftime (3)

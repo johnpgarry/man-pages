@@ -114,7 +114,11 @@ aligned for any kind of variable and may be different from
 .IR ptr ,
 or
 .B NULL
-if the request fails or if size was equal to 0.  If
+if the request fails. If
+.I size
+was equal to 0, either NULL or a pointer suitable to be passed to
+.IR free ()
+is returned.  If
 .B realloc()
 fails the original block is left untouched - it is not freed or moved.
 .SH "CONFORMING TO"

@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.43.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.44.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -27,16 +27,21 @@ with these man pages.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM. They are
 copyrighted by Sun Microsystems, Inc., but can be distributed freely.]
 
-Differences from version 1.42:
+Differences from version 1.43:
 
     The man pages
 
-	getpriority.2 sigaltstack.2
+	_Exit.2 _exit.2 accept.2 getcontext.2 setcontext.2 setresuid.2
+	sigaltstack.2 syslog.2 wait.2 wait4.2
 
-	ftw.3
+	ctime.3 dysize.3 exit.3 fopen.3 fseeko.3 ftello.3 ftok.3 iconv.3
+	klogctl.3 makecontext.3 malloc.3 mbrtowc.3 strptime.3 swapcontext.3
+	tmpfile.3 tzset.3 undocumented.3
+
+	LDP.7 regex.7
 
     are new or have been updated. Typographical or grammatical errors
-    have been corrected in a few other places.
+    have been corrected in several other places.
 
 
 Here is a breakdown of what this distribution contains:

@@ -22,7 +22,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH SETRESUID 2 1997-07-16 "Linux 2.1.44" "Linux Programmer's Manual"
+.TH SETRESUID 2 2001-11-15 "Linux 2.1.44" "Linux Programmer's Manual"
 .SH NAME
 setresuid, setresgid \- set real, effective and saved user or group ID
 .SH SYNOPSIS
@@ -33,7 +33,6 @@ setresuid, setresgid \- set real, effective and saved user or group ID
 .BI "int setresgid(gid_t " rgid ", gid_t " egid ", gid_t " sgid ); 
 .SH DESCRIPTION
 .B setresuid
-(introduced in Linux 2.1.44)
 sets the real user ID, the effective user ID, and the saved set-user-ID
 of the current process.
 
@@ -62,7 +61,17 @@ is set appropriately.
 The current process was not privileged and tried to change
 the IDs is a not allowed way.
 .SH "CONFORMING TO"
-This call is Linux-specific.
+This call is nonstandard.
+.SH HISTORY
+This system call was first introduced in HP-UX.
+It is available under Linux since Linux 2.1.44.
+These days it is also found in FreeBSD (for emulation of Linux binaries).
+.SH NOTES
+Under HP-UX and FreeBSD the prototype is found in
+.IR <unistd.h> .
+Under Linux there is so far no include file giving the prototype -
+this is a glibc bug. Programs using this system call must add
+the prototype themselves.
 .SH "SEE ALSO"
 .BR getuid (2),
 .BR setuid (2),

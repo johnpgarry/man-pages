@@ -18,18 +18,20 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" aeb, various minor fixes
 .TH SIGALTSTACK 2 2001-09-27 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
 sigaltstack - set and/or get signal stack context
 .SH SYNOPSIS
 .B #include <signal.h>
 .sp
-.BI "int sigaltstack(const stack_t *" ss ", struct stack_t *" oss );
+.BI "int sigaltstack(const stack_t *" ss ", stack_t *" oss );
 .SH DESCRIPTION
 \fBsigaltstack\fP allows a process to define a new alternate
 signal stack and/or retrieve the state of an existing
 alternate signal stack.  An alternate signal stack is used during the
-execution of a signal handler if the establishment of that handler
+execution of a signal handler if the establishment of that handler (see
+.BR sigaction (2))
 requested it.
 
 The normal sequence of events for using an alternate signal stack
@@ -159,16 +161,18 @@ Unlike the standard stack, the system does not
 automatically extend the alternate signal stack.
 Exceeding the allocated size of the alternate signal stack will
 lead to unpredictable results.
-In the (unusual) case that a large number of nested function
-calls occurs, the alternate signal stack
-must be sufficiently large.
 .P
 A successful call to \fBexecve\fP removes any existing alternate
 signal stack.
 .P
-\fBsigaltstack\fP supercedes the older \fBsigstack\fP call.
+\fBsigaltstack\fP supersedes the older \fBsigstack\fP call.
 For backwards compatibility, glibc also provides \fBsigstack\fP.
 All new applications should be written using \fBsigaltstack\fB.
+
+.SH HISTORY
+BSD 4.2 had a \fIsigstack\fP() system call. It used a slightly
+different struct, and had as major disadvantage that the caller
+had to know the direction of stack growth.
 
 .SH "CONFORMING TO"
 SUSv2, SUSv3 ("Austin draft"), SVr4.

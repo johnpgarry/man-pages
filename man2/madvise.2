@@ -78,7 +78,7 @@ returns zero. On error, it returns \-1 and
 is set appropiately.
 .SH ERRORS
 .TP
-.B EINVAL 
+.B EINVAL
 the value 
 .IR len
 is negative,
@@ -90,21 +90,21 @@ is not page-aligned,
 is not a valid value, or the application is attempting
 to release locked or shared pages (with MADV_DONTNEED).
 .TP 
-.B ENOMEM 
+.B ENOMEM
 addresses in the specified range are not currently
 mapped, or are outside the address space of the process.
 .TP
 .B ENOMEM
 (for MADV_WILLNEED) Not enough memory - paging in failed.
 .TP
-.B EIO 
+.B EIO
 (for MADV_WILLNEED) Paging in this area would exceed the process's
 maximum resident set size.
 .TP
 .B EBADF
 the map exists, but the area maps something that isn't a file.
 .TP
-.B EAGAIN 
+.B EAGAIN
 a kernel resource was temporarily unavailable.
 .SH "LINUX NOTES"
 .LP
@@ -122,7 +122,7 @@ to be zero. If there are some parts of the specified address range
 that are not mapped, the Linux version of
 .B madvise
 ignores them and applies the call to the rest (but returns 
-.B ENOMEM 
+.B ENOMEM
 from the system call, as it should).
 .SH HISTORY
 The
