@@ -25,8 +25,9 @@
 .\" Modified Sun Jul 25 10:45:30 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Jul 21 21:25:26 1996 by Andries Brouwer (aeb@cwi.nl)
 .\" Modified Mon Oct 21 17:47:19 1996 by Eric S. Raymond (esr@thyrsus.com)
-.\" Modified Wed Aug 27 20:28:58 1997 by Nicolás Lichtmaier <nick@debian.org>
+.\" Modified Wed Aug 27 20:28:58 1997 by Nicolás Lichtmaier (nick@debian.org)
 .\" Modified Mon Sep 21 00:00:26 1998 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Wed Jan 24 06:37:24 2001 by Eric S. Raymond (esr@thyrsus.com)
 .\"
 .TH ENVIRON 5 "October 21, 1996" "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -65,7 +66,10 @@ A user's login directory, set by \fBlogin\fP(1) from the password file
 .TP
 .B LANG
 The name of a locale to use for locale categories when not overridden
-by \fBLC_ALL\fP or more specific environment variables.
+by \fBLC_ALL\fP or more specific environment variables like
+\fBLC_COLLATE\fP, \fBLC_CTYPE\fP, \fBLC_MESSAGES\fP, \fBLC_MONETARY\fP,
+\fBLC_NUMERIC\fP, \fBLC_TIME\fP, cf.
+.BR locale (5).
 .TP
 .B PATH
 The sequence of directory prefixes that \fBsh\fP(1) and many other
@@ -89,6 +93,10 @@ The user's preferred utility to display text files.
 .TP
 .BR EDITOR / VISUAL
 The user's preferred utility to edit text files.
+.TP
+.B BROWSER
+The user's preferred utility to browse URLs. Sequence of colon-separated
+browser commands. See http://www.tuxedo.org/~esr/BROWSER/ .
 .PP
 Further names may be placed in the environment by the \fBexport\fP
 command and `name=value' in \fBsh\fP(1), or by the \fBsetenv\fP command
@@ -107,7 +115,8 @@ A random collection:
 .LP
 The variables
 .BR LANG ", " LANGUAGE ", " NLSPATH ", " LOCPATH ", " LC_ALL ", " LC_MESSAGES ", "
-etc. influence locale handling.
+etc. influence locale handling, cf.
+.BR locale (5).
 .LP
 .B TMPDIR
 influences the path prefix of names created by
@@ -136,12 +145,49 @@ give time zone information.
 gives information on how to address a given terminal
 (or gives the name of a file containing such information).
 .LP
+.BR COLUMNS " and " LINES
+tell applications about the window size, possibly overriding the actual size.
+.LP
+.BR PRINTER " or " LPDEST
+may specify the desired printer to use.
 Etc. etc.
 
+.SH BUGS
 Clearly there is a security risk here. Many a system command has been
 tricked into mischief by a user who specified unusual values for
 .BR IFS " or " LD_LIBRARY_PATH .
 
+There is also the risk of name space pollution.
+Programs like
+.I make
+and
+.I autoconf
+allow overriding of default utility names from the
+environment with similarly named variables in all caps.
+Thus one uses
+.B CC
+to select the desired C compiler (and similarly
+.BR MAKE ,
+.BR AR ,
+.BR AS ,
+.BR FC ,
+.BR LD ,
+.BR LEX ,
+.BR RM ,
+.BR YACC ,
+etc.).
+However, in some traditional uses such an environment variable
+gives options for the program instead of a pathname.
+Thus one has
+.BR MORE ,
+.BR LESS ,
+and
+.BR GZIP .
+Such usage is considered mistaken, and to be avoided in new
+programs. The authors of
+.I gzip
+should consider renaming their option to
+.BR GZIP_OPT .
 .SH "SEE ALSO"
 .BR login (1),
 .BR sh (1),
@@ -153,4 +199,5 @@ tricked into mischief by a user who specified unusual values for
 .BR getenv (3),
 .BR putenv (3),
 .BR setenv (3),
-.BR unsetenv (3)
+.BR unsetenv (3),
+.BR locale (5)

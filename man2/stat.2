@@ -67,8 +67,8 @@ and fills in
 .B lstat
 is identical to
 .BR stat ,
-only the link itself is stat-ed, not the file that is obtained by tracing
-the links.
+except in the case of a symbolic link, where the link itself is stat-ed,
+not the file that it refers to.
 
 .B fstat
 is identical to stat, only the open file pointed to by 
@@ -85,8 +85,7 @@ structure, which contains the following fields:
 .PP
 .RS
 .nf
-struct stat
-{
+struct stat {
     dev_t         st_dev;      /* device */
     ino_t         st_ino;      /* inode */
     mode_t        st_mode;     /* protection */
@@ -104,6 +103,12 @@ struct stat
 .fi
 .RE
 .PP
+The value
+.I st_size
+gives the size of the file (if it is a regular file or a symlink)
+in bytes. The size of a symlink is the length of the pathname
+it contains, without trailing NUL.
+
 The value
 .I st_blocks
 gives the size of the file in 512-byte blocks.

@@ -107,8 +107,7 @@ struct shmid_ds {
 .PP
 .in +0.5i
 .nf
-struct ipc_perm
-{
+struct ipc_perm {
   key_t  key;
   ushort uid;   /* owner euid and egid */
   ushort gid;
@@ -184,8 +183,10 @@ On failure,
 is set to one of the following:
 .TP 12
 .B EINVAL
-is returned if \fBSHMMIN\fP > \fIsize\fP or
-\fIsize\fP > \fBSHMMAX\fP, or \fIsize\fP is greater than size of segment.
+is returned if a new segment was to be created and \fIsize\fP < \fBSHMMIN\fP
+or \fIsize\fP > \fBSHMMAX\fP, or no new segment was to be created,
+a segment with given key existed, but \fIsize\fP is greater than the size
+of that segment.
 .TP
 .B EEXIST
 is returned if 

@@ -36,9 +36,10 @@ if only two files are given, it copies the first onto the second.  It
 is an error if the last argument is not a directory and more than two
 non-option arguments are given.
 .PP
-(Thus, `cp \-r /a /b' will copy /a to /b/a and /a/x to /b/a/x in case
-/b exists already, but it will copy /a to /b and /a/x to /b/x if
-there was no /b beforehand.)
+(Thus, if /a is a directory, then `cp \-r /a /b' will copy /a to /b/a
+and /a/x to /b/a/x in case a directory /b existed already, but it will
+copy /a to /b and /a/x to /b/x if there was no /b beforehand,
+while it will fail in case there was an ordinary file /b.)
 .PP
 The modes of the files and directories created will be the same
 as those of the original files, ANDed by 0777, and modified by

@@ -25,6 +25,7 @@
 .\" Modified Tue Jul 15 16:49:10 1997 by Andries Brouwer (aeb@cwi.nl)
 .\" Modified Sun Jul  4 14:52:16 1999 by Bruno Haible (haible@clisp.cons.org)
 .\" Modified Tue Aug 24 17:11:01 1999 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Tue Feb  6 03:31:55 2001 by Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH SETLOCALE 3  "July 4, 1999" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -126,6 +127,8 @@ is a character set or encoding identifier like
 .B "ISO-8859-1"
 or
 .BR "UTF-8" .
+For a list of all supported locales, try "locale -a", cf.\&
+.BR locale (1).
 .PP
 If
 .I locale
@@ -146,14 +149,14 @@ for locale \- dependent information, by using the multi-byte and wide
 character functions for text processing if
 .BR "MB_CUR_MAX > 1" ,
 and by using
-.BR strcoll() ", " wstrcoll()
+.BR strcoll() ", " wcscoll()
 or 
-.BR strxfrm() ", " wstrxfrm()
+.BR strxfrm() ", " wcsxfrm()
 to compare strings.
 .SH "RETURN VALUE"
 A successful call to
 .B setlocale()
-returns a string that corresponds to the locale set.
+returns an opaque string that corresponds to the locale set.
 This string may be allocated in static storage.
 The string returned is such that a subsequent call with that string
 and its associated category will restore that part of the process's

@@ -48,6 +48,8 @@ Only the super-user may change the root directory.
 
 Note that this call does not change the current working directory,
 so that `.' can be outside the tree rooted at `/'.
+In particular, the super-user can escape from a `chroot jail'
+by doing `mkdir foo; chroot foo; cd ..'.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno

@@ -57,13 +57,21 @@ removed using
 .BR unlink (2)
 the file is deleted.
 .SH "RETURN VALUE"
-.BR close
+.B close
 returns zero on success, or \-1 if an error occurred.
 .SH ERRORS
 .TP
 .B EBADF
 .I fd
 isn't a valid open file descriptor.
+.TP
+.B EINTR
+The
+.BR close ()
+call was interrupted by a signal.
+.TP
+.B EIO
+An I/O error occurred.
 .SH "CONFORMING TO"
 SVr4, SVID, POSIX, X/OPEN, BSD 4.3.  SVr4 documents an additional
 ENOLINK error condition.

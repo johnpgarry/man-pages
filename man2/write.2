@@ -79,9 +79,7 @@ is returned.
 .B EAGAIN
 Non-blocking I/O has been selected using
 .B O_NONBLOCK
-and there was no room in the pipe or socket connected to
-.I fd
-to write the data immediately.
+and the write would block.
 .TP
 .B EINTR
 The call was interrupted by a signal before any data was written.

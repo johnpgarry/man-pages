@@ -10,19 +10,28 @@
 .SH NAME
 dir_colors \- configuration file for dircolors(1)
 .SH DESCRIPTION
-The
-.B dir_colors
-file contains configuration information for the
-.BR dircolors (1)
-program, which in turn provides color information for
-.BR ls (1).
-This file is normally found in
-.IR /etc ,
-though users may maintain their own local copies in their home
-directories as
-.IR .dir_colors .
+The program
+.BR ls (1)
+uses the environment variable
+.B LS_COLORS
+to determine in what color the filenames should be displayed.
+This environment variable is usually set by a command like
+.RS
+eval `dircolors some_path/dir_colors`
+.RE
+found in a system default shell initialization file, like
+.I /etc/profile
+or
+.IR /etc/csh.cshrc .
+(See also
+.BR dircolors (1).)
+Usually, the file used here is
+.I /etc/DIR_COLORS
+and can be overridden by a
+.I .dir_colors
+file in one's home directory.
 .PP
-The configuration file consists of several statements, one per line.
+This configuration file consists of several statements, one per line.
 Anything right of a hash mark (\#) is treated as a comment, if the
 hash mark is at the beginning of a line or is preceded by at least one
 whitespace.  Blank lines are ignored.
@@ -308,7 +317,7 @@ is undefined.
 .BR xterm (1)
 .SH FILES
 .TP
-.I /etc/dir_colors
+.I /etc/DIR_COLORS
 System-wide configuration file for
 .BR dircolors .
 .TP

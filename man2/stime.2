@@ -23,12 +23,15 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified by Michael Haardt (michael@moria.de)
-.\" Modified Sat Jul 24 14:26:24 1993 by Rik Faith (faith@cs.unc.edu)]
+.\" Modified Sat Jul 24 14:26:24 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Fri Mar 16 17:22:48 2001 by Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH STIME 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 stime \- set time
 .SH SYNOPSIS
+.BR "#define _SVID_SOURCE" " /* glibc2 needs this */"
+.br
 .B #include <time.h>
 .sp
 .BI "int stime(time_t *" t );
@@ -46,5 +49,13 @@ is set appropriately.
 The caller is not the super-user.
 .SH "CONFORMING TO"
 SVr4, SVID, X/OPEN
+.SH NOTES
+Under glibc2,
+.I <time.h>
+only provides a prototype when
+.B _SVID_SOURCE
+is defined.
 .SH "SEE ALSO"
-.BR date (1)
+.BR date (1),
+.BR settimeofday (2)
+

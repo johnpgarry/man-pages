@@ -42,7 +42,8 @@ ftw, nftw \- file tree walk
 directory \fIdir\fP.  For each found entry in the tree, it calls
 \fIfn\fP() with the full pathname of the entry, a pointer to the
 .BR stat (2)
-structure for the entry and an int, which value will be one of the following:
+structure for the entry and an int \fIflag\fP, which value will be one of
+the following:
 .TP
 .B FTW_F
 Item is a normal file

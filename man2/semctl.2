@@ -22,7 +22,8 @@
 .\"
 .\" Modified Tue Oct 22 17:53:56 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Fri Jun 19 10:59:15 1998 by Andries Brouwer <aeb@cwi.nl>
-.TH SEMCTL 2 "November 1, 1993" "Linux 0.99.13" "Linux Programmer's Manual" 
+.\" Modified Sun Feb 18 01:59:29 2001 by Andries Brouwer <aeb@cwi.nl>
+.TH SEMCTL 2 "18 Feb 2001" "Linux 2.4.1" "Linux Programmer's Manual" 
 .SH NAME
 semctl \- semaphore control operations
 .SH SYNOPSIS
@@ -293,6 +294,12 @@ control calls are used by the
 program to provide information on allocated resources.
 In the future these can be modified as needed or moved to a proc file system
 interface.
+.LP
+Various fields in a \fIstruct semid_ds\fP were shorts under Linux 2.2
+and have become longs under Linux 2.4. To take advantage of this,
+a recompilation under glibc-2.1.91 or later should suffice.
+(The kernel distinguishes old and new calls by a IPC_64 flag in
+.IR cmd .)
 .PP
 The following system limit on semaphore sets affects a
 .B semctl

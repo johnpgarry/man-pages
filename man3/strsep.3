@@ -26,6 +26,8 @@
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:00:10 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Mon Jan 20 12:04:18 1997 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Tue Jan 23 20:23:07 2001 by Andries Brouwer (aeb@cwi.nl)
+.\"
 .TH STRSEP 3  "April 12, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 strsep \- extract token from string
@@ -36,19 +38,33 @@ strsep \- extract token from string
 .BI "char *strsep(char **" stringp ", const char *" delim );
 .fi
 .SH DESCRIPTION
-The \fBstrsep()\fP function returns the next token from the string
-\fIstringp\fP which is delimited by \fIdelim\fP.  The token is
-terminated with a `\\0' character and \fIstringp\fP is updated to
-point past the token.
+If *\fIstringp\fP is NULL, the \fBstrsep()\fP function returns NULL
+and does nothing else. Otherwise, this function finds the first token
+in the string *\fIstringp\fP, where tokens
+are delimited by symbols in the string \fIdelim\fP.
+This token is terminated with a `\\0' character
+(by overwriting the delimiter)
+and *\fIstringp\fP is updated to point past the token.
+In case no delimiter was found, the token is taken to be
+the entire string *\fIstringp\fP, and *\fIstringp\fP is made NULL.
 .SH "RETURN VALUE"
-The \fBstrsep()\fP function returns a pointer to the token, or NULL
-if \fIdelim\fP is not found in \fIstringp\fP.
+The \fBstrsep()\fP function returns a pointer to the token,
+that is, it returns the original value of *\fIstringp\fP.
 .SH NOTES
 The \fBstrsep()\fP function was introduced as a replacement for
 \fBstrtok()\fP, since the latter cannot handle empty fields.
-(However, \fBstrtok()\fP conforms to ANSI-C and hence is more portable.)
+However, \fBstrtok()\fP conforms to ANSI-C and hence is more portable.
+.SH BUGS
+This function suffers from the same problems as \fBstrtok()\fP.
+In particular, it modifies the original string. Avoid it.
 .SH "CONFORMING TO"
 BSD 4.4
 .SH "SEE ALSO"
-.BR index "(3), " memchr "(3), " rindex "(3), " strchr (3),
-.BR strpbrk "(3), " strspn "(3), " strstr "(3), " strtok (3)
+.BR index (3),
+.BR memchr (3),
+.BR rindex (3),
+.BR strchr (3),
+.BR strpbrk (3),
+.BR strspn (3),
+.BR strstr (3),
+.BR strtok (3)

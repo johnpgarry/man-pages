@@ -58,8 +58,9 @@ forth, with `Z' representing 35.)
 If \fIendptr\fP is not NULL, \fBstrtol()\fP stores the address of the
 first invalid character in \fI*endptr\fP.  If there were no digits at
 all, \fBstrtol()\fP stores the original value of \fInptr\fP in
-\fI*endptr\fP.  (Thus, if \fI*nptr\fP is not `\\0' but \fI**endptr\fP
-is `\\0' on return, the entire string is valid.)
+\fI*endptr\fP (and returns 0).
+In particular, if \fI*nptr\fP is not `\\0' but \fI**endptr\fP
+is `\\0' on return, the entire string is valid.
 .SH "RETURN VALUE"
 The \fBstrtol()\fP function returns the result of the conversion,
 unless the value would underflow or overflow.  If an underflow occurs,

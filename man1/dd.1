@@ -207,6 +207,12 @@ would get an I/O error for the last fragment of data that does not
 fill an entire block. Use `dd if=myfile of=/dev/mytape conv=sync'
 to get everything on tape. Of course, reading it back will now
 produce a slightly larger file, with nulls added at the end.
+.SH BUGS
+Commands like `dd if=myfile of=/dev/fd0 bs=1k seek=172' fail
+on some systems because
+.B dd
+tries to truncate the output file, but truncation of a block device
+is not possible. In such cases, add the `conv=notrunc' option.
 .SH NOTES
 This page describes
 .B dd

@@ -34,8 +34,8 @@ If
 is specified,
 .B dircolors
 reads it to determine which colors to use for which file types and
-extensions.  Otherwise, a precompiled database is used.  For details
-on the format of these files, run `dircolors \-\-print\-database'.
+extensions.  Otherwise, a compiled-in database is used.  For details
+on the format of these files, run `dircolors \-p'.
 .PP
 The output is a shell command to set the
 .B LS_COLORS
@@ -101,10 +101,16 @@ should use the Bourne shell (-b) mode.
 .BR dir_colors (5),
 .BR ls (1)
 .SH FILES
+The program
+.B dircolors
+itself does not use any configuration files. However,
+customarily the shell initialization scripts invoke
+.B dircolors
+with one of the following.
 .TP
-.I /etc/dir_colors
+.I /etc/DIR_COLORS
 System-wide configuration file for
-.BR dircolors.
+.BR dircolors .
 .TP
 .I ~/.dir_colors
 Per-user configuration file for

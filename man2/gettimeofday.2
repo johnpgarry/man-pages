@@ -33,14 +33,13 @@
 .\" Modified 14 Jan 1997 by Austin Donnelly (and1000@debian.org):
 .\"   Added return values section, and bit on EFAULT
 .\" Added clarification on timezone, aeb, 971210.
+.\" Removed "#include <unistd.h>", aeb, 010316.
 .\"
 .TH GETTIMEOFDAY 2 "10 December 1997" "Linux 2.0.32" "Linux Programmer's Manual"
 .SH NAME
 gettimeofday, settimeofday \- get / set time
 .SH SYNOPSIS
 .B #include <sys/time.h>
-.br
-.B #include <unistd.h>
 .sp
 .BI "int gettimeofday(struct timeval *" tv ", struct timezone *" tz );
 .br

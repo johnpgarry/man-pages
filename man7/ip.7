@@ -193,8 +193,8 @@ IP supports some protocol specific socket options that can be set with
 and read with
 .BR getsockopt (2).
 The socket option level for IP is 
-.B SOL_IP
-. A boolean integer flag is zero when it is false, otherwise true.
+.BR SOL_IP .
+A boolean integer flag is zero when it is false, otherwise true.
 
 .TP
 .B IP_OPTIONS
@@ -792,9 +792,6 @@ capacibility or effective user id 0.
 .B EADDRINUSE
 Tried to bind to an address already in use.
 .TP
-.BR ENOMEM " and " ENOBUFS
-Not enough memory available. 
-.TP
 .BR ENOPROTOOPT " and " EOPNOTSUPP
 Invalid socket option passed.
 .TP
@@ -880,7 +877,7 @@ instead. The main difference is the
 new 
 .B sockaddr_ll 
 address structure for generic link layer information instead of the old 
-.B sockaddr_pkt.
+.BR sockaddr_pkt .
 .SH BUGS
 There are too many inconsistent error values. 
 .PP

@@ -25,8 +25,9 @@
 .\"          with material from Giorgio Ciucci <giorgio@crcc.it>
 .\" Portions Copyright 1993 Giorgio Ciucci <giorgio@crcc.it>
 .\" Modified Fri Jan 31 17:24:31 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Sun Feb 18 01:59:29 2001 by Andries Brouwer <aeb@cwi.nl>
 .\"
-.TH SHMCTL 2 "November 28, 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH SHMCTL 2 "18 Feb 2001" "Linux 2.4.1" "Linux Programmer's Manual"
 .SH NAME
 shmctl \- shared memory control
 .SH SYNOPSIS
@@ -179,6 +180,12 @@ is returned if \fIshmid\fP points to a removed identifier.
 is returned if \fBIPC_SET\fP or \fBIPC_RMID\fP is attempted, and the
 user is not the creator, the owner, or the super-user, and the user
 does not have permission granted to their group or to the world.
+.SH NOTE
+Various fields in a \fIstruct shmid_ds\fP were shorts under Linux 2.2
+and have become longs under Linux 2.4. To take advantage of this,
+a recompilation under glibc-2.1.91 or later should suffice.
+(The kernel distinguishes old and new calls by a IPC_64 flag in
+.IR cmd .)
 .SH "CONFORMING TO"
 SVr4, SVID.  SVr4 documents additional error conditions EINVAL,
 ENOENT, ENOSPC, ENOMEM, EEXIST.  Neither SVr4 nor SVID documents

@@ -27,6 +27,8 @@
 .SH NAME
 strptime \- convert a string representation of time to a time tm structure
 .SH SYNOPSIS
+.BR "#define _XOPEN_SOURCE" " /* glibc2 needs this */"
+.br
 .B #include <time.h>
 .sp
 .BI "char *strptime(const char *" s ", const char *" format ,
@@ -257,7 +259,7 @@ and
 .IR tm_yday 
 field if any of the year, month, or day elements changed.
 .PP
-This function is only available in libraries newer than version 4.6.5.
+This function is available since libc 4.6.8.
 Linux libc4 and libc5 includes define the prototype unconditionally;
 glibc2 includes provide a prototype only when _XOPEN_SOURCE or _GNU_SOURCE
 are defined.

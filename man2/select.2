@@ -30,9 +30,11 @@
 .\"
 .\" Modified Mon Oct 21 23:05:29 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Thu Feb 24 01:41:09 CET 2000 by aeb
+.\" Modified Thu Feb  9 22:32:09 CET 2001 by bert hubert <ahu@ds9a.nl>, aeb
+.\"
 .TH SELECT 2 "February 11, 1996" "Linux 1.2" "Linux Programmer's Manual"
 .SH NAME
-select, FD_CLR, FD_ISSET, FD_SET, FD_ZERO \- synchronous I/O multiplexing
+select, pselect, FD_CLR, FD_ISSET, FD_SET, FD_ZERO \- synchronous I/O multiplexing
 .SH SYNOPSIS
 .B #include <sys/time.h>
 .br
@@ -44,6 +46,10 @@ select, FD_CLR, FD_ISSET, FD_SET, FD_ZERO \- synchronous I/O multiplexing
 fd_set *\fIwritefds\fB, fd_set *\fIexceptfds\fB,
 struct timeval *\fItimeout\fB);
 .sp
+\fBint pselect(int \fIn\fB, fd_set *\fIreadfds\fB,
+fd_set *\fIwritefds\fB, fd_set *\fIexceptfds\fB,
+const struct timespec *\fItimeout\fB, sigset_t * \fIsigmask\fB);
+.sp
 .BI "FD_CLR(int " fd ", fd_set *" set );
 .br
 .BI "FD_ISSET(int " fd ", fd_set *" set );
@@ -53,8 +59,43 @@ struct timeval *\fItimeout\fB);
 .BI "FD_ZERO(fd_set *" set );
 .fi
 .SH DESCRIPTION
+The functions
 .B select
-waits for a number of file descriptors to change status.
+and
+.B pselect
+wait for a number of file descriptors to change status.
+.PP
+Their function is identical, with three differences:
+.TP
+(i)
+The
+.B select
+function uses a timeout that is a
+.I struct timeval
+(with seconds and microseconds), while
+.B pselect
+uses a
+.I struct timespec
+(with seconds and nanoseconds).
+.TP
+(ii)
+The
+.B select
+function may update the
+.I timeout
+parameter to indicate how much time was left. The
+.B pselect
+function does not change this parameter.
+.TP
+(iii)
+The
+.B select
+function has no
+.I sigmask
+parameter, and behaves as
+.B pselect
+called with NULL
+.IR sigmask .
 .PP
 Three independent sets of descriptors are watched.  Those listed in
 .I readfds
@@ -89,15 +130,47 @@ is an upper bound on the amount of time elapsed before
 .B select
 returns. It may be zero, causing
 .B select
-to return immediately. If
+to return immediately. (This is useful for polling.) If
 .I timeout
 is NULL (no timeout),
 .B select
 can block indefinitely.
+.PP
+.I sigmask
+is a pointer to a signal mask (see
+.BR sigprocmask (2));
+if it is not NULL, then
+.B pselect
+first replaces the current signal mask by the one pointed to by
+.IR sigmask ,
+then does the `select' function, and then restores the original
+signal mask again.
+.PP
+The idea of
+.B pselect
+is that if one wants to wait for an event, either a signal
+or something on a file descriptor, an atomic test is needed to prevent
+race conditions. (Suppose the signal handler sets a global flag and
+returns. Then a test of this global flag followed by a call of
+.BR select ()
+could hang indefinitely if the signal arrived just after the test
+but just before the call. On the other hand,
+.B pselect
+allows one to first block signals, handle the signals that have come in,
+then call
+.BR pselect ()
+with the desired
+.IR sigmask ,
+avoiding the race.)
+Since Linux today does not have a
+.IR pselect ()
+system call, the current glibc2 routine still contains this race.
 .SH RETURN VALUE
 On success,
-.B select 
-returns the number of descriptors contained in the descriptor sets, which
+.B select
+and
+.B pselect
+return the number of descriptors contained in the descriptor sets, which
 may be zero if the timeout expires before anything interesting happens.
 On error, \-1 is returned, and
 .I errno
@@ -183,6 +256,14 @@ function first appeared in 4.2BSD).  Generally portable to/from
 non-BSD systems supporting clones of the BSD socket layer (including
 System V variants).  However, note that the System V variant typically
 sets the timeout variable before exit, but the BSD variant does not.
+.PP
+The
+.B pselect
+function is defined in IEEE Std 1003.1g-2000 (POSIX.1g).
+It is found in glibc2.1 and later.
+Glibc2.0 has a function with this name, that however does not take a
+.I sigmask
+parameter.
 .SH SEE ALSO
 .BR accept (2),
 .BR connect (2),
@@ -190,4 +271,5 @@ sets the timeout variable before exit, but the BSD variant does not.
 .BR read (2),
 .BR recv (2),
 .BR send (2),
+.BR sigprocmask (2),
 .BR write (2)

@@ -87,10 +87,11 @@ Thus, to print out the environment of process 1, you would do:
 .TP
 .I exe
 a pointer to the binary which was executed, and appears as a symbolic
-link.
-.I readlink(2)
-on the exe special file returns under Linux 2.0 and earlier
-a string in the format:
+link. A
+.BR readlink (2)
+call on the
+.I exe
+special file returns under Linux 2.0 and earlier a string in the format:
 
 [device]:inode
 
@@ -120,7 +121,7 @@ is the flag designating an input file and -o is the flag designating
 an output file:
 .br
 .nf
-\f(CWfoobar -i /proc/self/fd/0 -o /proc/self/fd/1 ...\fP
+\f(CWfoobar -i /proc/self/fd/0 -o /proc/self/fd/1 ...\fR
 .fi
 .br
 and you have a working filter.  Note that this will not work for
@@ -295,8 +296,8 @@ The time in jiffies of the process's next timeout.
 The time (in jiffies) before the next SIGALRM is sent to the process
 due to an interval timer.
 .TP
-\fIstarttime\fP %d Time the process started in jiffies after system
-boot.
+\fIstarttime\fP %d
+Time the process started in jiffies after system boot.
 .TP
 \fIvsize\fP %u
 Virtual memory size
@@ -389,16 +390,16 @@ The total length of the file is the size of physical memory (RAM) plus
 .TP
 .I kmsg
 This file can be used instead of the
-.I syslog(2)
+.BR syslog (2)
 system call to log kernel messages.  A process must have superuser
 privileges to read this file, and only one process should read this
 file.  This file should not be read if a syslog process is running
 which uses the
-.I syslog(2)
+.BR syslog (2)
 system call facility to log kernel messages.
 
 Information in this file is retrieved with the
-.I dmesg(8)
+.BR dmesg (8)
 program).
 .TP
 .I ksyms
@@ -410,7 +411,7 @@ tools to dynamically link and bind loadable modules.
 The load average numbers give the number of jobs in the run queue
 averaged over 1, 5 and 15 minutes.  They are the same as the load
 average numbers given by
-.I uptime(1)
+.BR uptime (1)
 and other programs.
 .TP
 .I locks
@@ -581,11 +582,11 @@ certain features on or off.
 .I scsi
 This is a listing of all SCSI devices known to the kernel. The listing is 
 similar to the one seen during bootup.
-scsi currently supports only the \fIsingledevice\fP command which allows
+scsi currently supports only the \fIadd-single-device\fP command which allows
 root to add a hotplugged device to the list of known devices.
 
 An 
-.B echo 'scsi singledevice 1 0 5 0' > /proc/scsi/scsi 
+.B echo 'scsi add-single-device 1 0 5 0' > /proc/scsi/scsi 
 will cause 
 host scsi1 to scan on SCSI channel 0 for a device on ID 5 LUN 0. If there 
 is already a device known on this address or the address is invalid an
