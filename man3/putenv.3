@@ -26,6 +26,7 @@
 .\"     386BSD man pages
 .\" Modified Thu Apr  8 15:00:12 1993, David Metcalfe
 .\" Modified Sat Jul 24 18:44:45 1993, Rik Faith (faith@cs.unc.edu)
+.\" Modified Fri Feb 14 21:47:50 1997 by Andries Brouwer (aeb@cwi.nl)
 .TH PUTENV 3  "April 8, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 putenv \- change or add an environment variable
@@ -37,7 +38,7 @@ putenv \- change or add an environment variable
 .fi
 .SH DESCRIPTION
 The \fBputenv()\fP function adds or changes the value of environment
-variables.  The argument \fIstring\fP is of the form \fIname=value\fP.
+variables.  The argument \fIstring\fP is of the form \fIname\fP=\fIvalue\fP.
 If \fIname\fP does not already exist in the environment, then 
 \fIstring\fP is added to the environment.  If \fIname\fP does exist,
 then the value of \fIname\fP in the environment is changed to 
@@ -52,4 +53,7 @@ Insufficient space to allocate new environment.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3
 .SH "SEE ALSO"
-.BR getenv "(3), " setenv "(3), " unsetenv (3)
+.BR getenv (3),
+.BR setenv (3),
+.BR unsetenv (3),
+.BR environ (5)

@@ -26,6 +26,8 @@
 .\"     386BSD man pages
 .\" Modified Sat May 22 18:43:54 1993, David Metcalfe
 .\" Modified Sun Jul 25 10:42:30 1993, Rik Faith (faith@cs.unc.edu)
+.\" Modified Sun Feb 16 13:23:10 1997, Andries Brouwer (aeb@cwi.nl)
+.\"
 .TH GETHOSTBYNAME 3  "April 19, 1993" "BSD" "Linux Programmer's Manual"
 .SH NAME
 gethostbyname, gethostbyaddr, sethostent, endhostent, herror \- get network 
@@ -37,6 +39,7 @@ host entry
 .sp
 .BI "struct hostent *gethostbyname(const char *" name );
 .sp
+.B #include <sys/socket.h> "      " /* for AF_INET */
 .BI "struct hostent *gethostbyaddr(const char *" addr ", int " len ", int " type );
 .sp
 .BI "void sethostent(int " stayopen );
@@ -47,10 +50,17 @@ host entry
 .fi
 .SH DESCRIPTION
 The \fBgethostbyname()\fP function returns a structure of type \fIhostent\fP
-for the given host \fIname\fP.  The current domain and its parents are
-searched unless \fIname\fP ends in a dot.  If \fIname\fP doesn't end in a dot 
-and the environment variable \fBHOSTALIASES\fP is set, the alias file pointed
-to by \fBHOSTALIASES\fP will first be searched for \fIname\fP.
+for the given host \fIname\fP.  Here \fIname\fP is either a host name, or
+an IPv4 address in standard dot notation, or an IPv6 address in colon
+(and possibly dot) notation. (See RFC 1884 for the description of IPv6
+addresses.) If \fIname\fP doesn't end in a dot 
+and the environment variable \fBHOSTALIASES\fP is set, the alias file
+pointed to by \fBHOSTALIASES\fP will first be searched for \fIname\fP.
+(See
+.BR hostname (7)
+for the file format.)
+The current domain and its parents are searched unless \fIname\fP
+ends in a dot.  
 .PP
 The \fBgethostbyaddr()\fP function returns a structure of type \fIhostent\fP
 for the given host address \fIaddr\fP of length \fIlen\fP and address type
@@ -143,4 +153,8 @@ host database file
 .SH "CONFORMING TO"
 BSD 4.3
 .SH "SEE ALSO"
-.BR resolver "(3), " hosts "(5), " hostname "(7), " resolv+ " (8), " named (8)
+.BR resolver (3),
+.BR hosts (5),
+.BR hostname (7),
+.BR resolv+ (8),
+.BR named (8)

@@ -124,7 +124,7 @@ The
 and
 .B SHM_INFO
 control calls are used by the
-.BR ipcs (1)
+.BR ipcs (8)
 program to provide information on allocated resources.  In the future,
 these man be modified as needed or moved to a proc file system interface.
 .PP
@@ -152,7 +152,7 @@ On error,
 .B errno
 will be set to one of the following:
 .TP 12
-.B EACCESS
+.B EACCES
 is returned if \fBIPC_STAT\fP is requested and
 \fIshm_perm.modes\fP does not allow read access for
 .IR msqid .

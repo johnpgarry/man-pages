@@ -51,7 +51,8 @@ reads the message
 in set
 .IR set_number ,
 from the message catalog identified by
-.IR catalog .
+.IR catalog ,
+where
 .I catalog
 is a catalog descriptor returned from an earlier call to
 .BR catopen (3).
@@ -59,7 +60,7 @@ The fourth argument
 .I message
 points to a default message string which will be returned by
 .B catgets(\|)
-if the identified message catalog is not currently open, or damaged. The
+if the identified message catalog is not currently available. The
 message-text is contained in an internal buffer area and should be copied by
 the application if it is to be saved or modified. The return string is
 always terminated with a null byte.
@@ -67,19 +68,23 @@ always terminated with a null byte.
 .LP
 On success,
 .B catgets(\|)
-returns a pointer
-to an internal buffer area containing the null-terminated message string.
+returns a pointer to an internal buffer area
+containing the null-terminated message string.
+On failure,
 .B catgets(\|)
-returns a pointer to
+returns the value
 .I message
 if it fails because the message catalog specified by
 .I catalog
-is not currently open. Otherwise,
+is not available. On the other hand,
 .B catgets(\|)
-returns a pointer to an empty string if the message catalog is available but
-does not contain the specified message.
+returns an empty string if the message catalog
+is available but does not contain the specified message.
 .SH NOTES
 These functions are only available in libc.so.4.4.4c and above.
+The two possible error returns seem to be discarded in XPG4.2
+in favour of always returning
+.IR message .
 .SH SEE ALSO
 .BR catopen (3),
 .BR setlocale (3)

@@ -1,21 +1,25 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.15.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.16.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 
-Differences from version 1.14:
+Differences from version 1.15:
     
     The man pages
 
-	getsockopt.2 readlink.2 getutent.3 scanf.3 suffixes.7
+	_exit.2 chown.2 fcntl.2 getpid.2 msgctl.2 mprotect.2 ptrace.2
+	readv.2 semctl.2 semop.2 shmctl.2 shmop.2 socket.2 utime.2
 
-    and possibly others have been updated.  Moreover, almost
-    all *.2 pages have been updated by Eric S. Raymond:
-    (i) In the comments all `(x@y.z)' became `<x@y.z>'
-    (ii) CONFORMING TO sections have been added/corrected/updated.
-    (iii) ERRORS sections have been extended.
-    (iv) Occasionally explanatory comments were added.
+	catgets.3 catopen.3 confstr.3 gethostbyname.3 glob.3 isalpha.3
+	longjmp.3 putenv.3 setjmp.3 siglongjmp.3 sigsetjmp.3 system.3
+	ttyname.3 usleep.3
+
+	charmap.5 environ.5 locale.5
+
+	bootparam.7
+
+    and possibly others have been updated.
 
 Here is a breakdown of what this distribution contains:
 

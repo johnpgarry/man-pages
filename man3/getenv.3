@@ -25,6 +25,8 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 19:30:29 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Fri Feb 14 21:47:50 1997 by Andries Brouwer (aeb@cwi.nl)
+.\"
 .TH GETENV 3  "April 3, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 getenv \- get an environment variable
@@ -44,4 +46,7 @@ environment, or NULL if there is no match.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3, ISO 9899
 .SH "SEE ALSO"
-.BR putenv "(3), " setenv "(3), " unsetenv (3)
+.BR putenv (3),
+.BR setenv (3),
+.BR unsetenv (3),
+.BR environ (5)

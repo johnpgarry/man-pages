@@ -1,5 +1,6 @@
 .\" Copyright (c) 1993 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de),
 .\"   Fri Apr  2 11:32:09 MET DST 1993
+.\" and Andries Brouwer (aeb@cwi.nl), Fri Feb 14 21:47:50 1997.
 .\"
 .\" This is free documentation; you can redistribute it and/or
 .\" modify it under the terms of the GNU General Public License as
@@ -31,6 +32,8 @@ environ \- user environment
 .SH SYNOPSIS
 .ad l
 .nf
+.B #include <unistd.h>
+.sp
 .B extern char **environ;
 .fi
 .ad b
@@ -57,6 +60,12 @@ by \fBLC_ALL\fP or more specific environment variables.
 The sequence of directory prefixes that \fBsh\fP(1) and many other
 programs apply in searching for a file known by an incomplete path name.
 The prefixes are separated by `\fB:\fP'.
+(Similarly one has \fBCDPATH\fP used by some shells to find the target
+of a change directory command, \fBMANPATH\fP used by \fBman\fP(1) to
+find manual pages, etc.)
+.TP
+.B PWD
+The current working directory. Set by some shells.
 .TP
 .B SHELL
 The file name of the user's login shell.
@@ -68,12 +77,42 @@ Further names may be placed in the environment by the \fBexport\fP
 command and `name=value' in \fBsh\fP(1), or by the \fBsetenv\fP command
 if you use \fBcsh\fP(1).  Arguments may also be placed in the
 environment at the point of an \fBexec\fP(2).
+A C program can manipulate its environment using the functions
+\fBgetenv\fP(), \fBputenv\fP(), \fBsetenv\fP() and \fBunsetenv\fP().
 
-It is risky practice to set name=value pairs that conflict with
-well-known shell variables.  Setting these could cause surprising
-behaviour in subshells or
-.BR system (3)
-commands.
+Note that the behaviour of many programs and library routines is
+influenced by the presence or value of certain environment variables.
+A random collection:
+.LP
+The variables LANG, LANGUAGE, NLSPATH, LOCPATH,
+LC_ALL, LC_MESSAGES etc. influence locale handling.
+.LP
+TMPDIR influences the path prefix of names created by
+\fBtmpnam()\fP and other routines, the temporary directory used by
+\fBsort\fP(1) and other programs, etc.
+.LP
+LD_LIBRARY_PATH, LD_PRELOAD and other LD_* variables influence
+the behaviour of the dynamic loader/linker.
+.LP
+POSIXLY_CORRECT makes certain programs and library routines follow
+the prescriptions of POSIX.
+.LP
+The behaviour of \fBmalloc\fP() is influenced by MALLOC_* variables.
+.LP
+The variable HOSTALIASES gives the name of a file containing aliases
+to be used with \fBgethostbyname\fP().
+.LP
+TZ and TZDIR give time zone information.
+.LP
+TERMCAP gives information on how to address a given terminal
+(or gives the name of a file containing such information).
+.LP
+Etc. etc.
+
+Clearly there is a security risk here. Many a system command has been
+tricked into mischief by a user who specified unusual values for IFS
+or LD_LIBRARY_PATH.
+
 .SH "SEE ALSO"
 .BR login (1),
 .BR sh (1),
@@ -81,4 +120,7 @@ commands.
 .BR csh (1),
 .BR tcsh (1),
 .BR exec (2),
-.BR system (3).
+.BR getenv (3),
+.BR putenv (3),
+.BR setenv (3),
+.BR unsetenv (3).

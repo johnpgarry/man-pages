@@ -25,6 +25,7 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:20:58 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Fri Feb 14 21:47:50 1997 by Andries Brouwer (aeb@cwi.nl)
 .TH SETENV 3  "April 4, 1993" "BSD" "Linux Programmer's Manual"
 .SH NAME
 setenv \- change or add an environment variable
@@ -52,4 +53,7 @@ was insufficient space in the environment.
 .SH "CONFORMING TO"
 BSD 4.3
 .SH "SEE ALSO"
-.BR getenv "(3), " putenv (3)
+.BR getenv (3),
+.BR putenv (3),
+.BR environ (5)
+

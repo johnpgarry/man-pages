@@ -71,11 +71,11 @@ Do not use
 from a program with suid or sgid privileges, because strange values for
 some environment variables might be used to subvert system integrity.
 Use the
-.BR exec (2)
+.BR exec (3)
 family of functions instead, but not
-.BR execlp (2)
+.BR execlp (3)
 or
-.BR execvp (2).
+.BR execvp (3).
 .PP
 The check for the availability of
 .B /bin/sh
@@ -88,4 +88,6 @@ call failed; check
 .I errno
 to make sure.
 .SH "SEE ALSO"
-.BR sh "(1), " exec "(2), " signal (2)
+.BR sh (1),
+.BR signal (2),
+.BR exec (3)

@@ -41,8 +41,9 @@ the presently allocated consoles; (c) use the program chvt(1).
 (The key mapping is user settable, see loadkeys(1); the above mentioned
 key combinations are according to the default settings.)
 .LP
-The command \fBdisalloc\fP(8) will free the memory taken by the
-screen buffers for consoles that no longer have any associated process.
+The command \fBdeallocvt\fP(1) (formerly \fBdisalloc\fP)
+will free the memory taken by the screen buffers for consoles
+that no longer have any associated process.
 
 .SH PROPERTIES
 Consoles carry a lot of state. I hope to document that some other time.
@@ -68,7 +69,7 @@ All escape sequences can be found in
 .BR init (8),
 .BR chvt (1),
 .BR open (1),
-.BR disalloc (8),
+.BR deallocvt (1),
 .BR loadkeys (1),
 .BR resizecons (8),
 .BR setfont (8),

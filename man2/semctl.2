@@ -248,7 +248,7 @@ For a failing return,
 .B errno
 will be set to one among the following values:
 .TP 11
-.B EACCESS
+.B EACCES
 The calling process has no access permissions needed to execute
 .IR cmd .
 .TP
@@ -297,7 +297,7 @@ The
 and
 .B SEM_INFO
 control calls are used by the
-.BR ipcs (1)
+.BR ipcs (8)
 program to provide information on allocated resources.
 In the future these can be modified as needed or moved to a proc file system
 interface.

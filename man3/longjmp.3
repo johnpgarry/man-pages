@@ -20,19 +20,23 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
+.\" Added siglongjmp, Sun Mar  2 22:03:05 EST 1997, jrv@vanzandt.mv.com
 .\" Modifications, Sun Feb 26 14:39:45 1995, faith@cs.unc.edu
 .\" "
-.TH LONGJMP 3 "November 25, 1994" "" "Library functions"
+.TH LONGJMP 3 "March 2, 1997" "" "Library functions"
 .SH NAME
-longjmp \- non-local jump to a saved stack context
+longjmp, siglongjmp \- non-local jump to a saved stack context
 .SH SYNOPSIS
 .ad l
-#include <setjmp.h>
+.B #include <setjmp.h>
 .sp
-.BI "void longjmp(jmp_buf " env ", int " val );
+.nf
+.BI "void longjmp( jmp_buf " env ", int " val );
+.BI "void siglongjmp( sigjmp_buf " env ", int " val );
+.fi
 .ad b
 .SH DESCRIPTION
-\fBlongjmp()\fP and \fBsetjmp\fP(3) are useful for dealing with errors
+\fBlongjmp()\fP and \fBsetjmp()\fP are useful for dealing with errors
 and interrupts encountered in a low-level subroutine of a program.
 \fBlongjmp()\fP restores the environment saved by the last call of
 \fBsetjmp()\fP with the corresponding \fIenv\fP argument.  After
@@ -40,15 +44,21 @@ and interrupts encountered in a low-level subroutine of a program.
 corresponding call of \fBsetjmp()\fP had just returned the value
 \fIval\fP.  \fBlongjmp()\fP cannot cause 0 to be returned.  If longjmp
 is invoked with a second argument of 0, 1 will be returned instead.
+.P
+\fBsiglongjmp()\fP is similar to \fBlongjmp()\fP except for the type of
+its \fIenv\fP argument.  If the \fBsigsetjmp()\fP call that set this
+\fIenv\fP used a nonzero \fIsavesigs\fP flag, \fBsiglongjmp()\fP also
+restores the set of blocked signals.
 .SH "RETURN VALUE"
-This function never returns.
+These functions never return.
 .SH "CONFORMING TO"
 POSIX
 .SH NOTES
-POSIX does not specify if the signal context will be restored or not.
-If you want to save restore signal masks, use
-.IR siglongjmp (3)
-\fBlongjmp()\fP makes programs hard to understand and maintain.  If
-possible an alternative should be used.
+POSIX does not specify whether \fBlongjmp\fP will restore the signal
+context.  If you want to save and restore signal masks, use
+\fBsiglongjmp\fP.
+.P
+\fBlongjmp()\fP and \fBsiglongjmp()\fP make programs hard to
+understand and maintain.  If possible an alternative should be used.
 .SH "SEE ALSO"
-.BR setjmp "(3), " sigsetjmp "(2), " siglongjmp (2)
+.BR setjmp "(3), " sigsetjmp (3)
