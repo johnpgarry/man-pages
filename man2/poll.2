@@ -104,6 +104,9 @@ descriptors have been selected. On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP
+.B EBADF
+An invalid file descriptor was given in one of the sets.
+.TP
 .B ENOMEM
 There was no space to allocate file descriptor tables.
 .TP

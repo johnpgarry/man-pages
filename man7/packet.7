@@ -111,7 +111,7 @@ flag is passed to
 the real length of the packet on the wire is always returned, even when it
 is longer than the buffer.
 
-.SH ADDRESS TYPES
+.SH "ADDRESS TYPES"
 The sockaddr_ll is a device independent physical layer address.
 
 .RS
@@ -180,7 +180,7 @@ and
 .B sll_ifindex
 are used.
 
-.SH SOCKET OPTIONS
+.SH "SOCKET OPTIONS"
 Packet sockets can be used to configure physical layer multicasting 
 and promiscuous mode. It works by calling 
 .BR setsockopt (2) 
@@ -244,7 +244,7 @@ and
 .BR socket (7)
 are valid on packet sockets.
 
-.SH ERROR HANDLING
+.SH "ERROR HANDLING"
 Packet sockets do no error handling other than errors occurred while passing
 the packet to the device driver. They don't have the concept of a pending
 error.
@@ -394,18 +394,17 @@ This man page was written by Andi Kleen with help from Matthew Wilcox.
 PF_PACKET in Linux 2.2 was implemented
 by Alexey Kuznetsov, based on code by Alan Cox and others.
 
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR ip (7),
 .BR socket (7),
 .BR socket (2),
 .BR raw (7),
-.BR pcap (3).
+.BR pcap (3)
 
 RFC 894 for the standard IP Ethernet encapsulation.
 
 RFC 1700 for the IEEE 802.3 IP encapsulation.
 
 The 
-.BR linux/if_ether.h
+.I <linux/if_ether.h>
 include file for physical layer protocols.
- 

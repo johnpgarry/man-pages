@@ -62,7 +62,7 @@ different device.
 .\"
 .\"
 .\"
-.SH "BOOT-UP OPERATION" 
+.SH "BOOT-UP OPERATION"
 When booting up with 
 .BR initrd ", the system boots as follows:"
 .RS 0.2i
@@ -189,7 +189,7 @@ is used for the normal root file systems.
 For a NFS-mounted normal root file system, one has to use the 
 .BR nfs_root_name " and " nfs_root_addrs 
 boot options to give the NFS settings. 
-For more information on NSF-mounted root see the kernel documentation file
+For more information on NFS-mounted root see the kernel documentation file
 .BR nfsroot.txt "."
 For more information on setting the root file system also see the
 .BR LILO " and " LOADLIN " documentation."
@@ -211,9 +211,9 @@ For a physical root device, the root device is changed by having
 .BR /linuxrc
 write the new root file system device number into
 .BR /proc/sys/kernel/real-root-dev "."
-For a NSF root file system, the root device is changed by having
+For a NFS root file system, the root device is changed by having
 .BR /linuxrc
-write the NSF setting into files
+write the NFS setting into files
 .BR /proc/sys/kernel/nfs-root-name " and "
 .BR /proc/sys/kernel/nfs-root-addrs 
 and then writing 0xff (e.g. the pseudo-NFS-device number) into file
@@ -224,10 +224,10 @@ the normal root device to
 .nf
         echo 0x365 >/proc/sys/kernel/real-root-dev
 .fi
-For a NSF example, the following shell command lines would change the 
-normal root device to the NSF directory 
+For a NFS example, the following shell command lines would change the 
+normal root device to the NFS directory 
 .BR /var/nfsroot 
-on a local networked NSF server with IP number 193.8.232.7 for a system with 
+on a local networked NFS server with IP number 193.8.232.7 for a system with 
 IP number 193.8.232.7 and named 'idefix':
 .nf
 	echo /var/nfsroot >/proc/sys/kernel/nfs-root-name
@@ -238,7 +238,7 @@ IP number 193.8.232.7 and named 'idefix':
 .\"   
 .\"   
 .\"   
-.SH "USAGE"
+.SH USAGE
 The main motivation for implementing 
 .BR initrd 
 was to allow for modular kernel configuration at system installation. 

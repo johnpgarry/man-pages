@@ -88,7 +88,7 @@ user ID of the sending process must equal the real or
 saved set-user-ID of the receiving process.
 In the case of SIGCONT it suffices when the sending and receiving
 processes belong to the same session.
-.SH "BUGS"
+.SH BUGS
 It is impossible to send a signal to task number one, the init process, for
 which it has not installed a signal handler.  This is done to assure the
 system is not brought down accidentally.

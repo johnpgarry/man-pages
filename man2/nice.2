@@ -53,13 +53,14 @@ by supplying a negative
 .IR inc .
 .SH "CONFORMING TO"
 SVr4, SVID EXT, AT&T, X/OPEN, BSD 4.3. However, the Linux and glibc
-(up to glibc2.2.3) return value is nonstandard, see below.
+(earlier than glibc 2.2.4) return value is nonstandard, see below.
 SVr4 documents an additional
 EINVAL error code.
 .SH NOTES
 Note that the routine is documented in SUSv2 to return
-the new nice value, while the Linux syscall and (g)libc routines
-return 0 on success. The new nice value can be found using
+the new nice value, while the Linux syscall and (g)libc
+(earlier than glibc 2.2.4) routines return 0 on success.
+The new nice value can be found using
 .BR getpriority (2).
 Note that an implementation in which
 .B nice

@@ -22,9 +22,12 @@ iconv_close \- deallocate descriptor for character set conversion
 The \fBiconv_close\fP function deallocates a conversion descriptor \fIcd\fP
 previously allocated using \fBiconv_open\fP.
 .SH "RETURN VALUE"
-When successful, the \fBiconv_close\fP function returns 0. In case of error,
-it sets \fBerrno\fP and returns -1.
+When successful, the \fBiconv_close\fP function returns 0.
+In case of error, it sets
+.I errno
+and returns \-1.
 .SH "CONFORMING TO"
 UNIX98
 .SH "SEE ALSO"
-.BR iconv_open "(3), " iconv (3)
+.BR iconv_open (3),
+.BR iconv (3)

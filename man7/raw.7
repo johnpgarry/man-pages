@@ -82,7 +82,7 @@ When a packet is received, it is passed to any raw sockets which have
 been bound to its protocol before it is passed to other protocol handlers
 (e.g. kernel protocol modules).  
 
-.SH ADDRESS FORMAT
+.SH "ADDRESS FORMAT"
 
 Raw sockets use the standard 
 .B sockaddr_in 
@@ -101,7 +101,7 @@ See the
 .B <netinet/in.h>
 include file for valid IP protocols. 
 
-.SH SOCKET OPTIONS
+.SH "SOCKET OPTIONS"
 Raw socket options can be set with
 .BR setsockopt (2)
 and read with
@@ -174,7 +174,7 @@ Sending on raw sockets should take the IP protocol from
 this ability was lost in Linux 2.2. Work around is to use
 .B IP_HDRINCL.
 
-.SH ERROR HANDLING
+.SH "ERROR HANDLING"
 Errors originating from the network are only passed to the user when the
 socket is connected or the 
 .B IP_RECVERR
@@ -244,12 +244,12 @@ call is always used.
 .SH AUTHORS
 This man page was written by Andi Kleen. 
 
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR ip (7),
 .BR socket (7),
 .BR recvmsg (2),
-.BR sendmsg (2).
-.PP
+.BR sendmsg (2)
+
 .B RFC1191 
 for path MTU discovery.
 

@@ -69,7 +69,7 @@ implement a very efficient \fBrealloc\fR.
 indicates if the operation should fail, or change the virtual address 
 if the resize cannot be done at the current virtual address.
 
-.SH RETURN VALUE
+.SH "RETURN VALUE"
 On success \fBmremap\fR returns a pointer to the new virtual memory area.
 On error, \-1 is returned, and \fIerrno\fR is set appropriately.
 
@@ -98,7 +98,7 @@ This call is Linux-specific, and should not be used in programs
 intended to be portable.  4.2BSD had a (never actually implemented)
 .BR mremap (2)
 call with completely different semantics.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR getpagesize (2),
 .BR realloc (3),
 .BR malloc (3),

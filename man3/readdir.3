@@ -61,12 +61,17 @@ Use of other fields will harm the portability of your programs.
 .SH "RETURN VALUE"
 The \fBreaddir()\fP function returns a pointer to a dirent structure, or
 NULL if an error occurs or end-of-file is reached.
-.SH "ERRORS"
+.SH ERRORS
 .TP
 .B EBADF
 Invalid directory stream descriptor \fIdir\fP.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3
 .SH "SEE ALSO"
-.BR read "(2), " opendir "(3), " closedir "(3), " rewinddir (3),
-.BR seekdir "(3), " telldir "(3), " scandir (3)
+.BR read (2),
+.BR opendir (3),
+.BR closedir (3),
+.BR rewinddir (3),
+.BR seekdir (3),
+.BR telldir (3),
+.BR scandir (3)

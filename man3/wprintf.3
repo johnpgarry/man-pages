@@ -62,7 +62,7 @@ The output consists of wide characters, not bytes.
 .B \(bu
 \fBswprintf\fP and \fBvswprintf\fP take a \fImaxlen\fP argument,
 \fBsprintf\fP and \fBvsprintf\fP do not. (\fBsnprintf\fP and \fBvsnprintf\fP
-take a \fImaxlen\fP argument, but these functions do not return -1 upon
+take a \fImaxlen\fP argument, but these functions do not return \-1 upon
 buffer overflow on Linux.)
 .PP
 The treatment of the conversion characters \fBc\fP and \fBs\fP is different:
@@ -116,11 +116,15 @@ to the number of wide characters in the array.
 .SH "RETURN VALUE"
 The functions return the number of wide characters written, excluding the
 terminating null wide character in case of the functions \fBswprintf\fP and
-\fBvswprintf\fP. They return -1 when an error occurs.
+\fBvswprintf\fP. They return \-1 when an error occurs.
 .SH "CONFORMING TO"
 ISO/ANSI C, UNIX98
 .SH "SEE ALSO"
-.BR printf "(3), " fprintf "(3), " snprintf "(3), " fputwc "(3), " fwide (3),
+.BR printf (3),
+.BR fprintf (3),
+.BR snprintf (3),
+.BR fputwc (3),
+.BR fwide (3),
 .BR wscanf (3)
 .SH NOTES
 The behaviour of \fBwprintf\fP et al. depends on the LC_CTYPE category of the

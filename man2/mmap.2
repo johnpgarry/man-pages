@@ -108,6 +108,12 @@ MAP_NORESERVE, MAP_LOCKED, MAP_GROWSDOWN and MAP_ANON(YMOUS).
 .I offset
 should ordinarily be a multiple of the page size returned by
 .BR getpagesize (2).
+.LP
+Memory mapped by
+.B mmap
+is preserved across
+.BR fork (2),
+with the same attributes.
 
 The
 .B munmap

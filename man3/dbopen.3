@@ -154,7 +154,7 @@ or
 .I sync
 function may result in inconsistent or lost information.
 .I Close
-routines return -1 on error (setting
+routines return \-1 on error (setting
 .IR errno )
 and 0 on success.
 .TP
@@ -172,7 +172,7 @@ The cursor must have previously been initialized.
 .RE
 .IP
 .I Delete
-routines return -1 on error (setting
+routines return \-1 on error (setting
 .IR errno ),
 0 on success, and 1 if the specified
 .I key
@@ -196,7 +196,7 @@ The file descriptor is not necessarily associated with any of the
 underlying files used by the access method.
 No file descriptor is available for in memory databases.
 .I Fd
-routines return -1 on error (setting
+routines return \-1 on error (setting
 .IR errno ),
 and the file descriptor on success.
 .TP
@@ -208,7 +208,7 @@ The address and length of the data associated with the specified
 are returned in the structure referenced by
 .IR data .
 .I Get
-routines return -1 on error (setting
+routines return \-1 on error (setting
 .IR errno ),
 0 on success, and 1 if the
 .I key
@@ -269,7 +269,7 @@ routines is to enter the new key/data pair, replacing any previously
 existing key.
 .IP
 .I Put
-routines return -1 on error (setting
+routines return \-1 on error (setting
 .IR errno ),
 0 on success, and 1 if the R_NOOVERWRITE
 .I flag
@@ -338,7 +338,7 @@ access methods because they each imply that the keys have an inherent
 order which does not change.
 .IP
 .I Seq
-routines return -1 on error (setting
+routines return \-1 on error (setting
 .IR errno ),
 0 on success and 1 if there are no key/data pairs less than or greater
 than the specified or current key.
@@ -369,7 +369,7 @@ manual page for more information.)
 .RE
 .IP
 .I Sync
-routines return -1 on error (setting
+routines return \-1 on error (setting
 .IR errno )
 and 0 on success.
 .SH "KEY/DATA PAIRS"

@@ -147,6 +147,14 @@ RLIMIT_NOFILE above the current kernel maximum.
 .SH "CONFORMING TO"
 SVr4, BSD 4.3
 .SH NOTE
+Including
+.I <sys/time.h>
+is not required these days, but increases portability.
+(Indeed,
+.I struct timeval
+is defined in
+.IR <sys/time.h> .)
+.LP
 The above struct was taken from BSD 4.3 Reno.
 Not all fields are meaningful under Linux.
 Right now (Linux 2.4) only the fields

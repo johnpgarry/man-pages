@@ -58,7 +58,7 @@ specified by \fIcount\fR. The buffers are used in the order specified.
 Operates just like \fBwrite\fR except that data is taken from \fIvector\fR
 instead of a contiguous buffer.
 
-.SH RETURN VALUE
+.SH "RETURN VALUE"
 On success \fBreadv\fR returns the number of bytes read.
 On success \fBwritev\fR returns the number of bytes written.
 On error, \-1 is returned, and \fIerrno\fR is set appropriately.
@@ -104,7 +104,7 @@ and
 functions first appeared in BSD 4.2), Unix98.  Linux libc5 uses
 \fBsize_t\fR as the type of the \fIcount\fR parameter, which is
 logical but non-standard.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR read (2),
 .BR write (2),
 .BR fprintf (3),

@@ -110,7 +110,7 @@ These functions return the number of characters printed
 .BR snprintf " and " vsnprintf
 do not write more than
 .I size
-bytes (including the trailing '\e0'), and return -1 if the output
+bytes (including the trailing '\e0'), and return \-1 if the output
 was truncated due to this limit.
 (Thus until glibc 2.0.6. Since glibc 2.1 these functions follow the C99
 standard and return the number of characters (excluding the trailing '\e0')

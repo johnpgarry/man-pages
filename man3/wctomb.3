@@ -40,7 +40,7 @@ encoding is stateless.
 .SH "RETURN VALUE"
 If \fIs\fP is not NULL, the \fBwctomb\fP function returns the number of bytes
 that have been written to the byte array at \fIs\fP. If \fIwc\fP can not be
-represented as a multibyte sequence (according to the current locale), -1 is
+represented as a multibyte sequence (according to the current locale), \-1 is
 returned.
 .PP
 If \fIs\fP is NULL, the \fBwctomb\fP function returns non-zero if the
@@ -48,7 +48,9 @@ encoding has non-trivial shift state, or zero if the encoding is stateless.
 .SH "CONFORMING TO"
 ISO/ANSI C, UNIX98
 .SH "SEE ALSO"
-.BR wcrtomb "(3), " wcstombs "(3), " MB_CUR_MAX (3)
+.BR wcrtomb (3),
+.BR wcstombs (3),
+.BR MB_CUR_MAX (3)
 .SH NOTES
 The behaviour of \fBwctomb\fP depends on the LC_CTYPE category of the
 current locale.

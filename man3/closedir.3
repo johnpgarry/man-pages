@@ -43,12 +43,17 @@ The \fBclosedir()\fP function closes the directory stream associated with
 after this call.
 .SH "RETURN VALUE"
 The \fBclosedir()\fP function returns 0 on success or \-1 on failure.
-.SH "ERRORS"
+.SH ERRORS
 .TP
 .B EBADF
 Invalid directory stream descriptor \fIdir\fP.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3
 .SH "SEE ALSO"
-.BR close "(2), " opendir "(3), " readdir "(3), " rewinddir (3),
-.BR seekdir "(3), " telldir "(3), " scandir (3)
+.BR close (2),
+.BR opendir (3),
+.BR readdir (3),
+.BR rewinddir (3),
+.BR seekdir (3),
+.BR telldir (3),
+.BR scandir (3)

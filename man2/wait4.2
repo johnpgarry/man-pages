@@ -34,6 +34,7 @@ wait3, wait4 \- wait for process termination, BSD style
 .nf
 .B #define _USE_BSD
 .B #include <sys/types.h>
+.B #include <sys/time.h>
 .B #include <sys/resource.h>
 .B #include <sys/wait.h>
 .sp 2
@@ -167,7 +168,7 @@ was used and no child was available yet.
 In the latter two cases
 .I errno
 will be set appropriately.
-.SH "ERRORS"
+.SH ERRORS
 .TP
 .B ECHILD
 No unwaited-for child process as specified does exist.
@@ -182,6 +183,18 @@ The library interface is not allowed to return
 .BR ERESTARTSYS ,
 but will return
 .BR EINTR .
+.SH NOTE
+Including
+.I <sys/time.h>
+is not required these days, but increases portability.
+(Indeed,
+.I <sys/resource.h>
+defines the
+.I rusage
+structure with fields of type
+.I struct timeval
+defined in
+.IR <sys/time.h> .)
 .SH "CONFORMING TO"
 SVr4, POSIX.1
 .SH "SEE ALSO"

@@ -42,7 +42,7 @@ use the easier-to-use interfaces
 and 
 .IR capgetp (3).
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, -1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -54,7 +54,7 @@ One of the arguments was invalid.
 An attempt was made to add a capability to the Permitted set, or to set
 a capability in the Effective or Inheritable sets that is not in the
 Permitted set.
-.SH FURTHER INFORMATION
+.SH "FURTHER INFORMATION"
 The portable interface to the capability querying and setting
 functions is provided by the
 .B libcap

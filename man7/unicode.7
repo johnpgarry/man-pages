@@ -106,7 +106,7 @@ classic
 character set and the characters in the range 0x0000 to 0x00ff
 are identical to those in
 .BR "ISO 8859-1 Latin-1" .
-.SH COMBINING CHARACTERS
+.SH "COMBINING CHARACTERS"
 Some code points in
 .B UCS
 have been assigned to
@@ -125,7 +125,7 @@ followed by a "combining diaeresis": 0x0041 0x0308.
 Combining characters are essential for instance for encoding the Thai
 script or for mathematical typesetting and users of the International
 Phonetic Alphabet.
-.SH IMPLEMENTATION LEVELS
+.SH "IMPLEMENTATION LEVELS"
 As not all systems are expected to support advanced mechanisms like
 combining characters, ISO 10646-1 specifies the following three
 .I implementation levels
@@ -162,7 +162,7 @@ additional information on the semantics and recommended usages of
 various characters. They provide guidelines and algorithms for
 editing, sorting, comparing, normalizing, converting and displaying
 Unicode strings.
-.SH UNICODE UNDER LINUX
+.SH "UNICODE UNDER LINUX"
 Under GNU/Linux, the C type
 .B wchar_t
 is a signed 32-bit integer type. Its values are always interpreted
@@ -205,7 +205,7 @@ by some UTF-8 terminal emulators and ISO 10646 fonts (level 2), but in
 general precomposed characters should be preferred where available
 (Unicode calls this
 .BR "Normalization Form C" ).
-.SH PRIVATE AREA
+.SH "PRIVATE AREA"
 In the
 .BR BMP ,
 the range 0xe000 to 0xf8ff will never be assigned to any characters by
@@ -282,7 +282,7 @@ supported in certain GUI applications (HTML viewers, word processors)
 with sophisticated text rendering engines.
 .SH AUTHOR
 Markus Kuhn <mgk25@cl.cam.ac.uk>
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR utf-8 (7),
 .BR charsets (7),
 .BR setlocale (3)

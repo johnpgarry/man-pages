@@ -52,7 +52,7 @@ returns successfully we are the only user.
 .SH "RETURN VALUE"
 The \fBmkstemp()\fP function returns the file descriptor fd of the
 temporary file or \-1 on error.
-.SH "ERRORS"
+.SH ERRORS
 .TP
 .B EINVAL
 The last six characters of \fItemplate\fP were not XXXXXX.
@@ -74,4 +74,7 @@ for libc4, libc5, glibc1; glibc2 follows the Single Unix Specification
 and has the prototype in
 .IR <stdlib.h> .
 .SH "SEE ALSO"
-.BR mktemp "(3), " tmpnam "(3), " tempnam "(3), " tmpfile (3)
+.BR mktemp (3),
+.BR tmpnam (3),
+.BR tempnam (3),
+.BR tmpfile (3)

@@ -22,13 +22,14 @@ wcwidth \- determine columns needed for a wide character
 .SH DESCRIPTION
 The \fBwcwidth\fP function returns the number of columns needed to represent
 the wide character \fIc\fP. If \fIc\fP is a printable wide character, the value
-is at least 0. If \fIc\fP is L'\\0', the value is 0. Otherwise -1 is returned.
+is at least 0. If \fIc\fP is L'\\0', the value is 0. Otherwise \-1 is returned.
 .SH "RETURN VALUE"
 The \fBwcwidth\fP function returns the number of column positions for \fIc\fP.
 .SH "CONFORMING TO"
 UNIX98
 .SH "SEE ALSO"
-.BR wcswidth "(3), " iswprint (3)
+.BR wcswidth (3),
+.BR iswprint (3)
 .SH NOTES
 The behaviour of \fBwcwidth\fP depends on the LC_CTYPE category of the
 current locale.

@@ -94,7 +94,7 @@ on error.
 .PP
 .SH "CONFORMING TO"
 ANSI - C, POSIX.1
-.SH "BUGS"
+.SH BUGS
 It is not advisable to mix calls to output functions from the
 .B stdio
 library with low - level calls to
@@ -102,5 +102,10 @@ library with low - level calls to
 for the file descriptor associated with the same output stream; the results
 will be undefined and very probably not what you want.
 .SH "SEE ALSO"
-.BR write "(2), " fopen "(3), " fwrite "(3), " scanf (3),
-.BR gets "(3), " fseek "(3), " ferror (3)
+.BR write (2),
+.BR fopen (3),
+.BR fwrite (3),
+.BR scanf (3),
+.BR gets (3),
+.BR fseek (3),
+.BR ferror (3)

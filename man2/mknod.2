@@ -59,9 +59,9 @@ process.  If the directory containing the node has the set group id
 bit set, or if the filesystem is mounted with BSD group semantics, the
 new node will inherit the group ownership from its parent directory;
 otherwise it will be owned by the effective gid of the process.
-.SH RETURN VALUE
+.SH "RETURN VALUE"
 .BR mknod
-returns zero on success, or -1 if an error occurred (in which case,
+returns zero on success, or \-1 if an error occurred (in which case,
 .I errno
 is set appropriately).
 .SH ERRORS
@@ -120,7 +120,7 @@ Too many symbolic links were encountered in resolving
 The device containing
 .I pathname
 has no room for the new node.
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 SVr4 (but the call requires privilege and is thus not in POSIX),
 4.4BSD.  The Linux version differs from the SVr4 version in that it
 does not require root permission to create pipes, also in that no
@@ -147,7 +147,7 @@ and FIFOs with
 There are many infelicities in the protocol underlying NFS.  Some
 of these affect
 .BR mknod .
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR close (2),
 .BR fcntl (2),
 .BR mkdir (2),

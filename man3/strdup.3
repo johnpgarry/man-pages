@@ -41,11 +41,14 @@ obtained with \fBmalloc\fP(3), and can be freed with \fBfree\fP(3).
 .SH "RETURN VALUE"
 The \fBstrdup()\fP function returns a pointer to the duplicated
 string, or NULL if insufficient memory was available.
-.SH "ERRORS"
+.SH ERRORS
 .TP
 .B ENOMEM
 Insufficient memory available to allocate duplicate string.
 .SH "CONFORMING TO"
 SVID 3, BSD 4.3
 .SH "SEE ALSO"
-.BR calloc "(3), " malloc "(3), " realloc "(3), " free (3)
+.BR calloc (3),
+.BR malloc (3),
+.BR realloc (3),
+.BR free (3)

@@ -402,7 +402,7 @@ If the input baud rate is set to zero, the input baud rate will be
 equal to the output baud rate.
 .LP
 .B tcgetpgrp()
-returns process group ID of foreground processing group, or -1 on error.
+returns process group ID of foreground processing group, or \-1 on error.
 .LP
 .B tcsetpgrp()
 sets process group ID to \fIpgrpid\fP.  \fIpgrpid\fP must be the ID
@@ -418,14 +418,14 @@ structure.
 returns the output baud rate stored in the \fBtermios\fP structure.
 .LP
 .B tcgetpgrp()
-returns process group ID of foreground processing group, or -1 on error.
+returns process group ID of foreground processing group, or \-1 on error.
 .LP
 All other functions return:
 .IP 0
 on success.
-.IP -1
+.IP \-1
 on failure and set
 .I errno
 to indicate the error.
 .SH "SEE ALSO"
-\fBsetserial\fP(8)
+.BR setserial (8)

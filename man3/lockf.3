@@ -49,8 +49,7 @@ Unlock the file.
 .B F_TEST
 Test the lock: return 0 if
 .I fd
-is unlocked or locked by this
-process; return -1, set
+is unlocked or locked by this process; return \-1, set
 .I errno
 to
 .BR EACCES ,
@@ -83,11 +82,12 @@ An invalid operation was specified in
 .TP
 .B ENOLCK
 Too many segment locks open, lock table is full.  
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 SYSV
 .SH "SEE ALSO"
 .BR fcntl (2),
-.BR flock (2).
+.BR flock (2)
+.br
 There are also
 .I locks.txt
 and

@@ -8,39 +8,75 @@
 .\"   New man page (copied from 'fork.2').
 .\" Modified 10 June 1995 by Andries Brouwer <aeb@cwi.nl>
 .\" Modified 25 april 1998 by Xavier Leroy <Xavier.Leroy@inria.fr>
+.\" Modified 26 Jun 2001 by Michael Kerrisk
+.\"     Mostly upgraded to 2.4.x
+.\"     Added prototype for sys_clone() plus description
+.\"	Added CLONE_THREAD with a briefdescription of thread groups
+.\"	Added CLONE_PARENT and revised entire page remove ambiguity 
+.\"		between "calling process" and "parent process"
+.\"	Added CLONE_PTRACE and CLONE_VFORK
+.\"	Added EPERM and EINVAL error codes
+.\"	Renamed "__clone" to "clone" (which is the protype in <sched.h>)
+.\"	various other minor tidy ups and clarifications.
 .\"
-.TH CLONE 2 1998-04-25 "Linux 2.0.33" "Linux Programmer's Manual"
+.TH CLONE 2 2001-06-26 "Linux 2.4" "Linux Programmer's Manual"
 .SH NAME
-__clone \- create a child process
+clone \- create a child process
 .SH SYNOPSIS
 .B #include <sched.h>
 .sp
-.BI "int __clone(int (*" "fn" ") (void *" "arg" "), void *" "child_stack" ", int " "flags" ", void *" "arg" ")"
+.BI "int clone(int (*" "fn" ") (void *), void *" "child_stack" ", int " "flags" ", void *" "arg" ")"
+.sp
+.BI "_syscall2(int, " "clone" ", int, " "flags" ", void *, " "child_stack" ");"
 
 .SH DESCRIPTION
-.B __clone
-creates a new process like
-.BR fork (2)
-does.  Unlike
+.B clone 
+creates a new process, just like
+.BR fork (2).
+.B clone
+is a library function layered on top
+of the underlying 
+.BR clone
+system call, hereinafter referred to as
+.BR sys_clone .
+A description of
+.BR sys_clone
+is given towards the end of this page.
+
+Unlike
 .BR fork (2),
-.B __clone
-allows the child process to share parts of its execution context with
-its parent process, such as the memory space, the table of file
-descriptors, and the table of signal handlers.  The main use of
-.B __clone
+these calls 
+allow the child process to share parts of its execution context with
+the calling process, such as the memory space, the table of file
+descriptors, and the table of signal handlers.  (Note that on this manual 
+page, "calling process" normally corresponds to "parent process".  But see
+the description of 
+.B CLONE_PARENT 
+below.)
+
+The main use of
+.B clone
 is to implement threads: multiple threads of control in a program that
 run concurrently in a shared memory space.
 
-When the child process is created, it executes the function
+When the child process is created with
+.BR clone , 
+it executes the function
 application
-.IR fn ( arg ).
+.IR fn ( arg ).  
+(This differs from
+.BR fork (2), 
+where execution continues in the child from the point
+of the 
+.BR fork (2) 
+call.)
 The
 .I fn
 argument is a pointer to a function that is called by the child
 process at the beginning of its execution.
 The
 .I arg
-argument is passed back to the
+argument is passed to the
 .I fn
 function.
 
@@ -51,18 +87,18 @@ integer returned by
 .I fn
 is the exit code for the child process.  The child process may also
 terminate explicitely by calling
-.BR exit (1)
+.BR exit (2)
 or after receiving a fatal signal.
 
 The
 .I child_stack
 argument specifies the location of the stack used by the child
-process.  Since the child and parent processes may share memory,
-it is not possible in general for the child process to execute in the
-same stack as the parent process.  The parent process must therefore
+process.  Since the child and calling process may share memory,
+it is not possible for the child process to execute in the
+same stack as the calling process.  The calling process must therefore
 set up memory space for the child stack and pass a pointer to this
 space to
-.BR __clone .
+.BR clone .
 Stacks grow downwards on all processors that run Linux
 (except the HP PA processors), so
 .I child_stack
@@ -72,87 +108,98 @@ the child stack.
 The low byte of
 .I flags
 contains the number of the signal sent to the parent when the child
-dies.
+dies.  If this signal is specified as anything other than
+.BR SIGCHLD ,
+then the parent process must specify the
+.B __WALL 
+or 
+.B __WCLONE
+options when waiting for the child with 
+.BR wait (2).  
+If no signal is specified, then the parent process is not signaled
+when the child terminates.
+
 .I flags
 may also be bitwise-or'ed with one or several of the following
-constants, in order to specify what is shared between the parent and
-child processes:
+constants, in order to specify what is shared between the calling process
+and the child process:
 
 .TP
-.B CLONE_VM
-If
-.B CLONE_VM
-is set, the parent and the child processes run in the same memory
-space.  In particular, memory writes performed by the parent process
-or by the child process are also visible in the other process.
-Moreover, any memory mapping or unmapping performed with
-.BR mmap (2)
-or
-.BR munmap (2)
-by the child or parent process also affects the other process.
+.B CLONE_PARENT
+(Linux 2.4 onwards) If
+.B CLONE_PARENT
+is set, then the parent of the new child (as returned by
+.BR getppid (2))
+will be the same as that of the calling process.
 
 If
-.B CLONE_VM
-is not set, the child process runs in a separate copy of the memory
-space of the parent at the time of
-.BR __clone .
-Memory writes or file mapping/unmapping performed by one of the
-processes does not affect the other, as in the case of
-.BR fork (2).
+.B CLONE_PARENT
+is not set, then (as with
+.BR fork (2))
+the child's parent is the calling process.
+
+Note that it is the parent process, as returned by 
+.BR getppid (2),
+which is signaled when the child terminates, so that
+if 
+.B CLONE_PARENT
+is set, then the parent of the calling process, rather than the 
+calling process itself, will be signaled.
 
 .TP
 .B CLONE_FS
 If
 .B CLONE_FS
-is set, the parent and the child processes share the same file system
+is set, the caller and the child processes share the same file system
 information.  This includes the root of the file system, the current
 working directory, and the umask.  Any call to
 .BR chroot (2),
 .BR chdir (2),
 or
 .BR umask (2)
-performed by the parent or child process also takes effect in the
+performed by the callng process or the child process also takes effect in the
 other process.
 
 If 
 .B CLONE_FS
 is not set, the child process works on a copy of the file system
-information of the parent at the time of
-.BR __clone .
+information of the calling process at the time of the
+.BR clone 
+call.
 Calls to
 .BR chroot (2),
 .BR chdir (2),
 .BR umask (2)
-performed later by one of the processes does not affect the other.
+performed later by one of the processes do not affect the other process.
 
 .TP
 .B CLONE_FILES
 If
 .B CLONE_FILES
-is set, the parent and the child processes share the same file
+is set, the calling process and the child processes share the same file
 descriptor table.  File descriptors always refer to the same files in
-the parent and in the child process.  Any file descriptor created by
-the parent process or by the child process is also valid in the other
+the calling process and in the child process.  Any file descriptor created by
+the calling process or by the child process is also valid in the other
 process.  Similarly, if one of the processes closes a file descriptor,
 or changes its associated flags, the other process is also affected.
 
 If
 .B CLONE_FILES
 is not set, the child process inherits a copy of all file descriptors
-opened in the parent process at the time of
-.BR __clone .
-Operations on file descriptors performed later by one of the parent or
-child processes do not affect the other.
+opened in the calling process at the time of
+.BR clone .
+Operations on file descriptors performed later by either the calling process or
+the child process do not affect the other process.
 
 .TP
 .B CLONE_SIGHAND
 If
 .B CLONE_SIGHAND
-is set, the parent and the child processes share the same table of
-signal handlers.  If the parent or child process calls
+is set, the calling process and the child processes share the same table of
+signal handlers.  If the calling process or child process calls
 .BR sigaction (2)
-to change the behavior associated with a signal, the behavior is also
-changed in the other process as well.  However, the parent and child
+to change the behavior associated with a signal, the behavior is 
+changed in the other process as well.  However, the calling process and child
 processes still have distinct signal masks and sets of pending
 signals.  So, one of them may block or unblock some signals using
 .BR sigprocmask (2)
@@ -161,28 +208,122 @@ without affecting the other process.
 If
 .B CLONE_SIGHAND
 is not set, the child process inherits a copy of the signal handlers
-of its parent at the time
-.B __clone
+of the calling process at the time
+.B clone
 is called.  Calls to
 .BR sigaction (2)
 performed later by one of the processes have no effect on the other
 process.
 
 .TP
+.B CLONE_PTRACE
+If 
+.B CLONE_PTRACE
+is specified, and the calling process is being traced, then trace the child also (see
+.BR ptrace (2)).
+
+.TP
+.B CLONE_VFORK
+If
+.B CLONE_VFORK
+is set, the execution of the calling process is suspended
+until the child releases its virtual memory
+resources via a call to
+.BR execve (2)
+or
+.BR _exit (2)
+(as with 
+.BR vfork (2)).
+
+If 
+.B CLONE_VFORK
+is not set then both the calling process and the child are schedulable
+after the call, and an application should not rely on execution occurring
+in any particular order.
+
+.TP
+.B CLONE_VM
+If
+.B CLONE_VM
+is set, the calling process and the child processes run in the same memory
+space.  In particular, memory writes performed by the calling process
+or by the child process are also visible in the other process.
+Moreover, any memory mapping or unmapping performed with
+.BR mmap (2)
+or
+.BR munmap (2)
+by the child or calling process also affects the other process.
+
+If
+.B CLONE_VM
+is not set, the child process runs in a separate copy of the memory
+space of the calling process at the time of
+.BR clone .
+Memory writes or file mappings/unmappings performed by one of the
+processes do not affect the other, as with
+.BR fork (2).
+
+.TP
 .B CLONE_PID
 If
 .B CLONE_PID
-is set, the child process is created with the same process ID as its
-parent process.
+is set, the child process is created with the same process ID as 
+the calling process.
 
 If
 .B CLONE_PID
 is not set, the child process possesses a unique process ID, distinct
-from that of its parent.
+from that of the calling process.
+
+This flag can only be specified by the system boot process (PID 0).
+
+.TP 
+.B CLONE_THREAD
+(Linux 2.4 onwards)  
+If
+.B CLONE_THREAD
+is set, the child is placed in the same thread group as the calling process.
+
+If
+.B CLONE_THREAD
+is not set, then the child is placed in its own (new) 
+thread group, whose ID is the same as the process ID.
+
+(Thread groups are feature added in Linux 2.4 to support the
+POSIX threads notion of a set of threads sharing a single PID.  In Linux
+2.4, calls to 
+.BR getpid (2)
+return the thread group ID of the caller.)
+.PP
+The
+.B sys_clone
+system call corresponds more closely to
+.BR fork (2)
+in that execution in the child continues from the point of the
+call.  Thus,
+.B sys_clone
+only requires the
+.I flags
+and 
+.I child_stack
+arguments, which have the same meaning as for 
+.BR clone .  
+(Note that the order of these arguments differs from
+.BR clone .)  
+
+Another difference for 
+.B sys_clone
+is that the
+.I child_stack
+argument may be zero, in which case copy-on-write semantics ensure that the 
+child gets separate copies of stack pages when either process modifies
+the stack.  In this case, for correct operation, the 
+.B CLONE_VM
+option should not be specified.
 
 .SH "RETURN VALUE"
-On success, the PID of the child process is returned in the parent's thread
-of execution.  On failure, a \-1 will be returned in the parent's
+On success, the PID of the child process is returned in the caller's thread
+of execution.  On failure, a \-1 will be returned in the caller's
 context, no child process will be created, and
 .I errno
 will be set appropriately.
@@ -193,11 +334,19 @@ will be set appropriately.
 Too many processes are already running.
 .TP
 .B ENOMEM
-.B __clone
-cannot allocate sufficient memory to allocate a task structure for the
-child, or to copy those parts of the parent's context that need to be
+Cannot allocate sufficient memory to allocate a task structure for the
+child, or to copy those parts of the caller's context that need to be
 copied.
-
+.TP
+.B EINVAL
+Returned by 
+.B clone 
+when a zero value is specified for 
+.IR child_stack .
+.TP 
+.B EPERM
+.B CLONE_PID
+was specified by a process with a non-zero PID.
 .SH BUGS
 
 As of version 2.1.97 of the kernel,
@@ -207,25 +356,27 @@ flag should not be used, since other parts of the kernel and most system
 software still assume that process IDs are unique.
 
 There is no entry for
-.B __clone
+.B clone
 in libc version 5.  libc 6 (a.k.a. glibc 2) provides
-.B __clone
+.B clone
 as described in this manual page.
 
-.SH CONFORMING TO
-
+.SH "CONFORMING TO"
 The
-.B __clone
-call is Linux-specific and should not be used in programs
+.B clone
+and
+.B sys_clone
+calls are Linux-specific and should not be used in programs
 intended to be portable.  For programming threaded applications
 (multiple threads of control in the same memory space), it is better
 to use a library implementing the POSIX 1003.1c thread API, such as
 the LinuxThreads library (included in glibc2).  See
 .BR pthread_create (3thr).
 
-This manual page corresponds to kernels 2.0.x and 2.1.x, and to glibc
-2.0.x.
+This manual page corresponds to kernels 2.0.x, 2.1.x, 2.2.x, 2.4.x,
+and to glibc 2.0.x and 2.1.x.
 
 .SH "SEE ALSO"
 .BR fork (2),
+.BR wait (2),
 .BR pthread_create (3thr)

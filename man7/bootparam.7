@@ -637,17 +637,6 @@ For the function of the assigned values, see
 Specify irq = 0 for non-interrupt driven mode.
 Set fastpio = 1 for fast pio mode, 0 for slow mode.
 
-.SS "IOMEGA PPA3 configuration"
-.IP
-.BI ppa= iobase[,speed_high[,speed_low[,nybble]]]
-.LP
-Here iobase is the parallel port address (default 0x378),
-speed_high is the port delay in data phase in microseconds (default 1),
-speed_low is the port delay (in microseconds) otherwise (default 6),
-and nybble is a boolean `force nybble (4-bit) mode' (default 0=false).
-See also
-.IR /usr/src/linux/drivers/scsi/README.ppa .
-
 .SS "Pro Audio Spectrum configuration"
 
 The PAS16 uses a NC5380 SCSI chip, and newer models support
@@ -836,11 +825,19 @@ If you set the magic_number to 0x79 then the driver will try and run
 anyway in the event of an unknown firmware version. All other values
 are ignored.
 
-.SS "The MicroSolutions `backpack' CDrom"
+.SS "Parallel port CD-ROM drives"
 Syntax:
 .IP
-bpcd=iobase
+pcd.driveN=prt,pro,uni,mod,slv,dly
+.br
+pcd.nice=nice
 .LP
+where `port' is the base address, `pro' is the protocol number, `uni'
+is the unit selector (for chained devices), `mod' is the mode (or -1
+to choose the best automatically), `slv' is 1 if it should be a slave,
+and `dly' is a small integer for slowing down port accesses.  The
+`nice' parameter controls the driver's use of idle CPU time, at the
+expense of some speed.
 
 .SS "The CDU-31A and CDU-33A Sony Interface"
 
@@ -1161,17 +1158,25 @@ afsk1200, fsk9600.
 .SH "THE LINE PRINTER DRIVER"
 
 .SS "`lp='"
-As of kernels newer than 1.3.75, you can tell the printer driver what
-ports to use and what ports not to use. The latter comes in handy if
-you don't want the printer driver to claim all available parallel
-ports, so that other drivers (e.g. PLIP, PPA) can use them instead.
+Syntax:
+.IP
+lp=0
+.br
+lp=auto
+.br
+lp=reset
+.br
+lp=port[,port...]
+.LP
+You can tell the printer driver what ports to use and what ports not
+to use. The latter comes in handy if you don't want the printer driver
+to claim all available parallel ports, so that other drivers
+(e.g. PLIP, PPA) can use them instead.
 
-The format of the argument is multiple i/o, IRQ pairs. For example,
-lp=0x3bc,0,0x378,7 would use the port at 0x3bc in IRQ-less (polling)
-mode, and use IRQ 7 for the port at 0x378. The port at 0x278 (if any)
-would not be probed, since autoprobing only takes place in the absence
-of a `lp=' argument. To disable the printer driver entirely, one can
-use lp=0.
+The format of the argument is multiple port names. For example,
+lp=none,parport0 would use the first parallel port for lp1, and
+disable lp0.  To disable the printer driver entirely, one can use
+lp=0.
 
 .SS "WDT500/501 driver"
 Syntax:
@@ -1211,12 +1216,12 @@ Linus Torvalds (and many others)
 .SH "SEE ALSO"
 .BR klogd (8),
 .BR lilo.conf (5),
-.BR lilo(8),
-.BR mount(8),
-.BR rdev(8).
+.BR lilo (8),
+.BR mount (8),
+.BR rdev (8)
 
 Large parts of this man page have been derived from the
 Boot Parameter HOWTO (version 1.0.1) written by Paul Gortmaker.
-Slightly more information may be found in this (or a more recent) HOWTO.
+More information may be found in this (or a more recent) HOWTO.
 An uptodate source of information is
 .IR /usr/src/linux/Documentation/kernel-parameters.txt .

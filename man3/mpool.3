@@ -152,14 +152,14 @@ MPOOL_DIRTY
 The page has been modified and needs to be written to the backing file.
 .PP
 .I Mpool_put
-returns 0 on success and -1 if an error occurs.
+returns 0 on success and \-1 if an error occurs.
 .PP
 The function
 .I mpool_sync
 writes all modified pages associated with the MPOOL pointer to the
 backing file.
 .I Mpool_sync
-returns 0 on success and -1 if an error occurs.
+returns 0 on success and \-1 if an error occurs.
 .PP
 The
 .I mpool_close
@@ -169,7 +169,7 @@ Modified pages are
 .B not
 written to the backing file.
 .I Mpool_close
-returns 0 on success and -1 if an error occurs.
+returns 0 on success and \-1 if an error occurs.
 .SH ERRORS
 The
 .I mpool_open

@@ -59,7 +59,7 @@ The new protection replaces any existing protection.  For example, if the
 memory had previously been marked \fBPROT_READ\fR, and \fBmprotect\fR
 is then called with \fIprot\fR \fBPROT_WRITE\fR, it will no longer
 be readable.
-.SH RETURN VALUE
+.SH "RETURN VALUE"
 On success,
 .B mprotect
 returns zero.  On error, \-1 is returned, and
@@ -135,5 +135,5 @@ POSIX.1b says that
 .B mprotect
 can be used only on regions of memory obtained from
 .BR mmap (2).
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR mmap (2)

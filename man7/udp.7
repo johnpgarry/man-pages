@@ -72,13 +72,13 @@ as described in the
 section of
 .BR ip (7).
 
-.SH ADDRESS FORMAT
+.SH "ADDRESS FORMAT"
 UDP uses the IPv4 
 .B sockaddr_in 
 address format described in 
 .BR ip (7). 
 
-.SH ERROR HANDLING
+.SH "ERROR HANDLING"
 All fatal errors will be passed to the user as an error return even 
 when the socket is not connected. This includes asynchronous errors
 received from the network. You may get an error for an earlier packet
@@ -149,10 +149,10 @@ IP_RECVERR is a new feature in Linux 2.2
 .SH CREDITS
 This man page was written by Andi Kleen.
 
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR ip (7),
 .BR socket (7),
-.BR raw (7).
+.BR raw (7)
 
 RFC768 for the User Datagram protocol.
 .br

@@ -20,7 +20,9 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH SYSLOG 3 1994-02-15 "Linux" "Linux Programmer's Manual"
+.\" Updated 1999.12.19 by Karl M. Hegbloom <karlheg@debian.org>
+.\"
+.TH SYSLOG 3 1999-12-19 "Linux" "Linux Programmer's Manual"
 .SH NAME
 closelog, openlog, syslog \- send messages to the system logger
 .SH SYNOPSIS
@@ -75,7 +77,7 @@ string
 corresponding to the present value of 
 .IR errno .
 
-.SH "PARAMETERS"
+.SH PARAMETERS
 This section lists the parameters used to set the values of 
 .IR option , " facility" ", and " priority .
 .SS option
@@ -118,7 +120,10 @@ clock daemon
 .RB ( cron " and " at )
 .TP
 .B LOG_DAEMON
-other system daemons
+system daemons without separate facility value
+.TP
+.B LOG_FTP
+ftp daemon
 .TP
 .B LOG_KERN
 kernel messages
@@ -178,5 +183,7 @@ debug-level message
 A
 .B syslog
 function call appeared in BSD 4.2.
-.SH SEE ALSO
-.BR logger "(1), " syslog.conf "(5), " syslogd (8)
+.SH "SEE ALSO"
+.BR logger (1),
+.BR syslog.conf (5),
+.BR syslogd (8)

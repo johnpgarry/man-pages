@@ -44,7 +44,7 @@ stream is positioned at the first entry in the directory.
 .SH "RETURN VALUE"
 The \fBopendir()\fP function returns a pointer to the directory stream or
 NULL if an error occurred.
-.SH "ERRORS"
+.SH ERRORS
 .TP
 .B EACCES
 Permission denied.
@@ -66,5 +66,10 @@ Insufficient memory to complete the operation.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3
 .SH "SEE ALSO"
-.BR open "(2), " readdir "(3), " closedir "(3), " rewinddir (3),
-.BR seekdir "(3), " telldir "(3), " scandir (3)
+.BR open (2),
+.BR readdir (3),
+.BR closedir (3),
+.BR rewinddir (3),
+.BR seekdir (3),
+.BR telldir (3),
+.BR scandir (3)

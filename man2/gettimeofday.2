@@ -175,7 +175,7 @@ Only the super user may use
 .B gettimeofday
 and
 .B settimeofday
-return 0 for success, or -1 for failure (in which case
+return 0 for success, or \-1 for failure (in which case
 .I errno
 is set appropriately).
 .SH ERRORS
@@ -193,6 +193,19 @@ One of
 or
 .I tz
 pointed outside your accessible address space.
+.SH NOTE
+The prototype for
+.B settimeofday
+and the defines for
+.BR timercmp ,
+.BR timerisset ,
+.BR timerclear ,
+.BR timeradd ,
+.BR timersub
+are (since glibc2.2.2) only available if
+.B _BSD_SOURCE
+is defined (either explicitly, or implicitly, by not defining
+_POSIX_SOURCE or compiling with the -ansi flag).
 .SH "CONFORMING TO"
 SVr4, BSD 4.3
 .SH "SEE ALSO"

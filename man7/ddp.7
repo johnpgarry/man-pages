@@ -15,7 +15,7 @@ ddp \- Linux AppleTalk protocol implementation
 .IB ddp_socket " = socket(PF_APPLETALK, SOCK_DGRAM, 0);"
 .br 
 .IB raw_socket " = socket(PF_APPLETALK, SOCK_RAW, " protocol ");"
-.SH DESCRIPTION 
+.SH DESCRIPTION
 Linux implements the Appletalk protocols described in 
 .IR "Inside Appletalk" .
 Only the DDP layer and AARP are present in
@@ -51,7 +51,7 @@ you must specify
 Raw sockets may be only opened by a process with effective user id 0 or when the process has the 
 .B CAP_NET_RAW 
 capability.  
-.SH ADDRESS FORMAT
+.SH "ADDRESS FORMAT"
 An Appletalk socket address is defined as a combination of a network number,
 a node number, and a port number. 
 .PP
@@ -105,7 +105,7 @@ wildcard and also implies \(lqthis node.\(rq The value of
 is a link
 local broadcast address.
 .\" XXX this doesn't make sense [johnl]
-.SH SOCKET OPTIONS
+.SH "SOCKET OPTIONS"
 No protocol-specific socket options are supported.
 .SH SYSCTLS
 IP supports a sysctl interface to configure some global AppleTalk parameters. 
@@ -233,7 +233,7 @@ There are too many inconsistent error values.
 .PP
 The ioctls used to configure routing tables, devices, AARP tables and other
 devices are not yet described.
-.SH SEE ALSO 
-.BR sendmsg (2), 
-.BR recvmsg (2), 
+.SH "SEE ALSO"
+.BR sendmsg (2),
+.BR recvmsg (2),
 .BR socket (7)

@@ -159,7 +159,7 @@ The process ID of the child which exited, or zero if
 was used and no child was available, or \-1 on error (in which case
 .I errno
 is set to an appropriate value).
-.SH "ERRORS"
+.SH ERRORS
 .TP
 .B ECHILD
 if the process specified in
@@ -183,7 +183,7 @@ The library interface is not allowed to return
 .BR ERESTARTSYS ,
 but will return
 .BR EINTR .
-.SH "NOTES"
+.SH NOTES
 The Single Unix Specification describes a flag SA_NOCLDWAIT (not present
 under Linux) such that if either this flag is set, or the action for
 SIGCHLD is set to SIG_IGN (which, by the way, is not allowed by POSIX),

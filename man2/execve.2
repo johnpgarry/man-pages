@@ -175,12 +175,19 @@ conditions EAGAIN, EINTR, ELIBACC, ENOLINK, EMULTIHOP; POSIX does not
 document ETXTBSY, EPERM, EFAULT, ELOOP, EIO, ENFILE, EMFILE, EINVAL,
 EISDIR or ELIBBAD error conditions.
 .SH NOTES
-SUID and SGID processes can not be \fBptrace()\fPd SUID or SGID.
+SUID and SGID processes can not be \fBptrace()\fPd.
+
+Linux ignores the SUID and SGID bits on scripts.
+
+The result of mounting a filesystem
+.I nosuid
+vary between Linux kernel versions:
+some will refuse execution of SUID/SGID executables when this would
+give the user powers she did not have already (and return EPERM),
+some will just ignore the SUID/SGID bits and exec successfully.
 
 A maximum line length of 127 characters is allowed for the first line in
 a #! executable shell script. 
-
-Linux ignores the SUID and SGID bits on scripts.
 .\" .SH BUGS
 .\" Some Linux versions have failed to check permissions on ELF
 .\" interpreters.  This is a security hole, because it allows users to

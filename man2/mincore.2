@@ -49,7 +49,7 @@ core resident.
 
 For
 .B mincore
-to return succesfully, 
+to return successfully, 
 .I start
 must lie on a page boundary. It is the caller's responsibility to
 round up to the nearest page. The
@@ -89,7 +89,7 @@ to
 .I length
 contained unmapped memory, or memory not part of a file.
 
-.SH "BUGS"
+.SH BUGS
 .B mincore
 should return a bit vector and not a byte vector. As of Linux 2.4.5, it is not
 possible to gain information on the core residency of pages which are not
@@ -107,9 +107,9 @@ may be stale by the time they reach userspace.
 .B mincore
 does not appear to be part of POSIX or the Single Unix Specification. 
 .SH HISTORY
-The mincore() function first appeared in 4.4BSD
-
+The mincore() function first appeared in 4.4BSD.
+.SH AVAILABILITY
+Since Linux 2.3.99pre1 and glibc 2.2.
 .SH "SEE ALSO"
 .BR getpagesize (2),
 .BR mmap (2)
-

@@ -165,7 +165,7 @@ avoiding the race.)
 Since Linux today does not have a
 .IR pselect ()
 system call, the current glibc2 routine still contains this race.
-.SH RETURN VALUE
+.SH "RETURN VALUE"
 On success,
 .B select
 and
@@ -252,7 +252,7 @@ main(void) {
     exit(0);
 }
 .fi
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 4.4BSD (the
 .B select
 function first appeared in 4.2BSD).  Generally portable to/from
@@ -267,7 +267,7 @@ It is found in glibc2.1 and later.
 Glibc2.0 has a function with this name, that however does not take a
 .I sigmask
 parameter.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR accept (2),
 .BR connect (2),
 .BR poll (2),

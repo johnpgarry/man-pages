@@ -22,7 +22,7 @@ Reports on further duplicates are welcome.
 Formerly present and now removed duplicates:
  *_module.2, get_kernel_syms.2 (found in modutils-2.1.*),
  exports.5 (found in nfs-server-2.2*),
- fstab.5, nfs.5 (found in util-linux-2.10*),
+ fstab.5, nfs.5 (found in util-linux-2.11*),
  lilo.8, lilo.conf.5 (found in lilo-21.6*).
 
 Copyrights: These man pages come under various copyrights.

@@ -68,13 +68,17 @@ or, if there was a leading minus sign, the negation of the result of the
 conversion, unless the original (non-negated) value would overflow; in
 the latter case, \fBstrtoul()\fP returns ULONG_MAX and sets the global
 variable \fIerrno\fP to ERANGE.
-.SH "ERRORS"
+.SH ERRORS
 .TP
 .B ERANGE
 The given string was out of range; the value converted has been clamped.
 .SH "CONFORMING TO"
 SVID 3, BSD 4.3, ISO 9899
 .SH "SEE ALSO"
-.BR atof "(3), " atoi "(3), " atol "(3), " strtod "(3), " strtol (3)
+.BR atof (3),
+.BR atoi (3),
+.BR atol (3),
+.BR strtod (3),
+.BR strtol (3)
 .SH BUGS
 Ignores the current locale.

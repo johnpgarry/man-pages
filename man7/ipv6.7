@@ -55,7 +55,7 @@ handling functions in libc.
 IPv4 and IPv6 share the local port space. When you get an IPv4 connection
 or packet to a IPv6 socket its source address will be mapped to v6 and it'll
 be mapped to v6.
-.SH ADDRESS FORMAT
+.SH "ADDRESS FORMAT"
 .sp
 .RS
 .nf
@@ -104,7 +104,7 @@ separated with a ':'. '::' stands for a string of 0 bits.  Special addresses
 are ::1 for loopback and FFFF::<IPv4 address> for IPv4-mapped-on-IPv6.
 .PP
 The port space of IPv6 is shared with IPv4.
-.SH SOCKET OPTIONS
+.SH "SOCKET OPTIONS"
 IPv6 supports some protocol specific socket options that can be set with
 .BR setsockopt (2)
 and read with
@@ -119,8 +119,8 @@ integer. \-1 in the value means use the route default, otherwise it should be
 between 0 and 255.
 .TP
 .B IPV6_MULTICAST_HOPS
-Set the multicast hop limit for the socket. Argument is an pointer to an
-integer. -1 in the value means use the route default, otherwise it should be 
+Set the multicast hop limit for the socket. Argument is a pointer to an
+integer. \-1 in the value means use the route default, otherwise it should be 
 between 0 and 255.
 .TP 
 .B IPV6_MULTICAST_IF
@@ -237,7 +237,7 @@ The
 field is new in Linux 2.4. It is transparently passed/read by the kernel
 when the passed address length contains it. Some programs that pass a
 longer address buffer and then check the outgoing address length may break.
-.SH PORTING NOTES
+.SH "PORTING NOTES"
 The
 .B sockaddr_in6
 structure is bigger than the generic
@@ -257,7 +257,7 @@ IPSec support for EH and AH headers is missing.
 Flow label management is not complete and not documented here.
 .PP
 This man page is not complete.
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR ip (7),
 .BR cmsg (3)
 .PP

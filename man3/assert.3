@@ -53,11 +53,12 @@ is required to be of type
 and undefined behavior results if it is not, but in the 1999 standard
 it may have any scalar type.
 .\" See Defect Report 107 for more details.
-.SH "BUGS"
+.SH BUGS
 .B assert()
 is implemented as a macro; if the expression tested has side - effects,
 program behaviour will be different depending on whether
 .B NDEBUG
 is defined. This may create Heisenbugs which go away when debugging is turned on.
 .SH "SEE ALSO"
-.BR exit "(3), " abort (3)
+.BR exit (3),
+.BR abort (3)

@@ -22,7 +22,7 @@ rtnetlink, NETLINK_ROUTE \- Linux IPv4 routing socket.
 
 .BI "rtnetlink_socket = socket(PF_NETLINK, int " socket_type ", NETLINK_ROUTE);"
 
-.SH DESCRIPTION 
+.SH DESCRIPTION
 Rtnetlink allows the kernel's routing tables to be read and altered.  
 It is used within the kernel to communicate between
 various subsystems, though this usage is not documented here, and for 
@@ -37,7 +37,7 @@ for more information.
 
 .\" XXX: all these macros could be moved to rtnetlink(3) 
 
-.SH ROUTING ATTRIBUTES
+.SH "ROUTING ATTRIBUTES"
 Some rtnetlink messages have optional attributes after the initial header:
 
 .nf
@@ -461,7 +461,7 @@ is a new feature of Linux 2.2.
 .SH BUGS
 This manual page is lacking and incomplete.
 
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR netlink (7),
 .BR cmsg (3),
 .BR ip (7),

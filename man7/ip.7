@@ -6,7 +6,7 @@
 .\" and in case of nontrivial modification author and date
 .\" of the modification is added to the header.
 .\" $Id: ip.7,v 1.19 2000/12/20 18:10:31 ak Exp $
-.TH IP  7 1999-05-11 "Linux Man Page" "Linux Programmer's Manual" 
+.TH IP  7 2001-06-19 "Linux Man Page" "Linux Programmer's Manual" 
 .SH NAME
 ip \- Linux IPv4 protocol implementation
 .SH SYNOPSIS
@@ -21,7 +21,7 @@ ip \- Linux IPv4 protocol implementation
 .IB raw_socket " = socket(PF_INET, SOCK_RAW, " protocol ");"
 .br
 .IB udp_socket " = socket(PF_INET, SOCK_DGRAM, " protocol ");"
-.SH DESCRIPTION 
+.SH DESCRIPTION
 Linux implements the Internet Protocol, version 4, 
 described in RFC791 and RFC1122. 
 .B ip 
@@ -94,7 +94,7 @@ unless the
 flag has been set.  Care should be taken when using this flag as it
 makes TCP less reliable.  
 
-.SH ADDRESS FORMAT
+.SH "ADDRESS FORMAT"
 An IP socket address is defined as a combination of an IP interface address
 and a port number. The basic IP protocol does not supply port numbers, they
 are implemented by higher level protocols like 
@@ -186,7 +186,7 @@ means any host and has the same effect on bind as
 .B INADDR_ANY
 for historical reasons.
 
-.SH SOCKET OPTIONS
+.SH "SOCKET OPTIONS"
 
 IP supports some protocol specific socket options that can be set with
 .BR setsockopt (2)
@@ -397,7 +397,7 @@ struct sock_extended_err {
 	/* More data may follow */ 
 };
 
-struct sockaddr *SOCK_EE_OFFENDER(struct sock_extended_err *);
+struct sockaddr *SO_EE_OFFENDER(struct sock_extended_err *);
 .ta
 .fi
 .RE
@@ -407,7 +407,7 @@ contains the errno number of the queued error.
 .B ee_origin
 is the origin code of where the error originated. 
 The other fields are protocol specific. The macro
-.B SOCK_EE_OFFENDER 
+.B SO_EE_OFFENDER 
 returns a pointer to the address of the network object
 where the error originated from given a pointer to the ancillary message.
 If this address is not known, the
@@ -439,10 +439,10 @@ contains the discovered MTU for
 errors.  The message also contains the 
 .I sockaddr_in of the node
 caused the error, which can be accessed with the 
-.B SOCK_EE_OFFENDER
+.B SO_EE_OFFENDER
 macro. The 
 .I sin_family
-field of the SOCK_EE_OFFENDER address is 
+field of the SO_EE_OFFENDER address is 
 .I AF_UNSPEC
 when the source was unknown.
 When the error originated from the network, all IP options 
@@ -897,7 +897,7 @@ by
 does not work in some 2.2 kernels.
 .SH AUTHORS
 This man page was written by Andi Kleen. 
-.SH SEE ALSO 
+.SH "SEE ALSO"
 .BR sendmsg (2),
 .BR recvmsg (2),
 .BR socket (7),
@@ -905,7 +905,7 @@ This man page was written by Andi Kleen.
 .BR tcp (7),
 .BR udp (7),
 .BR raw (7),
-.BR ipfw (7).
+.BR ipfw (7)
 .PP
 RFC791 for the original IP specification.
 .br

@@ -171,7 +171,7 @@ is found, the buffered data is returned. The next read returns zero
 bytes. The following read returns data from the next file. The end of
 recorded data is signaled by returning zero bytes for two consecutive
 read calls. The third read returns an error.
-.SH "IOCTLS"
+.SH IOCTLS
 The driver supports three ioctl requests.
 Requests not recognized by the
 .B st
@@ -580,12 +580,12 @@ count is often not maintained (most drives do not by default report
 soft errors but this can be changed with a SCSI MODE SELECT command).
 .IP \fBmt_fileno\fP
 reports the current file number (zero-based).
-This value is set to -1 when the file number is unknown (e.g., after
+This value is set to \-1 when the file number is unknown (e.g., after
 \s-1MTBSS\s+1
 or \s-1MTSEEK\s+1).
 .IP \fBmt_blkno\fP
 reports the block number (zero-based) within the current file.
-This value is set to -1 when the block number is unknown (e.g., after
+This value is set to \-1 when the block number is unknown (e.g., after
 \s-1MTBSF\s+1,
 \s-1MTBSS\s+1, or \s-1MTSEEK\s+1).
 .PD

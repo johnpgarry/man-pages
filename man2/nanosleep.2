@@ -38,7 +38,7 @@ nanosleep \- pause execution for a specified time
 delays the execution of the program for at least the time specified in
 .IR *req .
 The function can return earlier if a signal has been delivered to the
-process. In this case, it returns -1, sets \fIerrno\fR to
+process. In this case, it returns \-1, sets \fIerrno\fR to
 .BR EINTR ,
 and writes the
 remaining time into the structure pointed to by
@@ -86,7 +86,7 @@ a sleep that has been interrupted by a signal more easily.
 .SH ERRORS
 In case of an error or exception, the
 .B nanosleep
-system call returns -1 instead of 0 and sets
+system call returns \-1 instead of 0 and sets
 .I errno
 to one of the following values:
 .TP
@@ -128,7 +128,7 @@ then pauses of up to 2\ ms will be performed as busy waits with
 microsecond precision.
 .SH "CONFORMING TO"
 POSIX.1b (formerly POSIX.4).
-.SH SEE ALSO
+.SH "SEE ALSO"
 .BR sleep (3),
 .BR usleep (3),
 .BR sched_setscheduler (2),

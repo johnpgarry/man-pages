@@ -93,7 +93,7 @@ The
 function returns the number of bytes or \-1 on error; the
 .B writev()
 function returns the number of bytes written.
-.SH "ERRORS"
+.SH ERRORS
 The
 .B readv()
 and 
@@ -126,10 +126,11 @@ call, and reading or writing could not be done immediately.
 Reading or writing was interrupted before any data was transferred.
 .SH "CONFORMING TO"
 unknown
-.SH "BUGS"
+.SH BUGS
 It is not advisable to mix calls to functions like
 .BR readv() " or " writev() ,
 which operate on file descriptors, with the functions from the stdio
 library; the results will be undefined and probably not what you want.
 .SH "SEE ALSO"
-.BR read "(2), " write (2)
+.BR read (2),
+.BR write (2)
