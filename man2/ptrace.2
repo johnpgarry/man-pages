@@ -52,7 +52,7 @@ call tracing.
 The parent can initiate a trace by calling
 .BR fork (2) 
 and having the resulting child do a PTRACE_TRACEME, followed (typically) by an
-.BR exec (2).
+.BR exec (3).
 Alternatively, the parent may commence trace of an existing process using
 PTRACE_ATTACH.
 .LP
@@ -93,9 +93,9 @@ Reads a word at the location
 in the child's memory, returning the word as the result of the
 .B ptrace
 call.  Linux does not have separate text and data address spaces, so the two
-requests are currently equivalent.  (\fIdata\fP is ignored.)
+requests are currently equivalent.  (The argument \fIdata\fP is ignored.)
 .TP
-PTRACE_PEEKUSER
+PTRACE_PEEKUSR
 Reads a word at offset
 .I addr
 in the child's
@@ -107,16 +107,16 @@ call.  Typically the offset must be word-aligned, though this might vary by
 architecture.  (\fIdata\fP is ignored.)
 .TP
 PTRACE_POKETEXT, PTRACE_POKEDATA
-Copies a word from location
+Copies the word
 .IR data
-in the parent's memory to location
+to location
 .IR addr
 in the child's memory.  As above, the two requests are currently equivalent.
 .TP
-PTRACE_POKEUSER
-Copies a word from location
+PTRACE_POKEUSR
+Copies the word
 .IR data
-in the parent's memory to offset
+to offset
 .I addr
 in the child's
 .B USER

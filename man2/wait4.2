@@ -32,7 +32,6 @@
 wait3, wait4 \- wait for process termination, BSD style
 .SH SYNOPSIS
 .nf
-.B #define _USE_BSD
 .B #include <sys/types.h>
 .B #include <sys/time.h>
 .B #include <sys/resource.h>
@@ -179,7 +178,7 @@ if
 was not set and an unblocked signal or a
 .B SIGCHLD
 was caught.
-.SH NOTE
+.SH NOTES
 Including
 .I <sys/time.h>
 is not required these days, but increases portability.
@@ -191,6 +190,11 @@ structure with fields of type
 .I struct timeval
 defined in
 .IR <sys/time.h> .)
+.LP
+The prototype for these functions is only available if
+.B _BSD_SOURCE
+is defined (either explicitly, or implicitly, by not defining
+_POSIX_SOURCE or compiling with the -ansi flag).
 .SH "CONFORMING TO"
 SVr4, POSIX.1
 .SH "SEE ALSO"

@@ -26,7 +26,7 @@
 .\" Modified Sat Aug 21 12:32:12 MET 1999 by aeb - applied fix by aj
 .\" Modified Mon Dec 11 13:32:51 MET 2000 by aeb
 .\"
-.TH GETCWD 3 1993-07-21 "GNU" "Linux Programmer's Manual"
+.TH GETCWD 3 2002-02-19 "GNU" "Linux Programmer's Manual"
 .SH NAME
 getcwd, get_current_dir_name, getwd \- Get current working directory
 .SH SYNOPSIS
@@ -118,6 +118,23 @@ set accordingly, and
 on success. The contents of the array pointed to by
 .IR buf
 is undefined on error.
+.SH ERRORS
+.TP
+.B EINVAL
+The 
+.IR size
+argument is zero and
+.IR buf
+is not a null pointer.
+.TP
+.B ERANGE
+The
+.IR size
+argument is less than the length of the working directory name.
+You need to allocate a bigger array and try again.
+.TP
+.B EACCES
+Permission to read or search a component of the file name was denied. 
 .SH "CONFORMING TO"
 POSIX.1
 .SH "SEE ALSO"

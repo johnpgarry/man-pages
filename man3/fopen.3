@@ -37,8 +37,9 @@
 .\"
 .\" Converted for Linux, Mon Nov 29 15:22:01 1993, faith@cs.unc.edu
 .\" Modified, aeb, 960421, 970806
+.\" Modified, joey, aeb, 2002-01-03
 .\"
-.TH FOPEN 3  1995-12-13 "BSD MANPAGE" "Linux Programmer's Manual"
+.TH FOPEN 3  2002-01-03 "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
 fopen, fdopen, freopen \- stream open functions
 .SH SYNOPSIS
@@ -117,6 +118,15 @@ or
 operation between write and read operations on such a stream.  This
 operation may be an apparent no-op (as in \fIfseek(..., 0L,
 SEEK_CUR)\fR called for its synchronizing side effect.
+.PP
+Opening a file in append mode (\fBa\fR as the first character of
+.IR mode )
+causes all subsequent write operations to this stream to occur
+at end-of-file, as if preceded by an
+.RS
+fseek(stream,0,SEEK_END);
+.RE
+call.
 .PP
 The
 .B fdopen

@@ -153,8 +153,9 @@ processes.
 A blocked high priority process waiting for the I/O has a certain
 response time before it is scheduled again. The device driver writer
 can greatly reduce this response time by using a "slow interrupt"
-interrupt handler as described in
-.BR request_irq (9).
+interrupt handler.
+.\" as described in
+.\" .BR request_irq (9).
 
 .SS Miscellaneous
 Child processes inherit the scheduling algorithm and parameters across a

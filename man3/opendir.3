@@ -32,7 +32,7 @@ opendir \- open a directory
 .SH SYNOPSIS
 .nf
 .B #include <sys/types.h>
-.sp
+.br
 .B #include <dirent.h>
 .sp
 .BI "DIR *opendir(const char *" name );
@@ -63,13 +63,17 @@ Insufficient memory to complete the operation.
 .TP
 .B ENOTDIR
 \fIname\fP is not a directory.
+.SH NOTES
+The underlying file descriptor of the directory stream can be obtained using
+.BR dirfd (3).
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3
 .SH "SEE ALSO"
 .BR open (2),
-.BR readdir (3),
 .BR closedir (3),
+.BR dirfd (3),
+.BR readdir (3),
 .BR rewinddir (3),
+.BR scandir (3),
 .BR seekdir (3),
-.BR telldir (3),
-.BR scandir (3)
+.BR telldir (3)

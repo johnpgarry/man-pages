@@ -54,10 +54,10 @@ will give you a list with all options and what they do.
 .SH NOTES
 Nscd doesn't know anything about the underlaying protocols for a
 service. This also means, that if you change
-.B /etc/resolv.conf
+.I /etc/resolv.conf
 for DNS queries, nscd will continue to use the old one if you have
 configured
-.BR /etc/nsswitch.conf (5)
+.I /etc/nsswitch.conf
 to use DNS for host lookups. In such a case, you need to restart
 nscd.
 

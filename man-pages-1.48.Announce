@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.47.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.48.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -27,23 +27,21 @@ with these man pages.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM. They are
 copyrighted by Sun Microsystems, Inc., but can be distributed freely.]
 
-Differences from version 1.46:
+Differences from version 1.47:
 
     The man pages
 
-	fcntl.2 select_tut.2
+	accept.2 getrlimit.2 mlock.2 ptrace.2 semget.2 shmctl.2
+	shmop.2 sigaction.2 truncate.2 wait4.2
 
-	ctime.3 forkpty.3 getdate.3 getdate_r.3 gethostbyname2.3
-	gethostbyname2_r.3  gethostbyname_r.3 getloadavg.3 hcreate_r.3
-	hdestroy_r.3 hsearch.3 hsearch_r.3 login_tty.3 openpty.3
-	scandir.3 stdio.3 timegm.3 timelocal.3 undocumented.3
-	versionsort.3
+	difftime.3 dirfd.3 endfsent.3 fopen.3 getcwd.3 getfsent.3
+	getfsfile.3 getfsspec.3 getopt.3 memrchr.3 readdir.3
+	setfsent.3 strtoll.3 strtoull.3 sysconf.3 syslog.3
+	undocumented.3 vsyslog.3
 
-	console.4
+	urandom.4
 
-	dir_colors.5
-
-	units.7
+	bootparam.7 man.7
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.
@@ -141,6 +139,7 @@ wrote, edited, or otherwise contributed to this project:
     Tom Bjorkholm <tomb@tomb.mydata.se>
     Ulrich Drepper <drepper@ipd.info.uni-karlsruhe.de>
     Urs Thuermann <urs@isnogud.escape.de>
+    Walter Harms <walter.harms@informatik.uni-oldenburg.de>
     Wolfram Gloger <wmglo@dent.med.uni-muenchen.de>
 
 

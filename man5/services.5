@@ -55,7 +55,10 @@ have two entries, even for TCP only services.
 
 Port numbers below 1024 (so-called 'low numbered' ports) can only be
 bound to by root (see
-.BR bind "(2), " tcp "(7), and " udp "(7))."
+.BR bind (2),
+.BR tcp (7),
+and 
+.BR udp (7)).
 This is so clients connecting to low numbered ports can trust
 that the service running on the port is the standard implementation,
 and not a rogue service run by a user of the machine.  Well-known port
@@ -66,12 +69,12 @@ The presence of an entry for a service in the
 .B services
 file does not necessarily mean that the service is currently running
 on the machine. See
-.BR inetd.conf "(5)"
+.BR inetd.conf (5)
 for the configuration of Internet services offered. Note that not all
 networking services are started by
-.BR inetd "(8), "
+.BR inetd (8),
 and so won't appear in
-.BR inetd.conf "(5). "
+.BR inetd.conf (5).
 In particular, news (NNTP) and mail (SMTP) servers are often
 initialized from the system boot scripts.
 
@@ -101,11 +104,11 @@ is the port number (in decimal) to use for this service.
 .I protocol
 is the type of protocol to be used. This field should match an entry
 in the
-.BR protocols "(5)"
+.BR protocols (5)
 file. Typical values include
 .B tcp
 and
-.BR udp "."
+.BR udp .
 .TP
 .I aliases
 is an optional space or tab separated list of other names for this
@@ -130,7 +133,10 @@ sensible choice.
 
 Lines not matching this format should not be present in the
 file. (Currently, they are silently skipped by
-.BR getservent "(3), " getservbyname "(3), and " getservbyport "(3)."
+.BR getservent (3),
+.BR getservbyname (3),
+and
+.BR getservbyport (3).
 However, this behaviour should not be relied on.)
 
 As a backwards compatibility feature, the slash (/) between the
@@ -164,13 +170,16 @@ telnet          23/tcp
 .RE
 .SH BUGS
 There is a maximum of 35 aliases, due to the way the
-.BR getservent "(3)"
+.BR getservent (3)
 code is written.
 
 Lines longer than
 .B BUFSIZ
 (currently 1024) characters will be ignored by
-.BR getservent "(3), " getservbyname "(3), and " getservbyport "(3)."
+.BR getservent (3),
+.BR getservbyname (3),
+and
+.BR getservbyport (3).
 However, this will also cause the next line to be mis-parsed.
 .SH FILES
 .TP

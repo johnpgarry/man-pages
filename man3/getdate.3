@@ -32,7 +32,7 @@ getdate() \- convert a string to struct tm
 .br
 .B "#include <time.h>"
 .sp
-.BI "struct tm *getdate (const char *string);"
+.BI "struct tm *getdate (const char *" string );
 .sp
 .BI "extern int getdate_err;"
 .sp 2
@@ -40,7 +40,7 @@ getdate() \- convert a string to struct tm
 .br
 .B "#include <time.h>"
 .sp
-.BI "int getdate_r (const char *string, struct tm *res);"
+.BI "int getdate_r (const char *" string ", struct tm *" res );
 .br
 .SH DESCRIPTION
 The function
@@ -100,7 +100,7 @@ Otherwise, it returns NULL and sets the global variable
 .BR getdate_err .
 Changes to
 .I errno
-are unspecified. The following values for
+are unspecified.  The following values for
 .B getdate_err
 are defined:
 .TP 4n
@@ -164,10 +164,10 @@ File containing format patterns.
 .TP
 .BR TZ ", " LC_TIME 
 Variables used by \fBstrptime()\fP.
-.SH CONFORMING TO
+.SH "CONFORMING TO"
 ISO 9899, POSIX 1003.1-2001
-.SH SEE ALSO
-.BR localtime(3),
-.BR strftime(3),
-.BR strptime(3),
-.BR time(3)
+.SH "SEE ALSO"
+.BR localtime (3),
+.BR strftime (3),
+.BR strptime (3),
+.BR time (3)

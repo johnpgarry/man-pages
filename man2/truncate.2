@@ -31,9 +31,10 @@
 .\"
 .\"     @(#)truncate.2	6.9 (Berkeley) 3/10/91
 .\"
-.\" Modified Sat Jul 24 12:46:33 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 12:46:33 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 22:36:33 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Mon Dec 21 13:37:05 1998 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Mon Dec 21 13:37:05 1998 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 7 Jan 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
 .TH TRUNCATE 2 1998-12-21 "" "Linux Programmer's Manual"
 .SH NAME
@@ -45,22 +46,29 @@ truncate, ftruncate \- truncate a file to a specified length
 .br
 .BI "int ftruncate(int " fd ", off_t " length );
 .SH DESCRIPTION
-.B Truncate
-causes the file named by
+The
+.B truncate
+and
+.B ftruncate
+functions cause the regular file named by
 .I path
 or referenced by
 .I fd
-to be truncated to at most
+to be truncated to a size of precisely
 .I length
-bytes in size.
+bytes.
+.LP
 If the file previously was larger than this size, the extra data is lost. 
-If the file previously was shorter, it is unspecified whether the file
-is left unchanged or is extended. (But it is extended on XSI-conformant
-systems.) In the latter case the extended part
-reads as zero bytes.
+If the file previously was shorter, it is extended, and
+the extended part reads as zero bytes.
+.LP
+The file pointer is not changed.
+.LP
 With
 .BR ftruncate ,
-the file must be open for writing.
+the file must be open for writing; with
+.BR truncate ,
+the file must be writable.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -69,8 +77,35 @@ is set appropriately.
 For
 .BR truncate :
 .TP
-.B ENOTDIR
-A component of the path prefix is not a directory.
+.B EACCES
+Search permission is denied for a component of the path prefix,
+or the named file is not writable by the user.
+.TP
+.B EFAULT
+.I Path
+points outside the process's allocated address space.
+.TP
+.B EFBIG
+The argument
+.I length
+is larger than the maximum file size. (XSI)
+.TP
+.B EINTR
+A signal was caught during execution.
+.TP
+.B EINVAL
+The argument
+.I length
+is negative or larger than the maximum file size.
+.TP
+.B EIO
+An I/O error occurred updating the inode.
+.TP
+.B EISDIR
+The named file is a directory.
+.TP
+.B ELOOP
+Too many symbolic links were encountered in translating the pathname.
 .TP
 .B ENAMETOOLONG
 A component of a pathname exceeded 255 characters,
@@ -79,66 +114,62 @@ or an entire path name exceeded 1023 characters.
 .B ENOENT
 The named file does not exist.
 .TP
-.B EACCES
-Search permission is denied for a component of the path prefix.
-.TP
-.B EACCES
-The named file is not writable by the user.
-.TP
-.B ELOOP
-Too many symbolic links were encountered in translating the pathname.
-.TP
-.B EISDIR
-The named file is a directory.
+.B ENOTDIR
+A component of the path prefix is not a directory.
 .TP
 .B EROFS
 The named file resides on a read-only file system.
 .TP
 .B ETXTBSY
 The file is a pure procedure (shared text) file that is being executed.
-.TP
-.B EIO
-An I/O error occurred updating the inode.
-.TP
-.B EFAULT
-.I Path
-points outside the process's allocated address space.
 .PP
 For
-.BR ftruncate :
+.B ftruncate
+the same errors apply, but instead of things that can be wrong with
+.IR path ,
+we now have things that can be wrong with
+.IR fd :
 .TP
 .B EBADF
 The
 .I fd
 is not a valid descriptor.
 .TP
-.B EINVAL
+.BR EBADF " or " EINVAL
 The
 .I fd
-references a socket, not a file.
+is not open for writing.
 .TP
 .B EINVAL
 The
 .I fd
-is not open for writing.
+does not reference a regular file.
 .SH "CONFORMING TO"
 4.4BSD, SVr4 (these function calls first appeared in BSD 4.2).
+POSIX 1003.1-1996 has
+.BR ftruncate .
+POSIX 1003.1-2001 also has
+.IR truncate ,
+as an XSI extension.
+.LP
 SVr4 documents additional
 .B truncate
-error conditions EINTR, EMFILE, EMULTIHP, ENAMETOOLONG, ENFILE,
-ENOLINK, ENOTDIR.  SVr4 documents for
+error conditions EMFILE, EMULTIHP, ENFILE, ENOLINK.  SVr4 documents for
 .B ftruncate
-additional EAGAIN and EINTR error conditions.
-POSIX has
-.I ftruncate
-but not
-.IR truncate .
-.PP
-The POSIX standard does not define what happens if the file
-has fewer bytes than
-.IR length .
-.SH BUGS
-These calls should be generalized to allow ranges of bytes in a file to be
-discarded.
+an additional EAGAIN error condition.
+.SH NOTES
+The above description is for XSI-compliant systems.
+For non-XSI-compliant systems, the POSIX standard allows
+two behaviours for
+.B ftruncate
+when
+.I length
+exceeds the file length
+(note that
+.B truncate
+is not specified at all in such an environment):
+either returning an error, or extending the file.
+(Most Unices follow the XSI requirement.)
+.\" At the very least: OSF/1, Solaris 7, and FreeBSD conform, mtk, Jan 2002
 .SH "SEE ALSO"
 .BR open (2)

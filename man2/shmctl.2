@@ -26,8 +26,9 @@
 .\" Portions Copyright 1993 Giorgio Ciucci <giorgio@crcc.it>
 .\" Modified Fri Jan 31 17:24:31 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Sun Feb 18 01:59:29 2001 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 5 Jan 2002 Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH SHMCTL 2 2001-02-18 "Linux 2.4.1" "Linux Programmer's Manual"
+.TH SHMCTL 2 2002-01-05 "Linux 2.4.1" "Linux Programmer's Manual"
 .SH NAME
 shmctl \- shared memory control
 .SH SYNOPSIS
@@ -46,47 +47,44 @@ or destroy a segment. The information about the segment identified by
 \fIshmid\fP is returned in a \fIshmid_ds\fP
 structure:
 .PP
-.in +0.5i
+.in +4n
 .nf
 struct shmid_ds {
-	struct	ipc_perm shm_perm;	/* operation perms */
-	int	shm_segsz;		/* size of segment (bytes) */
-	time_t	shm_atime;		/* last attach time */
-	time_t	shm_dtime;		/* last detach time */
-	time_t	shm_ctime;		/* last change time */
-	unsigned short	shm_cpid;	/* pid of creator */
-	unsigned short	shm_lpid;	/* pid of last operator */
-	short	shm_nattch;		/* no. of current attaches */
-	/* the following are private */
-	unsigned short   shm_npages;  /* size of segment (pages) */
-	unsigned long   *shm_pages;   
-	struct shm_desc *attaches;    /* descriptors for attaches */
+    struct ipc_perm shm_perm;  /* operation perms */
+    int shm_segsz;             /* size of segment (bytes) */
+    time_t shm_atime;          /* last attach time */
+    time_t shm_dtime;          /* last detach time */
+    time_t shm_ctime;          /* last change time */
+    unsigned short shm_cpid;   /* pid of creator */
+    unsigned short shm_lpid;   /* pid of last operator */
+    short shm_nattch;          /* no. of current attaches */
+    ...
 };
 .fi
-.in -0.5i
+.in -4n
 .PP
-The fields in the member \fIshm_perm\fP can be set:
+The highlighted fields in the member \fIshm_perm\fP can be set:
 .PP
-.in +0.5i
+.in +4n
 .nf
-struct ipc_perm
-{
-  key_t  key;
-  \fBushort uid\fP;   /* \fBowner\fP euid and egid */
-  \fBushort gid\fP;
-  ushort cuid;  /* creator euid and egid */
-  ushort cgid;
-  \fBushort mode\fP;  /* lower 9 bits of access modes */
-  ushort seq;   /* sequence number */
+struct ipc_perm {
+    key_t  key;
+    \fBushort uid\fP;   /* \fBowner\fP euid and egid */
+    \fBushort gid\fP;
+    ushort cuid;  /* creator euid and egid */
+    ushort cgid;
+    \fBushort mode\fP;  /* lower 9 bits of access modes */
+    ushort seq;   /* sequence number */
 };
 .fi
+.in -4n
 .PP
 The following \fIcmds\fP are available:
 .br
 .TP 12
 .B IPC_STAT
 is used to copy the information about the shared memory segment into
-the buffer \fIbuf\fP. The user must have \fBread\fP access to the 
+the buffer \fIbuf\fP. The user must have \fBread\fP access to the
 shared memory segment.
 .TP
 .B IPC_SET
@@ -127,25 +125,7 @@ and
 control calls are used by the
 .BR ipcs (8)
 program to provide information on allocated resources.  In the future,
-these man be modified as needed or moved to a proc file system interface.
-.PP
-.SH "SYSTEM CALLS"
-.TP
-.B fork()
-After a
-.B fork()
-the child inherits the attached shared memory segments.
-.TP
-.B exec()
-After an
-.B exec()
-all attached shared memory segments are detached (not destroyed).
-.TP
-.B exit()
-Upon
-.B exit()
-all attached shared memory segments are detached (not destroyed).
-.PP
+these may be modified as needed or moved to a proc file system interface.
 .SH "RETURN VALUE"
 0 is returned on success, \-1 on error.
 .SH ERRORS
@@ -178,8 +158,18 @@ is returned if \fIshmid\fP points to a removed identifier.
 .TP
 .B EPERM
 is returned if \fBIPC_SET\fP or \fBIPC_RMID\fP is attempted, and the
-user is not the creator, the owner, or the super-user, and the user
-does not have permission granted to their group or to the world.
+effective user ID of the calling process is not the creator
+(as found in
+.IR shm_perm.cuid ),
+the owner
+(as found in
+.IR shm_perm.uid ),
+or the super-user.
+.TP
+.B EOVERFLOW
+is returned if \fBIPC_STAT\fP is attempted, and the gid or uid value
+is too large to be stored in the structure pointed to by
+.IR buf . 
 .SH NOTE
 Various fields in a \fIstruct shmid_ds\fP were shorts under Linux 2.2
 and have become longs under Linux 2.4. To take advantage of this,

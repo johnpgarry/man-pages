@@ -28,9 +28,10 @@
 .\"	Added brief description of facility and option arguments
 .\"	Added CONFORMING TO section
 .\" 2001-10-13, aeb, minor changes
-.\" Modified Thu Dec 13 17:18:13 CET 2001 by Martin Schulze <joey@infodrom.org>
+.\" Modified 13 Dec 2001, Martin Schulze <joey@infodrom.org>
+.\" Modified 3 Jan 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"
-.TH SYSLOG 3 2001-10-13 "Linux" "Linux Programmer's Manual"
+.TH SYSLOG 3 2002-01-03 "Linux" "Linux Programmer's Manual"
 .SH NAME
 closelog, openlog, syslog \- send messages to the system logger
 .SH SYNOPSIS
@@ -38,14 +39,14 @@ closelog, openlog, syslog \- send messages to the system logger
 .sp
 .BI "void openlog(const char *" ident ", int " option ", int " facility );
 .br
-.BI "void syslog(int " priority ", char " *format ", ...);"
+.BI "void syslog(int " priority ", const char *" format ", ...);"
 .br
 .BI "void closelog(void);"
 .sp
 .B #include <stdarg.h>
 .sp
-.BI "void vsyslog(int " priority ", char " *format ", va_list " ap );
-.sp
+.BI "void vsyslog(int " priority ", const char *" format ", va_list " ap );
+.br
 .SH DESCRIPTION
 .B closelog()
 closes the descriptor being used to write to the system logger.  The use of
@@ -280,6 +281,12 @@ is changed,
 may start prepending the changed string, and if the string
 it points to ceases to exist, the results are undefined.
 Most portable is to use a string constant.
+.LP
+Never pass a string with user-supplied data as a format, use
+.RS
+syslog("%s", string);
+.RE
+instead.
 .SH "SEE ALSO"
 .BR logger (1),
 .BR setlogmask (3),

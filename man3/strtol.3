@@ -26,19 +26,23 @@
 .\"     386BSD man pages
 .\" Modified Sun Jul 25 10:53:39 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Added correction due to nsd@bbc.com (Nick Duffek) - aeb, 950610
-.TH STRTOL 3  1995-06-10 "GNU" "Linux Programmer's Manual"
+.TH STRTOL 3  2002-02-22 "GNU" "Linux Programmer's Manual"
 .SH NAME
-strtol \- convert a string to a long integer.
+strtol, strtoll \- convert a string to a long integer.
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
 .sp
-.BI "long int strtol(const char *" nptr ", char **" endptr ", int " base );
+.BI "long int"
+.BI "strtol(const char *" nptr ", char **" endptr ", int " base );
+.sp
+.BI "long long int"
+.BI "strtoll(const char *" nptr ", char **" endptr ", int " base );
 .fi
 .SH DESCRIPTION
-The \fBstrtol()\fP function converts the string in \fInptr\fP to a
-long integer value according to the given \fIbase\fP, which must be
-between 2 and 36 inclusive, or be the special value 0.
+The \fBstrtol()\fP function converts the initial part of the string
+in \fInptr\fP to a long integer value according to the given \fIbase\fP,
+which must be between 2 and 36 inclusive, or be the special value 0.
 .PP
 The string must begin with an arbitrary amount of white space (as
 determined by
@@ -49,9 +53,9 @@ sign.  If \fIbase\fP is zero or 16, the string may then include a
 zero \fIbase\fP is taken as 10 (decimal) unless the next character
 is `0', in which case it is taken as 8 (octal).
 .PP
-The remainder of the string is converted to a long int value in the
-obvious manner, stopping at the first character which is not a valid
-digit in the given base.  (In bases above 10, the letter `A' in
+The remainder of the string is converted to a long int value
+in the obvious manner, stopping at the first character which is not a
+valid digit in the given base.  (In bases above 10, the letter `A' in
 either upper or lower case represents 10, `B' represents 11, and so
 forth, with `Z' representing 35.)
 .PP
@@ -61,22 +65,43 @@ all, \fBstrtol()\fP stores the original value of \fInptr\fP in
 \fI*endptr\fP (and returns 0).
 In particular, if \fI*nptr\fP is not `\\0' but \fI**endptr\fP
 is `\\0' on return, the entire string is valid.
+.PP
+The
+.B strtoll()
+function works just like the
+.B strtol()
+function but returns a long long integer value.
 .SH "RETURN VALUE"
 The \fBstrtol()\fP function returns the result of the conversion,
 unless the value would underflow or overflow.  If an underflow occurs,
 \fBstrtol()\fP returns LONG_MIN.  If an overflow occurs, \fBstrtol()\fP
 returns LONG_MAX.  In both cases, \fIerrno\fP is set to ERANGE.
+Precisely the same holds for
+.BR strtoll()
+(with LLONG_MIN and LLONG_MAX instead of LONG_MIN and LONG_MAX).
 .SH ERRORS
 .TP
 .B ERANGE
-The given string was out of range; the value converted has been clamped.
+The resulting value was out of range.
+.TP
+.B EINVAL
+(not in C99)
+The given
+.I base
+contains an unsupported value.
+.LP
+The implementation may also set \fIerrno\fP to \fBEINVAL\fP in case
+no conversion was performed (no digits seen, and 0 returned).
+.SH NOTE
+In locales other than the "C" locale, also other strings may be accepted.
 .SH "CONFORMING TO"
-SVID 3, BSD 4.3, ISO 9899
+.B strtol()
+conforms to SVID 3, BSD 4.3, ISO 9899 (C99) and POSIX, and
+.B strtoll()
+to ISO 9899 (C99) and POSIX-2001.
 .SH "SEE ALSO"
 .BR atof (3),
 .BR atoi (3),
 .BR atol (3),
 .BR strtod (3),
 .BR strtoul (3)
-.SH BUGS
-Ignores the current locale.

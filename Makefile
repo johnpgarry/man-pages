@@ -46,14 +46,14 @@ bz2:
 	for i in man?; do $(BZIP2) $$i/*; done
 
 # Use with
-#  make HTDIR=/some/dir html
+#  make HTDIR=/some/dir HTOPTS=whatever html
 # The sed removes the lines "Content-type: text/html\n\n"
 html:
 	@if [ x$(HTDIR) = x ]; then echo "You must set HTDIR."; else \
 	for i in man?; do \
 		[ -d $(HTDIR)/$$i ] || mkdir -p $(HTDIR)/$$i; \
 		find "$$i/" -type f | while read f; do \
-			(cd $$i; man2html `basename $$f`) | \
+			(cd $$i; man2html $(HTOPTS) `basename $$f`) | \
 			sed -e '1,2d' > $(HTDIR)/$$i/`basename $$f`.html; \
 		done; \
 	done; fi

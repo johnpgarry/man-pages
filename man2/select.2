@@ -171,35 +171,7 @@ avoiding the race.)
 Since Linux today does not have a
 .IR pselect ()
 system call, the current glibc2 routine still contains this race.
-.SH "RETURN VALUE"
-On success,
-.B select
-and
-.B pselect
-return the number of descriptors contained in the descriptor sets, which
-may be zero if the timeout expires before anything interesting happens.
-On error, \-1 is returned, and
-.I errno
-is set appropriately; the sets and
-.I timeout
-become undefined, so do not
-rely on their contents after an error.
-.SH ERRORS
-.TP
-.B EBADF
-An invalid file descriptor was given in one of the sets.
-.TP
-.B EINTR
-A non blocked signal was caught.
-.TP
-.B EINVAL
-.I n
-is negative.
-.TP
-.B ENOMEM
-.B select
-was unable to allocate memory for internal tables.
-.SH NOTES
+.SS "The timeout"
 The time structures involved are defined in
 .I <sys/time.h>
 and look like
@@ -251,6 +223,34 @@ returns.
 .\" On BSD, when a timeout occurs, the file descriptor bits are not changed.
 .\" - it is certainly true that:
 .\" Linux follows SUSv2 and sets the bit masks to zero upon a timeout.
+.SH "RETURN VALUE"
+On success,
+.B select
+and
+.B pselect
+return the number of descriptors contained in the descriptor sets, which
+may be zero if the timeout expires before anything interesting happens.
+On error, \-1 is returned, and
+.I errno
+is set appropriately; the sets and
+.I timeout
+become undefined, so do not
+rely on their contents after an error.
+.SH ERRORS
+.TP
+.B EBADF
+An invalid file descriptor was given in one of the sets.
+.TP
+.B EINTR
+A non blocked signal was caught.
+.TP
+.B EINVAL
+.I n
+is negative.
+.TP
+.B ENOMEM
+.B select
+was unable to allocate memory for internal tables.
 .SH EXAMPLE
 .nf
 #include <stdio.h>

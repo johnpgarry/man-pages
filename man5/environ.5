@@ -52,7 +52,8 @@ in case they came from glibc and
 .B _GNU_SOURCE
 was defined.)
 This array of strings is made available to the process by the
-\fBexec\fP(3) call that started the process.  By convention these strings
+.BR exec (3)
+call that started the process.  By convention these strings
 have the form `\fIname\fP\fB=\fP\fIvalue\fP'.  Common examples are:
 .TP
 .B USER
@@ -62,8 +63,10 @@ The name of the logged-in user (used by some BSD-derived programs).
 The name of the logged-in user (used by some System-V derived programs).
 .TP
 .B HOME
-A user's login directory, set by \fBlogin\fP(1) from the password file
-\fBpasswd\fP(5).
+A user's login directory, set by
+.BR login (1)
+from the password file
+.BR passwd (5).
 .TP
 .B LANG
 The name of a locale to use for locale categories when not overridden
@@ -100,9 +103,13 @@ The user's preferred utility to browse URLs. Sequence of colon-separated
 browser commands. See http://www.tuxedo.org/~esr/BROWSER/ .
 .PP
 Further names may be placed in the environment by the \fBexport\fP
-command and `name=value' in \fBsh\fP(1), or by the \fBsetenv\fP command
-if you use \fBcsh\fP(1).  Arguments may also be placed in the
-environment at the point of an \fBexec\fP(2).
+command and `name=value' in
+.BR sh (1),
+or by the \fBsetenv\fP command if you use
+.BR csh (1).
+Arguments may also be placed in the
+environment at the point of an
+.BR exec (3).
 A C program can manipulate its environment using the functions
 .BR getenv (3),
 .BR putenv (3),

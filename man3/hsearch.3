@@ -124,6 +124,7 @@ is significant only for unsuccessful searches, so that an ENTER
 should not do anything for a successful search. The libc and glibc
 implementations update the \fIdata\fP for the given \fIkey\fP
 in this case.
+.\" Tue Jan 29 09:27:40 2002: fixed in latest glibc snapshot
 .LP
 Individual hash table entries can be added, but not deleted.
 .SH EXAMPLE
@@ -178,4 +179,3 @@ some of them.
 .BR lsearch (3),
 .BR tsearch (3),
 .BR malloc (3)
-

@@ -29,8 +29,10 @@
 .\" Modified 8 May 1998 by Joseph S. Myers (jsm28@cam.ac.uk)
 .\" Modified 990715, aeb: changed `EOF' into `-1' since that is what POSIX
 .\"  says; moreover, EOF is not defined in <unistd.h>.
+.\" Modified 2002-02-16, joey: added information about non-existing
+.\"  option character and colon as first option character
 .\"
-.TH GETOPT 3  1998-05-08 "GNU" "Linux Programmer's Manual"
+.TH GETOPT 3  2002-02-16 "GNU" "Linux Programmer's Manual"
 .SH NAME
 getopt \- Parse command line options
 .SH SYNOPSIS
@@ -121,6 +123,16 @@ If \fBgetopt()\fP does not recognize an option character, it prints an
 error message to stderr, stores the character in \fIoptopt\fP, and
 returns `?'.  The calling program may prevent the error message by
 setting \fIopterr\fP to 0.
+.PP
+If \fBgetopt()\fP finds an option character in \fIargv\fP that was not
+included in \fIoptstring\fP, or if it detects a missing option argument,
+it returns `?'  and sets the external variable \fIoptopt\fP to the
+actual option character.  If the first character of \fIoptstring\fP
+is a colon (`:'), then \fBgetopt()\fP returns `:' instead of `?' to
+indicate a missing option argument.  If an error was detected, and
+the first character of \fIoptstring\fP is not a colon, and
+the external variable \fIopterr\fP is nonzero (which is the default),
+\fBgetopt()\fP prints an error message.
 .PP
 The
 .B getopt_long()
