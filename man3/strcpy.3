@@ -25,7 +25,6 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:06:49 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Fri Aug 25 23:17:51 1995 by Andries Brouwer (aeb@cwi.nl)
 .TH STRCPY 3  "April 11, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 strcpy, strncpy \- copy a string
@@ -43,10 +42,8 @@ The \fBstrcpy()\fP function copies the string pointed to be \fIsrc\fP
 \fIdest\fP.  The strings may not overlap, and the destination string 
 \fIdest\fP must be large enough to receive the copy.
 .PP
-The \fBstrncpy()\fP function is similar, except that not more than
-\fIn\fP bytes of \fIsrc\fP are copied. Thus, if there is no null byte
-among the first \fIn\fP bytes of \fIsrc\fP, the result wil not be
-null-terminated.
+The \fBstrncpy()\fP function is similar, except that only the first
+\fIn\fP bytes of \fIsrc\fP are copied.
 .PP
 In the case where the length of
 .I src

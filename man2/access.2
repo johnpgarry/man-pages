@@ -53,9 +53,8 @@ respectively.
 .B F_OK
 requests checking whether merely testing for the existence of the file
 would be allowed (this depends on the permissions of the directories
-occurring in the path to the file, as given in
-.I pathname
-and possibly in symbolic links encountered on the way).
+in the path to the file, as given in
+.IR pathname .)
 
 The check is done with the process's
 .I real
@@ -70,11 +69,7 @@ file.  Similarly, a DOS file may be found to be "executable," but the
 .BR execve (2)
 call will still fail.
 .SH "RETURN VALUE"
-On success (all requested permissions granted), zero is returned.
-On error (at least one bit in
-.I mode
-asked for a permission that is denied, or some other error occurred),
-\-1 is returned, and
+On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
