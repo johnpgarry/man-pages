@@ -20,9 +20,11 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH TMPNAM 3  1999-06-14 "" "Linux Programmer's Manual"
+.\" 2003-11-15, aeb, added tmpnam_r
+.\"
+.TH TMPNAM 3  2003-11-15 "" "Linux Programmer's Manual"
 .SH NAME
-tmpnam \- create a name for a temporary file
+tmpnam, tmpnam_r \- create a name for a temporary file
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
@@ -45,7 +47,7 @@ If
 is not NULL, the name is copied to the character array (of length
 at least
 .IR L_tmpnam )
-pointed at by
+pointed to by
 .I s
 and the value
 .I s
@@ -68,16 +70,33 @@ filename, or NULL if a unique name cannot be generated.
 .SH ERRORS
 No errors are defined.
 .SH NOTES
-Portable applications that use threads cannot call
-.B tmpnam()
-with NULL parameter if either
-_POSIX_THREAD_SAFE_FUNCTIONS or _POSIX_THREADS is defined.
-.LP
 The
 .B tmpnam()
 function generates a different string each time it is called,
 up to TMP_MAX times. If it is called more than TMP_MAX times,
 the behaviour is implementation defined.
+.LP
+Portable applications that use threads cannot call
+.B tmpnam()
+with NULL parameter if either _POSIX_THREADS or
+_POSIX_THREAD_SAFE_FUNCTIONS is defined.
+.LP
+A POSIX draft proposed to use a function
+.B tmpnam_r()
+defined by
+.sp
+.nf
+.in +5
+char *tmpnam_r(char *s) {
+    return s ? tmpnam(s) : NULL;
+}
+.in
+.fi
+.sp
+apparently as a warning not to use NULL.
+A few systems implement it. To get a glibc prototype,
+define _SVID_SOURCE or _BSD_SOURCE before including
+.IR "<stdio.h>" .
 .SH BUGS
 Never use this function. Use
 .BR mkstemp (3)

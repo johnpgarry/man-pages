@@ -57,17 +57,15 @@ The \fIpasswd\fP structure is defined in \fI<pwd.h>\fP as follows:
 .sp
 .RS
 .nf
-.ta 8n 16n 32n
 struct passwd {
-        char    *pw_name;		/* user name */
-        char    *pw_passwd;		/* user password */
-        uid_t   pw_uid;			/* user id */
-        gid_t   pw_gid;			/* group id */
-        char    *pw_gecos;      	/* real name */
-        char    *pw_dir;  		/* home directory */
-        char    *pw_shell;      	/* shell program */
+      char    *pw_name;      /* user name */
+      char    *pw_passwd;    /* user password */
+      uid_t   pw_uid;        /* user id */
+      gid_t   pw_gid;        /* group id */
+      char    *pw_gecos;     /* real name */
+      char    *pw_dir;       /* home directory */
+      char    *pw_shell;     /* shell program */
 };
-.ta
 .fi
 .RE
 .SH "RETURN VALUE"
@@ -85,6 +83,7 @@ password database file
 SVID 3, BSD 4.3
 .SH "SEE ALSO"
 .BR fgetpwent (3),
+.BR getpwent_r (3),
 .BR getpwnam (3),
 .BR getpwuid (3),
 .BR getpw (3),

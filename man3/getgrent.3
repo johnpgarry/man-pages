@@ -25,12 +25,13 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 19:29:54 1993 by Rik Faith (faith@cs.unc.edu)
-.TH GETGRENT 3  1993-04-04 "GNU" "Linux Programmer's Manual"
+.TH GETGRENT 3  1993-04-04 "" "Linux Programmer's Manual"
 .SH NAME
 getgrent, setgrent, endgrent \- get group file entry
 .SH SYNOPSIS
 .nf
 .B #include <grp.h>
+.br
 .B #include <sys/types.h>
 .sp
 .B struct group *getgrent(void);
@@ -66,8 +67,25 @@ struct group {
 .SH "RETURN VALUE"
 The \fBgetgrent()\fP function returns the group information structure, 
 or NULL if there are no more entries or an error occurs.
+.LP
+Upon error,
+.I errno
+may be set. If you want to check its value, set it to zero before the call.
 .SH ERRORS
 .TP
+.B EINTR
+A signal was caught.
+.TP
+.B EIO
+I/O error.
+.TP
+.B EMFILE
+The calling process already has too many open files.
+.TP
+.B ENFILE
+Too many open files in the system.
+.TP
+.\" not in POSIX
 .B ENOMEM
 Insufficient memory to allocate group information structure.
 .SH FILES
@@ -75,8 +93,9 @@ Insufficient memory to allocate group information structure.
 .I /etc/group
  group database file
 .SH "CONFORMING TO"
-SVID 3, BSD 4.3
+SVID 3, BSD 4.3, POSIX 1003.1-2003.
 .SH "SEE ALSO"
 .BR fgetgrent (3),
+.BR getgrent_r (3),
+.BR getgrgid (3),
 .BR getgrnam (3),
-.BR getgrgid (3)

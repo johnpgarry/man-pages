@@ -24,10 +24,13 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Sat Jul 24 19:28:38 1993 by Rik Faith (faith@cs.unc.edu)
-.TH GETGRNAM 3  1993-04-04 "GNU" "Linux Programmer's Manual"
+.\"
+.\" Modified 1993-07-24 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 2003-11-15 by aeb
+.\"
+.TH GETGRNAM 3 2003-11-15 "" "Linux Programmer's Manual"
 .SH NAME
-getgrnam, getgrgid \- get group file entry
+getgrnam, getgrnam_r, getgrgid, getgrgid_r \- get group file entry
 .SH SYNOPSIS
 .nf
 .B #include <grp.h>
@@ -36,39 +39,84 @@ getgrnam, getgrgid \- get group file entry
 .BI "struct group *getgrnam(const char *" name );
 .sp
 .BI "struct group *getgrgid(gid_t " gid );
+.sp
+.BI "int getgrnam_r(const char *" name ", struct group *" gbuf ,
+.br
+.BI "          char *" buf ", size_t " buflen ", struct group **" gbufp );
+.sp
+.BI "int getgrgid_r(gid_t " gid ", struct group *" gbuf ,
+.br
+.BI "          char *" buf ", size_t " buflen ", struct group **" gbufp );
 .fi
 .SH DESCRIPTION
-The \fBgetgrnam()\fP function returns a pointer to a structure containing
-the group information from \fI/etc/group\fP for the entry that matches
-the group name \fIname\fP.
+The
+.B getgrnam()
+function returns a pointer to a structure containing
+the group information from
+.I /etc/group
+for the entry that matches the group name
+.IR name .
 .PP
-The \fBgetgrgid()\fP function returns a pointer to a structure containing
-the group information from \fI/etc/group\fP for the entry that matches
-the group gid \fIgid\fP.
+The
+.B getgrgid()
+function returns a pointer to a structure containing
+the group information from
+.I /etc/group
+for the entry that matches the group gid
+.IR gid .
+.PP
+The
+.B getgrnam_r()
+and
+.B getgrgid_r()
+functions find the same information, but store the retrieved group structure
+in the space pointed to by
+.IR gbuf .
+This group structure contains pointers to strings, and these strings
+are stored in the buffer
+.I buf
+of size
+.IR buflen .
+A pointer to the result (in case of success) or NULL (in case no entry
+was found or an error occurred) is stored in
+.RI * gbufp .
 .PP
 The \fIgroup\fP structure is defined in \fI<grp.h>\fP as follows:
 .sp
 .RS
 .nf
-.ta 8n 16n 32n
 struct group {
-        char    *gr_name;        /* group name */
-        char    *gr_passwd;      /* group password */
-        gid_t   gr_gid;          /* group id */
-        char    **gr_mem;        /* group members */
+      char    *gr_name;      /* group name */
+      char    *gr_passwd;    /* group password */
+      gid_t   gr_gid;        /* group id */
+      char    **gr_mem;      /* group members */
 };
-.ta
 .fi
 .RE
+.PP
+The maximum needed size for
+.I buf
+can be found using
+.BR sysconf (3)
+with the _SC_GETGR_R_SIZE_MAX parameter.
 .SH "RETURN VALUE"
 The \fBgetgrnam()\fP and \fBgetgrgid()\fP functions return a pointer
 to the group information structure, or NULL if the matching entry
 is not found or an error occurs. If an error occurs,
 .I errno
-is set appropriately.
+is set appropriately. If one wants to check
+.I errno
+after the call, it should be set to zero before the call.
 .LP
 The return value may point to static area, and may be overwritten
-by subsequent calls.
+by subsequent calls to
+.BR getgrent() ,
+.BR getgrgid() ,
+or
+.BR getgrnam() .
+.LP
+The  \fBgetgrnam_r()\fP and \fBgetgrgid_r()\fP functions return
+zero on success. In case of error, an error value is returned.
 .SH ERRORS
 .TP
 .BR 0 " or " ENOENT " or " ESRCH " or " EBADF " or " EPERM " or ... "
@@ -93,12 +141,15 @@ The maximum number (OPEN_MAX) of files was open already in the calling process.
 .TP
 .B ENFILE
 The maximum number of files was open already in the system.
+.TP
+.B ERANGE
+Insufficient buffer space supplied.
 .SH FILES
 .TP
 .I /etc/group
-Group database file
+group database file
 .SH "CONFORMING TO"
-SVID 3, POSIX, BSD 4.3
+SVID 3, BSD 4.3, POSIX 1003.1-2003
 .SH NOTES
 The formulation given above under "RETURN VALUE" is from POSIX 1003.1-2001.
 It does not call "not found" an error, hence does not specify what value
@@ -120,4 +171,6 @@ situation: 0, ENOENT, EBADF, ESRCH, EWOULDBLOCK, EPERM and probably others.
 .BR fgetgrent (3),
 .BR getgrent (3),
 .BR setgrent (3),
-.BR endgrent (3)
+.BR endgrent (3),
+.BR getpwnam (3),
+.BR group (5)

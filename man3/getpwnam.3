@@ -25,12 +25,13 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\"
-.\" Modified Sat Jul 24 19:20:36 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Mon May 27 21:37:47 1996 by Martin Schulze (joey@linux.de)
+.\" Modified 1993-07-24 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 1996-05-27 by Martin Schulze (joey@linux.de)
+.\" Modified 2003-11-15 by aeb
 .\"
 .TH GETPWNAM 3  1996-05-27 "GNU" "Linux Programmer's Manual"
 .SH NAME
-getpwnam, getpwuid \- get password file entry
+getpwnam, getpwnam_r, getpwuid, getpwuid_r \- get password file entry
 .SH SYNOPSIS
 .nf
 .B #include <pwd.h>
@@ -39,49 +40,94 @@ getpwnam, getpwuid \- get password file entry
 .BI "struct passwd *getpwnam(const char *" name );
 .sp
 .BI "struct passwd *getpwuid(uid_t " uid );
+.sp
+.BI "int getpwnam_r(const char *" name ", struct passwd *" pwbuf ,
+.br
+.BI "        char *" buf ", size_t " buflen ", struct passwd **" pwbufp );
+.sp
+.BI "int getpwuid_r(uid_t " uid ", struct passwd *" pwbuf ,
+.br
+.BI "        char *" buf ", size_t " buflen ", struct passwd **" pwbufp );
 .fi
 .SH DESCRIPTION
-The \fBgetpwnam()\fP function returns a pointer to a structure containing
-the broken out fields of a line from \fI/etc/passwd\fP for the entry that 
-matches the user name \fIname\fP.
+The
+.B getpwnam()
+function returns a pointer to a structure containing
+the broken out fields of a line from
+.I /etc/passwd
+for the entry that matches the user name
+.IR name .
 .PP
-The \fBgetpwuid()\fP function returns a pointer to a structure containing
-the broken out fields of a line from \fI/etc/passwd\fP for the entry that 
-matches the user uid \fIuid\fP.
+The
+.B getpwuid()
+function returns a pointer to a structure containing
+the broken out fields of a line from
+.I /etc/passwd
+for the entry that matches the user uid
+.IR uid .
+.PP
+The
+.B getpwnam_r()
+and
+.B getpwuid_r()
+functions find the same information, but store the retrieved passwd structure
+in the space pointed to by
+.IR pwbuf .
+This passwd structure contains pointers to strings, and these strings
+are stored in the buffer
+.I buf
+of size
+.IR buflen .
+A pointer to the result (in case of success) or NULL (in case no entry
+was found or an error occurred) is stored in
+.RI * pwbufp .
 .PP
 The \fIpasswd\fP structure is defined in \fI<pwd.h>\fP as follows:
 .sp
 .RS
 .nf
-.ta 8n 16n 32n
 struct passwd {
-        char    *pw_name;		/* user name */
-        char    *pw_passwd;		/* user password */
-        uid_t   pw_uid;			/* user id */
-        gid_t   pw_gid;			/* group id */
-        char    *pw_gecos;      	/* real name */
-        char    *pw_dir;  		/* home directory */
-        char    *pw_shell;      	/* shell program */
+      char    *pw_name;      /* user name */
+      char    *pw_passwd;    /* user password */
+      uid_t   pw_uid;        /* user id */
+      gid_t   pw_gid;        /* group id */
+      char    *pw_gecos;     /* real name */
+      char    *pw_dir;       /* home directory */
+      char    *pw_shell;     /* shell program */
 };
-.ta
 .fi
 .RE
+.PP
+The maximum needed size for
+.I buf
+can be found using
+.BR sysconf (3)
+with the _SC_GETPW_R_SIZE_MAX parameter.
 .SH "RETURN VALUE"
 The \fBgetpwnam()\fP and \fBgetpwuid()\fP functions return a pointer to
 the passwd structure, or NULL if the matching entry is not found or
 an error occurs. If an error occurs,
 .I errno
-is set appropriately.
+is set appropriately. If one wants to check
+.I errno
+after the call, it should be set to zero before the call.
 .LP
 The return value may point to static area, and may be overwritten
-by subsequent calls.
+by subsequent calls to
+.BR getpwent() ,
+.BR getpwnam() ,
+or
+.BR getpwuid() .
+.LP
+The  \fBgetpwnam_r()\fP and \fBgetpwuid_r()\fP functions return
+zero on success. In case of error, an error value is returned.
 .SH ERRORS
 .TP
 .BR 0 " or " ENOENT " or " ESRCH " or " EBADF " or " EPERM " or ... "
 The given
 .I name
 or
-.I gid
+.I uid
 was not found.
 .TP
 .B ENOMEM
@@ -99,13 +145,16 @@ The maximum number (OPEN_MAX) of files was open already in the calling process.
 .TP
 .B ENFILE
 The maximum number of files was open already in the system.
+.TP
+.B ERANGE
+Insufficient buffer space supplied.
 .SH FILES
 .TP
 .I /etc/passwd
 password database file
 .fi
 .SH "CONFORMING TO"
-SVID 3, POSIX, BSD 4.3
+SVID 3, BSD 4.3, POSIX 1003.1-2003
 .SH NOTES
 The formulation given above under "RETURN VALUE" is from POSIX 1003.1-2001.
 It does not call "not found" an error, hence does not specify what value

@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.62.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.63.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,12 +12,21 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.61:
+Differences from version 1.62:
 
     The man pages
 
-	addseverity.3 aio_cancel.3 aio_error.3 aio_fsync.3 aio_read.3
-	aio_return.3 aio_suspend.3 aio_write.3
+	cp.1
+
+	sstk.2
+
+	endspent.3 fgetgrent_r.3 fgetpwent_r.3 fgetspent.3 fgetspent_r.3
+	getgrent.3 getgrent_r.3 getgrgid_r.3 getgrnam.3 getgrnam_r.3
+	getmntent.3 getmntent_r.3 getpwent_r.3 getpwnam.3 getpwnam_r.3
+	getpwuid_r.3 getspent.3 getspent_r.3 getspnam.3 getspnam_r.3
+	lckpwdf.3 putgrent.3 putspent.3 qsort.3 rand.3 rand_r.3
+	setspent.3 sgetspent.3 sgetspent_r.3 tmpnam.3 tmpnam_r.3
+	ulckpwdf.3 undocumented.3
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.

@@ -24,9 +24,11 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Mon Mar 29 22:47:58 1993, David Metcalfe
-.\" Modified Sat Jul 24 18:41:27 1993, Rik Faith (faith@cs.unc.edu)
-.TH QSORT 3  1993-03-29 "" "Linux Programmer's Manual"
+.\"
+.\" Modified 1993-03-29, David Metcalfe
+.\" Modified 1993-07-24, Rik Faith (faith@cs.unc.edu)
+.\"
+.TH QSORT 3 2003-11-15 "" "Linux Programmer's Manual"
 .SH NAME
 qsort \- sorts an array
 .SH SYNOPSIS
@@ -55,5 +57,20 @@ as equal, their order in the sorted array is undefined.
 The \fBqsort()\fP function returns no value.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3, ISO 9899
+.SH NOTE
+Library routines suitable for use as the
+.I compar
+argument include
+.IR strcmp ,
+.IR alphasort ,
+and
+.IR versionsort .
+.SH EXAMPLE
+For an example of use, see the example on the
+.BR bsearch (3)
+page.
 .SH "SEE ALSO"
-.BR sort (1)
+.BR sort (1),
+.BR alphasort (3),
+.BR strcmp (3),
+.BR versionsort (3)
