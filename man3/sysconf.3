@@ -178,12 +178,12 @@ indicates whether the POSIX.2 FORTRAN runtime utilities are supported.
 The corresponding macro is
 .BR POSIX2_FORT_RUN .
 .TP
-.B POSIX2_LOCALEDEF
+.B _SC_2_LOCALEDEF
 indicates whether the POSIX.2 creation of locates via
-.BR locale (1)
+.BR localedef (1)
 is supported.
 The corresponding macro is
-.BR POSIX2_LOCALEDEF .
+.BR _POSIX2_LOCALEDEF .
 .TP
 .B _SC_2_SW_DEV
 indicates whether the POSIX.2 software development utilities option is
@@ -198,7 +198,7 @@ is not set.
 .SH "CONFORMING TO"
 POSIX.1, proposed POSIX.2
 .SH "BUGS"
-It is difficult use
+It is difficult to use
 .B ARG_MAX
 because it is not specified how much of the argument space for
 .B exec()

@@ -46,8 +46,10 @@ overwritten with a \e0 and a pointer to the next character is
 saved for the next call to \fBstrtok\fP.
 The delimiter string \fIdelim\fP may be different for each call.
 .SH "BUGS"
+Never use this function.
 This function modifies its first argument.
 The identity of the delimiting character is lost.
+This function cannot be used on constant strings.
 .SH "RETURN VALUE"
 The \fBstrtok()\fP function returns a pointer to the next token, or
 NULL if there are no more tokens.

@@ -28,8 +28,9 @@
 .\"   Added 'fchdir'.
 .\"   Fix bugs in error section.
 .\" Modified Mon Oct 21 23:05:29 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified by Joseph S. Myers <jsm28@cam.ac.uk>, 970821
 .\"
-.TH CHDIR 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
+.TH CHDIR 2 "21 August 1997" "Linux 2.0.30" "Linux Programmer's Manual"
 .SH NAME
 chdir, fchdir \- change working directory
 .SH SYNOPSIS
@@ -56,9 +57,6 @@ Depending on the file system, other errors can be returned.  The more
 general errors for
 .B chdir
 are listed below:
-.TP 0.8i
-.B EPERM
-The process does not have execute permission on the directory.
 .TP
 .B EFAULT
 .I path
@@ -68,11 +66,6 @@ points outside your accessible address space.
 .I path
 is too long.
 .TP
-.B EBADF
-The
-.I fd
-is not a valid file descriptor.
-.TP
 .B ENOENT
 The file does not exist.
 .TP
@@ -80,38 +73,44 @@ The file does not exist.
 Insufficient kernel memory was available.
 .TP
 .B ENOTDIR
-A component of the path prefix is not a directory.
+A component of
+.I path
+is not a directory.
 .TP
 .B EACCES
-Search permission is denied on a component of the path prefix.
+Search permission is denied on a component of
+.IR path .
 .TP
 .B ELOOP
-.I path
-contains a circular reference (i.e., via a symbolic link)
+Too many symbolic links were encountered in resolving
+.IR path .
+.TP
+.B EIO
+An I/O error occurred.
 .PP
 The general errors for
 .B fchdir
 are listed below:
 .TP 0.8i
 .B EBADF
-The descriptor is not valid.
-.TP
-.B EPERM
-See above.
-.TP
-.B EROFS
-See above.
+.I fd
+is not a valid file descriptor.
+.B EACCES
+Search permission was denied on the directory open on
+.IR fd .
 .SH "CONFORMING TO"
 The 
 .B chdir
 call is compatible with SVr4, SVID, POSIX, X/OPEN, 4.4BSD.  SVr4 documents
-additional EIO, EINTR, ENOLINK, and EMULTIHOP error conditions but has
-no ENOMEM or EPERM.  POSIX.1 does not have EPERM, ENOMEM or
-ELOOP error conditions.
+additional EINTR, ENOLINK, and EMULTIHOP error conditions but has
+no ENOMEM.  POSIX.1 does not have ENOMEM or ELOOP error conditions.
+X/OPEN does not have EFAULT, ENOMEM or EIO error conditions.
 
 The
 .B fchdir
-call is compatible with SVr4 and 4.4BSD.  SVr4 documents additional
-EIO, EINTR, and ENOLINK erroir conditions.
+call is compatible with SVr4, 4.4BSD and X/OPEN.
+SVr4 documents additional EIO, EINTR, and ENOLINK error conditions.
+X/OPEN documents additional EINTR and EIO error conditions.
 .SH "SEE ALSO"
-.BR getcwd "(3), " chroot (2)
+.BR getcwd (3),
+.BR chroot (2)

@@ -1,0 +1,30 @@
+.\" Written Sat Mar  8 10:35:08 MEZ 1997 by J. "MUFTI" Scheurich (mufti@csv.ica.uni-stuttgart.de)
+.TH __SETFPUCW 3 "8 March 1997" "i386 Linux Man Page" "Linux Programmer's Manual"
+.SH NAME
+__setfpucw \- set fpu control word on i386 architecture
+.SH SYNOPSIS
+.B #include <i386/fpu_control.h>
+.sp
+.BI "void __setfpucw((unsigned short) " control_word ");
+.br
+.SH DESCRIPTION
+.B __setfpucw
+transfer 
+.I control_word 
+to the registers of the fpu (floating point unit) on i386 architecture. This 
+can be used to control floating point precision, rounding and floating point 
+exceptions.
+.SH EXAMPLE
+
+.BR __setfpucw(0x1372)
+
+Set fpu control word on i386 architecture to
+.br
+     - extended precision
+.br     
+     - rounding to nearest
+.br     
+     - exceptions on overflow, zero divide and NaN
+.br 
+.SH "SEE ALSO"
+.BR /usr/include/i386/fpu_control.h

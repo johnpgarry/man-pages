@@ -69,10 +69,10 @@ Supplying a value of \-1 for either the real or effective user ID forces
 the system to 
 leave that ID unchanged.
 
-Currently (libc-4.x.x),
+Currently
 .BI seteuid( euid )
 is functionally equivalent to 
-.BI setreuid(  -1  , " euid" ).
+.BI setreuid(  -1  , " euid" ) \fR.
 
 If the real user ID is changed or the effective user ID is set to a value 
 not equal to the previous real user ID, the saved user ID will be set to the

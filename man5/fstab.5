@@ -54,7 +54,10 @@ is described on a separate line; fields on each line are separated by tabs
 or spaces.  The order of records in
 .B fstab
 is important because
-.BR fsck "(8), " mount "(8), and " umount "(8)"
+.BR fsck (8),
+.BR mount (8),
+and 
+.BR umount (8)
 sequentially iterate through
 .B fstab
 doing their thing.
@@ -71,8 +74,9 @@ field should be specified as ``none''.
 
 The third field,
 .RI ( fs_vfstype ),
-describes the type of the filesystem.  The system currently supports three
-types of filesystems:
+describes the type of the filesystem.  The system currently supports these
+types of filesystems (and possibly others - consult
+.IR /proc/filesystems ):
 .TP
 .I minix
 a local filesystem, supporting filenames of length 14 or 30 characters.

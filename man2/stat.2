@@ -28,6 +28,8 @@
 .\" Modified Thu May 18 11:00:31 1995 by Rik Faith <faith@cs.unc.edu>
 .\"          to add comments suggested by Todd Larason <jtl@molehill.org>
 .\" Modified Fri Jan 31 17:43:02 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Thu Jan 9 10:20:31 1995 by Martin Schulze (joey@infodrom.north.de)
+.\"          to add more error codes suggested by Richard Kettlewell (richard@greenend.org.uk)
 .\" 
 .TH STAT 2 "1 January 1995" "Linux 1.1.75" "Linux Programmer's Manual"
 .SH NAME
@@ -229,13 +231,25 @@ On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-.TP 0.8i
+.TP
 .B EBADF
 .I filedes
 is bad.
 .TP
 .B ENOENT
 File does not exist.
+.TP
+.B EFAULT
+Bad address.
+.TP
+.B EACCES
+Permission denied.
+.TP
+.B ENOMEM
+Out of memory (i.e. kernel memory).
+.TP
+.B ENAMETOOLONG
+File name too long.
 .SH "CONFORMING TO"
 The
 .B stat

@@ -31,8 +31,8 @@ setjmp, sigsetjmp \- save stack context for non-local goto
 .B #include <setjmp.h>
 .sp
 .nf
-.BI "int setjmp( jmp_buf " env " );"
-.BI "int sigsetjmp( sigjmp_buf " env ", int " savesigs " );"
+.BI "int setjmp(jmp_buf " env );
+.BI "int sigsetjmp(sigjmp_buf " env ", int " savesigs );
 .fi
 .ad b
 .SH DESCRIPTION

@@ -33,7 +33,7 @@
 .\" Modified Sun Jul 21 21:25:26 1996 by Andries Brouwer (aeb@cwi.nl)
 .\" Modified Fri Jan 17 23:49:46 1997 by Andries Brouwer (aeb@cwi.nl)
 .\"
-.TH KILL 2 "November 1, 1995" "Linux" "Linux Programmer's Manual"
+.TH KILL 2 "14 September 1997" "Linux 2.0.30" "Linux Programmer's Manual"
 .SH NAME
 kill \- send signal to a process
 .SH SYNOPSIS
@@ -51,16 +51,18 @@ system call
 can be used to send any signal to any process group or process.
 .PP
 If \fIpid\fP is positive, then signal \fIsig\fP is sent to \fIpid\fP.
-In this case, 0 is returned on success, or a negative value on error.
+.PP
+If \fIpid\fP equals 0, then \fIsig\fP is sent to every process in the
+process group of the current process.
 .PP
 If \fIpid\fP equals \-1, then \fIsig\fP is sent to every process except
-for the first one, from higher numbers in the proc table to lower.  In
-this case, 0 is returned on success, or the error condition resulting
-from signalling the last process is returned.
+for the first one, from higher numbers in the process table to lower.
 .PP
 If \fIpid\fP is less than \-1, then \fIsig\fP is sent to every process
-in the process group \fI\-pid\fP.  In this case, the number of processes
-the signal was sent to is returned, or a negative value for failure.
+in the process group \fI\-pid\fP.
+.PP
+If \fIsig\fP is 0, then no signal is sent, but error checking is still
+performed.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -68,7 +70,7 @@ is set appropriately.
 .SH ERRORS
 .TP
 .B EINVAL
-An invalid signal is sent.
+An invalid signal was specified.
 .TP
 .B ESRCH
 The pid or process group does not exist.
@@ -91,4 +93,4 @@ system is not brought down accidentally.
 .SH "CONFORMING TO"
 SVr4, SVID, POSIX.1, X/OPEN, BSD 4.3
 .SH "SEE ALSO"
-.BR _exit "(2), " exit "(2), " signal "(2), " signal (7)
+.BR _exit "(2), " exit "(3), " signal "(2), " signal (7)

@@ -74,7 +74,7 @@ is called, and a buffer is obtained.  If a stream refers to a terminal (as
 .I stdout
 normally does) it is line buffered.  The standard error stream
 .I stderr
-is always unbuffered.
+is always unbuffered by default.
 .PP
 The
 .B setvbuf
@@ -134,8 +134,8 @@ function is exactly equivalent to the call:
 setvbuf(stream, (char *)NULL, _IOLBF, 0);
 .RE
 .SH "SEE ALSO"
-.BR fopen "(3), " fclose "(3), " fread "(3), " malloc "(3), " puts "(3), "
-.BR printf (3)
+.BR fopen "(3), " fclose "(3), " fflush "(3), " fread "(3), " malloc "(3), "
+.BR puts "(3), " printf (3)
 .SH STANDARDS
 The
 .B setbuf

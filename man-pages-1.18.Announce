@@ -1,28 +1,30 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.17.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.18.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 
-Differences from version 1.16:
+Differences from version 1.17:
     
     The man pages
 
-	chdir.2 chroot.2 connect.2 create_module.2 delete_module.2
-	get_kernel_syms.2 getresgid.2 getresuid.2 getsockname.2
-	init_module.2 mkdir.2 mknod.2 mmap.2 poll.2 query_module.2
-	read.2 readv.2 setregid.2 setresgid.2 setresuid.2 setuid.2
-	vm86.2 wait.2 wait4.2
+	access.2 adjtimex.2 chdir.2 chroot.2 execve.2 getpeername.2
+	kill.2 link.2 poll.2 readlink.2 stat.2 statfs.2 symlink.2
+	time.2 umask.2
 
-	crypt.3 exec.3 fflush.3 fmod.3 fpathconf.3 ftime.3 ftw.3
-	getopt.3 getpass.3 isinf.3 localeconv.3 mkstemp.3
-	rewinddir.3 setlocale.3 snprintf.3 strtoul.3 system.3
-	tempnam.3 termios.3
+	__setfpucw.3 atexit.3 fdopen.3 fopen.3 fread.3 ftw.3 getopt.3
+	iruserok.3 localeconv.3 logwtmp.3 printf.3 rcmd.3 rresvport.3
+	ruserok.3 setbuf.3 strftime.3 strtok.3 strxfrm.3 sysconf.3
+	updwtmp.3
 
-	locale.7
+	console_ioctl.4 full.4 initrd.4 random.4
+
+	utmp.5
+
+	suffixes.7
 
     are new or have been updated.  Typographical or grammatical errors
-    have been corrected in many other places.
+    have been corrected in several other places.
 
 Here is a breakdown of what this distribution contains:
 
@@ -67,7 +69,9 @@ wrote, edited, or otherwise contributed to this project:
     Jim Van Zandt (jrv@vanzandt.mv.com)
     Jochen Hein (Hein@Student.TU-Clausthal.de)
     Jochen Karrer (cip307.cip.physik.uni-wuerzburg.de)
+    John S. Kallal (kallal@voicenet.com)
     Jonathan Naylor (g4klx@g4klx.demon.co.uk, jsn@cs.nott.ac.uk)
+    Joseph S. Myers (jsm28@hermes.cam.ac.uk)
     Luigi P. Bai (lpb@neosoft.com)
     Mark D. Roth (roth@uiuc.edu)
     Markus Kuhn (mskuhn@cip.informatik.uni-erlangen.de)

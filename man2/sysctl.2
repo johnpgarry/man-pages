@@ -121,18 +121,18 @@ non-NULL, but allowed zero room in
 This call is Linux-specific, and should not be used in programs
 intended to be portable.
 A
-.I sysctl
+.B sysctl
 call has been present in Linux since version 1.3.57. It originated in
 4.4BSD. Only Linux has the
 .I /proc/sys
 mirror, and the object naming schemes differ between Linux and BSD 4.4,
 but the declaration of the
-.IR sysctl (2)
+.BR sysctl (2)
 function is the same in both.
 .SH BUGS
 Not all available objects are properly documented.
 .br
 It is not yet possible to change operating system by writing to
-.BR /proc/sys/kernel/ostype .
+.IR /proc/sys/kernel/ostype .
 .SH "SEE ALSO"
 .BR proc (5).

@@ -36,7 +36,7 @@
 .\"     @(#)fopen.3	6.8 (Berkeley) 6/29/91
 .\"
 .\" Converted for Linux, Mon Nov 29 15:22:01 1993, faith@cs.unc.edu
-.\" Modified, aeb, 960421
+.\" Modified, aeb, 960421, 970806
 .\"
 .TH FOPEN 3  "13 December 1995" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
@@ -44,11 +44,11 @@ fopen, fdopen, freopen \- stream open functions
 .SH SYNOPSIS
 .B #include <stdio.h>
 .sp
-.BI "FILE *fopen( char *" path ", char *" mode );
+.BI "FILE *fopen (const char *" path ", const char *" mode );
 .br
-.BI "FILE *fdopen( int " fildes ", char *" mode );
+.BI "FILE *fdopen (int " fildes ", const char *" mode );
 .br
-.BI "FILE *freopen( char *" path ", char *" mode ", FILE *" stream );
+.BI "FILE *freopen (const char *" path ", const char *" mode ", FILE *" stream );
 .SH DESCRIPTION
 The
 .B fopen
@@ -118,8 +118,17 @@ function associates a stream with the existing file descriptor,
 .IR fildes .
 The
 .I mode
-of the stream must be compatible with the mode of the file descriptor.
+of the stream (one of the values "r", "r+", "w", "w+", "a", "a+")
+must be compatible with the mode of the file descriptor.
+The file position indicator of the new stream is set to that
+belonging to
+.IR fildes ,
+and the error and end-of-file indicators are cleared.
+Modes "w" or "w+" do not cause truncation of the file.
 The file descriptor is not dup'ed.
+The result of applying
+.I fdopen
+to a shared memory object is undefined.
 .PP
 The
 .B freopen

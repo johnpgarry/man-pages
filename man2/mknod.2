@@ -109,9 +109,8 @@ Insufficient kernel memory was available.
 refers to a file on a read-only filesystem.
 .TP
 .B ELOOP
-.I pathname
-contains a reference to a circular symbolic link, ie a symbolic link
-whose expansion contains a reference to itself.
+Too many symbolic links were encountered in resolving
+.IR pathname .
 .TP
 .B ENOSPC
 The device containing

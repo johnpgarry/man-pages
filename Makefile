@@ -1,6 +1,7 @@
 # Do "make install" to copy the pages to their destination.
 # Do "make gz" before "make install" if you use compressed source pages.
 
+# FHS requires /usr/share/man
 MANDIR=/usr/man
 
 GZIP=gzip -9

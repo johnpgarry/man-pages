@@ -33,7 +33,7 @@
 .\"
 .\" Modified Sat Jul 24 11:27:31 1993 by Rik Faith (faith@cs.unc.edu)
 .\"
-.TH STATFS 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH STATFS 2 "21 August 1997" "Linux 2.0.30" "Linux Programmer's Manual"
 .SH NAME
 statfs, fstatfs \- get file system statistics
 .SH SYNOPSIS
@@ -43,11 +43,11 @@ statfs, fstatfs \- get file system statistics
 .br
 .BI "int fstatfs(int " fd ", struct statfs *" buf );
 .SH DESCRIPTION
-.N Statfs
+.B statfs
 returns information about a mounted file system.
-.I Path
+.I path
 is the path name of any file within the mounted filesystem.
-.I Buf
+.I buf
 is a pointer to a
 .I statfs
 structure defined as follows:
@@ -69,22 +69,46 @@ struct statfs {
 
 File system types:
 
-linux/ext2_fs.h:  EXT2_OLD_SUPER_MAGIC  0xEF51
-linux/ext2_fs.h:  EXT2_SUPER_MAGIC      0xEF53
-linux/ext_fs.h:   EXT_SUPER_MAGIC       0x137D
-linux/iso_fs.h:   ISOFS_SUPER_MAGIC     0x9660
-linux/minix_fs.h: MINIX_SUPER_MAGIC     0x137F /* orig. minix */
-linux/minix_fs.h: MINIX_SUPER_MAGIC2    0x138F /* 30 char minix */
-linux/minix_fs.h: NEW_MINIX_SUPER_MAGIC 0x2468 /* minix V2 */
-linux/msdos_fs.h: MSDOS_SUPER_MAGIC     0x4d44
-linux/nfs_fs.h:   NFS_SUPER_MAGIC       0x6969
-linux/proc_fs.h:  PROC_SUPER_MAGIC      0x9fa0
-linux/xia_fs.h:   _XIAFS_SUPER_MAGIC    0x012FD16D
+linux/affs_fs.h:
+   AFFS_SUPER_MAGIC      0xADFF
+linux/ext_fs.h:
+   EXT_SUPER_MAGIC       0x137D
+linux/ext2_fs.h:
+   EXT2_OLD_SUPER_MAGIC  0xEF51
+   EXT2_SUPER_MAGIC      0xEF53
+linux/hpfs_fs.h:
+   HPFS_SUPER_MAGIC      0xF995E849
+linux/iso_fs.h:
+   ISOFS_SUPER_MAGIC     0x9660
+linux/minix_fs.h:
+   MINIX_SUPER_MAGIC     0x137F /* orig. minix */
+   MINIX_SUPER_MAGIC2    0x138F /* 30 char minix */
+   MINIX2_SUPER_MAGIC    0x2468 /* minix V2 */
+   MINIX2_SUPER_MAGIC2   0x2478 /* minix V2, 30 char names */
+linux/msdos_fs.h:
+   MSDOS_SUPER_MAGIC     0x4d44
+linux/ncp_fs.h:
+   NCP_SUPER_MAGIC       0x564c
+linux/nfs_fs.h:
+   NFS_SUPER_MAGIC       0x6969
+linux/proc_fs.h:
+   PROC_SUPER_MAGIC      0x9fa0
+linux/smb_fs.h:
+   SMB_SUPER_MAGIC       0x517B
+linux/sysv_fs.h:
+   XENIX_SUPER_MAGIC     0x012FF7B4
+   SYSV4_SUPER_MAGIC     0x012FF7B5
+   SYSV2_SUPER_MAGIC     0x012FF7B6
+   COH_SUPER_MAGIC       0x012FF7B7
+linux/ufs_fs.h:
+   UFS_MAGIC             0x00011954
+linux/xia_fs.h:
+   _XIAFS_SUPER_MAGIC    0x012FD16D
 .fi
 .RE
 .PP
 Fields that are undefined for a particular file system are set to \-1.
-.B Fstatfs
+.B fstatfs
 returns the same information about an open file referenced by descriptor
 .IR fd .
 .SH "RETURN VALUE"
@@ -97,20 +121,12 @@ For
 .TP 0.8i
 .B ENOTDIR
 A component of the path prefix of
-.I Path
+.I path
 is not a directory.
 .TP
-.B EINVAL
-.I path
-contains a character with the high-order bit set.
-.TP
 .B ENAMETOOLONG
-The length of a component of
 .I path
-exceeds 255 characters, or the length of
-.I path
-exceeds 1023 characters. [Documenter's note: are these values correct for
-Linux?]
+is too long.
 .TP
 .B ENOENT
 The file referred to by
@@ -134,21 +150,36 @@ points to an invalid address.
 .B EIO
 An I/O error occurred while reading from or writing to the file
 system.
+.TP
+.B ENOMEM
+Insufficient kernel memory was available.
+.TP
+.B ENOSYS
+The filesystem
+.I path
+is on does not support
+.BR statfs .
 .PP
 For
 .BR fstatfs :
 .TP 0.8i
 .B EBADF
-.I Fd
+.I fd
 is not a valid open file descriptor.
 .TP
 .B EFAULT
-.I Buf
+.I buf
 points to an invalid address.
 .TP
 .B EIO
 An I/O error occurred while reading from or writing to the file
 system.
+.TP
+.B ENOSYS
+The filesystem
+.I fd
+is open on does not support
+.BR statfs .
 .SH "CONFORMING TO"
 4.4BSD.
 .SH "SEE ALSO"

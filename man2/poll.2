@@ -22,11 +22,13 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.TH POLL 2 "16 July 1997" "Linux 2.1.23" "Linux Programmer's Manual"
+.\" Additions from Richard Gooch <rgooch@atnf.CSIRO.AU> and aeb, 971207
+.\"
+.TH POLL 2 "7 December 1997" "Linux 2.1.23" "Linux Programmer's Manual"
 .SH NAME
 poll \- wait for some event on a file descriptor
 .SH SYNOPSIS
-.B #include <linux/asm/poll.h>
+.B #include <sys/poll.h>
 .sp
 .BI "int poll(struct pollfd *" ufds ", unsigned int " nfds ", int " timeout );
 .SH DESCRIPTION
@@ -39,14 +41,17 @@ structures of type
 .br
 .nf
         struct pollfd {
-                int fd;
-                short events;
-                short revents;
+                int fd;           /* file descriptor */
+                short events;     /* requested events */
+                short revents;    /* returned events */
         };
 .fi
 and a
 .I timeout
-in milliseconds. (A negative value means infinite timeout.)
+in milliseconds. A negative value means infinite timeout.
+The field
+.I fd
+contains a file descriptor for an open file.
 The field
 .I events
 is an input parameter, a bitmask specifying the events the application
@@ -58,24 +63,43 @@ actually occurred, either of the type requested, or of one of the
 types
 .B POLLERR
 or
-.BR POLLHUP .
-The possible bits in these masks are defined in <linux/asm/poll.h>:
+.B POLLHUP
+or
+.BR POLLNVAL .
+(These three bits are meaningless in the
+.I events
+field, and will be set in the
+.I revents
+field whenever the corresponding condition is true.)
+If none of the events requested (and no error) has occurred for any
+of the file descriptors, the kernel waits for
+.I timeout
+milliseconds for one of these events to occur.
+The following possible bits in these masks are defined in <sys/poll.h>
 .br
 .nf
-        #define POLLIN          0x0001
-        #define POLLPRI         0x0002
-        #define POLLOUT         0x0004
-        #define POLLERR         0x0008
-        #define POLLHUP         0x0010
-        #define POLLNVAL        0x0020
-        #define POLLRDNORM      0x0040
-        #define POLLRDBAND      0x0080
-        #define POLLWRNORM      0x0100
-        #define POLLWRBAND      0x0200
-        #define POLLMSG         0x0400
+    #define POLLIN      0x0001    /* There is data to read */
+    #define POLLPRI     0x0002    /* There is urgent data to read */
+    #define POLLOUT     0x0004    /* Writing now will not block */
+    #define POLLERR     0x0008    /* Error condition */
+    #define POLLHUP     0x0010    /* Hung up */
+    #define POLLNVAL    0x0020    /* Invalid request: fd not open */
 .fi
+In <asm/poll.h> also the values
+.BR POLLRDNORM ,
+.BR POLLRDBAND ,
+.BR POLLWRNORM ,
+.B POLLWRBAND
+and
+.B POLLMSG
+are defined.
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, \-1 is returned, and
+On success, a positive number is returned, where the number returned
+is the number of structures which have non-zero
+.I revents
+fields (in other words, those descriptors with events or errors reported).
+A value of 0 indicates that the call timed out and no file
+descriptors have been selected. On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -88,8 +112,13 @@ The array given as argument was not contained in the calling program's
 address space.
 .TP
 .B EINTR
-An signal occurred before any requested event.
+A signal occurred before any requested event.
 .SH "CONFORMING TO"
-This call is Linux-specific.
+XPG4-UNIX.
+.SH AVAILABILITY
+The poll() systemcall was introduced in Linux 2.1.23.
+The poll() library call was introduced in libc 5.4.28
+(and provides emulation using select if your kernel does not
+have a poll syscall).
 .SH "SEE ALSO"
 .BR select (2)

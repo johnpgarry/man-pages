@@ -23,8 +23,9 @@
 .\" USA.
 .\"
 .\" Modified Fri Jan 31 16:11:17 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Wed Jul 30 14:25:16 1997 by Paul Slootman <paul@wurtel.demon.nl>
 .\"
-.TH ADJTIMEX 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
+.TH ADJTIMEX 2 "30 July 1997" "Linux 2.0" "Linux Programmer's Manual"
 .SH NAME
 adjtimex \- tune kernel clock
 .SH SYNOPSIS
@@ -32,7 +33,7 @@ adjtimex \- tune kernel clock
 .sp
 .BI "int adjtimex(struct timex *" "buf" ");"
 .SH DESCRIPTION
-Linux uses David Mill's clock adjustment algorithm.
+Linux uses David L. Mills' clock adjustment algorithm.
 .B adjtimex
 reads and optionally sets adjustment parameters for this algorithm.
 .PP
@@ -47,24 +48,24 @@ This structure is declared as follows:
 .nf
 struct timex
 {
-    int mode;            /* mode selector */
+    int modes;           /* mode selector */
     long offset;         /* time offset (usec) */
-    long frequency;      /* frequency offset (scaled ppm) */
+    long freq;           /* frequency offset (scaled ppm) */
     long maxerror;       /* maximum error (usec) */
     long esterror;       /* estimated error (usec) */
     int status;          /* clock command/status */
-    long time_constant;  /* pll time constant */
+    long constant;       /* pll time constant */
     long precision;      /* clock precision (usec) (read only) */
     long tolerance;      /* clock frequency tolerance (ppm)
                             (read only) */
-    struct timeval time; /* (read only) */
+    struct timeval time; /* current time (read only) */
     long tick;           /* usecs between clock ticks */
 };
 .fi
 .RE
 .PP
 The
-.I mode
+.I modes
 field determines which parameters, if any, to set.
 It may contain a
 .RI bitwise- or
@@ -91,16 +92,16 @@ Only the superuser may set any parameters.
 .SH "RETURN VALUE"
 On success,
 .B adjtimex
-returns the value of
-.IR buf.status :
+returns the clock state:
 .PP
 .RS
 .nf
-#define TIME_OK  0 /* clock synchronized */
-#define TIME_INS 1 /* insert leap second */
-#define TIME_DEL 2 /* delete leap second */
-#define TIME_OOP 3 /* leap second in progress */
-#define TIME_BAD 4 /* clock not synchronized */
+#define TIME_OK   0 /* clock synchronized */
+#define TIME_INS  1 /* insert leap second */
+#define TIME_DEL  2 /* delete leap second */
+#define TIME_OOP  3 /* leap second in progress */
+#define TIME_WAIT 4 /* leap second has occurred */
+#define TIME_BAD  5 /* clock not synchronized */
 .fi
 .RE
 .PP

@@ -22,7 +22,8 @@
 .\" License.
 .\" Modified Sun Jul 25 11:05:58 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sat Feb 10 16:18:03 1996 by Urs Thuermann (urs@isnogud.escape.de)
-.TH HIER 7  "February 10, 1996" "Linux" "Linux Programmer's Manual"
+.\" Modified Mon Jun 16 20:02:00 1997 by Nicolas Lichtmaier <nick@debian.org>
+.TH HIER 7  "June 16, 1997" "Linux" "Linux Programmer's Manual"
 .SH NAME
 hier \- Description of the file system hierarchy
 .SH DESCRIPTION
@@ -161,15 +162,18 @@ usually a symbolic link to
 .I /usr/X11R6/include/X11.
 .TP
 .I /usr/include/asm
-Include files which declare some assembler functions.  This should be a
+Include files which declare some assembler functions.  This used to be a
 symbolic link to
-.IR /usr/src/linux/include/asm .
+.IR /usr/src/linux/include/asm ,
+but this isn't the case in Debian or libc6 based systems.
 .TP
 .I /usr/include/linux
 This contains information which may change from system release to
-system release and should be a symbolic link to
+system release and used to be a symbolic link to
 .I /usr/src/linux/include/linux
 to get at operating system specific information.
+Debian systems don't do this and use headers from a known good kernel
+version, provided in the libc*-dev package.
 .TP
 .I /usr/include/g++
 Include files to use with the GNU C++ compiler.
@@ -229,10 +233,6 @@ Source code for locally installed software.
 .I /usr/man
 Manpages go in there, into their subdirectories.
 .TP
-.I /usr/man/cat[1-9]
-These directories contain preformatted manual pages according to their
-manpage section.
-.TP
 .I /usr/man/<locale>/man[1-9]
 These directories contain manual pages which are in source code form.
 Systems which use a unique language and code set for all manual pages
@@ -256,6 +256,7 @@ This contains the sources for the kernel of the operating system itself.
 An alternative place to store temporary files; This should be a link
 to
 .I /var/tmp.
+This link is present only for compatibility reasons and shouldn't be used.
 .TP
 .I /var
 This directory contains files which may change in size, such as spool
@@ -266,6 +267,13 @@ This directory is superseded by
 .I /var/log
 and should be a symbolic link to
 .I /var/log.
+.TP
+.I /var/backups
+This directory is used to save backup copies of important system files.
+.TP
+.I /var/catman/cat[1-9]
+These directories contain preformatted manual pages according to their
+manpage section.
 .TP
 .I /var/lock
 Lock files are plaed in this directory.  The naming convention for
@@ -336,3 +344,4 @@ differently.
 .BR mount (1), 
 .BR proc (5),
 The Linux Filesystem Standard
+

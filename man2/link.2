@@ -27,7 +27,7 @@
 .\" Modified Sun Aug 21 18:18:14 1994: Michael Haardt's NFS diffs were
 .\"          applied by hand <faith@cs.unc.edu>
 .\"
-.TH LINK 2 "17 August 1994" "Linux" "Linux Programmer's Manual"
+.TH LINK 2 "21 August 1997" "Linux 2.0.30" "Linux Programmer's Manual"
 .SH NAME
 link \- make a new name for a file
 .SH SYNOPSIS
@@ -103,9 +103,8 @@ The file referred to by
 already has the maximum number of links to it.
 .TP
 .B ELOOP
-.IR oldpath " or " newpath
-contains a reference to a circular symbolic link, ie a symbolic link
-whose expansion contains a reference to itself.
+Too many symbolic links were encountered in resolving
+.IR oldpath " or " newpath .
 .TP
 .B ENOSPC
 The device containing the file has no room for the new directory
@@ -113,9 +112,10 @@ entry.
 .TP
 .B EPERM
 .I oldpath
-is the
-.B . " or " ..
-entry of a directory.
+is a directory.
+.TP
+.B EIO
+An I/O error occurred.
 .SH NOTES
 Hard links, as created by
 .BR link ,
@@ -123,8 +123,9 @@ cannot span filesystems. Use
 .B symlink
 if this is required.
 .SH "CONFORMING TO"
-SVr4, SVID, POSIX, BSD 4.3.  SVr4 documents additional ENOLINK and
+SVr4, SVID, POSIX, BSD 4.3, X/OPEN.  SVr4 documents additional ENOLINK and
 EMULTIHOP error conditions; POSIX.1 does not document ELOOP.
+X/OPEN does not document EFAULT, ENOMEM or EIO.
 .SH BUGS
 On NFS file systems, the return code may be wrong in case the NFS server
 performs the link creation and dies before it can say so.  Use
@@ -133,3 +134,4 @@ to find out if the link got created.
 .SH "SEE ALSO"
 .BR symlink "(2), " unlink "(2), " rename "(2), " open (2),
 .BR stat "(2), " ln "(1), " link (8).
+.BR stat "(2), " ln (1).

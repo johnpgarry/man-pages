@@ -7,6 +7,8 @@ Install by copying to your favourite location.
 compress the pages, and copy them to /usr/man/man[1-8].
 "make install" will just copy them to /usr/man/man[1-8].
 
+Note that you may have to remove preformatted pages.
+
 Note that sometimes these pages are duplicates of pages
 also distributed in other packages. This has been reported
 about *_module.2, exports.5, passwd.5 and mailaddr.7.

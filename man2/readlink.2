@@ -35,7 +35,7 @@
 .\" Modified Tue Jul  9 23:55:17 1996 by aeb
 .\" Modified Fri Jan 24 00:26:00 1997 by aeb
 .\"
-.TH READLINK 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
+.TH READLINK 2 "21 August 1997" "Linux 2.0.30" "Linux Programmer's Manual"
 .SH NAME
 readlink \- read value of a symbolic link
 .SH SYNOPSIS
@@ -43,14 +43,14 @@ readlink \- read value of a symbolic link
 .sp
 .BI "int readlink(const char *" path ", char *" buf ", size_t " bufsiz );
 .SH DESCRIPTION
-.B Readlink
+.B readlink
 places the contents of the symbolic link
 .I path
 in the buffer
 .IR buf ,
 which has size
 .IR bufsiz .
-.B Readlink
+.B readlink
 does not append a
 .B NUL
 character to
@@ -61,7 +61,7 @@ characters), in case the buffer is too small to hold all of the contents.
 .SH "RETURN VALUES"
 The call returns the count of characters placed in the buffer
 if it succeeds, or a \-1 if an error occurs, placing the error
-code in the global variable
+code in
 .IR errno .
 .SH ERRORS
 .TP 0.8i
@@ -69,11 +69,11 @@ code in the global variable
 A component of the path prefix is not a directory.
 .TP
 .B EINVAL
-The pathname contains a character with the high-order bit set.
+.I bufsiz
+is not positive.
 .TP
 .B ENAMETOOLONG
-A component of a pathname exceeded 255 characters,
-or an entire path name exceeded 1023 characters.
+A pathname, or a component of a pathname, was too long.
 .TP
 .B ENOENT
 The named file does not exist.
@@ -91,10 +91,13 @@ The named file is not a symbolic link.
 An I/O error occurred while reading from the file system.
 .TP
 .B EFAULT
-.I Buf
+.I buf
 extends outside the process's allocated address space.
+.TP
+.B ENOMEM
+Insufficient kernel memory was available.
 .SH "CONFORMING TO"
-4.4BSD (the
+X/OPEN, 4.4BSD (the
 .B readlink
 function call appeared in 4.2BSD).
 .SH "SEE ALSO"

@@ -28,8 +28,9 @@
 .\"   Fixed typoes.
 .\" Modified 13 Jun 1996 by aeb - Added a warning: . may be outside / tree.
 .\" Modified Wed Nov  6 03:50:45 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified by Joseph S. Myers <jsm28@cam.ac.uk>, 970821
 .\"
-.TH CHROOT 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
+.TH CHROOT 2 "21 August 1997" "Linux 2.0.30" "Linux Programmer's Manual"
 .SH NAME
 chroot \- change root directory
 .SH SYNOPSIS
@@ -40,7 +41,7 @@ chroot \- change root directory
 .B chroot
 changes the root directory to that specified in
 .IR path .
-This directory will be used for path name beginning with /.  The root
+This directory will be used for path names beginning with /.  The root
 directory is inherited by all children of the current process.
 
 Only the super-user may change the root directory.
@@ -59,9 +60,6 @@ general errors are listed below:
 .B EPERM
 The effective UID is not zero.
 .TP
-.B EROFS
-The named file resides on a read-only file system.
-.TP
 .B EFAULT
 .I path
 points outside your accessible address space.
@@ -77,17 +75,24 @@ The file does not exist.
 Insufficient kernel memory was available.
 .TP
 .B ENOTDIR
-A component of the path prefix is not a directory.
+A component of
+.I path
+is not a directory.
 .TP
 .B EACCES
 Search permission is denied on a component of the path prefix.
 .TP
 .B ELOOP
-.I path
-contains a circular reference (i.e., via a symbolic link)
+Too many symbolic links were encountered in resolving
+.IR path .
+.TP
+.B EIO
+An I/O error occurred.
 .SH CONFORMING TO
-SVr4, SVID, 4.4BSD.  This function is not part of POSIX.1.  SVr4
-documents additional EINTR, ENOLINK and EMULTIHOP error conditions,
+SVr4, SVID, 4.4BSD, X/OPEN.  This function is not part of POSIX.1.
+SVr4 documents additional EINTR, ENOLINK and EMULTIHOP error conditions.
+X/OPEN does not document EIO, ENOMEM or EFAULT error conditions.
+This interface is marked as legacy by X/OPEN.
 .SH "SEE ALSO"
 .BR chdir (2)
 
