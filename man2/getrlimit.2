@@ -24,6 +24,7 @@
 .\"
 .\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
 .\" Modified Fri Jul 23 21:18:14 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Jan 13, 1996 by Arnt Gulbrandsen <agulbra@troll.no>
 .TH GETRLIMIT 2 "23 July 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
 getrlimit, getrusage, setrlimit \- get/set resource limits and usage
@@ -47,7 +48,7 @@ get and set resource limits respectively.
 .I resource
 should be one of:
 .PP
-\fBRLIMIT_CPU\fP	/* CPU time in ms */
+\fBRLIMIT_CPU\fP	/* CPU time in seconds */
 .br
 \fBRLIMIT_FSIZE\fP	/* Maximum filesize */
 .br
@@ -58,21 +59,23 @@ should be one of:
 \fBRLIMIT_CORE\fP	/* max core file size */
 .br
 \fBRLIMIT_RSS\fP	/* max resident set size */
-.PP
-The following are not yet implemented [Documenter's note: as of when?]:
-.PP
-\fBRLIMIT_MEMLOCK\fP	/* max locked-in-memory address space*/
 .br
 \fBRLIMIT_NPROC\fP	/* max number of processes */
 .br
-\fBRLIMIT_OFILE\fP	/* max number of open files */
+\fBRLIMIT_NOFILE\fP	/* max number of open files */
+.PP
+The following is not implemented as of version 1.2.13:
+.PP
+\fBRLIMIT_MEMLOCK\fP	/* max locked-in-memory address space*/
 .PP
 A resource may unlimited if you set the limit to 
-.B RLIM_INFINITY.
+.BR RLIM_INFINITY ". " RLIMIT_OFILE
+is the BSD name for 
+.BR RLIMIT_NOFILE .
 .PP
-The 
+The
 .B rlimit
-structure is defined as follows : 
+structure is defined as follows :
 .PP
 .in +0.5i
 .nf

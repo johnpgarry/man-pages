@@ -1,4 +1,6 @@
 .\" nfs.5 "Rick Sladkey" <jrs@world.std.com>
+.\" Wed Feb  8 12:52:42 1995, faith@cs.unc.edu: updates for Ross Biro's
+.\" patches. "
 .TH NFS 5 "20 November 1993" "Linux 0.99" "Linux Programmer's Manual"
 .SH NAME
 nfs \- nfs fstab format and options
@@ -101,6 +103,15 @@ remote host's portmapper for the port number to use.
 If the remote host's NFS daemon is not registered with
 its portmapper, the standard NFS port number 2049 is
 used instead.
+.TP 1.5i
+.I mountport=n
+The numeric value of the
+.B mountd
+port.
+.TP 1.5i
+.I mounthost=name
+The name of the host running
+.B mountd .
 .TP 1.5i
 .I mountprog=n
 Use an alternate RPC program number to contact the

@@ -37,7 +37,7 @@
 .\"
 .\" Converted for Linux, Mon Nov 29 15:22:01 1993, faith@cs.unc.edu
 .\"
-.TH FOPEN 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
+.TH FOPEN 3  "13 December 1995" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
 fopen, fdopen, freopen \- stream open functions
 .SH SYNOPSIS
@@ -113,6 +113,7 @@ function associates a stream with the existing file descriptor,
 The
 .I mode
 of the stream must be compatible with the mode of the file descriptor.
+The file descriptor is not dup'ed.
 .PP
 The
 .B freopen

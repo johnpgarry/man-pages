@@ -24,6 +24,7 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Sat Jul 24 13:39:26 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Tue Sep 26 21:47:21 1995 by Andries Brouwer (aeb@cwi.nl)
 .\"
 .TH FCNTL 2 "24 July 1993" Linux "Linux Programmer's Manual"
 .SH NAME
@@ -101,6 +102,40 @@ The flags and their semantics are described in
 .TP
 F_GETLK, F_SETLK, and F_SETLKW
 Manage discretionary file locks.
+The third argument
+.I arg
+is a pointer to a struct flock
+(that may be overwritten by this call).
+.TP
+F_GETLK
+Return the flock structure that prevents us from obtaining
+the lock, or set the
+.B l_type
+field of the lock to
+.B F_UNLCK
+if there is no obstruction.
+.TP
+F_SETLK
+The lock is set (when
+.B l_type
+is
+.B F_RDLCK
+or
+.BR F_WRLCK )
+or cleared (when it is
+.BR F_UNLCK ).
+If the lock is held by someone
+else, this call returns -1 and sets
+.I errno
+to
+.B EACCES
+or
+.BR EAGAIN .
+.TP
+F_SETLKW
+Like
+.BR F_SETLK ,
+but instead of returning an error we wait for the lock to be released.
 .TP
 F_GETOWN
 Get the process ID (or process group) of the owner of a socket.
@@ -160,5 +195,4 @@ are different from those returned by
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH "SEE ALSO"
 .BR open "(2), "
-.BR F_DUPFD "(2), " F_GETFD "(2), " F_GETFL "(2), " F_GETLK "(2), "
 .BR socket "(2). "

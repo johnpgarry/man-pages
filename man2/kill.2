@@ -26,7 +26,9 @@
 .\" Modified by Thomas Koenig (ig25@rz.uni-karlsruhe.de)
 .\" Modified Fri Jul 23 21:51:36 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Jul 25 10:53:24 1993 by Rik Faith (faith@cs.unc.edu)
-.TH KILL 2 "23 July 1993" "Linux" "Linux Programmer's Manual"
+.\" Modified Wed Nov 01 18:56:43 1995 by Michael Haardt
+.\"  (michael@cantor.informatik.rwth-aachen.de)
+.TH KILL 2 "November 1, 1995" "Linux" "Linux Programmer's Manual"
 .SH NAME
 kill \- send signal to a process
 .SH SYNOPSIS
@@ -60,7 +62,10 @@ is set appropriately.
 An invalid signal is sent.
 .TP
 .B ESRCH
-The pid or process group does not exist.
+The pid or process group does not exist in the process table.
+Note that an existing process might be a zombie,
+a process which already committed termination, but
+has not yet been \fBwait()\fPed for.
 .TP
 .B EPERM
 The effective userid of the process calling 

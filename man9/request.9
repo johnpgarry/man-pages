@@ -1,0 +1,187 @@
+.\"
+.\" Copyright (c) 1995 Jochen Karrer 
+.\"                     <cip307@cip.physik.uni-wuerzburg.de>
+.\"                     <http://cip.physik.uni-wuerzburg.de/~cip307>
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.TH REQUEST 9 "OCTOBER 1995" "Linux 1.3.30" "Kernel Reference Guide"
+.SH NAME
+request 
+\- Struct for storing requests to blockdevices
+.SH SYNOPSIS
+.nf  
+
+.B #include <linux/blkdev.h>
+
+.B "struct request {
+.B "       volatile int rq_status; 
+.B "       kdev_t rq_dev;
+.B "       int cmd; 
+.B "       int errors;
+.B "       unsigned long sector;
+.B "       unsigned long nr_sectors;
+.B "       unsigned long current_nr_sectors;
+.B "       char * buffer;
+.B "       struct semaphore * sem;
+.B "       struct buffer_head * bh;
+.B "       struct buffer_head * bhtail;
+.B "       struct request * next;
+.B "};
+
+.fi
+.SH DESCRIPTION
+
+For block devices usually the buffer cache is used, so the entries for 
+read and write operations of the file_operations struct mostly are
+redirected to 
+.IR "block_read()" " and " "block_write()" " which access the buffer cache 
+(See linux/fs/blkdev.c). If the buffer cache needs to  access to the device,
+a
+.IR "request" " struct is filled with all necessary informations for the device"
+driver in add_request() and make_request() in linux/drivers/block/ll_rw_block.c.
+The request is added to a linked list for the corresponding device, and
+after sorting the requests, the request function from the blk_dev_struct 
+of the corresponding device is
+called. 
+.RS
+.RE
+
+.B rq_status 
+.RS
+is one of:
+.B RQ_INACTIVE, RQ_ACTIVE, RQ_SCSI_BUSY, RQ_SCSI_DONE, RQ_SCSI_DISCONNECTING
+.RE
+ 
+.B RQ_INACTIVE
+.RS
+The request may not be processed by the device driver. 
+If the request is from the all_requests[] array,
+it is unused, and can be got with get_request(9).
+The all_requests[64] array is a static array of all available requests,
+which can be got with get_request(9). Also dummy
+requests are marked as inactive (see plug_device(9)). 
+.RE
+
+.B RQ_ACTIVE
+.RS
+Used request structs are marked as active.
+This doesn't mean that the
+request is valid. But as soon as a request is sorted into a request queue it
+has to be valid if its marked as active.
+.RE
+
+The SCSI midlevel driver makes a copy from the request struct to the
+.IR "scsi_cmd" " struct. The following three states are only used for 
+that copy.
+
+.nf
+.B RQ_SCSI_BUSY
+.B RQ_SCSI_DONE
+.B RQ_SCSI_DISCONNECTING
+.fi
+
+.B rq_dev
+.RS
+is the device the request belongs to.
+.RE
+
+.B cmd   
+.RS
+.RI "is one of " "READ" " or " "WRITE"
+.RE
+
+.B errors 
+.RS
+is for Internal use in the device driver. For an example see linux/drivers/block/ide.c
+and ide.h.       
+.IR "errors" " is cleared in end_request()" " in blk.h"
+.RE
+
+.B sector
+.RS
+is the first sector to write or read.
+.RE
+
+.B nr_sectors 
+.RS
+is the total number of sectors to write or read.
+.RE
+
+.B current_nr_sectors
+.RS
+is the size of the first buffer for the data to read or write.
+New requests can be merged into an existing, instead of filling a new request struct.
+Every added request has its own buffer. 
+When the device driver needs the next buffer it should overtake
+.RI "the size information from the next " "buffer_head" " to current_nr_sectors" 
+.RE
+
+.B buffer
+.RS
+is a pointer to memory for the data to read or write. There may be more
+than one buffer for one request, because
+new requests can be merged into an existing, instead of filling a new request struct.
+A request has a linked list of buffer_heads with pointers to the buffers of the
+merged requests.
+When the device driver needs the next buffer it should overtake
+the pointer to the next buffer to
+.IR "buffer" "."
+.RE
+
+.B sem
+.RS
+is a semaphore for locking request_structs. It's needed while linking
+the request queues and the buffer heads.
+.RE
+
+.B bh
+.RS
+is a pointer to the buffer head of the first buffer belonging to a request.
+buffer heads are a doubly linked list. See buffer_head(9). 
+.RE 
+
+.B bhtail
+.RS
+is a pointer to the last buffer head of the linked list.
+.RE
+
+.B next
+.RS
+is a pointer to the next request that belongs to the same device. 
+.RE
+
+.SH SOURCES
+.nf
+linux/include/linux/blkdev.h
+linux/fs/blkdev.c
+linux/fs/buffer.c
+linux/drivers/block/ll_rw_block.c
+linux/drivers/block/blk.h
+.fi
+
+.SH AUTHOR
+Linus Torvalds
+
+.SH SEE ALSO
+add_request(9), blk_dev_struct(9), block_read(9), block_write(9), buffer_head(9),
+file_operations(9),
+get_request(9), make_request(9)

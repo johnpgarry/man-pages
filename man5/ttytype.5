@@ -21,17 +21,22 @@
 .\" USA.
 .\" 
 .\" Modified Sat Jul 24 17:17:50 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Thu Oct 19 21:25:21 MET 1995 by Martin Schulze <joey@infodrom.north.de>
 .TH TTYTYPE 5 "24 July 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
 ttytype \- terminal name and device list
 .SH DESCRIPTION
 .B Ttytype
 is an ASCII file that lists the names of terminals, as used in termcap,
-in association with the names of the ttys (minus /dev/) to which they
+in association with the names of the ttys (minus
+.IR /dev/ )
+to which they
 are attached.  It is used by the program tset to set the environment
 variable TERM to the correct terminal name for the user's current tty.
 .SH EXAMPLE
-A typical /etc/ttytype is:
+A typical
+.I /etc/ttytype
+is:
 .RS
 .sp
 con80x25 tty1
@@ -40,6 +45,8 @@ vt320 ttys0
 .sp
 .RE
 .SH FILES
-/etc/ttytype
+.TP
+.I /etc/ttytype
+the tty definitions file.
 .SH "SEE ALSO"
 .BR getty "(1), " termcap (5)

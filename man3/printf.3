@@ -36,8 +36,10 @@
 .\"     @(#)printf.3	6.14 (Berkeley) 7/30/91
 .\"
 .\" Converted for Linux, Mon Nov 29 12:06:07 1993, faith@cs.unc.edu
+.\" modified to resemble the GNU libio setup used in the Linux libc 
+.\" used in versions 4.x (x>4) and 5   Helmut.Geyer@iwr.uni-heidelberg.de
 .\"
-.TH PRINTF 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
+.TH PRINTF 3  "1 November 1995" "Linux Manpage" "Linux Programmer's Manual"
 .SH NAME
 printf, fprintf, sprintf, vprintf, vfprintf, vsprintf \- formatted output conversion
 .SH SYNOPSIS
@@ -169,7 +171,7 @@ overrides a
 .B \&0
 if both are given.
 .TP
-.B ""
+.B \' \'
 (a space) specifying that a blank should be left before a positive number
 produced by a signed conversion
 .BR "" ( d ,
@@ -186,6 +188,12 @@ specifying that a sign always be placed before a number produced by a
 signed conversion.  A
 .B +
 overrides a space if both are used.
+.TP 
+.B '
+specifying that in a numerical argument the output is to be grouped
+if the locale information indicates any. Note that many versions of 
+.I gcc 
+cannot parse this option and will issue a warning.
 .RE
 .TP
 .B \(bu
@@ -260,6 +268,16 @@ argument, or that a following
 conversion corresponds to a pointer to a
 .I long int
 argument.
+Linux provides a non ANSI compliant use of two
+.B l
+flags as a synonym to 
+.B q 
+or 
+.BR L .
+Thus 
+.B ll 
+can be used in combination with float conversions. This usage is,
+however, strongly discouraged.
 .TP
 .B \(bu
 The character
@@ -273,6 +291,47 @@ or
 .B G
 conversion corresponds to a
 .I long double
+argument, or a following 
+.BR d ,
+.BR i ,
+.BR o ,
+.BR u ,
+.BR x ,
+or
+.BR X
+conversion corresponds to a 
+.I long long 
+argument. Note that 
+.I long long 
+is not specified in
+.I ANSI C
+and therefore not portable to all architectures.
+.TP
+.B \(bu
+The optional character
+.BR q .
+This is equivalent to 
+.BR L .
+See the STANDARDS and BUGS sections for comments on the use of 
+.BR ll ,
+.BR L ,
+and 
+.BR q.
+.TP
+.B \(bu
+A 
+.B Z
+character specifying that the following integer 
+.BR "" ( d ,
+.BR i ,
+.BR o ,
+.BR u ,
+.BR i ,
+.BR x ,
+and
+.BR X ),
+conversion corresponds to a  
+.I size_t
 argument.
 .TP
 .B \(bu
@@ -313,18 +372,6 @@ are used for
 conversions.  The precision, if any, gives the minimum number of digits
 that must appear; if the converted value requires fewer digits, it is
 padded on the left with zeros.
-.TP
-.B DOU
-The
-.I long int
-argument is converted to signed decimal, unsigned octal, or unsigned
-decimal, as if the format had been
-.BR ld ,
-.BR lo ,
-or
-.B lu
-respectively.  These conversion characters are deprecated, and will
-eventually disappear.
 .TP
 .B eE
 The
@@ -473,16 +520,43 @@ The
 and
 .B vsprintf
 functions conform to ANSI C3.159-1989 (``ANSI C'').
+.PP
+The 
+.B q
+flag is the 
+.I BSD 4.4
+notation for 
+.IR "long long" ,
+while
+.B ll
+or the usage of
+.B L
+in integer conversions is the GNU notation.
+.PP
+The Linux version of these functions is based on the 
+.I GNU 
+.I libio
+library. Take a look at the 
+.I info
+documentation of 
+.I GNU
+.I libc (glibc-1.08)
+for a more concise description. 
 .SH BUGS
 Some floating point conversions under Linux cause memory leaks.
 .PP
-The conversion formats
-.BR \&%D ,
-.BR \&%O ,
-and
-.B %U
-are not standard and are provided only for backward compatibility.  These
-may not be provided under Linux.
+All functions are fully ANSI C3.159-1989 conformant, but provide the 
+additional flags 
+.BR q ,
+.B Z
+and 
+.B '
+as well as an additional behaviour of the
+.B L
+and 
+.B l 
+flags. The latter may be considered to be a bug, as it changes the
+behaviour of flags defined in ANSI C3.159-1989.
 .PP
 The effect of padding the
 .B %p
@@ -495,9 +569,34 @@ flag on
 .B %n
 and
 .B %p
-conversions, as well as other nonsensical combinations such as
-.BR %Ld ,
+conversions, as well as nonsensical combinations such as
 are not standard; such combinations should be avoided.
+.PP
+Some combinations of flags defined by
+.I ANSI C
+are not making sense in 
+.IR "ANSI C" 
+(e.g. 
+.BR "%Ld" ).
+While they may have a well-defined behaviour on Linux, this need not
+to be so on other architectures. Therefore it usually is better to use
+flags that are not defined by 
+.I ANSI C
+at all, i.e. use 
+.B q
+instead of 
+.B L
+in combination with 
+.B diouxX
+conversions or 
+.BR ll .
+.PP
+The usage of
+.B q
+is not the same as on
+.IR "BSD 4.4" ,
+as it may be used in float conversions equivalently to 
+.BR L .
 .PP
 Because
 .B sprintf

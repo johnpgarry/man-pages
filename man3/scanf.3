@@ -36,8 +36,10 @@
 .\"     @(#)scanf.3	6.14 (Berkeley) 1/8/93
 .\"
 .\" Converted for Linux, Mon Nov 29 15:22:01 1993, faith@cs.unc.edu
+.\" modified to resemble the GNU libio setup used in the Linux libc 
+.\" used in versions 4.x (x>4) and 5   Helmut.Geyer@iwr.uni-heidelberg.de
 .\"
-.TH SCANF 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
+.TH SCANF 3  "1 November 1995" "LINUX MANPAGE" "Linux Programmer's Manual"
 .SH NAME
 scanf, fscanf, sscanf, vscanf, vsscanf, vfscanf \- input format conversion
 .SH SYNOPSIS
@@ -121,6 +123,16 @@ characters, as follows:
 Suppresses assignment.  The conversion that follows occurs as usual, but no
 pointer is used; the result of the conversion is simply discarded.
 .TP
+.B a 
+Indicates that the conversion will be 
+.BR s ,
+the needed memory space for the string will be malloc'ed  and
+the pointer to it will be assigned to the  
+.I  char
+pointer variable, which does not have to be initialised before.
+This flag does not exist in 
+.IR "ANSI C" .
+.TP
 .B h
 Indicates that the conversion will be one of
 .B dioux
@@ -146,15 +158,30 @@ and the next pointer is a pointer to
 .I double
 (rather than
 .IR float ).
+Specifying two 
+.B l
+flags is equivalent to the 
+.B L
+flag.
 .TP
 .B L
-Indicates that the conversion will be
+Indicates that the conversion will be either
 .B efg
 and the next pointer is a pointer to
-.IR "long double" .
-(This type is not implemented; the
-.B L
-flag is currently ignored\(emthis may not be true for Linux.)
+.IR "long double" 
+or the conversion will be 
+.B dioux
+and the next pointer is a pointer to
+.IR "long long" .
+(Note that long long is not an 
+.I ANSI C 
+type. Any program using this will not be portable to all
+architectures).
+.TP
+.B q
+equivalent to L. 
+This flag does not exist in 
+.IR "ANSI C" .
 .PP
 In addition to these flags, there may be an optional maximum field width,
 expressed as a decimal integer, between the
@@ -190,29 +217,22 @@ it begins with `0', and in base 10 otherwise.  Only characters that
 correspond to the base are used.
 .TP
 .B o
-Matches an octal integer; the next pointer must be a pointer to
+Matches an unsigned octal integer; the next pointer must be a pointer to
 .IR "unsigned int" .
 .TP
-.B O
-Equivalent to
-.BR lo ;
-this exists for backwards compatibility.
-.TP
 .B u
-Matches an optionally signed decimal integer; the next pointer must be a
+Matches an unsigned decimal integer; the next pointer must be a
 pointer to
 .IR "unsigned int" .
 .TP
 .B x
-Matches an optionally a signed hexadecimal integer; the next pointer must
+Matches an unsigned hexadecimal integer; the next pointer must
 be a pointer to
 .IR "unsigned int" .
 .TP
 .B X
 Equivalent to
-.BR lx ;
-this violates the ANSI C3.159-1989 (``ANSI C'') but is backwards compatible
-with previous UNIX systems\(emI don't know what Linux does with this.
+.B x 
 .TP
 .B f
 Matches an optionally signed floating-point number; the next pointer must
@@ -229,15 +249,7 @@ Equivalent to
 .TP
 .B E
 Equivalent to
-.BR lf ;
-this violates the ANSI C3.159-1989 (``ANSI C'')
-but is backwards compatible with previous UNIX
-systems\(emI don't know what Linux does with this.
-.TP
-.B F
-Equivalent to
-.BR lf ;
-this exists only for backwards compatibility.
+.BR f 
 .TP
 .B s
 Matches a sequence of non-white-space characters; the next pointer must be
@@ -305,22 +317,6 @@ a conversion, although it can be suppressed with the
 .B *
 flag.
 .PP
-For backwards compatibility, other conversion characters (except `\e0') are
-taken as if they were `%d' or, if uppercase, `%ld', and a `conversion' of
-`%\e0' causes an immediate return of
-.BR EOF .
-The
-.B F
-and
-.B X
-conversions will be changed in the future to conform to the
- ANSI C standard, after which they will act like
-.Cm f
-and
-.Cm x
-respectively.  The behavior of Linux on the non-standard points is not
-known by this documenter.
-.PP
 .SH "RETURN VALUES"
 These functions return the number of input items assigned, which can be
 fewer than provided for, or even zero, in the event of a matching failure.
@@ -341,23 +337,63 @@ The functions
 and
 .BR sscanf
 conform to ANSI C3.159-1989 (``ANSI C'').
-.SH BUGS
-Differences for Linux are not known at this time.  The following is for the
-BSD version:
 .PP
-The current situation with
-.B %F
-and
-.B %X
-conversions is unfortunate.
+The 
+.B q
+flag is the 
+.I BSD 4.4
+notation for 
+.IR "long long" ,
+while
+.B ll
+or the usage of
+.B L
+in integer conversions is the GNU notation.
 .PP
-All of the backwards compatibility formats will be removed in the future.
+The Linux version of these functions is based on the 
+.I GNU 
+.I libio
+library. Take a look at the 
+.I info
+documentation of 
+.I GNU
+.I libc (glibc-1.08)
+for a more concise description. 
+.SH BUGS 
+All functions are fully ANSI C3.159-1989 conformant, but provide the 
+additional flags 
+.B q
+and
+.B a
+as well as an additional behaviour of the
+.B L
+and 
+.B l 
+flags. The latter may be considered to be a bug, as it changes the
+behaviour of flags defined in ANSI C3.159-1989.
 .PP
-Numerical strings are truncated to 512 characters; for example,
-.B %f
-and
-.B %d
-are implicitly
-.B %512f
-and
-.BR %512d .
+Some combinations of flags defined by
+.I ANSI C
+are not making sense in 
+.IR "ANSI C" 
+(e.g. 
+.BR "%Ld" ).
+While they may have a well-defined behaviour on Linux, this need not
+to be so on other architectures. Therefore it usually is better to use
+flags that are not defined by 
+.I ANSI C
+at all, i.e. use 
+.B q
+instead of 
+.B L
+in combination with 
+.B diouxX
+conversions or 
+.BR ll .
+.PP
+The usage of
+.B q
+is not the same as on
+.IR "BSD 4.4" ,
+as it may be used in float conversions equivalently to 
+.BR L .

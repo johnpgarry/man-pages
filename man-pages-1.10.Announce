@@ -1,34 +1,37 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.9.tar.gz - section 2, 3, 4, 5, 7, and 9 man pages for Linux
+    man-pages-1.10.tar.gz - section 2, 3, 4, 5, 7, and 9 man pages for Linux
 
 
-Differences from version 1.8:
+Differences from version 1.9:
     
     The following man pages are new or have been updated:
 
-	access.2 fsync.2 personality.2 signal.2 sigreturn.2 undocumented.2
+	fcntl.2 getrlimit.2 ioctl_list.2 ioperm.2 iopl.2 kill.2 mlock.2
+	mlockall.2 munlock.2 munlockall.2 outb.2 select.2 signal.2
+	undocumented.2 write.2
 
-	cbrt.3 cuserid.3 execlp.3 expm1.3 getlogin.3 getopt.3
-	getopt_long_only.3 getpwent.3 gets.3 getw.3 inet.3 isalpha.3
-	isascii.3 isblank.3 log1p.3 mkfifo.3 putw.3 snprintf.3 stpcpy.3
-	strcpy.3 strtoul.3 termios.3 toascii.3 undocumented.3 vsnprintf.3
+	fopen.3 getopt.3 perror.3 printf.3 scanf.3 tdelete.3 tfind.3
+	tsearch.3 twalk.3
 
-	console_ioctl.4
+	lp.4
 
-	exports.5 nfs.5
+	intro.5 nfs.5 protocols.5 services.5
 
-	bootparam.7
+	signal.7 unicode.7 utf-8.7
 
-	lilo.8
+	get_request.9 invalidate.9 kmalloc.9 outb.9 plug_device.9
+	request.9 verify_area.9
 
-	kstat.9 request_region.9 vremap.9
+    several others were updated trivially (layout change only).
 
-    The termios related pages (for cfgetispeed, cfgetospeed, cfsetispeed,
-	cfsetospeed, tcdrain, tcflow, tcflush, tcgetattr, tcgetpgrp,
-	tcsendbreak, tcsetattr, tcsetpgrp, termios) have been moved
-	from Section 2 to Section 3.
+    Pages ax25.5 and netrom.5 were not yet included: their copyright
+    status is unclear.
+
+    Since the last issue of man-pages, 17 new system calls have been
+    added to the kernel, and only the mlock* calls have been documented.
+    Contributions are welcome.
 
 Here is a breakdown of what this distribution contains:
 
@@ -36,7 +39,7 @@ Here is a breakdown of what this distribution contains:
     Section 2 = system calls
     Section 3 = libc calls
     Section 4 = devices (e.g., hd, sd)
-    Section 5 = file formats (e.g., wtmp, /etc/passwd)
+    Section 5 = file formats and protocols (e.g., wtmp, /etc/passwd, nfs)
     Section 6 = games (intro only)
     Section 7 = conventions, macro packages, etc. (e.g., nroff, ascii)
     Section 8 = system administration (intro only)
@@ -52,7 +55,7 @@ Here is a breakdown of what this distribution contains:
 
 To install this distribution, do something like:
 
-    cd /usr/man; zcat man-pages-1.8.tar.gz | tar xvpf -
+    cd /usr/man; zcat man-pages-1.10.tar.gz | tar xvpf -
 
 
 The following people (listed in alphabetical order by first name)
@@ -71,13 +74,17 @@ wrote, edited, or otherwise contributed to this project:
     Drew Eckhardt (drew@cs.colorado.edu)
     Giorgio Ciucci (giorgio@crcc.it)
     Graeme W. Wilford (G.Wilford@ee.surrey.ac.uk)
+    Helmut Geyer (Helmut.Geyer@iwr.uni-heidelberg.de)
     Ian Jackson (iwj10@cus.cam.ac.uk)
     Jens Schweikhardt (Jens.Schweikhardt@rus.uni-stuttgart.de)
     Jim Van Zandt (jrv@vanzandt.mv.com)
     Jochen Hein (Hein@Student.TU-Clausthal.de)
     Jochen Karrer (cip307.cip.physik.uni-wuerzburg.de)
+    Jonathan Naylor (g4klx@g4klx.demon.co.uk, jsn@cs.nott.ac.uk)
     Luigi P. Bai (lpb@neosoft.com)
     Mark D. Roth (roth@uiuc.edu)
+    Markus Kuhn (mskuhn@cip.informatik.uni-erlangen.de)
+    Martin Schulze (joey@infodrom.north.de)
     Michael Elizabeth Chastain (mec@duracef.shout.net)
     Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
     Michael Shields (shields@tembel.org)

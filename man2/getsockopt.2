@@ -62,7 +62,7 @@ option resides and the name of the option must be specified.
 To manipulate options at the socket level,
 .I level
 is specified as
-.B SOL_SOCKET .
+.BR SOL_SOCKET .
 To manipulate options at any
 other level the protocol number of the appropriate protocol
 controlling the option is supplied.  For example,
@@ -80,12 +80,12 @@ The parameters
 and
 .I optlen
 are used to access option values for
-.BI setsockopt .
+.BR setsockopt .
 For
 .B getsockopt
 they identify a buffer in which the value for the
 requested option(s) are to be returned.  For
-.BI getsockopt ,
+.BR getsockopt ,
 .I optlen
 is a value-result parameter, initially containing the
 size of the buffer pointed to by
@@ -131,7 +131,7 @@ The following options are recognized at the socket level.
 Except as noted, each may be examined with
 .B getsockopt
 and set with
-.B setsockopt .
+.BR setsockopt .
 .TP 0.8i
 SO_DEBUG
 enables recording of debugging information

@@ -25,6 +25,8 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 19:19:11 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Wed Oct 18 20:23:54 1995 by Martin Schulze <joey@infodrom.north.de>
+.\"
 .TH GETSERVENT 3  "May 11, 1993" "BSD" "Linux Programmer's Manual"
 .SH NAME
 getservent, getservbyname, getservbyport, setservent, endservent \-
@@ -98,7 +100,9 @@ The \fBgetservent()\fP, \fBgetservbyname()\fP and \fBgetservbyport()\fP
 functions return the \fIservent\fP structure, or a NULL pointer if an
 error occurs or the end of the file is reached.
 .SH FILES
-/etc/services           services database file
+.TP
+.I /etc/services
+services database file
 .SH "CONFORMING TO"
 BSD 4.3
 .SH "SEE ALSO"

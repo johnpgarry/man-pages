@@ -1,0 +1,120 @@
+.\"
+.\" Copyright (c) 1995 Jochen Karrer 
+.\"			<cip307@cip.physik.uni-wuerzburg.de>
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.TH INVALIDATE 9 "OCTOBER 1995" "Linux 1.3.32" "Kernel Reference Guide"
+.SH NAME
+invalidate, invalidate_all, invalidate_task, invalidate_page, smp_invalidate,
+local_invalidate
+- Architecture dependent functions and assembler macros for invalidating the
+processors Tranlation Lookaside Buffer 
+.SH SYNOPSIS
+.nf 
+.B #include <asm/page.h>
+ 
+.B invalidate();
+.B invalidate_all();
+.B invalidate_task(task_struct *task);
+.B invalidate_page(task_struct *task,void * address);
+
+.B #include <asm/smp.h>
+.B void smp_invalidate(void):
+.fi
+.SH DESCRIPTION
+For translation of virtual adresses to physical, a processor has a
+page table. To reduce bus tranfer there is a
+Translation Lookaside Buffer (TLB) on the chip,
+where some page table entries are
+stored.
+If the page table
+changes, this buffer has to be invalidated. 
+If there is more than one processor the TLB's of other Processors 
+have to be invalidated too. 
+.RS
+.RE
+ 
+.B invalidate() 
+.RS
+invalidates the current tasks TLB.
+On i386 this is the same as
+invalidate_all(), because there is only one TLB common for all tasks.
+.RE
+
+.B invalidate_all() 
+.RS
+invalidates all processes TLB's. 
+.RE
+
+.B invalidate_task() 
+.RS
+invalidates the specified tasks TLB.
+On i386 this is the same as
+invalidate_all(), because there is only one TLB common for all tasks.
+.RE
+
+.B invalidate_page() 
+.RS
+invalidates the entry in the TLB which belongs to 
+.I address 
+in the virtual memory space of 
+.I task. 
+The TLB's of all task using the same mm_struct 
+will be invalidated. Tasks using the same mm_struct have the same
+page directory. 
+On i386 this is the same as invalidate_all(), because its not possible
+to invalidate a single page table entry on i386. 
+.RE
+
+.B smp_invalidate()
+.RS
+is the substitute for all the above functions in Symetrical
+Multiprocessing Linux.
+It invalidates the TLB's of all processors. A message is sent to the
+.RI "other processors, and a bit in the " "invalidate_needed" "  map is 
+set for every present processor.
+The current processor will wait until all bits 
+in the invalidate_needed map
+will be cleared by the other processors. If a processor
+is not able to receive messages because interrupts are disabled while
+waiting for an other processor, (for example  in a 
+spin lock),
+it has to poll the invalidate_needed map 
+(See ENTER_KERNEL in /linux/include/asm-i386/irq.h)
+.RE
+
+.B local_invalidate()
+.RS
+Invalidates the TLB of the current processor in SMP-Linux.
+.RE
+ 
+.SH SOURCES
+.nf
+linux/include/asm/page.h
+linux/arch/i386/kernel/smp.c
+.fi
+
+.SH AUTHOR
+Alan Cox, Linus Torvalds
+
+.SH "SEE ALSO"
+smp_message_pass(9)

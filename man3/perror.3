@@ -1,5 +1,6 @@
 .\" Copyright (c) 1994 Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de), Sat Jun  4 20:38:26 MET DST 1994
 .\" Copyright (c) 1995 Michael Haardt (michael@cantor.informatik.rwth-aachen.de), Thu Mar 16 18:46:23 MET 1995
+.\" Copyright (c) 1996 Andries Brouwer (aeb@cwi.nl), Sat Jan 13 00:16:41 MET 1996
 .\"
 .\" This is free documentation; you can redistribute it and/or
 .\" modify it under the terms of the GNU General Public License as
@@ -21,14 +22,25 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
-.TH PERROR 3 "March 16, 1995" "" "Library functions"
+.\" Sat Jan 13 00:16:41 MET 1996, aeb: merged in some text contributed
+.\" by Melvin Smith (msmith@falcon.mercer.peachnet.edu) and various
+.\" other changes.
+.\"
+.TH PERROR 3 "Januari 13, 1996" "" "Library functions"
 .SH NAME
 perror \- print a system error message
 .SH SYNOPSIS
 #include <stdio.h>
 .sp
 void perror(const char *s);
+.sp
+#include <errno.h>
+.sp
+const char * sys_errlist[ ];
+.br
+int sys_nerr;
 .SH DESCRIPTION
+The routine
 .B perror
 produces a message on the standard error output, describing the last
 error encountered during a call to a system or library function.  The
@@ -37,9 +49,43 @@ argument string
 is printed first, then a colon and a blank, then the message and a
 new-line.  To be of most use, the argument string should include the name
 of the program that incurred the error.  The error number is taken from
-the external variable errno, which is set when errors occur but not
+the external variable
+.IR errno ,
+which is set when errors occur but not
 cleared when non-erroneous calls are made.
+
+The global error list
+.IR sys_errlist "[ ]"
+indexed by
+.I errno
+can be used to obtain the error message without the newline.
+The largest message number provided in the table is
+.IR sys_nerr " - 1."
+Be careful when directly accessing this list because new error values
+may not have been added to
+.IR sys_errlist "[ ]."
+
+When a system call fails, it usually returns -1 and sets the
+variable
+.I errno
+to a value describing what went wrong. (These values can be found in
+.BR "<errno.h>" .)
+Many library functions do likewise.
+The function
+.B perror
+serves to translate this error code into human-readable form.
+Note that
+.I errno
+is undefined after a successful library call:
+this call may well change this variable, even though it succeeds,
+for example because it internally used some other library function that failed.
+Thus, if a failing call is not immediately followed by a call to
+.BR perror ,
+the value of
+.I errno
+should be saved.
+
 .SH "CONFORMING TO"
-ANSI C, POSIX
+ANSI C, BSD 4.3, POSIX, X/OPEN
 .SH "SEE ALSO"
-.BR errno "(2), " strerror (3)
+.BR strerror (3)
