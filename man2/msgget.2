@@ -22,9 +22,6 @@
 .\"
 .\" Added correction due to Nick Duffek <nsd@bbc.com>, aeb, 960426
 .\" Modified Wed Nov  6 04:00:31 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified, 8 Jan 2003, Michael Kerrisk, <mtk16@ext.canterbury.ac.nz>
-.\"	Removed EIDRM from errors - that can't happen...
-.\"
 .TH MSGGET 2 1993-11-01 "Linux 0.99.13" "Linux Programmer's Manual" 
 .SH NAME
 msgget \- get a message queue identifier
@@ -42,24 +39,24 @@ msgget \- get a message queue identifier
 .BI "int " msgflg );
 .SH DESCRIPTION
 The function returns the message queue identifier associated
-with the value of the
+to the value of the
 .I key
 argument.
 A new message queue is created if
 .I key
-has the value
+has value
 .B IPC_PRIVATE
 or
 .I key
 isn't
 .BR IPC_PRIVATE ,
-no message queue with the given key
-.IR key
-exists, and
+no existing message queue is associated to
+.IR key ,
+and
 .B IPC_CREAT
 is asserted in
 .I msgflg
-(i.e.,
+(i.e.
 .IB msgflg & IPC_CREAT
 is nonzero).
 The presence in
@@ -97,7 +94,7 @@ or
 .BR creat (2)
 system calls.  (The execute permissions are not used.)
 .PP
-If a new message queue is created,
+Furthermore, while creating,
 the system call initializes the system message queue data structure
 .B msqid_ds
 as follows:
@@ -143,9 +140,9 @@ with
 .B errno
 indicating the error.
 .SH ERRORS
-On failure,
+For a failing return,
 .B errno
-is set to one of the following values:
+will be set to one among the following values:
 .TP 11
 .B EACCES
 A message queue exists for
@@ -161,6 +158,9 @@ was asserting both
 .B IPC_CREAT
 and
 .BR IPC_EXCL .
+.TP
+.B EIDRM
+The message queue is marked for removal.
 .TP
 .B ENOENT
 No message queue exists for
@@ -198,13 +198,23 @@ call:
 System wide maximum number of message queues: policy
 dependent.
 .SH BUGS
-The name choice IPC_PRIVATE was perhaps unfortunate, IPC_NEW
-would more clearly show its function.
+Use of
+.B IPC_PRIVATE
+does not actually prohibit other processes from getting
+access to the allocated message queue.
+.PP
+There is currently no intrinsic way for a process to ensure
+exclusive access to a message queue.
+Asserting both
+.B IPC_CREAT
+and
+.B IPC_EXCL
+in
+.I msgflg
+only ensures (on success) that a new message queue will be created,
+it doesn't imply exclusive access to the message queue.
 .SH "CONFORMING TO"
-SVr4, SVID.
-Until version 2.3.20 Linux would return EIDRM for a
-.B msgget
-on a message queue scheduled for deletion.
+SVr4, SVID.  SVr4 does not document the EIDRM error code.
 .SH "SEE ALSO"
 .BR ftok (3),
 .BR ipc (5),

@@ -26,13 +26,14 @@
 .SH NAME
 modify_ldt \- get or set ldt
 .SH SYNOPSIS
+.nf
 .B #include <linux/ldt.h>
-.br
 .B #include <linux/unistd.h>
 .sp
-.BI "_syscall3(int, modify_ldt, int, " func ", void *, " ptr ", unsigned long, " bytecount )
+.B _syscall3( int, modify_ldt, int, func, void *, ptr, unsigned long, bytecount )
 .sp
 .BI "int modify_ldt(int " "func" ", void *" "ptr" ", unsigned long " "bytecount" );
+.fi
 .SH DESCRIPTION
 .B modify_ldt
 reads or writes the local descriptor table (ldt) for a process.
