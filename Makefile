@@ -11,7 +11,7 @@ example: remove gz install
 
 remove:
 	for i in man?; do for j in $$i/*; do \
-		rm -f $(MANDIR)/$$i/$$j $(MANDIR)/$$i/$$j.gz; done; done
+		rm -f $(MANDIR)/$$j $(MANDIR)/$$j.gz; done; done
 	touch remove
 
 gz: remove
