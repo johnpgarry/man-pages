@@ -21,15 +21,15 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Written 11 June 1995 by Andries Brouwer (aeb@cwi.nl)
-.\" Modified 22 July 1995 by Michael Chastain (mec@duracef.shout.net):
-.\"   In 1.3.X, returns only one entry each time; return value is different.
-.TH READDIR 2  "22 July 1995" "Linux 1.3.6" "Linux Programmer's Manual"
+.TH READDIR 2  "11 June 1995" "Linux 1.2.9" "Linux Programmer's Manual"
 .SH NAME
-readdir \- read directory entry
+readdir \- read a directory system call
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
+.sp
 .B #include <linux/dirent.h>
+.sp
 .B #include <linux/unistd.h>
 .sp
 .B _syscall3(int, readdir, uint, fd, struct dirent *, dirp, uint, count);
@@ -37,70 +37,34 @@ readdir \- read directory entry
 .BI "int readdir(unsigned int " fd ", struct dirent *" dirp ", unsigned int " count );
 .fi
 .SH DESCRIPTION
-This is not the function you are interested in.
-Look at
+This is not the function you are interested in. Look at
 .BR readdir (3)
-for the POSIX conforming C library interface.
-This page documents the bare kernel system call interface,
-which can change, and which is superseded by
-.BR getdents (2).
-.PP
-.B readdir
-reads one
-.I dirent
-structure from the directory
-pointed at by
-.I fd
-into the memory area pointed to by
-.IR dirp .
-The parameter 
-.I count
-is ignored; at most one dirent structure is read.
-.PP
-The
-.I dirent
-structure is declared as follows:
-.PP
-.RS
-.nf
-struct dirent
-{
-    long d_ino;                 /* inode number */
-    off_t d_off;                /* offset to this \fIdirent\fP */
-    unsigned short d_reclen;    /* length of this \fId_name\fP */
-    char d_name [NAME_MAX+1];   /* file name (null-terminated) */
-}
-.fi
-.RE
-.PP
-.I d_ino
-is an inode number.
-.I d_off
-is the distance from the start of the directory to this
-.IR dirent .
-.I d_reclen
-is the size of
-.IR d_name,
-not counting the null terminator.
-.I d_name
-is a null-terminated file name.
-.PP
+for the POSIX conforming C library interface. This page only documents the bare
+kernel system call interface. Probably it will change.
+
+The \fBreaddir()\fP function reads some dirent structures from the
+directory pointed at by \fIfd\fP, into the memory area pointed to by \fIdirp\fP.
+For all filesystems except ext2, the parameter \fIcount\fP is ignored, and
+at most one dirent structure is read. The same is true for the ext2 filesystem,
+in case \fIcount\fP equals 1. However, if \fIfd\fP points at a file on an ext2
+file system, and \fIcount\fP is different from 1, then \fIcount\fP gives
+the length of the area pointed to by \fIdirp\fP (in bytes), and zero or more
+dirent structures are read.
 .SH "RETURN VALUE"
-On success, 1 is returned.
-On end of directory, 0 is returned.
-On error, \-1 is returned, and
-.I errno
-is set appropriately.
+The \fBreaddir()\fP function returns the total length of the dirent structure(s)
+read if all went well, and \-1 on error.
+In the latter case \fIerrno\fP is set.
+Note that a zero return occurs both when there are no more directory entries,
+and when count indicates that there is no room for the first entry.
 .SH "ERRORS"
 .TP
 .B EBADF
-Invalid file descriptor
-.IR fd .
+Invalid file descriptor \fIfd\fP.
 .TP
 .B ENOTDIR
 File descriptor does not refer to a directory.
 .SH "CONFORMING TO"
 This system call is Linux specific.
 .SH "SEE ALSO"
-.BR getdents (2),
 .BR readdir (3)
+
