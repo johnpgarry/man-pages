@@ -34,17 +34,17 @@ random, srandom, initstate, setstate \- random number generator.
 .B #include <stdlib.h>
 .sp
 .B long int random(void);
-.nl
+.sp
 .BI "void srandom(unsigned int " seed );
-.nl
+.sp
 .BI "char *initstate(unsigned int " seed ", char *" state ", int " n );
-.nl
+.sp
 .BI "char *setstate(char *" state );
 .fi
 .SH DESCRIPTION
 The \fBrandom()\fP function uses a non-linear additive feedback random
 number generator employing a default table of size 31 long integers to
-return successive pseudo-random numbers in the range from 0 to \fBRAND_MAX\fR.
+return successive pseudo-random numbers in the range from 0 to RAND_MAX.
 The period of this random number generator is very large, approximately
 16*((2**31)\-1).
 .PP
