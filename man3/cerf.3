@@ -13,15 +13,15 @@ cerf, cerff, cerfl, cerfc, cerfcf, cerfcl \- complex error function
 .sp
 .BI "long double complex cerfl(long double complex" z );
 .sp
-.BI "double complex cerfc(double complex " x );
+.BI "double complex cerfc(double complex " z );
 .sp
-.BI "float complex cerfcf(float complex " x );
+.BI "float complex cerfcf(float complex " z );
 .sp
-.BI "long double complex cerfcl(long double complex " x );
+.BI "long double complex cerfcl(long double complex " z );
 .sp
 .SH DESCRIPTION
 The function cerf() is the complex version of the error function.
-erf(z) = 2/sqrt(pi) * integral from 0 to x of exp(-t*t) dt.
+erf(z) = 2/sqrt(pi) * integral from 0 to z of exp(-t*t) dt.
 The function cerfc() is defined as cerfc(z) = 1-cerf(z).
 .\" must check 1/sqrt(2*pi) ?
 .SH "CONFORMING TO"

@@ -35,14 +35,10 @@ mmap, munmap \- map or unmap files or devices into memory
 .SH SYNOPSIS
 .B #include <sys/mman.h>
 .sp
-.B #ifdef _POSIX_MAPPED_FILES
-.sp
 .BI "void * mmap(void *" start ", size_t " length ", int " prot
 .BI ", int " flags ", int " fd ", off_t " offset );
 .sp
 .BI "int munmap(void *" start ", size_t " length );
-.sp
-.B #endif
 .SH DESCRIPTION
 The
 .B mmap
@@ -294,6 +290,19 @@ Attempted write into a region specified to mmap as read-only.
 Attempted access to a portion of the buffer that does not correspond
 to the file (for example, beyond the end of the file, including the
 case where another process has truncated the file).
+.SH AVAILABILITY
+On POSIX systems on which
+.BR mmap ,
+.B msync
+and
+.B munmap
+are available,
+.B _POSIX_MAPPED_FILES
+is defined in <unistd.h> to a value greater than 0. (See also
+.BR sysconf (3).)
+.\" POSIX 1003.1-2001: It shall be defined to -1 or 0 or 200112L.
+.\" -1: unavailable, 0: ask using sysconf().
+.\" glibc defines it to 1.
 .SH "CONFORMING TO"
 SVr4, POSIX.1b (formerly POSIX.4), 4.4BSD, SUSv2.
 SVr4 documents additional error codes ENXIO and ENODEV.

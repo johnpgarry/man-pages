@@ -328,11 +328,10 @@ but the exact behaviour depends on the configured queueing discipline.
 Some high priority levels may require an effective user id of 0 or the
 .B CAP_NET_ADMIN
 capability.
-The priority can also be set in a protocol independent way by the (
-.B SOL_SOCKET, SO_PRIORITY
-) socket option (see
-.BR socket (7)
-). 
+The priority can also be set in a protocol independent way by the
+.RB ( SOL_SOCKET ", " SO_PRIORITY )
+socket option (see
+.BR socket (7)). 
 
 .TP  
 .B IP_TTL
@@ -691,12 +690,12 @@ the path than to turn off Path MTU Discovery globally, because not doing it
 incurs a high cost to the network.
 .\"
 .TP
-.B ipfrag_high_thresh, ipfrag_low_thresh 
+.BR ipfrag_high_thresh ", " ipfrag_low_thresh 
 If the amount of queued IP fragments reaches 
-.B ipfrag_high_thresh ,
+.BR ipfrag_high_thresh ,
 the queue 
 is pruned down to 
-.B ipfrag_low_thresh . 
+.BR ipfrag_low_thresh . 
 Contains an integer with the number of 
 bytes.
 .TP
@@ -801,7 +800,7 @@ Invalid socket option passed.
 .TP
 .B EPERM
 User doesn't have permission to set high priority, change configuration,
-or send signals to the requested process or group,
+or send signals to the requested process or group.
 .TP
 .B EADDRNOTAVAIL
 A non-existent interface was requested or the requested source address was
@@ -842,7 +841,7 @@ Network device not available or not capable of sending IP.
 .B ENOPKG 
 A kernel subsystem was not configured.
 .TP
-.B ENOBUFS, ENOMEM
+.BR ENOBUFS ", " ENOMEM
 Not enough free memory.  
 This often means that the memory allocation is limited by the socket buffer
 limits, not by the system memory, but this is not 100% consistent.
@@ -858,9 +857,9 @@ and
 .IR IP_MTU , 
 .IR IP_MTU_DISCOVER , 
 .IR IP_PKTINFO , 
-.IR IP_RECVERR
+.I IP_RECVERR
 and
-.IR IP_ROUTER_ALERT
+.I IP_ROUTER_ALERT
 are new options in Linux 2.2.
 They are also all Linux specific and should not be used in
 programs intended to be portable.
@@ -889,7 +888,7 @@ The ioctls to configure IP-specific interface options and ARP tables are
 not described.
 .PP
 Some versions of glibc forget to declare
-.I in_pktinfo.
+.IR in_pktinfo .
 Workaround currently is to copy it into your program from this man page.
 .PP
 Receiving the original destination address with

@@ -28,7 +28,7 @@ Message boundaries are preserved \- a
 .BR read (2) 
 from a socket will
 retrieve the same chunk of data as output with the corresponding
-.BR write(2) 
+.BR write (2) 
 to the peer socket. When necessary, the kernel takes care
 of segmenting and re-assembling long messages by means of
 the X.25 M-bit. There is no hard-coded upper limit for the
@@ -58,7 +58,7 @@ struct sockaddr_x25 {
 .I sx25_addr
 contains a char array
 .I x25_addr[] 
-to be interpretated as a null-terminated string.
+to be interpreted as a null-terminated string.
 .I sx25_addr.x25_addr[]
 consists of up to 15 (not counting the terminating 0) ASCII
 characters forming the X.121 address.
@@ -81,7 +81,7 @@ the socket, a 0 first byte indicates that the Q-bits of the corresponding
 incoming data packets were not set. A first byte with value 1 indicates
 that the Q-bit of the corresponding incoming data packets was set.
 If the first byte of the data written to the socket is 1 the Q-bit of the
-corresponding outgoing data packets will be set. If the first bit is 0
+corresponding outgoing data packets will be set. If the first byte is 0
 the Q-bit will not be set.
 .SH BUGS
 Plenty, as the X.25 PLP implementation is 

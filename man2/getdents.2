@@ -39,6 +39,13 @@ getdents \- get directory entries
 .BI "int getdents(unsigned int " fd ", struct dirent *" dirp ", unsigned int " count );
 .fi
 .SH DESCRIPTION
+This is not the function you are interested in.
+Look at
+.BR readdir (3)
+for the POSIX conforming C library interface.
+This page documents the bare kernel system call interface.
+.PP
+The system call
 .B getdents
 reads several 
 .I dirent

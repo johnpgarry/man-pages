@@ -67,9 +67,9 @@ and
 are the argument count and array as passed to the
 .B main()
 function on program invocation.
-An element of \fIargv\fP that starts with `-' (and is not exactly "-" or "--")
+An element of \fIargv\fP that starts with `\-' (and is not exactly "\-" or "\-\-")
 is an option element.  The characters of this element
-(aside from the initial `-') are option characters.  If \fBgetopt()\fP
+(aside from the initial `\-') are option characters.  If \fBgetopt()\fP
 is called repeatedly, it returns successively each of the option characters
 from each of the option elements.
 .PP
@@ -97,11 +97,11 @@ This is a GNU extension.  If
 contains
 .B W
 followed by a semicolon, then
-.B -W foo
+.B \-W foo
 is treated as the long option
-.BR --foo .
+.BR \-\-foo .
 (The
-.B -W
+.B \-W
 option is reserved by POSIX.2 for implementation extensions.)
 This behaviour is a GNU extension, not available with libraries before
 GNU libc 2.
@@ -111,12 +111,12 @@ scans, so that eventually all the non-options are at the end.  Two
 other modes are also implemented.  If the first character of
 \fIoptstring\fP is `+' or the environment variable POSIXLY_CORRECT is
 set, then option processing stops as soon as a non-option argument is
-encountered.  If the first character of \fIoptstring\fP is `-', then
+encountered.  If the first character of \fIoptstring\fP is `\-', then
 each non-option \fIargv\fP-element is handled as if it were the argument of
 an option with character code 1.  (This is used by programs that were
 written to expect options and other \fIargv\fP-elements in any order
 and that care about the ordering of the two.)
-The special argument `--' forces an end of option-scanning regardless
+The special argument `\-\-' forces an end of option-scanning regardless
 of the scanning mode.
 .PP
 If \fBgetopt()\fP does not recognize an option character, it prints an
@@ -142,9 +142,9 @@ except that it also accepts long options, started out by two dashes.
 Long option names may be abbreviated if the abbreviation is
 unique or is an exact match for some defined option.  A long option 
 may take a parameter, of the form
-.B --arg=param
+.B \-\-arg=param
 or
-.BR "--arg param" .
+.BR "\-\-arg param" .
 .PP
 .I longopts
 is a pointer to the first element of an array of
@@ -194,9 +194,9 @@ If \fIlongindex\fP is not \fBNULL\fP, it
 points to a variable which is set to the index of the long option relative to
 .IR longopts .
 .PP
-\fBgetopt_long_only()\fP is like \fBgetopt_long()\fP, but `-' as well 
-as `--' can indicate a long option.  If an option that starts with `-'
-(not `--') doesn't match a long option, but does match a short option,
+\fBgetopt_long_only()\fP is like \fBgetopt_long()\fP, but `\-' as well 
+as `\-\-' can indicate a long option.  If an option that starts with `\-'
+(not `\-\-') doesn't match a long option, but does match a short option,
 it is parsed as a short option instead.  
 .SH "RETURN VALUE"
 The
@@ -257,7 +257,7 @@ main (int argc, char **argv) {
 
         c = getopt_long (argc, argv, "abc:d:012",
                  long_options, &option_index);
-        if (c == -1)
+        if (c == \-1)
             break;
 
         switch (c) {

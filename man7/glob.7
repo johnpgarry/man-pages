@@ -20,7 +20,9 @@
 .\" Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
 .\" USA.
 .\"
-.TH GLOB 7 1998-06-12 "Unix" "Linux Programmer's Manual"
+.\" 2003-08-24 fix for / by John Kristoff + joey
+.\"
+.TH GLOB 7 2003-08-24 "Unix" "Linux Programmer's Manual"
 .SH NAME
 glob \- Globbing pathnames
 .SH DESCRIPTION
@@ -61,7 +63,8 @@ two characters separated by `-' denote a range.
 One may include `-' in its literal meaning by making it the
 first or last character between the brackets.
 (Thus, `[]-]' matches just the two characters `]' and `-',
-and `[--/]' matches the three characters `-', `.', `/'.)
+and `[--0]' matches the three characters `-', `.', `0', since `/'
+cannot be matched.)
 
 .SS Complementation
 An expression `[!...]' matches a single character, namely
@@ -142,7 +145,7 @@ not convenient if the collating sequence for the local alphabet
 differs from the ordering of the character codes.
 Therefore, POSIX extended the bracket notation greatly,
 both for wildcard patterns and for regular expressions.
-In the above we saw three types of item that can occur in a bracket
+In the above we saw three types of items that can occur in a bracket
 expression: namely (i) the negation, (ii) explicit single characters,
 and (iii) ranges. POSIX specifies ranges in an internationally
 more useful way and adds three more types:

@@ -111,18 +111,10 @@ will be unlocked by a single call to
 Pages which are mapped to several locations or by several processes stay
 locked into RAM as long as they are locked at least at one location or by
 at least one process.
-
-On POSIX systems on which
-.B mlockall
-and
-.B munlockall
-are available,
-.B _POSIX_MEMLOCK
-is defined in <unistd.h>.
 .SH "RETURN VALUE"
 On success,
 .B mlockall
-returns zero.  On error, \-1 is returned,
+returns zero.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
@@ -137,9 +129,22 @@ processes are allowed to lock pages.
 .TP
 .B EINVAL
 Unknown flags were specified.
+.SH AVAILABILITY
+On POSIX systems on which
+.B mlockall
+and
+.B munlockall
+are available,
+.B _POSIX_MEMLOCK
+is defined in <unistd.h> to a value greater than 0. (See also
+.BR sysconf (3).)
+.\" POSIX 1003.1-2001: It shall be defined to -1 or 0 or 200112L.
+.\" -1: unavailable, 0: ask using sysconf().
+.\" glibc defines it to 1.
 .SH "CONFORMING TO"
 POSIX.1b, SVr4.   SVr4 documents an additional EAGAIN error code.
 .SH "SEE ALSO"
 .BR munlockall (2),
 .BR mlock (2),
-.BR munlock (2)
+.BR munlock (2),
+.BR sysconf (3)

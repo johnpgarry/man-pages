@@ -34,11 +34,7 @@ fdatasync \- synchronize a file's in-core data with that on disk
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
-.B #ifdef _POSIX_SYNCHRONIZED_IO
-.sp
 .BI "int fdatasync(int " fd );
-.sp
-.B #endif
 .SH DESCRIPTION
 .B fdatasync
 flushes all data buffers of a file to disk (before the system
@@ -79,6 +75,16 @@ Currently (Linux 2.2)
 .B fdatasync
 is equivalent to
 .BR fsync .
+.SH AVAILABILITY
+On POSIX systems on which
+.B fdatasync
+is available,
+.B _POSIX_SYNCHRONIZED_IO
+is defined in <unistd.h> to a value greater than 0. (See also
+.BR sysconf (3).)
+.\" POSIX 1003.1-2001: It shall be defined to -1 or 0 or 200112L.
+.\" -1: unavailable, 0: ask using sysconf().
+.\" glibc defines them to 1.
 .SH "CONFORMING TO"
 POSIX1b (formerly POSIX.4)
 .SH "SEE ALSO"

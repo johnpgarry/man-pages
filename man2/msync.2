@@ -26,19 +26,9 @@
 .SH NAME
 msync \- synchronize a file with a memory map
 .SH SYNOPSIS
-.B #include <unistd.h>
-.br
 .B #include <sys/mman.h>
 .sp
-.B #ifdef _POSIX_MAPPED_FILES
-.br
-.B #ifdef _POSIX_SYNCHRONIZED_IO
-.sp
 .BI "int msync(void *" start ", size_t " length ", int " flags );
-.sp
-.B #endif
-.br
-.B #endif
 .SH DESCRIPTION
 .B msync
 flushes changes made to the in-core copy of a file that was mapped
@@ -75,6 +65,18 @@ MS_ASYNC | MS_INVALIDATE | MS_SYNC is set in
 .TP
 .B ENOMEM
 The indicated memory (or part of it) was not mapped.
+.SH AVAILABILITY
+On POSIX systems on which
+.B msync
+is available, both
+.B _POSIX_MAPPED_FILES
+and
+.B _POSIX_SYNCHRONIZED_IO
+are defined in <unistd.h> to a value greater than 0. (See also
+.BR sysconf (3).)
+.\" POSIX 1003.1-2001: It shall be defined to -1 or 0 or 200112L.
+.\" -1: unavailable, 0: ask using sysconf().
+.\" glibc defines them to 1.
 .SH "CONFORMING TO"
 POSIX.1b (formerly POSIX.4)
 

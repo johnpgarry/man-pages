@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.59.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.60.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,20 +12,22 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.58:
+Differences from version 1.59:
 
     The man pages
 
-	dup.2 getsockopt.2 gettimeofday.2 ioperm.2 iopl.2 lseek.2
-	msync.2 munlock.2 open.2 pciconfig_iobase.2 pciconfig_read.2
-	pciconfig_write.2 poll.2 ptrace.2 reboot.2 recv.2 rmdir.2
-	sched_rr_get_interval.2 select.2 send.2 sendfile.2 setresuid.2
-	setuid.2 sigaction.2 statfs.2 ustat.2 wait4.2
+	fdatasync.2 fstatvfs.2 get_thread_area.2 getdents.2 mlockall.2
+	mmap.2 mprotect.2 msync.2 sched_setscheduler.2 select_tut.2
+	statfs.2 statvfs.2
 
-	bstring.3 dirfd.3 ffs.3 ffsl.3 ffsll.3 inet_ntop.3 insque.3
-	stdio.3 va_copy.3
+	asctime_r.3 clock_getres.3 clock_gettime.3 clock_settime.3
+	ctime_r.3 getlogin.3 getlogin_r.3 gmtime_r.3 localtime_r.3
+	posix_memalign.3 sysconf.3
 
-	ip.7
+	host.conf.5
+
+	glob.7 iso-8859-16.7 iso_8859_16.7 latin10.7 latin5.7 latin9.7
+	operator.7 posixoptions.7
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.
@@ -86,7 +88,7 @@ wrote, edited, or otherwise contributed to this project:
     Jim Van Zandt <jrv@vanzandt.mv.com>
     Jochen Hein <Hein@Student.TU-Clausthal.de>
     Jochen Karrer <cip307.cip.physik.uni-wuerzburg.de>
-    John Levon <moz@compsoc.man.ac.uk>
+    John Levon <levon@movementarian.org>
     John S. Kallal <kallal@voicenet.com>
     Jonathan Naylor <g4klx@g4klx.demon.co.uk, jsn@cs.nott.ac.uk>
     Joseph S. Myers <jsm28@hermes.cam.ac.uk>

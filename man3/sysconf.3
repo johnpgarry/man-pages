@@ -32,185 +32,243 @@ sysconf \- Get configuration information at runtime
 .BI "long sysconf(int " "name" );
 .fi
 .SH DESCRIPTION
+POSIX allows an application to test at compile- or run-time
+whether certain options are supported, or what the value is
+of certain configurable constants or limits.
+.LP
+At compile time this is done by including
+.I <unistd.h>
+and/or
+.I <limits.h>
+and testing the value of certain macros.
+.LP
+At run time, one can ask for numerical values using the present function
+.BR sysconf ().
+On can ask for numerical values that may depend
+on the filesystem a file is in using the calls
+.BR fpathconf (3)
+and
+.BR pathconf (3).
+One can ask for string values using
+.BR confstr (3).
+.LP
+The values obtained from these functions are system configuration constants.
+They do not change during the lifetime of a process.
+.\" except that sysconf(_SC_OPEN_MAX) may change answer after a call
+.\" to  setrlimit( ) which changes the RLIMIT_NOFILE soft limit
+.LP
+For options, typically, there is a constant
+.B _POSIX_FOO
+that may be defined in
+.IR <unistd.h> .
+If it is undefined, one should ask at run-time.
+If it is defined to \-1, then the option is not supported.
+If it is defined to 0, then relevant functions and headers exist,
+but one has to ask at runtime what degree of support is available.
+If it is defined to a value other than \-1 or 0, then the option is
+supported. Usually the value (such as 200112L) indicates the year and month
+of the POSIX revision describing the option. Glibc uses the value 1
+to indicate support as long as the POSIX revision has not been published yet.
+.\" and 999 to indicate support for options no longer present in the latest
+.\" standard. (?)
+The
 .B sysconf()
-provides a way for the application to determine values for system
-limits or options at runtime.
-.PP
-The equivalent macros defined in
-.B <unistd.h>
-can only give conservative values; if an application wants to take
-advantage of values which may change, a call to
+argument will be
+.BR _SC_FOO .
+For a list of options, see
+.BR posixoptions (7).
+.LP
+For variables or limits, typically, there is a constant
+.BR _FOO ,
+maybe defined in
+.IR <limits.h> ,
+or
+.BR _POSIX_FOO ,
+maybe defined in
+.IR <unistd.h> .
+The constant will not be defined if the limit is unspecified.
+If the constant is defined, it gives a guaranteed value, and
+more might actually be supported.
+If an application wants to take advantage of values which may change
+between systems, a call to
 .B sysconf()
-can be made, which may yield more liberal results.
-.PP
-For getting information about a particular file, see
-.BR fpathconf() " or " pathconf() .
-.PP
-The following values are supported for
-.IR name .
-First, the POSIX.1 compatible values:
+can be made.
+The 
+.B
+sysconf()
+argument will be
+.BR _SC_FOO .
+.SH "POSIX.1 VARIABLES"
+We give the name of the variable, the name of the
+.B sysconf()
+parameter used to inquire about its value,
+and a short description.
+.LP
+First, the POSIX.1 compatible values.
+.\" [for the moment: only the things that are unconditionally present]
+.\" .TP
+.\" .BR AIO_LISTIO_MAX " - " _SC_AIO_LISTIO_MAX
+.\" (if _POSIX_ASYNCHRONOUS_IO)
+.\" Maximum number of I/O operations in a single list I/O call.
+.\" Must not be less than _POSIX_AIO_LISTIO_MAX.
+.\" .TP
+.\" .BR AIO_MAX " - " _SC_AIO_MAX
+.\" (if _POSIX_ASYNCHRONOUS_IO)
+.\" Maximum number of outstanding asynchronous I/O operations.
+.\" Must not be less than _POSIX_AIO_MAX.
+.\" .TP
+.\" .BR AIO_PRIO_DELTA_MAX " - " _SC_AIO_PRIO_DELTA_MAX
+.\" (if _POSIX_ASYNCHRONOUS_IO)
+.\" The maximum amount by which a process can decrease its
+.\" asynchronous I/O priority level from its own scheduling priority.
+.\" Must be nonnegative.
 .TP
-.B _SC_ARG_MAX
+.BR ARG_MAX " - " _SC_ARG_MAX
 The maximum length of the arguments to the
 .B exec()
-family of functions; the corresponding macro is
-.BR ARG_MAX .
+family of functions.
+Must not be less than _POSIX_ARG_MAX (4096).
 .TP
-.B _SC_CHILD_MAX
-The number of simultaneous processes per user id, the corresponding macro
-is
-.BR CHILD_MAX .
+.BR CHILD_MAX " - " _SC_CHILD_MAX
+The max number of simultaneous processes per user id.
+Must not be less than _POSIX_CHILD_MAX (25).
 .TP
-.B _SC_CLK_TCK
-The number of clock ticks per second; the corresponding macro was
+.BR HOST_NAME_MAX " - " _SC_HOST_NAME_MAX
+Max length of a hostname, not including the final NUL, as returned by
+.BR gethostname (2).
+Must not be less than _POSIX_HOST_NAME_MAX (255).
+.TP
+.BR LOGIN_NAME_MAX " - " _SC_LOGIN_NAME_MAX
+Maximum length of a login name, including the final NUL.
+Must not be less than _POSIX_LOGIN_NAME_MAX (9).
+.TP
+.BR "" "clock ticks - " _SC_CLK_TCK
+The number of clock ticks per second.
+The corresponding variable is obsolete. It was of course called
 .BR CLK_TCK .
-This macro is obsolete now. (Note that the macro
+(Note: the macro
 .B CLOCKS_PER_SEC
 does not give information: it must equal 1000000.)
 .TP
-.B _SC_STREAM_MAX
+.BR OPEN_MAX " - " _SC_OPEN_MAX
+The maximum number of files that a process can have open at any time.
+Must not be less than _POSIX_OPEN_MAX (20).
+.TP
+.BR PAGESIZE " - " _SC_PAGESIZE
+Size of a page in bytes. Must not be less than 1.
+(Some systems use PAGE_SIZE instead.)
+.TP
+.BR RE_DUP_MAX " - " _SC_RE_DUP_MAX
+The number of repeated occurrences of a BRE permitted by
+.BR regexec (3)
+and
+.BR regcomp (3).
+Must not be less than _POSIX2_RE_DUP_MAX (255).
+.TP
+.BR STREAM_MAX " - " _SC_STREAM_MAX
 The maximum number of streams that a process can have open at any
-time.
-The corresponding POSIX macro is
-.BR STREAM_MAX ,
-the corresponding standard C macro is
+time. If defined, it has the same value as the standard C macro
 .BR FOPEN_MAX .
+Must not be less than _POSIX_STREAM_MAX (8).
 .TP
-.B _SC_TZNAME_MAX
-The maximum number of bytes in a timezone name, the corresponding macro
-is
-.BR TZNAME_MAX .
+.BR SYMLOOP_MAX
+The maximum number of symbolic links seen in a pathname before resolution
+returns ELOOP. Must not be less than _POSIX_SYMLOOP_MAX (8).
 .TP
-.B _SC_OPEN_MAX
-The maximum number of files that a process can have open at any time,
-the corresponding macro is
-.BR OPEN_MAX .
+.BR TTY_NAME_MAX " - " _SC_TTY_NAME_MAX
+The maximum length of terminal device name, including final NUL.
+Must not be less than _POSIX_TTY_NAME_MAX (9).
 .TP
-.B _SC_JOB_CONTROL
-This indicates whether POSIX \- style job control is supported, the
-corresponding macro is
-.BR _POSIX_JOB_CONTROL .
+.BR TZNAME_MAX " - " _SC_TZNAME_MAX
+The maximum number of bytes in a timezone name.
+Must not be less than _POSIX_TZNAME_MAX (6).
 .TP
-.B _SC_SAVED_IDS
-This indicates whether a process has a saved set-user-ID and a saved
-set-group-ID; the corresponding macro is
-.BR _POSIX_SAVED_IDS .
-.TP
-.B _SC_VERSION
+.BR _POSIX_VERSION " - " _SC_VERSION
 indicates the year and month the POSIX.1 standard was approved in the
 format
 .BR YYYYMML ; the
 value
 .B 199009L
 indicates the Sept. 1990 revision.
-The corresponding macro is
-.BR _POSIX_VERSION .
-.PP
-Next, the POSIX.2 values:
+.SH "POSIX.2 VARIABLES"
+Next, the POSIX.2 values, giving limits for utilities.
 .TP
-.B _SC_BC_BASE_MAX
+.BR BC_BASE_MAX " - " _SC_BC_BASE_MAX
 indicates the maximum
 .I obase
 value accepted by the
 .BR bc (1)
-utility; the corresponding macro is
-.BR BC_BASE_MAX .
+utility.
 .TP
-.B _SC_BC_DIM_MAX
+.BR BC_DIM_MAX " - " _SC_BC_DIM_MAX
 indicates the maximum value of elements permitted in an array by
-.BR bc (1);
-the corresponding macro is
-.BR BC_DIM_MAX . 
+.BR bc (1).
 .TP
-.B _SC_BC_SCALE_MAX
+.BR BC_SCALE_MAX " - " _SC_BC_SCALE_MAX
 indicates the maximum
 .I scale
 value allowed by
-.BR bc (1);
-the corresponding macro is
-.BR BC_SCALE_MAX .
+.BR bc (1).
 .TP
-.B _SC_BC_STRING_MAX
+.BR BC_STRING_MAX " - " _SC_BC_STRING_MAX
 indicates the maximum length of a string accepted by
-.BR bc (1);
-the corresponding macro is
-.BR BC_STRING_MAX .
+.BR bc (1).
 .TP
-.B _SC_COLL_WEIGHTS_MAX
+.BR COLL_WEIGHTS_MAX " - " _SC_COLL_WEIGHTS_MAX
 indicates the maximum numbers of weights that can be assigned to an
 entry of the
 .B LC_COLLATE order
-keyword in the locale definition file; the corresponding macro is
-.BR COLL_WEIGHTS_MAX .
+keyword in the locale definition file,
 .TP
-.B _SC_EXPR_NEST_MAX
+.BR EXPR_NEST_MAX " - " _SC_EXPR_NEST_MAX
 is the maximum number of expressions which can be nested within
 parentheses by
 .BR expr (1).
-The corresponding macro is
-.BR EXPR_NEST_MAX .
 .TP
-.B _SC_LINE_MAX
+.BR LINE_MAX " - " _SC_LINE_MAX
 The maximum length of a utility's input line length, either from
 standard input or from a file. This includes length for a trailing
 newline.
-The corresponding macro is
-.BR LINE_MAX .
 .TP
-.B _SC_RE_DUP_MAX
+.BR RE_DUP_MAX " - " _SC_RE_DUP_MAX
 The maximum number of repeated occurrences of a regular expression when
 the interval notation
 .B \e{m,n\e}
-is used. The value of the corresponding macro is
-.BR RE_DUP_MAX .
+is used.
 .TP
-.B _SC_2_VERSION
+.BR POSIX2_VERSION " - " _SC_2_VERSION
 indicates the version of the POSIX.2 standard in the format of
-YYYYMML.  The corresponding macro is
-.BR POSIX2_VERSION .
+YYYYMML.
 .TP
-.B _SC_2_DEV
+.BR POSIX2_C_DEV " - " _SC_2_DEV
 indicates whether the POSIX.2 C language development facilities are
-supported.  The corresponding macro is
-.BR POSIX2_C_DEV .
+supported.
 .TP
-.B _SC_2_FORT_DEV
+.BR POSIX2_FORT_RUN " - " _SC_2_FORT_DEV
 indicates whether the POSIX.2 FORTRAN development utilities are
-supported.  The corresponding macro is
-.BR POSIX2_FORT_RUN .
+supported.
 .TP
-.B _SC_2_FORT_RUN
+.BR POSIX2_FORT_RUN " - " _SC_2_FORT_RUN
 indicates whether the POSIX.2 FORTRAN runtime utilities are supported.
-The corresponding macro is
-.BR POSIX2_FORT_RUN .
 .TP
-.B _SC_2_LOCALEDEF
+.BR _POSIX2_LOCALEDEF " - " _SC_2_LOCALEDEF
 indicates whether the POSIX.2 creation of locates via
 .BR localedef (1)
 is supported.
-The corresponding macro is
-.BR _POSIX2_LOCALEDEF .
 .TP
-.B _SC_2_SW_DEV
+.BR POSIX2_SW_DEV " - " _SC_2_SW_DEV
 indicates whether the POSIX.2 software development utilities option is
 supported.
-The corresponding macro is
-.BR POSIX2_SW_DEV .
-.PP
-SUSv2 also lists
-.TP
-.B _SC_PAGESIZE _SC_PAGE_SIZE
-The size of a page (in bytes).
 .PP
 These values also exist, but may not be standard.
 .TP
-.B _SC_PHYS_PAGES
+.BR "" " - " _SC_PHYS_PAGES
 The number of pages of physical memory.  Note that it is possible
 for the product of this value and the value of
 .B _SC_PAGE_SIZE
 to overflow.
 .TP
-.B _SC_AVPHYS_PAGES
+.BR "" " - " _SC_AVPHYS_PAGES
 The number of currently available pages of physical memory.
 .SH "RETURN VALUE"
 If
@@ -219,11 +277,12 @@ is invalid, \-1 is returned, and
 .I errno
 is set to
 .BR EINVAL .
-Otherwise, the value returned is the value of the system resource,
-1 if a queried option is available, 0 if it is not, or \-1 on error,
-and the variable
+Otherwise, the value returned is the value of the system resource and
 .I errno
 is not changed.
+In the case of options, a positive value is returned if a queried option
+is available, and \-1 if it is not.
+In the case of limits, \-1 means that there is no definite limit.
 .SH "CONFORMING TO"
 POSIX.1.
 .SH BUGS
@@ -240,4 +299,5 @@ memory.
 .BR expr (1),
 .BR locale (1),
 .BR fpathconf (3),
-.BR pathconf (3)
+.BR pathconf (3),
+.BR posixoptions (7)
