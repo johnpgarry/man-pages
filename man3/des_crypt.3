@@ -9,34 +9,24 @@
 .\"
 .TH DES_CRYPT 3  "6 October 1987"
 .SH NAME
-des_crypt, ecb_crypt, cbc_crypt, des_setparity \- fast DES encryption
+des_crypt, ecb_crypt, cbc_crypt, des_setparity, DES_FAILED \- fast DES encryption
 .SH SYNOPSIS
 .nf
 .\" Sun version
 .\" .B #include <des_crypt.h>
 .B #include <rpc/des_crypt.h>
 .LP
-.B int ecb_crypt(key, data, datalen, mode)
-.B char *key;
-.B char *data;
-.B unsigned datalen;
-.B unsigned mode;
+.BI "int ecb_crypt(char *" key ", char *" data ", unsigned " datalen ,
+.BI "              unsigned " mode );
 .LP
-.B int cbc_crypt(key, data, datalen, mode, ivec)
-.B char *key;
-.B char *data;
-.B unsigned datalen;
-.B unsigned mode;
-.B char *ivec;
+.BI "int cbc_crypt(char *" key ", char *" data ", unsigned " datalen ,
+.BI "              unsigned " mode ", char *" ivec );
 .LP
-.B void des_setparity(key)
-.B char *key;
+.BI "void des_setparity(char *" key );
+.LP
+.BI "int DES_FAILED(int " status );
 .fi
 .SH DESCRIPTION
-.IX encryption cbc_crypt "" \fLcbc_crypt\fP
-.IX "des encryption" cbc_crypt "DES encryption" \fLcbc_crypt\fP
-.IX encryption des_setparity "" \fLdes_setparity\fP
-.IX "des encryption" des_setparity "DES encryption" \fLdes_setparity\fP
 .B ecb_crypt(\|)
 and
 .B cbc_crypt(\|)
@@ -71,7 +61,7 @@ is the 8-byte encryption key with parity.
 To set the key's parity, which for
 .SM DES
 is in the low bit of each byte, use
-.IR des_setparity .
+.BR des_setparity .
 The second parameter,
 .IR data ,
 contains the data to be encrypted or decrypted. The
@@ -98,7 +88,7 @@ is specified, and there is no hardware, then the encryption is performed
 in software and the routine returns
 .SM DESERR_NOHWDEVICE\s0.
 For
-.IR cbc_crypt ,
+.BR cbc_crypt ,
 the parameter
 .I ivec
 is the the 8-byte initialization
@@ -120,7 +110,7 @@ No error.
 .SM DESERR_NOHWDEVICE
 Encryption succeeded, but done in software instead of the requested hardware.
 .TP
-.SM DESERR_HWERR
+.SM DESERR_HWERROR
 An error occurred in the hardware or driver.
 .TP
 .SM DESERR_BADPARAM
@@ -130,8 +120,9 @@ Bad parameter to routine.
 Given a result status
 .IR stat ,
 the macro
-.SM DES_FAILED\c
-.BR ( stat )
+.\" .SM DES_FAILED\c
+.\" .BR ( stat )
+.BI DES_FAILED( stat )
 is false only for the first two statuses.
 
 .\" So far the Sun page
@@ -139,4 +130,3 @@ is false only for the first two statuses.
 .SH AVAILABILITY
 These routines are present in libc 4.6.27 and later, and in
 glibc 2.1 and later.
-

@@ -24,22 +24,23 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified by Michael Haardt <michael@moria.de>
-.\" Modified Fri Jul 23 21:18:14 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified Jan 13, 1996 by Arnt Gulbrandsen <agulbra@troll.no>
-.\" Modified Jan 22, 1996 by aeb, following a remark by
+.\" Modified 1993-07-23 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1996-01-13 by Arnt Gulbrandsen <agulbra@troll.no>
+.\" Modified 1996-01-22 by aeb, following a remark by
 .\"          Tigran Aivazian <tigran@sco.com>
-.\" Modified Apr 14, 1996 by aeb, following a remark by
+.\" Modified 1996-04-14 by aeb, following a remark by
 .\"          Robert Bihlmeyer <robbe@orcus.ping.at>
-.\" Modified Tue Oct 22 17:34:42 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified May  4, 2001 by aeb, following a remark by
+.\" Modified 1996-10-22 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified 2001-05-04 by aeb, following a remark by
 .\"          Håvard Lygre <hklygre@online.no>
-.\" Modified 17 Apr 2001 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\" Modified 13 Jun 02, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2001-04-17 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2002-06-13 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"     Added note on non-standard behaviour when SIGCHLD is ignored.
-.\" Modified  9 Jul 02, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2002-07-09 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"	Enhanced descriptions of 'resource' values for [gs]etrlimit()
+.\" Modified 2003-11-28 by aeb, added RLIMIT_CORE
 .\"
-.TH GETRLIMIT 2 2002-07-09 "Linux" "Linux Programmer's Manual"
+.TH GETRLIMIT 2 2003-11-28 "Linux" "Linux Programmer's Manual"
 .SH NAME
 getrlimit, getrusage, setrlimit \- get/set resource limits and usage
 .SH SYNOPSIS
@@ -92,6 +93,12 @@ and in the structure passed to
 .PP
 .I resource
 must be one of:
+.TP
+.B RLIMIT_CORE
+Maximum size of
+.I core
+file. When 0 no core dump files are created.
+When nonzero, larger dumps are truncated to this size.
 .TP
 .B RLIMIT_CPU
 CPU time limit in seconds.

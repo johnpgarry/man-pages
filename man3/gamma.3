@@ -1,9 +1,11 @@
 .\" Copyright 2002 Walter Harms (walter.harms@informatik.uni-oldenburg.de)
 .\" Distributed under GPL
-.\" Based on glibc infopages
+.\"
+.\" Modified 2003-11-18, aeb: historical remarks
+.\"
 .TH GAMMA 3 2002-08-10 "GNU" "libc math functions"
 .SH NAME
-gamma \- logarithm of the gamma function
+gamma, gammaf, gammal \- (logarithm of the) gamma function
 .SH SYNOPSIS
 .B #include <math.h>
 .sp
@@ -14,17 +16,50 @@ gamma \- logarithm of the gamma function
 .BI "long double gammal(long double " x ");"
 .sp
 .SH DESCRIPTION
-The
+For the definition of the Gamma function, see
+.BR tgamma (3).
+.PP
+.SS "*BSD version"
+4.4BSD and FreeBSD libm have a
 .B gamma()
-functions exist for compatibility reasons.  They are
-equivalent to 
-.B lgamma() 
-etc. Use these. Use of the name
-.I gamma()
-is confusing, since these functions do not compute
-the Gamma function, but the natural logarithm of the Gamma function.
+function that computes the Gamma function, as one would expect.
+.SS "glibc version"
+Glibc has a
+.B gamma()
+function that is equivalent to
+.B lgamma()
+and computes the natural logarithm of the Gamma function.
+(This is for compatibility reasons only. Don't use this function.)
+.SH HISTORY
+4.2BSD had a
+.B gamma()
+that computed
+.RI ln(|Gamma(| x |)|),
+leaving the sign of
+.RI Gamma(| x |)
+in the external integer
+.IR signgam .
+In 4.3BSD the name was changed to
+.BR lgamma() ,
+and the man page promises
+.sp
+.in +3
+"At some time in the future the name gamma will be rehabilitated
+and used for the Gamma function"
+.in
+.sp
+This did indeed happen in 4.4BSD, where
+.B gamma()
+computes the Gamma function (with no effect on
+.IR signgam ).
+However, this came too late, and we now have
+.BR tgamma() ,
+the "true gamma" function.
+.\" The FreeBSD man page says about gamma() that it is like lgamma()
+.\" except that is does not set signgam.
+.\" Also, that 4.4BSD has a gamma() that computes the true gamma function.
 .SH "CONFORMING TO"
-Nonstandard. Compatible with previous mistakes.
+4.2BSD. Compatible with previous mistakes.
 .SH "SEE ALSO"
 .BR lgamma (3),
 .BR signgam (3),

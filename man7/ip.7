@@ -733,7 +733,7 @@ All ioctls described in
 apply to ip.
 .PP 
 The ioctls to configure firewalling are documented in
-.BR ipfw (7)
+.BR ipfw (4)
 from the 
 .B ipchains 
 package.  
@@ -898,17 +898,17 @@ in
 by
 .BR recvmsg (2)
 does not work in some 2.2 kernels.
-.SH AUTHORS
-This man page was written by Andi Kleen. 
+.\" .SH AUTHORS
+.\" This man page was written by Andi Kleen. 
 .SH "SEE ALSO"
-.BR sendmsg (2),
 .BR recvmsg (2),
-.BR socket (7),
+.BR sendmsg (2),
+.BR ipfw (4),
 .BR netlink (7),
-.BR tcp (7),
-.BR udp (7),
 .BR raw (7),
-.BR ipfw (7)
+.BR socket (7),
+.BR tcp (7),
+.BR udp (7)
 .PP
 RFC791 for the original IP specification.
 .br

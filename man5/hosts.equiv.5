@@ -1,6 +1,6 @@
 .\" Copyright (c) 1995 Peter Tobias <tobias@et-inf.fho-emden.de>
 .\" This file may be distributed under the GNU General Public License.
-.TH HOSTS.EQUIV 5 1995-01-29 "Linux" "Linux Programmer's Manual"
+.TH HOSTS.EQUIV 5 2003-08-24 "Linux" "Linux Programmer's Manual"
 .SH NAME
 /etc/hosts.equiv \- list of hosts and users that are granted "trusted"
 \fBr\fP command access to your system
@@ -36,13 +36,20 @@ Netgroups can be specified by preceding the netgroup by an @ sign.
 Be extremely careful when using the plus (+) sign. A simple typographical
 error could result in a standalone plus sign. A standalone plus sign is
 a wildcard character that means "any host"!
-.PP
 .SH FILES
-/etc/hosts.equiv
-.SH NOTE
+.I /etc/hosts.equiv
+.SH NOTES
 Some systems will only honor the contents of this file when it has owner
 root and no write permission for anybody else. Some exceptionally
 paranoid systems even require that there be no other hard links to the file.
+.PP
+Modern systems use the Pluggable Authentication Modules library (PAM).
+With PAM a standalone plus sign is only considered a wildcard
+character which means "any host" when the word
+.I promiscuous
+is added to the auth component line in your PAM file for
+the particular service
+.RB "(e.g. " rlogin ).
 .SH "SEE ALSO"
 .BR rhosts (5),
 .BR rshd (8),

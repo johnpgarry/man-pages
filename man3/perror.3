@@ -1,6 +1,7 @@
-.\" Copyright (c) 1994 Michael Haardt (michael@moria.de), Sat Jun  4 20:38:26 MET DST 1994
-.\" Copyright (c) 1995 Michael Haardt (michael@cantor.informatik.rwth-aachen.de), Thu Mar 16 18:46:23 MET 1995
-.\" Copyright (c) 1996 Andries Brouwer (aeb@cwi.nl), Sat Jan 13 00:16:41 MET 1996
+.\" Copyright (c) 1994 Michael Haardt (michael@moria.de), 1994-06-04
+.\" Copyright (c) 1995 Michael Haardt
+.\"      (michael@cantor.informatik.rwth-aachen.de), 1995-03-16
+.\" Copyright (c) 1996 Andries Brouwer (aeb@cwi.nl), 1996-01-13
 .\"
 .\" This is free documentation; you can redistribute it and/or
 .\" modify it under the terms of the GNU General Public License as
@@ -22,10 +23,9 @@
 .\" Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
 .\" USA.
 .\"
-.\" Sat Jan 13 00:16:41 MET 1996, aeb: merged in some text contributed
-.\" by Melvin Smith (msmith@falcon.mercer.peachnet.edu) and various
-.\" other changes.
-.\" Modified Fri May 16 23:41:15 1996 by Martin Schulze (joey@infodrom.north.de)
+.\" 1996-01-13 aeb: merged in some text contributed by Melvin Smith
+.\"   (msmith@falcon.mercer.peachnet.edu) and various other changes.
+.\" Modified 1996-05-16 by Martin Schulze (joey@infodrom.north.de)
 .\"
 .TH PERROR 3 2001-12-14 "" "Library functions"
 .SH NAME
@@ -40,6 +40,8 @@ perror \- print a system error message
 .BI "const char *" sys_errlist [];
 .br
 .BI "int " sys_nerr ;
+.br
+.BI "int " errno ;
 .SH DESCRIPTION
 The routine
 .B perror()
@@ -93,6 +95,31 @@ the value of
 should be saved.
 
 .SH "CONFORMING TO"
-ANSI C, BSD 4.3, POSIX, X/OPEN
+The function
+.B perror()
+and the external
+.I errno
+(see
+.BR errno (3))
+conform to ANSI C, BSD 4.3, POSIX, X/OPEN.
+The externals
+.I sys_nerr
+and
+.I sys_errlist
+conform to BSD.
+.SH NOTE
+The externals
+.I sys_nerr
+and
+.I sys_errlist
+are defined by glibc, but in
+.IR <stdio.h> .
+.\" and only when _BSD_SOURCE is defined.
+.\" When _GNU_SOURCE is defined, the symbols
+.\" .I _sys_nerr
+.\" and
+.\" .I _sys_errlist
+.\" are provided.
 .SH "SEE ALSO"
+.BR errno (3),
 .BR strerror (3)

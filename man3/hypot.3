@@ -30,7 +30,7 @@
 .\"
 .TH HYPOT 3 2002-07-27 ""  "Linux Programmer's Manual"
 .SH NAME
-hypot \- Euclidean distance function
+hypot, hypotf, hypotl \- Euclidean distance function
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
@@ -42,8 +42,18 @@ hypot \- Euclidean distance function
 .BI "long double hypotl (long double " x ", long double " y );
 .fi
 .SH DESCRIPTION
-The \fBhypot()\fP function returns the sqrt(x*x + y*y).  This is the
-length of the hypotenuse of a right-angle triangle with sides of length \fIx\fP and \fIy\fP, or the distance of the point (x, y) from the origin.
+The
+.B hypot()
+function returns
+.RI sqrt( x * x + y * y ).
+This is the length of the hypotenuse of a right-angle triangle
+with sides of length
+.I x
+and
+.IR y ,
+or the distance of the point
+.RI ( x , y )
+from the origin.
 .SH "CONFORMING TO"
 SVID 3, BSD 4.3, C99.
 The float and the long double variants are C99 requirements.

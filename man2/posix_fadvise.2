@@ -28,7 +28,7 @@ posix_fadvise \- predeclare an access pattern for file data
 .nf
 .B #include <fcntl.h>
 .sp
-.BI "int posix_fadvise(int " fd ", off_t " offset ", size_t " len ", int " advice ");"
+.BI "int posix_fadvise(int " fd ", off_t " offset ", off_t " len ", int " advice ");"
 .fi
 .SH DESCRIPTION
 Programs can use \fBposix_fadvise\fP to announce an intention to access
@@ -99,6 +99,9 @@ Pages that have not yet been written out will be unaffected, so if the
 application wishes to guarantee that pages will be released, it should
 call \fBfsync\fP or \fBfdatasync\fP first.
 .SH "CONFORMING TO"
-SUSv3 (Advanced Realtime Option)
+SUSv3 (Advanced Realtime Option), POSIX 1003.1-2003.
+Note that the type of the
+.I len
+parameter was changed from size_t to off_t in POSIX 1003.1-2003 TC5.
 .SH "SEE ALSO"
 .BR posix_fallocate "(2), " posix_madvise "(2)."

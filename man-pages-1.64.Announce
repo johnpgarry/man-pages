@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.63.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.64.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -12,21 +12,23 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.62:
+Differences from version 1.63:
 
     The man pages
 
-	cp.1
+	getrlimit.2 intro.2 posix_fadvise.2 signal.2
 
-	sstk.2
+	asinh.3 cfree.3 des_crypt.3 dladdr.3 dlopen.3 dlvsym.3 drem.3
+	dremf.3 dreml.3 encrypt.3 fmodf.3 fmodl.3 frexp.3 gamma.3
+	getaddrinfo.3 getgrouplist.3 getipnodebyname.3 getmntent_r.3
+	getutent.3 getutent_r.3 getutid_r.3 getutline_r.3 hsearch.3
+	ldexp.3 ldexpf.3 ldexpl.3 lgamma.3 malloc.3 perror.3
+	remainder.3 remainderf.3 remainderl.3 sincosf.3 sincosl.3
+	stdio.3 strtoimax.3 syslog.3 tgamma.3
 
-	endspent.3 fgetgrent_r.3 fgetpwent_r.3 fgetspent.3 fgetspent_r.3
-	getgrent.3 getgrent_r.3 getgrgid_r.3 getgrnam.3 getgrnam_r.3
-	getmntent.3 getmntent_r.3 getpwent_r.3 getpwnam.3 getpwnam_r.3
-	getpwuid_r.3 getspent.3 getspent_r.3 getspnam.3 getspnam_r.3
-	lckpwdf.3 putgrent.3 putspent.3 qsort.3 rand.3 rand_r.3
-	setspent.3 sgetspent.3 sgetspent_r.3 tmpnam.3 tmpnam_r.3
-	ulckpwdf.3 undocumented.3
+	hosts.equiv.5
+
+	packet.7
 
     are new or have been updated. Typographical or grammatical errors
     have been corrected in several other places.

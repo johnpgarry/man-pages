@@ -25,8 +25,9 @@
 .\"     SunOS 4.1.1 man pages
 .\" Modified Sat Sep 30 21:52:01 1995 by Jim Van Zandt <jrv@vanzandt.mv.com>
 .\" Remarks from dhw@gamgee.acad.emich.edu Fri Jun 19 06:46:31 1998
-.\" Modified 2001-12-26, aeb
-.TH HSEARCH 3 2001-12-26 "GNU" "Linux Programmer's Manual"
+.\" Modified 2001-12-26, 2003-11-28, aeb
+.\"
+.TH HSEARCH 3 2003-11-28 "GNU" "Linux Programmer's Manual"
 .SH NAME
 hcreate, hdestroy, hsearch \- hash table management
 .SH SYNOPSIS
@@ -56,11 +57,6 @@ and
 .BR hdestroy
 allow the user to create a hash table (only one at a time)
 which associates a key with any data.
-The three functions
-.BR hcreate_r ,
-.BR hsearch_r ,
-.BR hdestroy_r
-are reentrant versions that allow the use of more than one table.
 .PP
 First the table must be created with the function \fBhcreate()\fP.
 The argument \fInel\fP is an estimate of the maximum number of entries
@@ -92,6 +88,15 @@ The argument \fIaction\fP determines what \fBhsearch()\fP does
 after an unsuccessful search.  A value of \fBENTER\fP instructs it to
 insert a copy of \fIitem\fP, while a value of \fBFIND\fP means to return
 \fBNULL\fP.
+.PP
+The three functions
+.BR hcreate_r ,
+.BR hsearch_r ,
+.BR hdestroy_r
+are reentrant versions that allow the use of more than one table.
+The last argument used identifies the table. The struct it points to
+must be zeroed before the first call to
+.BR hcreate_r() .
 .SH "RETURN VALUE"
 \fBhcreate()\fP and \fBhcreate_r()\fP return 0 when allocation of the memory
 for the hash table fails, nonzero otherwise.
@@ -134,6 +139,7 @@ some of them.
 .nf
 
     #include <stdio.h>
+    #include <stdlib.h>
     #include <search.h>
     
     char *data[] = { "alpha", "bravo", "charlie", "delta",

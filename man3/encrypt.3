@@ -87,6 +87,11 @@ struct crypt_data {
 };
 .fi
 .RE
+Before calling
+.B setkey_r()
+set
+.I data->initialized
+to zero.
 .SH "RETURN VALUE"
 These functions do not return any value.
 .SH ERRORS
