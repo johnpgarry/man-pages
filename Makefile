@@ -3,7 +3,8 @@
 # Do "make install" to copy the pages to their destination.
 # Do "make gz" or "make bz2" first if you use compressed source pages.
 
-MANDIR=$(prefix)/usr/share/man
+# FHS requires /usr/share/man
+MANDIR=$(prefix)/usr/man
 
 GZIP=gzip -9
 BZIP2=bzip2 -9
@@ -61,8 +62,6 @@ install:
 	for i in man?; do \
 		install -d -m 755 $(MANDIR)/$$i; \
 		install -m 644 $$i/* $(MANDIR)/$$i; \
-	done; \
-	rm -f $(MANDIR)/man1/README
-
+	done
 # someone might also want to look at /var/catman/cat2 or so ...
 # a problem is that the location of cat pages varies a lot
