@@ -63,8 +63,7 @@ struct timeval {
 .RE
 .PD
 .LP
-The function
-.B getitimer
+.BR Getitimer (2)
 fills the structure indicated by
 .I value
 with the current setting for the timer indicated by
@@ -80,8 +79,7 @@ is set to the amount of time remaining on the timer, or zero if the timer
 is disabled.  Similarly,
 .B it_interval
 is set to the reset value.
-The function
-.B setitimer
+.BR Setitimer (2)
 sets the indicated timer to the value in
 .IR value .
 If
