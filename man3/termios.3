@@ -222,6 +222,41 @@ read.  (\fBbash\fP handles typeahead this way.)
 .IP \fBIEXTEN\fP
 enable implementation-defined input processing.
 .PP
+The \fIc_cc\fP array defines the special control characters.
+The symbolic indices (and meaning: initial values) are:
+VINTR (interrupt character: 0177, DEL, rubout),
+VQUIT (quit character: 034, FS, Ctrl-\e),
+VERASE (erase character: 010, BS, Ctrl-H),
+VKILL (kill character: 025, NAK, Ctrl-U),
+VEOF (end-of-file character: 004, EOT, Ctrl-D),
+VMIN,
+VEOL (additional end-of-line character: 0, NUL),
+VTIME,
+VEOL2 (yet another end-of-line character: 0, NUL),
+VSWTCH (switch character: 0, NUL),
+VSTART (start character: 021, DC1, Ctrl-Q),
+VSTOP (stop character: 023, DC3, Ctrl-S),
+VSUSP (suspend character: 032, SUB, Ctrl-Z),
+VDSUSP (delayed suspend character: 031, EM, Ctrl-Y),
+VLNEXT (literal next: 026, SYN, Ctrl-V),
+VWERASE (word erase: 027, ETB, Ctrl-W),
+VREPRINT (reprint unread characters: 022, DC2, Ctrl-R),
+VDISCARD (discard pending output: 017, SI, Ctrl-O).
+.LP
+These symbolic subscript values are all different, except that
+VTIME, VMIN may have the same value as VEOL, VEOF, respectively.
+(In non-canonical mode the special character meaning is replaced
+by the timeout meaning. MIN represents the minimum number of characters
+that should be received to satisfy the read. TIME is a decisecond-valued
+timer. When both are set, a read will wait until at least one character
+has been received, and then return as soon as either MIN characters
+have been received or time TIME has passed since the last character
+was received. If only MIN is set, the read will not return before
+MIN characters have been received. If only TIME is set, the read will
+return as soon as either at least one character has been received,
+or the timer times out. If neither is set, the read will return
+immediately, only giving the currently already available characters.)
+.PP
 .B tcgetattr()
 gets the parameters associated with the object referred by \fIfd\fP and
 stores them in the \fBtermios\fP structure referenced by

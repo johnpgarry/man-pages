@@ -99,7 +99,7 @@ which means to append a slash to each path which corresponds to a directory,
 .B GLOB_NOSORT
 which means don't sort the returned pathnames (they are by default),
 .TP
-.B GLOB_DOOFS
+.B GLOB_DOOFFS
 which means that
 .I pglob->gl_offs
 slots will be reserved at the beginning of the list of strings in
@@ -214,8 +214,8 @@ in the shell.
 glob_t globbuf;
 
 globbuf.gl_offs = 2;
-glob("*.c", GLOB_DOOFS, NULL, &globbuf);
-glob("../*.c", GLOB_DOOFS | GLOB_APPEND, NULL, &globbuf);
+glob("*.c", GLOB_DOOFFS, NULL, &globbuf);
+glob("../*.c", GLOB_DOOFFS | GLOB_APPEND, NULL, &globbuf);
 globbuf.gl_pathv[0] = "ls";
 globbuf.gl_pathv[1] = "-l";
 execvp("ls", &globbuf.gl_pathv[0]);

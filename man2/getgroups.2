@@ -43,17 +43,21 @@ getgroups, setgroups \- get/set list of supplementary group IDs
 .B getgroups
 Up to
 .I size
-supplementary groups are returned in
+supplementary group IDs are returned in
 .IR list .
+It is unspecified whether the effective group ID of the calling process
+is included in the returned list. (Thus, an application should also call
+.BR getegid (2)
+and add or remove the resulting value.)
 If
 .I size
 is zero,
 .I list
-is not modified, but the total number of supplementary groups for the
+is not modified, but the total number of supplementary group IDs for the
 process is returned.
 .TP
 .B setgroups
-Sets the supplementary groups for the process.  Only the super-user may use
+Sets the supplementary group IDs for the process.  Only the super-user may use
 this function.
 .SH "RETURN VALUE"
 .TP
@@ -89,6 +93,20 @@ For
 .BR getgroups ,
 .I size
 is less than the number of supplementary group IDs, but is not zero.
+.SH NOTE
+A process can have up to at least NGROUPS_MAX supplementary group IDs
+in addition to the effective group ID. The set of supplementary group IDs
+is inherited from the parent process and may be changed using
+.BR setgroups .
+The maximum number of supplementary group IDs can be found using
+.BR sysconf (3):
+.nf
+    long ngroups_max;
+    ngroups_max = sysconf(_SC_NGROUPS_MAX);
+.fi
+The maximal return value of
+.B getgroups
+cannot be larger than one more than the value obtained this way.
 .SH "CONFORMING TO"
 SVr4, SVID (issue 4 only; these calls were not present in SVr3),
 X/OPEN, 4.3BSD.  The

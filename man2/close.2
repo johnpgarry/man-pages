@@ -79,7 +79,7 @@ closing the file may lead to silent loss of data.  This can especially
 be observed with NFS and disk quotas.
 .PP
 A successful close does not guarantee that the data has been successfully
-saved to disk, as the kernel defers writes. Is not common for a filesystem
+saved to disk, as the kernel defers writes. It is not common for a filesystem
 to flush the buffers when the stream is closed. If you need to be sure that
 the data is physically stored use fsync(2) or sync(2), they will get you
 closer to that goal (it will depend on the disk hardware at this point).

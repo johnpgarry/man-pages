@@ -4,7 +4,7 @@
 .\" in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998
 .\" that should have been distributed together with this file.
 .\" 
-.TH CHMOD 1 "November 1998" "GNU fileutils 4.0"
+.TH CHMOD 1 "August 2000" "GNU fileutils 4.0"
 .SH NAME
 chmod \- change access permissions of files
 .SH SYNOPSIS
@@ -13,9 +13,14 @@ chmod \- change access permissions of files
 POSIX options:
 .B [\-R]
 .sp
+Austin draft options:
+.B [\-R]
+.sp
+GNU mode denotation:
+.BI [\-\-reference= rfile ]
+.sp
 GNU options (shortest form):
 .B [\-cfvR]
-.BI [\-\-reference= rfile ]
 .B "[\-\-help] [\-\-version] [\-\-]"
 .SH DESCRIPTION
 .B chmod
@@ -88,6 +93,11 @@ ignores symbolic links encountered during recursive directory traversals.
 .TP
 .B "\-R"
 Recursively change permissions of directories and their contents.
+.SH "ADDITIONAL GNU DESCRIPTION"
+A GNU extension (new in fileutils 4.0) allows one to use
+.BI "\-\-reference=" "rfile"
+as a mode description: the same mode as that of
+.IR rfile .
 .SH "GNU OPTIONS"
 .TP
 .B "\-c, \-\-changes"
@@ -104,13 +114,6 @@ Verbosely describe the action or non-action taken for every
 .TP
 .B "\-R, \-\-recursive"
 Recursively change permissions of directories and their contents.
-.TP
-.BI "\-\-reference=" "rfile"
-(New in fileutils 4.0.)
-Change the mode of
-.I file
-to that of
-.IR rfile .
 .SH "GNU STANDARD OPTIONS"
 .TP
 .B "\-\-help"
@@ -123,6 +126,7 @@ Print version information on standard output, then exit successfully.
 Terminate option list.
 .SH ENVIRONMENT
 The variables LANG, LC_ALL, LC_CTYPE and LC_MESSAGES have the
+usual meaning. For an XSI-conforming system: NLSPATH has the
 usual meaning.
 .SH "CONFORMING TO"
 POSIX 1003.2 only requires the \-R option. Use of other options

@@ -67,8 +67,9 @@ struct passwd {
 .fi
 .RE
 .SH "RETURN VALUE"
-The \fBgetpwnam()\fP and \fBgetpwuid()\fP functions return the passwd
-structure, or NULL if the matching entry is not found or an error occurs.
+The \fBgetpwnam()\fP and \fBgetpwuid()\fP functions return a pointer to
+the passwd structure, or NULL if the matching entry is not found or
+an error occurs.
 .SH ERRORS
 .TP
 .B ENOMEM
@@ -81,6 +82,11 @@ password database file
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3
 .SH "SEE ALSO"
-.BR fgetpwent "(3), " getpwent "(3), " setpwent "(3), " endpwent (3),
-.BR getpw "(3), " putpwent (3),
-.BR passwd (5).
+.BR fgetpwent (3),
+.BR getgrnam (3),
+.BR getpwent (3),
+.BR setpwent (3),
+.BR endpwent (3),
+.BR getpw (3),
+.BR putpwent (3),
+.BR passwd (5)

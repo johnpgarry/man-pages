@@ -29,7 +29,9 @@
 .\" Modified Mon Jun 16 20:24:58 1997 by Nicolás Lichtmaier <nick@debian.org>
 .\" Modified Sun Oct 18 22:11:28 1998 by Joseph S. Myers <jsm28@cam.ac.uk>
 .\" Modified Mon Nov 16 17:24:47 1998 by Andries Brouwer <aeb@cwi.nl>
-.TH SUFFIXES 7  "April 4, 1996" "Linux" "Linux Programmer's Manual"
+.\" Modified Thu Nov 16 23:28:25 2000 by David A. Wheeler
+.\"    <dwheeler@dwheeler.com>
+.TH SUFFIXES 7  "November 16, 2000" "Linux" "Linux Programmer's Manual"
 .SH NAME
 suffixes \- list of file suffixes
 .SH DESCRIPTION
@@ -50,7 +52,7 @@ lI |  l .
 Suffix	File type
  ,v	files for RCS (Revision Control System)
  -	backup file
- .C	C++ source code
+ .C	C++ source code, equivalent to \fI.cc\fP
  .F	Fortran source with \fBcpp\fP(1) directives
 	or file compressed using freeze
  .S	assembler source with \fBcpp\fP(1) directives
@@ -62,6 +64,7 @@ Suffix	File type
  .[1-9][a-z]	manual page for section plus subsection
  .a	static object code library
  .ad	X application default resource file
+ .ada	Ada source (may be body, spec, or combination)
  .adb	Ada body source
  .ads	Ada spec source
  .afm	PostScript font metrics
@@ -78,8 +81,10 @@ Suffix	File type
  .b	LILO boot loader image
  .bak	backup file
  .bash	\fBbash\fP(1) shell script
- .bb	basic block list data produced by gcc -ftest-coverage
- .bbg	basic block graph data produced by gcc -ftest-coverage
+ .bb	basic block list data produced by
+	gcc -ftest-coverage
+ .bbg	basic block graph data produced by
+	gcc -ftest-coverage
  .bbl	BibTeX output
  .bdf	X font file
  .bib	TeX bibliographic database, BibTeX input
@@ -102,8 +107,9 @@ Suffix	File type
  .deb	Debian software package
  .def	Modula-2 source for definition modules
  .def	other definition files
- .desc	initial part of mail message unpacked with munpack
- .diff	file differences (diff(1) command output)
+ .desc	initial part of mail message unpacked with
+	\fBmunpack\fP(1)
+ .diff	file differences (\fBdiff\fP(1) command output)
  .dir	dbm data base directory file
  .doc	documentation file
  .dtx	LaTeX package source file
@@ -111,12 +117,13 @@ Suffix	File type
  .el	Emacs-Lisp source
  .elc	compiled Emacs-Lisp source
  .eps	encapsulated PostScript
+ .exp	Expect source code
  .f	Fortran source
  .f77	Fortran 77 source
  .f90	Fortran 90 source
  .fas	pre-compiled Common-Lisp
  .fi	Fortran include files
- .fig	FIG image file (used by \fBxfig\fR(1))
+ .fig	FIG image file (used by \fBxfig\fP(1))
  .fmt	TeX format file
  .gif	Compuserve Graphics Image File format
  .gmo	GNU format message catalog
@@ -131,12 +138,15 @@ Suffix	File type
  .hqx	7-bit encoded Macintosh file
  .i	C source after preprocessing
  .icon	bitmap source
- .idx	reference or datum-index file for hypertext or database system
+ .idx	reference or datum-index file for hypertext
+	or database system
  .image	bitmap source
  .in	configuration template, especially for GNU Autoconf
  .info	files for the Emacs info browser
  .info-[0-9]+	splitted info files
  .ins	LaTeX package install file for docstrip
+ .itcl	itcl source code;
+	itcl ([incr Tcl]) is an OO extension of tcl
  .java	a Java source file
  .jpeg	Joint Photographic Experts Group format
  .jpg	poor man's \fI.jpeg\fP
@@ -151,12 +161,14 @@ Suffix	File type
  .lsm	Linux Software Map entry
  .lsp	Common-Lisp source
  .lzh	lharc archive
+ .m	Objective-C source code
  .m4	\fBm4\fP(1) source
  .mac	macro files for various programs
  .man	manual page (usually source rather than formatted)
  .map	map files for various programs
  .me	Nroff source using the me macro package
  .mf	Metafont (font generator for TeX) source
+ .mgp   MagicPoint file
  .mm	sources for \fBgroff\fP(1) in mm - format
  .mo	Message catalog binary file
  .mod	Modula-2 source for implementation modules
@@ -172,8 +184,9 @@ Suffix	File type
  .patch	file differences for \fBpatch\fP(1)
  .pbm	portable bitmap format
  .pcf	X11 font files
- .pdf	Adobe Portable Data Format (use Acrobat/\fBacroread\fP or \fBxpdf\fP)
- .perl	Perl source
+ .pdf	Adobe Portable Data Format
+	(use Acrobat/\fBacroread\fP or \fBxpdf\fP)
+ .perl	Perl source (see .ph, .pl and .pm)
  .pfa	PostScript font definition files, ASCII format
  .pfb	PostScript font definition files, binary format
  .pgm	portable greymap format
@@ -199,6 +212,8 @@ Suffix	File type
  .s	assembler source
  .sa	stub libraries for a.out shared libraries
  .sc	\fBsc\fP(1) spreadsheed commands
+ .scm	Scheme source code
+ .sed	sed source file
  .sgml	SGML source file
  .sh	\fBsh\fP(1) scripts
  .shar	archive created by the \fBshar\fP(1) utility
@@ -212,6 +227,7 @@ Suffix	File type
  .tar.bz2	tar(1) archive compressed with \fBbzip2\fP(1)
  .tar.gz	tar(1) archive compressed with \fBgzip\fP(1)
  .taz	tar(1) archive compressed with \fBcompress\fP(1)
+ .tcl	tcl source code
  .tex	TeX or LaTeX source
  .texi	equivalent to \fI.texinfo\fP
  .texinfo	Texinfo documentation source

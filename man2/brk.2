@@ -39,10 +39,10 @@ brk, sbrk \- change data segment size
 .SH DESCRIPTION
 .B brk
 sets the end of the data segment to the value specified by
-.IR end_data_segment .
-.I end_datasegment
-must be greater than end of the text segment and it must be 16kB before the
-end of the stack.
+.IR end_data_segment ,
+when that value is reasonable, the system does have enough memory
+and the process does not exceed its max data size (see
+.BR setrlimit (2)).
 
 .B sbrk
 increments the program's data space by
@@ -50,6 +50,10 @@ increments the program's data space by
 bytes.
 .B sbrk
 isn't a system call, it is just a C library wrapper.
+Calling
+.B sbrk
+with an increment of 0 can be used to find the current
+location of the program break.
 .SH "RETURN VALUE"
 On success,
 .B brk

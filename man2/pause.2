@@ -25,6 +25,7 @@
 .\" Modified by Michael Haardt (michael@moria.de)
 .\" Modified Sat Jul 24 14:48:00 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified 1995 by Mike Battersby (mib@deakin.edu.au)
+.\" Modified 2000 by aeb, following Michael Kerrisk
 .\"
 .TH PAUSE 2 "August 31, 1995" "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -36,17 +37,28 @@ pause \- wait for signal
 .SH DESCRIPTION
 The
 .B pause
-system call causes the invoking process to sleep until a signal is received.
+library function causes the invoking process (or thread) to sleep
+until a signal is received that either terminates it or causes it
+to call a signal-catching function.
+.\" The
+.\" .B pause
+.\" system call causes the invoking process to sleep until a signal
+.\" is received.
 .SH "RETURN VALUE"
+The
 .B pause
-always returns \-1, and
+function only returns when a signal was caught and the
+signal-catching function returned. In this case
+.B pause
+returns \-1, and
 .I errno
 is set to
-.BR ERESTARTNOHAND .
+.\" .BR ERESTARTNOHAND .
+.BR EINTR .
 .SH ERRORS
 .TP
 .B EINTR
-signal was received.
+a signal was caught and the signal-catching function returned.
 .SH "CONFORMING TO"
 SVr4, SVID, POSIX, X/OPEN, BSD 4.3
 .SH "SEE ALSO"

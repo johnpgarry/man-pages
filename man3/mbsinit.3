@@ -11,7 +11,7 @@
 .\"   OpenGroup's Single Unix specification http://www.UNIX-systems.org/online.html
 .\"   ISO/IEC 9899:1999
 .\"
-.TH MBSINIT 3  "July 25, 1999" "GNU" "Linux Programmer's Manual"
+.TH MBSINIT 3  "November 20, 2000" "GNU" "Linux Programmer's Manual"
 .SH NAME
 mbsinit \- test for initial shift state
 .SH SYNOPSIS
@@ -26,7 +26,7 @@ character representation uses conversion state, of type \fBmbstate_t\fP.
 Conversion of a string uses a finite-state machine; when it is interrupted
 after the complete conversion of a number of characters, it may need to
 save a state for processing the remaining characters. Such a conversion
-state is needed for the sake of encodings such as ISO-2022 and SJIS.
+state is needed for the sake of encodings such as ISO-2022 and UTF-7.
 .PP
 The initial state is the state at the beginning of conversion of a string.
 There are two kinds of state: The one used by multibyte to wide character
@@ -35,7 +35,11 @@ character to multibyte conversion functions, such as \fBwcsrtombs\fP,
 but they both fit in a \fBmbstate_t\fP, and they both have the same
 representation for an initial state.
 .PP
-For 8-bit or UTF-8 encodings, all states are equivalent to the initial state.
+For 8-bit encodings, all states are equivalent to the initial state.
+For multibyte encodings like UTF-8, EUC-*, BIG5 or SJIS, the wide character
+to multibyte conversion functions never produce non-initial states, but the
+multibyte to wide character conversion functions like \fBmbrtowc\fP do
+produce non-initial states when interrupted in the middle of a character.
 .PP
 One possible way to create an mbstate_t in initial state is to set it to zero:
 .nf

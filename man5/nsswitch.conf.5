@@ -200,7 +200,7 @@ locked or a server currently cannot accept more connections.  The
 default action is `continue'.
 .LP
 .SS Interaction with +/- syntax (compat mode)
-Linux libc5 without NYS does not has the name service switch but does
+Linux libc5 without NYS does not have the name service switch but does
 allow the user some policy control. In
 .B /etc/passwd
 you could have entries of the form +user or +@netgroup
@@ -246,8 +246,8 @@ implements `dns' source for glibc2
 .BI /lib/libnss_files.so. X
 implements `files' source for glibc2
 .TP
-.BI /lib/libnss_hesoid.so. X
-implements `hesoid' source for glibc2
+.BI /lib/libnss_hesiod.so. X
+implements `hesiod' source for glibc2
 .TP
 .BI /lib/libnss_nis.so. X
 implements `nis' source for glibc2

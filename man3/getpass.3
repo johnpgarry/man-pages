@@ -1,41 +1,26 @@
-.\" Copyright (c) 1989, 1991 The Regents of the University of California.
-.\" All rights reserved.
+.\" Copyright (c) 2000 Andries Brouwer (aeb@cwi.nl)
 .\"
-.\" Redistribution and use in source and binary forms, with or without
-.\" modification, are permitted provided that the following conditions
-.\" are met:
-.\" 1. Redistributions of source code must retain the above copyright
-.\"    notice, this list of conditions and the following disclaimer.
-.\" 2. Redistributions in binary form must reproduce the above copyright
-.\"    notice, this list of conditions and the following disclaimer in the
-.\"    documentation and/or other materials provided with the distribution.
-.\" 3. All advertising materials mentioning features or use of this software
-.\"    must display the following acknowledgement:
-.\"	This product includes software developed by the University of
-.\"	California, Berkeley and its contributors.
-.\" 4. Neither the name of the University nor the names of its contributors
-.\"    may be used to endorse or promote products derived from this software
-.\"    without specific prior written permission.
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
 .\"
-.\" THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
-.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
-.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-.\" SUCH DAMAGE.
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
 .\"
-.\"     @(#)getpass.3	6.5 (Berkeley) 5/21/91
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
 .\"
-.\" Converted for Linux, Mon Nov 29 14:41:51 1993, faith@cs.unc.edu
-.\" Corrected incorrect title pointed out by meem@sherilyn.wustl.edu,
-.\"   aeb, 961108.
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
+.\" USA.
 .\"
-.TH GETPASS 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
+.TH GETPASS 3  "5 December 2000" "Linux Manpage" "Linux Programmer's Manual"
 .SH NAME
 getpass \- get a password
 .SH SYNOPSIS
@@ -43,27 +28,69 @@ getpass \- get a password
 .sp
 .B "char *getpass( const char *" prompt );
 .SH DESCRIPTION
+This function is obsolete. Do not use it.
+.PP
 The
+.BR getpass ()
+function opens
+.I /dev/tty
+(the controlling terminal of the process), outputs the string
+.IR prompt ,
+turns off echoing, reads one line (the "password"),
+restores the terminal state and closes
+.I /dev/tty
+again.
+.SH "RETURN VALUE"
+The function
 .B getpass
-function displays a prompt to the standard error output, and reads in a
-password from
-.IR /dev/tty .
-If this file is not accessible,
-.B getpass
-reads from the standard input.
+returns a pointer to a static buffer containing the
+(first PASS_MAX bytes of) the password without the trailing
+newline, terminated by a NUL.
+This buffer may be overwritten by a following call.
+On error, the terminal state is restored,
+.I errno
+is set appropriately, and NULL is returned.
+.SH ERRORS
+The function may fail if
+.TP
+.B ENXIO
+The process does not have a controlling terminal. 
+.SH NOTES
+For libc4 and libc5, the prompt is not written to
+.I /dev/tty
+but to
+.IR stderr .
+Moreover, if
+.I /dev/tty
+cannot be opened, the password is read from
+.IR stdin .
+The static buffer has length 128 so that only the first 127
+bytes of the password are returned.
+While reading the password, signal generation (SIGINT, SIGQUIT,
+SIGSTOP, SIGTSTOP) is disabled and the corresponding characters
+(usually control-C, control-\e, control-Z and control-Y)
+are transmitted as part of the password.
+Since libc 5.4.19 also line editing is disabled, so that also
+backspace and the like will be seen as part of the password.
 .PP
-The password may be up to 128 characters in length, including a trailing
-NUL.  Any additional characters and the terminating newline character
-are discarded.
+For glibc2, if
+.I /dev/tty
+cannot be opened, the prompt is written to
+.I stderr
+and the password is read from
+.IR stdin .
+There is no limit on the length of the password.
+Line editing is not disabled.
 .PP
-.B Getpass
-turns off character echoing and disables the generation of signals by
-tty special characters (interrupt by control-C, suspend by control-Z,
-etc.) while reading the password.
-.PP
-.SH "RETURN VALUES"
-.B Getpass
-returns a pointer to the null terminated password.
+According to the SUSv2, the value of PASS_MAX must be defined in
+.I <limits.h>
+in case it is smaller than 8, and can in any case be obtained using
+.IR sysconf(_SC_PASS_MAX) .
+However, POSIX.2 withdraws the constants PASS_MAX
+and _SC_PASS_MAX, and the function
+.B getpass ().
+Libc4 and libc5 have never supported PASS_MAX or _SC_PASS_MAX.
+Glibc2 accepts _SC_PASS_MAX and returns BUFSIZ (e.g., 8192).
 .SH FILES
 .I /dev/tty
 .SH "SEE ALSO"
@@ -73,12 +100,5 @@ A
 .B getpass
 function appeared in Version 7 AT&T UNIX.
 .SH BUGS
-The
-.B getpass
-function leaves its result in an internal static object and returns a
-pointer to that object.  Subsequent calls to
-.B getpass
-will modify the same object.
-.PP
 The calling process should zero the password as soon as possible to avoid
 leaving the cleartext password visible in the process's address space.

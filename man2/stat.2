@@ -161,11 +161,8 @@ is changed by writing or by setting inode information
 The following POSIX macros are defined to check the file type:
 .RS
 .TP 1.2i
-S_ISLNK(m)
-is it a symbolic link?
-.TP
 S_ISREG(m)
-regular file?
+is it a regular file?
 .TP
 S_ISDIR(m)
 directory?
@@ -179,8 +176,11 @@ block device?
 S_ISFIFO(m)
 fifo?
 .TP
+S_ISLNK(m)
+symbolic link? (Not in POSIX.1-1996.)
+.TP
 S_ISSOCK(m)
-socket?
+socket? (Not in POSIX.1-1996.)
 .RE
 .PP
 The following flags are defined for the
@@ -283,7 +283,10 @@ systems, and possibly on a single system when NFS mounts are involved.)
 .LP
 POSIX does not describe the S_IFMT, S_IFSOCK, S_IFLNK, S_IFREG, S_IFBLK,
 S_IFDIR, S_IFCHR, S_IFIFO, S_ISVTX bits, but instead demands the use of
-the macros S_ISDIR(), etc.
+the macros S_ISDIR(), etc. The S_ISLNK and S_ISSOCK macros are not in
+POSIX.1-1996, but both will be in the next POSIX standard;
+the former is from SVID 4v2, the latter from SUSv2.
+.LP
 Unix V7 (and later systems) had S_IREAD, S_IWRITE, S_IEXEC, where POSIX
 prescribes the synonyms S_IRUSR, S_IWUSR, S_IXUSR.
 .SH "OTHER SYSTEMS"

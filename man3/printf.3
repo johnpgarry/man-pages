@@ -29,8 +29,9 @@
 .\"
 .\" 1999-11-25 aeb - Rewritten, using SUSv2 and C99.
 .\" 2000-07-26 jsm28@hermes.cam.ac.uk - three small fixes
+.\" 2000-10-16 jsm28@hermes.cam.ac.uk - more fixes
 .\"
-.TH PRINTF 3  "25 November 1999" "Linux Manpage" "Linux Programmer's Manual"
+.TH PRINTF 3  "16 October 2000" "Linux Manpage" "Linux Programmer's Manual"
 .SH NAME
 printf, fprintf, sprintf, snprintf, vprintf, vfprintf, vsprintf, vsnprintf \- formatted output conversion
 .SH SYNOPSIS
@@ -158,7 +159,14 @@ and
 .fi
 .RE
 are equivalent. The second style allows repeated references to the
-same argument. The C99 standard does not include the style using `$'.
+same argument. The C99 standard does not include the style using `$',
+which comes from the Single Unix Specification.  If the style using
+`$' is used, it must be used throughout for all conversions taking an
+argument and all width and precision arguments, but it may be mixed
+with `%%' formats which do not consume an argument.  There may be no
+gaps in the numbers of arguments specified using `$'; for example, if
+arguments 1 and 3 are specified, argument 2 must also be specified
+somewhere in the format string.
 
 For some numeric conversion a radix character (`decimal point') or
 thousands' grouping character is used. The actual character used
@@ -193,6 +201,7 @@ conversions) prepended to it.  For
 .BR e ,
 .BR E ,
 .BR f ,
+.BR F ,
 .BR g ,
 and
 .B G
@@ -275,12 +284,28 @@ For decimal conversion
 .BR d ,
 .BR u ,
 .BR f ,
+.BR F ,
 .BR g ,
 .BR G )
 the output is to be grouped with thousands' grouping characters
 if the locale information indicates any.  Note that many versions of 
 .B gcc
-cannot parse this option and will issue a warning.
+cannot parse this option and will issue a warning.  SUSv2 does not
+include %'F.
+.PP
+glibc 2.2 adds one further flag character.
+.TP
+.B I
+For decimal integer conversion
+.BR "" ( i ,
+.BR d ,
+.BR u )
+the output uses the locale's alternative output digits, if any (for
+example, Arabic digits).  However, it does not include any locale
+definitions with such
+.B outdigits
+defined.
+.\" See http://sources.redhat.com/ml/libc-alpha/2000-08/msg00230.html
 .SS "The field width"
 An optional decimal digit string (with nonzero first digit) specifying
 a minimum field width.  If the converted value has fewer characters
@@ -645,13 +670,13 @@ precision is given and it is so small that the number of bytes written
 exceeds it before the end of the array is reached.
 .TP
 .B C
-(Not in C99.)
+(Not in C99, but in SUSv2.)
 Synonym for
 .BR lc .
 Don't use.
 .TP
 .B S
-(Not in C99.)
+(Not in C99, but in SUSv2.)
 Synonym for
 .BR ls .
 Don't use.
@@ -754,6 +779,7 @@ make_message(const char *fmt, ...) {
 }
 .fi
 .RE
+
 .SH "SEE ALSO"
 .BR printf (1),
 .BR wcrtomb (3),
@@ -799,7 +825,8 @@ Additionally, it accepts D,O,U as synonyms for ld,lo,lu.
 support for %D disappeared.) No locale-dependent radix character,
 no thousands' separator, no NaN or infinity, no %m$ and *m$.
 .PP
-Linux libc5 knows about all six flags, locale, %m$ and *m$.
+Linux libc5 knows about the five C standard flags and the ' flag,
+locale, %m$ and *m$.
 It knows about the length modifiers h,l,L,Z,q, but accepts L and q
 both for long doubles and for long long integers (this is a bug).
 It no longer recognizes FDOU, but adds a new conversion character
@@ -810,6 +837,9 @@ which outputs
 glibc 2.0 adds conversion characters C and S.
 .PP
 glibc 2.1 adds length modifiers hh,j,t,z and conversion characters a,A.
+.PP
+glibc 2.2 adds the conversion character F with C99 semantics, and the
+flag character I.
 .SH HISTORY
 Unix V7 defines the three routines 
 .BR printf ,
@@ -867,6 +897,16 @@ argument.
 Thus, the use of
 .B snprintf
 with early libc4 leads to serious security problems.
+.PP
+Code such as
+.BI printf( foo );
+often indicates a bug, since
+.I foo
+may contain a % character.  If
+.I foo
+comes from untrusted user input, it may contain %n, causing the
+.B printf
+call to write to memory and creating a security hole.
 .PP
 Some floating point conversions under early libc4
 caused memory leaks.

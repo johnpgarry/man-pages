@@ -34,6 +34,7 @@
 .\" Modified Fri Jul 23 21:38:19 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 00:22:35 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Fri Jun 25 23:51:39 BST 1999 by Rachael Munns <vashti@dream.org.uk>
+.\" Modified Thu Sep 21 20:57:23 MET 2000 by Andries Brouwer <aeb@cwi.nl>
 .\"
 .TH IOCTL 2 "23 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -69,7 +70,10 @@ in bytes.  Macros and defines used in specifying an ioctl
 are located in the file
 .IR <sys/ioctl.h> .
 .SH "RETURN VALUE"
-On success, zero is returned.  On error, \-1 is returned, and
+Usually, on success zero is returned.
+A few ioctls use the return value as an output parameter
+and return a nonnegative value on success.
+On error, \-1 is returned, and
 .I errno
 is set appropriately.
 .SH ERRORS

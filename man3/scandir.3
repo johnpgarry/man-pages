@@ -30,6 +30,7 @@
 .\"     Miguel Barreiro (enano@avalon.yaix.es).  Added example.
 .\" In case a Debian maintainer sees this: the Debian version is wrong.
 .\" Please do not `correct' the version here.
+.\" Modified Sun Sep 24 20:15:46 2000 by aeb, following Petter Reinholdtsen.
 .\"
 .TH SCANDIR 3  "11 April 1996" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -83,8 +84,13 @@ main(){
     n = scandir(".", &namelist, 0, alphasort);
     if (n < 0)
         perror("scandir");
-    else
-        while(n--) printf("%s\en", namelist[n]->d_name);
+    else {
+        while(n--) {
+            printf("%s\en", namelist[n]->d_name);
+            free(namelist[n]);
+        }
+        free(namelist);
+    }
 }
 .fi
 .SH "SEE ALSO"
