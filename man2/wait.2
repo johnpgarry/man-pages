@@ -9,7 +9,7 @@
 .\" Permission is granted to copy and distribute modified versions of this
 .\" manual under the conditions for verbatim copying, provided that the
 .\" entire resulting derived work is distributed under the terms of a
-.\" permission notice identical to this one
+.\" permission notice identical to this one.
 .\" 
 .\" Since the Linux kernel and libraries are constantly changing, this
 .\" manual page may be incorrect or out-of-date.  The author(s) assume no
@@ -170,7 +170,10 @@ was used and no child was available, or \-1 on error (in which case
 is set to an appropriate value).
 .SH ERRORS
 .TP
-.B ECHILD
+.BR ECHILD " (for " wait )
+The calling process does not have any unwaited-for children.
+.TP
+.BR ECHILD " (for " waitpid )
 The process specified in
 .I pid
 does not exist or is not a child of the calling process.

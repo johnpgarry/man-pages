@@ -45,15 +45,15 @@ fclose \- close a stream
 .SH SYNOPSIS
 .B #include <stdio.h>
 .sp
-.BI "int fclose(FILE *" stream );
+.BI "int fclose(FILE *" fp );
 .SH DESCRIPTION
 The
 .B fclose
-function dissociates the named
-.I stream
-from its underlying file or set of functions.  If the stream was being used
-for output, any buffered data is written first, using
-.BR fflush (3).
+function will flush the stream pointed to by
+.IR fp
+(writing any buffered output data using
+.BR fflush (3))
+and close the underlying file descriptor.
 .SH "RETURN VALUE"
 Upon successful completion 0 is returned.  Otherwise,
 .B EOF
@@ -61,13 +61,13 @@ is returned and the global variable
 .I errno
 is set to indicate the error.  In either case any further access
 (including another call to
-.BR fclose "())"
+.BR fclose ())
 to the stream results in undefined behaviour.
 .SH ERRORS
 .TP
 .B EBADF
 The filedescriptor underlying
-.I stream
+.I fp
 is not valid.
 .\"  This error cannot occur unless you are mixing ANSI C stdio operations and
 .\"  low-level file operations on the same stream. If you do get this error,

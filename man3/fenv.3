@@ -32,13 +32,13 @@ fesetenv, feupdateenv - C99 floating point rounding and exception handling
 .nf
 .B #include <fenv.h>
 .sp
-.BI "void feclearexcept(int " excepts );
+.BI "int feclearexcept(int " excepts );
 .br
-.BI "void fegetexceptflag(fexcept_t *" flagp ", int " excepts );
+.BI "int fegetexceptflag(fexcept_t *" flagp ", int " excepts );
 .br
-.BI "void feraiseexcept(int " excepts );
+.BI "int feraiseexcept(int " excepts );
 .br
-.BI "void fesetexceptflag(const fexcept_t *" flagp ", int " excepts );
+.BI "int fesetexceptflag(const fexcept_t *" flagp ", int " excepts );
 .br
 .BI "int fetestexcept(int " excepts );
 .sp
@@ -46,13 +46,13 @@ fesetenv, feupdateenv - C99 floating point rounding and exception handling
 .br
 .BI "int fesetround(int " rounding_mode );
 .sp
-.BI "void fegetenv(fenv_t *" envp );
+.BI "int fegetenv(fenv_t *" envp );
 .br
 .BI "int feholdexcept(fenv_t *" envp );
 .br
-.BI "void fesetenv(const fenv_t *" envp );
+.BI "int fesetenv(const fenv_t *" envp );
 .br
-.BI "void feupdateenv(const fenv_t *" envp );
+.BI "int feupdateenv(const fenv_t *" envp );
 .fi
 .SH DESCRIPTION
 These eleven functions were defined in C99, and describe the handling
@@ -200,6 +200,12 @@ of those previously set with those in
 As before, the object
 .RI * envp
 must be known to be valid.
+
+.SH "RETURN VALUE"
+These functions return zero on success and non-zero if an error occurred.
+.\" Earlier seven of these functions were listed as returning void.
+.\" This was corrected in Corrigendum 1 (ISO/IEC 9899:1999/Cor.1:2001(E))
+.\" of the C99 Standard.
 
 .SH "GNU DETAILS"
 If possible, the GNU C Library defines a macro

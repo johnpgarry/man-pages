@@ -24,8 +24,8 @@
 .\"
 .\" 1996-04-10  Markus Kuhn <mskuhn@cip.informatik.uni-erlangen.de>
 .\"             First version written
-.\"
-.TH NANOSLEEP 2 1996-04-10 "Linux 1.3.85" "Linux Programmer's Manual"
+.\" Modified, 2004-10-24, aeb
+.TH NANOSLEEP 2 2004-10-24 "Linux 2.6.9" "Linux Programmer's Manual"
 .SH NAME
 nanosleep \- pause execution for a specified time
 .SH SYNOPSIS
@@ -119,16 +119,18 @@ again. For the same reason, the value returned in case of a delivered
 signal in *\fIrem\fR is usually rounded to the next larger multiple of
 1/\fIHZ\fR\ s.
 
-As some applications require much more precise pauses (e.g., in order
-to control some time-critical hardware),
+.SS "Old behaviour"
+In order to support applications requiring much more precise pauses
+(e.g., in order to control some time-critical hardware),
 .B nanosleep
-is also capable of short high-precision pauses. If the process is
-scheduled under a real-time policy like
+would handle pauses of up to 2\ ms by busy waiting with microsecond
+precision when called from a process scheduled under a real-time policy
+like
 .I SCHED_FIFO
 or
-.IR SCHED_RR ,
-then pauses of up to 2\ ms will be performed as busy waits with
-microsecond precision.
+.IR SCHED_RR .
+This special extension was removed in kernel 2.5.39, hence is still present in
+current 2.4 kernels, but not in 2.6 kernels.
 .SH "CONFORMING TO"
 POSIX.1b (formerly POSIX.4).
 .SH "SEE ALSO"

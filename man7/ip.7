@@ -15,6 +15,8 @@ ip \- Linux IPv4 protocol implementation
 .\" .B #include <net/netinet.h> -- does not exist anymore
 .\" .B #include <linux/errqueue.h> -- never include <linux/foo.h>
 .B #include <netinet/in.h>
+.br
+.B #include <netinet/ip.h>        \fR/* superset of previous */
 .sp
 .IB tcp_socket " = socket(PF_INET, SOCK_STREAM, 0);"
 .br 

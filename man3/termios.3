@@ -24,18 +24,19 @@
 .\" Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
 .\" USA.
 .\"
-.\" Modified Sat Jul 24 15:37:39 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sat Feb 25 18:17:14 1995 by Jim Van Zandt <jrv@vanzandt.mv.com>
-.\" Modified Sat Sep  2 22:33:09 1995 by Jim Van Zandt <jrv@vanzandt.mv.com>
+.\" Modified 1993-07-24 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 1995-02-25 by Jim Van Zandt <jrv@vanzandt.mv.com>
+.\" Modified 1995-09-02 by Jim Van Zandt <jrv@vanzandt.mv.com>
 .\" moved to man3, aeb, 950919
-.\" Modified Sat 22 Sep 2001 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified 2001-09-22 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\" Modified 2001-12-17, aeb
+.\" Modified 2004-10-31, aeb
 .\"
-.TH TERMIOS 3 2001-12-17 "Linux" "Linux Programmer's Manual"
+.TH TERMIOS 3 2004-10-31 "Linux" "Linux Programmer's Manual"
 .SH NAME
 termios, tcgetattr, tcsetattr, tcsendbreak, tcdrain, tcflush, tcflow,
-cfmakeraw, cfgetospeed, cfgetispeed, cfsetispeed, cfsetospeed \- get and set
-terminal attributes, line control, get and set baud rate
+cfmakeraw, cfgetospeed, cfgetispeed, cfsetispeed, cfsetospeed, cfsetspeed \-
+get and set terminal attributes, line control, get and set baud rate
 .SH SYNOPSIS
 .ad l
 .ft B
@@ -55,7 +56,7 @@ terminal attributes, line control, get and set baud rate
 .sp
 .BI "int tcflow(int " fd ", int " action );
 .sp
-.BI "int cfmakeraw(struct termios *" termios_p );
+.BI "void cfmakeraw(struct termios *" termios_p );
 .sp
 .BI "speed_t cfgetispeed(const struct termios *" termios_p );
 .sp
@@ -575,6 +576,9 @@ sets the input baud rate stored in the \fBtermios\fP structure to
 .IR speed .
 If the input baud rate is set to zero, the input baud rate will be
 equal to the output baud rate.
+.LP
+.B cfsetspeed()
+is a 4.4 BSD extension. It will set both input and output speed.
 .SH "RETURN VALUE"
 .LP
 .B cfgetispeed()

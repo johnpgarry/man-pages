@@ -7,7 +7,7 @@
 .\" Permission is granted to copy and distribute modified versions of this
 .\" manual under the conditions for verbatim copying, provided that the
 .\" entire resulting derived work is distributed under the terms of a
-.\" permission notice identical to this one
+.\" permission notice identical to this one.
 .\" 
 .\" Since the Linux kernel and libraries are constantly changing, this
 .\" manual page may be incorrect or out-of-date.  The author(s) assume no
@@ -24,8 +24,10 @@
 .\"     Linux libc source code
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
-.\" Modified Sun Jul 25 11:01:53 1993 by Rik Faith (faith@cs.unc.edu)
-.TH RESOLVER 3  1993-05-21 "BSD" "Linux Programmer's Manual"
+.\" Modified 1993-07-25 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 2004-10-31 by aeb
+.\"
+.TH RESOLVER 3 2004-10-31 "BSD" "Linux Programmer's Manual"
 .SH NAME
 res_init, res_query, res_search, res_querydomain, res_mkquery, res_send, 
 dn_comp, dn_expand \- resolver routines
@@ -77,6 +79,8 @@ dn_comp, dn_expand \- resolver routines
 .BI "int " length );
 .RE
 .fi
+.sp
+Link with \-lresolv.
 .SH DESCRIPTION
 These functions make queries to and interpret the responses from Internet
 domain name servers.

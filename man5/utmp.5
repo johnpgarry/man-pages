@@ -20,11 +20,12 @@
 .\" Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
 .\" USA.
 .\" 
-.\" Modified Sun Jul 25 10:44:50 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Thu Feb 26 16:08:49 MET 1995 by Michael Haardt
-.\" Modified Sat Jul 20 14:39:03 MET DST 1996 by Michael Haardt
-.\" Modified Wed Jul  2 20:20:53 ART 1997 by Nicolás Lichtmaier <nick@debian.org>
-.TH UTMP 5 1997-07-02 "File formats" "Linux Programmer's Manual"
+.\" Modified 1993-07-25 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 1995-02-26 by Michael Haardt
+.\" Modified 1996-07-20 by Michael Haardt
+.\" Modified 1997-07-02 by Nicolás Lichtmaier <nick@debian.org>
+.\" Modified 2004-10-31 by aeb, following Gwenole Beauchesne
+.TH UTMP 5 2004-10-31 "File formats" "Linux Programmer's Manual"
 .SH NAME
 utmp, wtmp \- login records
 .SH SYNOPSIS
@@ -213,6 +214,21 @@ libc5.
 .SH RESTRICTIONS
 The file format is machine dependent, so it is recommended that it be
 processed only on the machine architecture where it was created.
+.PP
+Note that on platforms which can run both 32-bit and 64-bit applications
+(x86-64, ppc64, s390x, etc.), the sizes of the fields of a struct utmp
+must be the same in 32-bit mode as in 64-bit mode.
+This is achieved by changing the type of
+.I ut_session
+to int32_t, and that of
+.I ut_tv
+to a struct with two int32_t fields
+.I tv_sec
+and
+.IR tv_usec .
+(Thus, in order to fill it, first get the time into a real struct timeval,
+then copy the two fields to
+.IR ut_tv .)
 .SH BUGS
 This manpage is based on the libc5 one, things may work differently now.
 .SH "SEE ALSO"

@@ -9,7 +9,7 @@
 .\" Permission is granted to copy and distribute modified versions of this
 .\" manual under the conditions for verbatim copying, provided that the
 .\" entire resulting derived work is distributed under the terms of a
-.\" permission notice identical to this one
+.\" permission notice identical to this one.
 .\" 
 .\" Since the Linux kernel and libraries are constantly changing, this
 .\" manual page may be incorrect or out-of-date.  The author(s) assume no
@@ -131,12 +131,9 @@ this mapping. When swap space is reserved, one has the guarantee
 that it is possible to modify this private copy-on-write region.
 When it is not reserved one might get SIGSEGV upon a write
 when no memory is available.
-.\" (On Linux there are no guarantees. Any process can be killed
-.\" at any moment when the system runs out of memory.)
 .TP
-.B MAP_LOCKED
-(Linux 2.5.37 and later) Lock the pages of the mapped region into
-memory in the manner of
+.BR MAP_LOCKED " (since Linux 2.5.37)"
+Lock the pages of the mapped region into memory in the manner of
 .BR mlock() .
 This flag is ignored in older kernels.
 .\" If set, the mapped pages will not be swapped out.
@@ -164,6 +161,12 @@ Put the mapping into the first 2GB of the process address space.
 Ignored when
 .I MAP_FIXED
 is set. This flag is currently only supported on x86-64 for 64bit programs.
+.TP
+.BR MAP_POPULATE " (since Linux 2.5.46)"
+Populate (prefault) pagetables.
+.TP
+.BR MAP_NONBLOCK " (since Linux 2.5.46)"
+Do not block on IO.
 .LP
 Some systems document the additional flags MAP_AUTOGROW, MAP_AUTORESRV,
 MAP_COPY, and MAP_LOCAL.
@@ -325,9 +328,10 @@ is defined in <unistd.h> to a value greater than 0. (See also
 SVr4, POSIX.1b (formerly POSIX.4), 4.4BSD, SUSv2.
 SVr4 documents additional error codes ENXIO and ENODEV.
 SUSv2 documents additional error codes EMFILE and EOVERFLOW.
-
-.I MAP_32BIT 
-is a Linux extension.
+.SH BUGS
+On Linux there are no guarantees like those suggested above
+under MAP_NORESERVE. By default, any process can be killed
+at any moment when the system runs out of memory.
 .SH "SEE ALSO"
 .BR getpagesize (2),
 .BR mlock (2),
@@ -338,5 +342,5 @@ is a Linux extension.
 .br
 B.O. Gallmeister, POSIX.4, O'Reilly, pp. 128-129 and 389-391.
 .\"
-.\" Repeat after me: private read-only mappings are 100% equivalent to shared
-.\" read-only mappings. No ifs, buts, or maybes.
+.\" Repeat after me: private read-only mappings are 100% equivalent to
+.\" shared read-only mappings. No ifs, buts, or maybes. -- Linus

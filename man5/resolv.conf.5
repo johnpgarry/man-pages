@@ -16,7 +16,9 @@
 .\"	@(#)resolver.5	5.9 (Berkeley) 12/14/89
 .\"	$Id: resolver.5,v 8.6 1999/05/21 00:01:02 vixie Exp $
 .\"
-.TH RESOLV.CONF 5 2004-06-08
+.\" Added ndots remark by Bernhard R. Link - debian bug #182886
+.\"
+.TH RESOLV.CONF 5 2004-10-31
 .UC 4
 .SH NAME
 resolv.conf \- resolver configuration file
@@ -69,8 +71,25 @@ by default, it contains only the local domain name.
 This may be changed by listing the desired domain search path
 following the \fIsearch\fP keyword with spaces or tabs separating
 the names.
-Most resolver queries will be attempted using each component
+Resolver queries having fewer than
+.I ndots
+dots (default is 1) in them will be attempted using each component
 of the search path in turn until a match is found.
+For environments with multiple subdomains please read
+.BI "options ndots:" n
+below to avoid man-in-the-middle attacks and unnecessary
+traffic for the root-dns-servers.
+.\" When having a resolv.conv with a line
+.\"  search subdomain.domain.tld domain.tld
+.\" and doing a hostlookup, for example by
+.\"  ping host.anothersubdomain
+.\" it sends dns-requests for
+.\"  host.anothersubdomain.
+.\"  host.anothersubdomain.subdomain.domain.tld.
+.\"  host.anothersubdomain.domain.tld.
+.\" thus not only causing unnecessary traffic for the root-dns-servers
+.\" but broadcasting information to the outside and making man-in-the-middle
+.\" attacks possible.
 Note that this process may be slow and will generate a lot of network
 traffic if the servers for the listed domains are not local,
 and that queries will time out if no server is available

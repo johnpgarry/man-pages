@@ -62,7 +62,7 @@ The directory to be removed is currently in use by the system or some
 process and the implementation considers this to be an
 error.
 .TP 7
-.B EEXIST]\ or\ [ENOTEMPTY
+.B EEXIST \fRor\fP ENOTEMPTY
 The \fIpath\fP argument names a directory that is not an empty directory,
 or there are hard links to the directory other than dot
 or a single entry in dot-dot.
@@ -89,7 +89,7 @@ to an empty string.
 .B ENOTDIR
 A component of \fIpath\fP is not a directory.
 .TP 7
-.B EPERM]\ or\ [EACCES
+.B EPERM \fRor\fP EACCES
 .sp
 The S_ISVTX flag is set on the parent directory of the directory to
 be removed and the caller is not the owner of the directory to

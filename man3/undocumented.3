@@ -10,7 +10,7 @@
 .\" Permission is granted to copy and distribute modified versions of this
 .\" manual under the conditions for verbatim copying, provided that the
 .\" entire resulting derived work is distributed under the terms of a
-.\" permission notice identical to this one
+.\" permission notice identical to this one.
 .\" 
 .\" Since the Linux kernel and libraries are constantly changing, this
 .\" manual page may be incorrect or out-of-date.  The author(s) assume no
@@ -23,10 +23,10 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Corrections, 961108, meem@sherilyn.wustl.edu
-.\"
-.\" "
-.TH UNDOCUMENTED 3 2001-09-24 "Linux" "Linux Programmer's Manual"
+.\" 1996-11-08, meem@sherilyn.wustl.edu, corrections
+.\" 2004-10-31, aeb, changed maintainer address, updated list
+.\" 
+.TH UNDOCUMENTED 3 2004-10-31 "Linux" "Linux Programmer's Manual"
 .SH NAME
 none \- undocumented library functions
 .SH SYNOPSIS
@@ -38,19 +38,27 @@ the standard libraries but not yet documented in man pages.
 If you have information about these functions,
 please look in the source code, write a man page (using a style
 similar to that of the other Linux section 3 man pages), and send it to
-.B aeb@cwi.nl
+.B mtk-manpages@gmx.net
 for inclusion in the next man page release.
 .SH "THE LIST"
 
+authdes_create
+authdes_getucred
+authdes_pk_create
 backtrace
 backtrace_symbols
 backtrace_symbols_fd
 canonicalize_file_name
-cfsetspeed
+chflags
+clntunix_create
+creat64
 dn_skipname
-endnetgrent
+fattach
+fchflags
 fclean
 fcrypt
+fdetach
+fexecve
 fmemopen
 fopencookie
 fp_nquery
@@ -58,15 +66,21 @@ fp_query
 fp_resstat
 freadable
 freading
+freeifaddrs
+freopen64
+fseeko64
 fstatvfs
+ftello64
+ftw64
 fwriteable
 fwriting
+fwscanf
 get_avphys_pages
+getdirentries64
 getgrid_r
 getgrname_r
 getgrouplist
-getnetgrent
-getnetgrent_r
+getmsg
 getnetname
 get_nprocs
 get_nprocs_conf
@@ -82,15 +96,12 @@ if_freenameindex
 if_indextoname
 if_nameindex
 if_nametoindex
-ilogb
 inet_nsap_addr
 inet_nsap_ntoa
 init_des
 initstate_r
-innetgr
 libc_nls_init
 lio_listio
-logb
 mallinfo
 mallopt
 mcheck
@@ -140,7 +151,6 @@ ruserpass
 setfileno
 sethostfile
 setkey_r
-setnetgrent
 setstate_r
 statvfs
 strchrnul

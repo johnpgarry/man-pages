@@ -46,7 +46,7 @@ sets \fIerrno\fP to ERANGE and raises the zero divide exception.
 (Similarly, \fBlgammaf()\fP returns HUGE_VALF and \fBlgammal()\fP returns
 HUGE_VALL.)
 .SH ERRORS
-An application wishing to check for error situations should set
+In order to check for errors, set
 .I errno
 to zero and call
 .I feclearexcept(FE_ALL_EXCEPT)

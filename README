@@ -22,7 +22,7 @@ Reports on further duplicates are welcome.
 Formerly present and now removed duplicates:
  *_module.2, get_kernel_syms.2 (found in modutils-2.1.*),
  exports.5 (found in nfs-server-2.2*),
- fstab.5, nfs.5 (found in util-linux-2.11*),
+ fstab.5, nfs.5 (found in util-linux-2.12*),
  lilo.8, lilo.conf.5 (found in lilo-21.6*).
 
 Note that the pages that come with GNU fileutils are really
@@ -36,5 +36,5 @@ Copyrights: These man pages come under various copyrights.
 For the POSIX pages, see the file POSIX-COPYRIGHT.
 All other pages are freely distributable when the nroff source is included.
 
-Send corrections and additions to aeb@cwi.nl
+Send corrections and additions to mtk-manpages@gmx.net
 (man.7 has some info on the macros to use).

@@ -9,7 +9,7 @@
 .\" Permission is granted to copy and distribute modified versions of this
 .\" manual under the conditions for verbatim copying, provided that the
 .\" entire resulting derived work is distributed under the terms of a
-.\" permission notice identical to this one
+.\" permission notice identical to this one.
 .\"
 .\" Since the Linux kernel and libraries are constantly changing, this
 .\" manual page may be incorrect or out-of-date.  The author(s) assume no
@@ -20,14 +20,15 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" 2003-12-10 Initial creation, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" 2004-10-28 aeb, corrected prototype, prot must be 0
 .\"
-.TH REMAP_FILE_PAGES 2 2003-12-10 "Linux 2.6" "Linux Programmer's Manual"
+.TH REMAP_FILE_PAGES 2 2004-10-28 "Linux 2.6" "Linux Programmer's Manual"
 .SH NAME
 remap_file_pages \- create a non-linear file mapping
 .SH SYNOPSIS
 .B #include <sys/mman.h>
 .sp
-.BI "void *remap_file_pages(void *" start ", "
+.BI "int remap_file_pages(void *" start ", "
 .BI "size_t " size ", int " prot ", "
 .BI "ssize_t " pgoff ", int " flags );
 .SH DESCRIPTION
@@ -91,19 +92,13 @@ will be placed.
 
 The
 .I prot
-argument is ignored, and must be specified as 0.
-In the future, it may be possible to use this argument to change
-the protection of the pages of the specified region without
-creating a new VMA
-(as is done by
-.BR mprotect() ).
+argument must be specified as 0.
 
 The
 .I flags
 argument has the same meaning as for
 .BR mmap() ,
 but all flags other than MAP_NONBLOCK are ignored.
-.\" Andries, MAP_NONBLOCK is not yet described in the mmap.2 page...
 .SH "RETURN VALUE"
 On success,
 .B remap_file_pages()
@@ -125,6 +120,7 @@ created with the MAP_SHARED flag.
 .B EINVAL
 .IR start ,
 .IR size ,
+.IR prot ,
 or
 .I pgoff
 is invalid.

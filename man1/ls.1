@@ -47,7 +47,9 @@ each directory the list of files inside) is sorted separately
 according to the collating sequence in the current locale.
 When the \-l option is given, each list is preceded by a summary
 line giving the total size of all files in the list, measured
-in semi-kilobytes (512 B).
+in 512-byte or 1024-byte blocks.
+.\" POSIX: 512, GNU: 1024
+.\" rumoured: early AIX 3.1: 1024, later AIX: 512
 .PP
 The output is to stdout, one entry per line, unless multicolumn
 output is requested by the \-C option. However, for output to a
@@ -83,7 +85,7 @@ Precede the output for the file by the file serial number (i-node number).
 .B "\-l"
 Write (in single-column format) the file mode, the number of links
 to the file, the owner name, the group name, the size of the file (in bytes),
-the timestamp, and the filename.
+the timestamp, and the filename. The summary line uses 512-byte units.
 
 The file types are as follows:
 .B \-

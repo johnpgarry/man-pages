@@ -44,6 +44,8 @@ openpty, login_tty, forkpty \- tty utility functions
 .BI "int login_tty(int " fd );
 .sp
 .BI "pid_t forkpty(int *" amaster ", char *" name ", struct termios *" termp ", struct winsize *" winp );
+.sp
+Link with -lutil.
 .SH DESCRIPTION
 The
 .B openpty()
