@@ -24,34 +24,36 @@
 .\"
 .\" Modified Fri Jun 23 01:35:19 1995 Andries Brouwer <aeb@cwi.nl>
 .\" (prompted by Bas V. de Bakker <bas@phys.uva.nl>)
-.\" Corrected (and moved to man3), 980612, aeb
-.TH PROFIL 3 "23 July 1993" "Linux 2.0" "Linux Programmer's Manual"
+.TH PROFIL 2 "23 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 profil \- execution time profile
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
-.BI "int profil(u_short *" buf ", size_t " bufsiz ", size_t " offset ", u_int " scale );
+.BI "int profil(char *" buf ", int " bufsiz ", int " offset ", int " scale );
 .SH DESCRIPTION
-This routine provides a means to find out in what areas your program
-spends most of its time. The argument
-.I buf
+Under Linux 0.99.11,
+.B profil
+is not implemented in the kernel.  Instead, the DLL 4.4.1 libraries provide
+a user-space implementation.
+
+.I Buf
 points to
 .I bufsiz
 bytes of core.  Every virtual 10 milliseconds, the user's program counter (PC)
 is examined:
 .I offset
 is subtracted and the result is multiplied by
-.IR scale
-and divided by 65536.
-If the resulting value is less than
-.IR bufsiz ,
-then the corresponding entry in
-.I buf
-is incremented.
+.IR scale .
+If this address is in
+.IR buf ,
+then the word pointed to is incremented.
+
 If
-.I buf
-is NULL, profiling is disabled.
+.I scale
+is less than 2 or
+.I bufsiz
+is zero, profiling is disabled.
 .SH "RETURN VALUE"
 Zero is always returned.
 .SH BUGS
@@ -59,10 +61,15 @@ Zero is always returned.
 cannot be used on a program that also uses
 .B ITIMER_PROF
 itimers.
+Calling
+.B profil
+with an invalid
+.I buf
+will result in a core dump.
 
 True kernel profiling provides more accurate results.
-Libc 4.4 contained a kernel patch providing a system call profil.
 .SH "CONFORMING TO"
-Similar to a call in SVr4 (but not POSIX.1).
+Similar to a call in SVr4 (but not POSIX.1).  However, in the SVr4
+version the first argument is short *, allowing higher counter values.
 .SH "SEE ALSO"
 .BR gprof "(1), " setitimer "(2), " signal "(2), " sigaction (2)

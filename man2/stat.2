@@ -30,9 +30,8 @@
 .\" Modified Fri Jan 31 17:43:02 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Thu Jan 9 10:20:31 1995 by Martin Schulze (joey@infodrom.north.de)
 .\"          to add more error codes suggested by Richard Kettlewell (richard@greenend.org.uk)
-.\" Modified Wed May 13 18:46:44 1998 by Michael Haardt <michael@cantor.informatik.rwth-aachen.de>
 .\" 
-.TH STAT 2 "May 13, 1998" "Linux" "System calls"
+.TH STAT 2 "1 January 1995" "Linux 1.1.75" "Linux Programmer's Manual"
 .SH NAME
 stat, fstat, lstat \- get file status
 .SH SYNOPSIS
@@ -75,7 +74,7 @@ is stated in place of
 .PP
 They all return a
 .I stat
-structure, which contains the following fields:
+structure, which is declared as follows:
 .PP
 .RS
 .nf
@@ -83,7 +82,7 @@ struct stat
 {
     dev_t         st_dev;      /* device */
     ino_t         st_ino;      /* inode */
-    mode_t        st_mode;     /* protection */
+    umode_t       st_mode;     /* protection */
     nlink_t       st_nlink;    /* number of hard links */
     uid_t         st_uid;      /* user ID of owner */
     gid_t         st_gid;      /* group ID of owner */
@@ -128,7 +127,7 @@ Traditionally,
 is changed by writing or by setting inode information (i.e., owner, group,
 link count, mode, etc.).
 .PP
-The following POSIX macros are defined to check the file type:
+The following macros are defined to check the file type:
 .RS
 .TP 1.2i
 S_ISLNK(m)
@@ -159,28 +158,28 @@ field:
 .RS
 .TP 0.9i
 S_IFMT
-00170000 bitmask for the file type bitfields (not POSIX)
+00170000 bitmask for the file type bitfields
 .TP
-S_IFSOCK
-0140000 socket (not POSIX)
+S_IFSOCK 
+0140000 socket
 .TP
 S_IFLNK
-0120000 symbolic link (not POSIX)
+0120000 symbolic link
 .TP
 S_IFREG
-0100000 regular file (not POSIX)
+0100000 regular file
 .TP
 S_IFBLK
-0060000 block device (not POSIX)
+0060000 block device
 .TP
 S_IFDIR
-0040000 directory (not POSIX)
+0040000 directory
 .TP
 S_IFCHR
-0020000 character device (not POSIX)
+0020000 character device
 .TP
 S_IFIFO
-0010000 fifo (not POSIX)
+0010000 fifo
 .TP
 S_ISUID
 0004000 set UID bit
@@ -189,19 +188,19 @@ S_ISGID
 0002000 set GID bit
 .TP
 S_ISVTX
-0001000 sticky bit (not POSIX)
+0001000 sticky bit
 .TP
 S_IRWXU
 00700 user (file owner) has read, write and execute permission
 .TP
-S_IRUSR
-00400 user has read permission (same as S_IREAD, which is not POSIX)
+S_IRUSR (S_IREAD)
+00400 user has read permission
 .TP
-S_IWUSR
-00200 user has write permission (same as S_IWRITE, which is not POSIX)
+S_IWUSR (S_IWRITE)
+00200 user has write permission
 .TP
-S_IXUSR
-00100 user has execute permission (same as S_IEXEC, which is not POSIX)
+S_IXUSR (S_IEXEC)
+00100 user has execute permission
 .TP
 S_IRWXG
 00070 group has read, write and execute permission
