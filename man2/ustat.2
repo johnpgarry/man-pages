@@ -21,6 +21,7 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Created   Wed Aug  9 1995      Thomas K. Dyas <tdyas@eden.rutgers.edu>
+.\" Modified Fri Jan 31 23:52:21 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH USTAT 2 "9 August 1995" "Linux 1.3.16" "Linux Programmer's Manual"
 .SH NAME
@@ -82,13 +83,9 @@ does not support this operation, or any version of Linux before
 has only been provided for compatibility. All new programs should use
 .BR statfs (2)
 instead.
-.SH HISTORY
-.B ustat
-was first implemented in Linux 1.3.16. All versions of Linux before
-1.3.16 will return
-.BR ENOSYS .
 .SH "CONFORMING TO"
-System V
+SVr4.  SVr4 documents additional error conditions ENOLINK, ECOMM, and EINTR
+but has no ENOSYS condition.
 .SH "SEE ALSO"
 .BR statfs "(2), " stat (2)
 

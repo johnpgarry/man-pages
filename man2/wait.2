@@ -23,12 +23,12 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\"
-.\" Modified Sat Jul 24 13:30:06 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sun Aug 21 17:42:42 1994 by Rik Faith (faith@cs.unc.edu)
-.\"          (Thanks to koen@win.tue.nl (Koen Holtman))
-.\" Modified Wed May 17 15:54:12 1995 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 13:30:06 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Sun Aug 21 17:42:42 1994 by Rik Faith <faith@cs.unc.edu>
+.\"          (Thanks to Koen Holtman <koen@win.tue.nl>)
+.\" Modified Wed May 17 15:54:12 1995 by Rik Faith <faith@cs.unc.edu>
 .\"           To remove *'s from status in macros (Thanks to Michael Shields).
-.\" Modified as suggested by Nick Duffek (nsd@bbc.com), aeb, 960426
+.\" Modified as suggested by Nick Duffek <nsd@bbc.com>, aeb, 960426
 .\"
 .TH WAIT 2  "24 July 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -168,8 +168,8 @@ if
 .B WNOHANG
 was not set and an unblocked signal or a
 .B SIGCHLD
-was caught; this is an extension to the POSIX.1 standard.
+was caught; this is an extension to the POSIX.1 standard and SVr4.
 .SH "CONFORMING TO"
-POSIX.1
+SVr4, POSIX.1
 .SH "SEE ALSO"
 .BR signal "(2), " wait4 "(2), " signal (7)

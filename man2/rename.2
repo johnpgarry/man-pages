@@ -24,7 +24,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Sat Jul 24 00:35:52 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 00:35:52 1993 by Rik Faith <faith@cs.unc.edu>
 .\"
 .TH RENAME 2 "24 July 1993" "Linux 0.99.7" "Linux Programmer's Manual"
 .SH NAME
@@ -94,6 +94,9 @@ is a non-empty directory.
 exists and is the current working directory or root directory of some
 process.
 .TP
+.B EEXIST
+The new pathname contained a path prefix of the old.
+.TP
 .B EINVAL
 An attempt was made to make a directory a subdirectory of itself.
 .TP
@@ -157,17 +160,10 @@ whose expansion contains a reference to itself.
 The device containing the file has no room for the new directory
 entry.
 .SH "CONFORMING TO"
-POSIX, BSD 4.3, ANSI C
+POSIX, 4.3BSD, ANSI C
 .SH BUGS
-Currently (Linux 0.99pl7) most of the filesystems except Minix will
-not allow any overwriting
-.BR rename s
-involving directories. You get
-.BR EEXIST
-if you try.
-
-On NFS filesystems, you can not assume that only because the operation
-failed, the file was not renamed.  If the server does the rename operation
+On NFS filesystems, you can not assume that if the operation
+failed the file was not renamed.  If the server does the rename operation
 and then crashes, the retransmitted RPC which will be processed when the
 server is up again causes a failure.  The application is expected to
 deal with this.  See

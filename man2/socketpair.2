@@ -31,7 +31,8 @@
 .\"
 .\"     @(#)socketpair.2	6.4 (Berkeley) 3/10/91
 .\"
-.\" Modified Sat Jul 24 10:49:44 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 10:49:44 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Tue Oct 22 22:15:39 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH SOCKETPAIR 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -79,13 +80,11 @@ The specified protocol does not support creation of socket pairs.
 The address
 .I sv
 does not specify a valid part of the process address space.
-.SH HISTORY
-The
+.SH "CONFORMING TO"
+4.4BSD (the
 .B socketpair
-function call appeared in BSD 4.2.
-.SH BUGS
-This call is currently implemented only for the
-.B UNIX
-domain.  [Documenter's note: is this true for Linux?]
+function call appeared in 4.2BSD). Generally portable to/from
+non-BSD systems supporting clones of the BSD socket layer (including
+System V variants).
 .SH "SEE ALSO"
 .BR read "(2), " write "(2), " pipe (2)

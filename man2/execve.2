@@ -22,10 +22,11 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
-.\" Modified Wed Jul 21 22:47:01 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
+.\" Modified by Michael Haardt <u31b3hs@pool.informatik.rwth-aachen.de>
+.\" Modified Wed Jul 21 22:47:01 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 21 Aug 1994 by Michael Chastain <mec@shell.portal.com>:
 .\"   Fixed typoes.
+.\" Modified Fri Jan 31 16:24:28 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH EXECVE 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
 .SH NAME
@@ -39,6 +40,10 @@ execve \- execute program
 \fBexecve()\fP executes the program pointed to by \fIfilename\fP.
 \fIfilename\fP must be either a binary executable, or a shell script
 starting with a line of the form "\fB#! \fIinterpreter \fR[arg]".
+In the latter case, the interpreter must be a valid full executable
+pathname and the contents of 
+.I filename
+is presented to it on standard input.
 
 \fBexecve()\fP does not return on success, and the text, data, bss, and
 stack of the calling process are overwritten by that of the program
@@ -48,6 +53,12 @@ on the parent process are cleared.
 
 If the current program is being ptraced, a \fBSIGTRAP\fP is sent to it
 after a successful \fBexecve()\fP.
+
+If the executable is a dynamically-linked binary executable containing
+shared-library stubs, the Linux dynamic linker
+.IR ld.so (1)
+is called before execution to bring needed shared libraries into core
+and link the executable with them.
 .SH "RETURN VALUE"
 On success, \fBexecve()\fP does not return, on error \-1 is returned, and
 .I errno
@@ -96,16 +107,22 @@ A component of the path prefix is not a directory.
 Search permission is denied on a component of the path prefix.
 .TP
 .B ELOOP
+.TP
+.B ETXTBUSY
+Executable was open for writing by one or more processes.
 .I filename
 contains a circular reference (i.e., via a symbolic link)
 .SH "CONFORMING TO"
-SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+SVr4, SVID, X/OPEN, BSD 4.3.  POSIX does not document the #!  behavior
+but is otherwise compatible.  SVr4 documents additional error
+conditions EAGAIN, EINTR, ELIBACC, ENOLINK, EMULTIHOP; POSIX does not
+document ETXTBSY, EPERM or ENOMEM error conditions.
 .SH NOTES
-SUID and SGID processes can not be \fBptrace()\fP'd SUID or SGID.
+SUID and SGID processes can not be \fBptrace()\fPd SUID or SGID.
 
 A maximum line length of 127 characters is allowed for the first line in
-a #! executable shell script.  This may be circumvented by changing the
-max size of buf, in which case you will become bound by the 1024 byte
-size of a buffer, which is not easily worked around.
+a #! executable shell script. 
 .SH "SEE ALSO"
-.BR execl "(3), " fork (2)
+.BR ld.so "(1),"
+.BR execl "(3),"
+.BR fork (2)

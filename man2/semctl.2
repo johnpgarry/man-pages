@@ -20,6 +20,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Modified Tue Oct 22 17:53:56 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH SEMCTL 2 "November 1, 1993" "Linux 0.99.13" "Linux Programmer's Manual" 
 .SH NAME
 semctl \- semaphore control operations
@@ -309,6 +310,8 @@ call:
 Maximum value for
 .BR semval :
 implementation dependent (32767).
+.SH "CONFORMING TO"
+SVr4, SVID.  SVr4 documents more error conditions EINVAL and EOVERFLOW.
 .SH "SEE ALSO"
 .BR ipc (5),
 .BR shmget (2),

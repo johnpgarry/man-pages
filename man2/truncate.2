@@ -32,6 +32,7 @@
 .\"     @(#)truncate.2	6.9 (Berkeley) 3/10/91
 .\"
 .\" Modified Sat Jul 24 12:46:33 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Tue Oct 22 22:36:33 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH TRUNCATE 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -117,8 +118,14 @@ references a socket, not a file.
 The
 .I fd
 is not open for writing.
-.SH HISTORY
-These function calls appeared in BSD 4.2.
+.SH "CONFORMING TO"
+4.4BSD, SVr4 (these function calls first appeared in BSD 4.2).  SVr4
+documents additional
+.B truncate
+error conditions EINTR, EMFILE, EMULTIHP, ENAMETOOLONG, ENFILE,
+ENOLINK, ENOTDIR.  SVr4 
+.B ftruncate
+documents additional EAGAIN and EINTR error conditions.
 .SH BUGS
 These calls should be generalized to allow ranges of bytes in a file to be
 discarded.

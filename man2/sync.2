@@ -22,12 +22,13 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
-.\" Modified Sat Jul 24 12:02:47 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified 15 Apr 1995 by Michael Chastain (mec@shell.portal.com):
+.\" Modified by Michael Haardt <u31b3hs@pool.informatik.rwth-aachen.de>
+.\" Modified Sat Jul 24 12:02:47 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 15 Apr 1995 by Michael Chastain <mec@shell.portal.com>:
 .\"   Added reference to `bdflush(2)'.
-.\" Modified 960414 by Andries Brouwer (aeb@cwi.nl):
+.\" Modified 960414 by Andries Brouwer <aeb@cwi.nl>:
 .\"   Added the fact that since 1.3.20 sync actually waits.
+.\" Modified Tue Oct 22 22:27:07 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH SYNC 2 "15 April 1995" "Linux 1.3.88" "Linux Programmer's Manual"
 .SH NAME
@@ -43,13 +44,13 @@ first commits inodes to buffers, and then buffers to disk.
 .B sync
 always returns 0.
 .SH "CONFORMING TO"
-SVID, AT&T, X/OPEN, BSD 4.3
+SVr4, SVID, X/OPEN, BSD 4.3
 .SH BUGS
 According to the standard specification (e.g., SVID),
 \fBsync()\fP schedules the writes, but may return before the actual
 writing is done.
 However, since version 1.3.20 Linux does actually wait.
 (This still does not guarantee data integrity: modern disks have
-large cashes.)
+large caches.)
 .SH "SEE ALSO"
 .BR bdflush "(2), " fsync "(2), " fdatasync "(2), " update "(8), " sync (8)

@@ -38,6 +38,7 @@
 .\" Converted for Linux, Mon Nov 29 15:22:01 1993, faith@cs.unc.edu
 .\" modified to resemble the GNU libio setup used in the Linux libc 
 .\" used in versions 4.x (x>4) and 5   Helmut.Geyer@iwr.uni-heidelberg.de
+.\" Modified, aeb, 970121
 .\"
 .TH SCANF 3  "1 November 1995" "LINUX MANPAGE" "Linux Programmer's Manual"
 .SH NAME
@@ -316,6 +317,12 @@ This is
 a conversion, although it can be suppressed with the
 .B *
 flag.
+The C standard says: `Execution of a %n directive does not increment
+the assignment count returned at the completion of execution'
+but the Corrigendum seems to contradict this. Probably it is wise
+not to make any assumptions on the effect of %n conversions on
+the return value.
+
 .PP
 .SH "RETURN VALUES"
 These functions return the number of input items assigned, which can be

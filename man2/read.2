@@ -23,11 +23,12 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Sat Jul 24 00:06:00 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 00:06:00 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Wed Jan 17 16:02:32 1996 by Michael Haardt
-.\"   (michael@cantor.informatik.rwth-aachen.de)
-.\" Modified Thu Apr 11 19:26:35 1996 by Andries Brouwer (aeb@cwi.nl)
-.\" Modified Sun Jul 21 18:59:33 1996 by Andries Brouwer (aeb@cwi.nl)
+.\"   <michael@cantor.informatik.rwth-aachen.de>
+.\" Modified Thu Apr 11 19:26:35 1996 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified Sun Jul 21 18:59:33 1996 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified Fri Jan 31 16:47:33 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH READ 2 "17 Januari 1996" Linux "Linux Programmer's Manual"
 .SH NAME
@@ -80,7 +81,8 @@ and no data was immediately available for reading.
 I/O error. This will happen for example when the process is in a
 background process group, tries to read from its controlling tty,
 and either it is ignoring or blocking SIGTTIN or its process group
-is orphaned.
+is orphaned.  It may also occur when there is a low-level I/O error
+while reading from a disk or tape.
 .TP
 .B EISDIR
 .I fd
@@ -107,7 +109,7 @@ to return \-1 (with
 .I errno
 set to EINTR) or to return the number of bytes already read.
 .SH "CONFORMING TO"
-SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+SVr4, SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH "SEE ALSO"
 .BR readdir "(2), " write "(2), " write "(2), " fcntl "(2), " close "(2), "
 .BR lseek "(2), "

@@ -22,8 +22,8 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
-.\" Modified Sat Jul 24 12:53:43 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified by Michael Haardt <u31b3hs@pool.informatik.rwth-aachen.de>
+.\" Modified Sat Jul 24 12:53:43 1993 by Rik Faith <faith@cs.unc.edu>
 .\"
 .TH UNAME 2 "24 July 93" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
@@ -44,12 +44,12 @@ struct is as defined in
 .nf
 struct utsname {
 .in 22
-char sysname[65];
-char nodename[65];
-char release[65];
-char version[65];
-char machine[65];
-char domainname[65];
+char sysname[SYS_NMLN];
+char nodename[SYS_NMLN];
+char release[SYS_NMLN];
+char version[SYS_NMLN];
+char machine[SYS_NMLN];
+char domainname[SYS_NMLN];
 };
 .in 10
 .fi
@@ -63,6 +63,6 @@ is set appropriately.
 .I buf
 is not valid.
 .SH "CONFORMING TO"
-SVID, AT&T, POSIX, X/OPEN
+SVr4, SVID, POSIX, X/OPEN
 .SH "SEE ALSO"
 .BR uname "(1), " getdomainname "(2), " gethostname (2)

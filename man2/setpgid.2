@@ -31,10 +31,12 @@
 .\"
 .\"     @(#)getpgrp.2	6.4 (Berkeley) 3/10/91
 .\"
-.\" Modified Sat Jul 24 01:15:33 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified 15 April 1995 by Michael Chastain (mec@shell.portal.com):
+.\" Modified Sat Jul 24 01:15:33 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 15 April 1995 by Michael Chastain <mec@shell.portal.com>:
 .\"   Added 'getpgid'.
-.\" Modified 21 July 1996 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified 21 July 1996 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified Wed Nov  6 04:02:50 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" FIXME -- error conditions need to be better documented, see kernel
 .\"
 .TH SETPGID 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
 .SH NAME
@@ -121,6 +123,8 @@ Various permission violations.
 .I pid
 does not match any process.
 .SH "CONFORMING TO"
+SVr4, POSIX, 4.4BSD.
+.SH "CONFORMING TO"
 The functions
 .B setpgid
 and
@@ -129,7 +133,8 @@ conform to POSIX.1.
 The function
 .B setpgrp
 is from BSD 4.2.
-I have no information on the source of
-.BR getpgid .
+The function
+.BR getpgid
+conforms to SVr4.
 .SH "SEE ALSO"
 .BR getuid "(2), " setsid "(2), " tcsetpgrp "(3), " termios (4)

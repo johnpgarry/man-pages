@@ -22,6 +22,7 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
+.\" Modified Tue Oct 22 22:11:53 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH IPC 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
 .SH NAME
 socketcall \- socket system calls
@@ -39,6 +40,9 @@ which are passed through to the appropriate call.
 User programs should call the appropriate functions by their usual names.
 Only standard library implementors and kernel hackers need to know about
 .BR socketcall .
+.SH "CONFORMING TO"
+This call is specific to Linux, and should not be used in programs
+intended to be portable.
 .SH "SEE ALSO"
 .BR accept (2),
 .BR bind (2),

@@ -33,6 +33,7 @@
 .\"
 .\" Modified Sat Jul 24 00:10:21 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Tue Jul  9 23:55:17 1996 by aeb
+.\" Modified Fri Jan 24 00:26:00 1997 by aeb
 .\"
 .TH READLINK 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -54,6 +55,9 @@ does not append a
 .B NUL
 character to
 .IR buf .
+It will truncate the contents (to a length of
+.I bufsiz
+characters), in case the buffer is too small to hold all of the contents.
 .SH "RETURN VALUES"
 The call returns the count of characters placed in the buffer
 if it succeeds, or a \-1 if an error occurs, placing the error
@@ -89,9 +93,9 @@ An I/O error occurred while reading from the file system.
 .B EFAULT
 .I Buf
 extends outside the process's allocated address space.
-.SH HISTORY
-The
+.SH "CONFORMING TO"
+4.4BSD (the
 .B readlink
-function call appeared in BSD 4.2.
+function call appeared in 4.2BSD).
 .SH "SEE ALSO"
 .BR stat "(2), " lstat "(2), " symlink (2)

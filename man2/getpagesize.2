@@ -24,6 +24,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Modified Tue Oct 22 00:22:35 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH GETPAGESIZE 2 "23 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 getpagesize \- get system page size
@@ -44,5 +45,7 @@ defined when the library is compiled, this function returns
 (set to 4096 in Linux 0.99.11), or
 .B NBPC
 (not defined in Linux 0.99.11 or DLL 4.4.1 libraries).
+.SH CONFORMING TO
+SVr4, 4.4BSD (this call first appeared in 4.2BSD).
 .SH "SEE ALSO"
 .BR sbrk (2)

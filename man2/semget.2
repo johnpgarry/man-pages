@@ -20,6 +20,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Modified Tue Oct 22 17:54:56 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH SEMGET 2 "November 1, 1993" "Linux 0.99.13" "Linux Programmer's Manual" 
 .SH NAME
 semget \- get a semaphore set identifier
@@ -244,6 +245,9 @@ to perform a
 or a
 .B SETALL
 command on the semaphore set.
+.SH "CONFORMING TO"
+SVr4, SVID.  SVr4 documents additional error conditions EINVAL, EFBIG,
+E2BIG, EAGAIN, ERANGE, EFAULT.
 .SH "SEE ALSO"
 .BR ftok (3),
 .BR ipc (5),

@@ -20,10 +20,11 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Wed Jul 28 10:57:35 1993, Rik Faith (faith@cs.unc.edu)
-.\" Modified Sun Nov 28 16:43:30 1993, Rik Faith (faith@cs.unc.edu)
-.\"          with material from Giorgio Ciucci (giorgio@crcc.it)
-.\" Portions Copyright 1993 Giorgio Ciucci (giorgio@crcc.it)
+.\" Modified Wed Jul 28 10:57:35 1993, Rik Faith <faith@cs.unc.edu>
+.\" Modified Sun Nov 28 16:43:30 1993, Rik Faith <faith@cs.unc.edu>
+.\"          with material from Giorgio Ciucci <giorgio@crcc.it>
+.\" Portions Copyright 1993 Giorgio Ciucci <giorgio@crcc.it>
+.\" Modified Tue Oct 22 22:03:17 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH SHMGET 2 "November 28, 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
@@ -264,6 +265,9 @@ in
 .I shmflg
 only ensures (on success) that a new shared memory segment will be created,
 it doesn't imply exclusive access to the segment.
+.SH "CONFORMING TO"
+SVr4, SVID.  SVr4 documents an additional error condition EEXIST.
+Neither SVr4 nor SVID documents an EIDRM condition. 
 .SH "SEE ALSO"
 .BR ftok (3),
 .BR ipc (5),

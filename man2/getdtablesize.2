@@ -36,11 +36,15 @@ returns the maximum number of files a process can have open.
 .B getdtablesize
 is implemented as a library function in DLL 4.4.1.  This function returns
 .B OPEN_MAX
-(set to 256 in Linux 0.99.11) if
+(set to 256 in Linux 2.0.23) if
 .B OPEN_MAX
 was defined when the library was compiled.  Otherwise, \-1 is returned, and
 .I errno
 is set to
 .BR ENOSYS .
+.SH CONFORMING TO
+SVr4, 4.4BSD (the
+.B getdtablesize
+function first appeared in BSD 4.2).
 .SH "SEE ALSO"
 .BR close "(2), " dup "(2), " open (2)

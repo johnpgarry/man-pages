@@ -22,13 +22,14 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
-.\" Modified Fri Jul 23 21:18:14 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified by Michael Haardt <u31b3hs@pool.informatik.rwth-aachen.de>
+.\" Modified Fri Jul 23 21:18:14 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Jan 13, 1996 by Arnt Gulbrandsen <agulbra@troll.no>
 .\" Modified Jan 22, 1996 by aeb, following a remark by
 .\"          Tigran Aivazian <bs_s641@kingston.ac.uk>
 .\" Modified Apr 14, 1996 by aeb, following a remark by
 .\"          Robert Bihlmeyer <robbe@orcus.ping.at>
+.\" Modified Tue Oct 22 17:34:42 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH GETRLIMIT 2 "23 July 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -136,6 +137,6 @@ A non-superuser tries to use \fBsetrlimit()\fP to increase the soft or hard
 limit above the current hard limit, or a superuser tries to increase
 RLIMIT_NOFILE above the current kernel maximum.
 .SH "CONFORMING TO"
-BSD 4.3
+SVr4, BSD 4.3
 .SH "SEE ALSO"
-.BR ulimit "(2), " quota (2)
+.BR ulimit "(2), " quotactl (2)

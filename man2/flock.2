@@ -22,6 +22,8 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Modified Fri Jan 31 16:26:07 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\"
 .TH FLOCK 2 "22 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 flock \- apply or remove an advisory lock on an open file
@@ -73,6 +75,10 @@ is set appropriately.
 The file is locked an the
 .B LOCK_NB
 flag was selected.
+.SH CONFORMING TO
+4.4BSD (the
+.BR flock (2)
+call first appeared in 4.2BSD).
 .SH "SEE ALSO"
 .BR open (2),
 .BR close (2),

@@ -22,10 +22,4 @@ install: remove
 		install -d -m 755 $(MANDIR)/$$i; \
 		install -m 644 $$i/* $(MANDIR)/$$i; \
 	done
-# remove pages from man2 that are now in man3
-	for j in cfgetispeed cfgetospeed cfsetispeed cfsetospeed \
-		tcdrain tcflow tcflush tcgetattr tcgetpgrp \
-		tcsendbreak tcsetattr tcsetpgrp termios ;\
-	do rm -f $(MANDIR)/man2/$$j.2 $(MANDIR)/man2/$$j.2.gz \
-		$(MANDIR)/cat2/$$j.2 $(MANDIR)/cat2/$$j.2.gz; done
 # someone might also want to look at /var/catman/cat2 or so ...

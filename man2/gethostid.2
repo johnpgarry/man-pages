@@ -22,9 +22,10 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Updated with additions from Mitchum DSouza (m.dsouza@mrc-apu.cam.ac.uk)
-.\" Portions Copyright 1993 Mitchum DSouza (m.dsouza@mrc-apu.cam.ac.uk)
+.\" Updated with additions from Mitchum DSouza <m.dsouza@mrc-apu.cam.ac.uk>
+.\" Portions Copyright 1993 Mitchum DSouza <m.dsouza@mrc-apu.cam.ac.uk>
 .\"
+.\" Modified Tue Oct 22 00:22:35 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH GETHOSTID 2 "29 November 1993" "Linux 0.99.13" "Linux Programmer's Manual"
 .SH NAME
 gethostid, sethostid \- get or set the unique identifier of the current host
@@ -55,8 +56,12 @@ argument is stored in the file
 returns the 32-bit identifier for the current host as set by
 .BR sethostid (2).
 .SH "CONFORMING TO"
+4.2BSD.  These functions were dropped in 4.4BSD.
 POSIX.1 does not define these functions, but ISO/IEC 9945-1:1990 mentions
-them in B.4.4.1.
+them in B.4.4.1.  SVr4 includes 
+.B gethostid
+but not
+.BR sethostid .
 .SH FILES
 .I /etc/hostid
 .SH "SEE ALSO"

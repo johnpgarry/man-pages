@@ -23,7 +23,8 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Sat Jul 24 00:39:47 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 00:39:47 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Fri Jan 31 16:49:53 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH RMDIR 2 "24 July 1993" "Linux 0.99.7" "Linux Programmer's Manual"
 .SH NAME
@@ -100,7 +101,7 @@ refers to a file on a read-only filesystem.
 contains a reference to a circular symbolic link, ie a symbolic link
 containing a reference to itself.
 .SH "CONFORMING TO"
-SVID, AT&T, POSIX, BSD 4.3
+SVr4, SVID, POSIX, BSD 4.3
 .SH BUGS
 Infelicities in the protocol underlying NFS can cause the unexpected
 disappearance of directories which are still being used.

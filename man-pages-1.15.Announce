@@ -1,25 +1,21 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.14.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.15.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 
-Differences from version 1.13:
+Differences from version 1.14:
     
-    The following man pages are new or have been updated:
+    The man pages
 
-	chmod.2 flock.2 gettimeofday.2 kill.2 open.2 times.2
+	getsockopt.2 readlink.2 getutent.3 scanf.3 suffixes.7
 
-	endutent.3 getmntent.3 getpass.3 getutend.3 getutid.3 getutline.3
-	inet_aton.3 putenv.3 pututline.3 setutent.3 strcpy.3 strsep.3
-	undocumented.3 utmpname.3
-
-	console_codes.4 wavelan.4
-
-	ascii.7 bootparam.7
-
-    some others were updated trivially (layout change or spelling
-    correction only).
+    and possibly others have been updated.  Moreover, almost
+    all *.2 pages have been updated by Eric S. Raymond:
+    (i) In the comments all `(x@y.z)' became `<x@y.z>'
+    (ii) CONFORMING TO sections have been added/corrected/updated.
+    (iii) ERRORS sections have been extended.
+    (iv) Occasionally explanatory comments were added.
 
 Here is a breakdown of what this distribution contains:
 
@@ -78,6 +74,7 @@ wrote, edited, or otherwise contributed to this project:
     Niel Charley (N.Charley-CSSE93@computer-science.birmingham.ac.uk)
     Peter Memishian (meem@gnu.ai.mit.edu)
     Ralf Baechle (ralf@waldorf-gmbh.de)
+    Ralph Schleicher (rs@purple.UL.BaWue.DE)
     Rik Faith (faith@cs.unc.edu)
     Robert K. Nichols (Robert.K.Nichols@att.com)
     Stephen Lee (sl14@cornell.edu)

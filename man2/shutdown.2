@@ -31,7 +31,8 @@
 .\"
 .\"     @(#)shutdown.2	6.4 (Berkeley) 3/10/91
 .\"
-.\" Modified Sat Jul 24 09:57:55 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 09:57:55 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Tue Oct 22 22:04:51 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH SHUTDOWN 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -70,9 +71,9 @@ is a file, not a socket.
 .TP
 .B ENOTCONN
 The specified socket is not connected.
-.SH HISTORY
-The
+.SH "CONFORMING TO"
+4.4BSD (the
 .B shutdown
-function call appeared in BSD 4.2.
+function call first appeared in 4.2BSD).
 .SH "SEE ALSO"
 .BR connect "(2), " socket (2)

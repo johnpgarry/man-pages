@@ -31,9 +31,10 @@
 .\"
 .\"     @(#)listen.2	6.5 (Berkeley) 3/10/91
 .\"
-.\" Modified Fri Jul 23 22:07:54 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Fri Jul 23 22:07:54 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified 950727 by aeb, following a suggestion by Urs Thuermann
-.\" (urs@isnogud.escape.de)
+.\" <urs@isnogud.escape.de>
+.\" Modified Tue Oct 22 08:11:14 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH LISTEN 2 "23 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -85,14 +86,15 @@ is not a socket.
 .B EOPNOTSUPP
 The socket is not of a type that supports the operation
 .BR listen .
-.SH HISTORY
-The
+.SH "CONFORMING TO"
+SVr4, 4.4BSD (the
 .B listen
-function call appeared in BSD 4.2.
+function call first appeared in 4.2BSD). 
 .SH BUGS
 If the socket is of type af_inet, and the backlog argument is greater
-than 128 it is silently truncated to 128. For portable applications
-don't rely on this value since BSD (and at least some BSD derived systems)
-limit the backlog to 5.
+than the constant SO_MAXCONN (128 in 2.0.23), it is silently truncated
+to SO_MAXCONN. For portable applications don't rely on this value
+since BSD (and at least some BSD derived systems) limit the backlog to
+5.
 .SH "SEE ALSO"
 .BR accept "(2), " connect "(2), " socket (2)

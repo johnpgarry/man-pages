@@ -31,8 +31,9 @@
 .\"
 .\"     @(#)getpriority.2	6.9 (Berkeley) 3/10/91
 .\"
-.\" Modified Sat Jul 24 16:33:19 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Mon Jul  1 21:59:57 1996 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Sat Jul 24 16:33:19 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Mon Jul  1 21:59:57 1996 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified Wed Nov  6 03:55:47 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH GETPRIORITY 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
 getpriority, setpriority \- get/set program scheduling priority
@@ -126,7 +127,7 @@ ID matched the effective user ID of the caller.
 .TP
 .B EACCES
 A non super-user attempted to lower a process priority.
-.SH HISTORY
-These function calls appeared in BSD 4.2.
+.SH CONFORMING TO
+SVr4, 4.4BSD (these function calls first appeared in 4.2BSD).
 .SH "SEE ALSO"
 .BR nice "(1), " fork "(2), " renice (8)

@@ -24,7 +24,9 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Sat Jul 24 12:01:10 1993 by Rik Faith
-.\" Added correction due to Nick Duffek (nsd@bbc.com), aeb, 960426
+.\" Added correction due to Nick Duffek <nsd@bbc.com>, aeb, 960426
+.\" Modified Wed Nov  6 04:07:10 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Fri Jan 31 17:51:14 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH SYMLINK 2 "24 July 1993" Linux "Linux Programmer's Manual"
 .SH NAME
@@ -40,8 +42,8 @@ creates a symbolic link named
 which contains the string
 .IR topath .
 
-Symbolic links are interpreted at run-time, as if the contents of the
-link were substituted into the path being followed to find a file or
+Symbolic links are interpreted at run-time as if the contents of the
+link had been substituted into the path being followed to find a file or
 directory.
 
 Symbolic links may contain
@@ -128,7 +130,8 @@ file (unless it also has other hard links). If this behaviour is not
 desired, use
 .BR link .
 .SH "CONFORMING TO"
-SVID, AT&T, POSIX, BSD 4.3
+SVr4, SVID, POSIX, BSD 4.3.  SVr4 documents additional error codes
+EDQUOT, EIO, ENAMETOOLONG, ENOSYS.
 .SH BUGS
 See
 .BR open (2)

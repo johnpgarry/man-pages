@@ -35,7 +35,7 @@
 .\" Portions extracted from linux/kernel/sys.c:
 .\"             Copyright (C) 1991, 1992  Linus Torvalds
 .\"             May be distributed under the GNU General Public License
-.\" Changes: Fri Jul 29 10:56:01 BST 1994 by Wilf. (G.Wilford@ee.surrey.ac.uk)
+.\" Changes: Fri Jul 29 10:56:01 BST 1994 by Wilf. <G.Wilford@ee.surrey.ac.uk>
 .\"          Tue Aug  2 14:56:48 BST 1994 by Wilf due to changes in kernel.
 .\"
 .TH SETREGID 2 "2nd August 1994" "Linux 1.1.38" "Linux Programmer's Manual"
@@ -88,11 +88,9 @@ The current process is not the super-user and changes other than (i)
 swapping the effective group ID with the real group ID or (ii) setting one to 
 the value of the other or (iii) setting the effective group ID to the value
 of the saved group ID was specified.
-.SH HISTORY
-The
-.B setregid
-function call appeared in BSD 4.2.
 .SH "CONFORMING TO"
-BSD 4.3
+BSD 4.3 (the
+.B setregid
+function call first appeared in 4.2BSD).
 .SH "SEE ALSO"
 .BR getgid "(2), " setgid (2)

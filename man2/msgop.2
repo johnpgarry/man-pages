@@ -1,4 +1,4 @@
-.\" Copyright 1993 Giorgio Ciucci (giorgio@crcc.it)
+.\" Copyright 1993 Giorgio Ciucci <giorgio@crcc.it>
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -20,6 +20,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Modified Tue Oct 22 16:40:11 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH MSGOP 2 "November 1, 1993" "Linux 0.99.13" "Linux Programmer's Manual" 
 .SH NAME
 msgop \- message operations
@@ -46,7 +47,7 @@ msgop \- message operations
 .BI  "long " msgtyp ,
 .BI "int " msgflg " )"
 .SH DESCRIPTION
-To send or receive a message the calling process allocates a structure
+To send or receive a message, the calling process allocates a structure
 that looks like the following
 .sp
 .B
@@ -371,6 +372,8 @@ number of message headers
 .RB ( MSGTQL )
 and for the system wide maximum size in bytes of the message pool
 .RB ( MSGPOOL ).
+.SH "CONFORMING TO"
+SVr4, SVID.
 .SH "SEE ALSO"
 .BR ipc (5),
 .BR msgctl (2),

@@ -148,10 +148,26 @@ The general errors for
 are listed below:
 .TP 0.8i
 .B EBADF
-The descriptor is not value.
+The descriptor is not valid.
 .TP
 .B ENOENT
 See above.
+.B EIO
+A low-level I/O error occurred while modifying the inode.
+.SH "CONFORMING TO"
+The
+.B chmod
+call conforms to SVr4, SVID, POSIX, X/OPEN, 4.4BSD.
+SVr4 documents EINTR, ENOLINK and EMULTIHOP returns, but no
+ENOMEM.  POSIX.1 does not document ENOMEM or ELOOP error
+conditions.
+.PP
+The 
+.B fchmod
+call conforms to 4.4BSD and SVr4.
+SVr4 documents additional EIO, EINTR, and ENOLINK error conditions.
+.PP
+POSIX and X/OPEN do not document the sticky bit.
 .TP
 .B EPERM
 See above.

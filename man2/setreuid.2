@@ -31,11 +31,11 @@
 .\"
 .\"     @(#)setregid.2	6.4 (Berkeley) 3/10/91
 .\"
-.\" Modified Sat Jul 24 09:08:49 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 09:08:49 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Portions extracted from linux/kernel/sys.c:
 .\"             Copyright (C) 1991, 1992  Linus Torvalds
 .\"             May be distributed under the GNU General Public License
-.\" Changes: Fri Jul 29 10:56:01 BST 1994 by Wilf. (G.Wilford@ee.surrey.ac.uk)
+.\" Changes: Fri Jul 29 10:56:01 BST 1994 by Wilf. <G.Wilford@ee.surrey.ac.uk>
 .\"          Tue Aug  2 14:56:48 BST 1994 by Wilf due to change in kernel.
 .\"
 .TH SETREUID 2 "2nd August 1994" "Linux 1.1.38" "Linux Programmer's Manual"
@@ -89,11 +89,9 @@ The current process is not the super-user and changes other than (i)
 swapping the effective user ID with the real user ID or (ii) setting one to 
 the value of the other or (iii) setting the effective user ID to the value
 of the saved user ID was specified.
-.SH HISTORY
-The
-.B setreuid
-function call appeared in BSD 4.2.
 .SH "CONFORMING TO"
-BSD 4.3
+BSD 4.3 (the
+.B setreuid
+function call first appeared in 4.2BSD.)
 .SH "SEE ALSO"
 .BR getuid "(2), " setuid (2)

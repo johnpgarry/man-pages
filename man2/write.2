@@ -23,11 +23,11 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Sat Jul 24 13:35:59 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Sun Nov 28 17:19:01 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 13:35:59 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Sun Nov 28 17:19:01 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Sat Jan 13 12:58:08 1996 by Michael Haardt
-.\"   (michael@cantor.informatik.rwth-aachen.de)
-.\" Modified Sun Jul 21 18:59:33 1996 by Andries Brouwer (aeb@cwi.nl)
+.\"   <michael@cantor.informatik.rwth-aachen.de>
+.\" Modified Sun Jul 21 18:59:33 1996 by Andries Brouwer <aeb@cwi.nl>
 .\"
 .TH WRITE 2 "13 January 1996" "Linux" "System calls"
 .SH NAME
@@ -44,8 +44,8 @@ bytes to the file referenced by the file descriptor
 .I fd
 from the buffer starting at
 .I buf.
-POSIX requires, that a \fBread()\fP which can be proved to occur after a
-\fBwrite()\fP returned, returns the new data.  Note that not all file
+POSIX requires that a \fBread()\fP which can be proved to occur after a
+\fBwrite()\fP has returned returns the new data.  Note that not all file
 systems are POSIX conforming.
 .SH "RETURN VALUE"
 On success, the number of bytes written are returned (zero indicates
@@ -83,11 +83,16 @@ The call was interrupted by a signal before any data was written.
 The device containing the file referred to by
 .I fd
 has no room for the data.
+.B EIO
+A low-level I/O error occurred while modifying the inode.
 .PP
 Other errors may occur, depending on the object connected to
 .IR fd .
 .SH "CONFORMING TO"
-SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+SVr4, SVID, POSIX, X/OPEN, 4.3BSD.  SVr4 documents additional error
+conditions EDEADLK, EFBIG, ENOLCK, ENOLNK, ENOSR, ENXIO, EPIPE, or ERANGE.
+Under SVr4 a write may be interrupted and return EINTR at any point,
+not just before any data is written. 
 .SH "SEE ALSO"
 .BR open (2),
 .BR read (2),

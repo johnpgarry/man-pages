@@ -20,6 +20,7 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
+.\" Modified Thu Oct 31 14:18:40 1996 by Eric S. Raymond <esr@y\thyrsus.com>
 .TH GETSID 2 "11 April 1996" "Linux 1.3.85" "System calls"
 .SH NAME
 getsid \- get session ID
@@ -39,6 +40,6 @@ ESRCH, when no process with process ID
 .I p
 was found.
 .SH "CONFORMING TO"
-This call is Linux-specific.
+SVr4, which documents an additional EPERM error condition.
 .SH "SEE ALSO"
 .BR setsid (2).

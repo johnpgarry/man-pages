@@ -20,6 +20,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Modified Tue Oct 22 17:55:06 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH SEMOP 2 "November 1, 1993" "Linux 0.99.13" "Linux Programmer's Manual" 
 .SH NAME
 semop \- semaphore operations
@@ -329,6 +330,9 @@ flag in effect?
 Currently those undo operations which go through immediately are applied,
 and those that require a wait are ignored silently.
 Thus harmless undo usage is guaranteed with private semaphores only.
+.SH "CONFORMING TO"
+SVr4, SVID.  SVr4 documents additional error conditions EINVAL, EFBIG,
+ENOSPC.
 .SH "SEE ALSO"
 .BR ipc (5),
 .BR semctl (2),

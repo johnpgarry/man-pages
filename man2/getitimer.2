@@ -1,6 +1,7 @@
-.\" Copyright 7/93 by Darren Senn (sinster@scintilla.santa-clara.ca.us)
+.\" Copyright 7/93 by Darren Senn <sinster@scintilla.santa-clara.ca.us>
 .\" Based on a similar page Copyright 1992 by Rick Faith
 .\" May be freely distributed
+.\" Modified Tue Oct 22 00:22:35 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH GETITIMER 2 "5 August 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 getitimer, setitimer \- get or set value of an interval timer
@@ -129,6 +130,8 @@ is not one of
 .BR ITIMER_VIRT ,
 or
 .BR ITIMER_PROF .
+.SH CONFORMING TO
+SVr4, 4.4BSD (This call first appeared in 4.2BSD).
 .SH "SEE ALSO"
 .BR gettimeofday (2),
 .BR sigaction (2),

@@ -22,6 +22,8 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
+.\" Modified Fri Jan 31 16:14:33 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\"
 .TH BDFLUSH 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
 .SH NAME
 bdflush \- start, flush, or tune buffer-dirty-flush daemon
@@ -93,6 +95,9 @@ another process has already entered.
 .B EINVAL
 An attempt was made to read or write an invalid parameter number,
 or to write an invalid value to a parameter.
+.SH "CONFORMING TO"
+\fBbdflush\fP is Linux specific and should not be used in programs
+intended to be portable.
 .SH "SEE ALSO"
 .BR fsync (2),
 .BR sync (2),

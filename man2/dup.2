@@ -23,9 +23,10 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Wed Jul 21 22:45:39 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
+.\" Modified Wed Jul 21 22:45:39 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified 21 Aug 1994 by Michael Chastain <mec@shell.portal.com>:
 .\"   Fixed typoes.
+.\" Modified Fri Jan 31 16:23:46 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH DUP 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
 .SH NAME
@@ -86,6 +87,7 @@ also sometimes returns
 like
 .BR F_DUPFD .
 .SH "CONFORMING TO"
-SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+SVr4, SVID, POSIX, X/OPEN, BSD 4.3. SVr4 documents additional
+EINTR and ENOLINK error conditions.  POSIX.1 adds EINTR.
 .SH "SEE ALSO"
 .BR " fcntl "(2), " open "(2), " close "(2).

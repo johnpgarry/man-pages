@@ -24,8 +24,8 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Tue Aug  1 16:47    1995 by Jochen Karrer 
-.\"                              (cip307@cip.physik.uni-wuerzburg.de)
-
+.\"                              <cip307@cip.physik.uni-wuerzburg.de>
+.\" Modified Tue Oct 22 08:11:14 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH IOPL 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 iopl \- change I/O privilege level
@@ -67,5 +67,8 @@ The current user is not the super-user.
 has to be used when you want to access the I/O ports beyond the 0x3ff
 range: to get the full 65536 ports bitmapped you'd need 8kB of
 bitmaps/process, which is a bit excessive.
+.SH "CONFORMING TO"
+\fBiopl\fP is Linux specific and should not be used in processes
+intended to be portable.
 .SH "SEE ALSO"
 .BR ioperm (2)

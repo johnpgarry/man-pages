@@ -57,6 +57,9 @@
 .\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 .\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 .\" SUCH DAMAGE.
+.\"
+.\" Modified Fri Jan 31 16:22:26 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\"
 .TH CONNECT 2 "23 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 connect \- initiate a connection on a socket
@@ -96,11 +99,39 @@ returned, and
 .I errno
 is set appropriately.
 .SH ERRORS
-See the Linux kernel source code for details.
-.SH HISTORY
-The
+This lists is general socket errors only.  There may be other
+domain-specific error codes. 
+.TP
+.B EBADF
+Bad descriptor.
+.TP
+.B EFAULT
+The socket structure address is outside your address space.
+.TP
+.B ENOTSOCK
+The descriptor is not associated with file which is not a socket.
+.TP
+.B EISCONN
+The socket is already connected.
+.TP
+.B ECONNREFUSED
+Connection refused at server.
+.TP
+.B ETIMEDOUT
+Timeout while attempting connection.
+.TP
+.B ENETUNREACH
+Network is unreachable.
+.TP
+.B EADDRINUSE
+Address is already in use.
+.SH CONFORMING TO
+SVr4, 4.4BSD (the
 .B connect
-function call first appeared in BSD 4.2.
+function first appeared in BSD 4.2).  SVr4 documents additional
+general error codes EADDRNOTAVAIL, EINVAL, EAFNOSUPPORT, 
+EALREADY, EINTR, EPROTOTYPE, ENOSR.  It also
+documents many additional error conditions not described here.
 .SH "SEE ALSO"
 .BR accept "(2), " bind "(2), " listen "(2), "
 .BR socket "(2), " getsockname (2)

@@ -20,22 +20,24 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
+.\" Modified by Michael Haardt <u31b3hs@pool.informatik.rwth-aachen.de>
 .\"
-.\" Tue Jul  6 22:36:09 MDT 1993 (dminer@nyx.cs.du.edu)
+.\" Tue Jul  6 22:36:09 MDT 1993 <dminer@nyx.cs.du.edu>
 .\"  Made this clearer...
-.\" Modified Sat Jul 24 00:16:05 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 00:16:05 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Tue Oct 22 17:43:18 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH REBOOT 2 "March 28, 1992" "Linux 0.99.10" "Linux Programmer's Manual"
 .SH NAME
-reboot \- reboot or disable Cntrl-Alt-Del
+reboot \- reboot or disable Ctrl-Alt-Del
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
 .BI "int reboot (int " magic ", int " magic_too ", int " flag );
 .SH DESCRIPTION
 .B reboot
-reboots the system, or enables/disables CAD.
+reboots the system, or enables/disables the Ctrl-Alt-Delete (CAD) reboot
+keystroke.
 .PP
 If  
 .I magic 
@@ -73,6 +75,6 @@ A non-root user attempts to call
 .BR reboot .
 .SH "CONFORMING TO"
 .B reboot
-is Linux specific.
+is Linux specific, and should not be used in programs intended to be portable.
 .SH "SEE ALSO"
 .BR sync "(2), " ctrlaltdel "(8), " halt "(8), " reboot (8)

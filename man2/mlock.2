@@ -43,11 +43,11 @@ with length
 bytes. All pages which contain a part of the specified memory range
 are guaranteed be resident in RAM when the
 .B mlock
-system call returns successfully and they are guaranteed stay in RAM
-until the pages are unlocked again by
+system call returns successfully and they are guaranteed to stay in RAM
+until the pages are unlocked by
 .B munlock
 or
-.B munlockall
+.BR munlockall ,
 or until the process terminates or starts another program with
 .BR exec .
 Child processes do not inherit page locks across a
@@ -108,8 +108,8 @@ processes are allowed to lock pages.
 .B EINVAL
 .I len
 was not a positive number.
-.SH STANDARDS
-POSIX.1b, SVR4
+.SH CONFORMING TO
+POSIX.1b, SVr4.  SVr4 documents an additional EAGAIN error code.
 .SH SEE ALSO
 .BR munlock(2) ,
 .BR mlockall(2) , 

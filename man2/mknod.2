@@ -117,19 +117,19 @@ The device containing
 .I pathname
 has no room for the new node.
 .SH CONFORMING TO
+SVr4 (but the call requires privilege and is thus not in POSIX),
+4.4BSD.  The Linux version differs from the SVr4 version in that it
+does not require root permission to create pipes, also in that no
+EMULTIHOP, ENOLINK, or EINTR error is documented.
 .SH BUGS
-In some older versions of Linux (for example, 0.99pl7) all the normal
-filesystems sometime allow the creation of two files in the same
-directory with the same name.  This occurs only rarely and only on a
-heavily loaded system.  It is believed that this bug was fixed in the
-Minix filesystem in Linux 0.99pl8 pre-release; and it is hoped that it
-was fixed in the other filesystems shortly afterwards.
-
+The
 .B mknod
-cannot be used to create directories or socket files, and cannot be
+call cannot be used to create directories or socket files, and cannot be
 used to create normal files by users other than the superuser.
 
-There are many infelicities in the protocol underlying NFS.
+There are many infelicities in the protocol underlying NFS.  Some
+of these affect
+.BR mknod .
 .SH SEE ALSO
 .BR read "(2), " write "(2), " fcntl "(2), " close (2),
 .BR unlink "(2), " open "(2), " mkdir "(2), " stat "(2), " umask (2),

@@ -22,9 +22,10 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
-.\" Modified Sat Jul 24 12:51:53 1993 by Rik Faith (faith@cs.unc.edu)
-.TH UMASK 2 "24 July 93" "Linux" "Linux Programmer's Manual"
+.\" Modified by Michael Haardt <u31b3hs@pool.informatik.rwth-aachen.de>
+.\" Modified Sat Jul 24 12:51:53 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Tue Oct 22 22:39:04 1996 by Eric S. Raymond <esr@thyrsus.com>
+TH UMASK 2 "24 July 93" "Linux" "Linux Programmer's Manual"
 .SH NAME
 umask \- set file creation mask
 .SH SYNOPSIS
@@ -36,9 +37,16 @@ umask \- set file creation mask
 sets the umask to 
 .I mask 
 & 0777.
+
+The umask is used by
+.BR open (2)
+to set initial file permissions on a newly-created file.
+Specifically, permissions in the umask are turned off from 0666 (so, for 
+example, the common umask default value of 022 results in new
+files being created with permissions 0666 & ~022 = 0755 = rw-r--r--).
 .SH "RETURN VALUE"
 The previous value of the mask is returned.
 .SH "CONFORMING TO"
-SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+SVr4, SVID, POSIX, X/OPEN, BSD 4.3
 .SH "SEE ALSO"
 .BR creat "(2), " open (2)

@@ -23,10 +23,11 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
-.\" Modified Sat Jul 24 10:54:27 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Thu May 18 11:00:31 1995 by Rik Faith (faith@cs.unc.edu)
-.\"          to add comments suggested by Todd Larason (jtl@molehill.org)
+.\" Modified by Michael Haardt <u31b3hs@pool.informatik.rwth-aachen.de>
+.\" Modified Sat Jul 24 10:54:27 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Thu May 18 11:00:31 1995 by Rik Faith <faith@cs.unc.edu>
+.\"          to add comments suggested by Todd Larason <jtl@molehill.org>
+.\" Modified Fri Jan 31 17:43:02 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\" 
 .TH STAT 2 "1 January 1995" "Linux 1.1.75" "Linux Programmer's Manual"
 .SH NAME
@@ -236,7 +237,21 @@ is bad.
 .B ENOENT
 File does not exist.
 .SH "CONFORMING TO"
-SVID (not \fBlstat()\fP), AT&T (not \fBlstat()\fP), POSIX (not
-\fBlstat()\fP), X/OPEN (not \fBlstat()\fP), BSD 4.3
+The
+.B stat
+and
+.B fstat
+calls conform to SVr4, SVID, POSIX, X/OPEN, BSD 4.3.  The
+.B lstat
+call conforms to 4.3BSD and SVr4.
+SVr4 documents additional
+.B fstat
+error conditions EFAULT, EINTR, ENOLINK, and EOVERFLOW.  SVr4
+documents additional
+.B stat
+and
+.B lstat
+error conditions EACCES, EFAULT, EINTR, ELOOP, EMULTIHOP, ENAMETOOLONG,
+ENOTDIR, ENOLINK, and EOVERFLOW.
 .SH "SEE ALSO"
 .BR chmod "(2), " chown "(2), " readlink "(2), " utime (2)

@@ -1,4 +1,4 @@
-.\" Copyright 1993 Giorgio Ciucci (giorgio@crcc.it)
+.\" Copyright 1993 Giorgio Ciucci <giorgio@crcc.it>
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -20,7 +20,8 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Added correction due to Nick Duffek (nsd@bbc.com), aeb, 960426
+.\" Added correction due to Nick Duffek <nsd@bbc.com>, aeb, 960426
+.\" Modified Wed Nov  6 04:00:31 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH MSGGET 2 "November 1, 1993" "Linux 0.99.13" "Linux Programmer's Manual" 
 .SH NAME
 msgget \- get a message queue identifier
@@ -56,8 +57,8 @@ and
 is asserted in
 .I msgflg
 (i.e.
-.IB msgflg &IPC_CREAT
-isn't zero).
+.IB msgflg & IPC_CREAT
+is nonzero).
 The presence in
 .I msgflg
 of the fields
@@ -85,13 +86,13 @@ and a message queue already exists for
 .PP
 Upon creation, the lower 9 bits of the argument
 .I msgflg
-define the access permissions (for owner, group and others)
-to the message queue in the same format, and with the same
-meaning, as for the access permissions parameter in the
+define the access permissions of the message queue.
+These permission bits have the same format and semantics
+as the access permissions parameter in 
 .BR open (2)
 or
 .BR creat (2)
-system calls (though the execute permissions are not used by the system).
+system calls.  (The execute permissions are not used.)
 .PP
 Furthermore, while creating,
 the system call initializes the system message queue data structure
@@ -128,7 +129,7 @@ is set to the current time.
 is set to the system limit
 .BR MSGMNB .
 .PP
-If the message queue already exists, the access permissions are
+If the message queue already exists the access permissions are
 verified, and a check is made to see if it is marked for
 destruction.
 .SH "RETURN VALUE"
@@ -159,7 +160,7 @@ and
 .BR IPC_EXCL .
 .TP
 .B EIDRM
-The message queue is marked as to be removed.
+The message queue is marked for removal.
 .TP
 .B ENOENT
 No message queue exists for
@@ -199,8 +200,8 @@ dependent.
 .SH BUGS
 Use of
 .B IPC_PRIVATE
-don't inhibits to other processes the access to the allocated
-message queue.
+does not actually prohibit other processes from getting
+access to the allocated message queue.
 .PP
 As for the files, there is currently no intrinsic way for a process to ensure
 exclusive access to a message queue.
@@ -212,6 +213,8 @@ in
 .I msgflg
 only ensures (on success) that a new message queue will be created,
 it doesn't imply exclusive access to the message queue.
+.SH "CONFORMING TO"
+SVr4, SVID.  SVr4 does not document the EIDRM error code.
 .SH "SEE ALSO"
 .BR ftok (3),
 .BR ipc (5),

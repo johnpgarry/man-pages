@@ -23,8 +23,8 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Sat Jul 24 13:39:26 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Tue Sep 26 21:47:21 1995 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified Sat Jul 24 13:39:26 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Tue Sep 26 21:47:21 1995 by Andries Brouwer <aeb@cwi.nl>
 .\" and once more on 960413.
 .\"
 .TH FCNTL 2 "26 September 1995" Linux "Linux Programmer's Manual"
@@ -64,6 +64,8 @@ modified by using
 on one of the descriptors, the position is also changed for the other.
 .sp
 The two descriptors do not share the close-on-exec flag, however.
+The close-on-exec flag of the copy is off, meaning that it will
+be closed on exec.
 .sp
 On success, the new descriptor is returned.
 .TP
@@ -173,6 +175,16 @@ On error, \-1 is returned, and
 is set appropriately.
 .SH ERRORS
 .TP 0.9i
+.B EACCESS
+Operation is prohibited by locks held by other processes.
+.TP
+.B EAGAIN
+Operation is prohibited because the file has been memory-mapped by
+another process.
+.TP
+.B EDEADLK
+Specified write lock operation would cause a deadlock.
+.TP
 .B EBADF
 .I fd
 is not an open file descriptor.
@@ -187,14 +199,29 @@ is negative or is greater than the maximum allowable value.
 For
 .BR F_DUPFD ,
 the process already has the maximum number of file descriptors open.
+.TP
+.B ENOLCK
+Too many segment locks open, lock table is full.  
 .SH NOTES
 The errors returned by
 .B dup2
 are different from those returned by
 .BR F_DUPFD .
 .SH "CONFORMING TO"
-SVID, AT&T, POSIX, X/OPEN, BSD 4.3.
+SVr4, SVID, POSIX, X/OPEN, BSD 4.3.  Only the operations F_DUPFD, 
+F_GETFD, F_SETFD, F_GETFL, F_SETFL, F_GETLK, F_SETLK and F_SETLKW
+are specified in POSIX.1; F_GETOWN and F_SETOWN are BSDisms not
+supported in SVr4. The flags legal for
+F_GETFL/F_SETFL are those supported by 
+.BR open (2)
+and vary between these systems; O_APPEND, O_NONBLOCK, O_RDONLY,
+and O_RDWR are specified in POSIX.1.  SVr4 supports several other
+options and flags not documented here.
+.PP
+POSIX.1 documents an additional EINTR condition.  SVr4 documents
+additional EFAULT, EINTR, EIO, ENOLINK and EOVERFLOW error conditions.
 .SH "SEE ALSO"
 .BR dup2 (2),
 .BR open (2),
-.BR socket (2).
+.BR socket (2),
+.BR flock (2)

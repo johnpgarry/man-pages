@@ -20,7 +20,8 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Written 10 June 1995 by Andries Brouwer (aeb@cwi.nl)
+.\" Written 10 June 1995 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified Thu Oct 31 15:16:23 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH LLSEEK 2 "10 June 1995" "Linux 1.2.9" "Linux Programmer's Manual"
 .SH NAME
@@ -68,7 +69,8 @@ is not an open file descriptor.
 .I whence
 is invalid.
 .SH "CONFORMING TO"
-This function is Linux-specific.
+This function is Linux-specific, and should not be used in programs
+intended to be portable.
 .SH BUGS
 There is no support for files with a size of 2GB or more.
 .SH "SEE ALSO"

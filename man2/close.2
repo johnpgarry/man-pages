@@ -23,11 +23,12 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Wed Jul 21 22:40:25 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Wed Jul 21 22:40:25 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Sat Feb 18 15:27:48 1995 by Michael Haardt
-.\" Modified Sun Apr 14 11:40:50 1996 by Andries Brouwer (aeb@cwi.nl):
-.\"   corrected description of effect on locks (thanks to
-.\"   Tigran Aivazian (bs_s641@kingston.ac.uk)).
+.\" Modified Sun Apr 14 11:40:50 1996 by Andries Brouwer <aeb@cwi.nl>:
+.\"   corrected description of effect on locks <thanks to
+.\"   Tigran Aivazian <bs_s641@kingston.ac.uk>).
+.\" Modified Fri Jan 31 16:21:46 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH CLOSE 2 "April 14, 1996" "" "Linux Programmer's Manual"
 .SH NAME
@@ -62,7 +63,8 @@ returns zero on success, or \-1 if an error occurred.
 .I fd
 isn't a valid open file descriptor.
 .SH "CONFORMING TO"
-SVID, AT&T, POSIX, X/OPEN, BSD 4.3
+SVr4, SVID, POSIX, X/OPEN, BSD 4.3.  SVr4 documents an additional
+ENOLINK error condition.
 .SH "NOTES"
 Not checking the return value of close is a common but nevertheless
 serious programming error.  File system implementations which use

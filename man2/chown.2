@@ -22,9 +22,10 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
-.\" Modified Wed Jul 21 21:53:01 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Tue Jul  9 13:59:51 1996 by Andries Brouwer (aeb@cwi.nl)
+.\" Modified by Michael Haardt <u31b3hs@pool.informatik.rwth-aachen.de>
+.\" Modified Wed Jul 21 21:53:01 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Tue Jul  9 13:59:51 1996 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified Wed Nov  6 03:49:07 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH CHOWN 2 "21 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
@@ -102,7 +103,7 @@ The general errors for
 are listed below:
 .TP 1.0i
 .B EBADF
-The descriptor is not value.
+The descriptor is not valid.
 .TP
 .B ENOENT
 See above.
@@ -112,6 +113,8 @@ See above.
 .TP
 .B EROFS
 See above.
+.B EIO
+A low-level I/O error occurred while modifying the inode.
 .SH NOTES
 .B chown
 does not follow symbolic links.
@@ -120,5 +123,17 @@ The prototype for
 is only available if
 .B __USE_BSD
 is defined.
+.SH "CONFORMING TO"
+The
+.B chown
+call conforms to SVr4, SVID, POSIX, X/OPEN.  The 4.4BSD version can only be
+usaed by the superuser (that is, ordinary users cannot give away files).
+SVr4 documents EINVAL, EINTR, ENOLINK and EMULTIHOP returns, but no
+ENOMEM.  POSIX.1 does not document ENOMEM or ELOOP error conditions.
+.PP
+The 
+.B fchown
+call conforms to 4.4BSD and SVr4.
+SVr4 documents additional EINVAL, EIO, EINTR, and ENOLINK error conditions.
 .SH "SEE ALSO"
 .BR chmod "(2), " flock "(2)"

@@ -22,11 +22,12 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
-.\" Modified Wed Jul 21 22:18:17 1993 by  Rik Faith (faith@cs.unc.edu)
-.\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
+.\" Modified by Michael Haardt <u31b3hs@pool.informatik.rwth-aachen.de>
+.\" Modified Wed Jul 21 22:18:17 1993 by  Rik Faith <faith@cs.unc.edu>
+.\" Modified 21 Aug 1994 by Michael Chastain <mec@shell.portal.com>
 .\"   Fixed typoes.
 .\" Modified 13 Jun 1996 by aeb - Added a warning: . may be outside / tree.
+.\" Modified Wed Nov  6 03:50:45 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH CHROOT 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
 .SH NAME
@@ -89,5 +90,9 @@ Search permission is denied on a component of the path prefix.
 .B ELOOP
 .I path
 contains a circular reference (i.e., via a symbolic link)
+.SH CONFORMING TO
+SVr4, SVID, 4.4BSD.  This function is not part of POSIX.1.  SVr4
+documents additional EINTR, ENOLINK and EMULTIHOP error conditions,
 .SH "SEE ALSO"
 .BR chdir (2)
+

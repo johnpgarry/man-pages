@@ -24,6 +24,8 @@
 .\" Modified Sat Jul 24 17:35:15 1993 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Sun Feb 19 22:02:32 1995 by Rik Faith <faith@cs.unc.edu>
 .\" Modified Tue Oct 22 23:28:12 1996 by Eric S. Raymond <esr@thyrsus.com>
+.\" Modified Sun Jan 26 21:56:56 1997 by Ralph Schleicher
+.\"    <rs@purple.UL.BaWue.DE>
 .TH SUFFIXES 7  "April 4, 1996" "Linux" "Linux Programmer's Manual"
 .SH NAME
 suffixes \- list of file suffixes
@@ -43,113 +45,134 @@ l | l
 _ | _
 lI |  l .
 Suffix	File type
- ,v	Files for RCS (Revision Control System)
+ ,v	files for RCS (Revision Control System)
  -	backup file
  .C	C++ source code
- .F	FORTRAN source with cpp(1) directives
- .S	Assembler source with cpp(1) directives
- .Z	File compressed using compress(1)
- .[0-9]+pk	TeX font files
- .[1-9]	Manual page for the corresponding section
- .[1-9][a-z]	Manual page for section plus subsection
+ .F	Fortran source with cpp(1) directives
+ .S	assembler source with cpp(1) directives
+ .Z	file compressed using compress(1)
+ .[0-9]+gf	TeX generic font files
+ .[0-9]+pk	TeX packed font files
+ .[1-9]	manual page for the corresponding section
+ .[1-9][a-z]	manual page for section plus subsection
  .a	static object code library
  .afm	PostScript font metrics
- .arc	ARC archive
- .arj	ARJ archive
+ .arc	arc(1) archive
+ .arj	arj(1) archive
  .asc	PGP ASCII-armoured data
  .awk	AWK language program
- .bak	Backup file
- .bm	Bitmap source
+ .bak	backup file
+ .bm	bitmap source
  .c	C source
- .cat	Message catalog files
+ .cat	message catalog files
  .cc	C++ source
  .cf	configuration file
  .conf	configuration file
  .config	configuration file
- .cweb	Donald Knuth's WEB for C
  .dat	data file
  .def	Modula-2 source for definition modules
  .def	other definition files
- .diff	ASCII File differences
+ .diff	file differences (diff(1) command output)
  .doc	documentation file
- .dvi	TeX device independent output
- .el	EMACS lisp source
- .elc	compiled EMACS lisp
- .eps	encapsulated postscript
- .f	FORTRAN source
- .fas	pre-compiled common Lisp
- .fi	FORTRAN include files
- .gif	Graphics Interchange Format
+ .dvi	TeX's device independent output
+ .el	Emacs-Lisp source
+ .elc	compiled Emacs-Lisp source
+ .eps	encapsulated PostScript
+ .f	Fortran source
+ .fas	pre-compiled Common-Lisp
+ .fi	Fortran include files
+ .gif	Compuserve Graphics Image File format
  .gsf	Ghostscript fonts
- .gz	File compressed using gzip(1)
+ .gz	file compressed using gzip(1)
  .h	C or C++ header files
- .hlp	Help file
- .htm	HTML file imported without renaming from a brain-damaged OS
+ .help	help file
+ .hf	equivalent to \fI.help\fR
+ .hlp	equivalent to \fI.help\fR
+ .htm	HTML file imported from a brain-damaged interrupt handler
  .html	HTML document used with the World Wide Web
  .i	C source after preprocessing
- .idx	Reference or datum-index file for hypertext or database system
- .icon	Bitmap source
- .image	Bitmap source
- .in	Configuration template, especially for GNU autoconf
- .info	Files for the EMACS info browser
- .java	A Java source file
- .jpg	JPEG compressed picture format
- .l	lex(1) or flex(1) files
- .lib	Common Lisp library
- .ln	Files for use with lint(1)
- .lsp	Common Lisp source
- .m4	M4(1) source
- .mac	Macro files for various programs
- .man	Manual page (usually source rather than formatted)
+ .idx	reference or datum-index file for hypertext or database system
+ .icon	bitmap source
+ .image	bitmap source
+ .in	configuration template, especially for GNU Autoconf
+ .info	files for the Emacs info browser
+ .info-[0-9]+	splitted info files
+ .java	a Java source file
+ .jpeg	Joint Photographic Experts Group format
+ .jpg	equivalent to \fI.jpeg\fR
+ .l	equivalent to \fI.lex\fR or \fI.lisp\fR
+ .lex	lex(1) or flex(1) files
+ .lib	Common-Lisp library
+ .lisp	Lisp source
+ .ln	files for use with lint(1)
+ .lsp	Common-Lisp source
+ .m4	m4(1) source
+ .mac	macro files for various programs
+ .man	manual page (usually source rather than formatted)
  .me	Nroff source using the me macro package
  .mf	Metafont (font generator for TeX) source
- .mm	Sources for groff(1) in mm - format
+ .mm	sources for groff(1) in mm - format
  .mod	Modula-2 source for implementation modules
  .o	object file
  .old	old or backup file
- .orig	Backup (original) version of a file, from patch(1)
- .out	Output file, often executable program (a.out)
+ .orig	backup (original) version of a file, from patch(1)
+ .out	output file, often executable program (a.out)
  .p	Pascal source
- .patch	File differences from patch(1)
+ .patch	file differences for patch(1)
+ .pbm	portable bitmap format
  .pcf	X11 font files (???)
- .pfa	Postscript font definition files, ASCII format
- .pfb	Postscript font definition files, binary format
+ .perl	Perl source
+ .pfa	PostScript font definition files, ASCII format
+ .pfb	PostScript font definition files, binary format
+ .pgm	portable greymap format
  .pgp	PGP binary data
  .pid	File to store daemon pid (e.g. crond.pid)
  .png	Portable Network Graphics file
- .pl	Perl script
- .pr	Bitmap source
- .ps	Postscript file
+ .ph	Perl header file
+ .pl	TeX property list file or Perl library file
+ .pm	Perl method file
+ .ppm	portable pixmap format
+ .pr	bitmap source
+ .ps	PostScript file
  .r	RATFOR source (obsolete)
- .rej	Patches that patch(1) couldn't apply
- .rules	Rules for something
- .s	Assembler source
- .sa	Stub libraries for a.out shared libraries
+ .rej	patches that patch(1) couldn't apply
+ .rules	rules for something
+ .s	assembler source
+ .sa	stub libraries for a.out shared libraries
  .sc	sc(1) spreadsheed commands
  .sh	sh(1) scripts
  .shar	archive created by the shar(1) utility
  .so	DLL dynamic library
+ .sql	SQL source
  .sqml	SQML schema or query program
  .sty	LaTeX style files
  .sym	Modula-2 compiled definition modules
  .tar	archive created by the tar(1) utility
- .tar.Z	tar archive compressed with compress(1)
- .tar.gz	tar archive compressed with gzip(1)
- .taz	Tar archive compressed with compress(1)
+ .tar.Z	tar(1) archive compressed with compress(1)
+ .tar.gz	tar(1) archive compressed with gzip(1)
+ .taz	tar(1) archive compressed with compress(1)
  .tex	TeX or LaTeX source
  .texi	equivalent to \fI.texinfo\fR
- .texinfo	TeXinfo documentation source
- .tfm	TeX font metrics
- .tgz	Tar archive compressed with gzip(1)
- .tmpl	Template files
- .txt	Text file
- .uue	Binary file encoded with uuencode(1)
+ .texinfo	Texinfo documentation source
+ .text	text file
+ .tfm	TeX font metric file
+ .tgz	tar archive compressed with gzip(1)
+ .tiff	Tagged Image File Format
+ .tmpl	template files
+ .txt	equivalent to \fI.text\fR
+ .uu	equivalent to \fI.uue\fR
+ .uue	binary file encoded with uuencode(1)
+ .vf	TeX virtual font file
+ .vpl	TeX virtual property list file
+ .w	Silvio Levi's CWEB
  .web	Donald Knuth's WEB
+ .xbm	X11 bitmap source
+ .xpm	X11 pixmap source
  .y	yacc(1) or bison(1) (parser generator) files
  .z	File compressed using pack(1) (or an old gzip(1))
- .zoo	ZOO archive
- ~	EMACS or patch backup file
- rc	Startup (`run control') file, e.g. .newsrc
+ .zoo	zoo(1) archive
+ ~	Emacs or patch(1) backup file
+ rc	startup (`run control') file, e.g. .newsrc
 .TE
 .SH "CONFORMS TO"
 General UNIX conventions.

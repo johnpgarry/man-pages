@@ -22,6 +22,8 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Modified Fri Jan 31 16:38:25 1997 by Eric S. Raymond <esr@thyrsus.com>
+.\"
 .TH MMAP 2 "12 April 1996" "Linux 1.3.86" "Linux Programmer's Manual"
 .SH NAME
 mmap, munmap \- map or unmap files or devices into memory
@@ -64,6 +66,9 @@ Pages may be read.
 .TP
 .B PROT_WRITE
 Pages may be written.
+.TP
+.B PROT_NONE
+Pages may not be accessed.
 .LP
 The
 .I flags
@@ -85,8 +90,9 @@ Share this mapping with all other processes that map this object
 .B MAP_PRIVATE
 Create a private copy-on-write mapping.
 .LP
-The above three flags are described in POSIX.4.  Linux also knows
-about MAP_DENYWRITE, MAP_EXECUTABLE and MAP_ANON(YMOUS).
+The above three flags are described in POSIX.1b (formerly POSIX.4).
+Linux also knows about MAP_DENYWRITE, MAP_EXECUTABLE and
+MAP_ANON(YMOUS).
 
 The
 .B munmap
@@ -139,7 +145,8 @@ The file has been locked, or too much memory has been locked.
 .B ENOMEM
 No memory is available.
 .SH "CONFORMING TO"
-POSIX.4.
+SVr4, POSIX.1b (formerly POSIX.4), 4.4BSD.  Svr4 documents additional
+error codes ENXIO and ENODEV.
 .SH "SEE ALSO"
 .BR getpagesize (2),
 .BR msync (2),

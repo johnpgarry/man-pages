@@ -31,7 +31,8 @@
 .\"
 .\"     @(#)send.2	6.9 (Berkeley) 5/1/91
 .\"
-.\" Modified Sat Jul 24 01:15:33 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 01:15:33 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Tue Oct 22 17:55:49 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH SEND 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
@@ -151,8 +152,11 @@ The operation may succeed when buffers become available.
 The output queue for a network interface was full.
 This generally indicates that the interface has stopped sending,
 but may be caused by transient congestion.
-.SH HISTORY
-These function calls appeared in BSD 4.2.
+.SH "CONFORMING TO"
+4.4BSD, SVr4 (these function calls appeared in 4.2BSD).  The SVr4
+versions docoment additional error conditions EINVAL, EINTR, EMSGSIZE,
+ENOSR, ENOMEM.
 .SH "SEE ALSO"
 .BR fcntl "(2), " recv "(2), " select "(2), " getsockopt "(2), "
 .BR socket "(2), " write (2)
+

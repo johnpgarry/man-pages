@@ -91,15 +91,12 @@ has no room for the new directory.
 The new directory cannot be created because the user's disk quota is
 exhausted.
 .SH CONFORMING TO
-.SH BUGS
-In some older versions of Linux (for example, 0.99pl7) all the normal
-filesystems sometime allow the creation of two files in the same
-directory with the same name.  This occurs only rarely and only on a
-heavily loaded system.  It is believed that this bug was fixed in the
-Minix filesystem in Linux 0.99pl8 pre-release; and it is hoped that it
-was fixed in the other filesystems shortly afterwards.
-
-There are many infelicities in the protocol underlying NFS.
+SVr4, POSIX, BSD, SYSV, X/OPEN.  SVr4 documents additional EIO, EMULTIHOP
+and ENOLINK error conditions; POSIX.1 omits ELOOP.
+.PP
+There are many infelicities in the protocol underlying NFS.  Some
+of these affect
+.BR mkdir .
 .SH SEE ALSO
 .BR read "(2), " write "(2), " fcntl "(2), " close (2),
 .BR unlink "(2), " open "(2), " mknod "(2), " stat "(2), " umask (2),

@@ -31,9 +31,9 @@
 .\"
 .\"     @(#)sigblock.2	6.7 (Berkeley) 3/10/91
 .\"
-.\" Modified Sat Jul 24 10:09:15 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Fri Aug 11 1995 by Stephen Lee (sl14@cornell.edu)
-.\" Modified 1995 by Mike Battersby (mib@deakin.edu.au)
+.\" Modified Sat Jul 24 10:09:15 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Fri Aug 11 1995 by Stephen Lee <sl14@cornell.edu>
+.\" Modified 1995 by Mike Battersby <mib@deakin.edu.au>
 .\""
 .TH SIGBLOCK 2 "31 August 1995" "Linux 1.3" "Linux Programmer's Manual"
 .SH NAME
@@ -96,7 +96,8 @@ or
 .B SIGSTOP
 \- this restriction is silently imposed by the system.
 
-.SH HISTORY
-These function calls appeared in BSD 4.3 and are deprecated.
+.SH "CONFORMING TO"
+4.4BSD. These function calls appeared in BSD 4.3 and are deprecated.
+Use the POSIX signal facilities for new programs.
 .SH "SEE ALSO"
 .BR kill "(2), " sigprocmask "(2), " signal (7)

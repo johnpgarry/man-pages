@@ -20,8 +20,8 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Written 11 June 1995 by Andries Brouwer (aeb@cwi.nl)
-.\" Modified 22 July 1995 by Michael Chastain (mec@duracef.shout.net):
+.\" Written 11 June 1995 by Andries Brouwer <aeb@cwi.nl>
+.\" Modified 22 July 1995 by Michael Chastain <mec@duracef.shout.net>:
 .\"   In 1.3.X, returns only one entry each time; return value is different.
 .TH READDIR 2  "22 July 1995" "Linux 1.3.6" "Linux Programmer's Manual"
 .SH NAME
@@ -96,6 +96,15 @@ is set appropriately.
 .B EBADF
 Invalid file descriptor
 .IR fd .
+.TP
+.B EFAULT
+Argument points outside the calling process's address space.
+.TP
+.B EINVAL
+Result buffer is too small.
+.TP
+.B ENOENT
+No such directory.
 .TP
 .B ENOTDIR
 File descriptor does not refer to a directory.

@@ -24,8 +24,8 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
-.\" Modified Thu Jul 22 14:00:08 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Tue Aug 10 1993 by Alan Cox (iiitac@pyramid.swansea.ac.uk)
+.\" Modified Thu Jul 22 14:00:08 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Tue Aug 10 1993 by Alan Cox <iiitac@pyramid.swansea.ac.uk>
 .\"
 .TH ACCT 2 "10 August 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
@@ -39,15 +39,6 @@ acct \- switch process accounting on or off
 .fi
 .ad b
 .SH DESCRIPTION
-.BR WARNING :
-Since this function is not implemented as of Linux 0.99.11, it will always
-return \-1 and set
-.I errno
-to
-.BR ENOSYS .
-If acctkit is installed the function performs 'as
-advertised'.
-
 When called with the name of an existing file as argument, accounting is
 turned on, records for each terminating process are appended to
 \fIfilename\fP as it terminates.  An argument of \fBNULL\fP causes
@@ -56,8 +47,15 @@ accounting to be turned off.
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
 is set appropriately.
+.SH ERRORS
+.TP 0.8i
+.B ENOSYS
+The accounting kit has not been installed.
+.SH "CONFORMING TO"
+SVr4 (but not POSIX).  SVr4 documents EACCES, EBUSY, EFAULT,
+ELOOP, ENAMETOOLONG, ENOTDIR, ENOENT, EPERM and EROFS error
+conditions, but no ENOSYS.
 .SH NOTES
 No accounting is produced for programs running when a crash occurs.  In
 particular, nonterminating processes are never accounted for.
-.SH "SEE ALSO"
-.BR acct (5)
+

@@ -22,6 +22,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and author of this work.
 .\"
+.\" Modified Tue Oct 22 08:11:14 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH MPROTECT 2 "1995-06-23" "Linux 1.2" "Linux Programmer's Manual"
 .SH NAME
 mprotect \- control allowable accesses to a region of memory
@@ -51,6 +52,9 @@ The memory can be written to.
 .TP
 .B PROT_EXEC
 The memory can contain executing code.
+.TP
+.B PROT_NONE
+The memory cannot be accessed.
 .PP
 The new protection replaces any existing protection.  For example, if the
 memory had previously been marked \fBPROT_READ\fR, and \fBmprotect\fR
@@ -117,5 +121,8 @@ main(void)
     exit(0);
 }
 .fi
+.SH "CONFORMING TO"
+SVr4, POSIX.1b (formerly POSIX.4).  SVr4 defines an additional error
+code EAGAIN. The SVr4 error conditions don't map neatly onto Linux's.
 .SH SEE ALSO
 .BR mmap (2)

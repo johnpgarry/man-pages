@@ -23,6 +23,7 @@
 .\" Modified Sun Nov 28 17:06:19 1993, Rik Faith (faith@cs.unc.edu)
 .\"          with material from Luigi P. Bai (lpb@softint.com)
 .\" Portions Copyright 1993 Luigi P. Bai
+.\" Modified Tue Oct 22 22:04:23 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH SHMOP 2 "November 28, 1993" "Linux 0.99.13" "Linux Programmer's Manual" 
 .SH NAME
@@ -226,6 +227,8 @@ value is
 The implementation has no intrinsic limit to the per process maximum
 number of shared memory segments
 .RB ( SHMSEG )
+.SH "CONFORMING TO"
+SVr4, SVID.  SVr4 documents an additional error condition EMFILE.
 .SH "SEE ALSO"
 .BR ipc (5),
 .BR shmctl (2),

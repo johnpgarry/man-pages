@@ -20,10 +20,11 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Wed Jul 28 11:03:24 1993, Rik Faith (faith@cs.unc.edu)
-.\" Modified Sun Nov 28 16:43:30 1993, Rik Faith (faith@cs.unc.edu)
-.\"          with material from Giorgio Ciucci (giorgio@crcc.it)
-.\" Portions Copyright 1993 Giorgio Ciucci (giorgio@crcc.it)
+.\" Modified Wed Jul 28 11:03:24 1993, Rik Faith <faith@cs.unc.edu>
+.\" Modified Sun Nov 28 16:43:30 1993, Rik Faith <faith@cs.unc.edu>
+.\"          with material from Giorgio Ciucci <giorgio@crcc.it>
+.\" Portions Copyright 1993 Giorgio Ciucci <giorgio@crcc.it>
+.\" Modified Fri Jan 31 17:24:31 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH SHMCTL 2 "November 28, 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
@@ -178,5 +179,12 @@ is returned if \fIshmid\fP points to a removed identifier.
 is returned if \fBIPC_SET\fP or \fBIPC_RMID\fP is attempted, and the
 user is not the creator, the owner, or the super-user, and the user
 does not have permission granted to their group or to the world.
+.SH "CONFORMING TO"
+SVr4, SVID.  SVr4 documents additional error conditions EINVAL,
+ENOENT, ENOSPC, ENOMEM, EEXIST.  Neither SVr4 nor SVID documents
+an EIDRM error condition.
 .SH "SEE ALSO"
 .BR shmget "(2), " shmop (2)
+
+
+

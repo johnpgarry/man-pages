@@ -58,6 +58,7 @@
 .\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 .\" SUCH DAMAGE.
 .\"
+.\" Modified Mon Oct 21 23:05:29 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH BIND 2 "23 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
 .SH NAME
 bind \- bind a name to a socket
@@ -105,6 +106,9 @@ for details.
 .TP
 .B EACCES
 The address is protected, and the user is not the super-user.
+.TP
+.B ENOTSOCK
+Argument is a descriptor for a file, not a socket.
 .PP
 The following errors are specific to UNIX domain (AF_UNIX) sockets:
 .TP 0.8i
@@ -141,10 +145,12 @@ Search permission is denied on a component of the path prefix.
 .B ELOOP
 .I my_addr
 contains a circular reference (i.e., via a symbolic link)
-.SH HISTORY
-The
+.SH CONFORMING TO
+SVr4, 4.4BSD (the
 .B bind
-function call appeared in BSD 4.2.
+function first appeared in BSD 4.2).  SVr4 documents additional
+EADDRNOTAVAIL, EADDRINUSE, ENOSR general error conditions, and
+additional EIO, EISDIR and EROFS Unix-domain error conditions.
 .SH "SEE ALSO"
 .BR accept "(2), " connect "(2), " listen "(2), "
 .BR socket "(2), " getsockname (2)

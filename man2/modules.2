@@ -206,18 +206,21 @@ and the global variable
 .Nm errno
 will contain the error number.
 A descriptive text will also be written on the console device.
-.Sh SEE ALSO
-.Xr insmod 1 ,
-.Xr rmmod 1 ,
-.Xr lsmod 1 ,
-.Xr ksyms 1
-.Sh HISTORY
-The module support was first concieved by Anonymous (as far as I know...).
+.Sh "CONFORMING TO"
+These calls are unique to Linux and should not be used in programs
+intended to be portable.
+.Pp
+The module support was first conceived by Anonymous (as far as I know...).
 .br
 Linux version by Bas Laarhoven <bas@vimec.nl>,
 .br
 0.99.14 version by Jon Tombs <jon@gtex02.us.es>,
 .br
 extended by Bjorn Ekwall <bj0rn@blox.se>.
+.Sh SEE ALSO
+.Xr insmod 1 ,
+.Xr rmmod 1 ,
+.Xr lsmod 1 ,
+.Xr ksyms 1
 .Sh BUGS
 Naah...

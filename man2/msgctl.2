@@ -20,6 +20,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
+.\" Modified Tue Oct 22 08:11:14 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH MSGCTL 2 "November 1, 1993" "Linux 0.99.13" "Linux Programmer's Manual" 
 .SH NAME
 msgctl \- message control operations
@@ -156,6 +157,8 @@ control calls are used by the
 program to provide information on allocated resources.
 In the future these can be modified as needed or moved to a proc file system
 interface.
+.SH "CONFORMING TO"
+SVr4, SVID.  SVID dies not document the EIDRM error condition.
 .SH "SEE ALSO"
 .BR ipc (5),
 .BR msgget (2),

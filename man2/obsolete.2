@@ -25,6 +25,7 @@
 .\" Modified 22 July 1995 by Michael Chastain (mec@duracef.shout.net):
 .\"   Fixed incorrect word in 'TH' call.
 .\"
+.\" Modified Tue Oct 22 16:44:55 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH OBSOLETE 2 "22 July 1995" "Linux 1.3.6" "Linux Programmer's Manual"
 .SH NAME
 oldfstat, oldlstat, oldstat, oldolduname, olduname \- obsolete system calls
@@ -38,6 +39,8 @@ but old executables must continue to receive old smaller structures.
 .PP
 Current executables should be linked with current libraries and never
 use these calls.
+.SH "CONFORMING TO"
+These calls are unique to Linux and should not be used at all in new programs.
 .SH "SEE ALSO"
 .BR fstat "(2), "
 .BR lstat "(2), "

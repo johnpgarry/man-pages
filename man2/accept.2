@@ -31,8 +31,8 @@
 .\"
 .\"     @(#)accept.2	6.6 (Berkeley) 4/29/91
 .\"
-.\" Modified Sat Jul 24 16:42:42 1993 by Rik Faith (faith@cs.unc.edu)
-.\"
+.\" Modified Sat Jul 24 16:42:42 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Mon Oct 21 23:05:29 EDT 1996 by Eric S. Raymond <esr@thyrsus.com>
 .TH ACCEPT 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
 .SH NAME
 accept \- accept a connection on a socket
@@ -139,9 +139,10 @@ parameter is not in a writable part of the user address space.
 .B EWOULDBLOCK
 The socket is marked non-blocking and no connections are
 present to be accepted.
-.SH HISTORY
-The
+.SH CONFORMING TO
+SVr4, 4.4BSD (the
 .B accept
-function appeared in BSD 4.2.
+function first appeared in BSD 4.2).  SVr4 documents an additional
+EOPNOTSUPP error condition.
 .SH "SEE ALSO"
 .BR bind "(2), " connect "(2), " listen "(2), " select "(2), " socket (2)

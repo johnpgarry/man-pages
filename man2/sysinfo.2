@@ -7,13 +7,13 @@
 .\"  If you modify this file, please put a date stamp and HOW you
 .\"  changed this file.  Thanks.   -DM
 .\"
-.\" Modified Sat Jul 24 12:35:12 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Sat Jul 24 12:35:12 1993 by Rik Faith <faith@cs.unc.edu>
+.\" Modified Tue Oct 22 22:29:51 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\"
 .TH SYSINFO 2 "24 July 1993" "Linux 0.99.10" "Linux Programmer's Manual"
 .SH NAME
 sysinfo \- returns information on overall system statistics
 .SH SYNOPSIS
-As of Linux 0.99.10 and image release 4.4
 .B #include <linux/kernel.h>
 .br
 .B #include <linux/sys.h>
@@ -52,7 +52,8 @@ is set appropriately.
 .B EFAULT
 pointer to \fIstruct\ sysinfo\fP is invalid
 .SH "CONFORMING TO"
-This function is Linux-specific.
+This function is Linux-specific, and should not be used in programs
+intended to be portable.
 .SH BUGS
 The Linux DLL 4.4.1 libraries do not contain a proper prototype for this
 function.

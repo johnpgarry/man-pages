@@ -22,8 +22,9 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified 22 July 1995 by Michael Chastain (mec@duracef.shout.net):
+.\" Modified 22 July 1995 by Michael Chastain <mec@duracef.shout.net>:
 .\"   'gethostname' is real system call on Linux/Alpha.
+.\" Modified Fri Jan 31 16:30:53 1997 by Eric S. Raymond <esr@thyrsus.com>
 .TH GETHOSTNAME 2 "22 July 1995" "Linux 1.3.6" "Linux Programmer's Manual"
 .SH NAME
 gethostname, sethostname \- get/set host name
@@ -63,8 +64,9 @@ the caller was not the superuser.
 .I name
 is an invalid address.
 .SH "CONFORMING TO"
+SVr4, 4.4BSD  (this function first appeared in 4.2BSD).
 POSIX.1 does not define these functions, but ISO/IEC 9945-1:1990 mentions
-them in B.4.4.1.
+them in B.4.4.1.  
 .SH BUGS
 Some other implementations of
 .B gethostname

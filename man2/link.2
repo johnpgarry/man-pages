@@ -23,9 +23,9 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" Modified Fri Jul 23 22:01:51 1993 Rik Faith (faith@cs.unc.edu)
+.\" Modified Fri Jul 23 22:01:51 1993 Rik Faith <faith@cs.unc.edu>
 .\" Modified Sun Aug 21 18:18:14 1994: Michael Haardt's NFS diffs were
-.\"          applied by hand (faith@cs.unc.edu)
+.\"          applied by hand <faith@cs.unc.edu>
 .\"
 .TH LINK 2 "17 August 1994" "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -123,7 +123,8 @@ cannot span filesystems. Use
 .B symlink
 if this is required.
 .SH "CONFORMING TO"
-SVID, AT&T, POSIX, BSD 4.3
+SVr4, SVID, POSIX, BSD 4.3.  SVr4 documents additional ENOLINK and
+EMULTIHOP error conditions; POSIX.1 does not document ELOOP.
 .SH BUGS
 On NFS file systems, the return code may be wrong in case the NFS server
 performs the link creation and dies before it can say so.  Use
