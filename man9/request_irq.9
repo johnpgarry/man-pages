@@ -1,0 +1,147 @@
+.\"
+.\" Copyright (c) 1995 Jochen Karrer <cip307.cip.physik.uni-wuerzburg.de>
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.TH REQUEST_IRQ 9 "AUGUST 1995" "Linux 1.2.12" "Kernel Reference Guide"
+.SH NAME
+request_irq, free_irq, enable_irq, disable_irq 
+\- set up and remove a hardware interrupt handler, enable and disable interrupt.
+.SH SYNOPSIS
+.nf  
+.B #include <linux/sched.h>
+.B #include <linux/signal.h>
+.B #include <asm/irq.h>
+
+.B "int request_irq(unsigned int irq,
+.B "                void (*handler)(int, struct pt_regs *),"
+.B "                unsigned long flags,"
+.B "                const char *device);"
+
+.B "void free_irq(unsigned int irq);"
+
+.B "void enable_irq(unsigned int irq_nr);"
+
+.B "void disable_irq(unsigned int irq_nr);"
+.fi
+.SH DESCRIPTION
+.B request_irq()
+is used to set up an interrupt 
+.I handler 
+for
+.IR "irq".
+The 
+.I handler 
+will be called on interrupt with the arguments 
+.B int irq,
+which is the number of the interrupt, and
+.B struct pt_regs * regs,
+which is a pointer to the processor registers on stack.
+
+.I flags
+is one of 
+.B 0, SA_INTERRUPT, SA_ONESHOT
+or 
+.BR "SA_PROBE".
+
+.B 0
+.RS
+The interrupt is a slow interrupt. All registers will be saved.
+The interrupt handler always runs with other interrupts
+enabled. The handler gets a pointer 
+.I "struct pt_regs *"
+to the processor registers on the stack. 
+After execution of the handler ret_from_syscall is executed,
+where bottom halves are checked and if necessary exececuted.
+need_reschedule is checked and the scheduler will be called if set.
+Signals are checked and handled.
+.RE
+
+.B SA_INTERRUPT
+.RS 
+The interrupt is a fast interrupt. The handler is running with other
+interrupts disabled, unless it explicitly enables them. The pointer
+.I "struct pt_regs *"
+given to the handler will be 
+.B NULL.
+There will be no check for signals, need_resched, or bottom halves after
+execution.
+.RE
+
+.B SA_ONESHOT
+.RS
+The interrupt will be disabled after one execution, but the handler
+will not be discarded. 
+.RE
+ 
+.B SA_PROBE 
+.RS
+Same as 
+.B SA_ONESHOT.
+This is used for probe_irq_on() for finding the irq of a device by trial.
+( See arch/i386/kernel/irq.c )
+.RE
+
+.I device 
+is a string which contains the name of the device.
+
+.B free_irq()
+discards the interrupt handler for interrupt 
+.IR "irq". 
+
+.B enable_irq()
+enables the irq with the number 
+.I irq_nr
+in the hardware interrupt controller.
+
+.B disable_irq()
+disables the irq with the number 
+.I irq_nr 
+in the hardware interrupt controller.
+
+.SH RETURN VALUE
+request_irq() returns zero on sucess or a negative error number if an error
+occured. ( see include/linux/errno.h )
+
+.SH ERRORS
+.B EINVAL
+The requested interrupt has a number out of range, or    
+.I handler
+is a pointer to NULL.
+
+.B EBUSY
+There exists a registered handler for the requested interrupt.
+
+.SH SOURCES
+ linux/arch/i386/kernel/irq.c, 
+ linux/include/asm-i386/irq.h, 
+ linux/arch/i386/kernel/entry.S
+
+.SH FILES
+/proc/interrupts
+
+.SH BUGS/LIMITAIONS
+It's not possible to register more than one handler for one interrupt,
+But I heard this is planned for the future. 
+
+.SH AUTHOR
+Linus Torvalds
+

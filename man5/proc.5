@@ -1,5 +1,6 @@
 .\" Copyright (C) 1994, 1995 by Daniel Quinlan (quinlan@yggdrasil.com)
 .\" with networking additions from Alan Cox (A.Cox@swansea.ac.uk)
+.\" and scsi additions from Michael Neuffer (neuffer@mail.uni-mainz.de) 
 .\"
 .\" This is free documentation; you can redistribute it and/or
 .\" modify it under the terms of the GNU General Public License as
@@ -22,8 +23,9 @@
 .\" USA.
 .\"
 .\" Wed May 17 15:26:04 1995: faith@cs.unc.edu, updated BUGS section
+.\" Minor changes by aeb and Marty Leisner (leisner@sdsp.mc.xerox.com).
 .\"
-.TH PROC 5 "25 Dec 1994" "" "Linux Programmer's Manual"
+.TH PROC 5 "12 August 1995" "" "Linux Programmer's Manual"
 .SH NAME
 /proc \- process information pseudo-filesystem
 
@@ -56,9 +58,12 @@ the cwd of process 20, for instance, you can do this:
 .br
 .nf
 .ft  CW
-cd /proc/20/cwd; pwd
+cd /proc/20/cwd; /bin/pwd
 .fi
 .ft
+Note that the pwd command is often a shell builtin, and might
+not work properly in this context.
+
 .TP
 .I environ
 This file contains the environment for the process.  There are no
@@ -332,14 +337,18 @@ try \fIps -l\fP to see the WCHAN field in action)
 .TP
 .TP
 .I cpuinfo
-No information.
+This is a collection of CPU and system architecture dependent items,
+for each supported architecture a different list.
+The only two common entries are \fIcpu\fP which is (guess what) the CPU 
+currently in use and \fIBogoMIPS\fP a system constant which is calculated 
+during kernel initialization.  
 .TP
 .I devices
 Text listing of major numbers and device groups.  This can be used by
 MAKEDEV scripts for consistency with the kernel.
 .TP
 .I dma
-No information.  It is probably the DMA (direct memory access)
+This is a list of the registered \fIISA\fP DMA (direct memory access) 
 channels in use.
 .TP
 .I filesystems
@@ -354,8 +363,8 @@ least) the i386 architechure.  Very easy to read formatting, done in
 ASCII.
 .TP
 .I ioports
-No information.  It is probably Input-Output port regions that are in
-use.
+This is a list of currently registered Input-Output port regions that 
+are in use.
 .TP
 .I kcore
 This file represents the physical memory of the system and is stored
@@ -539,7 +548,51 @@ socket and Path is the bound path (if any) of the socket.
 .RE
 .TP
 .I pci
-No information.  Looks like PCI chipset values on various slots.
+This is a listing of all PCI devices found during kernel initialization
+and their configuration.
+.TP
+.I scsi
+A directory with the scsi midlevel pseudo-file and various SCSI lowlevel driver 
+directories, which contain a file for each SCSI host in this system, all of 
+which give the status of some part of the SCSI IO subsystem.  
+These files contain ASCII structures, and are therefore readable with cat.  
+
+You can also write to some of the files to reconfigure the subsystem or switch
+certain features on or off.
+.RS
+.TP
+.I scsi
+This is a listing of all SCSI devices known to the kernel. The listing is 
+similar to the one seen during bootup.
+scsi currently supports only the \fIsingledevice\fP command which allows
+root to add a hotplugged device to the list of known devices.
+
+An 
+.ft CW
+echo 'scsi singledevice 1 0 5 0' > /proc/scsi/scsi 
+.ft
+will cause 
+host scsi1 to scan on SCSI channel 0 for a device on ID 5 LUN 0. If there 
+is already a device known on this address or the address is invalid an
+error will be returned.
+.TP
+.I drivername
+\fIdrivername\fP can currently be: NCR53c7xx, aha152x, aha1542, aha1740, 
+aic7xxx, buslogic, eata_dma, eata_pio, fdomain, in2000, pas16, qlogic, 
+scsi_debug, seagate, t128, u15-24f, ultrastore or wd7000. 
+These directories show up for all drivers which registered at least one SCSI 
+HBA. Every directory contains one file per registered host. Every host-file is
+named after the number the host got assigned during initilization. 
+
+Reading these files will usually show driver and host configuration, 
+statistics etc.
+
+Writing to these files allows different things on different hosts. For example
+with the \fIlatency\fP and \fInolatency\fP commands root can switch on and off 
+command latency measurement code in the eata_dma driver. With the \fIlockup\fP 
+and \fIunlock\fP commands root can control bus lockups simulated by the 
+scsi_debug driver. 
+.RE
 .TP
 .I self
 This directory refers to the process accessing the /proc filesystem,
@@ -599,10 +652,10 @@ mmap(2), chroot(2), syslog(2), hier(7), arp(8), dmesg(8), netstat(8),
 route(8), ifconfig(8), procinfo(8) and much more
 .\" maybe I should trim that down
 .SH CONFORMS TO
-This roughly conforms to a Linux 1.1 kernel.  Please update this as
+This roughly conforms to a Linux 1.3.11 kernel.  Please update this as
 necessary!
 
-Last updated for Linux 1.1.81.
+Last updated for Linux 1.3.11.
 .SH CAVEATS
 Note that many strings (i.e., the environment and command line) are in
 the internal format, with sub-fields terminated by NUL bytes, so you
@@ -628,3 +681,4 @@ will return to the original root of the file system.  This may be
 considered a feature instead of a bug, since Linux does not yet support the
 .BR fchroot (2)
 call.
+

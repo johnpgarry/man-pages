@@ -1,24 +1,30 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.7.tar.gz - section 2, 3, 4, 5, 7, and 9 man pages for Linux
+    man-pages-1.8.tar.gz - section 2, 3, 4, 5, 7, and 9 man pages for Linux
 
 
-
-Differences from version 1.6:
+Differences from version 1.7:
     
-    The following files have been updated:
+    The following man pages are new or have been updated:
 
-	getdents.2 gethostname.2 gettimeofday.2 modify_ldt.2 mprotect.2
-	obsolete.2 profil.2 readdir.2 swapon.2 undocumented.2
+	cacheflush.2 listen.2 setfsgid.2 setfsuid.2 sigblock.2
+	siggetmask.2 sigmask.2 sigsetmask.2 sysfs.2 undocumented.2
+	unimplemented.2 ustat.2
 
-	exit.3 malloc.3 mktemp.3
+	exp.3 re_comp.3 re_exec.3 regcomp.3 regerror.3 regexec.3
+	regfree.3
 
-	passwd.5
+	fstab.5 lilo.conf.5
 
-	ascii.7 iso_8859_1.7 mailaddr.7
+	bootparam.7
 
+	lilo.8
 
+	kmalloc.9 memcpy_tofs.9 request_irq.9 vremap.9
+
+    (Yes, lilo.8 doesn't really belong here, but I think it is useful.
+    It will be removed again as soon as lilo comes with a manpage.)
 
 Here is a breakdown of what this distribution contains:
 
@@ -28,25 +34,21 @@ Here is a breakdown of what this distribution contains:
     Section 4 = devices (e.g., hd, sd)
     Section 5 = file formats (e.g., wtmp, /etc/passwd)
     Section 6 = games (intro only)
-    Section 7 = macro packages, etc. (e.g., nroff, ascii)
+    Section 7 = conventions, macro packages, etc. (e.g., nroff, ascii)
     Section 8 = system administration (intro only)
-    Section 9 = internal kernel routines (for kernel hackers)
+    Section 9 = internal kernel routines (for kernel hackers?)
 
-    (There are no section 1, 6 and 8 man pages because these should be
-    distributed with the binaries they are written for.)
+    (Usually, there are no section 1, 6 and 8 man pages because these
+    should be distributed with the binaries they are written for.)
 
     Note that only Section 2 is really complete, but Section 3 contains
-    several hundred man pages.  I have included all completed man pages in
-    this distribution to give people an idea of what is available.  If you
-    want to write some man pages, please join the linux-doc mailing list on
-    the vger.rutgers.edu server.
-
+    several hundred man pages.  If you want to write some man pages,
+    please join the linux-doc mailing list on the vger.rutgers.edu server.
 
 
 To install this distribution, do something like:
 
-    cd /usr/man; zcat man-pages-1.7.tar.gz | tar xvpf -
-
+    cd /usr/man; zcat man-pages-1.8.tar.gz | tar xvpf -
 
 
 The following people (listed in alphabetical order by first name)
@@ -69,6 +71,7 @@ wrote, edited, or otherwise contributed to this project:
     Jens Schweikhardt (Jens.Schweikhardt@rus.uni-stuttgart.de)
     Jim Van Zandt (jrv@vanzandt.mv.com)
     Jochen Hein (Hein@Student.TU-Clausthal.de)
+    Jochen Karrer (cip307.cip.physik.uni-wuerzburg.de)
     Luigi P. Bai (lpb@neosoft.com)
     Mark D. Roth (roth@uiuc.edu)
     Michael Elizabeth Chastain (mec@shell.portal.com)
@@ -78,13 +81,15 @@ wrote, edited, or otherwise contributed to this project:
     Mitchum DSouza (m.dsouza@mrc-apu.cam.ac.uk)
     Nicolai Langfeldt (janl@ifi.uio.no)
     Niel Charley (N.Charley-CSSE93@computer-science.birmingham.ac.uk)
+    Ralf Baechle (ralf@waldorf-gmbh.de)
     Rik Faith (faith@cs.unc.edu)
     Robert K. Nichols (Robert.K.Nichols@att.com)
+    Stephen Lee (sl14@cornell.edu)
     Steven Greenland (stevegr@sugar.neosoft.com)
+    Thomas K. Dyas (tdyas@eden.rutgers.edu)
     Thomas Koenig (ig25@rz.uni-karlsruhe.de)
     Ulrich Drepper (drepper@ipd.info.uni-karlsruhe.de)
     Urs Thuermann (urs@isnogud.escape.de)
-
 
 
 Copyright information:

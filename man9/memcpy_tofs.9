@@ -1,0 +1,160 @@
+.\"
+.\" Copyright (c) 1995 Jochen Karrer <cip307.cip.physik.uni-wuerzburg.de>
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.TH MEMCPY_TOFS 9 "AUGUST 1995" "Linux 1.2.12" "Kernel Reference Guide"
+.SH NAME
+get_user_byte, get_fs_byte, get_user_word, get_fs_word,
+get_user_long, get_fs_long, put_user_byte, put_fs_byte, 
+put_user_word, put_fs_word, put_user_long, put_fs_long,
+__generic_memcpy_tofs, __constant_memcpy_tofs, __generic_memcpy_fromfs,
+__constant_memcpy_fromfs, memcpy_fromfs, memcpy_tofs
+\- copy data from or to user space. 
+.SH SYNOPSIS
+.nf  
+.B #include <asm/segment.h>
+
+.B static inline unsigned char get_user_byte(const char * addr);
+.B static inline unsigned char get_fs_byte(const char *addr);
+
+.B static inline unsigned short get_user_word(const short *addr);
+.B static inline unsigned short get_fs_word(const short *addr); 
+
+.B static inline unsigned long get_user_long(const int *addr);
+.B static inline unsigned long get_fs_long(const int *addr);
+
+.B static inline void put_user_byte(char val,char *addr);
+.B static inline void put_fs_byte(char val,char *addr); 
+
+.B static inline void put_user_word(short val,short * addr);
+.B static inline void put_fs_word(short val,short * addr)
+
+.B static inline void put_user_long(unsigned long val,int * addr);
+.B static inline void put_fs_long(unsigned long val,int * addr);
+
+.B static inline void __generic_memcpy_tofs(void * dest, 
+.B "                                        const void * src, 
+.B "                                        unsigned long n);
+
+.B static inline void __constant_memcpy_tofs(void * dest, 
+.B "                                         const void * src, 
+.B "                                         unsigned long n);
+
+.B static inline void __generic_memcpy_fromfs(void * dest, 
+.B "                                          const void * src, 
+.B "                                          unsigned long n);
+
+.B "static inline void __constant_memcpy_fromfs(void * dest, 
+.B "                                            const void * src, 
+.B "                                            unsigned long n);
+
+.B static inline void memcpy_fromfs(void * dest, const void * src, 
+.B "                               unsigned long n);
+
+.B static inline void  memcpy_tofs(void * dest,const void * src, 
+.B "                               unsigned long n);
+
+.fi
+.SH DESCRIPTION
+These are the architecture dependent functions for interchange of data 
+between user and kernel space. For non segmented architectures like
+alpha, these are normal memcopy operations, for i386 these are
+inline assembler functions for copying between different segments.
+The name is from the fs register of the i386, which is used as segment
+descriptor for the user segment. 
+
+
+.B get_{user,fs}_{byte,word,long}()
+.RS
+returns one byte, word or long, from
+.I addr
+in user space to kernel space.
+.RE
+
+.B put_{user,fs}_{byte,word,long}()
+.RS
+copies 
+.IR "val" " from kernel space to " addr " in user space. 
+.RE
+
+.B __generic_memcpy_tofs()
+.RS
+.RI  "copies " n " bytes from " src " in kernel space to " dest " in user space. 
+.RI "This function is used from memcpy_tofs  when " "n" " is not a constant.
+This function is is not available on all architectures.
+.RE
+
+.B __constant_memcpy_tofs()
+.RS
+.RI  "copies " n " bytes from " src " in kernel space to " dest " in user space.
+This function is used from memcpy_tofs  when 
+.I n 
+is a constant which can be deterimined at compile time.
+This function is not available on all architectures.
+.RE
+
+.B __generic_memcpy_fromfs()
+.RS
+.RI  "copies " n " bytes from " src " in user space to " dest " in kernel space. 
+.RI "This function is used from memcpy_tofs  when " "n" " is not a constant.
+This function is not available on all architectures.
+.RE
+
+.B __constant_memcpy_fromfs()
+.RS
+.RI  "copies " n " bytes from " src " in user space to " dest " in kernel space.
+This function is used from memcpy_tofs  when
+.I n
+is a constant which can be deterimined at compile time.
+This function is not available on all architectures.
+.RE
+
+
+.B
+.B memcpy_fromfs()
+.RS
+.RI "copies " n " bytes from " src " in user space to " dest " in kernel space. 
+On i386 it is determined at compile time if 
+.IR "n" " is a constant with __builtin_constant_p(n) from gcc. If " n " is a constant then
+__constant_memcpy_fromfs() is used, else  
+__generic_memcpy_fromfs() is used.
+
+.RE
+
+.B memcpy_tofs()
+.RS
+.RI "copies " n " bytes from " src " in kernel space to " dest " in user space.
+On i386 it is determined at compile time if 
+.IR "n" " is a constant with __builtin_constant_p(n) from gcc. If " n " is a constant then
+__constant_memcpy_tofs() is used, else
+__generic_memcpy_tofs() is used.
+.RE
+
+.SH SOURCES
+linux/include/asm/segment.h
+
+.SH SEE ALSO
+verify_area(9) for checking read/write permissions to/from user space.
+
+.SH AUTHOR
+Linus Torvalds
+

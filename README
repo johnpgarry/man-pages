@@ -1,0 +1,12 @@
+This package contains the Linux man pages for all chapters
+except 1 and 8. Some more information is given in the
+`Announce' file.
+
+Install by copying to your favourite location.
+"make install" will copy them to /usr/man/man[1-9].
+
+If your man pager can handle compressed source pages
+(man-1.4 can), you might do "make gz" before "make install".
+
+Copyrights: These man pages come under various copyrights.
+All are freely distributable when the nroff source is included.

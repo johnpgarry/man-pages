@@ -1,0 +1,232 @@
+.\"
+.\" Copyright (c) 1995 Jochen Karrer <cip307.cip.physik.uni-wuerzburg.de>
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.\" Some spelling corrections, aeb, 950812
+.\"
+.TH KMALLOC 9 "AUGUST 1995" "Linux 1.2.12" "Kernel Reference Guide"
+.SH NAME
+__get_free_pages,
+get_free_page, __get_free_page, __get_dma_pages,
+free_pages, free_page, kmalloc, kfree, kfree_s, vmalloc, vfree
+\- Allocate and free dynamic kernel memory 
+.SH SYNOPSIS
+.nf  
+.B "#include <linux/malloc.h>
+.B "#include <linux/mm.h> 
+
+.B "unsigned long __get_free_pages(int priority, unsigned long gfporder);"
+.B "unsigned long __get_free_page(int priority);"
+.B "unsigned long get_free_page(int priority);"
+.B "void free_pages(unsigned long addr, unsigned long order);"
+.B "void free_page(addr);"
+.B "void *kmalloc (size_t size, int priority)"
+.B "void kfree_s(void * obj, int size);"
+.B "void kfree(void *obj);"
+.B "void * vmalloc(unsigned long size);"
+.B "void vfree(void * addr);"
+.fi
+.SH DESCRIPTION
+.B __get_free_pages()
+.RS
+.RI "allocates 2^" "gfporder" 
+consecutive pages in kernel space.
+
+.IR priority " is one of  
+.B GFP_BUFFER, GFP_ATOMIC, GFP_KERNEL, GFP_USER, GFP_NOBUFFER, 
+.BR "GFP_NFS" " or" 
+.BR GFP_DMA.
+.RE
+
+.B GFP_BUFFER  
+.RS
+has the lowest priority, and doesn't try to 
+free other pages if the requested memory isn't available. 
+.RE
+
+.B GFP_ATOMIC  
+.RS
+tries to allocate the memory immediately.
+The task will not sleep if the memory isn't available.
+There is a number of reserved pages for GFP_ATOMIC.
+For allocating memory on interrupt this has to be used.
+.RE
+
+.B GFP_KERNEL 
+.RS
+is the normal way to allocate memory in the kernel space.
+The reserved pages will not be used, and if the memory is not available
+immediately, 
+.I try_to_free_page()
+will be called. 
+.RE
+
+.B GFP_USER
+.RS
+is currently the same as GFP_KERNEL.
+.RE
+
+.B GFP_NOBUFFER 
+.RS
+doesn't try to shrink the buffer cache for 
+memory allocation. This is used  in kernel for allocating pages 
+for the buffer cache.
+.RE
+
+.B GFP_NFS 
+.RS
+is the same as GFP_KERNEL, but the number of the reserved
+pages is lower, so this will succeed faster. 
+.RE
+
+.B GFP_DMA 
+.RS
+Has no effect in __get_free_pages(). This flag is only for use with kmalloc().
+For DMA memory kmalloc or __get_dma_pages should be used. 
+Description of effect see __get_dma_pages(). 
+.RE
+
+.B __get_dma_pages()
+.RS
+calls repeatedly __get_free_pages() until  pages  suitable for dma are found. 
+After success the mistakenly allocated pages will be freed. 
+This function is necessary because PC DMA controlles are limited to 16MB.
+DMA Pages may not cross 64k boundaries. This is guaranteed by the allocation
+algorithm of __get_free_pages(). This function  
+.RE
+
+.B __get_free_page() 
+.RS
+.RI "allocates one page. It's a  macro which calls __get_free_pages() with" " gfporder
+0.
+.RE
+
+.B get_free_page()
+.RS
+Same as __get_free_page(), except the allocated memory is set to zero. 
+.RE
+
+.B free_pages()
+.RS
+frees  the  memory space starting at addr, which
+must have been returned by a previous  call  to  __get_free_pages().
+.I order 
+has to be the same __get_free_pages() was called with. 
+Note that 
+.I addr 
+is unsigned long.
+.RE
+
+.B free_page()
+.RS
+frees the memory page starting at 
+.IR "addr" ", which must have been returned
+by a previous call to __get_free_page() or get_free_page().
+Note that 
+.I addr 
+is unsigned long.
+.RE
+
+.B kmalloc() 
+.RS
+.RI "allocates" " size" " bytes, and returns a pointer to the allocated memory. 
+On i386 the following bucket sizes are possible: 24, 56, 120, 244, 500, 1012,
+2032, 4072, 8168, 16360, 32744, 65512 and 131048 bytes. ( See
+linux/mm/kmalloc.c ) If an other size is kmalloc'ed  the  
+the next bigger one is allocated. For 
+.IR "priority" " see" 
+.B __get_free_pages.
+.RE
+
+.B kfree_s()
+.RS
+.RI "frees the memory object pointed to by" " obj".
+.I size 
+should be the size of the memory object or zero.
+.I kfree_s()
+determines the size of the object from the block header. If 
+.IR "size"  " is not zero it will be checked for being correct.
+.RE
+
+.B kfree()
+.RS
+.RI "frees the memory object pointed to by" " obj".
+It is a macro which calls kfree_s() with 
+.I size 
+zero.
+.RE
+
+.B vmalloc()
+.RS
+allocates 
+.I size 
+bytes, and returns a pointer to the allocated memory. size becomes page aligned
+by vmalloc(), so the smallest allocated amount is 4kB. The allocated pages
+are mapped to the virtual memory space behind the 1:1 mapped physical memory 
+in the kernel space. Behind every vmalloc'ed area there is at least one 
+unmapped page. So writing behind the end of a vmalloc'ed area will not result in
+a system crash, but in a segmentation violation in the kernel space.
+Because memory fragmentation isn't a big problem for vmalloc(), vmalloc() should
+be used for huge amounts of memory.
+.RE
+
+.B vfree()
+.RS
+frees the virtual memory area pointed to by
+.IR "addr" ", which must have been allocated by a previous call to vmalloc().
+.RE
+
+.SH RETURN VALUES
+.BR "__get_free_pages(), __get_free_page() " and " get_free_page" 
+return on success an unsigned long which is the address 
+of the start of the allocated memory,
+and  should normally be cast to a pointer. On failure zero is returned.
+
+.BR "kmalloc " and " vmalloc" " return a pointer to the 
+allocated memory on success
+and  
+.B NULL
+on failure.
+
+.SH ERRORS
+If one of the functions __get_free_pages(), __get_free_page(), 
+get_free_page(),
+or kmalloc() is called from interrupt, and priority
+is not GFP_ATOMIC, syslog will give a warning.
+
+.SH SOURCES 
+.nf 
+.B linux/mm/kmalloc.c 
+.B linux/mm/vmalloc.c
+.B linux/mm/swap.c
+.B linux/include/linux/mm.h
+.B linux/include/linux/malloc.h
+.fi
+.SH BUGS/LIMITAIONS
+Because of memory fragmentation it's still insecure to allocate areas of
+many pages
+with kmalloc. So for  areas bigger than one page 
+vmalloc() should be used. Only for DMA
+kmalloc or __get_dma_pages() has to be used.
+ 
+.SH AUTHOR
+Linus Torvalds
