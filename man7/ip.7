@@ -260,17 +260,13 @@ If
 .I IP_PKTINFO 
 is passed to
 .BR sendmsg (2)
-and
-.\" This field is grossly misnamed
-.B ipi_spec_dst
-is not zero, then it is used as the local source address for the routing
-table lookup and for setting up IP source route options.
-When
+then the outgoing packet will be sent over the interface
+specified in
 .B ipi_ifindex
-is not zero the primary local address of the interface specified by the
-index overwrites
-.I ipi_spec_dst
-for the routing table lookup.
+with the destination address set to
+.B ipi_spec_dst
+.
+
 .TP
 .B IP_RECVTOS
 If enabled the 
