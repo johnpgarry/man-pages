@@ -95,7 +95,13 @@ in which case the value \-1 is returned and the external variable
 set to
 .BR EAGAIN .
 The receive calls normally return any data available, up to the requested
-amount, rather than waiting for receipt of the full amount requested.
+amount, rather than waiting for receipt of the full amount requested;
+this behavior is affected by the socket-level options
+.B SO_RCVLOWAT
+and
+.B SO_RCVTIMEO
+described in
+.BR socket (7).
 .PP
 The
 .BR select (2) 

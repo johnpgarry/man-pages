@@ -290,8 +290,9 @@ with
 .BR getsockopt . 
 .TP
 .B SO_DONTROUTE
-Don't send via a gateway, only send to directly connected hosts.
-The same effect can be achieved by setting the 
+Bypass the routing table and send directly to the interface specified by the
+network part of the destination address. The same effect can be achieved by 
+setting the 
 .B MSG_DONTROUTE
 flag on a socket 
 .BR send (2)
