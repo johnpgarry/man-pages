@@ -20,7 +20,9 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
-.\" Modified Sun Sep 11 19:19:05 1994: faith@cs.unc.edu
+.\" Modified Sun Sep 11 19:19:05 1994 faith@cs.unc.edu
+.\" Modified Mon Mar 25 10:19:00 1996 aeb@cwi.nl (merged a few
+.\"	tiny changes from a man page by Charles Livingston).
 .\"
 .TH SETSID 2 "Aug 27, 1994" "" "System calls"
 .SH NAME
@@ -35,16 +37,21 @@ setsid \- creates a session and sets the process group ID
 .SH DESCRIPTION
 \fBsetsid()\fP creates a new session if the calling process is not a
 process group leader.  The calling process is the leader of the new
-session, the process group leader if the new process group, and has no
-controlling tty.  The process group ID of the calling process is set to
-the PID of the calling process.  The calling process will be the only
-process in this new process group and in this new session.
+session, the process group leader of the new process group, and has no
+controlling tty.  The process group ID and session ID of the calling
+process are set to the PID of the calling process.  The calling process
+will be the only process in this new process group and in this new session.
 .SH "RETURN VALUE"
-The process group ID of the calling process.
+The session ID of the calling process.
 .SH ERRORS
 On error, \-1 will be returned.  The only error which can happen is
 EPERM.
+.SH NOTES
+If the calling process is already a process group leader,
+.B setsid
+fails.
 .SH "CONFORMING TO"
 POSIX
 .SH "SEE ALSO"
-.BR setpgid(2)
+.BR setpgid (2),
+.BR setpgrp (2)

@@ -36,6 +36,7 @@
 .\" Sat Nov 20 20:47:38 1993: hpfs documentation added
 .\" Sat Nov 27 20:23:32 1993: Updated authorship information
 .\" Wed Jul 26 00:00:00 1995: Updated some nfs stuff, joey@infodrom.north.de
+.\" Tue Apr  2 00:38:28 1996: added info about "noauto", "user", etc.
 .\"
 .TH FSTAB 5 "27 November 1993" "Linux 0.99" "Linux Programmer's Manual"
 .SH NAME
@@ -121,6 +122,10 @@ see
 .BR mount (8).
 For documentation on all nfs-specific options have a look at
 .BR nfs (5).
+Common for all types of file system are the options ``noauto''
+(do not mount when "mount -a" is given, e.g., at boot time),
+and ``user'' (allow a user to mount). For more details, see
+.BR mount (8).
 
 The fifth field,
 .RI ( fs_freq ),

@@ -36,12 +36,15 @@
 .\"     @(#)printf.3	6.14 (Berkeley) 7/30/91
 .\"
 .\" Converted for Linux, Mon Nov 29 12:06:07 1993, faith@cs.unc.edu
-.\" modified to resemble the GNU libio setup used in the Linux libc 
-.\" used in versions 4.x (x>4) and 5   Helmut.Geyer@iwr.uni-heidelberg.de
 .\"
-.TH PRINTF 3  "1 November 1995" "Linux Manpage" "Linux Programmer's Manual"
+.\" Modified to resemble the GNU libio setup used in the Linux libc 
+.\" used in versions 4.x (x>4) and 5,  Helmut.Geyer@iwr.uni-heidelberg.de
+.\"
+.\" Added [v]snprintf, 1996/01/28, agulbra@troll.no
+.\"
+.TH PRINTF 3  "28 January 1996" "Linux Manpage" "Linux Programmer's Manual"
 .SH NAME
-printf, fprintf, sprintf, vprintf, vfprintf, vsprintf \- formatted output conversion
+printf, fprintf, sprintf, snprintf, vprintf, vfprintf, vsprintf, vsnprintf \- formatted output conversion
 .SH SYNOPSIS
 .B #include <stdio.h>
 .sp
@@ -50,6 +53,8 @@ printf, fprintf, sprintf, vprintf, vfprintf, vsprintf \- formatted output conver
 .BI "int fprintf( FILE *" stream ", const char *" format ", ...);"
 .br
 .BI "int sprintf( char *" str ", const char *" format ", ...);"
+.br
+.BI "int snprintf( char *" str ", size_t " size ", const char *" format ", ...);"
 .sp
 .B #include <stdarg.h>
 .sp
@@ -58,13 +63,15 @@ printf, fprintf, sprintf, vprintf, vfprintf, vsprintf \- formatted output conver
 .BI "int vfprintf( FILE *" stream ", const char *" format ", va_list " ap );
 .br
 .BI "int vsprintf( char *" str ", char *" format ", va_list " ap );
+.br
+.BI "int vsnprintf( char *" str ", size_t " size ", char *" format ", va_list " ap );
 .SH DESCRIPTION
 The
 .B printf
 family of functions produces output according to a
 .I format
-as described below.
-.B Printf
+as described below. The functions
+.B printf
 and
 .B vprintf
 write output to
@@ -76,17 +83,25 @@ and
 write output to the given output
 .IR stream ;
 .BR sprintf ,
-and
-.BR vsprintf
+.BR snprintf , 
+.BR vsprintf and vsnprintf
 write to the character string
 .IR  str .
+.PP
 These functions write the output under the control of a
 .I format
 string that specifies how subsequent arguments (or arguments accessed via
 the variable-length argument facilities of
-.BR stdarg (3)
-are converted for output.  These functions return the number of characters
-printed (not including the trailing `\e0' used to end output to strings).
+.BR stdarg (3))
+are converted for output.
+.PP
+These functions return the number of characters printed
+(not including the trailing `\e0' used to end output to strings).
+.BR snprintf " and " vsnprintf
+do not write more than
+.B size
+bytes (including the trailing '\e0'), and return -1 if the output
+was truncated due to this limit.
 .PP
 The format string is composed of zero or more directives: ordinary
 characters (not

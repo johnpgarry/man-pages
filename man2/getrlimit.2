@@ -25,6 +25,11 @@
 .\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
 .\" Modified Fri Jul 23 21:18:14 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Jan 13, 1996 by Arnt Gulbrandsen <agulbra@troll.no>
+.\" Modified Jan 22, 1996 by aeb, following a remark by
+.\"          Tigran Aivazian <bs_s641@kingston.ac.uk>
+.\" Modified Apr 14, 1996 by aeb, following a remark by
+.\"          Robert Bihlmeyer <robbe@orcus.ping.at>
+.\"
 .TH GETRLIMIT 2 "23 July 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
 getrlimit, getrusage, setrlimit \- get/set resource limits and usage
@@ -63,9 +68,7 @@ should be one of:
 \fBRLIMIT_NPROC\fP	/* max number of processes */
 .br
 \fBRLIMIT_NOFILE\fP	/* max number of open files */
-.PP
-The following is not implemented as of version 1.2.13:
-.PP
+.br
 \fBRLIMIT_MEMLOCK\fP	/* max locked-in-memory address space*/
 .PP
 A resource may unlimited if you set the limit to 
@@ -129,7 +132,9 @@ is called with a bad \fIresource\fP, or \fBgetrusage\fP is called with a
 bad \fIwho\fP.
 .TP
 .B EPERM
-A non-superuser tries to call \fBsetrlimit()\fP.
+A non-superuser tries to use \fBsetrlimit()\fP to increase the soft or hard
+limit above the current hard limit, or a superuser tries to increase
+RLIMIT_NOFILE above the current kernel maximum.
 .SH "CONFORMING TO"
 BSD 4.3
 .SH "SEE ALSO"

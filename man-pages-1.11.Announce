@@ -1,37 +1,37 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.10.tar.gz - section 2, 3, 4, 5, 7, and 9 man pages for Linux
+    man-pages-1.11.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 
-Differences from version 1.9:
+Differences from version 1.10:
     
     The following man pages are new or have been updated:
 
-	fcntl.2 getrlimit.2 ioctl_list.2 ioperm.2 iopl.2 kill.2 mlock.2
-	mlockall.2 munlock.2 munlockall.2 outb.2 select.2 signal.2
-	undocumented.2 write.2
+	access.2 close.2 fcntl.2 fdatasync.2 fsync.2 getrlimit.2 getsid.2
+	llseek.2 mmap.2 mremap.2 msync.2 nanosleep.2 open.2 quotactl.2
+	read.2 readv.2 sched_get_priority_max.2 sched_get_priority_min.2
+	sched_getparam.2 sched_getscheduler.2 sched_rr_get_interval.2
+	sched_setparam.2 sched_setscheduler.2 sched_yield.2 setsid.2
+	sigaction.2 sigblock.2 sigvec.2 stat.2 sync.2 sysctl.2 undocumented.2
+	unimplemented.2 write.2 writev.2
 
-	fopen.3 getopt.3 perror.3 printf.3 scanf.3 tdelete.3 tfind.3
-	tsearch.3 twalk.3
+	getcwd.3 getmntent.3 printf.3 scandir.3 strerror.3 strtok.3
 
-	lp.4
+	mouse.4 vcs.4
 
-	intro.5 nfs.5 protocols.5 services.5
+	fs.5 fstab.5 proc.5
 
-	signal.7 unicode.7 utf-8.7
+	bootparam.7 hier.7 signal.7 suffixes.7
 
-	get_request.9 invalidate.9 kmalloc.9 outb.9 plug_device.9
-	request.9 verify_area.9
-
-    several others were updated trivially (layout change only).
+    several others were updated trivially (layout change or spelling
+    correction only).
 
     Pages ax25.5 and netrom.5 were not yet included: their copyright
     status is unclear.
 
-    Since the last issue of man-pages, 17 new system calls have been
-    added to the kernel, and only the mlock* calls have been documented.
-    Contributions are welcome.
+    Section 9 has been removed.  There was extremely little there,
+    and most was outdated or wrong.
 
 Here is a breakdown of what this distribution contains:
 
@@ -43,7 +43,6 @@ Here is a breakdown of what this distribution contains:
     Section 6 = games (intro only)
     Section 7 = conventions, macro packages, etc. (e.g., nroff, ascii)
     Section 8 = system administration (intro only)
-    Section 9 = internal kernel routines (for kernel hackers?)
 
     (Usually, there are no section 1, 6 and 8 man pages because these
     should be distributed with the binaries they are written for.)
@@ -51,11 +50,6 @@ Here is a breakdown of what this distribution contains:
     Note that only Section 2 is really complete, but Section 3 contains
     several hundred man pages.  If you want to write some man pages,
     please join the linux-doc mailing list on the vger.rutgers.edu server.
-
-
-To install this distribution, do something like:
-
-    cd /usr/man; zcat man-pages-1.10.tar.gz | tar xvpf -
 
 
 The following people (listed in alphabetical order by first name)
@@ -99,6 +93,7 @@ wrote, edited, or otherwise contributed to this project:
     Steven Greenland (stevegr@sugar.neosoft.com)
     Thomas K. Dyas (tdyas@eden.rutgers.edu)
     Thomas Koenig (ig25@rz.uni-karlsruhe.de)
+    Tom Bjorkholm (tomb@tomb.mydata.se)
     Ulrich Drepper (drepper@ipd.info.uni-karlsruhe.de)
     Urs Thuermann (urs@isnogud.escape.de)
 

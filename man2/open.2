@@ -26,6 +26,7 @@
 .\" Modified Wed Jul 21 22:42:16 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Aug 21 18:18:14 1994: Michael Haardt's NFS diffs were
 .\"          applied by hand (faith@cs.unc.edu).
+,\" Modified Sat Apr 13 16:25:28 1996 by Andries Brouwer (aeb@cwi.nl)
 .TH OPEN 2 "21 July 1993" "Linux 0.99.7" "Linux Programmer's Manual"
 .SH NAME
 open, creat \- open and possibly create a file or device
@@ -128,6 +129,13 @@ equal to
 return the new file descriptor, or \-1 if an error occurred (in which case,
 .I errno
 is set appropriately).
+Note that
+.B open
+can open device special files, but
+.B creat
+cannot create them - use
+.BR mknod (2)
+instead.
 .SH ERRORS
 .TP
 .B EEXIST

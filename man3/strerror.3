@@ -1,4 +1,4 @@
-.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" Copyright (C) 1993 David Metcalfe (david@prism.demon.co.uk)
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -25,6 +25,8 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 18:05:30 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Fri Feb 16 14:25:17 1996 by Andries Brouwer (aeb@cwi.nl)
+.\"
 .TH STRERROR 3  "April 13, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 strerror \- return string describing error code
@@ -36,7 +38,7 @@ strerror \- return string describing error code
 .fi
 .SH DESCRIPTION
 The \fBstrerror()\fP function returns a string describing the error
-code passed in the argument \fIerrno\fP.  The string can only be used
+code passed in the argument \fIerrnum\fP.  The string can only be used
 until the next call to \fBstrerror()\fP.
 .SH "RETURN VALUE"
 The \fBstrerror()\fP function returns the appropriate description

@@ -23,7 +23,7 @@
 .\" License.
 .\" Modified Sat Jul 24 17:35:15 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Feb 19 22:02:32 1995 by Rik Faith (faith@cs.unc.edu)
-.TH SUFFIXES 7  "April 25, 1993" "Linux" "Linux Programmer's Manual"
+.TH SUFFIXES 7  "April 4, 1996" "Linux" "Linux Programmer's Manual"
 .SH NAME
 suffixes \- list of file suffixes
 .SH DESCRIPTION
@@ -53,6 +53,8 @@ Suffix	File type
  .a	static object code library
  .afm	PostScript font metrics
  .arc	ARC archive
+ .arj	ARJ archive
+ .asc	PGP ASCII-armoured data
  .awk	AWK language program
  .bak	Backup file
  .bm	Bitmap source
@@ -89,25 +91,32 @@ Suffix	File type
  .lib	Common Lisp library
  .ln	Files for use with lint(1)
  .lsp	Common Lisp source
+ .m4	M4(1) source
+ .mac	Macro files for various programs
  .man	Manual page
+ .me	Nroff source using the me macro package
  .mf	Metafont (font generator for TeX) source
  .mm	Sources for groff(1) in mm - format
  .mod	Modula-2 source for implementation modules
  .o	object file
  .old	old or backup file
+ .orig	Backup (original) version of a file, from patch(1)
  .out	Output file, often executable program (a.out)
  .p	Pascal source
  .patch	File differences from patch(1)
  .pcf	X11 font files (???)
- .pfa	Postscript font definition files
+ .pfa	Postscript font definition files, ASCII format
+ .pfb	Postscript font definition files, binary format
+ .pgp	PGP binary data
  .pid	File to store daemon pid (e.g. crond.pid)
  .pl	Perl script
  .pr	Bitmap source
  .ps	Postscript file
  .r	RATFOR source
+ .rej	Patches that patch(1) couldn't apply
  .rules	Rules for something
  .s	Assembler source
- .sa	Something to do with shared libraries (???)
+ .sa	Stub libraries for a.out shared libraries
  .sc	sc(1) spreadsheed commands
  .sh	sh(1) scripts
  .shar	archive created by the shar(1) utility
@@ -122,8 +131,8 @@ Suffix	File type
  .texi	equivalent to \fI.texinfo\fR
  .texinfo	TeXinfo documentation source
  .tfm	TeX font metrics
+ .tgz	Tar archive compressed with gzip(1)
  .tmpl	Template files
- .tpz	Tar archive compressed with gzip(1)
  .txt	Text file
  .uue	Binary file encoded with uuencode(1)
  .web	Donald Knuth's WEB

@@ -24,17 +24,19 @@
 .\"
 .\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
 .\" Modified Sat Jul 24 14:48:00 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 1995 by Mike Battersby (mib@deakin.edu.au)
 .\"
-.TH PAUSE 2 "March 28, 1992" "Linux" "Linux Programmer's Manual"
+.TH PAUSE 2 "August 31, 1995" "Linux" "Linux Programmer's Manual"
 .SH NAME
 pause \- wait for signal
 .SH SYNOPSIS
-.B #include<unistd.h>
+.B #include <unistd.h>
 .sp
 .B int pause(void);
 .SH DESCRIPTION
+The
 .B pause
-causes the process to sleep until a signal is received.
+system call causes the invoking process to sleep until a signal is received.
 .SH "RETURN VALUE"
 .B pause
 always returns \-1, and
@@ -42,7 +44,7 @@ always returns \-1, and
 is set to
 .BR ERESTARTNOHAND .
 .SH ERRORS
-.TP 0.8i
+.TP
 .B EINTR
 signal was received.
 .SH "CONFORMING TO"

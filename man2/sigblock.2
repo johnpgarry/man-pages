@@ -33,60 +33,70 @@
 .\"
 .\" Modified Sat Jul 24 10:09:15 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Fri Aug 11 1995 by Stephen Lee (sl14@cornell.edu)
+.\" Modified 1995 by Mike Battersby (mib@deakin.edu.au)
 .\""
-.TH SIGBLOCK 2 "11 August 1995" "BSD Man Page" "Linux Programmer's Manual"
+.TH SIGBLOCK 2 "31 August 1995" "Linux 1.3" "Linux Programmer's Manual"
 .SH NAME
 sigblock, siggetmask, sigsetmask, sigmask \- manipulate the signal mask
 .SH SYNOPSIS
 .B #include <signal.h>
 .sp
 .BI "int sigblock(int " mask );
-.br
+.sp
 .B int siggetmask(void);
-.br
+.sp
 .BI "int sigsetmask(int " mask );
-.br
-.BI "int sigmask(" signum );
+.sp
+.BI "int sigmask(int " signum );
 .SH DESCRIPTION
-This interface is made obsolete by:
+This interface is made obsolete by
 .BR sigprocmask (2).
 
-.B Sigblock()
-adds the signals specified in
+The 
+.B sigblock
+system call adds the signals specified in
 .I mask
 to the set of signals currently being blocked from delivery.
-
-.B sigsetmask()
-replaces the set of blocked signals totally with a new set specified in
+.PP
+The 
+.B sigsetmask
+system call replaces the set of blocked signals totally with a new set
+specified in
 .IR mask .
-
 Signals are blocked if the corresponding bit in
 .I mask
-is a 1; the macro
+is a 1.
+.PP
+The current set of blocked signals can be obtained using
+.BR siggetmask .
+.PP
+The 
 .B sigmask
-is provided to construct the mask for a given
+macro is provided to construct the mask for a given
 .IR signum .
 
+.SH "RETURN VALUES"
+.B siggetmask
+returns the current set of masked signals.
+
+.B sigsetmask 
+and
+.B sigblock
+return the previous set of masked signals.
+.SH NOTES
+Prototypes for these functions are only available if
+.B __USE_BSD
+is defined before 
+.B <signal.h>
+is included.
+.PP
 It is not possible to block
 .B SIGKILL
 or
-.BR SIGSTOP ;
-this restriction is silently imposed by the system.
+.B SIGSTOP
+\- this restriction is silently imposed by the system.
 
-The current set of blocked signals can be obtained using
-.BR siggetmask() .
-.SH "RETURN VALUES"
-.B Siggetmask()
-returns the current set of masked signals.
-
-.B Sigsetmask() 
-and
-.B sigblock()
-return the previous set of masked signals.
 .SH HISTORY
-These function calls appeared in BSD 4.3 and have been deprecated.
+These function calls appeared in BSD 4.3 and are deprecated.
 .SH "SEE ALSO"
-.BR kill "(2), " sigprocmask "(2), " siggetops (3)
-
-
-
+.BR kill "(2), " sigprocmask "(2), " signal (7)

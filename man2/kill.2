@@ -28,6 +28,9 @@
 .\" Modified Sun Jul 25 10:53:24 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Wed Nov 01 18:56:43 1995 by Michael Haardt
 .\"  (michael@cantor.informatik.rwth-aachen.de)
+.\" Modified Sun Apr 14 17:04:32 1996 by Andries Brouwer (aeb@cwi.nl)
+.\"  [added some polishing contributed by Mike Battersby (mib@deakin.edu.au)]
+.\"
 .TH KILL 2 "November 1, 1995" "Linux" "Linux Programmer's Manual"
 .SH NAME
 kill \- send signal to a process
@@ -38,7 +41,9 @@ kill \- send signal to a process
 .BI "int kill(pid_t " pid ", int " sig );
 .fi
 .SH DESCRIPTION
-\fBkill()\fP
+The
+.B kill
+system call
 can be used to send any signal to any process group or process.
 .PP
 If \fIpid\fP is positive, then signal \fIsig\fP is sent to \fIpid\fP.
@@ -46,8 +51,8 @@ In this case, 0 is returned on success, or a negative value on error.
 .PP
 If \fIpid\fP equals \-1, then \fIsig\fP is sent to every process except
 for the first one, from higher numbers in the proc table to lower.  In
-this case, 0 is returned on success, or the last error condition from
-\fBsend_sig()\fP is returned.
+this case, 0 is returned on success, or the error condition resulting
+from signalling the last process is returned.
 .PP
 If \fIpid\fP is less than \-1, then \fIsig\fP is sent to every process
 in the process group \fI\-pid\fP.  In this case, the number of processes
@@ -62,7 +67,7 @@ is set appropriately.
 An invalid signal is sent.
 .TP
 .B ESRCH
-The pid or process group does not exist in the process table.
+The pid or process group does not exist.
 Note that an existing process might be a zombie,
 a process which already committed termination, but
 has not yet been \fBwait()\fPed for.

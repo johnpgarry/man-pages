@@ -25,8 +25,11 @@
 .\"
 .\" Modified Wed Jul 21 22:40:25 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sat Feb 18 15:27:48 1995 by Michael Haardt
+.\" Modified Sun Apr 14 11:40:50 1996 by Andries Brouwer (aeb@cwi.nl):
+.\"   corrected description of effect on locks (thanks to
+.\"   Tigran Aivazian (bs_s641@kingston.ac.uk)).
 .\"
-.TH CLOSE 2 "February 18, 1995" "" "Linux Programmer's Manual"
+.TH CLOSE 2 "April 14, 1996" "" "Linux Programmer's Manual"
 .SH NAME
 close \- close a file descriptor
 .SH SYNOPSIS
@@ -38,13 +41,15 @@ close \- close a file descriptor
 .SH DESCRIPTION
 .B close
 closes a file descriptor, so that it no longer refers to any file and
-may be reused.
+may be reused. Any locks held on the file it was associated with,
+and owned by the process, are removed (regardless of the file
+descriptor that was used to obtain the lock).
 .PP
 If
 .I fd
 is the last copy of a particular file descriptor the resources
-associated with it are freed; for example any locks held are removed
-and if the descriptor was the last reference to a file which has been
+associated with it are freed;
+if the descriptor was the last reference to a file which has been
 removed using
 .B unlink
 the file is deleted.

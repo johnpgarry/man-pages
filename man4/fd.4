@@ -23,7 +23,7 @@
 .\" USA.
 .\"
 .\" Modified, Sun Feb 26 15:00:02 1995, faith@cs.unc.edu
-.\" "
+.\"
 .TH FD 4 "January 29, 1995" "Linux" "Special files"
 .SH NAME
 fd \- floppy disk device
@@ -126,7 +126,7 @@ _
 .SH DESCRIPTION
 \fBfd\fP special files access the floppy disk drives in raw mode.
 The following
-.BR ioctl (2)
+.IR ioctl (2)
 calls are supported by \fBfd\fP devices:
 .IP \fBFDCLRPRM\fP
 clears the media information of a drive (geometry of disk in drive).
@@ -139,18 +139,16 @@ media information will not be lost when the media is changed. This
 will disable autodetection. In order to re-enable autodetection, you
 have to issue an \fBFDCLRPRM\fP .
 .IP \fBFDGETDRVTYP\fP
-displays the type of a drive (name parameter).  For formats which work
+returns the type of a drive (name parameter).  For formats which work
 in several drive types, \fBFDGETDRVTYP\fP returns a name which is
 appropriate for the oldest drive type which supports this format.
 .IP \fBFDFLUSH\fP
 invalidates the buffer cache for the given drive.
-.IP \fBFDFLUSH\fP
-invalidates the buffer cache for the given drive.
 .IP \fBFDSETMAXERRS\fP
-sets the error tresholds for reporting errors, aborting the operation,
+sets the error thresholds for reporting errors, aborting the operation,
 recalibrating, resetting, and reading sector by sector.
 .IP \fBFDSETMAXERRS\fP
-gets the current error tresholds.
+gets the current error thresholds.
 .IP \fBFDGETDRVTYP\fP
 gets the internal name of the drive.
 .IP \fBFDWERRORCLR\fP
@@ -197,5 +195,10 @@ be common with older 8 inch floppies.
 Alain Knaff (Alain.Knaff@imag.fr), David Niemi
 (niemidc@clark.net), Bill Broadhurst (bbroad@netcom.com).
 .SH "SEE ALSO"
-.BR floppycontrol "(1), " mknod "(1), " chown "(1), " getfdprm (1),
-.BR superformat "(1), " mount "(8), " setfdprm (8)
+.BR floppycontrol (1),
+.BR mknod (1),
+.BR chown (1),
+.BR getfdprm (1),
+.BR superformat (1),
+.BR mount (8),
+.BR setfdprm (8)

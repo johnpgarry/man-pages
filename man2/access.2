@@ -26,8 +26,10 @@
 .\" Modified Wed Jul 21 19:36:29 1993, Rik Faith (faith@cs.unc.edu)
 .\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
 .\"   Removed note about old kernel (pre-1.1.44) using wrong id on path.
+.\" Modified 18 Mar 1996 by Martin Schulze (joey@infodrom.north.de):
+.\"   Stated more clearly how it behaves with symbolic links.
 .\"
-.TH ACCESS 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
+.TH ACCESS 2 "17 March 1996" "Linux 1.2.13" "Linux Programmer's Manual"
 .SH NAME
 access \- check user's permissions for a file
 .SH SYNOPSIS
@@ -42,6 +44,10 @@ checks whether the process would be allowed to read,
 write or test for existence of the file (or other file system
 object) whose name is
 .IR pathname .
+If
+.I pathname
+is a symbolic link permissions of the file referred by this
+symbolic link are tested.
 
 .I mode
 is a mask consisting of one or more of
@@ -52,10 +58,11 @@ request testing for reading, writing and executing the file,
 respectively.
 .B F_OK
 requests checking whether merely testing for the existence of the file
-would be allowed (this depends on the permissions of the directories
+would be allowed. This depends on the permissions of the directories
 occurring in the path to the file, as given in
-.I pathname
-and possibly in symbolic links encountered on the way).
+.IR pathname ,
+and on the permissions of directories and files referred by symbolic
+links encountered on the way.
 
 The check is done with the process's
 .I real
@@ -111,6 +118,10 @@ Insufficient kernel memory was available.
 .I pathname
 contains a reference to a circular symbolic link, i.e., a symbolic link
 containing a reference to itself.
+.SH CAVEAT
+.B access
+returns an error if any of the access types in the requested call
+fails, even if other types might be successful.
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH "SEE ALSO"

@@ -32,34 +32,38 @@
 .\"     @(#)sigpause.2	6.6 (Berkeley) 3/10/91
 .\"
 .\" Modified Sat Jul 24 10:09:26 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 1995 by Mike Battersby (mib@deakin.edu.au)
 .\"
-.TH SIGPAUSE 2 "24 July 1993" "BSD Man Page" "Linux Programmer's Manual"
+.TH SIGPAUSE 2 "24 July 1993" "Linux 1.3" "Linux Programmer's Manual"
 .SH NAME
 sigpause \- atomically release blocked signals and wait for interrupt
+
 .SH SYNOPSIS
 .B #include <signal.h>
 .sp
-.BI "int sigpause(int sigmask );
+.BI "int sigpause(int " sigmask );
+
 .SH DESCRIPTION
 This interface is made obsolete by
 .BR sigsuspend (2).
 
-.B Sigpause
+.B sigpause
 assigns 
 .I sigmask
 to the set of masked signals and then waits for a signal to arrive; on
 return the set of masked signals is restored.
-.I Sigmask
+.PP
+.I sigmask
 is usually 0 to indicate that no signals are to be blocked.
-.B Sigpause
+.B sigpause
 always terminates by being interrupted, returning \-1 with
 .I errno
 set to
-.B EINTR
+.BR EINTR .
 .SH HISTORY
 The
 .B sigpause
-function call appeared in BSD 4.3 and has been deprecated.
+function call appeared in BSD 4.3 and is deprecated.
 .SH "SEE ALSO"
 .BR sigsuspend "(2), " kill "(2), " sigaction "(2), " sigprocmask "(2), "
 .BR sigblock "(2), " sigvec (2)

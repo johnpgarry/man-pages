@@ -21,6 +21,8 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\" Modified Wed Jul 21 22:35:42 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 18 Mar 1996 by Martin Schulze (joey@infodrom.north.de):
+.\"   Corrected description of getwd().
 .\"
 .TH GETCWD 3 "21 July 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -85,10 +87,17 @@ is set, and its value is correct, then that value will be returned.
 .BR getwd ,
 which is only prototyped if
 .B __USE_BSD
-is defined, will
+is defined, will not
 .BR malloc (3)
-an array big enough to hold the absolute pathname of the current working
-directory.
+any memory. The
+.I buf
+argument should be a pointer to an array at least
+.B PATH_MAX
+bytes long.
+.BR getwd
+does only return the first
+.B PATH_MAX
+bytes of the actual pathname.
 .SH "RETURN VALUE"
 .B NULL
 on failure (for example, if the current directory is not readable),
@@ -97,7 +106,9 @@ with
 set accordingly, and
 .I buf
 on success.
-.SH "CONFORMS TO"
+.SH "CONFORMING TO"
 POSIX.1
 .SH "SEE ALSO"
-.BR chdir "(2), ", free "(3), " malloc (3)
+.BR chdir (2),
+.BR free (3),
+.BR malloc (3).

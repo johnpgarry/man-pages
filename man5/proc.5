@@ -1,6 +1,7 @@
 .\" Copyright (C) 1994, 1995 by Daniel Quinlan (quinlan@yggdrasil.com)
 .\" with networking additions from Alan Cox (A.Cox@swansea.ac.uk)
-.\" and scsi additions from Michael Neuffer (neuffer@mail.uni-mainz.de) 
+.\" and scsi additions from Michael Neuffer (neuffer@mail.uni-mainz.de)
+.\" and sysctl additions from Andries Brouwer (aeb@cwi.nl)
 .\"
 .\" This is free documentation; you can redistribute it and/or
 .\" modify it under the terms of the GNU General Public License as
@@ -24,14 +25,16 @@
 .\"
 .\" Wed May 17 15:26:04 1995: faith@cs.unc.edu, updated BUGS section
 .\" Minor changes by aeb and Marty Leisner (leisner@sdsp.mc.xerox.com).
+.\" Sat Apr 13 02:32:45 1996: aeb@cwi.nl, added sys, various fixes.
 .\"
-.TH PROC 5 "12 August 1995" "" "Linux Programmer's Manual"
+.TH PROC 5 "4 April 1996" "" "Linux Programmer's Manual"
 .SH NAME
 /proc \- process information pseudo-filesystem
 
 .SH DESCRIPTION
 /proc is a pseudo-filesystem which is used as an interface to kernel
 data structures rather than reading and interpreting /dev/kmem.
+Most of it is read-only, but some files allow kernel variables to be changed.
 .LP
 The following outline gives a quick tour through the /proc hierarchy.
 .LP
@@ -57,27 +60,29 @@ This is a link current working directory of the process.  To find out
 the cwd of process 20, for instance, you can do this:
 .br
 .nf
-.ft  CW
+.ft CW
 cd /proc/20/cwd; /bin/pwd
 .fi
 .ft
+.PP
 Note that the pwd command is often a shell builtin, and might
 not work properly in this context.
 
 .TP
 .I environ
-This file contains the environment for the process.  There are no
-newlines in this file: the entries are separated by null characters,
-and there is a null character at the end.  Thus, to print out the
-environment of process 10, you would do:
+This file contains the environment for the process.
+The entries are separated by null characters,
+and there may be a null character at the end.
+Thus, to print out the environment of process 1, you would do:
 .br
 .nf
 .ft CW
-cat /proc/10/environ | tr "\\000" "\\n"
+(cat /proc/1/environ; echo) | tr "\\000" "\\n"
 .fi
 .ft P
-
-This file is also null-terminated and not newline terminated.
+.PP
+(For a reason why one should want to do this, see
+.IR lilo (8).)
 .TP
 .I exe
 a pointer to the binary which was executed, and appears as a symbolic
@@ -95,7 +100,7 @@ open "exe" will open the executable.  You can even type
 .I /proc/[number]/exe
 to run another copy of the same process as [number].
 
-.I find(1)
+.IR find (1)
 with the -inum option can be used to locate the file.
 .TP
 .I fd
@@ -112,8 +117,8 @@ an output file:
 .br
 .nf
 \f(CWfoobar -i /proc/self/fd/0 -o /proc/self/fd/1 ...\fP
-
 .fi
+.br
 and you have a working filter.  Note that this will not work for
 programs that seek on their files, as the files in the fd directory
 are not seekable.
@@ -137,11 +142,11 @@ address           perms offset   dev   inode
 60000000-60098000 rwx-p 00000400 03:03 215
 60098000-600c7000 rwx-p 00000000 00:00 0
 bfffa000-c0000000 rwx-p 00000000 00:00 0
-.fi
 .ft
+.fi
 .in
-
-Where address is the address space in the process that it occupies,
+.PP
+where address is the address space in the process that it occupies,
 perms is a set of permissions:
 .nf
 .in +5
@@ -152,7 +157,7 @@ s = shared
 p = private (copy on write)
 .fi
 .in
-
+.PP
 offset is the offset into the file/whatever, dev is the device
 (major:minor), and inode is the inode on that device.  0 indicates
 that no inode is associated with the memory region, as the case would
@@ -334,7 +339,7 @@ need a textual name.  (If you have an up-to-date /etc/psdatabase, then
 try \fIps -l\fP to see the WCHAN field in action)
 .RE
 .RE
-.TP
+
 .TP
 .I cpuinfo
 This is a collection of CPU and system architecture dependent items,
@@ -442,6 +447,7 @@ IP address       HW type     Flags       HW address
 .ft
 .fi
 .in
+.PP
 Where 'IP address' is the IPv4 address of the machine, the 'HW type' is the
 hardware type of the address from RFC 826. The flags are the internal flags
 of the ARP structure (as defined in /usr/include/linux/if_arp.h) and the 'HW
@@ -539,6 +545,7 @@ Num RefCount Protocol Flags    Type St Path
 .ft
 .sp .5
 .fi
+.PP
 Where 'Num' is the kernel table slot number, 'RefCount' is the number
 of users of the socket, 'Protocol' is currently always 0, 'Flags'
 represent the internal kernel flags holding the status of the
@@ -568,9 +575,7 @@ scsi currently supports only the \fIsingledevice\fP command which allows
 root to add a hotplugged device to the list of known devices.
 
 An 
-.ft CW
-echo 'scsi singledevice 1 0 5 0' > /proc/scsi/scsi 
-.ft
+.B echo 'scsi singledevice 1 0 5 0' > /proc/scsi/scsi 
 will cause 
 host scsi1 to scan on SCSI channel 0 for a device on ID 5 LUN 0. If there 
 is already a device known on this address or the address is invalid an
@@ -632,6 +637,63 @@ The number of context switches that the system underwent.
 boot time, in seconds since the epoch (January 1, 1970).
 .RE
 .TP
+.I sys
+This directory (present since 1.3.57) contains a number of files
+and subdirectories corresponding to kernel variables.
+These variables can be read and sometimes modified using
+the \fIproc\fP file system, and using the
+.IR sysctl (2)
+system call. Presently, there are subdirectories
+.IR kernel ", " net ", " vm
+that each contain more files and subdirectories.
+.RS
+.TP
+.I kernel
+This contains files
+.IR domainname ", " file-max ", " file-nr ", " hostname ", "
+.IR inode-max ", " inode-nr ", " osrelease ", " ostype ", "
+.IR panic ", " real-root-dev ", " securelevel ", " version ,
+with function fairly clear from the name.
+.LP
+The (read-only) file
+.I file-nr
+gives the number of files presently opened.
+.LP
+The file
+.I file-max
+gives the maximum number of open files the kernel is willing
+to handle. If 1024 is not enough for you, try
+.br
+.nf
+.ft CW
+echo 4096 > /proc/sys/kernel/file-max
+.fi
+.ft
+.LP
+Similarly, the files
+.I inode-nr
+and
+.I inode-max
+indicate the present and the maximum number of inodes.
+.LP
+The files
+.IR ostype ", " osrelease ", " version
+give substrings of
+.IR /proc/version .
+.LP
+The file
+.I panic
+gives r/w access to the kernel variable
+.IR panic_timeout .
+If this is zero, the kernel will loop on a panic; if nonzero
+it indicates that the kernel should autoreboot after this number
+of minutes.
+.LP
+The file
+.I securelevel
+seems rather meaningless at present - root is just too powerful.
+.RE
+.TP
 .I uptime
 This file contains two numbers: the uptime of the system (seconds),
 and the amount of time spent in idle process (seconds).
@@ -646,6 +708,9 @@ Linux version 1.0.9 (quinlan@phaze) #1 Sat May 14 01:51:54 EDT 1994
 .ft
 .in +2
 .fi
+
+.RE
+.RE
 .SH SEE ALSO
 cat(1), find(1), free(1), mount(1), ps(1), tr(1), uptime(1), readlink(2),
 mmap(2), chroot(2), syslog(2), hier(7), arp(8), dmesg(8), netstat(8),
