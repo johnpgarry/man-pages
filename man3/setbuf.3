@@ -36,6 +36,8 @@
 .\"     @(#)setbuf.3	6.10 (Berkeley) 6/29/91
 .\"
 .\" Converted for Linux, Mon Nov 29 14:55:24 1993, faith@cs.unc.edu
+.\" Added section to BUGS, Sun Mar 12 22:28:33 MET 1995,
+.\"                   Thomas.Koenig@ciw.uni-karlsruhe.de
 .\"
 .TH SETBUF 3  "29 November 1993" "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
@@ -149,3 +151,23 @@ functions are not portable to versions of BSD before 4.2BSD, and may not be
 available under Linux.  On 4.2BSD and 4.3BSD systems,
 .B setbuf
 always uses a suboptimal buffer size and should be avoided.
+.P
+You must make sure that both
+.I buf
+and the space it points to still exist by the time 
+.I stream
+is closed, which also happens at program termination.
+.P
+For example, the following is illegal:
+.nf
+.sp
+#include <stdio.h>
+int main()
+{
+    char buf[BUFSIZ];
+    setbuf(stdin, buf);
+    printf("Hello, world!\\n");
+    return 0;
+}
+.fi
+.sp

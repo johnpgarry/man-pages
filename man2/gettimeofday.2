@@ -26,8 +26,10 @@
 .\" Modified Fri Jul 23 21:26:27 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
 .\"   Fixed necessary '#include' lines.
+.\" Modified 15 Apr 1995 by Michael Chastain (mec@shell.portal.com):
+.\"   Added reference to adjtimex.
 .\"
-.TH GETTIMEOFDAY 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
+.TH GETTIMEOFDAY 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
 .SH NAME
 gettimeofday, settimeofday \- get / set time
 .SH SYNOPSIS
@@ -151,4 +153,4 @@ Timezone (or something else) is invalid.
 .SH "CONFORMING TO"
 BSD 4.3
 .SH "SEE ALSO"
-.BR ftime "(3), " time "(2), " date "(1), " ctime (3)
+.BR date "(1), " adjtimex "(2), " time "(2), " ctime "(3), " ftime "(3)"

@@ -1,36 +1,28 @@
 
 The Linux Documentation Project proudly announces. . .
 
-    man-pages-1.5.tar.gz - section 2, 3, 4, 5, 7, and 9 man pages for Linux
+    man-pages-1.6.tar.gz - section 2, 3, 4, 5, 7, and 9 man pages for Linux
 
 
 
-Differences from version 1.4:
+Differences from version 1.5:
     
     The following files have been updated:
 
-    accept.2 cfgetispeed.2 cfgetospeed.2 cfsetispeed.2 cfsetospeed.2
-    close.2 ftime.2 getpeername.2 getsockopt.2 idle.2 killpg.2 mmap.2
-    modules.2 mount.2 readdir.2 readlink.2 rename.2 semop.2 shutdown.2
-    sigaction.2 sigblock.2 signal.2 sigpending.2 sigprocmask.2 sigsuspend.2
-    socket.2 socketpair.2 stat.2 statfs.2 tcdrain.2 tcflow.2 tcflush.2
-    tcgetattr.2 tcgetpgrp.2 tcsendbreak.2 tcsetattr.2 tcsetpgrp.2 termios.2
-    umask.2 vhangup.2 write.2
+        adjtimex.2 afs_syscall.2 bdflush.2 break.2 chdir.2 dup.2 fchdir.2
+        fsync.2 getpgid.2 gettimeofday.2 gtty.2 ipc.2 llseek.2 lock.2 mpx.2
+        obsolete.2 oldfstat.2 oldlstat.2 oldolduname.2 oldstat.2 olduname.2
+        prof.2 quotactl.2 rename.2 select.2 setfsgid.2 setfsuid.2 setpgid.2
+        setup.2 socketcall.2 stat.2 stty.2 sync.2 undocumented.2
+        unimplemented.2 ustat.2 wait.2 write.2
 
-    assert.3 bzero.3 catgets.3 catopen.3 clock.3 crypt.3 drand48.3 exec.3
-    fread.3 fread.3 getmntent.3 hcreate.3 hdestroy.3 hsearch.3 intro.3
-    localeconv.3 longjmp.3 printf.3 realpath.3 remove.3 setjmp.3
-    setlocale.3 sigaddset.3 sigdelset.3 sigemptyset.3 sigfillset.3
-    sigismember.3 sigsetops.3 strcoll.3 strftime.3 strncpy.3 strptime.3
-    strptime.3 strstr.3 strxfrm.3 va_arg.3 va_end.3 va_start.3
+        fread.3 getutent.3 hcreate.3 hdestroy.3 isatty.3 perror.3 rand.3
+        setbuf.3 sigaddset.3 sigdelset.3 sigemptyset.3 sigfillset.3
+        sigismember.3 ttyname.3 wcstombs.3
 
-    console.4 console_ioctl.4 fd.4 mem.4 ram.4 st.4 vcs.4 vcsa.4
+        console_ioctl.4
 
-    proc.5 utmp.5
-
-    ascii.7 iso_8859_1.7 latin1.7 locale.7 signal.7 suffixes.7
-
-    ctrl-alt-del.9 kernel_mktime.9
+        proc.5 utmp.5
 
 
 
@@ -59,7 +51,7 @@ Here is a breakdown of what this distribution contains:
 
 To install this distribution, do something like:
 
-    cd /usr/man; zcat man-pages-1.5.tar.gz | tar xvpf -
+    cd /usr/man; zcat man-pages-1.6.tar.gz | tar xvpf -
 
 
 
@@ -84,8 +76,10 @@ wrote, edited, or otherwise contributed to this project:
     Jim Van Zandt (jrv@vanzandt.mv.com)
     Jochen Hein (Hein@Student.TU-Clausthal.de)
     Luigi P. Bai (lpb@neosoft.com)
-    Michael Edward Chastain (mec@shell.portal.com)
+    Mark D. Roth (roth@uiuc.edu)
+    Michael Elizabeth Chastain (mec@shell.portal.com)
     Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
+    Michael Shields (shields@tembel.org)
     Mike Battersby (mike@starbug.apana.org.au)
     Mitchum DSouza (m.dsouza@mrc-apu.cam.ac.uk)
     Nicolai Langfeldt (janl@ifi.uio.no)
@@ -106,6 +100,8 @@ Copyright information:
     may impose other requirements (e.g., acknowledgement of copyright or
     inclusion of the raw nroff sources with the commercial distribution).
     If you distribute these man pages commercially, it is your
-    responsibility to figure out your obligations.  Each file that contains
+    responsibility to figure out your obligations.  (For many man pages,
+    these obligations require you to distribute nroff sources with any
+    pre-formatted man pages that you provide.)  Each file that contains
     nroff source for a man page also contains the author(s) name, email
     address, and copyright notice.

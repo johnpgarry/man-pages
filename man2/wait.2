@@ -26,6 +26,8 @@
 .\" Modified Sat Jul 24 13:30:06 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified Sun Aug 21 17:42:42 1994 by Rik Faith (faith@cs.unc.edu)
 .\"          (Thanks to koen@win.tue.nl (Koen Holtman))
+.\" Modified Wed May 17 15:54:12 1995 by Rik Faith (faith@cs.unc.edu)
+."           To remove *'s from status in macros (Thanks to Michael Shields).
 .\"
 .TH WAIT 2  "24 July 1993" "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -105,12 +107,13 @@ or
 store status information in the location pointed to by
 .IR statloc .
 
-This status can be evaluated with the following macros:
+This status can be evaluated with the following macros (these macros take
+the stat buffer as an argument \(em not a pointer to the buffer!):
 .TP 0.8i
-.BI WIFEXITED(* status )
+.BI WIFEXITED( status )
 is non \-zero if the child exited normally.
 .TP
-.BI WEXITSTATUS(* status )
+.BI WEXITSTATUS( status )
 evaluates to the least significant eight bits of the return code of
 the child which terminated, which may have been set as the argument to
 a call to
@@ -121,22 +124,22 @@ statement in the main program.  This macro can only be evaluated if
 .B WIFEXITED
 returned non\-zero.
 .TP
-.BI WIFSIGNALED(* status )
+.BI WIFSIGNALED( status )
 returns true if the child process exited because of a signal which was
 not caught.
 .TP
-.BI WTERMSIG(* status )
+.BI WTERMSIG( status )
 returns the number of the signal that caused the child process to
 terminate. This macro can only be evaluated if
 .B WIFSIGNALED
 returned non\-zero.
 .TP
-.BI WIFSTOPPED(* status )
+.BI WIFSTOPPED( status )
 returns true if the child process which caused the return is currently
 stopped; this is only possible if the call was done using
 .BR WUNTRACED .
 .TP
-.BI WSTOPSIG(* status )
+.BI WSTOPSIG( status )
 returns the number of the signal which caused the child to stop.  This
 macro can only be evaluated if
 .B WIFSTOPPED

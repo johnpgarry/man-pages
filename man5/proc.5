@@ -21,6 +21,8 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
+.\" Wed May 17 15:26:04 1995: faith@cs.unc.edu, updated BUGS section
+.\"
 .TH PROC 5 "25 Dec 1994" "" "Linux Programmer's Manual"
 .SH NAME
 /proc \- process information pseudo-filesystem
@@ -610,5 +612,19 @@ may find that things are more readable if you use \fIod -c\fP or \fItr
 This manual page is incomplete, possibly inaccurate, and is the kind
 of thing that needs to be updated very often.
 .SH BUGS
-The /proc file system totally destroys the security of your system. This
-needs fixing before 1.2.  (Is this still true?)
+The
+.I /proc
+file system may introduce security holes into processes running with
+.BR chroot (2).
+For example, if
+.I /proc
+is mounted in the
+.B chroot
+hierarchy, a
+.BR chdir (2)
+to
+.I /proc/1/root
+will return to the original root of the file system.  This may be
+considered a feature instead of a bug, since Linux does not yet support the
+.BR fchroot (2)
+call.

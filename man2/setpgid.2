@@ -32,18 +32,22 @@
 .\"     @(#)getpgrp.2	6.4 (Berkeley) 3/10/91
 .\"
 .\" Modified Sat Jul 24 01:15:33 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 15 April 1995 by Michael Chastain (mec@shell.portal.com):
+.\"   Added 'getpgid'.
 .\"
-.TH SETPGID 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH SETPGID 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
 .SH NAME
-setpgid, getpgrp, setpgrp \- set/get process group
+setpgid, getpgid, setpgrp, getpgrp \- set/get process group
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
 .BI "int setpgid(pid_t " pid ", pid_t " pgid );
 .br
-.B pid_t getpgrp(void);
+.BI "pid_t getpgid(pid_t " pid );
 .br
 .B int setpgrp(void);
+.br
+.B pid_t getpgrp(void);
 .SH DESCRIPTION
 .B setpgid
 sets the process group ID of the process specified by
@@ -58,20 +62,28 @@ is zero, the process ID of the process specified by
 .I pid
 is used.
 
-The process group of the current process is returned by
-.BR getpgrp .
+.B getpgid
+returns the process group ID of the process specified by
+.IR pid .
+If
+.I pid
+is zero, the process ID of the current process is used.
 
 In the Linux DLL 4.4.1 library,
 .B setpgrp
 simply calls
 .BR setpgid(0,0) .
 
+.B getpgrp
+is equivalent to
+.BR getpgid(0) .
+
 Process groups are used for distribution of signals, and by terminals to
 arbitrate requests for their input: processes that have the same process
 group as the terminal are foreground and may read, while others will block
 with a signal if they attempt to read.
 
-This call is thus used by programs such as
+These calls are thus used by programs such as
 .BR csh (1)
 to create process groups in implementing job control.  The
 .B TIOCGPGRP
@@ -84,6 +96,12 @@ are used to get/set the process group of the control terminal.
 On success,
 .BR setpgid " and " setpgrp
 return zero.  On error, \-1 is returned, and
+.I errno
+is set appropriately.
+
+.I getpgid
+returns a process group on success.
+On error, \-1 is returned, and
 .I errno
 is set appropriately.
 

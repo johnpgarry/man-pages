@@ -54,7 +54,7 @@ The two descriptors do not share the close-on-exec flag, however.
 uses the lowest-numbered unused descriptor for the new descriptor.
 
 .B dup2
-.RI "makes " newfd " be the copy of " oldfd ", closing " oldfd
+.RI "makes " newfd " be the copy of " oldfd ", closing " newfd
 first if necessary.
 .SH "RETURN VALUE"
 .BR dup " and " dup2

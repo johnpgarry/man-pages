@@ -26,8 +26,9 @@
 .\" Modified Sat Jul 24 13:22:07 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
 .\"   Referenced 'clone(2)'.
+.\" Modified 10 June 1995 by Andries Brouwer (aeb@cwi.nl)
 .\"
-.TH FORK 2 "24 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH FORK 2 "10 June 1995" "Linux 1.2.9" "Linux Programmer's Manual"
 .SH NAME
 fork, vfork \- create a child process
 .SH SYNOPSIS
@@ -39,7 +40,8 @@ fork, vfork \- create a child process
 .SH DESCRIPTION
 .B fork
 creates a child process that differs from the parent process only in its
-PID, and in the fact that resource utilizations are set to 0.
+PID and PPID, and in the fact that resource utilizations are set to 0.
+File locks and pending signals are not inherited.
 .PP
 Under Linux,
 .B fork
@@ -64,6 +66,10 @@ Under Linux,
 .B vfork
 is merely an alias for
 .BR fork .
+.br
+.B fork
+does never return the error
+.BR ENOMEM .
 .SH "CONFORMING TO"
 SVID, AT&T, POSIX, X/OPEN, BSD 4.3
 .SH "SEE ALSO"

@@ -1,7 +1,8 @@
 .\" Hey Emacs! This file is -*- nroff -*- source.
 .\"
 .\" This manpage is Copyright (C) 1992 Drew Eckhardt;
-.\"                               1993 Michael Haardt, Ian Jackson.
+.\"                               1993 Michael Haardt;
+.\"                          1993,1995 Ian Jackson.
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -42,7 +43,13 @@ are unaffected.
 
 If
 .I newpath
-already exists it will be overwritten; if
+already exists it will be atomically overwritten (subject to
+a few conditions - see ERRORS below), so that there is
+no point at which another process attempting to access
+.I newpath
+will find it missing.
+
+If
 .I newpath
 exists but the operation fails for some reason or the system crashes
 .B rename
@@ -50,9 +57,18 @@ guarantees to leave an instance of
 .I newpath
 in place.
 
+However, when overwriting there will probably be a window in which
+both
+.I oldpath
+and
+.I newpath
+refer to the file being renamed.
+
 If
 .I oldpath
-refers to a symbolic link the link is renamed.
+refers to a symbolic link the link is renamed; if
+.I newpath
+refers to a symbolic link the link will be overwritten.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno

@@ -25,7 +25,8 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sun Jul 25 10:53:39 1993 by Rik Faith (faith@cs.unc.edu)
-.TH STRTOL 3  "March 29, 1993" "GNU" "Linux Programmer's Manual"
+.\" Added correction due to nsd@bbc.com (Nick Duffek) - aeb, 950610
+.TH STRTOL 3  "10 June 1995" "GNU" "Linux Programmer's Manual"
 .SH NAME
 strtol \- convert a string to a long integer.
 .SH SYNOPSIS
@@ -58,7 +59,7 @@ If \fIendptr\fP is not NULL, \fBstrtol()\fP stores the address of the
 first invalid character in \fI*endptr\fP.  If there were no digits at
 all, \fBstrtol()\fP stores the original value of \fInptr\fP in
 \fI*endptr\fP.  (Thus, if \fI*nptr\fP is not `\\0' but \fI**endptr\fP
-is `\\0' on return, the entire string is invalid.)
+is `\\0' on return, the entire string is valid.)
 .SH "RETURN VALUE"
 The \fBstrtol()\fP function returns the result of the conversion,
 unless the value would underflow or overflow.  If an underflow occurs,

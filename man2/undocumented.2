@@ -21,33 +21,31 @@
 .\" 
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
+.\"
+.\" Modified 15 April 1995 by Michael Chastain (mec@shell.portal.com):
+.\"   Updated names and version numbers to Linux 1.2.4 / man-pages-1.6.
+.\"   Moved unimplemented kernel calls to new man page.
+.\"   Created new man page for obsolete calls, so don't talk about them here.
+.\"   Removed BUGS as they've been fixed.
+.\" Modified 10 June 1995 by Andries Brouwer (aeb@cwi.nl)
 .\" "
-.TH UNDOCUMENTED 2 "25 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH UNDOCUMENTED 2 "10 June 1995" "Linux 1.2.9" "Linux Programmer's Manual"
 .SH NAME
-break, fchdir, stty, gtty, prof, ulimit, setsid, siggetmask, sigsetmask,
-socketcall, klog, sigreturn, clone, modify_ldt, adjtimex, mprotect,
-bdflush, sysfs, personality \- undocumented system calls
+modify_ldt, mprotect, personality, setfsgid, setfsuid, siggetmask, sigreturn, sigsetmask, sysfs \- undocumented system calls
 .SH SYNOPSIS
-None.
+Undocumented system calls.
 .SH DESCRIPTION
-As of Linux 0.99.11, there were 123 system calls listed in
-.IR /usr/include/sys/syscall.h .
-This man pages mentions those calls which are not documented.  Some of
-these calls did not appear to have prototypes in the DLL 4.4.1 include
-files, or did not exist in the kernel.
-
-Since this situation is probably going to change with future kernels,
+As of Linux 1.2.9, there are 141 system calls listed in
+.IR /usr/include/linux/unistd.h .
+This man page mentions those calls which are implemented in the kernel
+but not yet documented in man pages.
+Some of these calls do not have prototypes in the DLL 4.6.27 include files.
+.SH SOLICITATION
+If you have information about these system calls,
 please look in the kernel source code, write a man page (using a style
 similar to that of the other Linux section 2 man pages), and send it to
-.B faith@cs.unc.edu
+.B aeb@cwi.nl
 for inclusion in the next man page release from the Linux Documentation
 Project.
-.SH BUGS
-Old-style system calls (i.e.,
-.BR oldstat " and " oldolduname
-are not listed here.
-
-None of the System V IPC functions are enumerated here, or have their own
-pointers to this page.  Although these functions are now in the kernel,
-they have yet to be documented in man page format.  A texinfo manual,
-however, does exist for them.
+.SH SEE ALSO
+.BR obsolete "(2), " unimplemented "(2)"

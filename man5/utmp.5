@@ -21,11 +21,8 @@
 .\" USA.
 .\" 
 .\" Modified Sun Jul 25 10:44:50 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Thu Feb 23 16:08:49 MET 1995 by Michael Haardt
-.\" Modified Sun Feb 26 14:18:22 1995 by Rik Faith (faith@cs.unc.edu)
-.\"          based on patches from Michael Haardt
-.\" "
-.TH UTMP 5 "February 23, 1995" "Linux" "Linux Programmer's Manual"
+.\" Modified Thu Feb 26 16:08:49 MET 1995 by Michael Haardt
+.TH UTMP 5 "February 26, 1995" "Linux" "Linux Programmer's Manual"
 .SH NAME
 utmp, wtmp \- login records
 .SH SYNOPSIS
@@ -34,8 +31,12 @@ utmp, wtmp \- login records
 The
 .B utmp
 file allows one to discover information about who is currently using the
-system.  The file is a sequence of entries with the following structure
-declared in the include file:
+system.  There may be more users currently using the system, because
+not all programs use utmp logging.  \fBWarning:\fP \fButmp\fP must not
+be writable, because many system programs depend on its integrity.  You
+risk faked system logfiles and modifications of system files if you
+leave \fButmp\fP writable to any user.  The file is a sequence of
+entries with the following structure declared in the include file:
 .RS
 .nf
 .sp
@@ -73,37 +74,39 @@ of
 .IR time (2).
 String fields are terminated by \fB'\e0'\fP if they are shorter than the size
 of the field.
-.LP
-The
-.B wtmp
-file records all logins and logouts.  Its format is exactly like
-.B utmp
-except that a null user name indicates a logout on the associated terminal.
-Furthermore, the terminal name ``~'' with user name ``shutdown'' or
-``reboot'' indicates a system shutdown or reboot and the pair of terminal
-names ``|'' and ``}'' logs the old/new system time when \fBdate\fP(1)
-changes it.
-.LP
-.B Wtmp
-is maintained by \fBlogin\fP(1), and \fBinit\fP(1) and some variants of
-\fBgetty\fP(1).  Neither of these programs creates the file, so if it is
+.PP
+The \fBwtmp\fP file records all logins and logouts.  Its format is
+exactly like \fButmp\fP except that a null user name indicates a logout
+on the associated terminal.  Furthermore, the terminal name \fB"~"\fP
+with user name \fB"shutdown"\fP or \fB"reboot"\fP indicates a system
+shutdown or reboot and the pair of terminal names \fB"|"\fP/\fB"}"\fP
+logs the old/new system time when \fIdate\fP(1) changes it.  \fBwtmp\fP
+is maintained by \fIlogin\fP(1), and \fIinit\fP(1) and some very of
+\fIgetty\fP(1).  Neither of these programs creates the file, so if it is
 removed record-keeping is turned off.
 .SH FILES
-.I /var/run/utmp
-(or
-.I /var/adm/utmp
-on older systems)
+/var/adm/utmp
 .br
-.I /var/log/wtmp
-(or
-.I /var/adm/wtmp
-on older systems)
-.SH NOTES
-The v7/BSD-like file format lacks some fields, most importantly it lacks
-\fBut_type\fP, which causes native v7/BSD-like programs to display, for
-example, dead or login entries.
+/var/adm/wtmp
+.SH "CONFORMING TO"
+Linux utmp entries neither conform to v7/BSD nor to SYSV: They are a
+mix of the two.  v7/BSD has less fields, most importantly it lacks
+\fBut_type\fP, which causes native v7/BSD-like programs to display for
+example dead or login entries.  SYSV has one more field to log the exit
+status of dead processes.  Linux uses the BSD conventions for line
+contents, as documented above.  SYSV only uses the type field to mark
+them and logs informative messages such as e.g.\& \fB"new time"\fP in
+the line field.  \fBUT_UNKNOWN\fP seems to be a Linux invention.
+There is no type \fBACCOUNTING\fP in Linux.  SYSV has no \fBut_host\fP
+or \fBut_addr\fP fields.
 .SH RESTRICTIONS
 The file format is machine dependent, so it is recommended that it is
-processed only on the machine architecture where it was created.
+processed only on the machine architecture where it got created.
 .SH "SEE ALSO"
-.BR last "(1), " login "(1), " who (1)
+.BR ac (1),
+.BR date (1),
+.BR last (1),
+.BR login (1),
+.BR who (1),
+.BR getutent (3),
+.BR init (8)

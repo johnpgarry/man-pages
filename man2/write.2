@@ -44,8 +44,9 @@ bytes from file descriptor
 from the buffer starting at
 .I buf.
 .SH "RETURN VALUE"
-On success, the number of bytes written are returned (zero indicates end of
-file).  On error, \-1 (or MAXINT, as size_t is unsigned) is returned, and
+On success, the number of bytes written are returned (zero indicates
+nothing was written).  On error, \-1 (or MAXINT, as size_t is unsigned) is
+returned, and
 .I errno
 is set appropriately.
 .SH ERRORS

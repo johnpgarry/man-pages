@@ -26,8 +26,12 @@
 .\"     386BSD man pages
 .\" Modified Mon Mar 29 22:48:44 1993, David Metcalfe
 .\" Modified Wed Apr 28 01:35:00 1993, Lars Wirzenius
-.\" Modified Sat Jul 24 18:39:41 1993, Rik Faith (faith@cs.unc.edu0
-.TH RAND 3  "March 29, 1993" "GNU" "Linux Programmer's Manual"
+.\" Modified Sat Jul 24 18:39:41 1993, Rik Faith (faith@cs.unc.edu)
+.\" Modified Thu May 18 10:10:13 1995, Rik Faith (faith@cs.unc.edu) to add
+.\"          better discussion of problems with rand on other systems.
+.\"          (Thanks to Esa Hyyti{ (ehyytia@snakemail.hut.fi).)
+.\" "
+.TH RAND 3  "18 May 1995" "GNU" "Linux Programmer's Manual"
 .SH NAME
 rand, srand \- random number generator.
 .SH SYNOPSIS
@@ -53,26 +57,47 @@ seeded with a value of 1.
 The \fBrand()\fP function returns a value between 0 and RAND_MAX.
 The \fBsrand()\fP returns no value.
 .SH NOTES
-The versions of \fBrand()\fP and \fBsrand()\fP in the Linux C Library 
-use the same random number generator as \fBrandom()\fP and \fBsrandom()\fP.
+The versions of \fBrand()\fP and \fBsrand()\fP in the Linux C Library use
+the same random number generator as \fBrandom()\fP and \fBsrandom()\fP, so
+the lower-order bits should be as random as the higher-order bits.
+However, on older
+.B rand()
+implementations, the lower-order bits are much less random than the
+higher-order bits.
 .PP
-To ensure a good distribution for a subrange of values, use code like
-the below:
-.br
-.ti +5
-i = RAND_MAX / my_range
-.br
-.ti +5
-i *= my_range
-.br
-.ti +5
-while ((j = rand()) >= i) continue;
-.br
-.ti +5
-return j % i;
-.br
-(code example based on code from Karl Lehenbauer's fortune cookie
-program, which credits Ken Arnold, Unix Review, October 1987).
+In
+.I Numerical Recipes in C: The Art of Scientific Computing
+(William H. Press, Brian P. Flannery, Saul A. Teukolsky, William
+T. Vetterling; New York: Cambridge University Press, 1990 (1st ed,
+p. 207)), the following comments are made:
+.RS
+"If you want to generate a random integer between 1 and 10, you should
+always do it by
+.RS
+.sp
+j=1+(int) (10.0*rand()/(RAND_MAX+1.0));
+.sp
+.RE
+and never by anything resembling
+.RS
+.sp
+j=1+((int) (1000000.0*rand()) % 10);
+.sp
+.RE
+(which uses lower-order bits)."
+.RE
+.PP
+Random-number generation is a complex topic.  The
+.I Numerical Recipes in C
+book (see reference above)
+provides an excellent discussion of practical random-number generation
+issues in Chapter 7 (Random Numbers).
+.PP
+For a more theoretical discussion which also covers many practical issues
+in depth, please see Chapter 3 (Random Numbers) in Donald E. Knuth's
+.IR "The Art of Computer Programming" ,
+volume 2 (Seminumerical Algorithms), 2nd ed.; Reading, Massachusetts:
+Addison-Wesley Publishing Company, 1981.
 .SH "CONFORMING TO"
 SVID 3, BSD 4.3, ISO 9899
 .SH "SEE ALSO"

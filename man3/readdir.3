@@ -25,11 +25,14 @@
 .\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
 .\"     386BSD man pages
 .\" Modified Sat Jul 24 16:09:49 1993 by Rik Faith (faith@cs.unc.edu)
-.TH READDIR 3  "March 31, 1993" "" "Linux Programmer's Manual"
+.\" Modified 11 June 1995 by Andries Brouwer (aeb@cwi.nl)
+.TH READDIR 3  "11 June 1995" "" "Linux Programmer's Manual"
 .SH NAME
 readdir \- read a directory
 .SH SYNOPSIS
 .nf
+.B #include <sys/types.h>
+.sp
 .B #include <dirent.h>
 .sp
 .BI "struct dirent *readdir(DIR *" dir );
@@ -49,10 +52,6 @@ NULL if an error occurs or end-of-file is reached.
 .TP
 .B EBADF
 Invalid directory stream descriptor \fIdir\fP.
-.SH NOTES
-In Linux 0.99.11,
-.B readdir
-is implemented as a kernel function.
 .SH "CONFORMING TO"
 SVID 3, POSIX, BSD 4.3
 .SH "SEE ALSO"

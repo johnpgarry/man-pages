@@ -1,0 +1,72 @@
+.\" -*- nroff -*-
+.\" Copyright (c) 1995 Jim Van Zandt <jrv@vanzandt.mv.com>
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.TH ADD_TIMER 9 "May 31, 1995" "Linux 1.2.8" "Kernel Reference Guide"
+.SH NAME
+add_timer, del_timer, init_timer \- manage event timers
+.SH SYNOPSIS
+.nf
+.B #include <asm/param.h>
+.B #include <linux/timer.h>
+
+.BI "extern void add_timer(struct timer_list * " timer ");"
+.BI "extern int  del_timer(struct timer_list * " timer ");"
+.BI "extern inline void init_timer(struct timer_list * " timer ");"
+.fi
+.SH DESCRIPTION
+\fBadd_timer\fP schedules an event, 
+adding it to a linked list of events maintained by the kernel.
+\fBdel_timer\fP deletes a scheduled event.
+\fItimer\fP points to a
+
+.nf
+struct timer_list {
+        struct timer_list *\fInext\fP;
+        struct timer_list *\fIprev\fP;
+        unsigned long \fIexpires\fP;
+        unsigned long \fIdata\fP;
+        void (*\fIfunction\fP)(unsigned \fIlong\fP);
+};
+.fi
+
+\fBinit_timer\fP sets \fInext\fP and \fIprev\fP to \fBNULL\fP.
+This is required for the argument of \fBadd_timer\fP.
+\fIexpires\fP is the desired duration of the timer in jiffies, where
+there are \fBHZ\fP (typically 100) jiffies per second.
+.P
+When the timer expires, \fIfunction\fP is called with \fIdata\fP
+as its argument.  
+It is the responsibility of \fIfunction\fP to delete the event.
+If the same function is managing several timers, the argument can be 
+used to distinguish which one expired.
+.SH "RETURN VALUE"
+\fBdel_timer\fP returns zero on error - if \fInext\fP or \fIprev\fP are 
+not \fBNULL\fP, but the timer was not found.
+\fBdel_timer\fP also sets \fIexpires\fP to the time remaining before
+the timer expires, and sets \fInext\fP and \fIprev\fP to \fBNULL\fP.
+Thus, calling \fBdel_timer\fP followed immediately by \fBadd_timer\fP
+is a no-op provided a kernel tick does not occur between the two calls.
+.SH AUTHOR
+Linus Torvalds
+
+

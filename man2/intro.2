@@ -29,11 +29,13 @@
 .\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
 .\"   Added explanation of arg stacking when 6 or more args.
 .\"
-.TH INTRO 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
+.\" Modified 10 June 1995 by Andries Brouwer (aeb@cwi.nl)
+.\"
+.TH INTRO 2 "10 June 1995" "Linux 1.2.9" "Linux Programmer's Manual"
 .SH NAME
 intro \- Introduction to system calls
 .SH DESCRIPTION
-This chapter describes Linux system calls.
+This chapter describes the Linux system calls.
 .SS "Calling Directly"
 In most cases, it is unnecessary to invoke a system call directly, but there
 are times with the Standard C library does not implement a nice function call
@@ -41,9 +43,10 @@ for you.
 .SS "Synopsis"
 #include <linux/unistd.h>
 
+A _syscall macro
+
 desired system call
 
-A _syscall macro
 .SS Setup
 The important thing to know about a system call is its prototype.  You
 need to know how many arguments, their types, and the function return type.
@@ -51,7 +54,7 @@ There are six macros that make the actual call into the system easier.
 They have the form:
 .sp
 .RS
-_syscall\fIX\fP(\fItype\fP,\fIname\fP,\fIatype\fP,\fIa\fP)
+.RI _syscall X ( type , name , type1 , arg1 , type2 , arg2 ,...)
 .RS
 .HP 1.0i
 where \fIX\fP is 0\(en5, which are the number of arguments taken by the 
@@ -61,9 +64,9 @@ system call
 .HP
 \fIname\fP is the name of the system call
 .HP
-\fIatype\fP is the first argument's type
+\fItypeN\fP is the Nth argument's type
 .HP
-\fIa\fP is the name of the first argument
+\fIargN\fP is the name of the Nth argument
 .RE
 .RE
 .sp
@@ -79,8 +82,8 @@ you call the system call by \fIname\fP.
 
 _syscall1(int, sysinfo, struct sysinfo *, info);
 
-/* Note, if copy directly from the nroff source; remember, to
-REMOVE the extra backslashes in the printf statement.                */
+/* Note: if you copy directly from the nroff source, remember to
+REMOVE the extra backslashes in the printf statement. */
 
 int main(void)
 {
@@ -89,10 +92,10 @@ int main(void)
 
 	error = sysinfo(&s_info);
 	printf("code error = %d\\n", error);
-	printf("uptime = %d\\n1 min load = %d\\n5 min load = %d\\n"
-		"15 min load = %d\\nTotal ram = %d\\nFree ram = %d\\n"
-		"shared ram = %d\\nMemory in buffers = %d\\nTotal swap = %d\\n"
-		"Free swap = %d\\nNumber of processes = %d\\n",
+        printf("Uptime = %ds\\nLoad: 1 min %d / 5 min %d / 15 min %d\\n"
+                "RAM: total %d / free %d / shared %d\\n"
+                "Memory in buffers = %d\\nSwap: total %d / free %d\\n"
+                "Number of processes = %d\\n",
 		s_info.uptime, s_info.loads[0],
 		s_info.loads[1], s_info.loads[2],
 		s_info.totalram, s_info.freeram,
@@ -105,17 +108,12 @@ int main(void)
 .SH "Sample Output"
 .nf
 code error = 0
-uptime = 147851
-1 min load = 0
-5 min load = 0
-15 min load = 0
-Total ram = 5238784
-Free ram = 495616
-shared ram = 1191936
-Memory in buffers = 2965504
-Total swap = 5218304
-Free swap = 4849664
-Number of processes = 14
+uptime = 502034s
+Load: 1 min 13376 / 5 min 5504 / 15 min 1152
+RAM: total 15343616 / free 827392 / shared 8237056
+Memory in buffers = 5066752
+Swap: total 27881472 / free 24698880
+Number of processes = 40
 .fi
 .SH NOTES
 The _syscall() macros DO NOT produce a prototype.  You may have to
@@ -123,20 +121,21 @@ create one, especially for C++ users.
 .sp
 System calls are not required to return only positive or negative error
 codes.  You need to read the source to be sure how it will return errors.
-Usually, it is the negative of a standard error code.  i.e., \-EPERM.
+Usually, it is the negative of a standard error code, e.g., \-\fBEPERM\fP.
+The _syscall() macros will return the result \fIr\fP of the system call
+when \fIr\fP is nonnegative, but will return \-1 and set the variable
+.I errno
+to \-\fIr\fP when \fIr\fP is negative.
 .sp
 Some system calls, such as
 .BR mmap ,
 require more than five arguments.  These are handled by pushing the
 arguments on the stack and passing a pointer to the block of arguments.
 .sp
-When defining a system call, the arguments types MUST be passed by-value
+When defining a system call, the argument types MUST be passed by-value
 or by-pointer (for aggregates like structs).
 .SH FILES
-.nf
-linux/include/linux/unistd.h		or
 /usr/include/linux/unistd.h
-.fi
 .SH AUTHORS
 Look at the header of the manual page for the author(s) and copyright
 conditions.  Note that these can be different from page to page!

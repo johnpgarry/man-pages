@@ -1,0 +1,90 @@
+.\" Copyright 1995 Mark D. Roth (roth@uiuc.edu)
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.\" References consulted:
+.\"     Linux libc source code
+.\"     Solaris manpages
+.\"
+.TH getutent 3 "Mar 22 1995" "Linux libc 5.0.0" "Linux Programmer's Manual"
+.SH NAME
+getutent, getutid, getutline, pututline, setutent, endutent, utmpname \- access utmp file entries
+.SH SYNOPSIS
+.B #include <utmp.h>
+.sp
+.B struct utmp *getutent(void);
+.br
+.BI "struct utmp *getutid(struct utmp *" ut ");"
+.br
+.BI "struct utmp *getutline(struct utmp *" ut ");"
+.sp
+.BI "void pututline(struct utmp *" ut ");"
+.sp
+.B void setutent(void);
+.br
+.B void endutent(void);
+.sp
+.BI "void utmpname(const char *" file ");"
+.SH DESCRIPTION
+utmpname() sets the name of the utmp-format file for the other utmp
+functions to access.  If utmpname() is not used to set the filename
+before the other functions are used, they assume \fB_PATH_UTMP\fP, as
+defined in \fI<paths.h>\fP.
+.PP
+setutent() rewinds the file pointer to the beginning of the utmp file.
+It is generally a Good Idea to call it before any of the other
+functions.
+.PP
+endutent() closes the utmp file.  It should be called when the user
+code is done accessing the file with the other functions.
+.PP
+getutent() reads a line from the current file position in the utmp
+file.  It returns a pointer to a structure containing the fields of
+the line.
+.PP
+getutid() searches forward from the current file position in the utmp
+file based upon \fIut\fP.  If \fIut\fP->ut_type is \fBRUN_LVL\fP,
+\fBBOOT_TIME\fP, \fBNEW_TIME\fP, or \fBOLD_TIME\fP, getutid() will
+find the first entry whose ut_type field matches \fIut\fP->ut_type.
+If \fIut\fP->ut_type is \fBINIT_PROCESS\fP, \fBLOGIN_PROCESS\fP,
+\fBUSER_PROCESS\fP, or \fBDEAD_PROCESS\fP, getutid() will find the
+first entry whose ut_id field matches \fIut\fP->ut_id.
+.PP
+getutline() searches forward from the current file position in the
+utmp file.  It scans entries whose ut_type is \fBUSER_PROCESS\fP
+or \fBLOGIN_PROCESS\fP and returns the first one whose ut_line field
+matches \fIut\fP->ut_line.
+.PP
+pututline() writes the utmp structure \fIut\fP into the utmp file.  It
+uses getutid() to search for the proper place in the file to insert
+the new entry.  If it cannot find an appropriate slot for \fIut\fP,
+pututline() will append the new entry to the end of the file.
+.SH "RETURN VALUE"
+getutent(), getutid(), and getutline() return a pointer to a \fBstruct
+utmp\fP, which is defined in \fI<utmp.h>\fP.
+.SH FILES
+\fI/var/run/utmp\fP \- database of currently logged-in users
+.br
+\fI/var/log/wtmp\fP \- database of past user logins
+.SH "CONFORMING TO"
+XPG 2, SVID 2, Linux FSSTND 1.2
+.SH "SEE ALSO"
+\fButmp\fP(5)

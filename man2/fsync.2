@@ -24,8 +24,10 @@
 .\"
 .\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
 .\"   Removed note about old libc (pre-4.5.26) translating to 'sync'.
+.\" Modified 15 Apr 1995 by Michael Chastain (mec@shell.portal.com):
+.\"   Added 'see also' section.
 .\"
-.TH FSYNC 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
+.TH FSYNC 2 "15 April 1994" "Linux 1.2.4" "Linux Programmer's Manual"
 .SH NAME
 fsync \- synchronize a file's in-core state with that on disk
 .SH SYNOPSIS
@@ -52,3 +54,5 @@ is bound to a special file which doesn't support synchronization.
 .TP
 .B EIO
 An error occurred during synchronization.
+.SH "SEE ALSO"
+.BR bdflush "(2), " fsync "(2), " update "(8), " sync "(8)"

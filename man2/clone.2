@@ -6,14 +6,15 @@
 .\" Modified Sat Jul 24 13:22:07 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified 21 Aug 1994 by Michael Chastain (mec@shell.portal.com):
 .\"   New man page (copied from 'fork.2').
+.\" Modified 10 June 1995 by Andries Brouwer (aeb@cwi.nl)
 .\"
-.TH CLONE 2 "21 August 1994" "Linux 1.1.46" "Linux Programmer's Manual"
+.TH CLONE 2 "10 June 1995" "Linux 1.2.9" "Linux Programmer's Manual"
 .SH NAME
 clone \- create a child process
 .SH SYNOPSIS
 .B #include <linux/sched.h>
 .br
-.B #include <unistd.h>
+.B #include <linux/unistd.h>
 .sp
 .BI "pid_t clone(void *" "sp" ", unsigned long " "flags" ")"
 .SH DESCRIPTION
@@ -66,11 +67,21 @@ will be created, and
 will be set appropriately.
 .SH ERRORS
 .TP
+.B ENOSYS
+.B clone
+will always return this error, unless your kernel was compiled with
+.B CLONE_ACTUALLY_WORKS_OK
+defined.
+.TP
 .B EAGAIN
 .B fork
 cannot allocate sufficient memory to copy the parent's page tables and
 allocate a task structure for the child.
 .SH BUGS
+By default,
+.B CLONE_ACTUALLY_WORKS_OK
+is not defined.
+.br
 There is no entry for
 .B clone
 in

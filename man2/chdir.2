@@ -24,18 +24,28 @@
 .\"
 .\" Modified by Michael Haardt (u31b3hs@pool.informatik.rwth-aachen.de)
 .\" Modified Wed Jul 21 22:10:52 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified 15 April 1995 by Michael Chastain (mec@shell.portal.com):
+.\"   Added 'fchdir'.
+.\"   Fix bugs in error section.
 .\"
-.TH CHDIR 2 "21 July 1993" "Linux 0.99.11" "Linux Programmer's Manual"
+.TH CHDIR 2 "15 April 1995" "Linux 1.2.4" "Linux Programmer's Manual"
 .SH NAME
-chdir \- change working directory
+chdir, fchdir \- change working directory
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
 .BI "int chdir(const char *" path );
+.br
+.BI "int fchdir(int " fd ");"
 .SH DESCRIPTION
 .B chdir
 changes the current directory to that specified in
 .IR path .
+.PP
+.B fchdir
+is identical to
+.BR chdir ,
+only that the directory is given as an open file descriptor.
 .SH "RETURN VALUE"
 On success, zero is returned.  On error, \-1 is returned, and
 .I errno
@@ -46,15 +56,7 @@ general errors are listed below:
 
 .TP 0.8i
 .B EPERM
-The effective UID does not match the owner of the file, and is not zero; or
-the
-.I owner
-or
-.I group
-were specified incorrectly.
-.TP
-.B EROFS
-The named file resides on a read-only file system.
+The process does not have execute permission on the directory.
 .TP
 .B EFAULT
 .I path
@@ -63,6 +65,11 @@ points outside your accessible address space.
 .B ENAMETOOLONG
 .I path
 is too long.
+.TP
+.B EBADF
+The
+.I fd
+is not a valid file descriptor.
 .TP
 .B ENOENT
 The file does not exist.

@@ -22,12 +22,14 @@
 .\" USA.
 .\"
 .\" Modified, Sun Feb 26 15:04:20 1995, faith@cs.unc.edu
+.\" Modified, Thu Apr 20 22:08:17 1995, jrv@vanzandt.mv.com
 .\" "
-.TH CONSOLE_IOCTLS 4 "February 20, 1995" "Linux" "Linux Programmer's Manual"
+.TH CONSOLE_IOCTLS 4 "April 20, 1995" "Linux" "Linux Programmer's Manual"
 .SH NAME
 console ioctl's \- ioctl's for console terminal and virtual consoles
-
-\fBWARNING: If you use the following information you are going to burn yourself.\fP
+.SH DESCRIPTION
+\fBWARNING: If you use the following information you are going to burn
+yourself.\fP
 
 \fBWARNING: ioctl's are undocumented Linux internals, liable to be changed 
 without warning.  Use POSIX functions.\fP
@@ -397,7 +399,8 @@ With kernel 1.1.92 or later, write to /dev/vcsa* instead.)
 .IP "\fBTIOCLINUX, subcode=10"
 Handles the Power Saving
 feature of the new generation of monitors.  
-VESA screen blanking mode is set to \fIargp\fP, which is one of:
+VESA screen blanking mode is set to \fIargp\fP[1], which governs what
+screen blanking does:
 
     \fI0\fP: Screen blanking is disabled.
 
