@@ -96,8 +96,8 @@ A component of the path prefix is not a directory.
 Search permission is denied on a component of the path prefix.
 .TP
 .B ELOOP
-Too many symbolic links were encountered in resolving
-.IR path .
+.I path
+contains a circular reference (i.e., via a symbolic link)
 .PP
 The general errors for
 .B fchown

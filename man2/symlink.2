@@ -28,19 +28,19 @@
 .\" Modified Wed Nov  6 04:07:10 1996 by Eric S. Raymond <esr@thyrsus.com>
 .\" Modified Fri Jan 31 17:51:14 1997 by Eric S. Raymond <esr@thyrsus.com>
 .\"
-.TH SYMLINK 2 "21 August 1997" "Linux 2.0.30" "Linux Programmer's Manual"
+.TH SYMLINK 2 "24 July 1993" Linux "Linux Programmer's Manual"
 .SH NAME
 symlink \- make a new name for a file
 .SH SYNOPSIS
 .B #include <unistd.h>
 .sp
-.BI "int symlink(const char *" oldpath ", const char *" newpath );
+.BI "int symlink(const char *" topath ", const char *" frompath );
 .SH DESCRIPTION
 .B symlink
 creates a symbolic link named
-.I newpath
+.I frompath
 which contains the string
-.IR oldpath .
+.IR topath .
 
 Symbolic links are interpreted at run-time as if the contents of the
 link had been substituted into the path being followed to find a file or
@@ -73,7 +73,7 @@ is set appropriately.
 .TP 0.8i
 .B EPERM
 The filesystem containing
-.IR newpath
+.IR pathname
 does not support the creation of symbolic links.
 .TP
 .B EFAULT
@@ -106,23 +106,20 @@ is not, in fact, a directory.
 Insufficient kernel memory was available.
 .TP
 .B EROFS
-.I newpath
-is on a read-only filesystem.
+The file is on a read-only filesystem.
 .TP
 .B EEXIST
 .I newpath
 already exists.
 .TP
 .B ELOOP
-Too many symbolic links were encountered in resolving
-.IR newpath .
+.IR newpath
+contains a reference to a circular symbolic link, ie a symbolic link
+whose expansion contains a reference to itself.
 .TP
 .B ENOSPC
 The device containing the file has no room for the new directory
 entry.
-.TP
-.B EIO
-An I/O error occurred.
 .SH NOTES
 No checking of
 .I oldpath
@@ -134,12 +131,11 @@ desired, use
 .BR link .
 .SH "CONFORMING TO"
 SVr4, SVID, POSIX, BSD 4.3.  SVr4 documents additional error codes
-SVr4, SVID, BSD 4.3, X/OPEN.  SVr4 documents additional error codes
-EDQUOT and ENOSYS.
+EDQUOT, EIO, ENAMETOOLONG, ENOSYS.
+.SH BUGS
 See
 .BR open (2)
 re multiple files with the same name, and NFS.
 .SH "SEE ALSO"
 .BR link "(2), " unlink "(2), " rename "(2), " open (2),
 .BR lstat "(2), " ln "(1), " link (8).
-.BR lstat "(2), " readlink "(2), " ln (1).

@@ -26,7 +26,7 @@
 .\"     386BSD man pages
 .\" Modified Mon Mar 29 22:36:52 1993, David Metcalfe
 .\" Modified Sat Jul 24 21:40:02 1993, Rik Faith (faith@cs.unc.edu)
-.TH ATEXIT 3  "14 September 1997" "GNU" "Linux Programmer's Manual"
+.TH ATEXIT 3  "March 29, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 atexit \- register a function to be called at normal program termination.
 .SH SYNOPSIS
@@ -38,13 +38,18 @@ atexit \- register a function to be called at normal program termination.
 .SH DESCRIPTION
 The \fBatexit()\fP function registers the given \fIfunction\fP to be
 called at normal program termination, whether via
-.BR exit (3)
+.BR exit (2)
 or via return
 from the program's \fBmain\fP.  Functions so registered are called in
 the reverse order of their registration; no arguments are passed.
 .SH "RETURN VALUE"
 The \fBatexit()\fP function returns the value 0 if successful; otherwise
-the value \-1 is returned; \fIerrno\fP is not set.
+the value \-1 is returned and the global variable \fIerrno\fP is set to
+indicate the error.
+.SH "ERRORS"
+.TP 
+.B ENOMEM
+Insufficient memory available to add the function.
 .SH "CONFORMING TO"
 SVID 3, BSD 4.3, ISO 9899 
 .SH "SEE ALSO"
