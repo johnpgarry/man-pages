@@ -23,10 +23,7 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
 .\" Modified Thu Oct 31 12:04:29 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified, 27 May 2004, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
-.\"     Added notes on capability requirements
-.\"
-.TH GETGROUPS 2 2004-05-27 "Linux 2.6.6" "Linux Programmer's Manual"
+.TH GETGROUPS 2 1997-12-10 "Linux 2.0.32" "Linux Programmer's Manual"
 .SH NAME
 getgroups, setgroups \- get/set list of supplementary group IDs
 .SH SYNOPSIS
@@ -44,7 +41,7 @@ getgroups, setgroups \- get/set list of supplementary group IDs
 .B getgroups
 Up to
 .I size
-supplementary group IDs (of the calling process) are returned in
+supplementary group IDs are returned in
 .IR list .
 It is unspecified whether the effective group ID of the calling process
 is included in the returned list. (Thus, an application should also call
@@ -58,10 +55,8 @@ is not modified, but the total number of supplementary group IDs for the
 process is returned.
 .TP
 .B setgroups
-Sets the supplementary group IDs for the process.
-Appropriate privileges (Linux: the
-.B CAP_SETGID
-capability) are required.
+Sets the supplementary group IDs for the process.  Only the super-user may use
+this function.
 .SH "RETURN VALUE"
 .TP
 .B getgroups
@@ -81,8 +76,9 @@ is set appropriately.
 has an invalid address.
 .TP
 .B EPERM
-The calling process has insufficient privilege to call 
-.BR setgroups .
+For
+.BR setgroups ,
+the user is not the super-user.
 .TP
 .B EINVAL
 For
@@ -124,7 +120,6 @@ function is in POSIX.1.  Since
 .B setgroups
 requires privilege, it is not covered by POSIX.1.
 .SH "SEE ALSO"
-.BR getgid (2),
-.BR setgid (2),
 .BR initgroups (3),
-.BR capabilities (7)
+.BR getgid (2),
+.BR setgid (2)
