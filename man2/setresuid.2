@@ -36,8 +36,8 @@ setresuid, setresgid \- set real, effective and saved user or group ID
 .BI "int setresgid(gid_t " rgid ", gid_t " egid ", gid_t " sgid ); 
 .SH DESCRIPTION
 .B setresuid
-sets the real user ID, the effective user ID, and the saved set-user-ID
-of the current process.
+sets the real user ID, the effective user ID, and the saved
+(effective) user ID of the current process.
 
 Unprivileged user processes (i.e., processes with each of
 real, effective and saved user ID nonzero) may change the real,
@@ -61,8 +61,8 @@ is set appropriately.
 .SH ERRORS
 .TP
 .B EPERM
-The current process was not privileged and tried to change
-the IDs is a not allowed way.
+The current process was not privileged (did not have the CAP_SETUID
+capability) and tried to change the IDs is a not allowed way.
 .TP
 .B EAGAIN
 .I uid

@@ -33,29 +33,31 @@
 .\" Sat Jul 13 14:00:00 2002: jbelton@shaw.ca, added to sys/fs and sys/kernel.
 .\" Modified, 22 Jul 2002, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\" Modified, 27 May 2003, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\" Modified,  6 Apr 2004, Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
+.\"	Added notes on /proc/sys/kernel/pty directory
 .\"
 .TH PROC 5 2003-05-27 "" "Linux Programmer's Manual"
 .SH NAME
 proc \- process information pseudo-filesystem
 
 .SH DESCRIPTION
-/proc is a pseudo-filesystem which is used as an interface to kernel
-data structures rather than reading and interpreting /dev/kmem.
-Most of it is read-only, but some files allow kernel variables to be changed.
+The
+.I proc
+filesystem is a pseudo-filesystem which is used as an interface to
+kernel data structures. It is commonly mounted at
+.IR /proc .
+Most of it is read-only, but some files allow kernel variables to be 
+changed.
 .LP
 The following outline gives a quick tour through the /proc hierarchy.
-.LP
-.\" .na
-.\" .nh
 .PD 1
 .TP
-.I [number]
+.I /proc/[number]
 There is a numerical subdirectory for each running process; the
 subdirectory is named by the process ID.  Each contains the following
 pseudo-files and directories.
-.RS
 .TP
-.I cmdline
+.I /proc/[number]/cmdline
 This holds the complete command line for the process, unless the whole
 process has been swapped out, or unless the process is a zombie.  In
 either of these later cases, there is nothing in this file: i.e. a
@@ -63,8 +65,9 @@ read on this file will return 0 characters.
 The command line arguments appear in this file as a set of 
 null-separated strings, with a further null byte after the last string.
 .TP
-.I cwd
-This is a link to the current working directory of the process.  To find out
+.I /proc/[number]/cwd
+This is a link to the current working directory of the process.  To find 
+out
 the cwd of process 20, for instance, you can do this:
 
 .br
@@ -77,7 +80,7 @@ cd /proc/20/cwd; /bin/pwd
 Note that the pwd command is often a shell builtin, and might
 not work properly. In bash, you may use pwd -P.
 .TP
-.I environ
+.I /proc/[number]/environ
 This file contains the environment for the process.
 The entries are separated by null characters,
 and there may be a null character at the end.
@@ -93,10 +96,11 @@ Thus, to print out the environment of process 1, you would do:
 (For a reason why one should want to do this, see
 .BR lilo (8).)
 .TP
-.I exe
+.I /proc/[number]/exe
 Under Linux 2.2 and 2.4 
 .I exe
-is a symbolic link containing the actual path name of the executed command.
+is a symbolic link containing the actual path name of the executed 
+command.
 The 
 .I exe
 symbolic link can be dereferenced normally - attempting to open 
@@ -122,7 +126,7 @@ MFM, etc. drives) minor 01 (first partition on the first drive).
 .BR find (1)
 with the -inum option can be used to locate the file.
 .TP
-.I fd
+.I /proc/[number]/fd
 This is a subdirectory containing one entry for each file which the
 process has open, named by its file descriptor, and which is a
 symbolic link to the actual file (as the exe entry does).  Thus, 0 is
@@ -146,7 +150,7 @@ are not seekable.
 and UNIX-like systems.  Most Linux MAKEDEV scripts symbolically link
 /dev/fd to /proc/self/fd, in fact.
 .TP
-.I maps
+.I /proc/[number]/maps
 A file containing the currently mapped memory regions and their access
 permissions.
 
@@ -189,7 +193,7 @@ be with bss.
 
 Under Linux 2.0 there is no field giving pathname.
 .TP
-.I mem
+.I /proc/[number]/mem
 Via the
 .I mem
 file one can access the pages of a process's memory through
@@ -198,14 +202,14 @@ file one can access the pages of a process's memory through
 and
 .BR fseek (3).
 .TP
-.I root
+.I /proc/[number]/root
 Unix and Linux support the idea of a per-process root of the
 filesystem, set by the
 .BR chroot (2)
 system call.  Root points to the file system root, and behaves as exe,
 fd/*, etc. do.
 .TP
-.I stat
+.I /proc/[number]/stat
 Status information about the process.  This is used by
 .BR ps (1).  
 It is defined in 
@@ -255,14 +259,16 @@ The number of minor faults the process has made which have not
 required loading a memory page from disk.
 .TP
 \fIcminflt\fP %lu
-The number of minor faults that the process' waited-for children have made.
+The number of minor faults that the process's
+waited-for children have made.
 .TP
 \fImajflt\fP %lu
 The number of major faults the process has made which have
 required loading a memory page from disk.
 .TP
 \fIcmajflt\fP %lu
-The number of major faults that the process' waited-for children have made.
+The number of major faults that the process's
+waited-for children have made.
 .TP
 \fIutime\fP %lu
 The number of jiffies that this process has been scheduled in user
@@ -273,8 +279,8 @@ The number of jiffies that this process has been scheduled in kernel
 mode.
 .TP
 \fIcutime\fP %ld
-The number of jiffies that this process' waited-for children have been
-scheduled in user mode. (See also
+The number of jiffies that this process's
+waited-for children have been scheduled in user mode. (See also
 .BR times (2).)
 .TP
 \fIcstime\fP %ld
@@ -366,7 +372,7 @@ Signal to be sent to parent when we die.
 CPU number last executed on.
 .RE
 .TP
-.I statm
+.I /proc/[number]/statm
 Provides information about memory status in pages.  The columns are:
  size       total program size
  resident   resident set size
@@ -376,52 +382,43 @@ Provides information about memory status in pages.  The columns are:
  lrs        library
  dt         dirty pages
 .TP
-.I status
+.I /proc/[number]/status
 Provides much of the information in
-.I stat
+.I /proc/[number]/stat
 and
-.I statm
-in an format that's easier for humans to parse.
-.RE
+.I /proc/[number]/statm
+in a format that's easier for humans to parse.
 .TP
-.I apm
+.I /proc/apm
 Advanced power management version and battery information
 when CONFIG_APM is defined at kernel compilation time.
 .TP
-.I bus
+.I /proc/bus
 Contains subdirectories for installed busses.
-.RS
 .TP
-.I pccard
+.I /proc/bus/pccard
 Subdirectory for pcmcia devices when CONFIG_PCMCIA is set
 at kernel compilation time.
-.RS
 .TP
-.I drivers
-.RE
-.RE
-.RS
+.I /proc/bus/pccard/drivers
 .TP
-.I pci
+.I /proc/bus/pci
 Contains various bus subdirectories and pseudo-files containing 
 information about pci busses, installed devices, and device 
 drivers.  Some of these files are not ASCII.  
-.RS
 .TP
-.I devices
+.I /proc/bus/pci/devices
 Information about pci devices.  They may be accessed through 
 .BR lspci (8)
 and
 .BR setpci (8).
-.RE
-.RE
 .TP
-.I cmdline
+.I /proc/cmdline
 Arguments passed to the Linux kernel at boot time.  Often done via
 a boot manager such as
 .BR lilo (1).
 .TP
-.I cpuinfo
+.I /proc/cpuinfo
 This is a collection of CPU and system architecture dependent items,
 for each supported architecture a different list.
 Two common entries are \fIprocessor\fP which gives CPU number and
@@ -429,35 +426,35 @@ Two common entries are \fIprocessor\fP which gives CPU number and
 during kernel initialization.  SMP machines have information for
 each CPU.
 .TP
-.I devices
+.I /proc/devices
 Text listing of major numbers and device groups.  This can be used by
 MAKEDEV scripts for consistency with the kernel.
 .TP
-.I dma
+.I /proc/dma
 This is a list of the registered \fIISA\fP DMA (direct memory access) 
 channels in use.
 .TP
-.I driver
+.I /proc/driver
 Empty subdirectory.
 .TP
-.I execdomains
+.I /proc/execdomains
 List of the execution domains (ABI personalities).
 .TP
-.I fb
+.I /proc/fb
 Frame buffer information when CONFIG_FB is defined during kernel 
 compilation.
 .TP
-.I filesystems
+.I /proc/filesystems
 A text listing of the filesystems which were compiled into the kernel.
 Incidentally, this is used by
 .BR mount (1)
 to cycle through different filesystems when none is specified.
 .TP
-.I fs
+.I /proc/fs
 Empty subdirectory.
 .TP
-.I ide
-.I ide
+.I /proc/ide
+This directory
 exists on systems with the ide bus.  There are directories for each
 ide channel and attached device.  Files include:
 
@@ -478,19 +475,19 @@ The
 .BR hdparm (8)
 utility provides access to this information in a friendly format.
 .TP
-.I interrupts
+.I /proc/interrupts
 This is used to record the number of interrupts per each IRQ on (at
 least) the i386 architechure.  Very easy to read formatting, done in
 ASCII.
 .TP
-.I iomem
+.I /proc/iomem
 I/O memory map in Linux 2.4.
 .TP
-.I ioports
+.I /proc/ioports
 This is a list of currently registered Input-Output port regions that 
 are in use.
 .TP
-.I kcore
+.I /proc/kcore
 This file represents the physical memory of the system and is stored
 in the ELF core file format.  With this pseudo-file, and an unstripped
 kernel (/usr/src/linux/vmlinux) binary, GDB can be used to
@@ -499,7 +496,7 @@ examine the current state of any kernel data structures.
 The total length of the file is the size of physical memory (RAM) plus
 4KB.
 .TP
-.I kmsg
+.I /proc/kmsg
 This file can be used instead of the
 .BR syslog (2)
 system call to read kernel messages.  A process must have superuser
@@ -513,29 +510,30 @@ Information in this file is retrieved with the
 .BR dmesg (8)
 program.
 .TP
-.I ksyms
+.I /proc/ksyms
 This holds the kernel exported symbol definitions used by the
 .BR modules (X)
 tools to dynamically link and bind loadable modules.
 .TP
-.I loadavg
-The load average numbers give the number of jobs in the run queue (state R)
+.I /proc/loadavg
+The load average numbers give the number of jobs in the run queue (state 
+R)
 or waiting for disk I/O (state D) averaged over 1, 5, and 15 minutes.
 They are the same as the load average numbers given by
 .BR uptime (1)
 and other programs.
 .TP
-.I locks
+.I /proc/locks
 This file shows current file locks
 .RB ( flock "(2) and " fcntl (2))
 and leases
 .RB ( fcntl (2)).
 .TP
-.I malloc
+.I /proc/malloc
 This file is only present if CONFIGDEBUGMALLOC was defined during
 compilation.
 .TP
-.I meminfo
+.I /proc/meminfo
 This is used by
 .BR free (1)
 to report the amount of free and used memory (both physical and swap)
@@ -546,31 +544,30 @@ It is in the same format as
 .BR free (1),
 except in bytes rather than KB.
 .TP
-.I mounts
+.I /proc/mounts
 This is a list of all the file systems currently mounted on the system.
 The format of this file is documented in
 .IR fstab (5).
 .TP
-.I modules
+.I /proc/modules
 A text list of the modules that have been loaded by the system.
 See also
 .BR lsmod (8).
 .TP
-.I mtrr
+.I /proc/mtrr
 Memory Type Range Registers.  
 See 
 .I /usr/src/linux/Documentation/mtrr.txt
 for details.
 .TP
-.I net
+.I /proc/net
 various net pseudo-files, all of which give the status of some part of
 the networking layer.  These files contain ASCII structures and are,
 therefore, readable with cat.  However, the standard
 .BR netstat (8)
 suite provides much cleaner access to these files.
-.RS
 .TP
-.I arp
+.I /proc/net/arp
 This holds an ASCII readable dump of the kernel ARP table used for
 address resolutions. It will show both dynamically learned and
 pre-programmed ARP entries.  The format is:
@@ -584,15 +581,17 @@ IP address     HW type   Flags     HW address          Mask   Device
 .ft
 .fi
 .in
-.PP
-Here 'IP address' is the IPv4 address of the machine and the 'HW type' is the
-hardware type of the address from RFC 826. The flags are the internal flags
-of the ARP structure (as defined in /usr/include/linux/if_arp.h) and the 'HW
-address' is the data link layer mapping for that IP address if it is known.
+
+Here 'IP address' is the IPv4 address of the machine and the 'HW type'
+is the hardware type of the address from RFC 826. The flags are the internal 
+flags of the ARP structure (as defined in /usr/include/linux/if_arp.h) and
+the 'HW address' is the data link layer mapping for that IP address if
+it is known.
 .TP
-.I dev
+.I /proc/net/dev
 The dev pseudo-file contains network device status information. This gives
-the number of received and sent packets, the number of errors and collisions
+the number of received and sent packets, the number of errors and 
+collisions
 and other basic statistics. These are used by the
 .BR ifconfig (8)
 program to report device status.  The format is:
@@ -610,13 +609,13 @@ Inter-|   Receive                                                |  Transmit
 .ft
 .fi
 .\" .TP
-.\" .I ipx
+.\" .I /proc/net/ipx
 .\" No information.
 .\" .TP
-.\" .I ipx_route
+.\" .I /proc/net/ipx_route
 .\" No information.
 .TP
-.I dev_mcast
+.I /proc/net/dev_mcast
 Defined in
 .IR /usr/src/linux/net/core/dev_mcast.c :
 .nf
@@ -628,55 +627,61 @@ indx ifterface_name  dmi_u dmi_g dmi_address
 .in
 .fi
 .TP
-.I igmp
+.I /proc/net/igmp
 Internet Group Management Protocol.  Defined in
 .IR /usr/src/linux/net/core/igmp.c .
 .TP
-.I rarp
+.I /proc/net/rarp
 This file uses the same format as the
 .I arp
 file and contains the current reverse mapping database used to provide
 .BR rarp (8)
-reverse address lookup services. If RARP is not configured into the kernel,
+reverse address lookup services. If RARP is not configured into the 
+kernel,
 this file will not be present.
 .TP
-.I raw
-Holds a dump of the RAW socket table. Much of the information is not of use
-apart from debugging. The 'sl' value is the kernel hash slot for the socket,
+.I /proc/net/raw
+Holds a dump of the RAW socket table. Much of the information is not of 
+use
+apart from debugging. The 'sl' value is the kernel hash slot for the 
+socket,
 the 'local address' is the local address and protocol number pair."St" is
 the internal status of the socket. The "tx_queue" and "rx_queue" are the
-outgoing and incoming data queue in terms of kernel memory usage. The "tr",
-"tm->when", and "rexmits" fields are not used by RAW. The uid field holds the
-creator euid of the socket.
+outgoing and incoming data queue in terms of kernel memory usage.
+The "tr", "tm->when", and "rexmits" fields are not used by RAW.
+The uid field holds the creator euid of the socket.
 .\" .TP
-.\" .I route
+.\" .I /proc/net/route
 .\" No information, but looks similar to
 .\" .BR route (8).
 .TP
-.I snmp
-This file holds the ASCII data needed for the IP, ICMP, TCP, and UDP management
+.I /proc/net/snmp
+This file holds the ASCII data needed for the IP, ICMP, TCP, and UDP 
+management
 information bases for an snmp agent. 
 .TP
-.I tcp
-Holds a dump of the TCP socket table. Much of the information is not of use
-apart from debugging. The "sl" value is the kernel hash slot for the socket,
-the "local address" is the local address and port number pair. The "remote
-address" is the remote address and port number pair (if connected). 'St' is
-the internal status of the socket. The 'tx_queue' and 'rx_queue' are the
-outgoing and incoming data queue in terms of kernel memory usage. The "tr",
-"tm->when", and "rexmits" fields hold internal information of the kernel
-socket state and are only useful for debugging. The uid field holds the
-creator euid of the socket.
+.I /proc/net/tcp
+Holds a dump of the TCP socket table. Much of the information is not
+of use apart from debugging. The "sl" value is the kernel hash slot
+for the socket, the "local address" is the local address and port number pair.
+The "remote address" is the remote address and port number pair
+(if connected). 'St' is the internal status of the socket.
+The 'tx_queue' and 'rx_queue' are the
+outgoing and incoming data queue in terms of kernel memory usage.
+The "tr", "tm->when", and "rexmits" fields hold internal information of
+the kernel socket state and are only useful for debugging. The uid field
+holds the creator euid of the socket.
 .TP
-.I udp
-Holds a dump of the UDP socket table. Much of the information is not of use
-apart from debugging. The "sl" value is the kernel hash slot for the socket,
-the "local address" is the local address and port number pair. The "remote
-address" is the remote address and port number pair (if connected). "St" is
-the internal status of the socket. The "tx_queue" and "rx_queue" are the
-outgoing and incoming data queue in terms of kernel memory usage. The "tr",
-"tm->when", and "rexmits" fields are not used by UDP. The uid field holds the
-creator euid of the socket.  The format is:
+.I /proc/net/udp
+Holds a dump of the UDP socket table. Much of the information is not of 
+use apart from debugging. The "sl" value is the kernel hash slot for the 
+socket, the "local address" is the local address and port number pair.
+The "remote address" is the remote address and port number pair
+(if connected). "St" is the internal status of the socket.
+The "tx_queue" and "rx_queue" are the outgoing and incoming data queue
+in terms of kernel memory usage. The "tr", "tm->when", and "rexmits" fields
+are not used by UDP. The uid field holds the creator euid of the socket.
+The format is:
 
 .nf
 .ft CW
@@ -689,7 +694,7 @@ sl  local_address rem_address   st tx_queue rx_queue tr rexmits  tm->when uid
 .ft
 .fi
 .TP
-.I unix
+.I /proc/net/unix
 Lists the UNIX domain sockets present within the system and their
 status.  The format is:
 .nf
@@ -701,37 +706,40 @@ Num RefCount Protocol Flags    Type St Path
 .ft
 .sp .5
 .fi
-.PP
+
 Here 'Num' is the kernel table slot number, 'RefCount' is the number
 of users of the socket, 'Protocol' is currently always 0, 'Flags'
 represent the internal kernel flags holding the status of the
 socket. Currently, type is always '1' (Unix domain datagram sockets are
 not yet supported in the kernel). 'St' is the internal state of the
 socket and Path is the bound path (if any) of the socket.
-.RE
 .TP
-.I partitions
+.I /proc/partitions
 Contains major and minor numbers of each partition as well as number
 of blocks and partition name.
 .TP
-.I pci
+.I /proc/pci
 This is a listing of all PCI devices found during kernel initialization
 and their configuration.
 .TP
-.I scsi
-A directory with the scsi midlevel pseudo-file and various SCSI lowlevel driver 
-directories, which contain a file for each SCSI host in this system, all of 
+.I /proc/scsi
+A directory with the scsi midlevel pseudo-file and various SCSI lowlevel 
+driver 
+directories, which contain a file for each SCSI host in this system, all 
+of 
 which give the status of some part of the SCSI IO subsystem.  
-These files contain ASCII structures and are, therefore, readable with cat.  
+These files contain ASCII structures and are, therefore, readable with 
+cat.  
 
-You can also write to some of the files to reconfigure the subsystem or switch
+You can also write to some of the files to reconfigure the subsystem or 
+switch
 certain features on or off.
-.RS
 .TP
-.I scsi
+.I /proc/scsi/scsi
 This is a listing of all SCSI devices known to the kernel. The listing is 
 similar to the one seen during bootup.
-scsi currently supports only the \fIadd-single-device\fP command which allows
+scsi currently supports only the \fIadd-single-device\fP command which 
+allows
 root to add a hotplugged device to the list of known devices.
 
 An 
@@ -741,13 +749,15 @@ host scsi1 to scan on SCSI channel 0 for a device on ID 5 LUN 0. If there
 is already a device known on this address or the address is invalid, an
 error will be returned.
 .TP
-.I drivername
-\fIdrivername\fP can currently be NCR53c7xx, aha152x, aha1542, aha1740, 
+.I /proc/scsi/[drivername]
+\fI[drivername]\fP can currently be NCR53c7xx, aha152x, aha1542, aha1740, 
 aic7xxx, buslogic, eata_dma, eata_pio, fdomain, in2000, pas16, qlogic, 
 scsi_debug, seagate, t128, u15-24f, ultrastore, or wd7000. 
-These directories show up for all drivers that registered at least one SCSI 
-HBA. Every directory contains one file per registered host. Every host-file is
-named after the number the host was assigned during initialization. 
+These directories show up for all drivers that registered at least one 
+SCSI 
+HBA. Every directory contains one file per registered host. Every
+host-file is named after the number the host was assigned during
+initialization. 
 
 Reading these files will usually show driver and host configuration, 
 statistics etc.
@@ -757,14 +767,13 @@ For example, with the \fIlatency\fP and \fInolatency\fP commands,
 root can switch on and off command latency measurement code in the
 eata_dma driver. With the \fIlockup\fP and \fIunlock\fP commands,
 root can control bus lockups simulated by the scsi_debug driver. 
-.RE
 .TP
-.I self
+.I /proc/self
 This directory refers to the process accessing the /proc filesystem,
 and is identical to the /proc directory named by the process ID of the
 same process.
 .TP
-.I slabinfo
+.I /proc/slabinfo
 Information about kernel caches.  The columns are:
 .nf
 cache-name
@@ -779,7 +788,7 @@ See
 .BR slabinfo (5)
 for details.
 .TP
-.I stat
+.I /proc/stat
 kernel/system statistics.  Varies with architecture.  Common 
 entries include:
 .RS
@@ -813,11 +822,11 @@ boot time, in seconds since the epoch (January 1, 1970).
 Number of forks since boot.
 .RE
 .TP
-.I swaps
+.I /proc/swaps
 Swap areas in use.  See also
 .BR swapon (8).
 .TP
-.I sys
+.I /proc/sys
 This directory (present since 1.3.57) contains a number of files
 and subdirectories corresponding to kernel variables.
 These variables can be read and sometimes modified using
@@ -827,20 +836,20 @@ system call. Presently, there are subdirectories
 .IR abi ", " debug ", " dev ", " fs ", " kernel ", " net ", " proc ", "
 .IR rxrpc ", " sunrpc " and " vm
 that each contain more files and subdirectories.
-.RS
 .TP
-.I abi
+.I /proc/sys/abi
 This directory may contain files with application binary information.
 On some systems, it is not present.
 .TP
-.I debug
+.I /proc/sys/debug
 This directory may be empty.
 .TP
-.I dev
-This directory contains device specific information (eg dev/cdrom/info).  On
+.I /proc/sys/dev
+This directory contains device specific information (eg dev/cdrom/info).  
+On
 some systems, it may be empty.
 .TP
-.I fs
+.I /proc/sys/fs
 This contains the subdirectory
 .IR binfmt_misc
 and files
@@ -849,16 +858,15 @@ and files
 .IR lease-break-time ", " leases-enable ", " overflowgid ", " overflowuid
 .IR super-max " and " super-nr
 with function fairly clear from the name.
-.LP
-Documentation for the files in
-.I /proc/sys/binfmt_misc
-can be found in the kernel sources in
+.TP
+.I /proc/sys/fs/binfmt_misc
+Documentation for files in this directory can in the kernel sources in
 .IR Documentation/binfmt_misc.txt .
-.LP
-The file
-.I dentry-state
-contains six numbers, 
-.IR nr_dentry ", " nr_unused ", " age_limit " (age in seconds), " want_pages
+.TP
+.I /proc/sys/fs/dentry-state
+This file contains six numbers, 
+.IR nr_dentry ", " nr_unused ", " age_limit " (age in seconds), " 
+want_pages
 (pages requested by system) and two dummy values.
 nr_dentry seems to be 0 all the time.
 nr_unused seems to be the number of unused dentries.
@@ -866,33 +874,30 @@ age_limit is the age in seconds after which dcache entries
 can be reclaimed when memory is short and want_pages is
 nonzero when the kernel has called shrink_dcache_pages() and the
 dcache isn't pruned yet.
-.LP
-The file
-.I dir-notify-enable
-can be used to disable or enable the
+.TP
+.I /proc/sys/fs/dir-notify-enable
+This file can be used to disable or enable the
 .I dnotify
 interface described in
 .BR fcntl (2)
 on a system-wide basis.
 A value of 0 in this file disables the interface,
 and a value of 1 enables it.
-.LP
-The file
-.I dquot-max
-shows the maximum number of cached disk quota entries.
+.TP
+.I /proc/sys/fs/dquot-max
+This file shows the maximum number of cached disk quota entries.
 On some (2.4) systems, it is not present.
 If the number of free cached disk quotas is very low and
 you have some awesome number of simultaneous system users,
 you might want to raise the limit.
-.LP
-The file
-.I dquot-nr
-shows the number of allocated disk quota
+.TP
+.I /proc/sys/fs/dquot-nr
+This file shows the number of allocated disk quota
 entries and the number of free disk quota entries.
-.LP
-The file
-.I file-max
-is a system-wide limit on the number of open files for all processes.
+.TP
+.I /proc/sys/fs/file-max
+This file defines
+a system-wide limit on the number of open files for all processes.
 (See also
 .BR setrlimit (2),
 which can be used by a process to set the per-process limit,
@@ -909,49 +914,50 @@ try increasing this value:
 echo 100000 > /proc/sys/fs/file-max
 .fi
 .ft
-.LP
+
 The kernel constant
 .I NR_OPEN
 imposes an upper limit on the value that may be placed in
 .IR file-max .
-.LP
+
 If you increase 
-.IR file-max ","
+.IR /proc/sys/fs/file-max ","
 be sure to increase
-.I inode-max
+.I /proc/sys/fs/inode-max
 to 3-4 times the new
 value of 
-.IR file-max ","
+.IR /proc/sys/fs/file-max ","
 or you will run out of inodes.
-.LP
-The (read-only) file
-.I file-nr
+.TP
+.I /proc/sys/fs/file-nr
+This (read-only) file
 gives the number of files presently opened.
 It contains three numbers: The number of allocated
 file handles, the number of free file handles and the maximum
-number of file handles.  The kernel allocates file handles dynamically, but it
+number of file handles.  The kernel allocates file handles dynamically, 
+but it
 doesn't free them again.  If the number of allocated files is close to the 
+
 maximum, you should consider increasing the maximum.
 When the number of free file handles is
 large, you've encountered a peak in your usage of file
 handles and you probably don't need to increase the maximum.
-.LP
-The file
-.I inode-max 
-contains the maximum number of in-memory inodes.
+.TP
+.I /proc/sys/fs/inode-max 
+This file contains the maximum number of in-memory inodes.
 On some (2.4) systems, it may not be
 present. This value should be 3-4 times larger
 than the value in file-max, since stdin, stdout and network sockets also
 need an inode to handle them. When you regularly run
 out of inodes, you need to increase this value.
-.LP
-The file
-.I inode-nr
-contains the first two values from inode-state.
-.LP
-The file
-.I inode-state
-contains seven numbers: nr_inodes, nr_free_inodes, preshrink and four dummy
+.TP
+.I /proc/sys/fs/inode-nr
+This file contains the first two values from inode-state.
+.TP
+.I /proc/sys/fs/inode-state
+This file
+contains seven numbers: nr_inodes, nr_free_inodes, preshrink and four 
+dummy
 values.
 nr_inodes is the number of inodes the system has
 allocated.  This can be slightly more than inode-max because
@@ -960,9 +966,9 @@ nr_free_inodes represents the number of free inodes.
 preshrink is nonzero when the nr_inodes > inode-max and the
 system needs to prune the inode list instead of allocating
 more.
-.LP
-The file
-.I lease-break-time
+.TP
+.I /proc/sys/fs/lease-break-time
+This file
 specifies the grace period that the kernel grants to a process
 holding a file lease
 .RB ( fcntl (2))
@@ -970,37 +976,36 @@ after it has sent a signal to that process notifying it
 that another process is waiting to open the file.
 If the lease holder does not remove or downgrade the lease within
 this grace period, the kernel forcibly breaks the lease.
-.LP
-The file
-.I leases-enable
-can be used to enable or disable file leases
+.TP
+.I /proc/sys/fs/leases-enable
+This file can be used to enable or disable file leases
 .RB ( fcntl (2))
 on a system-wide basis.
 If this file contains the value 0, leases are disabled.
 A non-zero value enables leases.
-.LP
-The files
-.IR overflowgid " and "
-.I overflowuid
+.TP
+.IR /proc/sys/fs/overflowgid " and " /proc/sys/fs/overflowuid
+These files
 allow you to change the value of the fixed UID and GID.
 The default is 65534.
 Some filesystems only support 16-bit UIDs and GIDs, although in Linux
 UIDs and GIDs are 32 bits. When one of these filesystems is mounted
 with writes enabled, any UID or GID that would exceed 65535 is translated
 to the overflow value before being written to disk.  
-.LP
-The file
-.I super-max 
+.TP
+.I /proc/sys/fs/super-max 
+This file 
 controls the maximum number of superblocks, and
 thus the maximum number of mounted filesystems the kernel
 can have. You only need to increase super-max if you need to
 mount more filesystems than the current value in super-max
 allows you to.
-The file
-.I super-nr
+.TP
+.I /proc/sys/fs/super-nr
+This file 
 contains the number of filesystems currently mounted.
 .TP
-.I kernel
+.I /proc/sys/kernel
 This directory contains files
 .IR acct ", " cad_pid ", " cap-bound  ", "
 .IR core_pattern ", " core_uses_pid  ", "
@@ -1010,17 +1015,17 @@ This directory contains files
 .IR java-appletviewer " (binfmt_java, obsolete), "
 .IR java-interpreter " (binfmt_java, obsolete), " l2cr " (PowerPC only), "
 .IR modprobe ", " msgmax ", " msgmnb ", " 
-.IR msgmni ", " osrelease ", " ostype ", " overflowgid ", " overflowuid ", " 
+.IR msgmni ", " osrelease ", " ostype ", " overflowgid ", " overflowuid ,
 .IR panic ", " panic_on_oops ", " pid_max ", "
-.IR powersave-nap " (PowerPC only), " printk ", " random ", "
+.IR powersave-nap " (PowerPC only), " printk ", " pty ", " random ", "
 .IR real-root-dev ", " reboot-cmd " (SPARC only), " rtsig-max ", " 
 .IR rtsig-nr ", " sem ", " sg-big-buff ", "
-.IR shmall ", " shmmax ", " shmmni ", " sysrq ", " tainted ", " threads-max ", "
+.IR shmall ", " shmmax ", " shmmni ", " sysrq ", " tainted ", " threads-max ,
 .IR version " and " zero-paged " (PowerPC only) "
 with function fairly clear from the name.
-.LP
-The file
-.I acct
+.TP
+.I /proc/sys/kernel/acct
+This file 
 contains three numbers: highwater, lowwater and frequency.
 If BSD-style process accounting is enabled these values control
 its behaviour. If free space on filesystem where the log lives
@@ -1031,23 +1036,22 @@ seconds). Default values are 4, 2 and 30.
 That is, suspend accounting if <= 2% of space is free; resume it
 if >= 4% of space is free; consider information about amount of free space
 valid for 30 seconds.
-.LP
-The file
-.I cap-bound
-holds the value of the kernel
+.TP
+.I /proc/sys/kernel/cap-bound
+This file holds the value of the kernel
 .IR "capability bounding set"
 (expressed as a signed decimal number).
 This set is ANDed against the capabilities permitted to a process
 during exec.
-.LP
-The file
-.I core_pattern
+.TP
+.I /proc/sys/kernel/core_pattern
+This file
 (new in Linux 2.5) provides finer control over the form of
 a core filename than the obsolete
-.IR core_uses_pid
+.IR /proc/sys/kernel/core_uses_pid
 file described below.
 The name for a core file is controlled by defining a template in
-.IR core_pattern .
+.IR /proc/sys/kernel/core_pattern .
 The template can contain % specifiers which are substituted
 by the following values when a core file is created:
 .nf
@@ -1071,22 +1075,22 @@ part of the core filename.
 The maximum size of the resulting core filename is 64 bytes.
 The default value in this file is "core".
 For backward compatibility, if
-.I core_pattern
+.I /proc/sys/kernel/core_pattern
 does not include "%p" and
-.I core_uses_pid
+.I /proc/sys/kernel/core_uses_pid
 is non-zero, then .PID will be appended to the core filename.
-.LP
-The file
-.I core_uses_pid
+.TP
+.I /proc/sys/kernel/core_uses_pid
+This file
 can be used control the naming of a core dump file on Linux 2.4.
 If this file contains the value 0, then a core dump file is simply named
 .IR core .
 If this file contains a non-zero value, then the core dump file includes
 the process ID in a name of the form
 .IR core.PID .
-.LP
-The file
-.I ctrl-alt-del
+.TP
+.I /proc/sys/kernel/ctrl-alt-del
+This file
 controls the handling of Ctrl-Alt-Del from the keyboard.
 When the value in this file is 0, Ctrl-Alt-Del is trapped and
 sent to the
@@ -1099,15 +1103,13 @@ Note: when a program (like dosemu) has the keyboard in 'raw'
 mode, the ctrl-alt-del is intercepted by the program before it
 ever reaches the kernel tty layer, and it's up to the program
 to decide what to do with it.
-.LP
-The file
-.I hotplug
+.TP
+.I /proc/sys/kernel/hotplug
+This file
 contains the path for the hotplug policy agent.
 The default value in this file "/sbin/hotplug".
-.LP
-The files
-.IR domainname " and "
-.I hostname
+.TP
+.IR /proc/sys/kernel/domainname " and " /proc/sys/kernel/hostname
 can be used to set the NIS/YP domainname and the
 hostname of your box in exactly the same way as the commands
 domainname and hostname, i.e.:
@@ -1138,81 +1140,73 @@ domain names are in general different. For a detailed discussion
 see the
 .BR hostname (1)
 man page.
-.LP
-If the file
-.I htab-reclaim
-(PowerPC only) is set to a non-zero value,
+.TP
+.I /proc/sys/kernel/htab-reclaim
+(PowerPC only) If this file is set to a non-zero value,
 the PowerPC htab
 (see kernel file Documentation/powerpc/ppc_htab.txt) is pruned
 each time the system hits the idle loop.
-.LP
-The file
-.I l2cr
-(PowerPC only) contains a flag that controls the L2 cache of G3 processor
+.TP
+.I /proc/sys/kernel/l2cr
+(PowerPC only) This file
+contains a flag that controls the L2 cache of G3 processor
 boards. If 0, the cache is disabled. Enabled if nonzero.
-.LP
-The file
-.I modprobe
+.TP
+.I /proc/sys/kernel/modprobe
+This file
 is described by the kernel source file Documentation/kmod.txt.
-.LP
-The file
-.I msgmax
-is a system-wide limit specifying the maximum number of bytes in
+.TP
+.I /proc/sys/kernel/msgmax
+This file defines
+a system-wide limit specifying the maximum number of bytes in
 a single message written on a System V message queue.
-.LP
-The file
-.I msgmni
-defines the system-wide limit on the number of message queue identifiers.
+.TP
+.I /proc/sys/kernel/msgmni
+This file defines the system-wide limit on the number of
+message queue identifiers.
 (This file is only present in Linux 2.4 onwards.)
-.LP
-The file
-.I msgmnb
-is a system-wide paramter used to initialise the
+.TP
+.I /proc/sys/kernel/msgmnb
+This file defines a system-wide paramter used to initialise the
 .I msg_qbytes
 setting for subsequenly created message queues.
 The
 .I msg_qbytes
 setting specifies the maximum number of bytes that may be written to the
 message queue.
-.LP
-The files
-.I ostype
-and
-.I osrelease
+.TP
+.IR /proc/sys/kernel/ostype " and " /proc/sys/kernel/osrelease
+These files
 give substrings of
 .IR /proc/version .
-.LP
-The files
-.I overflowgid
-and
-.I overflowuid
-duplicate the files
+.TP
+.IR /proc/sys/kernel/overflowgid " and " /proc/sys/kernel/overflowuid
+These files duplicate the files
 .I /proc/sys/fs/overflowgid
 and
 .IR /proc/sys/fs/overflowuid .
-.LP
-The file
-.I panic
+.TP
+.I /proc/sys/kernel/panic
 gives read/write access to the kernel variable
 .IR panic_timeout .
 If this is zero, the kernel will loop on a panic; if nonzero
 it indicates that the kernel should autoreboot after this number
 of seconds.  When you use the
 software watchdog device driver, the recommended setting is 60.
-.LP
-The file 
-.I panic_on_oops
-(new in Linux 2.5) controls the kernel's behaviour when an oops or
+.TP
+.I /proc/sys/kernel/panic_on_oops
+This file (new in Linux 2.5) controls the kernel's behaviour when an oops 
+or
 BUG is encountered.  If this file contains 0, then the system
 tries to continue operation.  If it contains 1, then the system
 delays a few seconds (to give klogd time to record the oops output)
 and then panics. 
 If the
-.I panic
+.I /proc/sys/kernel/panic
 file is also non-zero then the machine will be rebooted.
-.LP
-The file
-.I pid_max
+.TP
+.I /proc/sys/kernel/pid_max
+This file 
 (new in Linux 2.5)
 specifies the value at which PIDs wrap around
 (i.e., the value in this file is one greater than the maximum PID).
@@ -1220,14 +1214,15 @@ The default value for this file, 32768,
 results in the same range of PIDs as on earlier kernels.
 The value in this file can be set to any value up to 2^22
 (PID_MAX_LIMIT, approximately 4 million).
-.LP
-The file
-.IR powersave-nap " (PowerPC only)"
-contains a flag.  If set, Linux-PPC will use the 'nap' mode of powersaving,
+.TP
+.IR /proc/sys/kernel/powersave-nap " (PowerPC only)"
+This file
+contains a flag.  If set, Linux-PPC will use the 'nap' mode of 
+powersaving,
 otherwise the 'doze' mode will be used.
-.LP
-The four values in the file
-.I printk
+.TP
+.I /proc/sys/kernel/printk
+The four values in this file
 are console_loglevel, default_message_loglevel, minimum_console_level and
 default_console_loglevel.
 These values influence printk() behavior when printing or
@@ -1241,38 +1236,48 @@ will be printed with priority default_message_level.
 minimum_console_loglevel is the minimum (highest) value to which
 console_loglevel can be set.
 default_console_loglevel is the default value for console_loglevel.
-.LP
-The directory
+.TP
+.IR /proc/sys/kernel/pty " (since Linux 2.6.4)"
+This directory 
+contains two files relating to the number of Unix 98
+pseudo-terminals (see
+.BR pts (4))
+on the system.
+.TP
+.I /proc/sys/kernel/pty/max
+This file defines the maximum number of pseudo-terminals.
+.TP
+.I /proc/sys/kernel/pty/nr
+This read-only file
+indicates how many pseudo-terminals are currently in use.
+.TP
 .\" FIXME say more about random
-.I random
+.I /proc/sys/kernel/random
+This directory
 contains various parameters controlling the operation of the file
 .IR /dev/random .
-.LP
-The file
-.I real-root-dev
+.TP
+.I /proc/sys/kernel/real-root-dev
+This file
 is documented in the kernel source file Documentation/initrd.txt.
-.LP
-The file
-.IR reboot-cmd " (Sparc only) "
-seems to be a way to give an argument to the SPARC
+.TP
+.IR /proc/sys/kernel/reboot-cmd " (Sparc only) "
+This file seems to be a way to give an argument to the SPARC
 ROM/Flash boot loader. Maybe to tell it what to do after
 rebooting?
-.LP
-The file
-.I rtsig-max
-can be used to tune the maximum number
+.TP
+.I /proc/sys/kernel/rtsig-max
+This file can be used to tune the maximum number
 of POSIX realtime (queued) signals that can be outstanding
 in the system.
-.LP
-The file
-.I rtsig-nr
-shows the number POSIX realtime signals currently queued.
-.LP
-The file
-.I sem
-(available in Linux 2.4 onwards)
-contains 4 numbers defining limits for System V IPC semaphores.
+.TP
+.I /proc/sys/kernel/rtsig-nr
+This file shows the number POSIX realtime signals currently queued.
+.TP
+.IR /proc/sys/kernel/sem " (since Linux 2.4)"
+This file contains 4 numbers defining limits for System V IPC semaphores.
 These fields are, in order: 
+.RS
 .IP SEMMSL 8
 The maximum semaphores per semaphore set.
 .IP SEMMNS 8
@@ -1283,35 +1288,37 @@ The maximum number of operations that may be specified in a
 call.
 .IP SEMMNI 8
 A system-wide limit on the maximum number of semaphore identifiers.
-.LP
-The file
-.I sg-big-buff
+.RE
+.TP
+.I /proc/sys/kernel/sg-big-buff
+This file 
 shows the size of the generic SCSI device (sg) buffer.
 You can't tune it just yet, but you could change it on
 compile time by editing include/scsi/sg.h and changing
-the value of SG_BIG_BUFF.  However, there shouldn't be any reason to change
+the value of SG_BIG_BUFF.  However, there shouldn't be any reason to 
+change
 this value.
-.LP
-The file
-.I shmall
+.TP
+.I /proc/sys/kernel/shmall
+This file
 contains the system-wide limit on the total number of pages of
 System V shared memory.
-.LP
-The file
-.I shmmax
+.TP
+.I /proc/sys/kernel/shmmax
+This file
 can be used to query and set the run time limit
-on the maximum (System V IPC) shared memory segment size that can be created.
+on the maximum (System V IPC) shared memory segment size that can be 
+created.
 Shared memory segments up to 1Gb are now supported in the 
 kernel.  This value defaults to SHMMAX.
-.LP
-The file
-.I shmmni
+.TP
+.I /proc/sys/kernel/shmmni
 (available in Linux 2.4 and onwards)
+This file
 specifies the system-wide maximum number of System V shared memory
 segments that can be created.
-.LP
-The file
-.I version
+.TP
+.I /proc/sys/kernel/version
 contains a string like:
 .br
 
@@ -1323,29 +1330,28 @@ contains a string like:
 The '#5' means that
 this is the fifth kernel built from this source base and the
 date behind it indicates the time the kernel was built.
-.LP
-The file
-.IR zero-paged " (PowerPC only) "
+.TP
+.IR /proc/sys/kernel/zero-paged " (PowerPC only) "
+This file
 contains a flag. When enabled (non-zero), Linux-PPC will pre-zero pages in
 the idle loop, possibly speeding up get_free_pages.
 .TP
-The
-.I net
+.I /proc/sys/net
 This directory contains networking stuff.
 .TP
-.I proc
+.I /proc/sys/proc
 This directory may be empty.
 .TP
-.I sunrpc
+.I /proc/sys/sunrpc
 This directory supports Sun remote procedure call for network file system
 (NFS).  On some systems, it is not present.
 .TP
-.I vm
-This directory contains files for memory management tuning, buffer and cache
+.I /proc/sys/vm
+This directory contains files for memory management tuning, buffer and 
+cache
 management.
-.RE
 .TP
-.I sysvipc
+.I /proc/sysvipc
 Subdirectory containing the pseudo-files 
 .IR msg ", "  sem " and "  shm "."
 These files list the System V Interprocess Communication (IPC) objects 
@@ -1358,15 +1364,15 @@ for easy understanding.
 .BR ipc (5)
 provides further background on the information shown by these files.
 .TP
-.I tty
+.I /proc/tty
 Subdirectory containing the psuedo-files and subdirectories for 
 tty drivers and line disciplines.
 .TP
-.I uptime
+.I /proc/uptime
 This file contains two numbers: the uptime of the system (seconds),
 and the amount of time spent in idle process (seconds).
 .TP
-.I version
+.I /proc/version
 This string identifies the kernel version that is currently running.
 It includes the contents of /proc/sys/ostype, /proc/sys/osrelease and 
 /proc/sys/version.  For example:
@@ -1402,13 +1408,8 @@ Linux version 1.0.9 (quinlan@phaze) #1 Sat May 14 01:51:54 EDT 1994
 .BR lspci (8),
 .BR netstat (8),
 .BR procinfo (8),
-.BR route (8)
-.BR /usr/src/linux/Documentation/filesystems/proc.txt
-.SH "CONFORMS TO"
-This roughly conforms to a Linux 2.4.17 kernel.  Please update this as
-necessary!
-
-Last updated for Linux 2.4.17.
+.BR route (8),
+.I /usr/src/linux/Documentation/filesystems/proc.txt
 .SH CAVEATS
 Note that many strings (i.e., the environment and command line) are in
 the internal format, with sub-fields terminated by NUL bytes, so you
@@ -1421,3 +1422,4 @@ of thing that needs to be updated very often.
 .SH ACKNOWLEDGEMENTS
 The material on /proc/sys/fs and /proc/sys/kernel is closely based on
 kernel source documentation files written by Rik van Riel.
+

@@ -127,6 +127,11 @@ A routine
 .B getmntent_r()
 was introduced in HPUX 10, but it returns an int. The prototype
 shown above is glibc-only.
+LSB deprecates the functions
+.BR endhostent() ,
+.BR sethostent()
+and
+.BR setmntent() .
 .SH NOTES
 SysV also has a \fBgetmntent()\fP function but the calling sequence
 differs, and the returned structure is different. Under SysV

@@ -1,7 +1,7 @@
 RELEASE
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.66.tar.gz - man pages for Linux
+    man-pages-1.67.tar.gz - man pages for Linux
 
 POSIX
 This release is the first to contain the POSIX 1003.1-2003 man pages.
@@ -30,18 +30,24 @@ ftp://ftp.terra.net/pub/sleepycat/db.1.86.tar.gz.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM.]
 
 
-Differences from version 1.65:
+Differences from version 1.66:
 
-    The man pages
+    The file POSIX-COPYRIGHT and the man pages
 
-	sys_ipc.h.0p sys_mman.h.0p sys_msg.h.0p sys_resource.h.0p
-	sys_select.h.0p sys_sem.h.0p sys_shm.h.0p sys_socket.h.0p
-	sys_stat.h.0p sys_statvfs.h.0p sys_time.h.0p sys_timeb.h.0p
-	sys_times.h.0p sys_types.h.0p sys_uio.h.0p sys_un.h.0p
-	sys_utsname.h.0p sys_wait.h.0p
+	capget.2 epoll_ctl.2 execve.2 fcntl.2 getrlimit.2 ioctl.2
+	mincore.2 mmap.2 mremap.2 open.2 sched_setaffinity.2
+	setresuid.2 sigpause.2 utime.2
 
-    are new or have been updated. Two typographical errors have been
-    corrected. The nroff version of the POSIX pages was much improved.
+	getmntent.3 gets.3 hsearch.3 login.3 scandir.3
+
+	epoll.4
+
+	proc.5
+
+	ascii.7 LDP.7 packet.7 socket.7 unix.7
+
+    are new or have been updated. Typographical or grammatical errors
+    have been corrected in several other places.
 
 Here is a breakdown of what this distribution contains:
 

@@ -22,10 +22,10 @@
 .\" Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
 .\" USA.
 .\"
-.\" 19 Nov 2002	Robert Love <rml@tech9.net>
-.\" 		initial version
+.\" 2002-11-19 Robert Love <rml@tech9.net> - initial version
+.\" 2004-04-22 aeb - added glibc prototype history
 .\"
-.TH SCHED_SETAFFINITY 2 2002-11-19 "Linux" "Linux Programmer's Manual"
+.TH SCHED_SETAFFINITY 2 2004-04-22 "Linux" "Linux Programmer's Manual"
 .SH NAME
 sched_setaffinity, sched_getaffinity \- set and get a process's CPU affinity
 mask
@@ -110,7 +110,21 @@ contains no processors that are physically on the system or the length
 is smaller than the size of the affinity mask used by the kernel.
 .SH "HISTORY"
 The affinity syscalls were introduced in Linux kernel 2.5.8.
-
+The library calls were introduced in glibc 2.3, and are still in
+glibc 2.3.2. Later glibc 2.3.2 development versions changed this
+interface to one without the
+.I len
+field, and still later versions reverted again. The glibc prototype is now
+.sp
+.nf
+/* Set the CPU affinity for a task */
+extern int sched_setaffinity (pid_t pid, size_t cpusetsize,
+                              const cpu_set_t *cpuset);
+.sp
+/* Get the CPU affinity for a task */
+extern int sched_getaffinity (pid_t pid, size_t cpusetsize,
+                              cpu_set_t *cpuset);
+.fi
 .SH "SEE ALSO"
 .BR sched_setscheduler (2),
 .BR sched_getscheduler (2),

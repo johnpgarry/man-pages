@@ -375,6 +375,12 @@ The process already has the maximum number of files open.
 .B ENFILE
 The limit on the total number of files open on the system has been
 reached.
+.SH NOTE
+Under Linux, the O_NONBLOCK flag indicates that one wants to open
+but does not necessarily have the intention to read or write.
+This is typically used to open devices in order to get a file descriptor
+for use with
+.BR ioctl (2).
 .SH "CONFORMING TO"
 SVr4, SVID, POSIX, X/OPEN, BSD 4.3.
 The

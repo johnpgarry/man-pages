@@ -105,6 +105,12 @@ references.
 or
 .I argp
 is not valid.
+.SH NOTE
+In order to use this call, one needs an open file descriptor.
+Often the
+.BR open (2)
+call has unwanted side effects, that can be avoided under Linux
+by giving it the O_NONBLOCK flag.
 .SH "CONFORMING TO"
 No single standard.  Arguments, returns, and semantics of
 .BR ioctl (2) 
@@ -121,6 +127,7 @@ function call appeared in Version 7 AT&T Unix.
 .BR execve (2),
 .BR fcntl (2),
 .BR ioctl_list (2),
+.BR open (2),
 .BR mt (4),
 .BR sd (4),
 .BR tty (4)

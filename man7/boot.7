@@ -103,15 +103,15 @@ passing any parameters that weren't handled by the kernel already.
 When init starts it reads
 .I /etc/inittab
 for further instructions.
-This file defines what should be run in different \fIrun\-levels\fR.
+This file defines what should be run in different \fIrun-levels\fR.
 
 This gives the system administrator an easy management scheme, where
-each run\-level is associated with a set of services (e.g:
+each run-level is associated with a set of services (e.g:
 \fBS\fR is \fIsingle\-user\fR, on \fB2\fR most network
 services start, etc.). The administrator may change the current
-run\-level via
+run-level via
 .BR init (8)
-and query the current run\-level via
+and query the current run-level via
 .BR runlevel (8).
 
 However, since it is not convenient to manage individual services
@@ -141,7 +141,7 @@ start, 'status' do display the service status). Running the script
 without parameters displays the possible arguments.
 
 .SS "Sequencing Directories"
-To make specific scripts start/stop at specific run\-levels and in
+To make specific scripts start/stop at specific run-levels and in
 specific order, there are \fIsequencing directories\fR. These
 are normally in \fB/etc/rc[0\-6S].d\fR. In each of these directories
 there are links (usually symbolic) to the scripts in the \fIinit.d\fR
@@ -154,14 +154,15 @@ the argument 'start' (thereby starting the service). All links with
 names that begin with 'K' are being called with the argument 'stop'
 (thereby stopping the service).
 
-To assert order withing the same run\-level, the names of the links
-contains order\-numbers. Also, to make the names clearer, they usually
-ends with the name of the service they refer to. Example:
-the link \fI/etc/rc2.d/S80sendmail\fR is starting the sendmail service on
-runlevel 2. This is happening after \fI/etc/rc2.d/S12syslog\fR is run
+To define the starting or stopping order within the same run-level,
+the names of the links contain order-numbers.
+Also, to make the names clearer, they usually
+end with the name of the service they refer to. Example:
+the link \fI/etc/rc2.d/S80sendmail\fR starts the sendmail service on
+runlevel 2. This happens after \fI/etc/rc2.d/S12syslog\fR is run
 but before \fI/etc/rc2.d/S90xfs\fR is run.
 
-To manage the boot order and run\-levels, we have to manage these links.
+To manage the boot order and run-levels, we have to manage these links.
 However, on many versions of Linux, there are tools to help with this task
 (e.g:
 .BR chkconfig (8)).

@@ -91,31 +91,26 @@ flag, the call to
 .BR epoll_wait (2)
 done in step
 .B 5
-will hang because of the available data still present in the file
-input buffers. The reason for this is that Edge Triggered event
-distribution delivers events only when the status of a monitored
-device changes from I/O space not available ( state
-.B 0
-) to I/O space available ( state
-.B 1
-).
-In the above example, an event on
+will probably hang because of the available data still present in the file
+input buffers and the remote peer might be expecting a response based on the
+data it already sent. The reason for this is that Edge Triggered event
+distribution delivers events only when events happens on the monitored file.
+So, in step
+.B 5
+the caller might end up waiting for some data that is already present inside
+the input buffer. In the above example, an event on
 .B RFD
-will be generated ( supposing that the pipe read buffer was empty
-before ) because of the write done in
+will be generated because of the write done in
 .B 2
 , and the event is consumed in
 .BR 3 .
 Since the read operation done in
 .B 4
-does not consume the whole buffer data ( that is, the condition
-remains I/O space available ) a transition
-.B 0
-->
-.B 1
-cannot happen in
-.BR 5 .
-The
+does not consume the whole buffer data, the call to
+.BR epoll_wait (2)
+done in step
+.B 5
+might lock indefinitely. The
 .B epoll
 interface, when used with the
 .B EPOLLET
@@ -127,7 +122,7 @@ The suggested way to use
 as an Edge Triggered (
 .B EPOLLET
 ) interface is below, and possible pitfalls to avoid follow.
-.SR
+.RS
 .TP 
 .B i
 with non-blocking file descriptors
@@ -138,14 +133,28 @@ by going to wait for an event only after
 or 
 .BR write (2)
 return EAGAIN
-.SE
+.RE
 .PP
 On the contrary, when used as a Level Triggered interface,
 .B epoll
 is by all means a faster
 .BR poll (2),
 and can be used wherever the latter is used since it shares the
-same semantics.
+same semantics. Since even with the Edge Triggered
+.B epoll
+multiple events can be generated up on receival of multiple chunks of data,
+the caller has the option to specify the
+.B EPOLLONESHOT
+flag, to tell
+.B epoll
+to disable the associated file descriptor after the receival of an event with
+.BR epoll_wait (2).
+When the
+.B EPOLLONESHOT
+flag is specified, it is caller responsibility to rearm the file descriptor using
+.BR epoll_ctl (2)
+with
+.BR EPOLL_CTL_MOD .
 
 .SH EXAMPLE FOR SUGGESTED USAGE
 
@@ -217,7 +226,7 @@ with
 
 .SH QUESTIONS AND ANSWERS (from linux-kernel)
 
-.SR
+.RS
 .TP 
 .B Q1 
 What happens if you add the same fd to an epoll_set twice?
@@ -308,63 +317,10 @@ returns a lower number of bytes, you can be sure to have exhausted the read
 I/O space for such file descriptor. Same is valid when writing using the
 .BR write (2)
 function.
-.SE
+.RE
 
 .SH POSSIBLE PITFALLS AND WAYS TO AVOID THEM
-.SR
-.TP
-.B o False Positive ( Edge Triggered )
-.PP
-It is possible that while reading (assuming you are reading in a loop waiting for EAGAIN),
-more I/O comes in for a second event. That I/O will be read immediately.  However, the next  
-time you call
-.BR epoll_wait (2)
-on that fd, it will say there is an event ready even though the I/O 
-for it has already been consumed. 
-.PP
-.TP
-.B 1
-A certain amount of data arrives on a monitored file descriptor.
-.TP
-.B 2
-An
-.BR epoll_wait (2)
-call returns with the above file descriptor signaled.
-.TP
-.B 3
-Another chunk of data arrives on the same file descriptor.
-.TP
-.B 4
-The file descriptor is internally signaled as ready.
-.TP
-.B 5
-A call to
-.BR read (2)
-consumes the whole data available.
-.TP
-.B 6
-Another call to
-.BR epoll_wait (2)
-will return the above file descriptor even if data is not available,
-by making the next call to
-.BR read (2)
-to return EAGAIN.
-.PP
-.PP
-In the case of non-blocking file descriptors, this will result in the
-next call to read immediately returning with EAGAIN. In the case of blocking
-file descriptors, you will hang waiting to read I/O that is not there.
-The author does not recommend using blocking file descriptors together with
-the Edge Triggered behaviour, but will not stop you.
-.PP
-.PP 
-One way to handle this is to mark the file descriptor as ready in its associated data 
-structure after the first event is received, then ignore other events while it is in the 
-ready state. When you read until receiving EAGAIN, set the ready state bit off before
-calling
-.BR epoll_wait (2)
-again on that fd.
-.PP
+.RS
 .TP
 .B o Starvation ( Edge Triggered )
 .PP
@@ -403,7 +359,7 @@ event for fd 13 in your batch processing, you will discover the fd had been
 previously removed and there will be no confusion.
 .PP
 
-.SE
+.RE
 .SH CONFORMING TO
 .BR epoll (4)
 is a new API introduced in Linux kernel 2.5.44.

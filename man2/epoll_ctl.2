@@ -93,6 +93,19 @@ is Level Triggered. See
 .BR epoll (4)
 for more detailed informations about Edge and Level Triggered event
 distribution architectures.
+.TP
+.B EPOLLONESHOT
+Sets the One-Shot behaviour for the associated file descriptor. It means
+that after an event is pulled out with
+.BR epoll_wait (2)
+the associated file descriptor is internally disabled and no other events
+will be reported by the
+.B epoll
+interface. The user must call
+.BR epoll_ctl (2)
+with
+.B EPOLL_CTL_MOD
+to re-enable the file descriptor with a new event mask.
 .PP
 .sp
 The
@@ -102,7 +115,7 @@ interface supports all file descriptors that support
 Valid values for the
 .IR op
 parameter are :
-.SR
+.RS
 .TP
 .B EPOLL_CTL_ADD
 Add the target file descriptor
@@ -129,7 +142,7 @@ from the
 .B epoll
 file descriptor,
 .IR epfd .
-.SE
+.RE
 .SH "RETURN VALUE"
 When successful, 
 .BR epoll_ctl (2)
@@ -166,10 +179,9 @@ There was insufficient memory to handle the requested
 control operation.
 .SH CONFORMING TO
 .BR epoll_ctl (2)
-is a new API introduced in Linux kernel 2.5.44. 
+is a new API introduced in Linux kernel 2.5.44.
 The interface should be finalized by Linux kernel 2.5.66.
 .SH "SEE ALSO"
 .BR epoll_create (2),
 .BR epoll_wait (2),
 .BR epoll (4)
-

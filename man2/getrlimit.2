@@ -39,6 +39,7 @@
 .\" Modified 2002-07-09 by Michael Kerrisk <mtk16@ext.canterbury.ac.nz>
 .\"	Enhanced descriptions of 'resource' values for [gs]etrlimit()
 .\" Modified 2003-11-28 by aeb, added RLIMIT_CORE
+.\" Modified 2004-03-26 by aeb, added RLIMIT_AS
 .\"
 .TH GETRLIMIT 2 2003-11-28 "Linux" "Linux Programmer's Manual"
 .SH NAME
@@ -94,6 +95,22 @@ and in the structure passed to
 .I resource
 must be one of:
 .TP
+.B RLIMIT_AS
+The maximum size of the process's virtual memory (address space) in bytes.
+.\" since 2.0.27 / 2.1.12
+This limit affects calls to
+.BR brk (2),
+.BR mmap (2)
+and
+.BR mremap (2),
+which fail with the error
+.B ENOMEM
+upon exceeding this limit. Also automatic stack expansion will fail
+(and generate a SIGSEGV that kills the process when no alternate stack
+has been made available).
+Since the value is a long, on machines with a 32-bit long
+either this limit is at most 2 GiB, or this resource is unlimited.
+.TP
 .B RLIMIT_CORE
 Maximum size of
 .I core
@@ -145,9 +162,9 @@ A limit on the combined number of
 .BR flock ()
 locks and 
 .BR fcntl()
-leases that this process may establish
-(Linux 2.4 and later).
-.\" to be precise: Linux 2.4.0-test9 and later
+leases that this process may establish.
+(Early Linux 2.4 only.)
+.\" to be precise: Linux 2.4.0-test9; no longer in 2.4.25 / 2.5.65
 .TP
 .B RLIMIT_MEMLOCK
 The maximum number of bytes of virtual memory that may be locked
@@ -268,7 +285,7 @@ although POSIX 1003.1-2001 explicitly prohibits this.
 .LP
 The above struct was taken from BSD 4.3 Reno.
 Not all fields are meaningful under Linux.
-Right now (Linux 2.4) only the fields
+Right now (Linux 2.4, 2.6) only the fields
 .BR ru_utime ,
 .BR ru_stime ,
 .BR ru_minflt ,

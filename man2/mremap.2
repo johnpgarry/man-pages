@@ -71,7 +71,9 @@ if the resize cannot be done at the current virtual address.
 
 .SH "RETURN VALUE"
 On success \fBmremap\fR returns a pointer to the new virtual memory area.
-On error, \-1 is returned, and \fIerrno\fR is set appropriately.
+On error, the value
+.B MAP_FAILED
+(that is, (void *) \-1) is returned, and \fIerrno\fR is set appropriately.
 
 .SH ERRORS
 .TP

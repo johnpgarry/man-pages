@@ -18,49 +18,67 @@
 .\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
 .\" USA.
 .\"
-.\" Compiled from glibc.info, 2002 Martin Schulze <joey@infodrom.org>
+.\" Derived from text written by Martin Schulze (or taken from glibc.info)
+.\" and text written by Paul Thompson - both copyright 2002.
 .\"
-.TH LOGIN 3 2002-01-28 "GNU/Linux" "Linux System Administration"
+.TH LOGIN 3 2004-05-06 "GNU/Linux" "Linux System Administration"
 .SH NAME
-login, logout \- user accounting functions
+login, logout \- write utmp and wtmp entries
 .SH SYNOPSIS
 .B #include <utmp.h>
 .sp
-.BI "void login(const struct utmp *" entry );
+.BI "void login(const struct utmp *" ut );
 .br
 .BI "int logout(const char *" ut_line );
 .SH DESCRIPTION
+The utmp file records who is currently using the system.
+The wtmp file records all logins and logouts. See
+.BR utmp (5).
+.LP
 The function
 .BR login ()
-inserts a new entry into the user accounting database (utmp file).
-The element
-.IB ut \->ut_line
-will be set to the name of the terminal on standard input.  If this is
-not a terminal,
+takes the supplied struct utmp
+.IR ut ,
+and writes it to both utmp and wtmp file.
+.LP
+The function
+.BR logout ()
+clears the entry in the utmp file again.
+.SH "GNU DETAILS"
+More precisely,
 .BR login ()
-will use the standard output or standard error output to determine the
-name of the terminal.  The element
-.IB ut \->ut_type
-.\" (if there is one)
-will be set to
+takes the argument
+.I ut
+struct, fills the field
+.I ut->ut_type
+(if there is such a field) with the value
 .BR USER_PROCESS ,
-and
-.IB ut \->ut_pid
-.\" (if it exists)
-will be set to the process ID of the calling process.
-All remaining elements will be copied from
-.IR entry .
-
-A copy of the resulting
-.I entry
-is written to the user accounting log file.
-
+and fills the field
+.I ut->ut_pid
+(if there is such a field) with the process ID of the calling process.
+Then it tries to fill the field
+.IR ut->ut_line .
+It takes the first of stdin, stdout, stderr that is a tty, and
+stores the corresponding pathname minus a possible leading /dev/
+into this field, and then writes the struct to the utmp file.
+On the other hand, if no tty name was found, this field is filled with "???"
+and the struct is not written to the utmp file.
+After this, the struct is written to the wtmp file.
+.LP
 The
 .BR logout ()
-function modifies the user accounting database to indicate that the
-user on terminal
+function searches the utmp file for an entry matching the
 .I ut_line
-has logged out.
+argument. If a record is found, it is updated by zeroing out the
+.I ut_name
+and
+.I ut_host
+fields, updating the
+.I ut_tv
+timestamp field and setting
+.I ut_type
+(if there is such a field) to
+.BR DEAD_PROCESS .
 .SH "RETURN VALUES"
 The
 .BR logout ()
@@ -86,6 +104,10 @@ in
 .TP
 .I /var/run/utmp
 user accounting database, configured through _PATH_UTMP in
+.I <paths.h>
+.TP
+.I /var/log/wtmp
+user accounting log file, configured through _PATH_WTMP in
 .I <paths.h>
 .SH "SEE ALSO"
 .BR utmp (5),

@@ -48,7 +48,7 @@ executable which is not itself a script, which will be invoked as
 \fIargv\fP is an array of argument strings passed to the new program.
 \fIenvp\fP is an array of strings, conventionally of the form
 \fBkey=value\fR, which are passed as environment to the new
-program.  Both, \fIargv\fP and \fIenvp\fP must be terminated by a null
+program.  Both \fIargv\fP and \fIenvp\fP must be terminated by a null
 pointer.  The argument vector and environment can be accessed by the
 called program's main function, when it is defined as \fBint main(int
 argc, char *argv[], char *envp[])\fR.
@@ -195,6 +195,15 @@ a #! executable shell script.
 .\" Linux versions have also had other security holes in \fBexecve()\fP,
 .\" that could be exploited for denial of service by a suitably crafted
 .\" ELF binary. There are no known problems with 2.0.34 or 2.2.15.
+
+.SH HISTORICAL
+With Unix V6 the argument list of an exec call was ended by 0,
+while the argument list of
+.I main
+was ended by \-1. Thus, this
+argument list was not directly usable in a further exec call.
+Since Unix V7 both are NULL.
+
 .SH "SEE ALSO"
 .BR chmod (2),
 .BR fork (2),

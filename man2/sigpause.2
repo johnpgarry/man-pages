@@ -1,72 +1,83 @@
-.\" Copyright (c) 1983, 1991 The Regents of the University of California.
-.\" All rights reserved.
+.\" Copyright (C) 2004 Andries Brouwer (aeb@cwi.nl)
 .\"
-.\" Redistribution and use in source and binary forms, with or without
-.\" modification, are permitted provided that the following conditions
-.\" are met:
-.\" 1. Redistributions of source code must retain the above copyright
-.\"    notice, this list of conditions and the following disclaimer.
-.\" 2. Redistributions in binary form must reproduce the above copyright
-.\"    notice, this list of conditions and the following disclaimer in the
-.\"    documentation and/or other materials provided with the distribution.
-.\" 3. All advertising materials mentioning features or use of this software
-.\"    must display the following acknowledgement:
-.\"	This product includes software developed by the University of
-.\"	California, Berkeley and its contributors.
-.\" 4. Neither the name of the University nor the names of its contributors
-.\"    may be used to endorse or promote products derived from this software
-.\"    without specific prior written permission.
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
 .\"
-.\" THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
-.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
-.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-.\" SUCH DAMAGE.
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one
+.\" 
+.\" Since the Linux kernel and libraries are constantly changing, this
+.\" manual page may be incorrect or out-of-date.  The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\" 
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\"     @(#)sigpause.2	6.6 (Berkeley) 3/10/91
-.\"
-.\" Modified Sat Jul 24 10:09:26 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified 1995 by Mike Battersby <mib@deakin.edu.au>
-.\" Modified Tue Oct 22 22:07:56 1996 by Eric S. Raymond <esr@thyrsus.com>
-.\"
-.TH SIGPAUSE 2 1993-07-24 "Linux 1.3" "Linux Programmer's Manual"
+.TH SIGPAUSE 2 2004-05-10 "Linux 2.6" "Linux Programmer's Manual"
 .SH NAME
 sigpause \- atomically release blocked signals and wait for interrupt
 .SH SYNOPSIS
+.nf
 .B #include <signal.h>
 .sp
-.BI "int sigpause(int " sigmask );
+.BI "int sigpause(int " sigmask ");  /* BSD */"
+.sp
+.BI "int sigpause(int " sig ");      /* Unix95 */"
+.fi
 .SH DESCRIPTION
-This interface is made obsolete by
-.BR sigsuspend (2).
-
+Don't use this function. Use
+.BR sigsuspend (2)
+instead.
+.LP
+The function
 .B sigpause
-assigns 
-.I sigmask
-to the set of masked signals and then waits for a signal to arrive; on
-return the set of masked signals is restored.
-.PP
-.I sigmask
-is usually 0 to indicate that no signals are to be blocked.
+is designed to wait for some signal.
+It changes the process' signal mask (set of blocked signals),
+and then waits for a signal to arrive.
+Upon arrival of a signal, the original signal mask is restored.
+.SH "RETURN VALUE"
+If
 .B sigpause
-always terminates by being interrupted, returning \-1 with
+returns, it was interrupted by a signal and the return value is \-1
+with
 .I errno
 set to
 .BR EINTR .
-.SH "CONFORMING TO"
-4.4BSD.  The
-.B sigpause
-function call appeared in 4.3BSD and is deprecated.
+.SH HISTORY
+The classical BSD version of this function appeared in 4.2BSD.
+It sets the process' signal mask to
+.IR sigmask .
+When the number of signals was increased above 32, this version
+was replaced by the incompatible Unix95 one, which removes only the
+specified signal
+.I sig
+from the process' signal mask.
+.\" __xpg_sigpause: Unix 95, spec 1170, SVID, SVR4, XPG
+The unfortunate situation with two incompatible functions with the
+same name was solved by the
+.BR \%sigsuspend (2)
+function, that takes a
+.B "sigset_t *"
+parameter (instead of an int).
+.LP
+On Linux, this routine is a system call only on the Sparc (sparc64)
+architecture. Libc4 and libc5 only know about the BSD version.
+Glibc uses the BSD version unless _XOPEN_SOURCE is defined.
+.\" .SH NOTE
+.\" For the BSD version, one usually uses a zero
+.\" .I sigmask
+.\" to indicate that no signals are to be blocked.
 .SH "SEE ALSO"
-.BR sigsuspend (2),
 .BR kill (2),
 .BR sigaction (2),
-.BR sigprocmask (2),
 .BR sigblock (2),
+.BR sigprocmask (2),
+.BR sigsuspend (2),
 .BR sigvec (2)

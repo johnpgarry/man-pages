@@ -6,11 +6,10 @@
 .\" of this page provided the header is included verbatim,
 .\" and in case of nontrivial modification author and date
 .\" of the modification is added to the header.
-.\" $Id: socket.7,v 1.12 2000/09/15 13:15:26 ak Exp $
 .\"
-.\" 30 Oct 2002, Modified, Michael Kerrisk, mtk16@ext.canterbury.ac.nz
+.\" 2002-10-30, Michael Kerrisk, mtk16@ext.canterbury.ac.nz
 .\"	Added description of SO_ACCEPTCONN
-.\"	Plus 1 language tidy-up
+.\" 2004-05-20, aeb, added SO_RCVTIMEO/SO_SNDTIMEO text.
 .\"
 .TH SOCKET  7 1999-05-07 "Linux Man Page" "Linux Programmer's Manual" 
 .SH NAME
@@ -225,12 +224,21 @@ will always return
 .BR ENOPROTOOPT .  
 .TP
 .BR SO_RCVTIMEO " and " SO_SNDTIMEO
-Specify the sending or receiving timeouts until reporting an error.
-They are fixed to a protocol specific setting in Linux and cannot be read
-or written. Their functionality can be emulated using 
-.BR alarm (2)
-or
-.BR setitimer (2).
+.\" Not implemented in 2.0.
+.\" Implemented in 2.1.11 for getsockopt: always return a zero struct.
+.\" Implemented in 2.3.41 for setsockopt, and actually used.
+Specify the receiving or sending timeouts until reporting an error.
+The parameter is a struct timeval.
+If an input or output function blocks for this period of time, and
+data has been sent or received, the return value of that function
+will be the amount of data transferred; if no data has been transferred
+and the timeout has been reached then -1 is returned with
+.I errno
+set to EAGAIN or EWOULDBLOCK
+.\" in fact to EAGAIN
+just as if the socket was specified to be nonblocking.
+If the timeout is set to zero (the default)
+then the operation will never timeout.
 .TP
 .B SO_BSDCOMPAT
 Enable BSD bug-to-bug compatibility. This is used only by the UDP
@@ -545,9 +553,14 @@ library.
 was introduced in Linux 2.0.30. 
 .B SO_PASSCRED 
 is new in Linux 2.2.
-The sysctls are new in Linux 2.2. 
-.SH AUTHORS
-This man page was written by Andi Kleen.
+The sysctls are new in Linux 2.2.
+.B SO_RCVTIMEO
+and
+.B SO_SNDTIMEO
+are supported since Linux 2.3.41. Earlier, timeouts were fixed to
+a protocol specific setting, and could not be read or written.
+.\" .SH AUTHORS
+.\" This man page was written by Andi Kleen.
 .SH "SEE ALSO"
 .BR socket (2),
 .BR ip (7),
