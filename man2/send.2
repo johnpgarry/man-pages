@@ -93,21 +93,8 @@ call may be used to determine when it is possible to send more data.
 .PP
 The
 .I flags
-parameter may include one or more of the following:
-.\" XXX is it needed to document MSG_SYN,MSG_FIN,MSG_SYN,MSG_URG,MSG_RST ? 
-.\"     they seem to be somehow used with unix fd passing. 
+parameter is a flagword and can contain the following flags:
 .\" XXX document MSG_PROXY
-.PP
-.RS
-.nf
-.ta 4n 26n 34n
-#define MSG_OOB	0x1	/* process out-of-band data */
-#define MSG_DONTROUTE	0x4	/* bypass routing, use direct interface */
-#define MSG_DONTWAIT	0x40	/* don't block */ 	
-#define MSG_NOSIGNAL	0x2000	/* don't raise SIGPIPE */ 	
-.ta
-.fi
-.RE
 .TP
 .B MSG_OOB
 Sends
@@ -119,14 +106,19 @@ the underlying protocol must also support
 data.
 .TP
 .B MSG_DONTROUTE
-Bypasses the usual routing table lookup and sends the packet directly to the
-interface described by the destination address. This is usually used only 
-by diagnostic or routing programs.
+Dont't use a gateway to send out the packet, only send to hosts on 
+directly connected networks. This is usually used only 
+by diagnostic or routing programs. This is only defined for protocol
+families that route; packet sockets don't.
 .TP
 .B MSG_DONTWAIT
 Enables non-blocking operation; if the operation would block,
 .B EAGAIN 
-is returned. 
+is returned (this can also be enabled using the
+.B O_NONBLOCK
+with the
+.B F_SETFL
+.BR fcntl(2)).
 .TP
 .B MSG_NOSIGNAL
 Requests not to send 

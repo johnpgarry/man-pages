@@ -53,8 +53,9 @@ This macro package should be used by developers when
 writing or porting man pages for Linux.  It is fairly compatible with other
 versions of this macro package, so porting man pages should not be a major
 problem (exceptions include the NET-2 BSD release, which uses a totally
-different macro package called mdoc).
-
+different macro package called mdoc; see
+.BR mdoc (7)).
+.PP
 Note that NET-2 BSD mdoc man pages can be used with
 .B groff
 simply by specifying the
@@ -142,7 +143,7 @@ and other human-readable files.
 .TP
 .B 7 Macro packages and conventions
 A description of the standard file system layout, network protocols,
-ASCII codes, this man page, and other things.
+ASCII and other character codes, this man page, and other things.
 .TP
 .B 8 System management commands
 Commands like
@@ -463,12 +464,22 @@ it will end with the corresponding
 command.
 When generating HTML this should translate into the HTML command
 \fB<A HREF="\fP\fIu\fP\fB">\fP.
+There is an exception: if
+.I u
+is the special value ":", then no hypertext link of any kind
+will be generated until after the closing
+.B UE
+(this permits disabling hypertext links in phrases like
+.UR ":"
+LALR(1)
+.UE
+when linking is not appropriate).
 These hypertext link "macros" are new, and
-many tools won't do anything with it, but
+many tools won't do anything with them, but
 since many tools (including troff) will simply ignore undefined macros
 (or at worst insert their text) these are safe to insert.
 .TP
-.BI \&.UE " u"
+.BI \&.UE
 Ends the corresponding
 .B UR
 command;
@@ -648,13 +659,14 @@ You can also use the new
 .B UR
 macro to identify links to related information.
 If you include URLs, use the full URL
-(e.g., "http://www.kernelnotes.org") to ensure that tools
+(e.g., <http://www.kernelnotes.org>) to ensure that tools
 can automatically find the URLs.
 .PP
-Tools processing these files should skip whitespace and look at the
-next character; a period (.) or (') indicates a troff-based file
-(such as man or mdoc), a left angle bracket (<) indicates an SGML/XML-based
-file (such as HTML or Docbook); anything else suggests simple ASCII
+Tools processing these files should open the file and examine the first
+non-whitespace character. A period (.) or single quote (')
+at the beginning of a line indicates a troff-based file (such as man or mdoc).
+A left angle bracket (<) indicates an SGML/XML-based
+file (such as HTML or Docbook). Anything else suggests simple ASCII
 text (e.g., a "catman" result).
 .PP
 Many man pages begin with '\e" followed by a space and a list of characters,
@@ -663,8 +675,9 @@ For portability's sake to non-troff translators we recommend that you avoid
 using anything other than
 .BR tbl (1),
 and Linux can detect that automatically.
-However, in case you need them,
-here are the definitions of the preprocessors invoked by these characters:
+However, you might want to include this information so your man page
+can be handled by other (less capable) systems.
+Here are the definitions of the preprocessors invoked by these characters:
 .TP 3
 .B e
 eqn(1)
@@ -721,4 +734,6 @@ manual page, such as adding detailed information on sections and macros.
 .BR groff (1),
 .BR man (1),
 .BR man2html (1),
+.BR mdoc (7),
+.BR mdoc.samples (7),
 .BR whatis (1).

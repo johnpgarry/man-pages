@@ -163,10 +163,9 @@ Change lowercase letters to uppercase.
 .TP
 .B swab
 Swap every pair of input bytes.
-.SM GNU
-.BR dd ,
-unlike others, works when an odd number of bytes are read - the last
-byte is simply copied (since there is nothing to swap it with).
+If an odd number of bytes are read the last byte
+is simply copied (since there is nothing to swap it with).
+[POSIX 1003.2b, PASC interpretations 1003.2 #3 and #4]
 .TP
 .B noerror
 Continue after read errors.

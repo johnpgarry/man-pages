@@ -1,13 +1,13 @@
 Begin3
 Title:          Section 2, 3, 4, 5 and 7 man pages for Linux
-Version:        1.25
-Entered-date:   1999-07-19
-Description:    Over 700 man pages for Linux
+Version:        1.26
+Entered-date:   1999-08-24
+Description:    Over 800 man pages for Linux
 Keywords:       man pages
 Author:         several
 Maintained-by:  Andries E. Brouwer (aeb@cwi.nl)
 Primary-site:   ftp.win.tue.nl:/pub/linux-local/manpages
-                598k man-pages-1.25.tar.gz
+                620k man-pages-1.26.tar.gz
 Alternate-site: ftp.xx.kernel.org /pub/linux/docs/manpages
 Copying-policy: several; all freely distributable if nroff source included
 End

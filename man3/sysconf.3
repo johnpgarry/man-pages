@@ -21,6 +21,7 @@
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
 .\" Modified Sat Jul 24 17:51:42 1993 by Rik Faith (faith@cs.unc.edu)
+.\" Modified Tue Aug 17 11:42:20 1999 by Ariel Scolnicov (ariels@compugen.co.il)
 .TH SYSCONF 3  "April 18, 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
 sysconf \- Get configuration information at runtime
@@ -190,6 +191,22 @@ indicates whether the POSIX.2 software development utilities option is
 supported.
 The corresponding macro is
 .BR POSIX2_SW_DEV .
+.PP
+SUSv2 also lists
+.TP
+.B _SC_PAGESIZE _SC_PAGE_SIZE
+The size of a page (in bytes).
+.PP
+These values also exist, but may not be standard.
+.TP
+.B _SC_PHYS_PAGES
+The number of pages of physical memory.  Note that it is possible
+for the product of this value and the value of
+.B _SC_PAGE_SIZE
+to overflow.
+.TP
+.B _SC_AVPHYS_PAGES
+The number of currently available pages of physical memory.
 .SH "RETURN VALUE"
 The value returned is the value of the system resource, 1 if a queried
 option is available, 0 if it is not, or \-1 on error.  The variable

@@ -1,6 +1,6 @@
 .\" Hey Emacs! This file is -*- nroff -*- source.
 .\"
-.\" Copyright (C) Tom Bjorkholm & Markus Kuhn, 1996
+.\" Copyright (C) Tom Bjorkholm, Markus Kuhn & David A. Wheeler 1996-1999
 .\"
 .\" This is free documentation; you can redistribute it and/or
 .\" modify it under the terms of the GNU General Public License as
@@ -19,15 +19,16 @@
 .\"
 .\" You should have received a copy of the GNU General Public
 .\" License along with this manual; if not, write to the Free
-.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
 .\" USA.
 .\"
 .\" 1996-04-01 Tom Bjorkholm <tomb@mydata.se>
 .\"            First version written
 .\" 1996-04-10 Markus Kuhn <mskuhn@cip.informatik.uni-erlangen.de>
 .\"            revision
+.\" 1999-08-18 David A. Wheeler <dwheeler@ida.org> added Note.
 .\"
-.TH SETSCHEDULER 2 "1996-04-10" "Linux 1.3.81" "Linux Programmer's Manual"
+.TH SETSCHEDULER 2 "1999-08-18" "Linux 2.2.11" "Linux Programmer's Manual"
 .SH NAME
 sched_setscheduler, sched_getscheduler \-
 set and get scheduling algorithm/parameters
@@ -149,7 +150,6 @@ the scheduler. This ensures fair progress among all \fISCHED_OTHER\fR
 processes.
 
 .SS Response time
-
 A blocked high priority process waiting for the I/O has a certain
 response time before it is scheduled again. The device driver writer
 can greatly reduce this response time by using a "slow interrupt"
@@ -217,6 +217,32 @@ POSIX.1b (formerly POSIX.4)
 .SH BUGS
 As of linux-1.3.81, \fISCHED_RR\fR has not yet been tested carefully
 and might not behave exactly as described or required by POSIX.1b.
+.SH NOTE
+Standard Linux is a general-purpose operating system
+and can handle background processes,
+interactive applications, and soft real-time applications
+(applications that need to usually meet timing deadlines).
+This man page is directed at these kinds of applications.
+.PP
+Standard Linux is
+.I not
+designed to support
+hard real-time applications, that is, applications in which deadlines
+(often much shorter than a second) must be guaranteed or the system
+will fail catastrophically.
+Like all general-purpose operating systems, Linux
+is designed to maximize average case performance
+instead of worst case performance.
+Linux's worst case performance for
+interrupt handling is much poorer than its average case, its various
+kernel locks (such as for SMP) produce long maximum wait times, and
+many of its performance improvement techniques decrease average time by
+increasing worst-case time.
+For most situations, that's what you want, but
+if you truly are developing a hard real-time application,
+consider using hard real-time extensions to Linux such as RTLinux
+(http://www.rtlinux.org) or use a different operating system
+designed specifically for hard real-time applications.
 .SH SEE ALSO
 .BR sched_setparam (2), 
 .BR sched_getparam (2), 

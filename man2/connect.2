@@ -116,29 +116,30 @@ The following are general socket errors only.  There may be other
 domain-specific error codes. 
 .TP 0.8i
 .B EBADF
-Bad descriptor.
+The file descriptor is not a valid index in the descriptor table.
 .TP
 .B EFAULT
 The socket structure address is outside the user's address space.
 .TP
 .B ENOTSOCK
-The descriptor is not associated with a socket.
+The file descriptor is not associated with a socket.
 .TP
 .B EISCONN
 The socket is already connected.
 .TP
 .B ECONNREFUSED
-Connection refused at server.
+No one listening on the remote address.
 .TP
 .B ETIMEDOUT
 Timeout while attempting connection. The server may be too 
-busy to accept new connections. 
+busy to accept new connections. Note that for IP sockets the timeout may
+be very long when syncookies are enabled on the server.
 .TP
 .B ENETUNREACH
 Network is unreachable.
 .TP
 .B EADDRINUSE
-Address is already in use.
+Local address is already in use.
 .TP
 .B EINPROGRESS
 The socket is non-blocking and the connection cannot be completed

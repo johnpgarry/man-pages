@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.25.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.26.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-3.16 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -33,18 +33,27 @@ Differences from version 1.24:
 
 	dd.1
 
-	fcntl.2 ioctl.2 open.2 sigaction.2 shmop.2 socket.2 stat.2
+	connect.2 recv.2 sched_setscheduler.2 select.2 send.2
 
-	bindresvport.3 ecvt.3 ftw.3 gethostbyname.3 getopt.3 getpw.3
-	getrpcent.3 getrpcport.3 nftw.3 printf.3 rpc.3 rtnetlink.3 setjmp.3
-	snprintf.3 strptime.3 xdr.3
+	MB_CUR_MAX.3 MB_LEN_MAX.3 btowc.3 fgetwc.3 fgetws.3
+	fopen.3 fputwc.3 fputws.3 getcwd.3 getpass.3 getwc.3
+	getwchar.3 iswalnum.3 iswalpha.3 iswblank.3 iswcntrl.3
+	iswctype.3 iswdigit.3 iswgraph.3 iswlower.3 iswprint.3
+	iswpunct.3 iswspace.3 iswupper.3 iswxdigit.3 mblen.3
+	mbrlen.3 mbrtowc.3 mbsinit.3 mbsnrtowcs.3 mbsrtowcs.3
+	mbstowcs.3 mbtowc.3 putwc.3 putwchar.3 realpath.3
+	setlocale.3 stpncpy.3 strnlen.3 sysconf.3 towctrans.3
+	towlower.3 towupper.3 wcpcpy.3 wcpncpy.3 wcrtomb.3
+	wcscasecmp.3 wcscat.3 wcschr.3 wcscmp.3 wcscpy.3 wcscspn.3
+	wcsdup.3 wcslen.3 wcsncasecmp.3 wcsncat.3 wcsncmp.3
+	wcsncpy.3 wcsnlen.3 wcsnrtombs.3 wcspbrk.3 wcsrchr.3
+	wcsrtombs.3 wcsspn.3 wcsstr.3 wcstok.3 wcstombs.3 wcswidth.3
+	wctob.3 wctomb.3 wctrans.3 wctype.3 wcwidth.3 wmemchr.3
+	wmemcmp.3 wmemcpy.3 wmemmove.3 wmemset.3
 
-	fifo.4
+	charsets.4 st.4
 
-	nsswitch.conf.5 rpc.5
-
-	ip.7 iso_8859_1.7 iso_8859_7.7 iso_8859_15.7 man.7 mdoc.7
-	mdoc.samples.7 raw.7 rtnetlink.7 socket.7 uri.7 url.7
+	ascii.7 man.7 packet.7 socket.7
 
     are new or have been updated.  Typographical or grammatical errors
     have been corrected in several other places.
@@ -58,7 +67,7 @@ Here is a breakdown of what this distribution contains:
     Section 4 = devices (e.g., hd, sd)
     Section 5 = file formats and protocols (e.g., wtmp, /etc/passwd, nfs)
     Section 6 = games (intro only)
-    Section 7 = conventions, macro packages, etc. (e.g., nroff, ascii)
+    Section 7 = conventions, macro packages, etc.
     Section 8 = system administration (intro only)
 
     (Usually, there are no section 1, 6 and 8 man pages because these
@@ -80,6 +89,7 @@ wrote, edited, or otherwise contributed to this project:
     Andries E. Brouwer <aeb@cwi.nl>
     Arnt Gulbrandsen <agulbra@nvg.unit.no>
     Bjorn Ekwall <bj0rn@blox.se>
+    Bruno Haible <haible@clisp.cons.org>
     Christopher Oliver <oliver@fritz.co.traverse.com>
     Claus Fischer <claus.fischer@microworld.com>
     Dan Miner <dminer@nyx.cs.du.edu>
@@ -110,7 +120,7 @@ wrote, edited, or otherwise contributed to this project:
     Martin Schulze <joey@infodrom.north.de>
     Matthew Wilcox <willy@bofh.ai>
     Michael Elizabeth Chastain <mec@duracef.shout.net>
-    Michael Haardt <u31b3hs@pool.informatik.rwth-aachen.de>
+    Michael Haardt <michael@moria.de>
     Michael Shields <shields@tembel.org>
     Mike Battersby <mike@starbug.apana.org.au>
     Mitchum DSouza <m.dsouza@mrc-apu.cam.ac.uk>

@@ -26,7 +26,7 @@ allbz: bz2 all
 screen:
 	-mkdir not_installed
 	files=man?/*; \
-	if [ "$$files" != "man?/*" ]; then for i in $$files; do \
+	if [ "$$files" != "man\?/\*" ]; then for i in $$files; do \
 		if [ $(MANDIR)/$$i -nt $$i ]; then \
 			diff -q $(MANDIR)/$$i $$i > /dev/null 2>&1; \
 			if [ $$? != 0 ]; then mv $$i not_installed; fi; \
@@ -35,7 +35,7 @@ screen:
 
 remove:
 	files=man?/*; \
-	if [ "$$files" != "man?/*" ]; then for i in $$files; do \
+	if [ "$$files" != "man\?/\*" ]; then for i in $$files; do \
 		rm -f $(MANDIR)/$$i $(MANDIR)/$$i.gz $(MANDIR)/$$i.bz2; \
 	done; fi
 

@@ -23,6 +23,7 @@
 .\" Modified Wed Jul 21 22:35:42 1993 by Rik Faith (faith@cs.unc.edu)
 .\" Modified 18 Mar 1996 by Martin Schulze (joey@infodrom.north.de):
 .\"   Corrected description of getwd().
+.\" Modified Sat Aug 21 12:32:12 MET 1999 by aeb - applied fix by aj
 .\"
 .TH GETCWD 3 "21 July 1993" "GNU" "Linux Programmer's Manual"
 .SH NAME
@@ -67,7 +68,7 @@ on call.  In this case, the allocated buffer has the length
 .I size
 unless
 .I size
-is less than zero, when
+is zero, when
 .I buf
 is allocated as big as necessary.  It is possible (and, indeed,
 advisable) to
