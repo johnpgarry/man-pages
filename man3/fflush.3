@@ -38,6 +38,7 @@
 .\" Converted for Linux, Mon Nov 29 15:22:01 1993, faith@cs.unc.edu
 .\"
 .\" Modified 2000-07-22 by Nicolás Lichtmaier <nick@debian.org>
+.\" Modified 2001-10-16 by John Levon <moz@compsoc.man.ac.uk>
 .\"
 .TH FFLUSH 3  1993-11-29 "BSD MANPAGE" "Linux Programmer's Manual"
 .SH NAME
@@ -62,6 +63,9 @@ argument is
 flushes
 .I all
 open output streams.
+.PP
+For a non-locking counterpart, see
+.BR unlocked_stdio (3).
 .SH "RETURN VALUE"
 Upon successful completion 0 is returned.  Otherwise,
 .B EOF
@@ -90,14 +94,14 @@ the kernel buffers must be flushed too, e.g. with
 or
 .BR fsync (2).
 .SH "CONFORMING TO"
-The
-.B fflush
-function conforms to ANSI X3.159-1989 (``ANSI C'').
+The function
+.BR fflush()
+conforms to ANSI X3.159-1989 (``ANSI C'').
 .SH "SEE ALSO"
-.BR write (2),
-.BR fclose (3),
-.BR fopen (3),
 .BR fsync (2),
 .BR sync (2),
 .BR write (2),
-.BR setbuf (3)
+.BR fclose (3),
+.BR fopen (3),
+.BR setbuf (3),
+.BR unlocked_stdio (3)

@@ -41,11 +41,23 @@ The \fBexit()\fP function causes normal program termination and the value of
 with \fBatexit()\fP and \fBon_exit()\fP are called in the reverse
 order of their registration, and all open streams are flushed and
 closed.
+.LP
+The C standard specifies two defines \fIEXIT_SUCCESS\fP and \fIEXIT_FAILURE\fP
+that may be passed to \fBexit()\fP to indicate successful or unsuccessful
+termination, respectively.
 .SH "RETURN VALUE"
 The \fBexit()\fP function does not return.
 .SH "CONFORMING TO"
-SVID 3, POSIX, BSD 4.3, ISO 9899
+SVID 3, POSIX, BSD 4.3, ISO 9899 (``ANSI C'')
+.SH NOTES
+The use of EXIT_SUCCESS and EXIT_FAILURE is slightly more portable
+(to non-Unix environments) than that of 0 and some nonzero value
+like 1 or \-1. In particular, VMS uses a different convention.
+.LP
+BSD has attempted to standardize exit codes - see the file
+.IR <sysexits.h> .
 .SH "SEE ALSO"
 .BR _exit (2),
+.BR wait (2),
 .BR atexit (3),
 .BR on_exit (3)

@@ -73,6 +73,9 @@ bytes long, to the stream pointed to by
 .IR stream ,
 obtaining them from the location given by
 .IR ptr .
+.PP
+For non-locking counterparts, see
+.BR unlocked_stdio (3).
 .SH "RETURN VALUE"
 .B fread
 and
@@ -94,7 +97,8 @@ and
 .B fwrite
 conform to ANSI X3.159-1989 (``ANSI C'').
 .SH "SEE ALSO"
+.BR read (2),
+.BR write (2),
 .BR feof (3),
 .BR ferror (3),
-.BR read (2),
-.BR write (2)
+.BR unlocked_stdio (3)

@@ -1,7 +1,7 @@
 
 The Linux man page maintainer proudly announces. . .
 
-    man-pages-1.41.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
+    man-pages-1.42.tar.gz - section 2, 3, 4, 5, 7 man pages for Linux
 
 and in addition section 1 man pages for the fileutils-4.0 utilities,
 and section 5 and 8 man pages for the timezone utilities.
@@ -27,20 +27,26 @@ with these man pages.]
 [The rpc man pages were taken from the 4.4BSD-Lite CDROM. They are
 copyrighted by Sun Microsystems, Inc., but can be distributed freely.]
 
-Differences from version 1.40:
+Differences from version 1.41:
 
     The man pages
 
-	acct.2 getpriority.2 mmap.2 mount.2 open.2 sync.2
+	access.2 llseek.2 mansigaltstack.2
 
-	alloca.3 endutxent.3 getdelim.3 getline.3 getutxent.3
-	getutxid.3 getutxline.3 ldiv.3 lldiv.3 memalign.3
-	mkdtemp.3 posix_memalign.3 pututxline.3 setlogmask.3
-	setutxent.3 stdarg.3 strchr.3 syslog.3 undocumented.3
-	valloc.3
+	clearenv.3 clearerr_unlocked.3 exit.3 feof_unlocked.3 ferror.3
+	ferror_unlocked.3 fflush.3 fflush_unlocked.3 fgetc_unlocked.3
+	fgets_unlocked.3 fgetwc.3 fgetwc_unlocked.3 fgetws.3 fgetws_unlocked.3
+	fileno_unlocked.3 flockfile.3 fputc_unlocked.3 fputs_unlocked.3
+	fputwc.3 fputwc_unlocked.3 fputws.3 fputws_unlocked.3 fread.3
+	fread_unlocked.3 ftrylockfile.3 funlockfile.3 fwrite_unlocked.3
+	getc_unlocked.3 getchar_unlocked.3 gets.3 getwc_unlocked.3
+	getwchar.3 getwchar_unlocked.3 putc_unlocked.3 putchar_unlocked.3
+	puts.3 putwc_unlocked.3 putwchar.3 putwchar_unlocked.3 strdup.3
+	strdupa.3 strerror.3 strerror_r.3 strndup.3 strndupa.3
+	undocumented.3 unlocked_stdio.3
 
     are new or have been updated. Typographical or grammatical errors
-    have been corrected in several other places.
+    have been corrected in a few other places.
 
 
 Here is a breakdown of what this distribution contains:
@@ -98,6 +104,7 @@ wrote, edited, or otherwise contributed to this project:
     Jim Van Zandt <jrv@vanzandt.mv.com>
     Jochen Hein <Hein@Student.TU-Clausthal.de>
     Jochen Karrer <cip307.cip.physik.uni-wuerzburg.de>
+    John Levon <moz@compsoc.man.ac.uk>
     John S. Kallal <kallal@voicenet.com>
     Jonathan Naylor <g4klx@g4klx.demon.co.uk, jsn@cs.nott.ac.uk>
     Joseph S. Myers <jsm28@hermes.cam.ac.uk>

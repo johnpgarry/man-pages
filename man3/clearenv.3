@@ -1,4 +1,4 @@
-.\" Copyright 1993 David Metcalfe (david@prism.demon.co.uk)
+.\" Copyright 2001 John Levon <moz@compsoc.man.ac.uk>
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -20,34 +20,48 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\"
-.\" References consulted:
-.\"     Linux libc source code
-.\"     Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
-.\"     386BSD man pages
-.\" Modified Sat Jul 24 19:30:29 1993 by Rik Faith (faith@cs.unc.edu)
-.\" Modified Fri Feb 14 21:47:50 1997 by Andries Brouwer (aeb@cwi.nl)
-.\"
-.TH GETENV 3  1993-04-03 "GNU" "Linux Programmer's Manual"
+.\" Additions, aeb, 2001-10-17.
+.TH CLEARENV 3  2001-10-17 "Linux Programmer's Manual"
 .SH NAME
-getenv \- get an environment variable
+clearenv \- clear the environment
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
 .sp
-.BI "char *getenv(const char *" name );
+.BI "int clearenv(void);"
 .fi
 .SH DESCRIPTION
-The \fBgetenv()\fP function searches the environment list for a string
-that matches the string pointed to by \fIname\fP.  The strings are of
-the form \fIname = value\fP.
+The \fBclearenv()\fP function clears the environment of all name-value
+pairs.
+
 .SH "RETURN VALUE"
-The \fBgetenv()\fP function returns a pointer to the value in the
-environment, or NULL if there is no match.
+The \fBclearenv()\fP function returns zero on success, and a non-zero
+value on failure.
+
+.SH AVAILABILITY
+Not in libc4, libc5. In glibc since glibc 2.0.
+
 .SH "CONFORMING TO"
-SVID 3, POSIX, BSD 4.3, ISO 9899
+Various Unix variants (DGUX, HPUX, QNX, ...).
+POSIX.9 (bindings for FORTRAN77).
+POSIX.1-1996 did not accept \fBclearenv()\fP and \fIputenv()\fP,
+but changed its mind and scheduled these functions for some
+later issue of this standard (cf. B.4.6.1). However, SUSv3
+only adds \fIputenv()\fP, and rejected \fBclearenv()\fP.
+
+.SH NOTES
+Used in security-conscious applications. If it is unavailable
+the assignment
+.RS
+.nf
+	environ = NULL;
+.fi
+.RE
+will probably do.
 .SH "SEE ALSO"
+.BR getenv (3),
 .BR putenv (3),
 .BR setenv (3),
-.BR clearenv (3),
 .BR unsetenv (3),
 .BR environ (5)
+

@@ -34,8 +34,9 @@
 .\" Modified by Joseph S. Myers <jsm28@cam.ac.uk>, 970909
 .\" Modified Tue Jan 13 21:21:03 MET 1998 by Michael Haardt:
 .\"   Using access is often insecure
+.\" Modified Tue Oct 16 02:40:48 CEST 2001 by aeb
 .\"
-.TH ACCESS 2 1998-01-13 "Linux" "System calls"
+.TH ACCESS 2 2001-10-16 "Linux" "System calls"
 .SH NAME
 access \- check user's permissions for a file
 .SH SYNOPSIS
@@ -83,6 +84,11 @@ created in the directory, and not that the directory can be written as a
 file.  Similarly, a DOS file may be found to be "executable," but the
 .BR execve (2)
 call will still fail.
+
+If the process has appropriate privileges, an implementation may
+indicate success for
+.B X_OK
+even if none of the execute file permission bits are set. 
 .SH "RETURN VALUE"
 On success (all requested permissions granted), zero is returned.
 On error (at least one bit in

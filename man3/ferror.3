@@ -39,19 +39,19 @@
 .\" Converted for Linux, Mon Nov 29 14:24:40 1993, faith@cs.unc.edu
 .\" Added remark on EBADF for fileno, aeb, 2001-03-22
 .\"
-.TH FERROR 3  2001-03-22 "BSD MANPAGE" "Linux Programmer's Manual"
+.TH FERROR 3  2001-10-16 "" "Linux Programmer's Manual"
 .SH NAME
 clearerr, feof, ferror, fileno \- check and reset stream status
 .SH SYNOPSIS
 .B #include <stdio.h>
 .sp
-.BI "void clearerr( FILE *" stream );
+.BI "void clearerr(FILE *" stream );
 .br
-.BI "int feof( FILE *" stream );
+.BI "int feof(FILE *" stream );
 .br
-.BI "int ferror( FILE *" stream );
+.BI "int ferror(FILE *" stream );
 .br
-.BI "int fileno( FILE *" stream );
+.BI "int fileno(FILE *" stream );
 .SH DESCRIPTION
 The function
 .B clearerr
@@ -80,6 +80,9 @@ The function
 examines the argument
 .I stream
 and returns its integer descriptor.
+.PP
+For non-locking counterparts, see
+.BR unlocked_stdio (3).
 .SH ERRORS
 These functions should not fail and do not set the external variable
 .IR errno .
@@ -99,4 +102,5 @@ and
 conform to X3.159-1989 (``ANSI C'').
 .SH "SEE ALSO"
 .BR open (2),
+.BR unlocked_stdio (3),
 .BR stdio (3)

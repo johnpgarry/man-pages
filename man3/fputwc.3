@@ -33,6 +33,9 @@ Otherwise it returns \fIwc\fP.
 The \fBputwc\fP function or macro functions identically to \fBfputwc\fP.
 It may be implemented as a macro, and may evaluate its argument
 more than once. There is no reason ever to use it.
+.PP
+For non-locking counterparts, see
+.BR unlocked_stdio (3).
 .SH "RETURN VALUE"
 The \fBfputwc\fP function returns \fIwc\fP if no error occurred, or WEOF to
 indicate an error.
@@ -43,9 +46,6 @@ Apart from the usual ones, there is
 Conversion of \fIwc\fP to the stream's encoding fails.
 .SH "CONFORMING TO"
 ISO/ANSI C, UNIX98
-.SH "SEE ALSO"
-.BR fgetwc (3),
-.BR fputws (3)
 .SH NOTES
 The behaviour of \fBfputwc\fP depends on the LC_CTYPE category of the
 current locale.
@@ -53,3 +53,7 @@ current locale.
 In the absence of additional information passed to the fopen call, it is
 reasonable to expect that \fBfputwc\fP will actually write the multibyte
 sequence corresponding to the wide character \fIwc\fP.
+.SH "SEE ALSO"
+.BR fgetwc (3),
+.BR fputws (3),
+.BR unlocked_stdio (3)

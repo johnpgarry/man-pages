@@ -103,6 +103,9 @@ Calls to the functions described here can be mixed with each other and with
 calls to other input functions from the
 .B stdio
 library for the same input stream.
+.PP
+For non-locking counterparts, see
+.BR unlocked_stdio (3).
 .SH "RETURN VALUE"
 .BR fgetc() , " getc() " and " getchar()"
 return the character read as an
@@ -145,14 +148,15 @@ It is not advisable to mix calls to input functions from the
 .B stdio
 library with low - level calls to
 .B read() 
-for the file descriptor associated with the input stream; the results will be undefined
-and very probably not what you want.
+for the file descriptor associated with the input stream; the results
+will be undefined and very probably not what you want.
 .SH "SEE ALSO"
 .BR read (2),
 .BR write (2),
+.BR ferror (3),
 .BR fopen (3),
 .BR fread (3),
-.BR scanf (3),
-.BR puts (3),
 .BR fseek (3),
-.BR ferror (3)
+.BR puts (3),
+.BR scanf (3),
+.BR unlocked_stdio (3)
