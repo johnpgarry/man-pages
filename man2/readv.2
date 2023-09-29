@@ -193,6 +193,61 @@ which provides lower latency, but may use additional resources.
 .B O_DIRECT
 flag.)
 .TP
+.BR RWF_ATOMIC " (since Linux 6.8)"
+Requires that writes to regular files in block-based filesystems be issued with
+torn-write protection. Torn-write protection means that for a power failure or
+any other hardware failure, all or none of the data from the write will be
+stored, but never a mix of old and new data. This flag is meaningful only for
+.BR pwritev2 (),
+and its effect applies only to the data range written by the system call.
+The total write length must be power-of-2 and must be sized between
+.I stx_atomic_write_unit_min
+ and
+.I  stx_atomic_write_unit_max
+, both inclusive. The
+write must be at a naturally-aligned offset within the file with respect to the
+total write length - for example, a write of length 32KB at a file offset of
+32KB is permitted, however a write of length 32KB at a file offset of 48KB is
+not permitted. The upper limit of
+.I iovcnt
+for
+.BR pwritev2 ()
+is in
+.I stx_atomic_write_segments_max.
+Torn-write protection only works with
+.B O_DIRECT
+flag, i.e. buffered writes are not supported. To guarantee consistency from
+the write between a file's in-core state with the storage device,
+.BR fdatasync (2),
+or
+.BR fsync (2),
+or
+.BR open (2)
+and either
+.B O_SYNC
+or
+.B O_DSYNC,
+or
+.B pwritev2 ()
+and either
+.B RWF_SYNC
+or
+.B RWF_DSYNC
+is required. Flags
+.B O_SYNC
+or
+.B RWF_SYNC
+provide the strongest guarantees for
+.BR RWF_ATOMIC,
+in that all data and also file metadata updates will be persisted for a
+successfully completed write. Just using either flags
+.B O_DSYNC
+or
+.B RWF_DSYNC
+means that all data and any file updates will be persisted for a successfully
+completed write. Not using any sync flags means that there
+is no guarantee that data or filesystem updates are persisted.
+.TP
 .BR RWF_SYNC " (since Linux 4.7)"
 .\" commit e864f39569f4092c2b2bc72c773b6e486c7e3bd9
 Provide a per-write equivalent of the
@@ -280,9 +335,25 @@ values overflows an
 value.
 .TP
 .B EINVAL
+ For
+.BR RWF_ATOMIC
+set,
+the combination of the sum of the
+.I iov_len
+values and the
+.I offset
+value
+does not comply with the length and offset torn-write protection rules.
+.TP
+.B EINVAL
 The vector count,
 .IR iovcnt ,
-is less than zero or greater than the permitted maximum.
+is less than zero or greater than the permitted maximum. For
+.BR RWF_ATOMIC
+set, this maximum is in
+.I stx_atomic_write_segments_max
+from
+.I statx.
 .TP
 .B EOPNOTSUPP
 An unknown flag is specified in \fIflags\fP.
