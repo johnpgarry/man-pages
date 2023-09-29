@@ -1782,6 +1782,19 @@ blockdev \-\-getss
 .EE
 .in
 .PP
+When
+.B O_DIRECT
+is used in conjunction with
+.BR pwritev2 ()
+and
+.BR RWF_ATOMIC
+flag, in addition to any alignment rules already imposed by the filesystem and
+underlying block device, it must be ensured that
+.I iovec
+vectors have no gaps such that the end alignment of a vector must have the same
+start alignment of any subsequent vector and that alignment must be least
+at a page boundary.
+.PP
 .B O_DIRECT
 I/Os should never be run concurrently with the
 .BR fork (2)
