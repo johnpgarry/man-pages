@@ -140,6 +140,12 @@ as well the description of
 .B O_SYNC
 in
 .BR open (2).
+.TP
+.BR RWF_ATOMIC " (since Linux 6.8)"
+Write a block of data such that a write will never be
+torn from power fail or similar. See the description
+of the flag of the same name in
+.BR pwritev2 (2).
 .RE
 .TP
 .I aio_lio_opcode
