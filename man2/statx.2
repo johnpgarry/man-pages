@@ -68,6 +68,10 @@ struct statx {
     /* Direct I/O alignment restrictions */
     __u32 stx_dio_mem_align;
     __u32 stx_dio_offset_align;
+\&
+    __u32 stx_atomic_write_unit_min;
+    __u32 stx_atomic_write_unit_max;
+    __u32 stx_atomic_write_segments_max;
 };
 .EE
 .in
@@ -255,6 +259,9 @@ STATX_ALL	The same as STATX_BASIC_STATS | STATX_BTIME.
 STATX_MNT_ID	Want stx_mnt_id (since Linux 5.8)
 STATX_DIOALIGN	Want stx_dio_mem_align and stx_dio_offset_align
 	(since Linux 6.1; support varies by filesystem)
+STATX_WRITE_ATOMIC	Want stx_atomic_write_unit_min, stx_atomic_write_unit_max,
+	and stx_atomic_write_segments_max.
+	(since Linux 6.9; support varies by filesystem)
 .TE
 .in
 .P
@@ -439,6 +446,25 @@ or 0 if direct I/O is not supported on this file.
 This will only be nonzero if
 .I stx_dio_mem_align
 is nonzero, and vice versa.
+.TP
+.I stx_atomic_write_unit_min
+The minimum size (in bytes) supported for direct I/O
+.RB ( O_DIRECT )
+on the file to be written with torn-write protection. This value is guaranteed
+to be a power-of-2.
+.TP
+.I stx_atomic_write_unit_max
+The maximum size (in bytes) supported for direct I/O
+.RB ( O_DIRECT )
+on the file to be written with torn-write protection. This value is guaranteed
+to be a power-of-2.
+.TP
+.I stx_atomic_write_segments_max
+The maximum number of elements in an array of vectors for a write with
+torn-write protection enabled. See
+.BR RWF_ATOMIC
+flag for
+.BR pwritev2 (2).
 .P
 For further information on the above fields, see
 .BR inode (7).
@@ -491,6 +517,9 @@ The file has fs-verity enabled.
 It cannot be written to, and all reads from it will be verified
 against a cryptographic hash that covers the
 entire file (e.g., via a Merkle tree).
+.TP
+.BR STATX_ATTR_WRITE_ATOMIC " (since Linux 6.8)"
+The file supports torn-write protection.
 .TP
 .BR STATX_ATTR_DAX " (since Linux 5.8)"
 The file is in the DAX (cpu direct access) state.
