@@ -140,6 +140,25 @@ as well the description of
 .B O_SYNC
 in
 .BR open (2).
+.TP
+.BR RWF_ATOMIC " (since Linux 6.11)"
+Write a block of data such that a write will never be torn from power fail or
+similar.
+See the description of
+.B RWF_ATOMIC
+in
+.BR pwritev2 (2).
+For usage with
+.BR IOCB_CMD_PWRITEV,
+the upper vector limit is in
+.I stx_atomic_write_segments_max.
+See
+.B STATX_WRITE_ATOMIC
+and
+.I stx_atomic_write_segments_max
+description
+in
+.BR statx (2).
 .RE
 .TP
 .I aio_lio_opcode
