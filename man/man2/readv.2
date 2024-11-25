@@ -238,6 +238,26 @@ However, if the
 .I offset
 argument is \-1, the current file offset is updated.
 .TP
+.BR RWF_NOAPPEND " (since Linux 6.9)"
+The
+.BR pwritev2 ()
+system call does not honor the
+.B O_APPEND
+.BR open (2)
+flag.
+Historically Linux honored
+.B O_APPEND
+flag if set and ignored the offset argument, which is a bug.
+For
+.BR pwritev2 (),
+the
+.I offset
+argument is honored as expected if
+.BR RWF_NOAPPEND
+flag is set, the same as if
+.B O_APPEND
+flag were not set.
+.TP
 .BR RWF_ATOMIC " (since Linux 6.11)"
 Requires that
 writes to regular files in block-based filesystems
