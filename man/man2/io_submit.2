@@ -141,6 +141,16 @@ as well the description of
 in
 .BR open (2).
 .TP
+.BR RWF_NOAPPEND " (since Linux 6.9)"
+Do not honor
+.B O_APPEND
+.BR open (2)
+flag.
+See the description of
+.B RWF_NOAPPEND
+in
+.BR pwritev2 (2).
+.TP
 .BR RWF_ATOMIC " (since Linux 6.11)"
 Write a block of data such that
 a write will never be torn from power fail or similar.
