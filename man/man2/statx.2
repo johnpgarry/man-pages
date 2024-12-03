@@ -482,6 +482,15 @@ The minimum and maximum sizes (in bytes) supported for direct I/O
 .RB ( O_DIRECT )
 on the file to be written with torn-write protection.
 These values are each guaranteed to be a power-of-2.
+.IP
+.B STATX_WRITE_ATOMIC
+.RI ( stx_atomic_write_unit_min,
+.RI stx_atomic_write_unit_max,
+and
+.IR stx_atomic_write_segments_max )
+is supported on block devices since Linux 6.11.
+The support on regular files varies by filesystem;
+it is supported by xfs and ext4 since Linux 6.13.
 .TP
 .I stx_atomic_write_segments_max
 The maximum number of elements in an array of vectors
